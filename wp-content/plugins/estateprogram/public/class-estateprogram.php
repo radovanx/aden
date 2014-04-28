@@ -93,17 +93,17 @@ class EstateProgram {
 
         $args = array(
             'labels' => array(
-                'name' => __('Buildings', 'w4a-program'),
-                'singular_name' => __('Building', 'w4a-program'),
-                'add_new' => __('Create building', 'w4a-program'),
-                'add_new_item' => __('New building', 'w4a-program'),
-                'edit_item' => __('Edit building', 'w4a-program'),
-                'new_item' => __('Create building', 'w4a-program'),
-                'all_items' => __('All buildings', 'w4a-program'),
-                'view_item' => __('View building', 'w4a-program'),
-                'search_items' => __('Find building', 'w4a-program'),
+                'name' => __('Program', 'estateprogram'),
+                'singular_name' => __('Program', 'estateprogram'),
+                'add_new' => __('Create program', 'estateprogram'),
+                'add_new_item' => __('New program', 'estateprogram'),
+                'edit_item' => __('Edit program', 'estateprogram'),
+                'new_item' => __('Create program', 'estateprogram'),
+                'all_items' => __('All programs', 'estateprogram'),
+                'view_item' => __('View program', 'estateprogram'),
+                'search_items' => __('Find program', 'estateprogram'),
                 'parent_item_colon' => '',
-                'menu_name' => __('Buildings', 'w4a-program')
+                'menu_name' => __('Programs', 'estateprogram')
             ),
             'public' => true,
             'supports' => array(
@@ -113,29 +113,29 @@ class EstateProgram {
                 'excerpt',
                 'author'
             ),
+            'menu_position' => 7,
             'rewrite' => array(
-                'slug' => 'girl',
-            ),
-            //'show_in_menu' => 'edit.php?post_type=banner',
-            'show_in_menu' => 'program_overview'
+                'slug' => 'program',
+            ),            
+            //'show_in_menu' => 'Program'
         );
 
-        register_post_type('building', $args);
+        register_post_type('program', $args);
 
 
         $args = array(
             'labels' => array(
-                'name' => __('Flats', 'w4a-program'),
-                'singular_name' => __('Flat', 'w4a-program'),
-                'add_new' => __('Create flat', 'w4a-program'),
-                'add_new_item' => __('New flat', 'w4a-program'),
-                'edit_item' => __('Edit flat', 'w4a-program'),
-                'new_item' => __('Create flat', 'w4a-program'),
-                'all_items' => __('All flat', 'w4a-program'),
-                'view_item' => __('View flat', 'w4a-program'),
-                'search_items' => __('Find flat', 'w4a-program'),
+                'name' => __('Flats', 'estateprogram'),
+                'singular_name' => __('Flat', 'estateprogram'),
+                'add_new' => __('Create flat', 'estateprogram'),
+                'add_new_item' => __('New flat', 'estateprogram'),
+                'edit_item' => __('Edit flat', 'estateprogram'),
+                'new_item' => __('Create flat', 'estateprogram'),
+                'all_items' => __('All flat', 'estateprogram'),
+                'view_item' => __('View flat', 'estateprogram'),
+                'search_items' => __('Find flat', 'estateprogram'),
                 'parent_item_colon' => '',
-                'menu_name' => __('Flats', 'w4a-program')
+                'menu_name' => __('Flats', 'estateprogram')
             ),
             'public' => true,
             'supports' => array(
@@ -145,13 +145,11 @@ class EstateProgram {
                 'excerpt',
                 'author'
             ),
+            'menu_position' => 8,
             'rewrite' => array(
-                //'slug' => __('divka', 'w4a-program'),
-                //'slug' => '%category_club%/girlsss',
-                //'with_front' => false,
                 'slug' => 'flat',
             ),
-            'show_in_menu' => 'program_overview'
+            //'show_in_menu' => 'program_overview'
         );
 
         register_post_type('flat', $args);

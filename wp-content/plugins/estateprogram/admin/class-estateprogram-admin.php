@@ -6,7 +6,7 @@
  * @package   EstateProgram_Admin
  * @author    a. <>
  * @license   GPL-2.0+
- * @link      
+ * @link
  * @copyright 2014 a.
  */
 
@@ -67,9 +67,9 @@ class EstateProgram_Admin {
          * - Rename "EstateProgram" to the name of your initial plugin class
          *
          */
-        
-        
-        
+
+
+
         $plugin = EstateProgram::get_instance();
         $this->plugin_slug = $plugin->get_plugin_slug();
 
@@ -82,10 +82,9 @@ class EstateProgram_Admin {
         add_action('load-post-new.php', array(&$this, 'meta_boxes_setup'));
 
         // Add the options page and menu item.
-        add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
-        
-        //add_action('admin_menu', array(&$this, 'register_menu_page'));
+        //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
 
+        //add_action('admin_menu', array(&$this, 'register_menu_page'));
         // Add an action link pointing to the options page.
         $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . $this->plugin_slug . '.php');
         add_filter('plugin_action_links_' . $plugin_basename, array($this, 'add_action_links'));
@@ -109,13 +108,13 @@ class EstateProgram_Admin {
 
     /**
      *
-     */    
+     */
     public function custom_boxes() {
-       /* add_meta_box(
-                'campaigne_logo', __('Charity', 'campaign'), array($this, 'campaign_logo_box'), 'campaign_item', 'side'
-        );*/
-    }    
-    
+        /* add_meta_box(
+          'campaigne_logo', __('Charity', 'campaign'), array($this, 'campaign_logo_box'), 'campaign_item', 'side'
+          ); */
+    }
+
     /**
      * Return an instance of this class.
      *
@@ -179,13 +178,13 @@ class EstateProgram_Admin {
     public function enqueue_admin_scripts() {
 
         $screen = get_current_screen();
-        
+
         if (!isset($this->plugin_screen_hook_suffix)) {
             return;
         }
 
         $screen = get_current_screen();
-        
+
         if ($this->plugin_screen_hook_suffix == $screen->id) {
             wp_enqueue_script($this->plugin_slug . '-admin-script', plugins_url('assets/js/admin.js', __FILE__), array('jquery'), EstateProgram::VERSION);
         }
@@ -196,17 +195,10 @@ class EstateProgram_Admin {
      *
      * @since    1.0.0
      */
-    public function add_plugin_admin_menu() {        
-        
-        global $WP_Screen;
-        
-        global $_parent_pages;
-        $_parent_pages['edit-tags.php?taxonomy=city&post_type=building'] = 'program_overview';
-        
-        
-        add_menu_page('Program', 'Program', 'manage_options', 'program_overview', array(&$this, 'program_overview'));        
-        //add_submenu_page( 'program_overview', 'Cities', 'Cities', 'manage_options', 'xxxx', array($this, 'report_credit'));
-        //add_submenu_page('program_overview', 'Kredity', 'Kredity','manage_options', 'report-credit', array($this, 'report_credit'));        
+    public function add_plugin_admin_menu() {
+
+        add_menu_page('Program', 'Program', 'manage_options', 'program_overview', array(&$this, 'program_overview'));
+
 
         /*
          * Add a settings page for this plugin to the Settings menu.
