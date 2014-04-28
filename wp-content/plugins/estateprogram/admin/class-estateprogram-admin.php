@@ -111,10 +111,10 @@ class EstateProgram_Admin {
                 '_program_range_from',
                 '_program_range_to'
             );
-            
+
             $this->process_save($post->ID, $meta_keys);
         }
-        
+
         if (isset($_POST['flat_post_nonce']) && wp_verify_nonce($_POST['flat_post_nonce'], __FILE__)) {
             $meta_keys = array(
                 '_flat_price',
@@ -123,9 +123,9 @@ class EstateProgram_Admin {
                 '_flat_surface_to',
                 '_flat_elevator'
             );
-            
+
             $this->process_save($post->ID, $meta_keys);
-        }        
+        }
     }
 
     protected function process_save($post_id, $meta_keys) {
