@@ -81,9 +81,10 @@ class EstateProgram_Admin {
         add_action('load-post.php', array(&$this, 'meta_boxes_setup'));
         add_action('load-post-new.php', array(&$this, 'meta_boxes_setup'));
 
+        add_action('save_post', array($this, 'save'));
+
         // Add the options page and menu item.
         //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
-
         //add_action('admin_menu', array(&$this, 'register_menu_page'));
         // Add an action link pointing to the options page.
         $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . $this->plugin_slug . '.php');
@@ -97,6 +98,31 @@ class EstateProgram_Admin {
          */
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
+    }
+
+    public function save() {
+
+        global $post;
+        
+        if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
+            
+            $meta_keys = array(
+                'program_city',
+                'program_district',
+                'range_from',
+                'range_to'
+            );
+            
+            foreach($meta_keys as $key){
+                
+                if(isset($_POST[$key]) && ('' != $_POST[$key])){
+                    update_post_meta($post->ID, $key, $_POST[$key]);
+                } else {
+                    delete_post_meta($post->ID, $key);
+                }
+                
+            }
+        }
     }
 
     /**
@@ -113,17 +139,18 @@ class EstateProgram_Admin {
         /* add_meta_box(
           'campaigne_logo', __('Charity', $this->plugin_slug), array($this, 'campaign_logo_box'), 'campaign_item', 'side'
           ); */
-        
+
         add_meta_box(
-          'program_properties', __('Program properties', $this->plugin_slug), array($this, 'program_properties'), 'program'
-        );        
+                'program_properties', __('Program properties', $this->plugin_slug), array($this, 'program_properties'), 'program'
+        );
     }
 
-    public function program_properties(){
+    public function program_properties() {
         global $post;
         include_once( 'views/program_properties.php' );
+        wp_nonce_field(__FILE__, 'program_post_nonce');
     }
-    
+
     /**
      * Return an instance of this class.
      *
