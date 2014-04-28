@@ -24,7 +24,7 @@
             </label>
         </td>
         <td>
-            <input id="range-from" type="number" name="_program_range_from" min="0" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_range_from', true)) ?>">
+            <input id="range-from" type="number" name="_program_price_from" min="0" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)) ?>">
             <span class="input-info"><?php _e('Please enter a number', $this->plugin_slug); ?></span>
         </td>
     </tr>
@@ -35,7 +35,7 @@
             </label>
         </td>
         <td>
-            <input id="range-to" type="number" name="_program_range_to" min="0" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_range_to', true)) ?>">
+            <input id="range-to" type="number" name="_program_price_to" min="0" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)) ?>">
             <span class="input-info"><?php _e('Please enter a number', $this->plugin_slug); ?></span>
         </td>
     </tr>

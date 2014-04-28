@@ -108,8 +108,8 @@ class EstateProgram_Admin {
             $meta_keys = array(
                 '_program_city',
                 '_program_district',
-                '_program_range_from',
-                '_program_range_to',
+                '_program_price_from',
+                '_program_price_to',
                 '_program_surface_to',
                 '_program_surface_from',
                 '_program_elevator'
