@@ -103,24 +103,38 @@ class EstateProgram_Admin {
     public function save() {
 
         global $post;
-        
+
         if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
-            
             $meta_keys = array(
-                'program_city',
-                'program_district',
-                'range_from',
-                'range_to'
+                '_program_city',
+                '_program_district',
+                '_program_range_from',
+                '_program_range_to'
             );
             
-            foreach($meta_keys as $key){
-                
-                if(isset($_POST[$key]) && ('' != $_POST[$key])){
-                    update_post_meta($post->ID, $key, $_POST[$key]);
-                } else {
-                    delete_post_meta($post->ID, $key);
-                }
-                
+            $this->process_save($post->ID, $meta_keys);
+        }
+        
+        if (isset($_POST['flat_post_nonce']) && wp_verify_nonce($_POST['flat_post_nonce'], __FILE__)) {
+            $meta_keys = array(
+                '_flat_price',
+                '_flat_number_of_room',
+                '_flat_surface_from',
+                '_flat_surface_to',
+                '_flat_elevator'
+            );
+            
+            $this->process_save($post->ID, $meta_keys);
+        }        
+    }
+
+    protected function process_save($post_id, $meta_keys) {
+
+        foreach ($meta_keys as $key) {
+            if (isset($_POST[$key]) && ('' != $_POST[$key])) {
+                update_post_meta($post_id, $key, $_POST[$key]);
+            } else {
+                delete_post_meta($post_id, $key);
             }
         }
     }
@@ -143,10 +157,10 @@ class EstateProgram_Admin {
         add_meta_box(
                 'program_properties', __('Program properties', $this->plugin_slug), array($this, 'program_properties'), 'program'
         );
-        
+
         add_meta_box(
                 'flat_properties', __('Flat properties', $this->plugin_slug), array($this, 'flat_properties'), 'flat'
-        );        
+        );
     }
 
     public function program_properties() {
@@ -154,11 +168,11 @@ class EstateProgram_Admin {
         include_once( 'views/program_properties.php' );
         wp_nonce_field(__FILE__, 'program_post_nonce');
     }
-    
-    public function flat_properties(){
+
+    public function flat_properties() {
         global $post;
         include_once( 'views/flat_properties.php' );
-        wp_nonce_field(__FILE__, 'flat_post_nonce');        
+        wp_nonce_field(__FILE__, 'flat_post_nonce');
     }
 
     /**
