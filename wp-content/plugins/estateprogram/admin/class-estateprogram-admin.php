@@ -40,7 +40,7 @@ class EstateProgram_Admin {
      *
      * @var      string
      */
-    protected $plugin_screen_hook_suffix = null;
+    protected $plugin_screen_hook_suffix = 'program';
 
     /**
      * Initialize the plugin by loading admin scripts & styles and adding a
@@ -164,7 +164,7 @@ class EstateProgram_Admin {
     public function enqueue_admin_styles() {
 
         if (!isset($this->plugin_screen_hook_suffix)) {
-            return;
+            //return;
         }
 
         $screen = get_current_screen();
