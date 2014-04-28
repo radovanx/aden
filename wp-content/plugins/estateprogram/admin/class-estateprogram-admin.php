@@ -143,12 +143,22 @@ class EstateProgram_Admin {
         add_meta_box(
                 'program_properties', __('Program properties', $this->plugin_slug), array($this, 'program_properties'), 'program'
         );
+        
+        add_meta_box(
+                'flat_properties', __('Flat properties', $this->plugin_slug), array($this, 'flat_properties'), 'flat'
+        );        
     }
 
     public function program_properties() {
         global $post;
         include_once( 'views/program_properties.php' );
         wp_nonce_field(__FILE__, 'program_post_nonce');
+    }
+    
+    public function flat_properties(){
+        global $post;
+        include_once( 'views/flat_properties.php' );
+        wp_nonce_field(__FILE__, 'flat_post_nonce');        
     }
 
     /**
