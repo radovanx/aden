@@ -6,7 +6,7 @@
  * @package   EstateProgram
  * @author    a. <>
  * @license   GPL-2.0+
- * @link      
+ * @link
  * @copyright 2014 a.
  */
 
@@ -87,7 +87,7 @@ class EstateProgram {
     }
 
     /**
-     * 
+     *
      */
     public function register_custom_post() {
 
@@ -116,8 +116,8 @@ class EstateProgram {
             'menu_position' => 7,
             'rewrite' => array(
                 'slug' => 'program',
-            ),            
-            //'show_in_menu' => 'Program'
+            ),
+                //'show_in_menu' => 'Program'
         );
 
         register_post_type('program', $args);
@@ -149,36 +149,75 @@ class EstateProgram {
             'rewrite' => array(
                 'slug' => 'flat',
             ),
-            //'show_in_menu' => 'program_overview'
+                //'show_in_menu' => 'program_overview'
         );
 
         register_post_type('flat', $args);
     }
 
     public function create_taxonomies() {
+
+        ############################################################
+        # program
         $args = array(
             'hierarchical' => true,
             'labels' => array(
-                'name' => _x('Cities', 'taxonomy general name'),
-                'singular_name' => _x('City', 'taxonomy singular name'),
-                'search_items' => __('Find city'),
-                'all_items' => __('All cities'),
-                'parent_item' => __('Parent city'),
-                'parent_item_colon' => __('Parent city'),
-                'edit_item' => __('Edit city'),
-                'update_item' => __('Update city'),
-                'add_new_item' => __('Create city'),
-                'new_item_name' => __('New city'),
-                'menu_name' => __('Cities')
+                'name' => _x('Parking', $this->plugin_slug),
+                /*
+                  'singular_name' => _x('City', 'taxonomy singular name'),
+                  'search_items' => __('Find city'),
+                  'all_items' => __('All cities'),
+                  'parent_item' => __('Parent city'),
+                  'parent_item_colon' => __('Parent city'),
+                  'edit_item' => __('Edit city'),
+                  'update_item' => __('Update city'),
+                  'add_new_item' => __('Create city'),
+                  'new_item_name' => __('New city'), */
+                'menu_name' => __('Parking', $this->plugin_slug)
             ),
             'show_ui' => true,
             'show_admin_column' => true,
             'query_var' => true,
-            'rewrite' => array('slug' => 'city'),
+            'rewrite' => array('slug' => 'parking'),
                 //'show_in_menu' => 'program_overview'
         );
 
-        register_taxonomy('city', array('building', 'post'), $args);
+        register_taxonomy('parking', array('program'), $args);
+
+
+        ############################################################
+        # flat
+
+        $args = array(
+            'hierarchical' => true,
+            'labels' => array(
+                'name' => _x('Type of accommodation', $this->plugin_slug),
+                'menu_name' => __('Type of accommodation', $this->plugin_slug)
+            ),
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'rewrite' => array('slug' => 'type-of-accommodation'),
+                //'show_in_menu' => 'program_overview'
+        );
+
+        register_taxonomy('type_of_accommodation', array('flat'), $args);
+
+
+        $args = array(
+            'hierarchical' => true,
+            'labels' => array(
+                'name' => __('Structure', $this->plugin_slug),
+                'menu_name' => __('Structure', $this->plugin_slug)
+            ),
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'rewrite' => array('slug' => 'structure'),
+                //'show_in_menu' => 'program_overview'
+        );
+
+        register_taxonomy('structure', array('flat'), $args);
     }
 
     /**

@@ -109,7 +109,10 @@ class EstateProgram_Admin {
                 '_program_city',
                 '_program_district',
                 '_program_range_from',
-                '_program_range_to'
+                '_program_range_to',
+                '_program_surface_to',
+                '_program_surface_from',
+                '_program_elevator'
             );
 
             $this->process_save($post->ID, $meta_keys);
@@ -119,9 +122,9 @@ class EstateProgram_Admin {
             $meta_keys = array(
                 '_flat_price',
                 '_flat_number_of_room',
-                '_flat_surface_from',
-                '_flat_surface_to',
-                '_flat_elevator'
+                //'_flat_surface_from',
+                //'_flat_surface_to',
+                //'_flat_elevator'
             );
 
             $this->process_save($post->ID, $meta_keys);
