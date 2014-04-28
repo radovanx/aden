@@ -93,17 +93,17 @@ class EstateProgram {
 
         $args = array(
             'labels' => array(
-                'name' => __('Program', 'estateprogram'),
-                'singular_name' => __('Program', 'estateprogram'),
-                'add_new' => __('Create program', 'estateprogram'),
-                'add_new_item' => __('New program', 'estateprogram'),
-                'edit_item' => __('Edit program', 'estateprogram'),
-                'new_item' => __('Create program', 'estateprogram'),
-                'all_items' => __('All programs', 'estateprogram'),
-                'view_item' => __('View program', 'estateprogram'),
-                'search_items' => __('Find program', 'estateprogram'),
+                'name' => __('Program', $this->plugin_slug),
+                'singular_name' => __('Program', $this->plugin_slug),
+                'add_new' => __('Create program', $this->plugin_slug),
+                'add_new_item' => __('New program', $this->plugin_slug),
+                'edit_item' => __('Edit program', $this->plugin_slug),
+                'new_item' => __('Create program', $this->plugin_slug),
+                'all_items' => __('All programs', $this->plugin_slug),
+                'view_item' => __('View program', $this->plugin_slug),
+                'search_items' => __('Find program', $this->plugin_slug),
                 'parent_item_colon' => '',
-                'menu_name' => __('Programs', 'estateprogram')
+                'menu_name' => __('Programs', $this->plugin_slug)
             ),
             'public' => true,
             'supports' => array(
@@ -125,17 +125,17 @@ class EstateProgram {
 
         $args = array(
             'labels' => array(
-                'name' => __('Flats', 'estateprogram'),
-                'singular_name' => __('Flat', 'estateprogram'),
-                'add_new' => __('Create flat', 'estateprogram'),
-                'add_new_item' => __('New flat', 'estateprogram'),
-                'edit_item' => __('Edit flat', 'estateprogram'),
-                'new_item' => __('Create flat', 'estateprogram'),
-                'all_items' => __('All flat', 'estateprogram'),
-                'view_item' => __('View flat', 'estateprogram'),
-                'search_items' => __('Find flat', 'estateprogram'),
+                'name' => __('Flats', $this->plugin_slug),
+                'singular_name' => __('Flat', $this->plugin_slug),
+                'add_new' => __('Create flat', $this->plugin_slug),
+                'add_new_item' => __('New flat', $this->plugin_slug),
+                'edit_item' => __('Edit flat', $this->plugin_slug),
+                'new_item' => __('Create flat', $this->plugin_slug),
+                'all_items' => __('All flat', $this->plugin_slug),
+                'view_item' => __('View flat', $this->plugin_slug),
+                'search_items' => __('Find flat', $this->plugin_slug),
                 'parent_item_colon' => '',
-                'menu_name' => __('Flats', 'estateprogram')
+                'menu_name' => __('Flats', $this->plugin_slug)
             ),
             'public' => true,
             'supports' => array(

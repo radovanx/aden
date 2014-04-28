@@ -111,10 +111,19 @@ class EstateProgram_Admin {
      */
     public function custom_boxes() {
         /* add_meta_box(
-          'campaigne_logo', __('Charity', 'campaign'), array($this, 'campaign_logo_box'), 'campaign_item', 'side'
+          'campaigne_logo', __('Charity', $this->plugin_slug), array($this, 'campaign_logo_box'), 'campaign_item', 'side'
           ); */
+        
+        add_meta_box(
+          'program_properties', __('Program properties', $this->plugin_slug), array($this, 'program_properties'), 'program'
+        );        
     }
 
+    public function program_properties(){
+        global $post;
+        include_once( 'views/program_properties.php' );
+    }
+    
     /**
      * Return an instance of this class.
      *
