@@ -28,7 +28,13 @@
         <td>
             <input id="program-latitude" type="text" name="_program_latitude" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_latitude', true)) ?>">
         </td>
-    </tr>    
+    </tr>
+    <tr>
+        <th class="textleft"><label for="program-longitude"><?php _e('Program longitude', $this->plugin_slug); ?></label></th>
+        <td>
+            <input id="program-longitude" type="text" name="_program_longitude" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_longitude', true)) ?>">
+        </td>
+    </tr>      
     <tr>
         <td colspan="2">&nbsp</td>
     </tr>
