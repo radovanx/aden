@@ -272,25 +272,43 @@ function grab_it($xml, $lang) {
                     $attachment = array(
                         'guid' => $wp_upload_dir['url'] . '/' . $basename,
                         'post_mime_type' => $filetype['type'],
-                        'post_title' => preg_replace('/\.[^.]+$/', '', $basename),
+                        'post_title' => $image_title,
                         'post_content' => '',
-                        'post_status' => 'inherit'
+                        'post_status' => 'inherit',
+                        'post_excerpt' => $image_title,                            
                     );
 
-                    // Insert the attachment.
-                    $attach_id = wp_insert_attachment($attachment, $new_path, $apartment_id);
+
+                    // ma uz byt obrazek se stejnym nazvem
+                    $attach_id = $wpdb->get_var("
+                                            SELECT 
+                                                ID 
+                                            FROM 
+                                                " . $wpdb->prefix . "posts AS p
+                                            JOIN
+                                                " . $wpdb->prefix . "postmeta AS pm
+                                            ON
+                                                pm.post_id = p.ID AND pm.meta_key = '_original_image_name'
+                                            WHERE 
+                                                post_parent = " . (int) $apartment_id . "
+                                            AND 
+                                                pm.meta_value = '" . $basename . "'");
+
+                    if (empty($attach_id)) {
+                        // Insert the attachment.
+                        $attach_id = wp_insert_attachment($attachment, $new_path, $apartment_id);
+                    } else {
+                        $attachment['ID'] = $attach_id;
+                        wp_update_post($attachment);
+                    }
 
                     // Generate the metadata for the attachment, and update the database record.
                     $attach_data = wp_generate_attachment_metadata($attach_id, $new_path);
                     wp_update_attachment_metadata($attach_id, $attach_data);
-                }
 
-                //$upload_overrides = array('test_form' => false);
-                //$uploaded_file = wp_handle_upload($image_path, $upload_overrides);
-                //$attach_data = wp_generate_attachment_metadata($file_handler, $uploaded_file['file']);
-                //wp_update_attachment_metadata($file_handler, $attach_data);
-                //$x = 1;
-                //$y = 2;
+                    update_post_meta($attach_id, '_wp_attachment_image_alt', $basename);
+                    update_post_meta($attach_id, '_original_image_name', $basename);
+                }
             }
         }
     }
