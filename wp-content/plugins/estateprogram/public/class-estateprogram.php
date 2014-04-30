@@ -22,6 +22,22 @@
  * @package EstateProgram
  * @author  Your Name <email@example.com>
  */
+
+EstateProgram::$tags_apartment = array(
+    'objektkategorie',
+    'kontaktperson',
+    'preise',
+    'flaechen',
+    'ausstattung',
+    'freitexte',
+);
+EstateProgram::$tags_program = array(
+    'geo',
+    'zustand_angaben',
+    'bewertung',
+    'infrastruktur',
+);
+
 class EstateProgram {
 
     /**
@@ -57,6 +73,9 @@ class EstateProgram {
      * @var      object
      */
     protected static $instance = null;
+
+    static $tags_apartment;
+    static $tags_program;
 
     /**
      * Initialize the plugin by setting localization and loading public scripts
