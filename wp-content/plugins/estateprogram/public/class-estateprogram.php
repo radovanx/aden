@@ -96,7 +96,7 @@ class EstateProgram {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 
         add_action('init', array(&$this, 'register_custom_post'));
-        //add_action('init', array(&$this, 'create_taxonomies'));
+        add_action('init', array(&$this, 'create_taxonomies'));
 
         /* Define custom functionality.
          * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
@@ -182,8 +182,24 @@ class EstateProgram {
         $args = array(
             'hierarchical' => true,
             'labels' => array(
+                'name' => _x('Type of property', $this->plugin_slug),
+                'menu_name' => __('Type of property', $this->plugin_slug)
+            ),
+            'show_ui' => true,
+            'show_admin_column' => true,
+            'query_var' => true,
+            'rewrite' => array('slug' => 'type-of-property'),
+                //'show_in_menu' => 'program_overview'
+        );
+
+        register_taxonomy('type_of_accommodation', array('program'), $args);
+        
+        /*
+        $args = array(
+            'hierarchical' => true,
+            'labels' => array(
                 'name' => _x('Parking', $this->plugin_slug),
-                /*
+                
                   'singular_name' => _x('City', 'taxonomy singular name'),
                   'search_items' => __('Find city'),
                   'all_items' => __('All cities'),
@@ -192,7 +208,7 @@ class EstateProgram {
                   'edit_item' => __('Edit city'),
                   'update_item' => __('Update city'),
                   'add_new_item' => __('Create city'),
-                  'new_item_name' => __('New city'), */
+                  'new_item_name' => __('New city'), 
                 'menu_name' => __('Parking', $this->plugin_slug)
             ),
             'show_ui' => true,
@@ -203,27 +219,14 @@ class EstateProgram {
         );
 
         register_taxonomy('parking', array('program'), $args);
-
+*/
 
         ############################################################
         # flat
 
-        $args = array(
-            'hierarchical' => true,
-            'labels' => array(
-                'name' => _x('Type of accommodation', $this->plugin_slug),
-                'menu_name' => __('Type of accommodation', $this->plugin_slug)
-            ),
-            'show_ui' => true,
-            'show_admin_column' => true,
-            'query_var' => true,
-            'rewrite' => array('slug' => 'type-of-accommodation'),
-                //'show_in_menu' => 'program_overview'
-        );
-
-        register_taxonomy('type_of_accommodation', array('flat'), $args);
 
 
+/*
         $args = array(
             'hierarchical' => true,
             'labels' => array(
@@ -237,7 +240,7 @@ class EstateProgram {
                 //'show_in_menu' => 'program_overview'
         );
 
-        register_taxonomy('structure', array('flat'), $args);
+        register_taxonomy('structure', array('flat'), $args);*/
        
     }
 
@@ -450,6 +453,11 @@ class EstateProgram {
      */
     public function filter_method_name() {
         // @TODO: Define your filter hook callback here
+    }
+    
+    
+    public function define_image_sizes(){
+        add_image_size('program_thumb', 316, 236, true);
     }
 
 }
