@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Počítač: 127.0.0.1
--- Vygenerováno: Čtv 01. kvě 2014, 00:14
+-- Vygenerováno: Čtv 01. kvě 2014, 01:47
 -- Verze MySQL: 5.5.27
 -- Verze PHP: 5.4.7
 
@@ -263,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `wp_options` (
   `autoload` varchar(20) NOT NULL DEFAULT 'yes',
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=252 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=254 ;
 
 --
 -- Vypisuji data pro tabulku `wp_options`
@@ -365,7 +365,7 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (93, 'widget_archives', 'a:2:{i:2;a:3:{s:5:"title";s:0:"";s:5:"count";i:0;s:8:"dropdown";i:0;}s:12:"_multiwidget";i:1;}', 'yes'),
 (94, 'widget_meta', 'a:2:{i:2;a:1:{s:5:"title";s:0:"";}s:12:"_multiwidget";i:1;}', 'yes'),
 (95, 'sidebars_widgets', 'a:5:{s:19:"wp_inactive_widgets";a:0:{}s:9:"sidebar-1";a:6:{i:0;s:8:"search-2";i:1;s:14:"recent-posts-2";i:2;s:17:"recent-comments-2";i:3;s:10:"archives-2";i:4;s:12:"categories-2";i:5;s:6:"meta-2";}s:9:"sidebar-2";a:0:{}s:9:"sidebar-3";a:0:{}s:13:"array_version";i:3;}', 'yes'),
-(96, 'cron', 'a:6:{i:1398898220;a:1:{s:12:"qs_cron_hook";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1398931020;a:1:{s:20:"wp_maybe_auto_update";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1398932814;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1398933065;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1398935749;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
+(96, 'cron', 'a:6:{i:1398901820;a:1:{s:12:"qs_cron_hook";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:6:"hourly";s:4:"args";a:0:{}s:8:"interval";i:3600;}}}i:1398931020;a:1:{s:20:"wp_maybe_auto_update";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1398932814;a:3:{s:16:"wp_version_check";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:17:"wp_update_plugins";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}s:16:"wp_update_themes";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:10:"twicedaily";s:4:"args";a:0:{}s:8:"interval";i:43200;}}}i:1398933065;a:1:{s:19:"wp_scheduled_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}i:1398935749;a:1:{s:30:"wp_scheduled_auto_draft_delete";a:1:{s:32:"40cd750bba9870f18aada2478b24840a";a:3:{s:8:"schedule";s:5:"daily";s:4:"args";a:0:{}s:8:"interval";i:86400;}}}s:7:"version";i:2;}', 'yes'),
 (98, '_site_transient_update_core', 'O:8:"stdClass":4:{s:7:"updates";a:1:{i:0;O:8:"stdClass":10:{s:8:"response";s:6:"latest";s:8:"download";s:57:"https://downloads.wordpress.org/release/wordpress-3.9.zip";s:6:"locale";s:5:"en_US";s:8:"packages";O:8:"stdClass":5:{s:4:"full";s:57:"https://downloads.wordpress.org/release/wordpress-3.9.zip";s:10:"no_content";b:0;s:11:"new_bundled";b:0;s:7:"partial";b:0;s:8:"rollback";b:0;}s:7:"current";s:3:"3.9";s:7:"version";s:3:"3.9";s:11:"php_version";s:5:"5.2.4";s:13:"mysql_version";s:3:"5.0";s:11:"new_bundled";s:3:"3.8";s:15:"partial_version";s:0:"";}}s:12:"last_checked";i:1398894264;s:15:"version_checked";s:3:"3.9";s:12:"translations";a:0:{}}', 'yes'),
 (103, '_site_transient_update_themes', 'O:8:"stdClass":4:{s:12:"last_checked";i:1398894268;s:7:"checked";a:5:{s:8:"adenimmo";s:0:"";s:14:"twentyfourteen";s:3:"1.0";s:14:"twentythirteen";s:3:"1.1";s:12:"twentytwelve";s:3:"1.3";s:26:"wordpress-bootstrap-master";s:3:"3.0";}s:8:"response";a:0:{}s:12:"translations";a:0:{}}', 'yes'),
 (104, '_site_transient_timeout_browser_0f5d8990db4df2d31f9107f57dccea47', '1399019221', 'yes'),
@@ -426,7 +426,8 @@ INSERT INTO `wp_options` (`option_id`, `option_name`, `option_value`, `autoload`
 (247, '_transient_timeout_feed_mod_b9388c83948825c1edaef0d856b7b109', '1398937521', 'no'),
 (248, '_transient_feed_mod_b9388c83948825c1edaef0d856b7b109', '1398894321', 'no'),
 (249, '_transient_timeout_dash_4077549d03da2e451c8b5f002294ff51', '1398937521', 'no'),
-(250, '_transient_dash_4077549d03da2e451c8b5f002294ff51', '<div class="rss-widget"><ul><li><a class=''rsswidget'' href=''http://wordpress.org/news/2014/04/smith/''>WordPress 3.9 “Smith”</a> <span class="rss-date">April 16, 2014</span><div class="rssSummary">Version 3.9 of WordPress, named “Smith” in honor of jazz organist Jimmy Smith, is available for download or update in your WordPress dashboard. This release features a number of refinements that we hope you’ll love. A smoother media editing experience Improved visual editing The updated visual editor has improved speed, accessibility, and mobile support. You</div></li></ul></div><div class="rss-widget"><ul><li><a class=''rsswidget'' href=''http://wptavern.com/rocket-galleries-an-intuitive-gallery-manager-for-wordpress?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=rocket-galleries-an-intuitive-gallery-manager-for-wordpress'' title=''Rocket Galleries is a new gallery plugin that claims to be “the gallery manager WordPress never had.” Ordinarily, gallery plugins are a dime a dozen and most of them insert themselves into WordPress with awkward interfaces that promote the plugin author. However, this one is different. Rocket Galleries was built to feel like native WordPress functionality, n''>WPTavern: Rocket Galleries: An Intuitive Gallery Manager for WordPress</a></li><li><a class=''rsswidget'' href=''http://wptavern.com/wordpress-4-0-kicks-off-development-today-helen-hou-sandi-to-lead-release?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=wordpress-4-0-kicks-off-development-today-helen-hou-sandi-to-lead-release'' title=''Andrew Nacin announced today that Helen Hou-Sandí will be the release lead for WordPress 4.0, which kicks off development today during the regularly scheduled meeting in the #wordpress-dev IRC channel. Two guest committers, Dominik Schilling (@ocean90) and Sergey Biryukov (@SergeyBiryukov) have both been granted permanent commit access. An important developm''>WPTavern: WordPress 4.0 Kicks Off Development Today, Helen Hou-Sandí to Lead Release</a></li><li><a class=''rsswidget'' href=''http://wptavern.com/would-anyone-be-interested-in-a-wordcamp-badges-plugin?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=would-anyone-be-interested-in-a-wordcamp-badges-plugin'' title=''Wordcamp Miami Badges is a new plugin in the WordPress directory today. It allows speakers, attendees and volunteers to easily display badges indicating their participation in the 2014 event, which is estimated to surpass 700 this year. The badges plugin was created by Myles McNamara, a self-described “geek who loves open source, writing code, and helping ot''>WPTavern: Would Anyone Be Interested in a WordCamp Badges Plugin?</a></li></ul></div><div class="rss-widget"><ul><li class=''dashboard-news-plugin''><span>Popular Plugin:</span> <a href=''http://wordpress.org/plugins/better-wp-security/'' class=''dashboard-news-plugin-link''>iThemes Security (formerly Better WP Security)</a>&nbsp;<span>(<a href=''plugin-install.php?tab=plugin-information&amp;plugin=better-wp-security&amp;_wpnonce=ed375da973&amp;TB_iframe=true&amp;width=600&amp;height=800'' class=''thickbox'' title=''iThemes Security (formerly Better WP Security)''>Install</a>)</span></li></ul></div>', 'no');
+(250, '_transient_dash_4077549d03da2e451c8b5f002294ff51', '<div class="rss-widget"><ul><li><a class=''rsswidget'' href=''http://wordpress.org/news/2014/04/smith/''>WordPress 3.9 “Smith”</a> <span class="rss-date">April 16, 2014</span><div class="rssSummary">Version 3.9 of WordPress, named “Smith” in honor of jazz organist Jimmy Smith, is available for download or update in your WordPress dashboard. This release features a number of refinements that we hope you’ll love. A smoother media editing experience Improved visual editing The updated visual editor has improved speed, accessibility, and mobile support. You</div></li></ul></div><div class="rss-widget"><ul><li><a class=''rsswidget'' href=''http://wptavern.com/rocket-galleries-an-intuitive-gallery-manager-for-wordpress?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=rocket-galleries-an-intuitive-gallery-manager-for-wordpress'' title=''Rocket Galleries is a new gallery plugin that claims to be “the gallery manager WordPress never had.” Ordinarily, gallery plugins are a dime a dozen and most of them insert themselves into WordPress with awkward interfaces that promote the plugin author. However, this one is different. Rocket Galleries was built to feel like native WordPress functionality, n''>WPTavern: Rocket Galleries: An Intuitive Gallery Manager for WordPress</a></li><li><a class=''rsswidget'' href=''http://wptavern.com/wordpress-4-0-kicks-off-development-today-helen-hou-sandi-to-lead-release?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=wordpress-4-0-kicks-off-development-today-helen-hou-sandi-to-lead-release'' title=''Andrew Nacin announced today that Helen Hou-Sandí will be the release lead for WordPress 4.0, which kicks off development today during the regularly scheduled meeting in the #wordpress-dev IRC channel. Two guest committers, Dominik Schilling (@ocean90) and Sergey Biryukov (@SergeyBiryukov) have both been granted permanent commit access. An important developm''>WPTavern: WordPress 4.0 Kicks Off Development Today, Helen Hou-Sandí to Lead Release</a></li><li><a class=''rsswidget'' href=''http://wptavern.com/would-anyone-be-interested-in-a-wordcamp-badges-plugin?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=would-anyone-be-interested-in-a-wordcamp-badges-plugin'' title=''Wordcamp Miami Badges is a new plugin in the WordPress directory today. It allows speakers, attendees and volunteers to easily display badges indicating their participation in the 2014 event, which is estimated to surpass 700 this year. The badges plugin was created by Myles McNamara, a self-described “geek who loves open source, writing code, and helping ot''>WPTavern: Would Anyone Be Interested in a WordCamp Badges Plugin?</a></li></ul></div><div class="rss-widget"><ul><li class=''dashboard-news-plugin''><span>Popular Plugin:</span> <a href=''http://wordpress.org/plugins/better-wp-security/'' class=''dashboard-news-plugin-link''>iThemes Security (formerly Better WP Security)</a>&nbsp;<span>(<a href=''plugin-install.php?tab=plugin-information&amp;plugin=better-wp-security&amp;_wpnonce=ed375da973&amp;TB_iframe=true&amp;width=600&amp;height=800'' class=''thickbox'' title=''iThemes Security (formerly Better WP Security)''>Install</a>)</span></li></ul></div>', 'no'),
+(253, 'type_of_accommodation_children', 'a:0:{}', 'yes');
 
 -- --------------------------------------------------------
 
@@ -442,7 +443,7 @@ CREATE TABLE IF NOT EXISTS `wp_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6180 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6181 ;
 
 --
 -- Vypisuji data pro tabulku `wp_postmeta`
@@ -1917,7 +1918,7 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (6163, 819, '_edit_lock', '1398871277:1'),
 (6164, 819, '_thumbnail_id', '1540'),
 (6165, 1564, '_edit_last', '1'),
-(6166, 1564, '_edit_lock', '1398895976:1'),
+(6166, 1564, '_edit_lock', '1398901276:1'),
 (6167, 1564, '_program_city', 'Berlin'),
 (6168, 819, '_wp_trash_meta_status', 'publish'),
 (6169, 819, '_wp_trash_meta_time', '1398894463'),
@@ -1930,7 +1931,8 @@ INSERT INTO `wp_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALUE
 (6176, 1564, '_program_surface_from', '60'),
 (6177, 1564, '_program_elevator', '1'),
 (6178, 1564, '_program_latitude', '52.52564'),
-(6179, 1564, '_program_longitude', '13.39335');
+(6179, 1564, '_program_longitude', '13.39335'),
+(6180, 1564, '_thumbnail_id', '1552');
 
 -- --------------------------------------------------------
 
@@ -2115,7 +2117,7 @@ INSERT INTO `wp_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `post
 (1561, 1, '2014-04-30 13:56:02', '2014-04-30 13:56:02', '', 'Layout', 'Layout', 'inherit', 'open', 'open', '', 'plan-3', '', '', '2014-04-30 13:56:02', '2014-04-30 13:56:02', '', 796, 'http://www.adenimmo.localhost/wp-content/uploads/2014/04/Foto_18358.jpg', 0, 'attachment', 'image/jpeg', 0),
 (1562, 1, '2014-04-30 13:56:03', '2014-04-30 13:56:03', '', 'Entrance hall', 'Entrance hall', 'inherit', 'open', 'open', '', 'hall-dentree-3', '', '', '2014-04-30 13:56:03', '2014-04-30 13:56:03', '', 796, 'http://www.adenimmo.localhost/wp-content/uploads/2014/04/Foto_13899.jpg', 0, 'attachment', 'image/jpeg', 0),
 (1563, 1, '2014-04-30 13:56:03', '2014-04-30 13:56:03', '', 'Inner court yard', 'Inner court yard', 'inherit', 'open', 'open', '', 'cour-interieure-6', '', '', '2014-04-30 13:56:03', '2014-04-30 13:56:03', '', 796, 'http://www.adenimmo.localhost/wp-content/uploads/2014/04/Foto_18302.jpg', 0, 'attachment', 'image/jpeg', 0),
-(1564, 1, '2014-04-30 21:47:36', '2014-04-30 21:47:36', '', '<!--:en-->Program 1<!--:--><!--:fr-->Program 1<!--:-->', '', 'publish', 'closed', 'closed', '', 'program-1', '', '', '2014-04-30 22:12:56', '2014-04-30 22:12:56', '', 0, 'http://www.adenimmo.localhost/?post_type=program&#038;p=1564', 0, 'program', '', 0);
+(1564, 1, '2014-04-30 21:47:36', '2014-04-30 21:47:36', '', '<!--:en-->Program 1<!--:--><!--:fr-->Program 1<!--:-->', '<!--:en-->Elegant apartments in Berlin''s top location, near Checkpoint Charlie & the city''s famous press quarters. <!--:-->', 'publish', 'closed', 'closed', '', 'program-1', '', '', '2014-04-30 23:34:59', '2014-04-30 23:34:59', '', 0, 'http://www.adenimmo.localhost/?post_type=program&#038;p=1564', 0, 'program', '', 0);
 
 -- --------------------------------------------------------
 
@@ -2169,7 +2171,8 @@ CREATE TABLE IF NOT EXISTS `wp_term_relationships` (
 --
 
 INSERT INTO `wp_term_relationships` (`object_id`, `term_taxonomy_id`, `term_order`) VALUES
-(1, 1, 0);
+(1, 1, 0),
+(1564, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -2199,7 +2202,7 @@ INSERT INTO `wp_term_taxonomy` (`term_taxonomy_id`, `term_id`, `taxonomy`, `desc
 (3, 3, 'post_tag', 'test', 0, 0),
 (4, 4, 'post_tag', 'helo', 0, 0),
 (5, 5, 'post_tag', 'rrr', 0, 0),
-(6, 6, 'type_of_accommodation', '', 0, 0),
+(6, 6, 'type_of_accommodation', '', 0, 1),
 (7, 7, 'type_of_accommodation', '', 0, 0),
 (8, 8, 'structure', '', 0, 0),
 (9, 9, 'structure', '', 0, 0),
