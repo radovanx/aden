@@ -105,14 +105,18 @@ class EstateProgram_Admin {
         global $post;
 
         if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
-            $meta_keys = array(
+            $meta_keys = array(                
+                '_program_street',
                 '_program_city',
                 '_program_district',
                 '_program_price_from',
                 '_program_price_to',
                 '_program_surface_to',
                 '_program_surface_from',
-                '_program_elevator'
+                '_program_elevator',
+                '_program_postcode',
+                '_program_latitude',
+                
             );
 
             $this->process_save($post->ID, $meta_keys);
