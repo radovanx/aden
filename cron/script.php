@@ -312,7 +312,7 @@ function grab_it($xml, $lang) {
                     update_post_meta($attach_id, '_original_image_name', $basename);
                     
                     if($set_program_thumb && !has_post_thumbnail($program_id)){
-                        set_post_thumbnail($attach_id, $program_id);
+                        set_post_thumbnail($program_id, $attach_id);
                     } else {
                         $set_program_thumb = false;
                     }
