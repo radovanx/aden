@@ -5,6 +5,11 @@ $time = microtime(true); // time in Microseconds
 define('WP_USE_THEMES', FALSE);
 require( '../wp-load.php' );
 
+require_once(ABSPATH . "wp-admin/includes/image.php");
+require_once(ABSPATH . "wp-admin/includes/file.php");
+require_once(ABSPATH . "wp-admin/includes/media.php");
+require_once(ABSPATH . "wp-admin/includes/image.php");
+
 /**
  *
  * @param type $node
@@ -237,8 +242,57 @@ function grab_it($xml, $lang) {
                 '" . (int) $program_id . "'
             )
             ";
-        
+
         $wpdb->query($sql);
+
+        // zgrabovani obrazků
+        $images = $anbieter->xpath('immobilie/anhaenge/anhang');
+
+        foreach ($images as $image) {
+            $file = $image->xpath('daten/pfad');
+            $image_title = (string) $image->anhangtitel;
+            $image_file = $file[0];
+
+            $image_path = ABSPATH . 'ftp' . DIRECTORY_SEPARATOR . 'fr' . DIRECTORY_SEPARATOR . $image_file;
+
+            if (is_file($image_path)) {
+
+                $finfo = pathinfo($image_path);
+                $wp_upload_dir = wp_upload_dir();
+
+                $new_path = $wp_upload_dir['path'] . '/' . $image_file;
+
+                if (copy($image_path, $new_path)) {
+
+                    $basename = basename($new_path);
+
+                    // Check the type of tile. We'll use this as the 'post_mime_type'.
+                    $filetype = wp_check_filetype(basename($new_path), null);
+
+                    $attachment = array(
+                        'guid' => $wp_upload_dir['url'] . '/' . $basename,
+                        'post_mime_type' => $filetype['type'],
+                        'post_title' => preg_replace('/\.[^.]+$/', '', $basename),
+                        'post_content' => '',
+                        'post_status' => 'inherit'
+                    );
+
+                    // Insert the attachment.
+                    $attach_id = wp_insert_attachment($attachment, $new_path, $apartment_id);
+
+                    // Generate the metadata for the attachment, and update the database record.
+                    $attach_data = wp_generate_attachment_metadata($attach_id, $new_path);
+                    wp_update_attachment_metadata($attach_id, $attach_data);
+                }
+
+                //$upload_overrides = array('test_form' => false);
+                //$uploaded_file = wp_handle_upload($image_path, $upload_overrides);
+                //$attach_data = wp_generate_attachment_metadata($file_handler, $uploaded_file['file']);
+                //wp_update_attachment_metadata($file_handler, $attach_data);
+                //$x = 1;
+                //$y = 2;
+            }
+        }
     }
 }
 
@@ -266,7 +320,7 @@ foreach ($langs as $key => $val) {
             if ('xml' == $ext) {
                 if (file_exists($file)) {
                     $xml = simplexml_load_file($file);
-                    grab_it($xml, $lang);
+                    grab_it($xml, $val);
                     //
                 } else {
                     throw new Exception('Nepodařilo se otevřít soubor ' . $file);
