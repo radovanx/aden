@@ -248,6 +248,8 @@ function grab_it($xml, $lang) {
         // zgrabovani obrazků
         $images = $anbieter->xpath('immobilie/anhaenge/anhang');
 
+        $set_program_thumb = true;
+        
         foreach ($images as $image) {
             $file = $image->xpath('daten/pfad');
             $image_title = (string) $image->anhangtitel;
@@ -308,6 +310,12 @@ function grab_it($xml, $lang) {
 
                     update_post_meta($attach_id, '_wp_attachment_image_alt', $basename);
                     update_post_meta($attach_id, '_original_image_name', $basename);
+                    
+                    if($set_program_thumb && !has_post_thumbnail($program_id)){
+                        set_post_thumbnail($attach_id, $program_id);
+                    } else {
+                        $set_program_thumb = false;
+                    }
                 }
             }
         }
