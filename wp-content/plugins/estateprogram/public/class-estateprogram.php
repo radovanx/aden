@@ -96,7 +96,7 @@ class EstateProgram {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 
         add_action('init', array(&$this, 'register_custom_post'));
-        add_action('init', array(&$this, 'create_taxonomies'));
+        //add_action('init', array(&$this, 'create_taxonomies'));
 
         /* Define custom functionality.
          * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
@@ -176,6 +176,7 @@ class EstateProgram {
 
     public function create_taxonomies() {
 
+        
         ############################################################
         # program
         $args = array(
@@ -237,6 +238,7 @@ class EstateProgram {
         );
 
         register_taxonomy('structure', array('flat'), $args);
+       
     }
 
     /**

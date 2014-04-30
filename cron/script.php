@@ -139,7 +139,7 @@ function grab_it($xml, $lang) {
                 meta_key = 'anbieternr'
             AND
                 meta_value = '" . esc_sql($anbieternr) . "'";
-        
+
         $apartment_id = $wpdb->get_var($sql);
 
         //
@@ -174,11 +174,11 @@ function grab_it($xml, $lang) {
 
         $sql = "
                 SELECT
-                    post_id
+                    p.ID
                 FROM
-                    " . $wpdb->prefix . "post_meta as pm1
+                    " . $wpdb->prefix . "postmeta as pm1
                 JOIN
-                    " . $wpdb->prefix . "post_meta as pm2
+                    " . $wpdb->prefix . "postmeta as pm2
                 ON
                     pm1.post_id = pm2.post_id
                 JOIN
@@ -212,33 +212,33 @@ function grab_it($xml, $lang) {
                 );
 
                 $program_id = wp_insert_post($post_information);
-
-                //
-                foreach ($ret as $key => $val) {
-
-                    $split = explode('|', $key);
-
-                    if (1 == $deeps[$key] || !in_array($split[0], EstateProgram::$tags_program)) {
-                        continue;
-                    }
-                    update_post_meta((int) $program_id, $key, $val);
-                }
             }
 
+            //
+            foreach ($ret as $key => $val) {
 
+                $split = explode('|', $key);
+
+                if (1 == $deeps[$key] || !in_array($split[0], EstateProgram::$tags_program)) {
+                    continue;
+                }
+                update_post_meta((int) $program_id, $key, $val);
+            }
 
             array_push($processed_program, $program_id);
         }
 
         // ulozim vztah mezi programem a bytem
         $sql = "
-            REPLACE INTO 
+            REPLACE INTO
                 apartment2program (apartment_id, program_id)
             VALUES(
                 '" . (int) $apartment_id . "',
                 '" . (int) $program_id . "'
-            )   
+            )
             ";
+        
+        $wpdb->query($sql);
     }
 }
 
@@ -263,7 +263,7 @@ foreach ($langs as $key => $val) {
 
             $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
             $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-            
+
             if ('xml' == $ext) {
                 if (file_exists($file)) {
                     $xml = simplexml_load_file($file);
