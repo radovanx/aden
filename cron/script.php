@@ -249,7 +249,6 @@ $langs = array(
     'en' => 'eng',
 );
 
-
 foreach ($langs as $key => $val) {
 
     $source_dir = ABSPATH . 'ftp' . DIRECTORY_SEPARATOR . $val;
