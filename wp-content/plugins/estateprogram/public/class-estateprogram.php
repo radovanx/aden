@@ -30,7 +30,7 @@ function get_post_metalang($post_id, $lang, $meta_key) {
         SELECT
             meta_value
         FROM
-            post_meta_lang
+            postmeta_lang
         WHERE
             post_id = " . (int) $post_id . "
         AND
@@ -50,7 +50,7 @@ function update_post_metalang($post_id, $lang, $meta_key, $meta_value) {
     /*
       $sql = "
       REPLACE INTO
-      post_meta_lang (post_id, lang, meta_key, meta_value)
+      postmeta_lang (post_id, lang, meta_key, meta_value)
       VALUES(
       " . (int) $post_id . ",
       '" . esc_sql($lang) . "',
@@ -62,7 +62,7 @@ function update_post_metalang($post_id, $lang, $meta_key, $meta_value) {
 
     $sql = "
         INSERT INTO
-            post_meta_lang (post_id, lang, meta_key, meta_value)           
+            postmeta_lang (post_id, lang, meta_key, meta_value)           
         VALUES(
             " . (int) $post_id . ",
             '" . esc_sql($lang) . "',
@@ -81,7 +81,7 @@ function delete_post_metalang($post_id, $lang, $meta_key) {
 
     $sql = "
         DELETE FROM
-            post_meta_lang
+            postmeta_lang
         WHERE
             post_id = " . (int) $post_id . "
         AND
