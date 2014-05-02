@@ -94,8 +94,8 @@
                             </div>
                             <div class="panel-body">		
                                 <p>
-                                    <a class="btn btn-danger" href="http://www.adenimmo.web-4-all.cz/program_page.html">make an enquiry</a>
-                                    <a class="btn btn-default" href="http://www.adenimmo.web-4-all.cz/program_page.html">» view details </a>
+                                    <a class="btn btn-danger" href="<?php the_permalink(); ?>">make an enquiry</a>
+                                    <a class="btn btn-default" href="<?php the_permalink(); ?> ">» view details </a>
                                 </p>	
                             </div>
                         </div>	

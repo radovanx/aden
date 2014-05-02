@@ -256,9 +256,9 @@ function grab_it($xml, $lang) {
         foreach ($images as $image) {
             $file = $image->xpath('daten/pfad');
             $image_title = (string) $image->anhangtitel;
-            $image_file = $file[0];
+            $image_file = (string) $file[0];
 
-            $image_path = ABSPATH . 'ftp' . DIRECTORY_SEPARATOR . 'fr' . DIRECTORY_SEPARATOR . $image_file;
+            $image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
 
             if (is_file($image_path)) {
 
@@ -314,11 +314,12 @@ function grab_it($xml, $lang) {
                     update_post_meta($attach_id, '_wp_attachment_image_alt', $basename);
                     update_post_meta($attach_id, '_original_image_name', $basename);
                     
+                    /*
                     if($set_program_thumb && !has_post_thumbnail($program_id)){
                         set_post_thumbnail($program_id, $attach_id);
                     } else {
                         $set_program_thumb = false;
-                    }
+                    }*/
                 }
             }
         }
