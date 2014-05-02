@@ -105,7 +105,7 @@ class EstateProgram_Admin {
         global $post;
 
         if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
-            $meta_keys = array(                
+            $meta_keys = array(
                 '_program_street',
                 '_program_city',
                 '_program_district',
@@ -117,7 +117,6 @@ class EstateProgram_Admin {
                 '_program_postcode',
                 '_program_latitude',
                 '_program_longitude'
-                
             );
 
             $this->process_save($post->ID, $meta_keys);
@@ -127,9 +126,9 @@ class EstateProgram_Admin {
             $meta_keys = array(
                 '_flat_price',
                 '_flat_number_of_room',
-                //'_flat_surface_from',
-                //'_flat_surface_to',
-                //'_flat_elevator'
+                    //'_flat_surface_from',
+                    //'_flat_surface_to',
+                    //'_flat_elevator'
             );
 
             $this->process_save($post->ID, $meta_keys);
@@ -169,16 +168,56 @@ class EstateProgram_Admin {
         add_meta_box(
                 'flat_properties', __('Flat properties', $this->plugin_slug), array($this, 'flat_properties'), 'flat'
         );
+        
+        add_meta_box(
+                'flat2program', __('Assign to program', $this->plugin_slug), array($this, 'flat2program'), 'flat', 'side'
+        );        
+
+        /*
+        global $post;
+
+        //////////////
+        if ('flat' == $post->post_type) {
+
+            $tags = EstateProgram::$tags_apartment;
+
+            foreach ($tags as $tag) {
+                add_meta_box(
+                        'flat_properties', __('Flat properties', $this->plugin_slug), array($this, 'flat_properties'), 'flat'
+                );
+            }
+        }*/
     }
 
+    public function flat2program(){
+        
+        global $post;     
+        global $wpdb;
+        
+        $sql = "
+            SELECT 
+                p.ID 
+            FROM 
+                wp_posts 
+            WHERE 
+                post_type='program' 
+            AND 
+                post_status IN('publish', 'future', 'pending', 'private')";
+        
+        $programs = $wpdb->get_results($sql);
+        
+        include_once( 'views/flat2program.php' );        
+    }
+    
     public function program_properties() {
-        global $post;
+        global $post;        
         include_once( 'views/program_properties.php' );
         wp_nonce_field(__FILE__, 'program_post_nonce');
     }
 
     public function flat_properties() {
         global $post;
+        global $wpdb;
         include_once( 'views/flat_properties.php' );
         wp_nonce_field(__FILE__, 'flat_post_nonce');
     }
