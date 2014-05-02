@@ -103,6 +103,7 @@ class EstateProgram_Admin {
     public function save() {
 
         global $post;
+        global $wpdb;
 
         if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
             $meta_keys = array(
@@ -132,6 +133,26 @@ class EstateProgram_Admin {
             );
 
             $this->process_save($post->ID, $meta_keys);
+            
+            //
+            if(!empty($_POST['flat2program'])){
+                $sql = "
+                    REPLACE INTO 
+                        apartment2program (apartment_id, program_id)
+                    VALUES (
+                        '" . (int) $post->ID. "',
+                        '" . (int) $_POST['flat2program'] . "'
+                    )";
+                $wpdb->query($sql);
+            } else {
+                $sql = "
+                    DELETE FROM
+                        apartment2program
+                    WHERE
+                        apartment_id = " . (int) $post->ID;
+                
+                $wpdb->query($sql);
+            }
         }
     }
 
@@ -196,15 +217,26 @@ class EstateProgram_Admin {
         
         $sql = "
             SELECT 
-                p.ID 
+                ID 
             FROM 
                 wp_posts 
             WHERE 
                 post_type='program' 
             AND 
-                post_status IN('publish', 'future', 'pending', 'private')";
+                post_status IN ('publish', 'future', 'pending', 'private')";
         
         $programs = $wpdb->get_results($sql);
+        
+        $sql = "
+            SELECT 
+                program_id 
+            FROM
+                apartment2program
+            WHERE
+                apartment_id = '" . (int) $post->ID . "'
+            ";
+        
+        $current_program_id = $wpdb->get_var($sql);
         
         include_once( 'views/flat2program.php' );        
     }

@@ -7,7 +7,7 @@
         if (!empty($programs)):
             foreach ($programs as $p):
                 ?>
-                <option value="<?php echo $p->ID ?>"><?php echo get_the_title($p->ID) ?></option>
+                <option value="<?php echo $p->ID ?>"<?php echo $p->ID == $current_program_id ? ' selected="selected" ' : '' ?>><?php echo get_the_title($p->ID) ?></option>
                 <?php
             endforeach;
         endif;
