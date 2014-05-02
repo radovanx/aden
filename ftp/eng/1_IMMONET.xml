@@ -2,9 +2,9 @@
 <openimmo >
     <uebertragung xmlns="" art="OFFLINE" umfang="TEIL" modus="CHANGE" version="1.2.4" sendersoftware="OOF" senderversion="$Rev: 41634 $" techn_email="berlin@aden-immo.com" timestamp="2014-04-28T10:05:16.0+00:00"/>
     <anbieter xmlns="">
-        <anbieternr>5381</anbieternr>
+        <anbieternr>1</anbieternr>
         <firma>ADEN Immo GmbH</firma>
-        <openimmo_anid>5381</openimmo_anid>
+        <openimmo_anid>1</openimmo_anid>
         <immobilie>
             <objektkategorie>
                 <nutzungsart WOHNEN="1" GEWERBE="0"/>
@@ -72,7 +72,7 @@
             <bewertung/>
             <infrastruktur/>
             <freitexte>
-                <objekttitel>Nusle - s parkem
+                <objekttitel>Nusle - s parkem</objekttitel>
                 <dreizeiler/>
                 <lage>Donec sit amet venenatis leo. Mauris ac massa quis lacus blandit molestie in ut neque. Sed mattis sapien vel mauris sagittis, quis accumsan nunc egestas.</lage>
                 <ausstatt_beschr>Sed sem dolor, porta in orci id, pulvinar placerat ante. Nunc auctor est quis odio imperdiet, ut feugiat augue lacinia. Vestibulum imperdiet in risus pretium mollis. Phasellus condimentum nulla leo. Duis in justo viverra augue accumsan bibendum. Vestibulum id blandit quam. </ausstatt_beschr>
