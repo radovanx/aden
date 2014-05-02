@@ -173,6 +173,8 @@ function grab_it($xml, $lang) {
             update_post_meta((int) $apartment_id, $key, $val);
         }
 
+        
+        /*
         // zjistim jestli existuje program na stejne adrese
         $address_nodes = $anbieter->xpath('immobilie/geo');
         $address = parse_nodes($address_nodes[0]);
@@ -244,6 +246,7 @@ function grab_it($xml, $lang) {
             ";
 
         $wpdb->query($sql);
+        */
 
         // zgrabovani obrazků
         $images = $anbieter->xpath('immobilie/anhaenge/anhang');
