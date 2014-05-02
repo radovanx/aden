@@ -82,6 +82,8 @@ class EstateProgram_Admin {
         add_action('load-post-new.php', array(&$this, 'meta_boxes_setup'));
 
         add_action('save_post', array($this, 'save'));
+        
+        add_action('delete_post', 'clean_post_data', 10, 0);
 
         // Add the options page and menu item.
         //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
@@ -99,6 +101,25 @@ class EstateProgram_Admin {
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
     }
+    
+    /**
+     * 
+     * @global type $post
+     */
+    public function clean_post_data(){
+        
+        global $post;
+        global $wpdb;
+        
+        $sql = "
+            DELETE FROM
+                post_meta_lang
+            WHERE
+                post_id = " . (int) $post->ID;   
+        
+        $wpdb->query($sql);
+        
+    }    
 
     public function save() {
 

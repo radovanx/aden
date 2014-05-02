@@ -43,6 +43,22 @@ function parse_nodes($node, $prefix = '') {
     return $return;
 }
 
+/*
+  function wrap_lang($string, $lang) {
+  if (is_string($lang)) {
+  $string .= "[:$lang]" . $string;
+  }
+
+  return $string;
+  }
+
+  function has_lang($string, $lang){
+  return false !== strpos("[:$lang]", $string);
+  }
+  function update_lang_part($string, $lang){
+
+  } */
+
 /**
  *
  */
@@ -148,17 +164,19 @@ function grab_it($xml, $lang) {
         $apartment_id = $wpdb->get_var($sql);
 
         //
-        if (empty($apartment_id)) {
+        $post_information = array(
+            'post_title' => $ret['freitexte|objekttitel'],
+            'post_content' => '',
+            'post_type' => 'flat',
+            'post_status' => 'publish',
+        );
 
-            $post_information = array(
-                'post_title' => $ret['freitexte|objekttitel'],
-                'post_content' => '',
-                'post_type' => 'flat',
-                'post_status' => 'publish',
-            );
-
-            $apartment_id = wp_insert_post($post_information);
+        if (!empty($apartment_id)) {
+            $post_information['ID'] = $apartment_id;
         }
+
+        $apartment_id = wp_insert_post($post_information);
+
 
         update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
 
@@ -170,89 +188,93 @@ function grab_it($xml, $lang) {
             if (1 == $deeps[$key] || !in_array($split[0], EstateProgram::$tags_apartment)) {
                 continue;
             }
-            update_post_meta((int) $apartment_id, $key, $val);
+            //update_post_meta((int) $apartment_id, $key, $val);
+            //update_post_metalang($apartment_id, $lang, $key, $val);
+
+            $wp_lang = EstateProgram::$langs[$lang];
+            update_post_metalang($apartment_id, $wp_lang, $key, $val);
         }
 
-        
+
         /*
-        // zjistim jestli existuje program na stejne adrese
-        $address_nodes = $anbieter->xpath('immobilie/geo');
-        $address = parse_nodes($address_nodes[0]);
+          // zjistim jestli existuje program na stejne adrese
+          $address_nodes = $anbieter->xpath('immobilie/geo');
+          $address = parse_nodes($address_nodes[0]);
 
-        $sql = "
-                SELECT
-                    p.ID
-                FROM
-                    " . $wpdb->prefix . "postmeta as pm1
-                JOIN
-                    " . $wpdb->prefix . "postmeta as pm2
-                ON
-                    pm1.post_id = pm2.post_id
-                JOIN
-                    " . $wpdb->prefix . "posts as p
-                ON
-                    p.ID = pm1.post_id
-                WHERE
-                    pm1.meta_key = 'geo|geokoordinaten|breitengrad'
-                AND
-                    pm2.meta_key = 'geo|geokoordinaten|laengengrad'
-                AND
-                    pm1.meta_value = '" . esc_sql($address['geokoordinaten|breitengrad']) . "'
-                AND
-                    pm2.meta_value = '" . esc_sql($address['geokoordinaten|laengengrad']) . "'
-                AND
-                    p.post_type = 'program'
+          $sql = "
+          SELECT
+          p.ID
+          FROM
+          " . $wpdb->prefix . "postmeta as pm1
+          JOIN
+          " . $wpdb->prefix . "postmeta as pm2
+          ON
+          pm1.post_id = pm2.post_id
+          JOIN
+          " . $wpdb->prefix . "posts as p
+          ON
+          p.ID = pm1.post_id
+          WHERE
+          pm1.meta_key = 'geo|geokoordinaten|breitengrad'
+          AND
+          pm2.meta_key = 'geo|geokoordinaten|laengengrad'
+          AND
+          pm1.meta_value = '" . esc_sql($address['geokoordinaten|breitengrad']) . "'
+          AND
+          pm2.meta_value = '" . esc_sql($address['geokoordinaten|laengengrad']) . "'
+          AND
+          p.post_type = 'program'
 
-            ";
+          ";
 
-        $program_id = $wpdb->get_var($sql);
+          $program_id = $wpdb->get_var($sql);
 
-        // pokud jeste neni vytvoren program teto adrese
-        if (!in_array($program_id, $processed_program)) {
+          // pokud jeste neni vytvoren program teto adrese
+          if (!in_array($program_id, $processed_program)) {
 
-            if (empty($program_id)) {
-                $post_information = array(
-                    'post_title' => $ret['freitexte|objekttitel'],
-                    'post_content' => '',
-                    'post_type' => 'program',
-                    'post_status' => 'publish',
-                );
+          if (empty($program_id)) {
+          $post_information = array(
+          'post_title' => $ret['freitexte|objekttitel'],
+          'post_content' => '',
+          'post_type' => 'program',
+          'post_status' => 'publish',
+          );
 
-                $program_id = wp_insert_post($post_information);
-            }
+          $program_id = wp_insert_post($post_information);
+          }
 
-            //
-            foreach ($ret as $key => $val) {
+          //
+          foreach ($ret as $key => $val) {
 
-                $split = explode('|', $key);
+          $split = explode('|', $key);
 
-                if (1 == $deeps[$key] || !in_array($split[0], EstateProgram::$tags_program)) {
-                    continue;
-                }
-                update_post_meta((int) $program_id, $key, $val);
-            }
+          if (1 == $deeps[$key] || !in_array($split[0], EstateProgram::$tags_program)) {
+          continue;
+          }
+          update_post_meta((int) $program_id, $key, $val);
+          }
 
-            array_push($processed_program, $program_id);
-        }
+          array_push($processed_program, $program_id);
+          }
 
-        // ulozim vztah mezi programem a bytem
-        $sql = "
-            REPLACE INTO
-                apartment2program (apartment_id, program_id)
-            VALUES(
-                '" . (int) $apartment_id . "',
-                '" . (int) $program_id . "'
-            )
-            ";
+          // ulozim vztah mezi programem a bytem
+          $sql = "
+          REPLACE INTO
+          apartment2program (apartment_id, program_id)
+          VALUES(
+          '" . (int) $apartment_id . "',
+          '" . (int) $program_id . "'
+          )
+          ";
 
-        $wpdb->query($sql);
-        */
+          $wpdb->query($sql);
+         */
 
         // zgrabovani obrazků
         $images = $anbieter->xpath('immobilie/anhaenge/anhang');
 
         $set_program_thumb = true;
-        
+
         foreach ($images as $image) {
             $file = $image->xpath('daten/pfad');
             $image_title = (string) $image->anhangtitel;
@@ -280,23 +302,23 @@ function grab_it($xml, $lang) {
                         'post_title' => $image_title,
                         'post_content' => '',
                         'post_status' => 'inherit',
-                        'post_excerpt' => $image_title,                            
+                        'post_excerpt' => $image_title,
                     );
 
 
                     // ma uz byt obrazek se stejnym nazvem
                     $attach_id = $wpdb->get_var("
-                                            SELECT 
-                                                ID 
-                                            FROM 
+                                            SELECT
+                                                ID
+                                            FROM
                                                 " . $wpdb->prefix . "posts AS p
                                             JOIN
                                                 " . $wpdb->prefix . "postmeta AS pm
                                             ON
                                                 pm.post_id = p.ID AND pm.meta_key = '_original_image_name'
-                                            WHERE 
+                                            WHERE
                                                 post_parent = " . (int) $apartment_id . "
-                                            AND 
+                                            AND
                                                 pm.meta_value = '" . $basename . "'");
 
                     if (empty($attach_id)) {
@@ -313,13 +335,13 @@ function grab_it($xml, $lang) {
 
                     update_post_meta($attach_id, '_wp_attachment_image_alt', $basename);
                     update_post_meta($attach_id, '_original_image_name', $basename);
-                    
+
                     /*
-                    if($set_program_thumb && !has_post_thumbnail($program_id)){
-                        set_post_thumbnail($program_id, $attach_id);
-                    } else {
-                        $set_program_thumb = false;
-                    }*/
+                      if($set_program_thumb && !has_post_thumbnail($program_id)){
+                      set_post_thumbnail($program_id, $attach_id);
+                      } else {
+                      $set_program_thumb = false;
+                      } */
                 }
             }
         }
@@ -328,14 +350,11 @@ function grab_it($xml, $lang) {
 
 global $wpdb;
 
-$langs = array(
-    'fr' => 'fr',
-    'en' => 'eng',
-);
+$langs = EstateProgram::$langs;
 
 foreach ($langs as $key => $val) {
 
-    $source_dir = ABSPATH . 'ftp' . DIRECTORY_SEPARATOR . $val;
+    $source_dir = ABSPATH . 'ftp' . DIRECTORY_SEPARATOR . $key;
 
     if (!is_dir($source_dir)) {
         throw new Exception('Zdrojový adresář ' . $source_dir . ' neexistuje');
@@ -350,7 +369,7 @@ foreach ($langs as $key => $val) {
             if ('xml' == $ext) {
                 if (file_exists($file)) {
                     $xml = simplexml_load_file($file);
-                    grab_it($xml, $val);
+                    grab_it($xml, $key);
                     //
                 } else {
                     throw new Exception('Nepodařilo se otevřít soubor ' . $file);

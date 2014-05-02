@@ -23,19 +23,91 @@
  * @author  Your Name <email@example.com>
  */
 
+
+function get_post_metalang($post_id, $lang, $meta_key){
+    
+    global $wpdb;
+    
+    $sql = "
+        SELECT
+            meta_value
+        FROM
+            post_meta_lang
+        WHERE
+            post_id = " . (int) $post_id . "
+        AND
+            lang = '" . esc_sql($lang) . "'
+        AND
+            meta_key = '" . esc_sql($meta_key) . "'
+            
+    ";
+    
+    return $wpdb->get_var();
+    
+}
+
+function update_post_metalang($post_id, $lang, $meta_key, $meta_value){
+    
+    global $wpdb;
+    
+    $sql = "
+        REPLACE INTO
+            post_meta_lang (post_id, lang, meta_key, meta_value)           
+        VALUES(
+            " . (int) $post_id . ",
+            '" . esc_sql($lang) . "',
+            '" . esc_sql($meta_key) . "',
+            '" . esc_sql($meta_value) . "'    
+        )
+        ";
+    
+    $wpdb->query($sql);
+}
+
+function delete_post_metalang($post_id, $lang, $meta_key){
+    
+    global $wpdb;
+    
+    $sql = "
+        DELETE FROM
+            post_meta_lang
+        WHERE
+            post_id = " . (int) $post_id . "
+        AND
+            lang = '" . esc_sql($lang) . "'
+        AND
+            meta_key = '" . esc_sql($meta_key) . "'
+        LIMIT 1
+        ";
+    
+    $wpdb->query($sql);
+    
+}
+
+
 EstateProgram::$tags_apartment = array(
+    'geo',
     'objektkategorie',
     'kontaktperson',
     'preise',
     'flaechen',
     'ausstattung',
     'freitexte',
+    'zustand_angaben',
+    'bewertung',
+    'infrastruktur',    
 );
+
 EstateProgram::$tags_program = array(
     'geo',
     'zustand_angaben',
     'bewertung',
     'infrastruktur',
+);
+
+EstateProgram::$langs = array(
+    'fr' => 'fr',
+    'eng' => 'en',
 );
 
 class EstateProgram {
@@ -76,6 +148,7 @@ class EstateProgram {
 
     static $tags_apartment;
     static $tags_program;
+    static $langs;
 
     /**
      * Initialize the plugin by setting localization and loading public scripts
@@ -104,6 +177,8 @@ class EstateProgram {
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
     }
+    
+
 
     /**
      *
