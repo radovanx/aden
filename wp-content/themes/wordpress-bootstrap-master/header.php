@@ -39,6 +39,7 @@
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://www.adenimmo.web-4-all.cz">Home</a>	</li>
                         <li><a href="http://www.adenimmo.web-4-all.cz/buy_page.html">Buy</a></li>
@@ -54,6 +55,7 @@
                             </ul>
                         </li>
                     </ul>
+                 
                 </div>
             </div>
         </nav>

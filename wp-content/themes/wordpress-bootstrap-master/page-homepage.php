@@ -7,7 +7,6 @@ Template Name: Homepage
 <?php get_header(); ?>
 			
 			<div id="content" class="clearfix row">
-			
 				<div id="main" class="col-sm-12 clearfix" role="main">
 
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
