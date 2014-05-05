@@ -109,10 +109,10 @@ function qtrans_initJS() {
 			var moreregex = /<!--more-->/i;
 			var text = '';
 			var max = 0;
-			var morenextpage_regex = /(<!--more-->|<!--nextpage-->)+$/gi;
-			
+			var morenextpage_regex = /(<!--more-->|<!--nextpage-->)+$/gi;			
 			texts[lang] = lang_text;
 		";
+        
 	foreach($q_config['enabled_languages'] as $language)
 		$q_config['js']['qtrans_integrate'].= "
 			texts['".$language."'] = texts['".$language."'].split(moreregex);

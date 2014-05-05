@@ -22,20 +22,101 @@
  * @package EstateProgram
  * @author  Your Name <email@example.com>
  */
+function get_post_metalang($post_id, $lang, $meta_key) {
+
+    global $wpdb;
+
+    $sql = "
+        SELECT
+            meta_value
+        FROM
+            postmeta_lang
+        WHERE
+            post_id = " . (int) $post_id . "
+        AND
+            lang = '" . esc_sql($lang) . "'
+        AND
+            meta_key = '" . esc_sql($meta_key) . "'
+            
+    ";
+
+    return $wpdb->get_var();
+}
+
+function update_post_metalang($post_id, $lang, $meta_key, $meta_value) {
+
+    global $wpdb;
+
+    /*
+      $sql = "
+      REPLACE INTO
+      postmeta_lang (post_id, lang, meta_key, meta_value)
+      VALUES(
+      " . (int) $post_id . ",
+      '" . esc_sql($lang) . "',
+      '" . esc_sql($meta_key) . "',
+      '" . esc_sql($meta_value) . "'
+      )
+      ";
+     */
+
+    $sql = "
+        INSERT INTO
+            postmeta_lang (post_id, lang, meta_key, meta_value)           
+        VALUES(
+            " . (int) $post_id . ",
+            '" . esc_sql($lang) . "',
+            '" . esc_sql($meta_key) . "',
+            '" . esc_sql($meta_value) . "'    
+        ) ON DUPLICATE KEY UPDATE
+            meta_value = '" . esc_sql($meta_value) . "'
+        ";
+
+    $wpdb->query($sql);
+}
+
+function delete_post_metalang($post_id, $lang, $meta_key) {
+
+    global $wpdb;
+
+    $sql = "
+        DELETE FROM
+            postmeta_lang
+        WHERE
+            post_id = " . (int) $post_id . "
+        AND
+            lang = '" . esc_sql($lang) . "'
+        AND
+            meta_key = '" . esc_sql($meta_key) . "'
+        LIMIT 1
+        ";
+
+    $wpdb->query($sql);
+}
 
 EstateProgram::$tags_apartment = array(
+    'geo',
     'objektkategorie',
     'kontaktperson',
     'preise',
     'flaechen',
     'ausstattung',
     'freitexte',
+    'zustand_angaben',
+    'bewertung',
+    'infrastruktur',
 );
+
 EstateProgram::$tags_program = array(
     'geo',
     'zustand_angaben',
     'bewertung',
     'infrastruktur',
+);
+
+EstateProgram::$langs = array(
+    'fr' => 'fr',
+    'eng' => 'en',
 );
 
 class EstateProgram {
@@ -73,9 +154,9 @@ class EstateProgram {
      * @var      object
      */
     protected static $instance = null;
-
     static $tags_apartment;
     static $tags_program;
+    static $langs;
 
     /**
      * Initialize the plugin by setting localization and loading public scripts
@@ -176,7 +257,7 @@ class EstateProgram {
 
     public function create_taxonomies() {
 
-        
+
         ############################################################
         # program
         $args = array(
@@ -193,55 +274,54 @@ class EstateProgram {
         );
 
         register_taxonomy('type_of_accommodation', array('program'), $args);
-        
-        /*
-        $args = array(
-            'hierarchical' => true,
-            'labels' => array(
-                'name' => _x('Parking', $this->plugin_slug),
-                
-                  'singular_name' => _x('City', 'taxonomy singular name'),
-                  'search_items' => __('Find city'),
-                  'all_items' => __('All cities'),
-                  'parent_item' => __('Parent city'),
-                  'parent_item_colon' => __('Parent city'),
-                  'edit_item' => __('Edit city'),
-                  'update_item' => __('Update city'),
-                  'add_new_item' => __('Create city'),
-                  'new_item_name' => __('New city'), 
-                'menu_name' => __('Parking', $this->plugin_slug)
-            ),
-            'show_ui' => true,
-            'show_admin_column' => true,
-            'query_var' => true,
-            'rewrite' => array('slug' => 'parking'),
-                //'show_in_menu' => 'program_overview'
-        );
 
-        register_taxonomy('parking', array('program'), $args);
-*/
+        /*
+          $args = array(
+          'hierarchical' => true,
+          'labels' => array(
+          'name' => _x('Parking', $this->plugin_slug),
+
+          'singular_name' => _x('City', 'taxonomy singular name'),
+          'search_items' => __('Find city'),
+          'all_items' => __('All cities'),
+          'parent_item' => __('Parent city'),
+          'parent_item_colon' => __('Parent city'),
+          'edit_item' => __('Edit city'),
+          'update_item' => __('Update city'),
+          'add_new_item' => __('Create city'),
+          'new_item_name' => __('New city'),
+          'menu_name' => __('Parking', $this->plugin_slug)
+          ),
+          'show_ui' => true,
+          'show_admin_column' => true,
+          'query_var' => true,
+          'rewrite' => array('slug' => 'parking'),
+          //'show_in_menu' => 'program_overview'
+          );
+
+          register_taxonomy('parking', array('program'), $args);
+         */
 
         ############################################################
         # flat
 
 
 
-/*
-        $args = array(
-            'hierarchical' => true,
-            'labels' => array(
-                'name' => __('Structure', $this->plugin_slug),
-                'menu_name' => __('Structure', $this->plugin_slug)
-            ),
-            'show_ui' => true,
-            'show_admin_column' => true,
-            'query_var' => true,
-            'rewrite' => array('slug' => 'structure'),
-                //'show_in_menu' => 'program_overview'
-        );
+        /*
+          $args = array(
+          'hierarchical' => true,
+          'labels' => array(
+          'name' => __('Structure', $this->plugin_slug),
+          'menu_name' => __('Structure', $this->plugin_slug)
+          ),
+          'show_ui' => true,
+          'show_admin_column' => true,
+          'query_var' => true,
+          'rewrite' => array('slug' => 'structure'),
+          //'show_in_menu' => 'program_overview'
+          );
 
-        register_taxonomy('structure', array('flat'), $args);*/
-       
+          register_taxonomy('structure', array('flat'), $args); */
     }
 
     /**
@@ -454,9 +534,8 @@ class EstateProgram {
     public function filter_method_name() {
         // @TODO: Define your filter hook callback here
     }
-    
-    
-    public function define_image_sizes(){
+
+    public function define_image_sizes() {
         add_image_size('program_thumb', 316, 236, true);
     }
 

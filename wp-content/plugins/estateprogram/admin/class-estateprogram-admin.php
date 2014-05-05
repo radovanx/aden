@@ -73,6 +73,9 @@ class EstateProgram_Admin {
         $plugin = EstateProgram::get_instance();
         $this->plugin_slug = $plugin->get_plugin_slug();
 
+        add_action('admin_init', array(&$this, 'admin_init'));
+
+
         // Load admin style sheet and JavaScript.
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
@@ -81,7 +84,9 @@ class EstateProgram_Admin {
         add_action('load-post.php', array(&$this, 'meta_boxes_setup'));
         add_action('load-post-new.php', array(&$this, 'meta_boxes_setup'));
 
-        add_action('save_post', array($this, 'save'));
+        add_action('save_post', array(&$this, 'save'));
+
+        add_action('delete_post', array(&$this, 'clean_post_data'), 10, 0);
 
         // Add the options page and menu item.
         //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
@@ -98,6 +103,30 @@ class EstateProgram_Admin {
          */
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
+    }
+
+    public function admin_init() {
+        if (current_user_can('delete_posts')) {
+            add_action('delete_post', 'clean_post_data', 10);
+        }
+    }
+
+    /**
+     * 
+     * @global type $post
+     */
+    public function clean_post_data() {
+
+        global $post_id;
+        global $wpdb;
+
+        $sql = "
+            DELETE FROM
+                postmeta_lang
+            WHERE
+                post_id = " . (int) $post_id;
+
+        $wpdb->query($sql);
     }
 
     public function save() {
@@ -133,14 +162,14 @@ class EstateProgram_Admin {
             );
 
             $this->process_save($post->ID, $meta_keys);
-            
+
             //
-            if(!empty($_POST['flat2program'])){
+            if (!empty($_POST['flat2program'])) {
                 $sql = "
                     REPLACE INTO 
                         apartment2program (apartment_id, program_id)
                     VALUES (
-                        '" . (int) $post->ID. "',
+                        '" . (int) $post->ID . "',
                         '" . (int) $_POST['flat2program'] . "'
                     )";
                 $wpdb->query($sql);
@@ -150,7 +179,7 @@ class EstateProgram_Admin {
                         apartment2program
                     WHERE
                         apartment_id = " . (int) $post->ID;
-                
+
                 $wpdb->query($sql);
             }
         }
@@ -189,32 +218,32 @@ class EstateProgram_Admin {
         add_meta_box(
                 'flat_properties', __('Flat properties', $this->plugin_slug), array($this, 'flat_properties'), 'flat'
         );
-        
+
         add_meta_box(
                 'flat2program', __('Assign to program', $this->plugin_slug), array($this, 'flat2program'), 'flat', 'side'
-        );        
+        );
 
         /*
-        global $post;
+          global $post;
 
-        //////////////
-        if ('flat' == $post->post_type) {
+          //////////////
+          if ('flat' == $post->post_type) {
 
-            $tags = EstateProgram::$tags_apartment;
+          $tags = EstateProgram::$tags_apartment;
 
-            foreach ($tags as $tag) {
-                add_meta_box(
-                        'flat_properties', __('Flat properties', $this->plugin_slug), array($this, 'flat_properties'), 'flat'
-                );
-            }
-        }*/
+          foreach ($tags as $tag) {
+          add_meta_box(
+          'flat_properties', __('Flat properties', $this->plugin_slug), array($this, 'flat_properties'), 'flat'
+          );
+          }
+          } */
     }
 
-    public function flat2program(){
-        
-        global $post;     
+    public function flat2program() {
+
+        global $post;
         global $wpdb;
-        
+
         $sql = "
             SELECT 
                 ID 
@@ -224,9 +253,9 @@ class EstateProgram_Admin {
                 post_type='program' 
             AND 
                 post_status IN ('publish', 'future', 'pending', 'private')";
-        
+
         $programs = $wpdb->get_results($sql);
-        
+
         $sql = "
             SELECT 
                 program_id 
@@ -235,14 +264,14 @@ class EstateProgram_Admin {
             WHERE
                 apartment_id = '" . (int) $post->ID . "'
             ";
-        
+
         $current_program_id = $wpdb->get_var($sql);
-        
-        include_once( 'views/flat2program.php' );        
+
+        include_once( 'views/flat2program.php' );
     }
-    
+
     public function program_properties() {
-        global $post;        
+        global $post;
         include_once( 'views/program_properties.php' );
         wp_nonce_field(__FILE__, 'program_post_nonce');
     }
