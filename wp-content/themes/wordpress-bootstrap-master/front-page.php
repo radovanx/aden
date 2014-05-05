@@ -52,51 +52,55 @@
     <div class="row clearfix"> 
 
         <div class="col-md-9 column"> 
-            <h3>Top projects</h3>
+            <h1 class="primary red-border-right">Top projects</h1>
         </div>
 
         <div class="col-md-9 column"> 
-            <div class="row"><p> </p></div>
+            <div class="row">
 
             <?php
             $args = array(
                 'post_type' => 'program',
                 'post_status' => 'publish',
             );
-
-            $query = new WP_Query($args);
-            
+            $query = new WP_Query($args); 
             if ($query->have_posts()) {
                 while ($query->have_posts()) : $query->the_post();
                     ?>
                     <div class="col-md-6 column">
                         <div class="thumbnail">
-                            <a class="" href="http://www.adenimmo.web-4-all.cz/program_page.html">
-                                <?php the_post_thumbnail( 'program_thumb', $attr ); ?>
+                            <a class="" href="<?php the_permalink(); ?>">
+                                <?php the_post_thumbnail( 'program_thumb' ); ?>
                                 <!--<img src="<?php echo get_template_directory_uri() ?>/images/choriner-hoefe_src_1.-w316-h0-p0-F-S1.jpg"/>-->
                             </a>
                             <div class="panel-body">
-                                <h4><?php the_title() ?></h4>
+                                <h4 class="red"><?php the_title() ?></h4>
                             </div> 
                             <div class="panel-body">
-                                <span class="propertyListBoxDataItemName"><strong>Type of property:</strong> Exclusive Apartments</span> 
-                                <br>
-                                <span class="propertyListBoxDataItemName"><strong>Address:</strong> Krausenstrasse 37 - Schützenstrasse 46, Berlin-Mitte</span>
-                                <br>
-                                <span class="propertyListBoxDataItemName"><strong>Price range:</strong> € 152.000 - € 822.500    <i class="fa fa-eur"></i>  
+                                <span class="propertyListBoxDataItemName"><i class="fa fa-usd"></i><strong>Type of property:</strong> Exclusive Apartments</span> 
+                                 
+                                <span class="propertyListBoxDataItemName"><i class="fa fa-usd"></i><strong>Address:</strong> Krausenstrasse 37 - Schützenstrasse 46, Berlin-Mitte</span>
+                                 
+                                <span class="propertyListBoxDataItemName"><i class="fa fa-usd"></i><strong>Size range:</strong> <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)) ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)) ?> m²</span>
+                                <span class="propertyListBoxDataItemName"><i class="fa fa-usd"></i><strong>Price range:</strong> € 152.000 - € 822.500    <i class="fa fa-eur"></i>  
                                     <i class="fa fa-usd"></i> <i class="fa fa-gbp"></i>
                                 </span>
                                 <br>                                
-                                <span class="propertyListBoxDataItemName"><strong>Size range:</strong> <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)) ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)) ?> m²</span>
+                               
                             </div>
                             <div class="panel-body"> 
                                 <?php the_excerpt() ?>
                             </div>
-                            <div class="panel-body">		
-                                <p>
-                                    <a class="btn btn-danger" href="<?php the_permalink(); ?>">make an enquiry</a>
-                                    <a class="btn btn-default" href="<?php the_permalink(); ?> ">» view details </a>
-                                </p>	
+                            <div class="clearfix">		
+                                
+                                <span class="col-lg-6">    
+                                    <a class="btn btn-lg btn-default btn-block btn-upper" href="<?php the_permalink(); ?> ">» view details </a> 
+                                </span>
+                                <span class="col-lg-6">
+                                   <a class="btn btn-lg btn-primary btn-block btn-upper" href="<?php the_permalink(); ?>">make an enquiry</a> 
+                                </span>
+                                
+                               	
                             </div>
                         </div>	
                     </div>
@@ -105,10 +109,10 @@
             }
             wp_reset_query();
             ?>
-
+                </div> 
         </div> 
         <div class="col-md-3 column"> 
-
+ 
             <img src="<?php echo get_template_directory_uri() ?>/images/sidebar_left.png">
 
         </div>	

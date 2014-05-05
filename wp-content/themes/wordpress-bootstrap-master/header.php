@@ -15,27 +15,26 @@
         <!-- media-queries.js (fallback) -->
         <!--[if lt IE 9]>
                 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			
-        <![endif]-->
-
+        <![endif]--> 
         <!-- html5.js -->
         <!--[if lt IE 9]>
                 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-
-        <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-
+ 
         <!-- wordpress head functions -->
         <?php wp_head(); ?>
         <!-- end of wordpress head -->
-
     </head>
 
     <body <?php body_class(); ?>>
+         
+        
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">
-                        LOGO
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                    <a class="navbar-brand" href="#">
+                     
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,3 +58,26 @@
                 </div>
             </div>
         </nav>
+        
+        
+        	<div class="navbar navbar-default navbar-fixed-top">
+				<div class="container">
+          
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+						<a class="navbar-brand" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+					</div>
+
+					<div class="collapse navbar-collapse navbar-responsive-collapse">
+						<?php wp_bootstrap_main_nav(); // Adjust using Menus in Wordpress Admin ?>
+
+						 
+					</div>
+
+				</div> <!-- end .container -->
+			</div> <!-- end .navbar -->

@@ -484,4 +484,5 @@ if( !function_exists( "theme_js" ) ) {
 }
 add_action( 'wp_enqueue_scripts', 'theme_js' );
 
+include 'function-theme.php';
 ?>

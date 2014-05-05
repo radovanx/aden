@@ -9,6 +9,9 @@ Template Name: Homepage
 			<div id="content" class="clearfix row">
 				<div id="main" class="col-sm-12 clearfix" role="main">
 
+                                    <h1>test</h1>
+                                    
+                                    
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 					
 					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
