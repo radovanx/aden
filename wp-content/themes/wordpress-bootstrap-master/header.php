@@ -25,44 +25,9 @@
         <?php wp_head(); ?>
         <!-- end of wordpress head -->
     </head>
-
     <body <?php body_class(); ?>>
-         
-        
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a class="navbar-brand" href="#">
-                     
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="http://www.adenimmo.web-4-all.cz">Home</a>	</li>
-                        <li><a href="http://www.adenimmo.web-4-all.cz/buy_page.html">Buy</a></li>
-                        <li><a href="http://www.adenimmo.web-4-all.cz/partner_page.html">Partner</a></li>
-                        <li><a href="http://www.adenimmo.web-4-all.cz/about_us.html">About Us</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle blue" data-toggle="dropdown">Login<strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a href="http://www.adenimmo.web-4-all.cz/our_product.html">Login</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    </ul>
-                 
-                </div>
-            </div>
-        </nav>
-        
-        
-        	<div class="navbar navbar-default navbar-fixed-top">
+        	<div class="navbar navbar-default">
 				<div class="container">
-          
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
 							<span class="icon-bar"></span>
@@ -70,10 +35,10 @@
 							<span class="icon-bar"></span>
 						</button>
 
-						<a class="navbar-brand" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+						<a class="" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
+                                                    <img src="<?php bloginfo('template_url'); ?>/images/logo.png" /></a>
 					</div>
-
-					<div class="collapse navbar-collapse navbar-responsive-collapse">
+					<div class="collapse navbar-collapse navbar-responsive-collapse navbar navbar-right">
 						<?php wp_bootstrap_main_nav(); // Adjust using Menus in Wordpress Admin ?>
 
 						 
