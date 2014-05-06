@@ -195,6 +195,76 @@ function grab_it($xml, $lang) {
             update_post_metalang($apartment_id, $wp_lang, $key, $val);
         }
 
+        // zjistim jestli existuje program na stejne adrese
+        $cityNode = $anbieter->xpath('immobilie/geo/ort');
+        $city = (string) $cityNode[0];
+
+        $streetNode = $anbieter->xpath('immobilie/geo/strasse');
+        $street = (string) $streetNode[0];
+
+        $regionNode = $anbieter->xpath('immobilie/geo/regionaler_zusatz');
+        $region = (string) $regionNode[0];
+
+        $houseNumberNode = $anbieter->xpath('immobilie/geo/hausnummer');
+        $houseNumber = (string) $houseNumberNode[0];
+
+        $sql = "
+          SELECT
+            p.ID
+          FROM
+            " . $wpdb->prefix . "postmeta as pm1
+          JOIN
+            " . $wpdb->prefix . "postmeta as pm2
+          ON
+            pm1.post_id = pm2.post_id
+          JOIN
+            " . $wpdb->prefix . "postmeta as pm3
+          ON
+            pm1.post_id = pm3.post_id
+          JOIN
+            " . $wpdb->prefix . "postmeta as pm4
+          ON
+            pm1.post_id = pm4.post_id
+          JOIN
+            " . $wpdb->prefix . "posts as p
+          ON
+            p.ID = pm1.post_id
+          WHERE
+            pm1.meta_key = '_program_city'
+          AND
+            pm2.meta_key = '_program_street'
+          AND
+            pm3.meta_key = '_program_district'
+          AND
+            pm4.meta_key = '_house_number'
+          AND
+            pm1.meta_value = '" . esc_sql($city) . "'
+          AND
+            pm2.meta_value = '" . esc_sql($street) . "'
+          AND
+            pm3.meta_value = '" . esc_sql($region) . "'
+          AND
+            pm4.meta_value = '" . esc_sql($houseNumber) . "'
+          AND
+            p.post_type = 'program'
+          ";
+
+        $program_id = $wpdb->get_var($sql);
+        
+        //
+        if(!empty($program_id)){
+          // ulozim vztah mezi programem a bytem
+          $sql = "
+          REPLACE INTO
+            apartment2program (apartment_id, program_id)
+          VALUES(
+            '" . (int) $apartment_id . "',
+            '" . (int) $program_id . "'
+          )
+          ";
+
+          $wpdb->query($sql);            
+        }
 
         /*
           // zjistim jestli existuje program na stejne adrese
@@ -224,7 +294,6 @@ function grab_it($xml, $lang) {
           pm2.meta_value = '" . esc_sql($address['geokoordinaten|laengengrad']) . "'
           AND
           p.post_type = 'program'
-
           ";
 
           $program_id = $wpdb->get_var($sql);
