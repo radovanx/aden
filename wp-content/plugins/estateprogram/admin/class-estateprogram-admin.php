@@ -40,7 +40,7 @@ class EstateProgram_Admin {
      *
      * @var      string
      */
-    protected $plugin_screen_hook_suffix = 'program';
+    protected $plugin_screen_hook_suffix = array('program', 'flat');
 
     /**
      * Initialize the plugin by loading admin scripts & styles and adding a
@@ -327,7 +327,7 @@ class EstateProgram_Admin {
         }
 
         $screen = get_current_screen();
-        if ($this->plugin_screen_hook_suffix == $screen->id) {
+        if (in_array($screen->id, $this->plugin_screen_hook_suffix)) {
             wp_enqueue_style($this->plugin_slug . '-admin-styles', plugins_url('assets/css/admin.css', __FILE__), array(), EstateProgram::VERSION);
         }
     }
@@ -353,7 +353,7 @@ class EstateProgram_Admin {
 
         $screen = get_current_screen();
 
-        if ($this->plugin_screen_hook_suffix == $screen->id) {
+        if (in_array($screen->id, $this->plugin_screen_hook_suffix)) {
             wp_enqueue_script($this->plugin_slug . '-admin-script', plugins_url('assets/js/admin.js', __FILE__), array('jquery'), EstateProgram::VERSION);
         }
     }
@@ -382,9 +382,10 @@ class EstateProgram_Admin {
          * - Change 'manage_options' to the capability you see fit
          *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
          */
+        /*
         $this->plugin_screen_hook_suffix = add_options_page(
                 __('Page Title', $this->plugin_slug), __('Menu Text', $this->plugin_slug), 'manage_options', $this->plugin_slug, array($this, 'display_plugin_admin_page')
-        );
+        );*/
     }
 
     /**
