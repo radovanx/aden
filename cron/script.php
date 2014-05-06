@@ -248,6 +248,7 @@ function grab_it($xml, $lang) {
           AND
             p.post_type = 'program'
           ";
+        
 
         $program_id = $wpdb->get_var($sql);
         
