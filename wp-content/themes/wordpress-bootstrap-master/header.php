@@ -39,10 +39,7 @@
                                                     <img src="<?php bloginfo('template_url'); ?>/images/logo.png" /></a>
 					</div>
 					<div class="collapse navbar-collapse navbar-responsive-collapse navbar navbar-right">
-						<?php wp_bootstrap_main_nav(); // Adjust using Menus in Wordpress Admin ?>
-
-						 
-					</div>
-
+						<?php wp_bootstrap_main_nav(); // Adjust using Menus in Wordpress Admin ?>	 
+					</div> 
 				</div> <!-- end .container -->
 			</div> <!-- end .navbar -->

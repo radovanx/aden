@@ -37,9 +37,8 @@
 /* layout */
 
 body{
-	padding-top: 60px;
+	 
 }
-
 /* Admin Top Navigation fixes */
 
 body.admin-bar .navbar-fixed-top{ 
@@ -543,7 +542,7 @@ blockquote.pull-left{
 
 @media only screen and (min-width: 980px) {
 	body{
-		padding-top: 60px;
+		 
 	}
 	
 	.container-fluid{
@@ -600,4 +599,94 @@ blockquote.pull-left{
 		padding-left: 0;
 		padding-right: 0;
 	}
+}   
+     
+    .red
+    {
+    color:@red;
+    }
+    .blue
+    {
+    color:@blue;    
+    } 
+    .bold
+    {
+    font-weight: @bold;
+    } 
+    .border-left
+    {
+    border-left: 3px solid @red; 
+    padding-left: 10px;
+    }
+    .uppercase
+    {
+        text-transform: @uppercase;
+        
+    }
+    
+    .primary
+    {
+    .bold; 
+    .border-left;
+    .uppercase;
+    }
+    
+    
+    /*home page*/
+    
+    .propertyListBoxDataItemName
+    {
+        display: block; 
+        margin-bottom:10px;
+        .fa
+        {
+            padding-right: 10px; 
+        } 
+        
+    }   
+    .thumbnail
+    { 
+    .btn-default{
+        border-left:0;
+        border-right:0;
+        color:@blue;     
+    }
+    .excerpt.panel-body
+    {      
+            border-top: 1px solid #d8d8d8;   
+    } 
+    } 
+    .nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+.carousel .item img {
+   
+   min-width: 100%;
+   
+}
+.carousel
+{
+    position:relative; 
+}
+.carousel-caption
+{
+   background: #4c4c4c;
+   text-align:left;
+   
+   h4  
+    {
+    font-size:30px;   
+    font-weight: bold;
+    text-transform: uppercase;
+   }
+   p
+   {
+    font-size: 14px;   
+       
+   }
+   
+   
+    
 }
