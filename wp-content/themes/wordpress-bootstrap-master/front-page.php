@@ -18,22 +18,18 @@
                     ?>
                     <div class="col-md-6 column">
                         <div class="thumbnail">
-                            <a class="" href="<?php the_permalink(); ?>">
-                                
+                            <a class="" href="<?php the_permalink(); ?>"> 
                                 <?php the_post_thumbnail( 'property-list-thumb' ); ?>
                                 <!--<img src="<?php echo get_template_directory_uri() ?>/images/choriner-hoefe_src_1.-w316-h0-p0-F-S1.jpg"/>-->
-                            
                             </a>
                             <div class="panel-body">
                                 <h4 class="blue"><?php the_title() ?></h4>
                             </div> 
-                            <div class="panel-body">
-                                <span class="propertyListBoxDataItemName"><i class="fa fa-home"></i><strong>Type of property:</strong> Exclusive Apartments</span>                      
-                                <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker"></i><strong>Address:</strong> Krausenstrasse 37 - Schützenstrasse 46, Berlin-Mitte</span>
-                                <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt"></i><strong>Size range:</strong><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)) ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)) ?> m²</span>
-                                <span class="propertyListBoxDataItemName"><i class="fa fa-money"></i><strong>Price range:</strong><strong class="red"> € 152.000 - € 822.500</strong></span>
-                                <br>                                
-                               
+                            <div class="panel-body">  
+                                <span class="propertyListBoxDataItemName"><i class="fa fa-home"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong> Exclusive Apartments</span>                      
+                                <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
+                                <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²</span>
+                                <span class="propertyListBoxDataItemName"><i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> € 152.000 - € 822.500</strong></span>             
                             </div>
                             <div class="panel-body excerpt"> 
                                 <?php the_excerpt() ?>
@@ -54,8 +50,15 @@
             ?>
                 </div> 
         </div> 
-        <div class="col-md-3 column"> 
-            <img src="<?php echo get_template_directory_uri() ?>/images/sidebar_left.png">
-        </div>	
+        <div class="col-md-3 column border background contact_form_block">    
+             
+            <h2 class="border-left"><?php _e("Contact us", "wpbootstrap"); ?></h2>
+            <span class="phone red"><i class="fa fa-phone"></i> +33 0632140564</span>
+             <?php echo do_shortcode( '[contact-form-7 id="1728" title="contact-home-en"]' ) ?>  
+        </div>
+        
+          <div class="col-md-3 column border background">    
+              <h2 class="border-left"><?php _e("NEWSLETTER", "wpbootstrap"); ?></h2>
+           </div>    
     </div>
     <?php get_footer(); ?>
