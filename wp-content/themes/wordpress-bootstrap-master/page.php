@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-			
+<div class="container">
 			<div id="content" class="clearfix row">
 			
 				<div id="main" class="col-sm-8 clearfix" role="main">
@@ -10,7 +10,7 @@
 						
 						<header>
 							
-							<div class="page-header"><h1 class="page-title" itemprop="headline"><?php the_title(); ?></h1></div>
+							<div class="page-header"><h1 class="page-title border-left" itemprop="headline"><?php the_title(); ?></h1></div>
 						
 						</header> <!-- end article header -->
 					
@@ -26,9 +26,7 @@
 						</footer> <!-- end article footer -->
 					
 					</article> <!-- end article -->
-					
-					<?php comments_template('',true); ?>
-					
+			 
 					<?php endwhile; ?>		
 					
 					<?php else : ?>
@@ -51,5 +49,5 @@
 				<?php get_sidebar(); // sidebar 1 ?>
     
 			</div> <!-- end #content -->
-
+</div>
 <?php get_footer(); ?>

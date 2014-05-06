@@ -1,10 +1,5 @@
 <?php get_header(); ?>
-
-
- 
- <?php echo do_shortcode( '[image-carousel interval="12000"]') ?> 
- 
-
+<?php echo do_shortcode( '[image-carousel interval="12000"]') ?> 
 <div class="container">
     <div class="row clearfix"> 
         <div class="col-md-9 column"> 
