@@ -86,7 +86,7 @@ class EstateProgram_Admin {
 
         add_action('save_post', array(&$this, 'save'));
 
-        add_action('delete_post', array(&$this, 'clean_post_data'), 10, 0);
+        
 
         // Add the options page and menu item.
         //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
@@ -107,7 +107,7 @@ class EstateProgram_Admin {
 
     public function admin_init() {
         if (current_user_can('delete_posts')) {
-            add_action('delete_post', 'clean_post_data', 10);
+            add_action('delete_post', array(&$this, 'clean_post_data'), 10, 0);
         }
     }
 

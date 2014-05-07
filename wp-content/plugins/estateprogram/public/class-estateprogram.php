@@ -95,6 +95,7 @@ function delete_post_metalang($post_id, $lang, $meta_key) {
 }
 
 EstateProgram::$tags_apartment = array(
+    
     'geo',
     'objektkategorie',
     'kontaktperson',
@@ -575,6 +576,37 @@ class EstateProgram {
         ";
         
         return $wpdb->get_results($sql);
+    }
+    
+    static function get_flat_props_by_program($program_id, $langugage){
+        
+        global $wpdb;
+        
+        $sql = "
+            SELECT
+                pl.meta_key,
+                pl.meta_value,
+                flat.ID,
+                flat.post_title                
+            FROM
+                postmeta_lang AS pl
+            JOIN
+                wp_posts AS flat
+            ON
+                flat.ID = pl.post_id
+            JOIN
+                apartment2program AS a2p
+            ON
+                a2p.apartment_id = pl.post_id
+            WHERE
+                pl.lang = '" . esc_sql($langugage) . "'
+            AND
+                a2p.program_id = '" . (int) $program_id . "'
+            ORDER BY
+                flat.ID DESC
+        ";
+        
+        return $wpdb->get_results($sql);        
     }
     
     /**

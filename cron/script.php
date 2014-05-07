@@ -73,38 +73,9 @@ function grab_it($xml, $lang) {
     );
 
     //
-    $uebertragung = $xml->xpath('/openimmo/uebertragung');
+    //$uebertragung = $xml->xpath('/openimmo/uebertragung');
 
     $result = $xml->xpath('/openimmo/anbieter');
-
-    $immobilie = $xml->xpath('/openimmo/anbieter/immobilie');
-
-    // ulozim si hlavni vlastnosti bytu / programu
-    foreach ($immobilie as $val) {
-        foreach ($val->children() as $tag) {
-            $name = (string) $tag->getName();
-            $sql = "SELECT p2m FROM tag2meta_key WHERE tag = '" . $name . "' AND meta_key = '" . $name . "' AND deep = 1";
-            $exists = $wpdb->get_var($sql);
-            if (empty($exists)) {
-                $sql = "INSERT INTO
-                                tag2meta_key (tag, meta_key, deep)
-                            VALUES (
-                                '" . esc_sql($name) . "',
-                                '" . esc_sql($name) . "',
-                                1
-                            )";
-                $wpdb->query($sql);
-            }
-        }
-    }
-
-    $sql = "SELECT * FROM tag2meta_key WHERE deep = 1";
-    $parent_res = $wpdb->get_results($sql);
-
-    $parents = array();
-    foreach ($parent_res as $r) {
-        $parents[$r->tag] = $r->p2m;
-    }
 
     foreach ($result as $anbieter) {
 
@@ -112,42 +83,8 @@ function grab_it($xml, $lang) {
         $firma = (string) $anbieter->firma;
         $openimmo_anid = (string) $anbieter->openimmo_anid;
 
+
         $ret = parse_nodes($anbieter->immobilie);
-
-        $deeps = array();
-        foreach ($ret as $key => $val) {
-
-            $split = explode('|', $key);
-            $deep = count($split);
-            $deeps[$key] = $deep;
-
-            if (1 == $deep || in_array($split[0], $exclude_tag)) {
-                // its parent element
-                continue;
-            }
-
-            //vytvorim mapu tagu z xml na meta_key v tabulce wp_post_meta
-            $sql = "SELECT p2m FROM tag2meta_key WHERE meta_key = '" . esc_sql($key) . "'";
-            $exists = $wpdb->get_var($sql);
-
-            if (empty($exists)) {
-
-                $parent_id = $parents[$split[0]];
-
-                $sql = "
-                        INSERT INTO
-                            tag2meta_key (tag, meta_key, deep, parent)
-                        VALUES (
-                            '" . esc_sql($split[0]) . "',
-                            '" . esc_sql($key) . "',
-                            '" . $deep . "',
-                            '" . $parent_id . "'
-                        )";
-
-                $wpdb->query($sql);
-            }
-        }
-
 
         $sql = "
             SELECT
@@ -180,20 +117,26 @@ function grab_it($xml, $lang) {
 
         update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
 
+        $props = array();
+        $excl = array('anhaenge', 'anhang');
+
         // nasázím vlastnosti bytu
         foreach ($ret as $key => $val) {
 
             $split = explode('|', $key);
 
-            if (1 == $deeps[$key] || !in_array($split[0], EstateProgram::$tags_apartment)) {
+            if((empty(rtrim($val)) && count($split) == 1) || in_array($split[0], $excl)){
                 continue;
             }
-            //update_post_meta((int) $apartment_id, $key, $val);
-            //update_post_metalang($apartment_id, $lang, $key, $val);
-
-            $wp_lang = EstateProgram::$langs[$lang];
-            update_post_metalang($apartment_id, $wp_lang, $key, $val);
+            
+            $props[$key] = $val;
+            //update_post_metalang($apartment_id, $wp_lang, $key, $val);
         }
+
+        $wp_lang = EstateProgram::$langs[$lang];
+        
+                
+        update_post_meta($apartment_id, 'flat_props_' . $wp_lang, serialize($props));
 
         // zjistim jestli existuje program na stejne adrese
         $cityNode = $anbieter->xpath('immobilie/geo/ort');
@@ -248,14 +191,14 @@ function grab_it($xml, $lang) {
           AND
             p.post_type = 'program'
           ";
-        
+
 
         $program_id = $wpdb->get_var($sql);
-        
+
         //
-        if(!empty($program_id)){
-          // ulozim vztah mezi programem a bytem
-          $sql = "
+        if (!empty($program_id)) {
+            // ulozim vztah mezi programem a bytem
+            $sql = "
           REPLACE INTO
             apartment2program (apartment_id, program_id)
           VALUES(
@@ -264,86 +207,13 @@ function grab_it($xml, $lang) {
           )
           ";
 
-          $wpdb->query($sql);            
+            $wpdb->query($sql);
         }
-
-        /*
-          // zjistim jestli existuje program na stejne adrese
-          $address_nodes = $anbieter->xpath('immobilie/geo');
-          $address = parse_nodes($address_nodes[0]);
-
-          $sql = "
-          SELECT
-          p.ID
-          FROM
-          " . $wpdb->prefix . "postmeta as pm1
-          JOIN
-          " . $wpdb->prefix . "postmeta as pm2
-          ON
-          pm1.post_id = pm2.post_id
-          JOIN
-          " . $wpdb->prefix . "posts as p
-          ON
-          p.ID = pm1.post_id
-          WHERE
-          pm1.meta_key = 'geo|geokoordinaten|breitengrad'
-          AND
-          pm2.meta_key = 'geo|geokoordinaten|laengengrad'
-          AND
-          pm1.meta_value = '" . esc_sql($address['geokoordinaten|breitengrad']) . "'
-          AND
-          pm2.meta_value = '" . esc_sql($address['geokoordinaten|laengengrad']) . "'
-          AND
-          p.post_type = 'program'
-          ";
-
-          $program_id = $wpdb->get_var($sql);
-
-          // pokud jeste neni vytvoren program teto adrese
-          if (!in_array($program_id, $processed_program)) {
-
-          if (empty($program_id)) {
-          $post_information = array(
-          'post_title' => $ret['freitexte|objekttitel'],
-          'post_content' => '',
-          'post_type' => 'program',
-          'post_status' => 'publish',
-          );
-
-          $program_id = wp_insert_post($post_information);
-          }
-
-          //
-          foreach ($ret as $key => $val) {
-
-          $split = explode('|', $key);
-
-          if (1 == $deeps[$key] || !in_array($split[0], EstateProgram::$tags_program)) {
-          continue;
-          }
-          update_post_meta((int) $program_id, $key, $val);
-          }
-
-          array_push($processed_program, $program_id);
-          }
-
-          // ulozim vztah mezi programem a bytem
-          $sql = "
-          REPLACE INTO
-          apartment2program (apartment_id, program_id)
-          VALUES(
-          '" . (int) $apartment_id . "',
-          '" . (int) $program_id . "'
-          )
-          ";
-
-          $wpdb->query($sql);
-         */
 
         // zgrabovani obrazků
         $images = $anbieter->xpath('immobilie/anhaenge/anhang');
 
-        $set_program_thumb = true;
+        $set_apartment_thumb = true;
 
         foreach ($images as $image) {
             $file = $image->xpath('daten/pfad');
@@ -406,18 +276,20 @@ function grab_it($xml, $lang) {
                     update_post_meta($attach_id, '_wp_attachment_image_alt', $basename);
                     update_post_meta($attach_id, '_original_image_name', $basename);
 
-                    /*
-                      if($set_program_thumb && !has_post_thumbnail($program_id)){
-                      set_post_thumbnail($program_id, $attach_id);
-                      } else {
-                      $set_program_thumb = false;
-                      } */
+
+                    if ($set_apartment_thumb && !has_post_thumbnail($apartment_id)) {
+                        set_post_thumbnail($apartment_id, $attach_id);
+                    } else {
+                        $set_apartment_thumb = false;
+                    }
                 }
             }
         }
     }
 }
 
+
+// start programu
 global $wpdb;
 
 $langs = EstateProgram::$langs;
