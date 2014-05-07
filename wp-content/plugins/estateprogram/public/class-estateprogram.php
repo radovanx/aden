@@ -363,6 +363,21 @@ class EstateProgram {
      *                                       activated on an individual blog.
      */
     public static function activate($network_wide) {
+        /*
+        add_role(
+            'partner',
+            __( 'Partner')
+        );   */     
+        
+        
+        /*
+        remove_role( 'subscriber' );
+        remove_role( 'contributor' );
+        remove_role( 'author' );
+        remove_role( 'editor' );
+        */
+        
+        
 
         if (function_exists('is_multisite') && is_multisite()) {
 
@@ -534,7 +549,37 @@ class EstateProgram {
     public function filter_method_name() {
         // @TODO: Define your filter hook callback here
     }
-
+    
+    /**
+     * 
+     * @global type $wpdb
+     * @param type $program_id
+     * @return type
+     */
+    static function get_flats_by_program($program_id){
+        
+        global $wpdb;
+        
+        $sql = "
+            SELECT
+                flat.*
+            FROM
+                wp_posts AS flat
+            JOIN
+                apartment2program a2p
+            ON
+                a2p.apartment_id = flat.ID
+            WHERE
+                a2p.program_id = '" . esc_sql($program_id) . "'
+                                
+        ";
+        
+        return $wpdb->get_results($sql);
+    }
+    
+    /**
+     * 
+     */
     public function define_image_sizes() {
         add_image_size('program_thumb', 316, 236, true);
     }

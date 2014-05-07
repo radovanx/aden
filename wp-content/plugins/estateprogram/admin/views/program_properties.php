@@ -4,7 +4,13 @@
         <td>
             <input id="program-street" type="text" name="_program_street" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)) ?>">
         </td>
-    </tr>
+    </tr>    
+    <tr>
+        <th class="textleft"><label for="program-house-number"><?php _e('House number', $this->plugin_slug); ?></label></th>
+        <td>
+            <input id="program-house-number" type="text" name="_house_number" value="<?php echo esc_attr(get_post_meta($post->ID, '_house_number', true)) ?>">
+        </td>
+    </tr>    
     <tr>
         <th class="textleft"><label for="program-city"><?php _e('Program district', $this->plugin_slug); ?></label></th>
         <td>
