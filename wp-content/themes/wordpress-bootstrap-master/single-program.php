@@ -1,7 +1,6 @@
 <?php get_header(); ?>
 <div class="container">
 			<div id="content" class="clearfix row">
-                            
                             <div class="col-md-12 column">
                                 <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?></h1></div>     
                             </div>
@@ -13,25 +12,60 @@
                                                 <!-- Tab panes -->
                                                 <div class="tab-content">   
                                                 <div class="tab-pane fade in active"  id="gallery_tab">    
-                                                <!--slider here -->        
+                                                <!--slider here -->     
+                       
+                                                 <?php $thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'full' );
+                                                      $url = $thumb['0'];  
+                                                ?>
+                                                <a href="<?php echo $url; ?>">   
                                                 <?php the_post_thumbnail( 'project-detail-big' ); ?>
-					 
+                                                </a>    
+                                                
+                                                
+                                                <div class="well">
+                                                <div id="myCarousel" class="carousel slide"> 
+                                                <!-- Carousel items -->
+                                                
+                                                <div class="carousel-inner">
+       
                                                 <?php
                                                     $images =& get_children( array (
                                                     'post_parent' => $post->ID,
                                                     'post_type' => 'attachment',
                                                     'post_mime_type' => 'image'
-                                                ));
-
+                                                )); 
+                                                    
                                                 if ( empty($images) ) {
                                                 // no attachments here
                                                 } else {
-                                                foreach ( $images as $attachment_id => $attachment ) {
-                                                echo wp_get_attachment_image( $attachment_id, 'thumbnail' );
-                                                }
-                                                }
+                                                
+                                                $i=1;
+                                                
                                                 ?>
-                                                </div>
+                                                <div class="item active"><div class="row"> 
+                                                <?php      
+                                                foreach ( $images as $attachment_id => $attachment ) {
+                                                 $full_size =  wp_get_attachment_image_src( $attachment_id, 'full' );  
+                                                 $full_size = $full_size[0];
+                                                 echo '<div class="col-sm-3"><a href="'.$full_size.'">';    
+                                                 echo wp_get_attachment_image( $attachment_id, 'project-detail-small' );
+                                                 echo '</a>'; 
+                                                 echo '</div>';
+                                                 echo $i%5 ==0 ? '</div></div><div class="item"><div class="row">' : ''; 
+                                                 $i++; 
+                                                 }
+                                                 echo '</div></div>';
+                                                 }
+                                                ?>
+                                                
+                                         </div>
+                                           <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                                           <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>   
+                                        <!--/myCarousel-->
+                                        </div>           
+                                       </div>    
+                                                  </div>  
+  
                                                     <div class="tab-pane fade"  id="map_tab">
                                                         <div id="gmap"></div>
                                                     </div>   
@@ -39,22 +73,14 @@
                                                         <div id="gmapstreet"></div> 
                                                     </div>
                                                 </div>
-                                            
                                             <ul class="nav nav-pills">
                                                 <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
-                                                <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-map-marker"></i>Map View</a></li>   
-                                                <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i>Street View</a> </li> 
-                                            </ul>
-                                                
-                                                
+                                                <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_map"><i class="fa fa-map-marker"></i>Map View</a></li>   
+                                                <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Street View</a> </li> 
+                                            </ul> 
 						<section class="post_content clearfix" itemprop="articleBody">
-							 
-						 
-					
-						</section> <!-- end article section -->
-						
-						<footer>
-                                                    
+ 						</section> <!-- end article section -->
+						<footer> 
 						</footer> <!-- end article footer --> 
 					</article> <!-- end article -->
                                         <div class="row clearfix">
@@ -88,7 +114,7 @@
 					</ul>
                                         </div>
                                         </div>
-                                </div>
+                            </div>
                         <div class="col-md-4 column border"> 
                          <h3 class="border-left uppercase">
 				<?php _e("Key Facts", "wpbootstrap"); ?>
@@ -130,14 +156,13 @@
                                     </select>
                                     </div>
                                     <div class="col-md-3">   
-                                        
-                                        
+                 
                                         <a href="#" class="active blue"><i class="fa fa-list"></i></a>
                                         <a href="#" class="red"><i class="fa fa-th "></i></a>
                                     
                                     </div> 
                             <div class="col-md-12 column">
-                                    	<table class="table table-bordered">
+                                <table class="table table-bordered">
 				<thead>
 					<tr> 
                                             <th><?php _e("Favorite", "wpbootstrap"); ?></th>
@@ -156,16 +181,16 @@
 				</thead>
 				<tbody>        
                                                 <?php 
-                                            
                                                 
-                                                
-                                                
-                                                
+                                                    $program_id = $post->ID;
+                                                    $associate_flats = EstateProgram::get_flats_by_program($program_id);
+                                                    
+                                                   
                                                 ?>
                                             <tr>    
-                                                <td>
+                                                <td>  
 						 <i class="fa fa-star-o blue"></i>
-						</td>
+                                                </td>
 						<td>
 							1
 						</td>
