@@ -487,4 +487,6 @@ add_action( 'wp_enqueue_scripts', 'theme_js' );
 add_image_size( 'property-list-thumb', 395, 180, true );  
 add_image_size( 'project-detail-thumb', 395, 180, true );  
 add_image_size( 'project-detail-big', 750, 500, true );  
+add_image_size( 'project-detail-small', 150, 100, true );  
+
 ?>
