@@ -610,6 +610,9 @@ class EstateProgram {
     }
     
     static function get_flats_props_by_program($program_id, $lang){
+        
+        global $wpdb;
+        
         $sql = "
             SELECT
                 m.meta_value
@@ -619,10 +622,14 @@ class EstateProgram {
                 wp_postmeta as m
             ON
                 m.post_id = p.ID
+            JOIN
+                apartment2program AS a2p
+            ON
+                a2p.apartment_id = p.ID 
             WHERE
                 m.meta_key = 'post_meta_" . esc_sql($lang) . "'
             AND
-                p.ID = '" . (int) $program_id . "'
+                a2p.program_id = '" . (int) $program_id . "'
             AND
                 p.post_type = 'flat'
             AND

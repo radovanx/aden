@@ -182,7 +182,11 @@
                                             <tbody>        
                                                 <?php
                                                 $program_id = $post->ID;
-                                                $flat_props = EstateProgram::get_flats_props_by_program($program_id);
+                                                
+                                                var_dump($post);
+                                                
+                                                $lang = qtrans_getLanguage();
+                                                $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang);
                                                 ?>
                                                 <?php
                                                 $i = 0;
