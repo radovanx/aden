@@ -609,11 +609,36 @@ class EstateProgram {
         return $wpdb->get_results($sql);        
     }
     
+    static function get_flats_props_by_program($program_id, $lang){
+        $sql = "
+            SELECT
+                m.meta_value
+            FROM
+                wp_posts AS p
+            JOIN
+                wp_postmeta as m
+            ON
+                m.post_id = p.ID
+            WHERE
+                m.meta_key = 'post_meta_" . esc_sql($lang) . "'
+            AND
+                p.ID = '" . (int) $program_id . "'
+            AND
+                p.post_type = 'flat'
+            AND
+                p.post_status = 'publish'
+        ";
+        
+        return $wpdb->get_results($sql);
+    }
+    
     /**
      * 
      */
     public function define_image_sizes() {
         add_image_size('program_thumb', 316, 236, true);
     }
+    
+    
 
 }
