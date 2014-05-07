@@ -195,7 +195,7 @@
                                                                 <i class="fa fa-star-o blue"></i>
                                                             </td>
                                                             <td>
-                                                                <?php //echo esc_attr($prop->) ?>
+                                                                <?php echo esc_attr($prop['anbieternr']) ?>
                                                             </td>
                                                             <td>
                                                                 <?php echo esc_attr($prop['geo|strasse']) ?>,
@@ -223,7 +223,7 @@
                                                             </td>
 
                                                             <td>
-
+<?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
                                                             </td>
 
                                                             <td>
