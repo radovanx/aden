@@ -363,6 +363,21 @@ class EstateProgram {
      *                                       activated on an individual blog.
      */
     public static function activate($network_wide) {
+        /*
+        add_role(
+            'partner',
+            __( 'Partner')
+        );   */     
+        
+        
+        /*
+        remove_role( 'subscriber' );
+        remove_role( 'contributor' );
+        remove_role( 'author' );
+        remove_role( 'editor' );
+        */
+        
+        
 
         if (function_exists('is_multisite') && is_multisite()) {
 
