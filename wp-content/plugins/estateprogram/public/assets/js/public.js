@@ -1,10 +1,10 @@
-(function ( $ ) {
-	"use strict";
+(function($) {
+    "use strict";
 
-	$(function () {
-
-		$('.add-to-reference')
-
-	});
+    $(function() {
+        $('#content .add-to-reference').on("click", function() {
+            alert('hello');
+        });
+    });
 
 }(jQuery));
