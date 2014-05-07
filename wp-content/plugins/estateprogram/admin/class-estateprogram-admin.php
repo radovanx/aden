@@ -146,7 +146,8 @@ class EstateProgram_Admin {
                 '_program_elevator',
                 '_program_postcode',
                 '_program_latitude',
-                '_program_longitude'
+                '_program_longitude',
+                '_house_number'
             );
 
             $this->process_save($post->ID, $meta_keys);
