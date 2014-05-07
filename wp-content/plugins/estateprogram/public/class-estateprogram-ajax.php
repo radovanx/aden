@@ -13,7 +13,10 @@ class EstateProgramAjax {
         add_action('wp_ajax_nopriv_add_to_preference', array(&$this, 'add_to_preference'));
     }
     
-    
+    /**
+     * 
+     * @global type $wpdb
+     */
     public function add_to_preference(){
         
         if(!is_user_logged_in()){

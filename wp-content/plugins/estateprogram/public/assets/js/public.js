@@ -3,7 +3,7 @@
 
 	$(function () {
 
-		// Place your public-facing JavaScript here
+		$('.add-to-reference')
 
 	});
 
