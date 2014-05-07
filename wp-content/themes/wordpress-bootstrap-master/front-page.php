@@ -1,8 +1,11 @@
 <?php get_header(); ?>
+
+<div class="visible-lg">
 <?php echo do_shortcode( '[image-carousel interval="12000"]') ?> 
-<div class="container">
+</div>
+    <div class="container">
     <div class="row clearfix"> 
-        <div class="col-md-9 column"> 
+        <div class="col-md-12 column"> 
             <h1 class="primary border-right">Top projects</h1>
         </div> 
         <div class="col-md-9 column"> 
@@ -26,10 +29,14 @@
                                 <h4 class="blue"><?php the_title() ?></h4>
                             </div> 
                             <div class="panel-body">  
-                                <span class="propertyListBoxDataItemName"><i class="fa fa-home"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong> Exclusive Apartments</span>                      
-                                <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
-                                <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²</span>
-                                <span class="propertyListBoxDataItemName"><i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> € 152.000 - € 822.500</strong></span>             
+                                <span class="propertyListBoxDataItemName">
+                                    <i class="fa fa-home"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong> Exclusive Apartments</span>                      
+                                <span class="propertyListBoxDataItemName">
+                                    <i class="fa fa-map-marker"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
+                                <span class="propertyListBoxDataItemName">
+                                    <i class="fa fa-arrows-alt"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²</span>
+                                <span class="propertyListBoxDataItemName">
+                                    <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?></strong></span>             
                             </div>
                             <div class="panel-body excerpt"> 
                                 <?php the_excerpt() ?>
@@ -49,16 +56,14 @@
             wp_reset_query();
             ?>
                 </div> 
-        </div> 
-        <div class="col-md-3 column border background contact_form_block">    
-             
-            <h2 class="border-left"><?php _e("Contact us", "wpbootstrap"); ?></h2>
-            <span class="phone red"><i class="fa fa-phone"></i> +33 0632140564</span>
+        </div>       
+        <div class="col-md-3 column border background contact_form_block">     
+            <h2 class="border-left uppercase"><?php _e("Contact us", "wpbootstrap"); ?></h2>
+            <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
              <?php echo do_shortcode( '[contact-form-7 id="1728" title="contact-home-en"]' ) ?>  
+         </div>         
+           <div class="col-md-3 column border background contact_form_block"> 
+              <h2 class="border-left"><?php _e("NEWSLETTER", "wpbootstrap"); ?></h2> 
         </div>
-        
-          <div class="col-md-3 column border background">    
-              <h2 class="border-left"><?php _e("NEWSLETTER", "wpbootstrap"); ?></h2>
-           </div>    
-    </div>
+ 
     <?php get_footer(); ?>

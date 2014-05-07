@@ -31,7 +31,7 @@
                                                 echo wp_get_attachment_image( $attachment_id, 'thumbnail' );
                                                 }
                                                 }
-                                                    ?>
+                                                ?>
                               
 						<section class="post_content clearfix" itemprop="articleBody">
 							 
@@ -40,14 +40,18 @@
 						</section> <!-- end article section -->
 						
 						<footer>
-			 	 
+                                                
+                                                    <a href="" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-map-marker"></i>Map View</a>   
+                                                    <a href="" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Street View</a>  
+                                                    
+                                                    
 						</footer> <!-- end article footer -->
 					
 					</article> <!-- end article -->
 				 
                                         <div class="row clearfix">
-                                        <div class="col-md-12 column">
-                                            <h3 class="border-left"><?php _e("Summary", "wpbootstrap"); ?></h3>
+                                        <div class="col-md-12 column border">
+                                            <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
                                             <ul class="no-style">
 						<li><i class="fa fa-check"></i>
 							Top location within the central press and lifestyle district of Berlin
@@ -77,79 +81,53 @@
                                         </div>
                                         </div>
                                 </div>
-                            <div class="col-md-4 column"> 
-                         <h3 class="border-left">
+                        <div class="col-md-4 column border"> 
+                         <h3 class="border-left uppercase">
 				<?php _e("Key Facts", "wpbootstrap"); ?>
 			</h3>
-			<div class="row clearfix">
-				 
+			<div class="row clearfix"> 
 				<div class="col-md-12 column">
-					<div class="panel panel-default">
+					<div class="key_fact">
 						<div class="panel-body">
-							<span class="propertyListBoxDataItemName">
-								<strong>Location:</strong> 	Berlin-Mitte
-							</span>
+                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-home round-border"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong> Exclusive Apartments</span>  
 						</div>
-					 
-						<div class="panel-body">
-							<span class="propertyListBoxDataItemName"><strong>Type of property:</strong> 	Exclusive Apartments</span>
+						 <div class="panel-body">  
+						   <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
 						</div>
-						
-							<div class="panel-body">
-							<span class="propertyListBoxDataItemName"><strong>Address:</strong> 	Krausenstrasse 37 - Schützenstrasse 46, Berlin-Mitte</span>
-						</div>
-					 
-					 
 					 	<div class="panel-body">
-							<span class="propertyListBoxDataItemName"><strong>Price range:</strong> 	€ 152.000 - € 822.500    <i class="fa fa-eur"></i>  
-							<i class="fa fa-usd"></i> <i class="fa fa-gbp"></i>
-							
-							</span>
+						<span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²
+						 </span>
 						</div>
-					 
-					 
 					 	<div class="panel-body">
-							<span class="propertyListBoxDataItemName"><strong>Commission (incl. VAT):</strong>	5.95 %</span>
+                                                      <span class="propertyListBoxDataItemName">
+                                                        <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?></strong></span>     
 						</div>
-					 
-					 
-					 	<div class="panel-body">
-							<span class="propertyListBoxDataItemName"><strong>Size range:</strong> 	40 m² - 144 m²</span>
-						</div>
-					 
-		 
-						<div class="panel-body">
- 
- 
-								<span class="propertyListBoxDataItemName"><strong>Parking available:</strong> 	yes, optional</span>
- 
- 						</div>
 					</div>
 				</div>
 			</div> 
                         </div> 
                         
                        <?php if ( is_user_logged_in() ):?>       
-                            
-                            
+                         
                         <div class="row clearfix">
-				<div class="col-md-12 column">
-                                 
-                                <h3 class="border-left inline">
+                                <div class="col-md-6">    
+                                <h3 class="border-left inline uppercase">
 				<?php _e("List of products available in this program", "wpbootstrap"); ?>	
 				</h3>
-                                    <select name="sort_by_list">
-                                     
+                                </div>            
+                                    <div class="col-md-3">
+                                    <select name="sort_by_list" class="form-control input-lg"> 
                                      <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
                                      <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
                                      <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
                                      <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
-                                      
                                     </select>
-                                    
+                                    </div>
+                                    <div class="col-md-3">    
                                     <a href="#" class="active blue"><i class="fa fa-list"></i> </a>
                                     <a href="#" class="red"><i class="fa fa-th"></i></a>
-                                     
+                                    </div> 
+                            <div class="col-md-12 column">
                                     	<table class="table table-bordered">
 				<thead>
 					<tr>

@@ -474,7 +474,7 @@ function cptbc_frontend($atts){
 					<?php if($atts['showcaption'] === 'true' && strlen($image['title']) > 0 && strlen($image['content']) > 0) { ?>
                                     <div class="container">
                                         <div class="row">
-                                                <div class="carousel-caption col-md-6">
+                                                <div class="carousel-caption col-md-4">
 							<h4><?php echo $linkstart.$image['title'].$linkend; ?></h4>
 							<p><?php echo $linkstart.$image['content'].$linkend; ?></p>
 						</div>
