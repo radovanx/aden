@@ -7,9 +7,9 @@
     <div class="row clearfix"> 
         <div class="col-md-12 column"> 
             <h1 class="primary border-right">Top projects</h1>
-        </div> 
+        </div>  
         <div class="col-md-9 column"> 
-            <div class="row"> 
+                <div class="row">
             <?php
             $args = array(
                 'post_type' => 'program',
@@ -56,14 +56,14 @@
             wp_reset_query();
             ?>
                 </div> 
-        </div>       
-        <div class="col-md-3 column border background contact_form_block">     
+         </div> 
+           <div class="col-md-3 column border background contact_form_block"> 
             <h2 class="border-left uppercase"><?php _e("Contact us", "wpbootstrap"); ?></h2>
             <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
              <?php echo do_shortcode( '[contact-form-7 id="1728" title="contact-home-en"]' ) ?>  
-         </div>         
+            </div> 
            <div class="col-md-3 column border background contact_form_block"> 
               <h2 class="border-left"><?php _e("NEWSLETTER", "wpbootstrap"); ?></h2> 
         </div>
- 
+    </div></div>
     <?php get_footer(); ?>

@@ -6,10 +6,12 @@
 table {
   max-width: 100%;
   background-color: @table-bg;
+  font-size: 14px;
 }
 th {
   text-align: left;
   background: @blue;
+  color:#fff;
 }
 
 
@@ -25,7 +27,9 @@ th {
     > tr {
       > th,
       > td {
-        padding: @table-cell-padding;
+        padding: @table-condensed-cell-padding;
+        padding-top:@table-cell-padding;
+        padding-bottom:@table-cell-padding;                     
         line-height: @line-height-base;
         vertical-align: top;
         border-top: 1px solid @table-border-color;
@@ -35,7 +39,7 @@ th {
   // Bottom align for column headings
   > thead > tr > th {
     vertical-align: bottom;
-    border-bottom: 2px solid @table-border-color;
+    border-bottom: 1px solid @table-border-color;
   }
   // Remove top border from thead by default
   > caption + thead,
@@ -50,7 +54,7 @@ th {
   }
   // Account for multiple tbody instances
   > tbody + tbody {
-    border-top: 2px solid @table-border-color;
+    border-top: 1px solid @table-border-color;
   }
 
   // Nesting
@@ -58,8 +62,7 @@ th {
     background-color: @body-bg;
   }
 }
-
-
+ 
 // Condensed table w/ half padding
 
 .table-condensed {
@@ -95,12 +98,11 @@ th {
   > thead > tr {
     > th,
     > td {
-      border-bottom-width: 2px;
+      border-bottom-width: 1px;
     }
   }
 }
-
-
+ 
 // Zebra-striping
 //
 // Default zebra-stripe styles (alternating gray and transparent backgrounds)
@@ -113,8 +115,7 @@ th {
     }
   }
 }
-
-
+ 
 // Hover effect
 //
 // Placed here since it has to come after the potential zebra striping
