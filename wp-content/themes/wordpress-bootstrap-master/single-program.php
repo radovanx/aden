@@ -7,15 +7,14 @@
                             </div>
 			
 				<div id="main" class="col-md-8 column clearfix" role="main">
-
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-					
 					<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-						
-					
-
+				  
+                                                <!-- Tab panes -->
+                                                <div class="tab-content">   
+                                                <div class="tab-pane fade in active"  id="gallery_tab">    
                                                 <!--slider here -->        
-                                        	 <?php the_post_thumbnail( 'project-detail-big' ); ?>
+                                                <?php the_post_thumbnail( 'project-detail-big' ); ?>
 					 
                                                 <?php
                                                     $images =& get_children( array (
@@ -32,7 +31,22 @@
                                                 }
                                                 }
                                                 ?>
-                              
+                                                </div>
+                                                    <div class="tab-pane fade"  id="map_tab">
+                                                        <div id="gmap"></div>
+                                                    </div>   
+                                                    <div class="tab-pane fade"   id="street_tab">                                                       
+                                                        <div id="gmapstreet"></div> 
+                                                    </div>
+                                                </div>
+                                            
+                                            <ul class="nav nav-pills">
+                                                <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
+                                                <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-map-marker"></i>Map View</a></li>   
+                                                <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i>Street View</a> </li> 
+                                            </ul>
+                                                
+                                                
 						<section class="post_content clearfix" itemprop="articleBody">
 							 
 						 
@@ -40,15 +54,9 @@
 						</section> <!-- end article section -->
 						
 						<footer>
-                                                
-                                                    <a href="" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-map-marker"></i>Map View</a>   
-                                                    <a href="" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Street View</a>  
                                                     
-                                                    
-						</footer> <!-- end article footer -->
-					
+						</footer> <!-- end article footer --> 
 					</article> <!-- end article -->
-				 
                                         <div class="row clearfix">
                                         <div class="col-md-12 column border">
                                             <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
@@ -105,10 +113,8 @@
 					</div>
 				</div>
 			</div> 
-                        </div> 
-                        
+                        </div>  
                        <?php if ( is_user_logged_in() ):?>       
-                         
                         <div class="row clearfix">
                                 <div class="col-md-6">    
                                 <h3 class="border-left inline uppercase">
@@ -123,61 +129,43 @@
                                      <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
                                     </select>
                                     </div>
-                                    <div class="col-md-3">    
-                                    <a href="#" class="active blue"><i class="fa fa-list"></i> </a>
-                                    <a href="#" class="red"><i class="fa fa-th"></i></a>
+                                    <div class="col-md-3">   
+                                        
+                                        
+                                        <a href="#" class="active blue"><i class="fa fa-list"></i></a>
+                                        <a href="#" class="red"><i class="fa fa-th "></i></a>
+                                    
                                     </div> 
                             <div class="col-md-12 column">
                                     	<table class="table table-bordered">
 				<thead>
-					<tr>
-						 
-						<th>
-							Prg ref
-						</th>
-						<th>
-							address
-						</th>
-						<th>
-							Flat n°
-						</th>
-						
-						<th>
-							Rental status
-						</th>
-						
-						<th>
-							floor
-						</th>
-						
-						<th>
-							Rooms
-						</th>
-						
-						<th>
-							surface
-						</th>
-						
-						<th>
-							Price
-						</th>
-						
-						<th>
-							Price/m²
-						</th>
-						
-						<th>
-							Yield
-						</th>
-						
-						<th>
-							status
-						</th>
-			 
+					<tr> 
+                                            <th><?php _e("Favorite", "wpbootstrap"); ?></th>
+					    <th><?php _e("Prg ref", "wpbootstrap"); ?></th>
+					    <th><?php _e("Address", "wpbootstrap"); ?></th>
+                                            <th><?php _e("Flat n°", "wpbootstrap"); ?></th>
+                                            <th><?php _e("Rental status", "wpbootstrap"); ?></th>
+                                            <th><?php _e("Floor", "wpbootstrap"); ?></th>
+                                            <th><?php _e("Rooms", "wpbootstrap"); ?></th> 
+					    <th><?php _e("Surface", "wpbootstrap"); ?></th>  
+                                            <th><?php _e("Price", "wpbootstrap"); ?></th>   
+                                            <th><?php _e("Price/m²", "wpbootstrap"); ?></th> 
+                                            <th><?php _e("Yield", "wpbootstrap"); ?></th>  
+                                            <th><?php _e("Status", "wpbootstrap"); ?></th>  
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
+				<tbody>        
+                                                <?php 
+                                            
+                                                
+                                                
+                                                
+                                                
+                                                ?>
+                                            <tr>    
+                                                <td>
+						 <i class="fa fa-star-o blue"></i>
+						</td>
 						<td>
 							1
 						</td>
@@ -216,52 +204,14 @@
 						 
 						</td>
 					</tr>
-					<tr class="active">
-							<td>
-							1
-						</td>
-						<td>
-							 
-						</td>
-						<td>
-						 
-						</td>
-						<td>
-						 
-						</td>
-						
-						<td>
-							 
-						</td>
-						<td>
-						 
-						</td>
-						<td>
-						 
-						</td>
-						<td>
-						 
-						</td>
-						
-						<td>
-						 
-						</td>
-						
-						<td>
-						 
-						</td>
-						
-						<td>
-						 
-						</td>
-						
-					</tr>
-					<tr class="danger">
-							<td>
+					<tr class="background">
+                                            <td>
+                                                <i class="fa fa-star red"></i>
+                                            </td>
+                                            <td>
 							2
 						</td>
-						<td>
-							 
+						<td>	 
 						</td>
 						<td>
 						 
@@ -296,86 +246,7 @@
 						</td>
 						
 					</tr>
-					<tr class="">
-							<td>
-							3
-						</td>
-						<td>
-							 
-						</td>
-						<td>
-						 
-						</td>
-						<td>
-						 
-						</td>
-						
-						<td>
-							 
-						</td>
-						<td>
-						 
-						</td>
-						<td>
-						 
-						</td>
-						<td>
-						 
-						</td>
-						
-						<td>
-						 
-						</td>
-						
-						<td>
-						 
-						</td>
-						
-						<td>
-						 
-						</td>
-						
-					</tr>
-					<tr class="">
-							<td>
-							4
-						</td>
-						<td>
-							 
-						</td>
-						<td>
-						 
-						</td>
-						<td>
-						 
-						</td>
-						
-						<td>
-							 
-						</td>
-						<td>
-						 
-						</td>
-						<td>
-						 
-						</td>
-						<td>
-						 
-						</td>
-						
-						<td>
-						 
-						</td>
-						
-						<td>
-						 
-						</td>
-						
-						<td>
-						 
-						</td>
-						
-					</tr>
+				 
 				</tbody>
 			</table>
         
