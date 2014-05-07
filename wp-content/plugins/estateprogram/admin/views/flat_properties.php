@@ -48,9 +48,12 @@ foreach ($el as $language) {
         <div id="listproperties_<?php echo $lang ?>" class="listproperties">
             <?php
             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
+            
+            
+            
 
             if (!empty($props)) {
-                $props = unserialize($props);
+                //$props = unserialize($props);
 
                 ksort($props);
 

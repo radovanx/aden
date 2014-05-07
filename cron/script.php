@@ -84,7 +84,7 @@ function grab_it($xml, $lang) {
         $openimmo_anid = (string) $anbieter->openimmo_anid;
 
 
-        $ret = parse_nodes($anbieter->immobilie);
+        $ret = parse_nodes($anbieter);
 
         $sql = "
             SELECT
@@ -125,7 +125,7 @@ function grab_it($xml, $lang) {
 
             $split = explode('|', $key);
 
-            if((empty(rtrim($val)) && count($split) == 1) || in_array($split[0], $excl)){
+            if((empty(rtrim($val)) && count($split) > 1) || in_array($split[0], $excl)){
                 continue;
             }
             
@@ -136,7 +136,7 @@ function grab_it($xml, $lang) {
         $wp_lang = EstateProgram::$langs[$lang];
         
                 
-        update_post_meta($apartment_id, 'flat_props_' . $wp_lang, serialize($props));
+        update_post_meta($apartment_id, 'flat_props_' . $wp_lang, $props);
 
         // zjistim jestli existuje program na stejne adrese
         $cityNode = $anbieter->xpath('immobilie/geo/ort');

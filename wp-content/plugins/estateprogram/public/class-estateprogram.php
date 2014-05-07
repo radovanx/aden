@@ -615,7 +615,7 @@ class EstateProgram {
         
         $sql = "
             SELECT
-                m.meta_value
+                m.meta_value as prop
             FROM
                 wp_posts AS p
             JOIN
@@ -627,7 +627,7 @@ class EstateProgram {
             ON
                 a2p.apartment_id = p.ID 
             WHERE
-                m.meta_key = 'post_meta_" . esc_sql($lang) . "'
+                m.meta_key = 'flat_props_" . esc_sql($lang) . "'
             AND
                 a2p.program_id = '" . (int) $program_id . "'
             AND
