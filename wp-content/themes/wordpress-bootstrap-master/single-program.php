@@ -232,13 +232,13 @@
 
                                                             </td>
                                                             <td>
-
+                                                                <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
                                                             </td>
                                                             <td>
-
+                                                                <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
                                                             </td>
                                                             <td>
-                                                                <?php echo esc_attr($prop['preise|kaufpreis']) ?> <?php echo esc_attr($prop['preise|waehrung|iso_waehrung ']) ?>
+                                                                <?php echo esc_attr($prop['preise|kaufpreis']) ?>
                                                             </td>
 
                                                             <td>
