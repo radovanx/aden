@@ -12,8 +12,7 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane fade in active"  id="gallery_tab">
-                                <!--slider here -->
-
+                                <!--slider here --> 
                                 <?php
                                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
                                 $url = $thumb['0'];
@@ -21,9 +20,7 @@
                                 <a href="<?php echo $url; ?>">
                                     <?php the_post_thumbnail('project-detail-big'); ?>
                                 </a>
-
-
-                                <div class="well">
+                          
                                     <div id="myCarousel" class="carousel slide">
                                         <!-- Carousel items -->
 
@@ -72,7 +69,7 @@
                                     <div class="tab-pane fade"   id="street_tab">
                                         <div id="gmapstreet"></div>
                                     </div>
-                                </div>
+                        
                                 <ul class="nav nav-pills">
                                     <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
                                     <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_map"><i class="fa fa-map-marker"></i>Map View</a></li>
@@ -114,7 +111,7 @@
                                         </ul>
 
                                         <?php if (current_user_can('see_detail')): ?>
-                                            <h3>Nějaké detaily pro partnery</h3>
+                                            <h3><?php _e("Detail", "wpbootstrap"); ?></h3>
                                             <ul class="no-style">
                                                 <li><i class="fa fa-check"></i>
                                                     detail 1
@@ -175,12 +172,14 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-
+                                        
                                         <a href="#" class="active blue"><i class="fa fa-list"></i></a>
                                         <a href="#" class="red"><i class="fa fa-th "></i></a>
 
                                     </div>
                                     <div class="col-md-12 column">
+                                        
+                                     
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
@@ -198,6 +197,7 @@
                                                     <th><?php _e("Status", "wpbootstrap"); ?></th>
                                                 </tr>
                                             </thead>
+                
                                             <tbody>
                                                 <?php
                                                 $lang = qtrans_getLanguage();
@@ -209,7 +209,7 @@
                                                     foreach ($flat_props as $key => $val):
                                                         $prop = unserialize($val->prop);
                                                         ?>
-                                                        <tr<?php echo 0 == $i % 2 ? 'class="background"' : '' ?>>
+                                                        <tr>
                                                             <td>
                                                                 <a class="add-to-preference" data-flat_id="<?php echo $val->ID ?>" href="javascript:;"><i class="fa fa-star-o blue"></i></a>
                                                             </td>
@@ -227,9 +227,9 @@
                                                             <td>
 
                                                             </td>
-                                                            <?php echo esc_attr($prop['geo|etage']) ?>
+                                                          
                                                             <td>
-
+                                                                <?php echo esc_attr($prop['geo|etage']) ?>          
                                                             </td>
                                                             <td>
                                                                 <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
