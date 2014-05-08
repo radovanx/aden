@@ -45,10 +45,7 @@ Template Name: Search Page
 				<div class="form-group">
 					 <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="exampleInputEmail1" type="text" />
 				</div>
-                            
-                            
-                            
-                            
+         
 				<div class="form-group">
 					 <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label> 
                                          
