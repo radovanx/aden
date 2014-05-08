@@ -4,7 +4,6 @@
         <div class="col-md-12 column">
             <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?></h1></div>
         </div>
-
         <div id="main" class="col-md-8 column clearfix" role="main">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
@@ -20,10 +19,8 @@
                                 <a href="<?php echo $url; ?>">
                                     <?php the_post_thumbnail('project-detail-big'); ?>
                                 </a>
-                          
                                     <div id="myCarousel" class="carousel slide">
                                         <!-- Carousel items -->
-
                                         <div class="carousel-inner">
 
                                             <?php
@@ -110,23 +107,7 @@
                                             </li>
                                         </ul>
 
-                                        <?php if (current_user_can('see_detail')): ?>
-                                            <h3><?php _e("Detail", "wpbootstrap"); ?></h3>
-                                            <ul class="no-style">
-                                                <li><i class="fa fa-check"></i>
-                                                    detail 1
-                                                </li>
-                                                <li><i class="fa fa-check"></i>
-                                                    detail 2
-                                                </li>
-                                                <li><i class="fa fa-check"></i>
-                                                    detail 3
-                                                </li>
-                                                <li><i class="fa fa-check"></i>
-                                                    detail 4
-                                                </li>
-                                            </ul>
-                                        <?php endif; ?>
+                                       
 
                                     </div>
                                 </div>
@@ -172,14 +153,10 @@
                                         </select>
                                     </div>
                                     <div class="col-md-3">
-                                        
                                         <a href="#" class="active blue"><i class="fa fa-list"></i></a>
                                         <a href="#" class="red"><i class="fa fa-th "></i></a>
-
                                     </div>
                                     <div class="col-md-12 column">
-                                        
-                                     
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
@@ -217,9 +194,7 @@
                                                                 <?php echo esc_attr($prop['anbieternr']) ?>
                                                             </td>
                                                             <td>
-                                                                <?php echo esc_attr($prop['geo|strasse']) ?>,
-                                                                <?php echo esc_attr($prop['geo|ort']) ?>,
-                                                                <?php echo esc_attr($prop['geo|plz']) ?>
+                                                                <a href="<?php echo get_permalink(); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
                                                             </td>
                                                             <td>
 
@@ -276,7 +251,6 @@
                         </article>
                     <?php endif; ?>
                 </div> <!-- end #main -->
-          
         </div> <!-- end #content -->
     </div>
     <?php get_footer(); ?>
