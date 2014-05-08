@@ -10,7 +10,7 @@
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane fade in active"  id="gallery_tab">
+                            <div class="tab-pane fade in active" id="gallery_tab">
                                 <!--slider here --> 
                                 <?php
                                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
@@ -21,7 +21,7 @@
                                 </a>
                                     <div id="myCarousel" class="carousel slide">
                                         <!-- Carousel items -->
-                                        <div class="carousel-inner">
+                                        <div class="carousel-inner program-carousel">
 
                                             <?php
                                             $images = & get_children(array(
@@ -41,7 +41,7 @@
                                                         foreach ($images as $attachment_id => $attachment) {
                                                             $full_size = wp_get_attachment_image_src($attachment_id, 'full');
                                                             $full_size = $full_size[0];
-                                                            echo '<div class="col-sm-3"><a href="' . $full_size . '">';
+                                                            echo '<div class="col-xs-3 nopadding"><a href="' . $full_size . '">';
                                                             echo wp_get_attachment_image($attachment_id, 'project-detail-small');
                                                             echo '</a>';
                                                             echo '</div>';
@@ -57,21 +57,24 @@
                                                 <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
                                                 <!--/myCarousel-->
                                             </div>
-                                        </div>
+                                                </div>
+                                                   
+                                                <div class="tab-pane fade" id="map_tab">
+                                                        <div id="gmap">google map</div>
+                                                </div>
+                                                <div class="tab-pane fade" id="street_tab">
+                                                      <div id="gmapstreet">street</div>
+                                                </div>
                                     </div>
-
-                                    <div class="tab-pane fade"  id="map_tab">
-                                        <div id="gmap"></div>
-                                    </div>
-                                    <div class="tab-pane fade"   id="street_tab">
-                                        <div id="gmapstreet"></div>
-                                    </div>
+                                     <!--/TAB CONTENT END-->   
                         
                                 <ul class="nav nav-pills">
                                     <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
                                     <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_map"><i class="fa fa-map-marker"></i>Map View</a></li>
                                     <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Street View</a> </li>
                                 </ul>
+                                
+                                
                                 <section class="post_content clearfix" itemprop="articleBody">
                                 </section> <!-- end article section -->
                                 <footer>
@@ -80,6 +83,7 @@
                                 <div class="row clearfix">
                                     <div class="col-md-12 column border">
                                         <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
+                         
                                         <ul class="no-style">
                                             <li><i class="fa fa-check"></i>
                                                 Top location within the central press and lifestyle district of Berlin
