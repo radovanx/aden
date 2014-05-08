@@ -95,7 +95,6 @@ function delete_post_metalang($post_id, $lang, $meta_key) {
 }
 
 EstateProgram::$tags_apartment = array(
-    
     'geo',
     'objektkategorie',
     'kontaktperson',
@@ -256,6 +255,9 @@ class EstateProgram {
         register_post_type('flat', $args);
     }
 
+    /**
+     * 
+     */
     public function create_taxonomies() {
 
 
@@ -364,21 +366,21 @@ class EstateProgram {
      *                                       activated on an individual blog.
      */
     public static function activate($network_wide) {
-        /*
-        add_role(
-            'partner',
-            __( 'Partner')
-        );   */     
-        
-        
-        /*
-        remove_role( 'subscriber' );
-        remove_role( 'contributor' );
-        remove_role( 'author' );
-        remove_role( 'editor' );
-        */
-        
-        
+
+        $role_names = array(
+            'administrator',
+            'editor',
+            'author',
+            'contributor',
+            'subscriber',
+        );
+
+
+        foreach ($role_names as $role_name) {
+            $role = get_role($role_name);
+            $role->add_cap('see_detail');
+        }
+
 
         if (function_exists('is_multisite') && is_multisite()) {
 
@@ -523,6 +525,9 @@ class EstateProgram {
      */
     public function enqueue_scripts() {
         wp_enqueue_script($this->plugin_slug . '-plugin-script', plugins_url('assets/js/public.js', __FILE__), array('jquery'), self::VERSION);
+        wp_localize_script($this->plugin_slug . '-plugin-script', $this->plugin_slug, array(
+            'ajaxurl' => admin_url('admin-ajax.php')
+        ));
     }
 
     /**
@@ -550,17 +555,17 @@ class EstateProgram {
     public function filter_method_name() {
         // @TODO: Define your filter hook callback here
     }
-    
+
     /**
      * 
      * @global type $wpdb
      * @param type $program_id
      * @return type
      */
-    static function get_flats_by_program($program_id){
-        
+    static function get_flats_by_program($program_id) {
+
         global $wpdb;
-        
+
         $sql = "
             SELECT
                 flat.*
@@ -574,14 +579,14 @@ class EstateProgram {
                 a2p.program_id = '" . esc_sql($program_id) . "'
                                 
         ";
-        
+
         return $wpdb->get_results($sql);
     }
-    
-    static function get_flat_props_by_program($program_id, $langugage){
-        
+
+    static function get_flat_props_by_program($program_id, $langugage) {
+
         global $wpdb;
-        
+
         $sql = "
             SELECT
                 pl.meta_key,
@@ -605,16 +610,17 @@ class EstateProgram {
             ORDER BY
                 flat.ID DESC
         ";
-        
-        return $wpdb->get_results($sql);        
+
+        return $wpdb->get_results($sql);
     }
-    
-    static function get_flats_props_by_program($program_id, $lang){
-        
+
+    static function get_flats_props_by_program($program_id, $lang) {
+
         global $wpdb;
-        
+
         $sql = "
             SELECT
+                p.ID,
                 m.meta_value as prop
             FROM
                 wp_posts AS p
@@ -635,17 +641,15 @@ class EstateProgram {
             AND
                 p.post_status = 'publish'
         ";
-        
+
         return $wpdb->get_results($sql);
     }
-    
+
     /**
      * 
      */
     public function define_image_sizes() {
         add_image_size('program_thumb', 316, 236, true);
     }
-    
-    
 
 }

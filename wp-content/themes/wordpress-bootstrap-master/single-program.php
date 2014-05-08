@@ -112,6 +112,25 @@
                                                 Start of construction: ca. April 2014
                                             </li>
                                         </ul>
+
+                                        <?php if (current_user_can('see_detail')): ?>
+                                            <h3>Nějaké detaily pro partnery</h3>
+                                            <ul class="no-style">
+                                                <li><i class="fa fa-check"></i>
+                                                    detail 1
+                                                </li>
+                                                <li><i class="fa fa-check"></i>
+                                                    detail 2
+                                                </li>
+                                                <li><i class="fa fa-check"></i>
+                                                    detail 3
+                                                </li>
+                                                <li><i class="fa fa-check"></i>
+                                                    detail 4
+                                                </li>
+                                            </ul>
+                                        <?php endif; ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +211,7 @@
                                                         ?>
                                                         <tr<?php echo 0 == $i % 2 ? 'class="background"' : '' ?>>
                                                             <td>
-                                                                <i class="fa fa-star-o blue"></i>
+                                                                <a class="add-to-preference" data-flat_id="<?php echo $val->ID ?>" href="javascript:;"><i class="fa fa-star-o blue"></i></a>
                                                             </td>
                                                             <td>
                                                                 <?php echo esc_attr($prop['anbieternr']) ?>
@@ -213,17 +232,17 @@
 
                                                             </td>
                                                             <td>
-
+                                                                <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
                                                             </td>
                                                             <td>
-
+                                                                <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
                                                             </td>
                                                             <td>
-                                                                <?php echo esc_attr($prop['preise|kaufpreis']) ?> <?php echo esc_attr($prop['preise|waehrung|iso_waehrung ']) ?>
+                                                                <?php echo esc_attr($prop['preise|kaufpreis']) ?>
                                                             </td>
 
                                                             <td>
-<?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
+                                                                <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
                                                             </td>
 
                                                             <td>
