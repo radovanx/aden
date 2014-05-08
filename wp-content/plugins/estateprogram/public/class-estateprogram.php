@@ -184,6 +184,9 @@ class EstateProgram {
          */
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
+        
+        
+        $ajaxModule = new EstateProgramAjax();
     }
 
     /**

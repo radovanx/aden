@@ -16,7 +16,7 @@ class EstateProgramAjax {
     }
 
     /**
-     * 
+     *
      * @global type $wpdb
      */
     public function add_to_preference() {
@@ -29,37 +29,78 @@ class EstateProgramAjax {
 
         global $wpdb;
 
-        $flat_id = $_POST['flat'];
+        $flat_id = $_POST['flat_id'];
         $user_id = get_current_user_id();
 
-        // current preference
         $sql = "
-            REPLACE INTO 
+            SELECT
+                flat_id
+            FROM
+                user_preference
+            WHERE
+                flat_id = '" . (int) $flat_id . "'
+            AND
+                user_id = '" . (int) $user_id . "'
+        ";
+
+        $exists = $wpdb->get_var($sql);
+
+        if ($exists) {
+            // current preference - remove preference
+            
+            $operation = 0;
+            
+            $sql = "
+            DELETE FROM
+                user_preference
+            WHERE
+                flat_id = '" . (int) $flat_id . "'
+            AND        
+                user_id = '" . (int) $user_id . "'
+            ";
+
+            if (false === $wpdb->query($sql)) {
+                header("HTTP/1.0 404 Not Found");
+                _e('Error update preference', $this->plugin_slug);
+                die();
+            }
+        } else {
+            // current preference - add preference
+            
+            $operation = 1;
+            
+            $sql = "
+            REPLACE INTO
                 user_preference (flat_id, user_id, date_add)
             VALUES(
                 '" . (int) $flat_id . "',
                 '" . (int) $user_id . "',
-                'NOW()'    
+                'NOW()'
             )";
 
-        if (false === $wpdb->query($sql)) {
-            header("HTTP/1.0 404 Not Found");
-            _e('Saving preference failed', $this->plugin_slug);
-            die();
+            if (false === $wpdb->query($sql)) {
+                header("HTTP/1.0 404 Not Found");
+                _e('Saving preference failed', $this->plugin_slug);
+                die();
+            }
         }
-
+        
         // update history
         $sql = "
-            INSERT INTO 
+            INSERT INTO
                 user_preference_history (user_id, flat_id, date_change, operation)
             VALUES(
                 '" . (int) $user_id . "',
-                '" . (int) $flat_id . "',                
+                '" . (int) $flat_id . "',
                 'NOW()',
-                '1'
+                '" . $operation . "'
             )";
 
         $wpdb->query($sql);
+
+        echo $operation;
+        
+        exit;
     }
 
 }
