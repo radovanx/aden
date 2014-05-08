@@ -129,7 +129,7 @@ function grab_it($xml, $lang) {
                 continue;
             }
             
-            $props[$key] = $val;
+            $props[$key] = rtrim($val);
             //update_post_metalang($apartment_id, $wp_lang, $key, $val);
         }
 
