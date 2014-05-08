@@ -190,8 +190,8 @@
                                                         $prop = unserialize($val->prop);
                                                         ?>
                                                         <tr>
-                                                            <td>
-                                                                <a class="add-to-preference" data-flat_id="<?php echo $val->ID ?>" href="javascript:;"><i class="fa fa-star-o blue"></i></a>
+                                                            <td>   
+                                                                <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="javascript:;"><i class="fa fa-star-o blue"></i></a>
                                                             </td>
                                                             <td>
                                                                 <?php echo esc_attr($prop['anbieternr']) ?>
@@ -256,10 +256,19 @@
                 </div> <!-- end #main -->
         </div> <!-- end #content -->
     </div>
-    
+ 
+
+
+
+
+
+
+
+
+
+
 <script>
- // MAP //   
-    
+ // MAP //       
     jQuery(document).ready(function($){ 
 $('.create_map').click(function() {     
     
@@ -272,8 +281,7 @@ $.ajax({
    }
 })
 })
-});
-
+}); 
 function MapApiLoaded() { 
     // Create google map
    map = new google.maps.Map(jQuery('#gmap')[0], {
@@ -291,9 +299,7 @@ function MapApiLoaded() {
       position: myLatlng,
       map: map,
       title: 'Hello World!'
-  });
-    
-  
+  }); 
    // Trigger resize to correctly display the map
    google.maps.event.trigger(map, "resize"); 
    // Map loaded trigger
@@ -301,9 +307,7 @@ function MapApiLoaded() {
       // Fire when map tiles are completly loaded
    });
 } 
-</script>
-
-<script>
+ 
 //STREET//
 
   jQuery(document).ready(function($){ 
@@ -319,9 +323,7 @@ $.ajax({
 })
 })
 });
-
  
-
 function initialize() {
   var bryantPark = new google.maps.LatLng(37.869260, -122.254811);
   var panoramaOptions = {
@@ -337,11 +339,27 @@ function initialize() {
       panoramaOptions);
   myPano.setVisible(true);
 }
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-
+ 
  
 </script>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
 
  <?php get_footer(); ?>
