@@ -10,7 +10,11 @@
             };
 
             $.post(estateprogram.ajaxurl, data, function(response) {
-                alert('Got this from the server: ' + response);
+                console.log(response);
+            }).fail(function() {
+                //alert( "error" );
+            }).always(function() {
+                //alert( "finished" );
             });
         });
     });
