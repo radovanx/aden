@@ -33,7 +33,6 @@
                                             if (empty($images)) {
                                                 // no attachments here
                                             } else {
-
                                                 $i = 1;
                                                 ?>
                                                 <div class="item active"><div class="row">
@@ -51,7 +50,6 @@
                                                         echo '</div></div>';
                                                     }
                                                     ?>
-
                                                 </div>
                                                 <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
                                                 <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
@@ -60,7 +58,7 @@
                                                 </div>
                                                    
                                                 <div class="tab-pane fade" id="map_tab">
-                                                        <div id="gmap">google map</div>
+                                                    <div id="gmap" class="gmap">google map</div>
                                                 </div>
                                                 <div class="tab-pane fade" id="street_tab">
                                                       <div id="gmapstreet">street</div>
@@ -73,15 +71,15 @@
                                     <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_map"><i class="fa fa-map-marker"></i>Map View</a></li>
                                     <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Street View</a> </li>
                                 </ul>
-                                
-                                
+   
                                 <section class="post_content clearfix" itemprop="articleBody">
                                 </section> <!-- end article section -->
                                 <footer>
                                 </footer> <!-- end article footer -->
                                 </article> <!-- end article -->
-                                <div class="row clearfix">
-                                    <div class="col-md-12 column border">
+                               
+                                    <div class="column ">
+                                        <div class="col-md-12 column border">
                                         <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
                          
                                         <ul class="no-style">
@@ -110,13 +108,12 @@
                                                 Start of construction: ca. April 2014
                                             </li>
                                         </ul>
-
-                                       
-
-                                    </div>
+ 
+                               </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 column border">
+                            <div class="col-md-4 column">
+                                <div class="border col-md-12 column">
                                 <h3 class="border-left uppercase">
                                     <?php _e("Key Facts", "wpbootstrap"); ?>
                                 </h3>
@@ -140,9 +137,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                </div>
                             </div>
                             <?php if (is_user_logged_in()): ?>
-                                <div class="row clearfix">
+                                
                                     <div class="col-md-6">
                                         <h3 class="border-left inline uppercase">
                                             <?php _e("List of products available in this program", "wpbootstrap"); ?>
@@ -160,6 +158,7 @@
                                         <a href="#" class="active blue"><i class="fa fa-list"></i></a>
                                         <a href="#" class="red"><i class="fa fa-th "></i></a>
                                     </div>
+                                    
                                     <div class="col-md-12 column">
                                         <table class="table table-bordered">
                                             <thead>
@@ -257,4 +256,92 @@
                 </div> <!-- end #main -->
         </div> <!-- end #content -->
     </div>
-    <?php get_footer(); ?>
+    
+<script>
+ // MAP //   
+    
+    jQuery(document).ready(function($){ 
+$('.create_map').click(function() {     
+    
+$.ajax({ 
+   url: "http://maps.googleapis.com/maps/api/js?sensor=false&callback=MapApiLoaded",
+   dataType: "script",
+   timeout:8000,
+   error: function() {
+      // Handle error here
+   }
+})
+})
+});
+
+function MapApiLoaded() { 
+    // Create google map
+   map = new google.maps.Map(jQuery('#gmap')[0], {
+      zoom:8,
+      mapTypeId:google.maps.MapTypeId.ROADMAP,
+      panControl:false,
+      streetViewControl:false,
+      mapTypeControl:true
+   });
+   map.setCenter(new google.maps.LatLng(-1.950106, 29.873887999999965)); 
+     
+   var myLatlng = new google.maps.LatLng(-1.950106, 29.873887999999965);
+   
+   var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: 'Hello World!'
+  });
+    
+  
+   // Trigger resize to correctly display the map
+   google.maps.event.trigger(map, "resize"); 
+   // Map loaded trigger
+   google.maps.event.addListenerOnce(map, 'idle', function () {
+      // Fire when map tiles are completly loaded
+   });
+} 
+</script>
+
+<script>
+//STREET//
+
+  jQuery(document).ready(function($){ 
+$('.create_street').click(function() {     
+    
+$.ajax({ 
+   url: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize",
+   dataType: "script",
+   timeout:8000,
+   error: function() {
+      // Handle error here
+   }
+})
+})
+});
+
+ 
+
+function initialize() {
+  var bryantPark = new google.maps.LatLng(37.869260, -122.254811);
+  var panoramaOptions = {
+    position: bryantPark,
+    pov: {
+      heading: 165,
+      pitch: 0
+    },
+    zoom: 1
+  };
+  var myPano = new google.maps.StreetViewPanorama(
+      document.getElementById('map-canvas'),
+      panoramaOptions);
+  myPano.setVisible(true);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+
+ 
+</script>
+
+ <?php get_footer(); ?>
