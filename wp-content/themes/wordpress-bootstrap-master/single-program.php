@@ -191,7 +191,7 @@
                                                         ?>
                                                         <tr>
                                                             <td>   
-                                                                <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="javascript:;"><i class="fa fa-star-o blue"></i></a>
+                                                                <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o blue"></i></a>
                                                             </td>
                                                             <td>
                                                                 <?php echo esc_attr($prop['anbieternr']) ?>
