@@ -211,7 +211,7 @@
                                                         ?>
                                                         <tr<?php echo 0 == $i % 2 ? 'class="background"' : '' ?>>
                                                             <td>
-                                                                <i class="fa fa-star-o blue"></i>
+                                                                <a class="add-to-preference" data-flat_id="<?php echo $val->ID ?>" href="javascript:;"><i class="fa fa-star-o blue"></i></a>
                                                             </td>
                                                             <td>
                                                                 <?php echo esc_attr($prop['anbieternr']) ?>
