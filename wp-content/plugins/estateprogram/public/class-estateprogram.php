@@ -256,6 +256,9 @@ class EstateProgram {
         register_post_type('flat', $args);
     }
 
+    /**
+     * 
+     */
     public function create_taxonomies() {
 
 
@@ -364,21 +367,21 @@ class EstateProgram {
      *                                       activated on an individual blog.
      */
     public static function activate($network_wide) {
-        /*
-        add_role(
-            'partner',
-            __( 'Partner')
-        );   */     
+        
+        $role_names = array(
+            'administrator',
+            'editor',
+            'author',
+            'contributor',
+            'subscriber',
+        );
         
         
-        /*
-        remove_role( 'subscriber' );
-        remove_role( 'contributor' );
-        remove_role( 'author' );
-        remove_role( 'editor' );
-        */
-        
-        
+        foreach($role_names as $role_name){
+            $role = get_role( $role_name );            
+            $role->add_cap( 'see_detail' );
+        }        
+       
 
         if (function_exists('is_multisite') && is_multisite()) {
 

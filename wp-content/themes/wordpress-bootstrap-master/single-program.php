@@ -112,6 +112,25 @@
                                                 Start of construction: ca. April 2014
                                             </li>
                                         </ul>
+
+                                        <?php if (current_user_can('see_detail')): ?>
+                                            <h3>Nějaké detaily pro partnery</h3>
+                                            <ul class="no-style">
+                                                <li><i class="fa fa-check"></i>
+                                                    detail 1
+                                                </li>
+                                                <li><i class="fa fa-check"></i>
+                                                    detail 2
+                                                </li>
+                                                <li><i class="fa fa-check"></i>
+                                                    detail 3
+                                                </li>
+                                                <li><i class="fa fa-check"></i>
+                                                    detail 4
+                                                </li>
+                                            </ul>
+                                        <?php endif; ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +242,7 @@
                                                             </td>
 
                                                             <td>
-<?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
+                                                                <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
                                                             </td>
 
                                                             <td>
