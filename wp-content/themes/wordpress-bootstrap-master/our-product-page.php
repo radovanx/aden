@@ -64,6 +64,7 @@
                     </select>
      
                 </div>
+                    
                
                 <div class="form-group">
                     <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input class="form-control" id="Pricef" type="text" />
