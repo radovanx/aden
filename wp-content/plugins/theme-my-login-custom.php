@@ -54,11 +54,11 @@ function tml_user_register($user_id) {
 
     $user_data = array();
 
-    if (!empty($_POST['user_name'])) {
+    if (!empty($_POST['first_name'])) {
         $user_data['first_name'] = htmlspecialchars($_POST['first_name']);
     }
 
-    if (!empty($_POST['user_surname'])) {
+    if (!empty($_POST['last_name'])) {
         $user_data['last_name'] = htmlspecialchars($_POST['last_name']);
     }
 
