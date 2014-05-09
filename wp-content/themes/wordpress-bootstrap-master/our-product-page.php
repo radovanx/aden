@@ -162,17 +162,17 @@
                     <th><?php _e("Status", "wpbootstrap"); ?></th>
                 </tr>
             </thead>           
-        </table>
-    </div>
-    <!-- /all product --> 
-</div>
-</div>
-
+        
+        
+        
 <?php
 $lang = qtrans_getLanguage();
 $flat_props = EstateProgram::get_all_flats($post->ID, $lang); 
                 $i = 0;
                 $data_object='';
+                
+                $i=0;
+                
                 if (!empty($flat_props)):
                     foreach ($flat_props as $key => $val):
                              $prop = unserialize($val->prop);
@@ -180,65 +180,11 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
                              
                              $data_object.="{city:\"".esc_attr($prop['geo|ort'])."\", district:\"".esc_attr($prop['geo|regionaler_zusatz'])."\",area:".esc_attr($prop['flaechen|wohnflaeche']).", rooms:".esc_attr($prop['flaechen|anzahl_zimmer']).", references:".esc_attr($prop['anbieternr']).",price: ".esc_attr($prop['preise|kaufpreis'])."},"; 
                              $autocomplete.= "\"".esc_attr($prop['geo|ort'])."\",";
-                              
-                    endforeach;
-                endif;
-           
-    $autocomplete = substr("$autocomplete", 0, -1); 
-    $autocomplete = "[".$autocomplete."]";  
-          
-    $data_object = substr("$data_object", 0, -1);           
-    $data_object = "[".$data_object."]";    
-?>    
- 
+                             
+                             if($i < 10):
+                             ?> 
     
-    
-<script>
-  
-    var availableCity;
-    availableCity = <?php echo $autocomplete; ?>
-    
-    GetUnique(availableCity)
-    
-function GetUnique(inputArray)
-{
-	var outputArray = [];
-	for (var i = 0; i < inputArray.length; i++)
-	{
-		if ((jQuery.inArray(inputArray[i], outputArray)) == -1)
-		{
-			outputArray.push(inputArray[i]);
-		}
-	}
-	return outputArray;
-} 
-availableCity = GetUnique(availableCity)
-    
- 
-</script>
-     
-<script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
-<script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
-<script>  
-    
-    var data = <?php echo $data_object; ?>;  
-    
-    //first output
-    
-     jQuery.each( data, function( i, val ) {
-   
-   
-        
-        document.write(val.city+'<br>');
-        
-        
-        
-        
-        
-        
-        
-        
-        <tr>
+                                                        <tr>
                                                         <td>   
                                                             <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a>
                                                         </td>
@@ -280,13 +226,60 @@ availableCity = GetUnique(availableCity)
 
                                                         </td>
                                                     </tr>
-     
-     
-     
+                             
+                         <?php    
+                          endif;      
+                    $i++;         
+                    endforeach;
+                endif;
+           
+    $autocomplete = substr("$autocomplete", 0, -1); 
+    $autocomplete = "[".$autocomplete."]";  
+          
+    $data_object = substr("$data_object", 0, -1);           
+    $data_object = "[".$data_object."]";    
+?>   
+         
+     </table>   
+    </div>
+    <!-- /all product --> 
+</div>
+</div>
+ 
+
+
+
+<script>
   
-    });
+    var availableCity;
+    availableCity = <?php echo $autocomplete; ?>
     
+    GetUnique(availableCity)
     
+function GetUnique(inputArray)
+{
+	var outputArray = [];
+	for (var i = 0; i < inputArray.length; i++)
+	{
+		if ((jQuery.inArray(inputArray[i], outputArray)) == -1)
+		{
+			outputArray.push(inputArray[i]);
+		}
+	}
+	return outputArray;
+} 
+availableCity = GetUnique(availableCity)
+    
+ 
+</script>
+     
+<script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
+<script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
+<script>  
+    
+    var data = <?php echo $data_object; ?>;   
+    //first output
+     
      
     var collection = new PourOver.Collection(data);  
      
