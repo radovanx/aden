@@ -4,6 +4,7 @@
  */
 ?>
 
+
 <?php get_header(); ?>
 <div class="container">
     <div id="content" class="clearfix row">
@@ -18,7 +19,7 @@
 
                     </article> <!-- end article -->
 
-                <?php endwhile; ?>		
+                <?php endwhile; ?>
 
             <?php else : ?>
 
@@ -30,7 +31,7 @@
                         <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p>
                     </section>
                     <footer>
-                    </footer> 
+                    </footer>
                 </article>
 
             <?php endif; ?>
@@ -47,19 +48,27 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label> 
+                    <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label>
 
+                    <?php
+                    $args = array(
+                        'taxonomy' => 'type_of_accommodation',
+                        'hide_empty' => false
+                    );
+
+                    $accomodion_types = get_categories($args);
+                    ?>
                     <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>      
+                        <option value="">---</option>
+                        <?php foreach ($accomodion_types as $type): ?>
+                            <option value="<?php echo $type->term_id ?>"><?php _e($type->name) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+
                 </div>
 
                 <row>
-                    <div class="col-md-6 column">    
+                    <div class="col-md-6 column">
                         <div class="form-group">
                             <label for="exampleInputFile">File input</label><input id="exampleInputFile" type="file" />
                             <p class="help-block">
@@ -67,7 +76,7 @@
                             </p>
                         </div>
                     </div>
-                </row> 
+                </row>
 
                 <div class="form-group">
                     <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="exampleInputEmail1" type="text" />
@@ -97,7 +106,7 @@
     <!-- all product -->
     <div class="col-md-6">
         <h3 class="border-left inline uppercase">
-            <?php _e("All products", "wpbootstrap"); ?>
+<?php _e("All products", "wpbootstrap"); ?>
         </h3>
     </div>
     <div class="col-md-3">
@@ -144,11 +153,11 @@
                         $prop = unserialize($val->prop);
                         ?>
                         <tr>
-                            <td>   
+                            <td>
                                 <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a>
                             </td>
                             <td>
-                                <?php echo esc_attr($prop['anbieternr']) ?>
+        <?php echo esc_attr($prop['anbieternr']) ?>
                             </td>
                             <td>
                                 <a href="<?php echo get_permalink(); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
@@ -161,20 +170,20 @@
                             </td>
 
                             <td>
-                                <?php echo esc_attr($prop['geo|etage']) ?>          
+        <?php echo esc_attr($prop['geo|etage']) ?>
                             </td>
                             <td>
-                                <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
+        <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
                             </td>
                             <td>
-                                <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
+        <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
                             </td>
                             <td>
-                                <?php echo esc_attr($prop['preise|kaufpreis']) ?>
+        <?php echo esc_attr($prop['preise|kaufpreis']) ?>
                             </td>
 
                             <td>
-                                <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
+        <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
                             </td>
 
                             <td>
@@ -192,7 +201,7 @@
             </tbody>
         </table>
     </div>
-    <!-- /all product -->                       
+    <!-- /all product -->
 
 </div>
 
