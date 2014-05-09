@@ -198,7 +198,7 @@
     </div>
     <!-- /all product -->
 
-</div>
+</div> 
 
 <?php
 $lang = qtrans_getLanguage();
