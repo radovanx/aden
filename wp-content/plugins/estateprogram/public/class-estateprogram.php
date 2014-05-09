@@ -650,6 +650,33 @@ class EstateProgram {
     
     /**
      * 
+     */
+    public static function get_all_flats($program_id, $lang){
+        global $wpdb;
+
+        $sql = "
+            SELECT
+                p.ID,
+                m.meta_value as prop
+            FROM
+                wp_posts AS p
+            JOIN
+                wp_postmeta as m
+            ON
+                m.post_id = p.ID
+            WHERE
+                m.meta_key = 'flat_props_" . esc_sql($lang) . "'
+            AND
+                p.post_type = 'flat'
+            AND
+                p.post_status = 'publish'
+        ";
+
+        return $wpdb->get_results($sql);        
+    }
+    
+    /**
+     * 
      * @global type $wpdb
      * @param type $flat_id
      */
