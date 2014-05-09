@@ -18,7 +18,12 @@ require_once(ABSPATH . "wp-admin/includes/image.php");
  */
 function parse_nodes($node, $prefix = '') {
 
-    $return = array();
+    //var_dump($node);
+
+    // nechci obrazky
+    if ($node->getName() == 'anhaenge') {
+        return;
+    }
 
     if (!empty($prefix)) {
         $prefix .= '|';
@@ -37,7 +42,7 @@ function parse_nodes($node, $prefix = '') {
 
         $children = parse_nodes($child, $child->getName());
 
-        $return = array_merge($return, $children);
+        $return = array_merge($return, (array) $children);
     }
 
     return $return;
@@ -125,18 +130,15 @@ function grab_it($xml, $lang) {
 
             $split = explode('|', $key);
 
-            if((empty(rtrim($val)) && count($split) > 1) || in_array($split[0], $excl)){
+            if ((empty(rtrim($val)) && count($split) > 1) || in_array($split[0], $excl)) {
                 continue;
             }
-            
+
             $props[$key] = rtrim($val);
             //update_post_metalang($apartment_id, $wp_lang, $key, $val);
         }
 
-        $wp_lang = EstateProgram::$langs[$lang];
-        
-                
-        update_post_meta($apartment_id, 'flat_props_' . $wp_lang, $props);
+
 
         // zjistim jestli existuje program na stejne adrese
         $cityNode = $anbieter->xpath('immobilie/geo/ort');
@@ -222,6 +224,16 @@ function grab_it($xml, $lang) {
 
             $image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
 
+            if(false !== strpos($image_path, 'http')){
+                if(false !== strpos($image_path, 'dropbox')){
+                    $props['dropbox'] = $image_file;
+                }
+                
+                if(false !== strpos($image_path, 'youtu')){
+                    $props['youtube'] = $image_file;
+                }                
+            }
+            
             if (is_file($image_path)) {
 
                 $finfo = pathinfo($image_path);
@@ -285,9 +297,11 @@ function grab_it($xml, $lang) {
                 }
             }
         }
+        
+        $wp_lang = EstateProgram::$langs[$lang];
+        update_post_meta($apartment_id, 'flat_props_' . $wp_lang, $props);
     }
 }
-
 
 // start programu
 global $wpdb;
