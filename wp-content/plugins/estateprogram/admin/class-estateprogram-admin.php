@@ -111,13 +111,11 @@ class EstateProgram_Admin {
             add_action('delete_post', array(&$this, 'clean_post_data'), 10, 0);
         }
     }
-    
 
-    
     /**
      * 
      */
-    public function profile_boxes($user){        
+    public function profile_boxes($user) {
         include_once( 'views/user_profile.php' );
         wp_nonce_field(__FILE__, 'user_fields_profile');
     }
@@ -125,9 +123,25 @@ class EstateProgram_Admin {
     /**
      * 
      */
-    public function update_profile(){
-        
+    public function update_profile($user_id) {
+
+        if (isset($_POST['user_fields_profile']) && wp_verify_nonce($_POST['user_fields_profile'], __FILE__)) {
+
+            $keys = array(
+                'company',
+                'phone',
+                'address',
+                'city',
+                'country',
+                'title'
+            );
+
+            foreach ($keys as $key) {
+                 update_user_meta($user_id, $key, $_POST[$key]);
+            }
+        }
     }
+
     /**
      * 
      * @global type $post
@@ -138,14 +152,14 @@ class EstateProgram_Admin {
         global $wpdb;
 
         /*
-        $sql = "
-            DELETE FROM
-                postmeta_lang
-            WHERE
-                post_id = " . (int) $post_id;
+          $sql = "
+          DELETE FROM
+          postmeta_lang
+          WHERE
+          post_id = " . (int) $post_id;
 
-        $wpdb->query($sql);
-        */
+          $wpdb->query($sql);
+         */
     }
 
     public function save() {
@@ -403,9 +417,9 @@ class EstateProgram_Admin {
          *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
          */
         /*
-        $this->plugin_screen_hook_suffix = add_options_page(
-                __('Page Title', $this->plugin_slug), __('Menu Text', $this->plugin_slug), 'manage_options', $this->plugin_slug, array($this, 'display_plugin_admin_page')
-        );*/
+          $this->plugin_screen_hook_suffix = add_options_page(
+          __('Page Title', $this->plugin_slug), __('Menu Text', $this->plugin_slug), 'manage_options', $this->plugin_slug, array($this, 'display_plugin_admin_page')
+          ); */
     }
 
     /**
