@@ -38,17 +38,16 @@
     </div> <!-- end #content -->
     <div class="row clearfix">
         
-        <div class="col-md-6 column border background">
-        <form role="form">
-            <div class="col-md-6 column">
+        <div class="col-md-12 column">         
+            <form role="form" class="border background clearfix">
+   
+                <div class="col-md-6 column">
                 <div class="form-group">
                     <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="City" type="text" />
                 </div>
                 <div class="form-group">
                     <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label> 
-
-                    
-                    
+  
                    <?php
                     $args = array(
                         'taxonomy' => 'type_of_accommodation',
@@ -63,10 +62,7 @@
                             <option value="<?php echo $type->term_id ?>"><?php _e($type->name) ?></option>
                         <?php endforeach; ?>
                     </select>
-                    
-                    
-                    
-                    
+     
                 </div>
                
                 <div class="form-group">
@@ -111,11 +107,14 @@
                 <div class="form-group">
                     <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label><input class="form-control" id="Roomst" type="text" />
                 </div>
-                
+              
+      
             </div>
         </form>
         </div>
     </div>
+    
+    <div class="row">
     <!-- all product -->
     <div class="col-md-6">
         <h3 class="border-left inline uppercase">
