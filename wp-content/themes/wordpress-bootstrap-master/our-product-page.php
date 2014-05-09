@@ -157,7 +157,7 @@
                 $lang = qtrans_getLanguage();
                 $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
                 ?>
-                <?php/*
+                <?php
                 $i = 0;
                 if (!empty($flat_props)):
                     foreach ($flat_props as $key => $val):
@@ -192,7 +192,7 @@
                         <?php
                     endforeach;
                 endif;
-               */ ?>
+              ?>
             </tbody>
         </table>
     </div>
