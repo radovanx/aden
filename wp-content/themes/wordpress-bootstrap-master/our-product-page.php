@@ -37,54 +37,84 @@
         </div> <!-- end #main -->
     </div> <!-- end #content -->
     <div class="row clearfix">
+        
+        <div class="col-md-6 column border background">
         <form role="form">
             <div class="col-md-6 column">
                 <div class="form-group">
-                    <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="exampleInputEmail1" type="text" />
+                    <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="City" type="text" />
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label> 
+                    <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label> 
 
+                    
+                    
+                   <?php
+                    $args = array(
+                        'taxonomy' => 'type_of_accommodation',
+                        'hide_empty' => false
+                    );
+
+                    $accomodion_types = get_categories($args);
+                    ?>
                     <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>      
+                        <option value="">---</option>
+                        <?php foreach ($accomodion_types as $type): ?>
+                            <option value="<?php echo $type->term_id ?>"><?php _e($type->name) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    
+                    
+                    
+                    
                 </div>
-                <row>
-                    <div class="col-md-6 column">    
-                        <div class="form-group">
-                            <label for="exampleInputFile">File input</label><input id="exampleInputFile" type="file" />
-                            <p class="help-block">
-                                Example block-level help text here.
-                            </p>
-                        </div>
-                    </div>
-                </row> 
+               
                 <div class="form-group">
-                    <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="exampleInputEmail1" type="text" />
+                    <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input class="form-control" id="Pricef" type="text" />
                 </div>
+                
+                <div class="form-group">
+                    <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input class="form-control" id="Pricet" type="text" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input class="form-control" id="References" type="text" />
+                </div>
+                
+                
             </div>
             <div class="col-md-6 column">
+                 
+                
+                
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label><input class="form-control" id="exampleInputEmail1" type="email" />
+                    <label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input class="form-control" id="Disctrict" type="text" />
                 </div>
+                
+                
+              
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label><input class="form-control" id="exampleInputPassword1" type="password" />
+                    <label for="Areaf"><?php _e("Area from:", "wpbootstrap"); ?></label><input class="form-control" id="Areaf" type="text" />
                 </div>
+                 
+                     
                 <div class="form-group">
-                    <label for="exampleInputFile">File input</label><input id="exampleInputFile" type="file" />
-                    <p class="help-block">
-                        Example block-level help text here.
-                    </p>
+                    <label for="Areat"><?php _e("Area to:", "wpbootstrap"); ?></label><input class="form-control" id="Areat" type="text" />
                 </div>
-                <div class="checkbox">
-                    <label><input type="checkbox" /> Check me out</label>
-                </div> <button type="submit" class="btn btn-default">Submit</button>
+                
+                
+                
+                 <div class="form-group">
+                    <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label><input class="form-control" id="Roomsf" type="text" />
+                </div>
+               
+                <div class="form-group">
+                    <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label><input class="form-control" id="Roomst" type="text" />
+                </div>
+                
             </div>
         </form>
+        </div>
     </div>
     <!-- all product -->
     <div class="col-md-6">
@@ -182,7 +212,7 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
                              
                              $data_object.="{price: ".esc_attr($prop['preise|kaufpreis'])."},";
                               
-                             $autocomplete.="esc_attr($prop['geo|ort'])."",";
+                            // $autocomplete.="esc_attr($prop['geo|ort'])."",";
                               
                     endforeach;
                 endif;
