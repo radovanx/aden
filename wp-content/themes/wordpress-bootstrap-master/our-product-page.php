@@ -109,8 +109,7 @@
                 <div class="form-group">
                     <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label><input class="form-control" id="Roomst" type="text" />
                 </div>
-              
-      
+ 
             </div>
         </form>
         </div>
