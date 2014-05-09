@@ -226,6 +226,7 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
 <script> 
   
+  
     var data = <?php echo $data_object; ?>;     
     var collection = new PourOver.Collection(data);   
     //make Range filter  
