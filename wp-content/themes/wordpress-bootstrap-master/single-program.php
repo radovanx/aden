@@ -184,7 +184,7 @@
                                             $i = 0;
                                             if (!empty($flat_props)):
                                                 foreach ($flat_props as $key => $val):
-                                                    $prop = unserialize($val->prop);
+                                                         $prop = unserialize($val->prop);
                                                     ?>
                                                     <tr>
                                                         <td>   
