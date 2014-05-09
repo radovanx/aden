@@ -181,13 +181,13 @@ function grab_it($xml, $lang) {
           AND
             pm4.meta_key = '_house_number'
           AND
-            pm1.meta_value = '" . esc_sql($city) . "'
+            pm1.meta_value = '" . esc_sql(rtrim($city)) . "'
           AND
-            pm2.meta_value = '" . esc_sql($street) . "'
+            pm2.meta_value = '" . esc_sql(rtrim($street)) . "'
           AND
-            pm3.meta_value = '" . esc_sql($region) . "'
+            pm3.meta_value = '" . esc_sql(rtrim($region)) . "'
           AND
-            pm4.meta_value = '" . esc_sql($houseNumber) . "'
+            pm4.meta_value = '" . esc_sql(rtrim($houseNumber)) . "'
           AND
             p.post_type = 'program'
           ";
