@@ -11,12 +11,12 @@ require_once(ABSPATH . "wp-admin/includes/image.php");
 
 global $wpdb;
 
-$vzor_id = 1774;
+$vzor_id = 3334;
 
 $original = get_post($vzor_id);
 
 
-for ($i = 0; $i < 10; $i++) {
+for ($i = 0; $i < 300; $i++) {
 
     $new_flat_number = rand(100, 100000);
     
@@ -28,6 +28,17 @@ for ($i = 0; $i < 10; $i++) {
     );
 
     $new_flat_id = wp_insert_post($post_information);
+    
+    $sql = "
+          REPLACE INTO
+            apartment2program (apartment_id, program_id)
+          VALUES(
+            '" . (int) $new_flat_id . "',
+            '3303'
+          )";
+
+    $wpdb->query($sql);
+    
 
 
     $sql = "SELECT * FROM wp_postmeta WHERE post_id = '" . (int) $vzor_id . "'";
