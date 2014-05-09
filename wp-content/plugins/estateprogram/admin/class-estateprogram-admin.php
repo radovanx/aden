@@ -88,8 +88,6 @@ class EstateProgram_Admin {
 
         add_action('edit_user_profile', array($this, 'profile_boxes'));
         add_action('edit_user_profile_update', array($this, 'update_profile'));
-        
-        add_filter('user_contactmethods', array($this, 'profile_contact_methods'));
 
         // Add the options page and menu item.
         //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
@@ -114,13 +112,7 @@ class EstateProgram_Admin {
         }
     }
     
-    /**
-     * 
-     */
-    public function profile_contact_methods($profile_fields){
-        $x = 1;
-        $y = $x;
-    }    
+
     
     /**
      * 
