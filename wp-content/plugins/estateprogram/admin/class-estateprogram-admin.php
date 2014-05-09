@@ -153,8 +153,18 @@ class EstateProgram_Admin {
 
         $post_type = $_GET['post_type'];
 
-          $wpdb->query($sql);
-         */
+        if (!empty($post_type)) {
+            switch ($post_type) {
+                case 'flat':
+                    $sql = "DELETE FROM apartment2program WHERE apartment_id = " . (int) $post_id;
+                    $wpdb->query($post_id);
+                    break;
+                case 'program':
+                    $sql = "DELETE FROM apartment2program WHERE program_id = " . (int) $post_id;
+                    $wpdb->query($post_id);
+                    break;
+            }
+        }
     }
 
     public function save() {
