@@ -37,6 +37,9 @@
             <?php endif; ?>
         </div> <!-- end #main -->
     </div> <!-- end #content -->
+    
+    
+    
     <div class="row clearfix">
         
         <div class="col-md-12 column">         
@@ -114,17 +117,14 @@
                   <div class="form-group col-md-3 col-md-offset-3">  
                    
                      
-                 <button type="button" class="btn btn-primary btn-lg">Search</button>     
+                 <button type="button" class="btn btn-primary btn-lg"><i class="fa fa-search"></i>Search</button>     
                      
                  </div>   
-                 </div>      
-                     
- 
+                 </div>       
             </div>
         </form>
         </div>
-    </div>
-    
+    </div> 
     <div class="row">
     <!-- all product -->
     <div class="col-md-6">
@@ -221,16 +221,32 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
                              
                              $data_object.="{price: ".esc_attr($prop['preise|kaufpreis'])."},";
                               
-                            // $autocomplete.="esc_attr($prop['geo|ort'])."",";
+                             $autocomplete.= esc_attr($prop['geo|ort']).",";
                               
                     endforeach;
                 endif;
 
+    
+                
+    $autocomplete = substr("$autocomplete", 0, -1); 
+    $autocomplete = "[".$autocomplete."]";  
+    
+                
     $data_object = substr("$data_object", 0, -1);           
     $data_object = "[".$data_object."]";   
    
 ?>    
  
+    <script>
+    
+    
+    
+    
+    
+    </script> 
+    
+    
+    
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
 <script> 
