@@ -82,26 +82,19 @@
                 
             </div>
             <div class="col-md-6 column">
-                 
-                
-                
+ 
                 <div class="form-group">
                     <label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input class="form-control" id="Disctrict" type="text" />
                 </div>
-                
-                
-              
+ 
                 <div class="form-group">
                     <label for="Areaf"><?php _e("Area from:", "wpbootstrap"); ?></label><input class="form-control" id="Areaf" type="text" />
                 </div>
-                 
-                     
+
                 <div class="form-group">
                     <label for="Areat"><?php _e("Area to:", "wpbootstrap"); ?></label><input class="form-control" id="Areat" type="text" />
                 </div>
-                
-                
-                
+    
                  <div class="form-group">
                     <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label><input class="form-control" id="Roomsf" type="text" />
                 </div>
