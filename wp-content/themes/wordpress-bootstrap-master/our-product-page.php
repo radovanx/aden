@@ -234,9 +234,7 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
     var some_price_cids = collection.filters.price_range.getFn([300000,400000]).cids 
   
     var some_price = collection.get(some_price_cids)
-
-      
-
+ 
 jQuery.each( some_price, function( i, val ) {
  
  var i = 0;
