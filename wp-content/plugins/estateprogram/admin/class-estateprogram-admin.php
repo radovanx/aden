@@ -88,7 +88,6 @@ class EstateProgram_Admin {
 
         add_action('edit_user_profile', array($this, 'profile_boxes'));
 //        add_action('edit_user_profile_update', array($this, 'update_profile'));
-
         // Add the options page and menu item.
         //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
         //add_action('admin_menu', array(&$this, 'register_menu_page'));
@@ -124,24 +123,24 @@ class EstateProgram_Admin {
      * 
      */
     /*
-    public function update_profile($user_id) {
+      public function update_profile($user_id) {
 
-        if (isset($_POST['user_fields_profile']) && wp_verify_nonce($_POST['user_fields_profile'], __FILE__)) {
+      if (isset($_POST['user_fields_profile']) && wp_verify_nonce($_POST['user_fields_profile'], __FILE__)) {
 
-            $keys = array(
-                'company',
-                'phone',
-                'address',
-                'city',
-                'country',
-                'title'
-            );
+      $keys = array(
+      'company',
+      'phone',
+      'address',
+      'city',
+      'country',
+      'title'
+      );
 
-            foreach ($keys as $key) {
-                 update_user_meta($user_id, $key, $_POST[$key]);
-            }
-        }
-    }*/
+      foreach ($keys as $key) {
+      update_user_meta($user_id, $key, $_POST[$key]);
+      }
+      }
+      } */
 
     /**
      * 
@@ -153,18 +152,20 @@ class EstateProgram_Admin {
         global $wpdb;
 
         $post_type = $_GET['post_type'];
-        
-        if(empty($post_type)){
-            switch($post_type){
+
+        if (!empty($post_type)) {
+            switch ($post_type) {
                 case 'flat':
                     $sql = "DELETE FROM apartment2program WHERE apartment_id = " . (int) $post_id;
                     $wpdb->query($post_id);
                     break;
                 case 'program':
+                    $sql = "DELETE FROM apartment2program WHERE program_id = " . (int) $post_id;
+                    $wpdb->query($post_id);
                     break;
             }
         }
-        
+
         /*
           $sql = "
           DELETE FROM

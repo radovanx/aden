@@ -51,8 +51,8 @@
                                                 }
                                                 ?>
                                             </div>
-                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                                            <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">â€ą</a>
+                                            <a class="right carousel-control" href="#myCarousel" data-slide="next">â€ş</a>
                                             <!--/myCarousel-->
                                         </div>
                                     </div>
@@ -125,7 +125,7 @@
                                                     <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
                                                 </div>
                                                 <div class="panel-body">
-                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²
+                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> mÂ˛ - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> mÂ˛
                                                     </span>
                                                 </div>
                                                 <div class="panel-body">
@@ -164,13 +164,13 @@
                                                 <th><?php _e("Favorite", "wpbootstrap"); ?></th>
                                                 <th><?php _e("Prg ref", "wpbootstrap"); ?></th>
                                                 <th><?php _e("Address", "wpbootstrap"); ?></th>
-                                                <th><?php _e("Flat n°", "wpbootstrap"); ?></th>
+                                                <th><?php _e("Flat nÂ°", "wpbootstrap"); ?></th>
                                                 <th><?php _e("Rental status", "wpbootstrap"); ?></th>
                                                 <th><?php _e("Floor", "wpbootstrap"); ?></th>
                                                 <th><?php _e("Rooms", "wpbootstrap"); ?></th>
                                                 <th><?php _e("Surface", "wpbootstrap"); ?></th>
                                                 <th><?php _e("Price", "wpbootstrap"); ?></th>
-                                                <th><?php _e("Price/m²", "wpbootstrap"); ?></th>
+                                                <th><?php _e("Price/mÂ˛", "wpbootstrap"); ?></th>
                                                 <th><?php _e("Yield", "wpbootstrap"); ?></th>
                                                 <th><?php _e("Status", "wpbootstrap"); ?></th>
                                             </tr>
@@ -253,9 +253,7 @@
         </div> <!-- end #main -->
     </div> <!-- end #content -->
 </div>
-
-
-
+ 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -275,9 +273,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
-
 
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
 
@@ -361,17 +356,10 @@
                 document.getElementById('gmapstreet'), panoOptions);
 
         google.maps.event.trigger(panorama, "resize");
-
-
         google.maps.event.addListenerOnce(panorama, 'idle', function() {
             // Fire when map tiles are completly loaded
         });
-
-
-
-
+ 
     }
-
-
 </script>
 <?php get_footer(); ?>
