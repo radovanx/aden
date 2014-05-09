@@ -86,7 +86,10 @@ class EstateProgram_Admin {
 
         add_action('save_post', array(&$this, 'save'));
 
+        add_action('edit_user_profile', array($this, 'profile_boxes'));
+        add_action('edit_user_profile_update', array($this, 'update_profile'));
         
+        add_filter('user_contactmethods', array($this, 'profile_contact_methods'));
 
         // Add the options page and menu item.
         //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
@@ -110,7 +113,29 @@ class EstateProgram_Admin {
             add_action('delete_post', array(&$this, 'clean_post_data'), 10, 0);
         }
     }
+    
+    /**
+     * 
+     */
+    public function profile_contact_methods($profile_fields){
+        $x = 1;
+        $y = $x;
+    }    
+    
+    /**
+     * 
+     */
+    public function profile_boxes($user){        
+        include_once( 'views/user_profile.php' );
+        wp_nonce_field(__FILE__, 'user_fields_profile');
+    }
 
+    /**
+     * 
+     */
+    public function update_profile(){
+        
+    }
     /**
      * 
      * @global type $post
@@ -120,6 +145,7 @@ class EstateProgram_Admin {
         global $post_id;
         global $wpdb;
 
+        /*
         $sql = "
             DELETE FROM
                 postmeta_lang
@@ -127,6 +153,7 @@ class EstateProgram_Admin {
                 post_id = " . (int) $post_id;
 
         $wpdb->query($sql);
+        */
     }
 
     public function save() {
