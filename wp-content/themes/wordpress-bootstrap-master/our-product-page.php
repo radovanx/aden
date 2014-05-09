@@ -4,6 +4,7 @@
  */
 ?>
 
+ 
 <?php get_header(); ?>
 <div class="container">
     <div id="content" class="clearfix row">
@@ -18,7 +19,7 @@
 
                     </article> <!-- end article -->
 
-                <?php endwhile; ?>		
+                <?php endwhile; ?>
 
             <?php else : ?>
 
@@ -30,7 +31,7 @@
                         <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p>
                     </section>
                     <footer>
-                    </footer> 
+                    </footer>
                 </article>
 
             <?php endif; ?>
@@ -43,7 +44,7 @@
    
                 <div class="col-md-6 column">
                 <div class="form-group">
-                    <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="City" type="text" />
+                    <label for="City"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="City" type="text" />
                 </div>
                 <div class="form-group">
                     <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label> 
@@ -119,7 +120,7 @@
     <!-- all product -->
     <div class="col-md-6">
         <h3 class="border-left inline uppercase">
-            <?php _e("All products", "wpbootstrap"); ?>
+<?php _e("All products", "wpbootstrap"); ?>
         </h3>
     </div>
     <div class="col-md-3">
@@ -196,7 +197,7 @@
             </tbody>
         </table>
     </div>
-    <!-- /all product -->                       
+    <!-- /all product -->
 
 </div>
 
