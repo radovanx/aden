@@ -11,21 +11,21 @@
         <div class="col-sm-12 clearfix" role="main">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-                        <header>
-
-                            <div class="page-header"><h1 class="page-title border-left" itemprop="headline"><?php the_title(); ?></h1></div>
-
-                        </header> <!-- end article header -->
-
-                    </article> <!-- end article -->
-
-                <?php endwhile; ?>
-
+                        <header> 
+                            <div class="page-header"><h1 class="page-title border-left uppercase" itemprop="headline"><?php the_title(); ?>  </h1>
+                                <h2><small>Select a property type and start your search</small></h2>
+                            </div>
+                        </header> <!-- end article header --> 
+                    </article> <!-- end article --> 
+                <?php endwhile; ?> 
             <?php else : ?>
 
                 <article id="post-not-found">
                     <header>
-                        <h1><?php _e("Not Found", "wpbootstrap"); ?></h1>
+                        <h1><?php _e("Not Found", "wpbootstrap"); ?><small></small></h1>
+                        
+                       
+                        
                     </header>
                     <section class="post_content">
                         <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p>
@@ -37,6 +37,9 @@
             <?php endif; ?>
         </div> <!-- end #main -->
     </div> <!-- end #content -->
+    
+    
+    
     <div class="row clearfix">
         
         <div class="col-md-12 column">         
@@ -114,17 +117,14 @@
                   <div class="form-group col-md-3 col-md-offset-3">  
                    
                      
-                 <button type="button" class="btn btn-primary btn-lg">Search</button>     
+                 <button type="button" class="btn btn-primary btn-lg"><i class="fa fa-search"></i>Search</button>     
                      
                  </div>   
-                 </div>      
-                     
- 
+                 </div>       
             </div>
         </form>
         </div>
-    </div>
-    
+    </div> 
     <div class="row">
     <!-- all product -->
     <div class="col-md-6">
@@ -161,52 +161,11 @@
                     <th><?php _e("Yield", "wpbootstrap"); ?></th>
                     <th><?php _e("Status", "wpbootstrap"); ?></th>
                 </tr>
-            </thead>
-            <tbody>
-                <?php
-                $lang = qtrans_getLanguage();
-                $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
-                ?>
-                <?php
-                $i = 0;
-                if (!empty($flat_props)):
-                    foreach ($flat_props as $key => $val):
-                             $prop = unserialize($val->prop);
-                        ?>
-                        <tr>
-                            <td><a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a></td>
-                            <td><?php echo esc_attr($prop['anbieternr']) ?></td>
-                            <td><a href="<?php echo get_permalink(); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a></td>
-                            <td>
-
-                            </td>
-                            <td>
-
-                            </td>
-
-                            <td><?php echo esc_attr($prop['geo|etage']) ?></td>
-                            <td><?php echo (int) $prop['flaechen|anzahl_zimmer'] ?></td>
-                            <td><?php echo esc_attr($prop['flaechen|wohnflaeche']) ?></td>
-                            <td><?php echo esc_attr($prop['preise|kaufpreis']) ?></td>
-                            <td><?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
-                            </td>
-                            
-                            <td>
-
-                            </td>
-
-                            <td>
-
-                            </td>
-                        </tr>
-                        <?php
-                    endforeach;
-                endif;
-              ?>
-            </tbody>
+            </thead>           
         </table>
     </div>
     <!-- /all product --> 
+</div>
 </div>
 
 <?php
@@ -219,44 +178,74 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
                              $prop = unserialize($val->prop);
                              $key = unserialize($key);
                              
-                             $data_object.="{price: ".esc_attr($prop['preise|kaufpreis'])."},";
-                              
-                            // $autocomplete.="esc_attr($prop['geo|ort'])."",";
+                             $data_object.="{city:\"".esc_attr($prop['geo|ort'])."\", district:\"".esc_attr($prop['geo|regionaler_zusatz'])."\",area:".esc_attr($prop['flaechen|wohnflaeche']).", rooms:".esc_attr($prop['flaechen|anzahl_zimmer']).", references:".esc_attr($prop['anbieternr']).",price: ".esc_attr($prop['preise|kaufpreis'])."},"; 
+                             $autocomplete.= "\"".esc_attr($prop['geo|ort'])."\",";
                               
                     endforeach;
                 endif;
-
+           
+    $autocomplete = substr("$autocomplete", 0, -1); 
+    $autocomplete = "[".$autocomplete."]";  
+          
     $data_object = substr("$data_object", 0, -1);           
-    $data_object = "[".$data_object."]";   
-   
+    $data_object = "[".$data_object."]";    
 ?>    
  
+    
+    
+<script>
+  
+    var availableCity;
+    availableCity = <?php echo $autocomplete; ?>
+    
+    GetUnique(availableCity)
+    
+function GetUnique(inputArray)
+{
+	var outputArray = [];
+	for (var i = 0; i < inputArray.length; i++)
+	{
+		if ((jQuery.inArray(inputArray[i], outputArray)) == -1)
+		{
+			outputArray.push(inputArray[i]);
+		}
+	}
+	return outputArray;
+} 
+availableCity = GetUnique(availableCity)
+    
+ 
+</script>
+     
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
 <script> 
   
-  
     var data = <?php echo $data_object; ?>;  
     
-    var collection = new PourOver.Collection(data);   
+    //first output
+    
+    
+    
+    
+    var collection = new PourOver.Collection(data);  
+     
     //make Range filter  
-    var price_range_filter = PourOver.makeRangeFilter("price_range",[[300000,400000]],{attr: "price"})       
-    
-    collection.addFilters([price_range_filter])  
-    
-    var some_price_cids = collection.filters.price_range.getFn([300000,400000]).cids  
-    
+    //CITY FILTER
+     
+    //PRICE FILTER
+    var price_range_filter = PourOver.makeRangeFilter("price_range",[[300000,400000]],{attr: "price"})        
+    collection.addFilters([price_range_filter])   
+    var some_price_cids = collection.filters.price_range.getFn([300000,400000]).cids   
     var some_price = collection.get(some_price_cids)
  
-    jQuery.each( some_price, function( i, val ) {
  
-    var i = 0;
  
-    document.write(val.price+'<br>'); 
-   
-    i++;
+    //OUTPUT 
  
-    });  
-     
-</script> 
-<?php get_footer(); ?>
+  
+  
+  
+  
+</script>  
+<?php get_footer(); ?> 

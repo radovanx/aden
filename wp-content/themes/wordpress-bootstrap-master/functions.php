@@ -464,7 +464,7 @@ if( !function_exists( "theme_js" ) ) {
     wp_register_script( 'bootstrap', 
       get_template_directory_uri() . '/library/js/bootstrap.min.js', 
       array('jquery'), 
-      '1.2' );
+      '1.2', true );
   
     wp_register_script( 'wpbs-scripts', 
       get_template_directory_uri() . '/library/js/scripts.js', 
@@ -488,5 +488,14 @@ add_image_size( 'property-list-thumb', 395, 180, true );
 add_image_size( 'project-detail-thumb', 395, 180, true );  
 add_image_size( 'project-detail-big', 750, 500, true );  
 add_image_size( 'project-detail-small', 150, 100, true );  
+
+
+//autocomplete
+
+function add_scripts(){
+  wp_enqueue_script( 'jquery-ui-autocomplete' );
+}
+add_action('wp_enqueue_scripts', 'add_scripts');
+
 
 ?>
