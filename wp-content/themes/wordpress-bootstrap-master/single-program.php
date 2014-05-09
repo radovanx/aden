@@ -176,6 +176,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                 
                                                 <?php
                                                 $lang = qtrans_getLanguage();
                                                 $flat_props = EstateProgram::get_flats_props_by_program($post->ID, $lang);

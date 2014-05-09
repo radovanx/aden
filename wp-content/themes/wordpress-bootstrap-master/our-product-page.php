@@ -35,17 +35,13 @@
 
             <?php endif; ?>
         </div> <!-- end #main -->
-
     </div> <!-- end #content -->
-
     <div class="row clearfix">
         <form role="form">
             <div class="col-md-6 column">
-
                 <div class="form-group">
                     <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="exampleInputEmail1" type="text" />
                 </div>
-
                 <div class="form-group">
                     <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label> 
 
@@ -57,7 +53,6 @@
                         <option>5</option>
                     </select>      
                 </div>
-
                 <row>
                     <div class="col-md-6 column">    
                         <div class="form-group">
@@ -68,11 +63,9 @@
                         </div>
                     </div>
                 </row> 
-
                 <div class="form-group">
                     <label for="exampleInputEmail1"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="exampleInputEmail1" type="text" />
                 </div>
-
             </div>
             <div class="col-md-6 column">
                 <div class="form-group">
@@ -93,7 +86,6 @@
             </div>
         </form>
     </div>
-
     <!-- all product -->
     <div class="col-md-6">
         <h3 class="border-left inline uppercase">
@@ -112,7 +104,6 @@
         <a href="#" class="active blue"><i class="fa fa-list"></i></a>
         <a href="#" class="red"><i class="fa fa-th "></i></a>
     </div>
-
     <div class="col-md-12 column">
         <table class="table table-bordered">
             <thead>
@@ -131,28 +122,21 @@
                     <th><?php _e("Status", "wpbootstrap"); ?></th>
                 </tr>
             </thead>
-
             <tbody>
                 <?php
                 $lang = qtrans_getLanguage();
                 $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
                 ?>
-                <?php
+                <?php/*
                 $i = 0;
                 if (!empty($flat_props)):
                     foreach ($flat_props as $key => $val):
-                        $prop = unserialize($val->prop);
+                             $prop = unserialize($val->prop);
                         ?>
                         <tr>
-                            <td>   
-                                <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a>
-                            </td>
-                            <td>
-                                <?php echo esc_attr($prop['anbieternr']) ?>
-                            </td>
-                            <td>
-                                <a href="<?php echo get_permalink(); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
-                            </td>
+                            <td><a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a></td>
+                            <td><?php echo esc_attr($prop['anbieternr']) ?></td>
+                            <td><a href="<?php echo get_permalink(); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a></td>
                             <td>
 
                             </td>
@@ -160,23 +144,13 @@
 
                             </td>
 
-                            <td>
-                                <?php echo esc_attr($prop['geo|etage']) ?>          
+                            <td><?php echo esc_attr($prop['geo|etage']) ?></td>
+                            <td><?php echo (int) $prop['flaechen|anzahl_zimmer'] ?></td>
+                            <td><?php echo esc_attr($prop['flaechen|wohnflaeche']) ?></td>
+                            <td><?php echo esc_attr($prop['preise|kaufpreis']) ?></td>
+                            <td><?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
                             </td>
-                            <td>
-                                <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
-                            </td>
-                            <td>
-                                <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
-                            </td>
-                            <td>
-                                <?php echo esc_attr($prop['preise|kaufpreis']) ?>
-                            </td>
-
-                            <td>
-                                <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
-                            </td>
-
+                            
                             <td>
 
                             </td>
@@ -188,7 +162,7 @@
                         <?php
                     endforeach;
                 endif;
-                ?>
+               */ ?>
             </tbody>
         </table>
     </div>
@@ -196,7 +170,53 @@
 
 </div>
 
+<?php
+$lang = qtrans_getLanguage();
+$flat_props = EstateProgram::get_all_flats($post->ID, $lang); 
+                $i = 0;
+                $data_object='';
+                if (!empty($flat_props)):
+                    foreach ($flat_props as $key => $val):
+                             $prop = unserialize($val->prop);
+                             $key = unserialize($key);
+                             
+                             $data_object.="{price: ".esc_attr($prop['preise|kaufpreis'])."},";
+                              
+                             $autocomplete.="esc_attr($prop['geo|ort'])."",";
+                              
+                    endforeach;
+                endif;
 
+    $data_object = substr("$data_object", 0, -1);           
+    $data_object = "[".$data_object."]";   
+   
+?>    
+ 
+<script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
+<script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
+<script> 
+  
+    var data = <?php echo $data_object; ?>;     
+    var collection = new PourOver.Collection(data);   
+    //make Range filter  
+    var price_range_filter = PourOver.makeRangeFilter("price_range",[[300000,400000]],{attr: "price"})       
+    collection.addFilters([price_range_filter])  
+    var some_price_cids = collection.filters.price_range.getFn([300000,400000]).cids 
+  
+    var some_price = collection.get(some_price_cids)
 
+      
 
+jQuery.each( some_price, function( i, val ) {
+ 
+ var i = 0;
+ 
+ document.write(val.price+'<br>'); 
+   
+ i++;
+ 
+});  
+    
+  
+</script> 
 <?php get_footer(); ?>
