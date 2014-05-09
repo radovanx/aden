@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Validace inputu z registrace
+ * 
+ * @param type $errors
+ * @return type
+ */
 function tml_registration_errors($errors) {
 
     if (isset($_POST['action']) && 'register' == $_POST['action']) {
@@ -38,6 +43,7 @@ function tml_registration_errors($errors) {
 add_filter('registration_errors', 'tml_registration_errors');
 
 /**
+ * Uložení inputů z registrace
  *
  * @global type $wpdb
  * @param type $user_id
@@ -49,11 +55,11 @@ function tml_user_register($user_id) {
     $user_data = array();
 
     if (!empty($_POST['user_name'])) {
-        $user_data['first_name'] = htmlspecialchars($_POST['user_name']);
+        $user_data['first_name'] = htmlspecialchars($_POST['first_name']);
     }
 
     if (!empty($_POST['user_surname'])) {
-        $user_data['last_name'] = htmlspecialchars($_POST['user_surname']);
+        $user_data['last_name'] = htmlspecialchars($_POST['last_name']);
     }
 
     if (!empty($user_data)) {
@@ -61,15 +67,21 @@ function tml_user_register($user_id) {
         wp_update_user($user_data);
     }
 
+    update_user_meta($user_id, 'title', $_POST['title']);
+    update_user_meta($user_id, 'company', $_POST['company']);
+    update_user_meta($user_id, 'phone', $_POST['phone']);
+    update_user_meta($user_id, 'address', $_POST['address']);
+    update_user_meta($user_id, 'city', $_POST['city']);
+    update_user_meta($user_id, 'country', $_POST['country']);
+    
+    
+    // prihlaseni uzivatele po registraci
     //$creds = array();
     //$creds['user_login'] = $_POST['user_email'];
     //$creds['user_password'] = esc_sql($_POST['pass1']);
-    //$creds['remember'] = true;
+    //$creds['remember'] = true;    
     
-    // prihlaseni uzivatele po registraci
-   // $user = wp_signon($creds, false);
-    
-    //var_dump($user); exit;
+    // $user = wp_signon($creds, false);
     
     if (is_wp_error($user)){
         
