@@ -86,7 +86,8 @@ class EstateProgram_Admin {
 
         add_action('save_post', array(&$this, 'save'));
 
-        
+        add_action('edit_user_profile', array($this, 'profile_boxes'));
+//        add_action('edit_user_profile_update', array($this, 'update_profile'));
 
         // Add the options page and menu item.
         //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
@@ -113,6 +114,37 @@ class EstateProgram_Admin {
 
     /**
      * 
+     */
+    public function profile_boxes($user) {
+        include_once( 'views/user_profile.php' );
+        wp_nonce_field('update_custom_profile', 'update_custom_profile');
+    }
+
+    /**
+     * 
+     */
+    /*
+    public function update_profile($user_id) {
+
+        if (isset($_POST['user_fields_profile']) && wp_verify_nonce($_POST['user_fields_profile'], __FILE__)) {
+
+            $keys = array(
+                'company',
+                'phone',
+                'address',
+                'city',
+                'country',
+                'title'
+            );
+
+            foreach ($keys as $key) {
+                 update_user_meta($user_id, $key, $_POST[$key]);
+            }
+        }
+    }*/
+
+    /**
+     * 
      * @global type $post
      */
     public function clean_post_data() {
@@ -120,13 +152,15 @@ class EstateProgram_Admin {
         global $post_id;
         global $wpdb;
 
-        $sql = "
-            DELETE FROM
-                postmeta_lang
-            WHERE
-                post_id = " . (int) $post_id;
+        /*
+          $sql = "
+          DELETE FROM
+          postmeta_lang
+          WHERE
+          post_id = " . (int) $post_id;
 
-        $wpdb->query($sql);
+          $wpdb->query($sql);
+         */
     }
 
     public function save() {
@@ -384,9 +418,9 @@ class EstateProgram_Admin {
          *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
          */
         /*
-        $this->plugin_screen_hook_suffix = add_options_page(
-                __('Page Title', $this->plugin_slug), __('Menu Text', $this->plugin_slug), 'manage_options', $this->plugin_slug, array($this, 'display_plugin_admin_page')
-        );*/
+          $this->plugin_screen_hook_suffix = add_options_page(
+          __('Page Title', $this->plugin_slug), __('Menu Text', $this->plugin_slug), 'manage_options', $this->plugin_slug, array($this, 'display_plugin_admin_page')
+          ); */
     }
 
     /**

@@ -178,6 +178,9 @@ class EstateProgram {
 
         add_action('init', array(&$this, 'register_custom_post'));
         add_action('init', array(&$this, 'create_taxonomies'));
+        
+        add_action('edit_user_profile_update', array($this, 'update_profile'));
+        add_action('personal_options_update', array($this, 'update_profile'));
 
         /* Define custom functionality.
          * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
@@ -189,6 +192,28 @@ class EstateProgram {
         $ajaxModule = new EstateProgramAjax();
     }
 
+    /**
+     * 
+     */
+    public function update_profile($user_id) {
+
+        if (isset($_POST['update_custom_profile']) && wp_verify_nonce($_POST['update_custom_profile'], 'update_custom_profile')) {
+
+            $keys = array(
+                'company',
+                'phone',
+                'address',
+                'city',
+                'country',
+                'title'
+            );
+
+            foreach ($keys as $key) {
+                 update_user_meta($user_id, $key, $_POST[$key]);
+            }
+        }
+    }    
+    
     /**
      *
      */
