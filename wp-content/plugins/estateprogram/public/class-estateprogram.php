@@ -647,6 +647,30 @@ class EstateProgram {
 
         return $wpdb->get_results($sql);
     }
+    
+    /**
+     * 
+     * @global type $wpdb
+     * @param type $flat_id
+     */
+    static public function is_user_favorite($flat_id){
+        
+        global $wpdb;
+        
+        $sql = "
+            SELECT
+                flat_id
+            FROM
+                user_preference
+            WHERE
+                flat_id = '" . (int) $flat_id . "'
+            AND
+                user_id = '" . (int) get_current_user_id() . "'
+        ";
+        
+        
+        return (bool) $wpdb->get_var($sql);
+    }
 
     /**
      * 
