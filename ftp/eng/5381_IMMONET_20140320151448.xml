@@ -2,9 +2,9 @@
 <openimmo >
     <uebertragung xmlns="" art="OFFLINE" umfang="TEIL" modus="CHANGE" version="1.2.4" sendersoftware="OOF" senderversion="$Rev: 41634 $" techn_email="berlin@aden-immo.com" timestamp="2014-03-20T14:15:03.0+00:00"/>
     <anbieter xmlns="">
-        <anbieternr>5381</anbieternr>
+        <anbieternr>5370</anbieternr>
         <firma>ADEN Immo GmbH</firma>
-        <openimmo_anid>5381</openimmo_anid>
+        <openimmo_anid>5370</openimmo_anid>
         <immobilie>
             <objektkategorie>
                 <nutzungsart WOHNEN="1" GEWERBE="0"/>
