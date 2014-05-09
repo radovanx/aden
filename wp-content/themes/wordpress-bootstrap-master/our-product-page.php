@@ -3,6 +3,7 @@
   Template Name: Search Page
  */
 ?>
+
  
 <?php get_header(); ?>
 <div class="container">
