@@ -693,8 +693,7 @@ class EstateProgram {
                 flat_id = '" . (int) $flat_id . "'
             AND
                 user_id = '" . (int) get_current_user_id() . "'
-        ";
-        
+        ";        
         
         return (bool) $wpdb->get_var($sql);
     }
