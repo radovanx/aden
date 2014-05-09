@@ -56,12 +56,11 @@
                                                 <!--/myCarousel-->
                                             </div>
                                                 </div>
-                                                   
                                                 <div class="tab-pane fade" id="map_tab">
                                                     <div id="gmap" class="gmap">google map</div>
                                                 </div>
                                                 <div class="tab-pane fade" id="street_tab">
-                                                      <div id="gmapstreet">street</div>
+                                                    <div id="gmapstreet" class="gmapstreet">street</div>
                                                 </div>
                                     </div>
                                      <!--/TAB CONTENT END-->   
@@ -77,11 +76,10 @@
                                 <footer>
                                 </footer> <!-- end article footer -->
                                 </article> <!-- end article -->
-                               
+
                                     <div class="column ">
                                         <div class="col-md-12 column border">
                                         <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
-                         
                                         <ul class="no-style">
                                             <li><i class="fa fa-check"></i>
                                                 Top location within the central press and lifestyle district of Berlin
@@ -132,7 +130,7 @@
                                             </div>
                                             <div class="panel-body">
                                                 <span class="propertyListBoxDataItemName">
-                                                    <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?></strong></span>
+                                                <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?></strong></span>
                                             </div>
                                         </div>
                                     </div>
@@ -177,7 +175,6 @@
                                                     <th><?php _e("Status", "wpbootstrap"); ?></th>
                                                 </tr>
                                             </thead>
-                
                                             <tbody>
                                                 <?php
                                                 $lang = qtrans_getLanguage();
@@ -197,7 +194,7 @@
                                                                 <?php echo esc_attr($prop['anbieternr']) ?>
                                                             </td>
                                                             <td>
-                                                                <a href="<?php echo get_permalink(); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
+                                                                <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
                                                             </td>
                                                             <td>
 
@@ -256,32 +253,49 @@
                 </div> <!-- end #main -->
         </div> <!-- end #content -->
     </div>
- 
 
 
 
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"><?php echo the_title(); ?></h4>
+        </div>
+        <div class="modal-body">
+            
+         <?php _e("You modified", "wpbootstrap"); ?>
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
-
-
-
-
+  
+  
+  
+  <?php $LangLong =  esc_attr(get_post_meta($post->ID, '_program_latitude', true)).' ,'. esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
 
 <script>
  // MAP //       
     jQuery(document).ready(function($){ 
 $('.create_map').click(function() {     
     
-$.ajax({ 
+ $.ajax({ 
    url: "http://maps.googleapis.com/maps/api/js?sensor=false&callback=MapApiLoaded",
    dataType: "script",
-   timeout:8000,
+   timeout:2000,
    error: function() {
       // Handle error here
-   }
+   }})
 })
-})
-}); 
+});
+ 
 function MapApiLoaded() { 
     // Create google map
    map = new google.maps.Map(jQuery('#gmap')[0], {
@@ -291,9 +305,10 @@ function MapApiLoaded() {
       streetViewControl:false,
       mapTypeControl:true
    });
-   map.setCenter(new google.maps.LatLng(-1.950106, 29.873887999999965)); 
-     
-   var myLatlng = new google.maps.LatLng(-1.950106, 29.873887999999965);
+   
+ 
+   map.setCenter(new google.maps.LatLng(<?php echo $LangLong; ?>));    
+   var myLatlng = new google.maps.LatLng(<?php echo $LangLong; ?>); 
    
    var marker = new google.maps.Marker({
       position: myLatlng,
@@ -310,56 +325,52 @@ function MapApiLoaded() {
  
 //STREET//
 
-  jQuery(document).ready(function($){ 
-$('.create_street').click(function() {     
-    
+jQuery(document).ready(function($){ 
+$('.create_street').click(function() {  
+ 
 $.ajax({ 
-   url: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize",
+   url: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=StreetApiLoaded",
    dataType: "script",
    timeout:8000,
    error: function() {
       // Handle error here
-   }
-})
-})
+   }})})
 });
+
  
-function initialize() {
-  var bryantPark = new google.maps.LatLng(37.869260, -122.254811);
-  var panoramaOptions = {
-    position: bryantPark,
-    pov: {
-      heading: 165,
-      pitch: 0
+function StreetApiLoaded() {
+  var fenway = new google.maps.LatLng(<?php echo $LangLong; ?>);
+
+  // Note: constructed panorama objects have visible: true
+  // set by default.
+  var panoOptions = {
+    position: fenway,
+    addressControlOptions: {
+      position: google.maps.ControlPosition.BOTTOM_CENTER
     },
-    zoom: 1
+    linksControl: false,
+    panControl: false,
+    zoomControlOptions: {
+      style: google.maps.ZoomControlStyle.SMALL
+    },
+    enableCloseButton: false
   };
-  var myPano = new google.maps.StreetViewPanorama(
-      document.getElementById('map-canvas'),
-      panoramaOptions);
-  myPano.setVisible(true);
+
+  var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById('gmapstreet'), panoOptions);
+
+  google.maps.event.trigger(panorama, "resize");    
+  
+  
+   google.maps.event.addListenerOnce(panorama, 'idle', function () {
+      // Fire when map tiles are completly loaded
+   });
+      
+
+
+
 }
- 
- 
+
+  
 </script>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Modal title</h4>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-
  <?php get_footer(); ?>
