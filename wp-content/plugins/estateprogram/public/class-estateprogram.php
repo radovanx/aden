@@ -22,78 +22,6 @@
  * @package EstateProgram
  * @author  Your Name <email@example.com>
  */
-function get_post_metalang($post_id, $lang, $meta_key) {
-
-    global $wpdb;
-
-    $sql = "
-        SELECT
-            meta_value
-        FROM
-            postmeta_lang
-        WHERE
-            post_id = " . (int) $post_id . "
-        AND
-            lang = '" . esc_sql($lang) . "'
-        AND
-            meta_key = '" . esc_sql($meta_key) . "'
-            
-    ";
-
-    return $wpdb->get_var();
-}
-
-function update_post_metalang($post_id, $lang, $meta_key, $meta_value) {
-
-    global $wpdb;
-
-    /*
-      $sql = "
-      REPLACE INTO
-      postmeta_lang (post_id, lang, meta_key, meta_value)
-      VALUES(
-      " . (int) $post_id . ",
-      '" . esc_sql($lang) . "',
-      '" . esc_sql($meta_key) . "',
-      '" . esc_sql($meta_value) . "'
-      )
-      ";
-     */
-
-    $sql = "
-        INSERT INTO
-            postmeta_lang (post_id, lang, meta_key, meta_value)           
-        VALUES(
-            " . (int) $post_id . ",
-            '" . esc_sql($lang) . "',
-            '" . esc_sql($meta_key) . "',
-            '" . esc_sql($meta_value) . "'    
-        ) ON DUPLICATE KEY UPDATE
-            meta_value = '" . esc_sql($meta_value) . "'
-        ";
-
-    $wpdb->query($sql);
-}
-
-function delete_post_metalang($post_id, $lang, $meta_key) {
-
-    global $wpdb;
-
-    $sql = "
-        DELETE FROM
-            postmeta_lang
-        WHERE
-            post_id = " . (int) $post_id . "
-        AND
-            lang = '" . esc_sql($lang) . "'
-        AND
-            meta_key = '" . esc_sql($meta_key) . "'
-        LIMIT 1
-        ";
-
-    $wpdb->query($sql);
-}
-
 EstateProgram::$tags_apartment = array(
     'geo',
     'objektkategorie',
@@ -642,10 +570,9 @@ class EstateProgram {
         return $wpdb->get_results($sql);
     }
 
-    static function get_flats_props_by_program($program_id, $lang) {
+    static function get_flats_props_by_program($program_id, $lang){
 
         global $wpdb;
-
         $sql = "
             SELECT
                 p.ID,
@@ -669,10 +596,8 @@ class EstateProgram {
             AND
                 p.post_status = 'publish'
         ";
-
         return $wpdb->get_results($sql);
     }
-    
     /**
      * 
      */

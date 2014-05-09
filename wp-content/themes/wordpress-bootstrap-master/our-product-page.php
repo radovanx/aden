@@ -219,15 +219,75 @@ availableCity = GetUnique(availableCity)
      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
-<script> 
-  
+<script>  
+    
     var data = <?php echo $data_object; ?>;  
     
     //first output
     
+     jQuery.each( data, function( i, val ) {
+   
+   
+        
+        document.write(val.city+'<br>');
+        
+        
+        
+        
+        
+        
+        
+        
+        <tr>
+                                                        <td>   
+                                                            <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo esc_attr($prop['anbieternr']) ?>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+
+                                                        <td>
+                                                            <?php echo esc_attr($prop['geo|etage']) ?>          
+                                                        </td>
+                                                        <td>
+                                                            <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php echo esc_attr($prop['preise|kaufpreis']) ?>
+                                                        </td>
+
+                                                        <td>
+                                                            <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
+                                                        </td>
+
+                                                        <td>
+
+                                                        </td>
+
+                                                        <td>
+
+                                                        </td>
+                                                    </tr>
+     
+     
+     
+  
+    });
     
     
-    
+     
     var collection = new PourOver.Collection(data);  
      
     //make Range filter  
@@ -238,13 +298,8 @@ availableCity = GetUnique(availableCity)
     collection.addFilters([price_range_filter])   
     var some_price_cids = collection.filters.price_range.getFn([300000,400000]).cids   
     var some_price = collection.get(some_price_cids)
- 
- 
- 
+  
     //OUTPUT 
- 
-  
-  
   
   
 </script>  
