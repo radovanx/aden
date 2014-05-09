@@ -3,7 +3,6 @@
   Template Name: Search Page
  */
 ?>
-
  
 <?php get_header(); ?>
 <div class="container">
@@ -44,7 +43,7 @@
    
                 <div class="col-md-6 column">
                 <div class="form-group">
-                    <label for="City"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control" id="City" type="text" />
+                    <label for="City"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="City" type="text"  placeholder="City:"/>
                 </div>
                 <div class="form-group">
                     <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label> 
@@ -57,7 +56,7 @@
 
                     $accomodion_types = get_categories($args);
                     ?>
-                    <select class="form-control">
+                    <select class="form-control input-lg">
                         <option value="">---</option>
                         <?php foreach ($accomodion_types as $type): ?>
                             <option value="<?php echo $type->term_id ?>"><?php _e($type->name) ?></option>
@@ -66,17 +65,19 @@
      
                 </div>
                     
-               
-                <div class="form-group">
-                    <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input class="form-control" id="Pricef" type="text" />
+                    <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
                 </div>
                 
-                <div class="form-group">
-                    <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input class="form-control" id="Pricet" type="text" />
+                <div class="form-group col-md-6">
+                    <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
                 </div>
-                
+                    </div>
+                        
+                        
                 <div class="form-group">
-                    <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input class="form-control" id="References" type="text" />
+                    <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="References" type="text" placeholder="References:" />
                 </div>
                 
                 
@@ -84,24 +85,39 @@
             <div class="col-md-6 column">
  
                 <div class="form-group">
-                    <label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input class="form-control" id="Disctrict" type="text" />
+                    <label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>
                 </div>
  
-                <div class="form-group">
-                    <label for="Areaf"><?php _e("Area from:", "wpbootstrap"); ?></label><input class="form-control" id="Areaf" type="text" />
+                 <div class="row">
+                
+                
+                <div class="form-group col-md-6">
+                    <label for="Areaf"><?php _e("Area from:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />
                 </div>
-
-                <div class="form-group">
-                    <label for="Areat"><?php _e("Area to:", "wpbootstrap"); ?></label><input class="form-control" id="Areat" type="text" />
+                    
+                    
+                <div class="form-group col-md-6">
+                    <label for="Areat"><?php _e("Area to:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Areat" type="text" placeholder="Area to:" />
                 </div>
-    
-                 <div class="form-group">
-                    <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label><input class="form-control" id="Roomsf" type="text" />
+                 </div>      
+                     
+                 <div class="row">    
+                 <div class="form-group col-md-6">
+                    <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Roomsf" type="text" placeholder="Rooms from:" />
                 </div>
                
-                <div class="form-group">
-                    <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label><input class="form-control" id="Roomst" type="text" />
+                <div class="form-group col-md-6">
+                    <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Roomst" type="text" placeholder="Rooms to:" />
                 </div>
+                     
+                  <div class="form-group col-md-3 col-md-offset-3">  
+                   
+                     
+                 <button type="button" class="btn btn-primary btn-lg">Search</button>     
+                     
+                 </div>   
+                 </div>      
+                     
  
             </div>
         </form>
@@ -189,8 +205,7 @@
             </tbody>
         </table>
     </div>
-    <!-- /all product -->
-
+    <!-- /all product --> 
 </div>
 
 <?php
@@ -220,25 +235,27 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
 <script> 
   
   
-    var data = <?php echo $data_object; ?>;     
+    var data = <?php echo $data_object; ?>;  
+    
     var collection = new PourOver.Collection(data);   
     //make Range filter  
     var price_range_filter = PourOver.makeRangeFilter("price_range",[[300000,400000]],{attr: "price"})       
+    
     collection.addFilters([price_range_filter])  
-    var some_price_cids = collection.filters.price_range.getFn([300000,400000]).cids 
-  
+    
+    var some_price_cids = collection.filters.price_range.getFn([300000,400000]).cids  
+    
     var some_price = collection.get(some_price_cids)
  
-jQuery.each( some_price, function( i, val ) {
+    jQuery.each( some_price, function( i, val ) {
  
- var i = 0;
+    var i = 0;
  
- document.write(val.price+'<br>'); 
+    document.write(val.price+'<br>'); 
    
- i++;
+    i++;
  
-});  
-    
-  
+    });  
+     
 </script> 
 <?php get_footer(); ?>
