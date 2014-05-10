@@ -38,7 +38,7 @@
         </div>
 
         <div class="col-md-6">
-            <h2><?php _e('Company', 'wpbootstrap') ?></h2>
+            <!--<h2><?php _e('Company', 'wpbootstrap') ?></h2>-->
             <div class="form-group">
                 <label for="company<?php $template->the_instance(); ?>"><?php _e('Company:', 'wpbootsrap'); ?></label>
                 <input type="text" name="company" id="company<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('company'); ?>" size="20">
@@ -65,20 +65,21 @@
             </div>
 
             <?php do_action('register_form'); ?>
+        </div>
 
-            <p id="reg_passmail<?php $template->the_instance(); ?>">
-                <?php echo apply_filters('tml_register_passmail_template_message', __('A password will be e-mailed to you.')); ?>
-            </p>
-
+        <div class="col-md-12">
             <div class="form-group">
+                <p id="reg_passmail<?php $template->the_instance(); ?> pull-left">
+                    <?php echo apply_filters('tml_register_passmail_template_message', __('A password will be e-mailed to you.')); ?>
+                </p>                
                 <input type="submit" name="wp-submit" class="pull-right btn btn-primary btn-lg" id="wp-submit<?php $template->the_instance(); ?>" value="<?php esc_attr_e('Register'); ?>" />
                 <input type="hidden" name="redirect_to" value="<?php $template->the_redirect_url('register'); ?>" />
                 <input type="hidden" name="instance" value="<?php $template->the_instance(); ?>" />
                 <input type="hidden" name="action" value="register" />
                 <div class="clearfix"></div>
-            </div>
+            </div> 
+        </div>    
 
-        </div>
     </form>
     <?php //$template->the_action_links(array('register' => false)); ?>
 </div>

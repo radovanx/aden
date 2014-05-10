@@ -640,6 +640,7 @@ class EstateProgram {
     public static function get_all_flats($program_id, $lang, $limit = null, $offset = null) {
         global $wpdb;
 
+        /*
         $sql = "
             SELECT
                 p.ID,
@@ -666,8 +667,59 @@ class EstateProgram {
                 p.post_type = 'flat'
             AND
                 p.post_status = 'publish'
-        ";
+        ";*/
 
+        
+            $sql = 
+            "SELECT
+                p.ID,
+                m.meta_value as prop,
+                IFNULL(up.flat_id, 0) as is_favorite,
+                p.post_name as slug,
+                tt.term_taxonomy_id,
+                t.*                
+            FROM
+                wp_posts AS p                
+            JOIN
+                wp_postmeta as m
+            ON
+                m.post_id = p.ID
+            JOIN
+                apartment2program AS a2p
+            ON
+              a2p.apartment_id = p.ID      
+            JOIN
+              wp_posts AS program
+            ON
+              a2p.program_id = program.ID                   
+            LEFT JOIN 
+                wp_term_relationships AS tr 
+            ON
+                program.ID = tr.object_id   
+            LEFT JOIN
+                wp_term_taxonomy AS tt              
+            ON
+                tt.term_taxonomy_id = tr.term_taxonomy_id AND tt.taxonomy = 'type_of_accommodation'
+            LEFT JOIN
+                wp_terms AS t
+            ON
+              t.term_id = tt.term_id        
+            LEFT JOIN
+                user_preference	AS up
+            ON    
+                up.flat_id = p.ID  
+            LEFT JOIN
+                wp_users AS u
+            ON
+                up.user_id = u.ID AND u.ID = " . (int) get_current_user_id() . "
+            WHERE
+                m.meta_key = 'flat_props_" . esc_sql($lang) . "'
+            AND
+                p.post_type = 'flat'
+            AND
+                p.post_status = 'publish'
+                    ";
+        
         if (!is_null($limit)) {
             $sql .= " LIMIT " . (int) $limit;
 
