@@ -242,10 +242,28 @@
         <!-- /all product --> 
     </div>
 </div>
+ 
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?php echo the_title(); ?></h4>
+            </div>
+            <div class="modal-body">
 
+                <?php _e("You modified", "wpbootstrap"); ?>
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
+ 
 <script>
 
     var availableCity;
@@ -385,104 +403,77 @@
                 finalfilter = collection.filters.price_range.getFn([fpricef,fpricet]);          
                 }  
         }
- 
+        
+        if(fpricef!=''||fpricet!='')
+        {
+             var price_range_filter = PourOver.makeRangeFilter("price_range", [[fpricef, fpricet]], {attr: "price"}); 
+             collection.addFilters([price_range_filter]);  
+            // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]); 
+             if (finalfilter !=false)
+                {
+                finalfilter = finalfilter.and(collection.filters.price_range.getFn([fpricef,fpricet]));
+                }
+              else
+                {  
+                finalfilter = collection.filters.price_range.getFn([fpricef,fpricet]);          
+                }  
+        }
+        
+        
+        
        // var group_filter = city_f.and(price_range_f);  
-        var myfilterfinal = collection.get(finalfilter.cids);  
+       var myfilterfinal = collection.get(finalfilter.cids);  
+      
         console.log(myfilterfinal);
         
-   
-        
-        
-        
-        
-       // console.log(collection); 
-        
-        
-        
-        /*
-        if(fareaf!=''||fareat!='')
-        {
-            
-            
-        } 
-        if(froomsf!=''||froomst!='')
-        {
-            
-            
-        }*/
-         
-        // collection.addFilters([city_filter,type_filter,district_filter,references_filter, price_range_filter]);   
-        //collection.addFilters([city_filter]);    
-        /*  
-        var city_f = collection.filters.city.getFn(fcity);
-        var type_f = collection.filters.type.getFn(ftype); 
-        var district_f = collection.filters.district.getFn(fdistrict);
-        var references_f = collection.filters.references.getFn(freferences); 
-        var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]);
-        */
-  
-   
- 
-      //  var group_filter = city_f.and(type_f).and(type_f).and(city_f).and(references_f).and(price_range_f); 
-      //  var myfilterfinal = collection.get(group_filter.cids); 
-      //  console.log(myfilterfinal);
-        
-          
-       /* collection.filters.city.query(fcity);
-        collection.filters.type.query(ftype);
-        collection.filters.type.query(fdistrict);
-        collection.filters.references.query(freferences);
+       <tr><td>   
        
-        collection.filters.price.query("price_range", [[fpricef, fpricet]], {attr: "price"});
-        
+       </td>
+       <td>
     
-        var getCurrentFilters = function(){
-            
-            
-        var my_city_set = collection.filters.city.current_query, 
-            my_type_set = collection.filters.type.current_query, 
-            my_district_set = collection.filters.district.current_query,             
-            my_references_set = collection.filters.references.current_query,
-            my_price_set = collection.filters.price.current_query
-            
-            
-   
-        output_set = myth_set.and(hobby_set);
+       </td>
+       <td>
+       <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>, <?php echo esc_attr($prop['geo|plz']) ?> </a>
+       </td>
+        <td>
 
-        return collection.get(output_set.cids);
-}*/
- //var city_filter_return = collection.filters.city.getFn(fcity); 
+         </td>
+          <td>
+          </td>
+          <td>
+                
+          </td>
+          <td>
+            
+          </td>
+           <td>
+          
+           </td>
+          <td>
+          <?php echo esc_attr($prop['preise|kaufpreis']) ?>
+            </td>
+             <td>
+            <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
+           </td>
+           <td> 
+           </td>
+           <td>
+           </td>
+           </tr>
+                
+        
+                    
+        
+        
+        
+        
+        
+        
+  
          
  
 });
-    
-     
-   
-
-   
-    //var district_filter = PourOver.makeExactFilter("district", [""]);
  
-    /* 
-    var area = 
- 
-    var rooms = 
-    
-    var references =
-    */
- 
-    //PRICE FILTER
-    /*var price_range_filter = PourOver.makeRangeFilter("price_range", [[300000, 400000]], {attr: "price"})
-    collection.addFilters([price_range_filter])
-    
-    var some_price_cids = collection.filters.price_range.getFn([300000, 400000]).cids
-   
-    var some_price = collection.get(some_price_cids)
-*/
-
-   
-
-    //PRINT OUTPUT 
-
 
 </script>  
 
@@ -516,7 +507,5 @@
       });
       
   </script>
-
-
-
-<?php get_footer(); ?> 
+ 
+<?php get_footer(); ?>
