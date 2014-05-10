@@ -196,7 +196,7 @@
                                     <?php echo esc_attr($prop['anbieternr']) ?>
                                 </td>
                                 <td>
-                                    <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>, <?php echo esc_attr($prop['geo|plz']) ?> </a>
+                                    <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?> <?php echo esc_attr($prop['geo|hausnummer']) ?> , <?php echo esc_attr($prop['geo|ort']) ?>, <?php echo esc_attr($prop['geo|regionaler_zusatz']) ?> <?php echo esc_attr($prop['geo|plz']) ?> </a>
                                 </td>
                                 <td>
 
@@ -218,7 +218,9 @@
                                 <td>
                                     <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
                                 </td>
-                                <td> 
+                                <td>  
+                                  
+                     
                                 </td>
                                 <td>
                                 </td>
@@ -404,23 +406,36 @@
                 }  
         }
         
-        if(fpricef!=''||fpricet!='')
+        if(fareaf!=''||fareat!='')
         {
-             var price_range_filter = PourOver.makeRangeFilter("price_range", [[fpricef, fpricet]], {attr: "price"}); 
-             collection.addFilters([price_range_filter]);  
+             var area_range_filter = PourOver.makeRangeFilter("area_range", [[fareaf, fareat]], {attr: "area"}); 
+             collection.addFilters([area_range_filter]);  
             // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]); 
              if (finalfilter !=false)
                 {
-                finalfilter = finalfilter.and(collection.filters.price_range.getFn([fpricef,fpricet]));
+                finalfilter = finalfilter.and(collection.filters.area_range.getFn([fareaf,fareat]));
                 }
               else
                 {  
-                finalfilter = collection.filters.price_range.getFn([fpricef,fpricet]);          
+                finalfilter = collection.filters.area_range.getFn([fareaf,fareat]);          
                 }  
         }
         
-        
-        
+         if(froomsf!=''||froomst!='')
+        {
+             var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"}); 
+             collection.addFilters([rooms_range_filter]);  
+            // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]); 
+             if (finalfilter !=false)
+                {
+                finalfilter = finalfilter.and(collection.filters.rooms_range.getFn([fpricef,fpricet]));
+                }
+              else
+                {  
+                finalfilter = collection.filters.rooms_range.getFn([froomsf,froomst]);          
+                }  
+        }
+ 
        // var group_filter = city_f.and(price_range_f);  
        var myfilterfinal = collection.get(finalfilter.cids);  
       
@@ -461,16 +476,6 @@
            </td>
            </tr>
                 
-        
-                    
-        
-        
-        
-        
-        
-        
-  
-         
  
 });
  
