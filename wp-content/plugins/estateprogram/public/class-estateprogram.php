@@ -687,6 +687,42 @@ class EstateProgram {
     /**
      * 
      */
+    static public function user_preferences($lang, $limit = null, $offset = null){
+        
+        global $wpdb;
+        
+        $sql = "
+            SELECT 
+                flat.*,
+                m.meta_value AS props
+            FROM                
+                user_preference AS up
+            JOIN
+                wp_posts AS flat
+            ON
+                flat.ID = up.flat_id
+            LEFT JOIN
+                wp_postmeta as m
+            ON
+                m.post_id = flat.ID AND m.meta_key = 'flat_props_$lang'
+            WHERE
+                up.user_id = " . (int) get_current_user_id() . "
+        ";
+        
+        if(!is_null($limit)){
+            $sql .= " LIMIT " . (int) $limit;
+            
+            if(!is_null($offset)){
+                $sql .= ", " . $offset;
+            }
+        }
+        
+        return $wpdb->get_results($sql);                
+    }
+    
+    /**
+     * 
+     */
     public function define_image_sizes() {
         add_image_size('program_thumb', 316, 236, true);
     }
