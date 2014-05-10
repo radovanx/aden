@@ -75,7 +75,7 @@ class EstateProgramAjax {
             VALUES(
                 '" . (int) $flat_id . "',
                 '" . (int) $user_id . "',
-                'NOW()'
+                NOW()
             )";
 
             if (false === $wpdb->query($sql)) {
@@ -92,7 +92,7 @@ class EstateProgramAjax {
             VALUES(
                 '" . (int) $user_id . "',
                 '" . (int) $flat_id . "',
-                'NOW()',
+                NOW(),
                 '" . $operation . "'
             )";
 
