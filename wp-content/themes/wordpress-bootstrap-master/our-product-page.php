@@ -35,9 +35,6 @@
             <?php endif; ?>
         </div> <!-- end #main -->
     </div> <!-- end #content -->
-
-
-
     <div class="row clearfix">
 
         <div class="col-md-12 column">         
@@ -45,7 +42,7 @@
 
                 <div class="col-md-6 column">
                     <div class="form-group">
-                        <label for="City"><?php _e("City:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="City" type="text"  placeholder="City:"/>
+                        <label for="City"><?php _e("City:", "wpbootstrap"); ?></label><input name="city" class="form-control input-lg" id="City"  type="text"  placeholder="City:"/>
                     </div>
                     <div class="form-group">
                         <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label> 
@@ -58,7 +55,7 @@
 
                         $accomodion_types = get_categories($args);
                         ?>
-                        <select class="form-control input-lg">
+                        <select class="form-control input-lg" name="type" >
                             <option value="">---</option>
                             <?php foreach ($accomodion_types as $type): ?>
                                 <option value="<?php echo $type->term_id ?>"><?php _e($type->name) ?></option>
@@ -69,17 +66,17 @@
 
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
+                            <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
+                            <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input  name="Pricet" class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                        <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="References" type="text" placeholder="References:" />
+                        <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
                     </div>
 
 
@@ -87,32 +84,34 @@
                 <div class="col-md-6 column">
 
                     <div class="form-group">
-                        <label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>
+                        <label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input name="Disctrict" class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>
                     </div>
 
                     <div class="row">
 
 
                         <div class="form-group col-md-6">
-                            <label for="Areaf"><?php _e("Area from:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />
+                            <label for="Areaf"><?php _e("Area from:", "wpbootstrap"); ?></label><input name="Areaf" class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />
                         </div>
 
 
                         <div class="form-group col-md-6">
-                            <label for="Areat"><?php _e("Area to:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Areat" type="text" placeholder="Area to:" />
+                            <label for="Areat"><?php _e("Area to:", "wpbootstrap"); ?></label><input name="Areat" class="form-control input-lg" id="Areat" type="text" placeholder="Area to:" />
                         </div>
                     </div>      
 
                     <div class="row">    
                         <div class="form-group col-md-6">
-                            <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Roomsf" type="text" placeholder="Rooms from:" />
+                            <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label><input name="Roomsf" class="form-control input-lg" id="Roomsf" type="text" placeholder="Rooms from:" />
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label><input class="form-control input-lg" id="Roomst" type="text" placeholder="Rooms to:" />
+                            <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label><input name="Roomst" class="form-control input-lg" id="Roomst" type="text" placeholder="Rooms to:" />
                         </div> 
                         <div class="form-group col-md-3 col-md-offset-3">  
-                            <button type="button" class="btn btn-primary btn-lg"><i class="fa fa-search"></i>Search</button>      
+                            
+                            <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-search"></i>Search</button>      
+                        
                         </div>   
                     </div>       
                 </div>
@@ -160,13 +159,12 @@
  
                 <?php
                 $lang = qtrans_getLanguage();
-                $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                 
+                $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 1500);
+  
                 $i = 0;
                 $data_object = '';
-
-                $i = 0;
-
+                  
                 if (!empty($flat_props)):
                     foreach ($flat_props as $key => $val):
                         $prop = unserialize($val->prop);
@@ -178,17 +176,18 @@
                         $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";  
                         $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
                         $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
-                        $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;    
- 
+                        
+                        $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;   
+                        
+           
                         $data_object.="{city:\"".$city."\", district:\"".$district."\",area:".$area.", rooms:".$rooms.", references:".esc_attr($prop['anbieternr']).",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"".$url."\", image_url:  \"".$url_image."\"},";
                         
                         //$url = 
-  
-                        $data_object.="{city:\"" . esc_attr($prop['geo|ort']) . "\", district:\"" . esc_attr($prop['geo|regionaler_zusatz']) . "\",area:" . esc_attr($prop['flaechen|wohnflaeche']) . ", rooms:" . esc_attr($prop['flaechen|anzahl_zimmer']) . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . "},";
+ 
                         $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
-
-                     
-                            ?> 
+                            
+                         if($i<10): 
+                         ?> 
                             <tr>
                                 <td>   
                                     <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i><?php echo $val->is_favorite; ?></a>
@@ -226,8 +225,8 @@
                             </tr>
 
                             <?php
-                       
-                        
+                          endif;  
+                        $i++;    
                     endforeach;
                 endif;
 
@@ -274,34 +273,215 @@
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
 <script>
-
+ 
+    
     var data = <?php echo $data_object; ?>;
-    //first output
-
-
     var collection = new PourOver.Collection(data);
+    
+    
+     //make Range filter  
+    //CITY FILTER  
+    
+    function CityFilter(fcity)
+    {  
+    var city_filter = PourOver.makeExactFilter("city", [fcity]);    
+    collection.addFilters([city_filter]);    
+    var city_filter_return = collection.filters.city.getFn(fcity);        
+        
+    return city_filter_return;  
+   
+    }    
+    jQuery( "form" ).on( "submit", function( event ) {
+             event.preventDefault();
+    
+        var SerializedObject = ( jQuery( "form" ).serializeArray() );
+ 
+        //value from form
+        var fcity = SerializedObject[0].value;  
+        var ftype = SerializedObject[1].value;  
+        var freferences = SerializedObject[4].value;    
+        var fdistrict = SerializedObject[5].value; 
+        var fareaf = SerializedObject[6].value;
+        var fareat = SerializedObject[7].value;
+        var froomsf = SerializedObject[8].value;
+        var froomst = SerializedObject[9].value;  
+        var fpricef = SerializedObject[2].value; 
+        var fpricet = SerializedObject[3].value;  
+        
+       //make a filter
+       
+       var finalfilter=false;
+   
+        if(fcity!='')
+        { 
+           var city_filter = PourOver.makeExactFilter("city", [fcity]);    
+           collection.addFilters([city_filter]);    
+           finalfilter = collection.filters.city.getFn(fcity);  
+   
+        } 
+        if(ftype!='')
+        {
+            var type_filter = PourOver.makeExactFilter("type", [ftype]); 
+            collection.addFilters([type_filter]); 
+            
+            if (finalfilter !=false)
+            {
+            finalfilter = finalfilter.and(collection.filters.type.getFn(ftype));
+            }
+            else
+            {  
+            finalfilter = collection.filters.type.getFn(ftype);          
+            }    
+           
+            //var type_f = collection.filters.type.getFn(ftype);   
+ 
+        }
+        if(freferences!='')
+        {
+              var references_filter = PourOver.makeExactFilter("references", [freferences]); 
+              collection.addFilters([references_filter]); 
+            
+              if (finalfilter !=false)
+                {
+                finalfilter = finalfilter.and(collection.filters.references.getFn(freferences));
+                }
+              else
+                {  
+                finalfilter = collection.filters.references.getFn(freferences);          
+                } 
+               
+               // var references_f = collection.filters.references.getFn(freferences); 
+              
+        }
+        if(fdistrict!='')
+        {
+            
+             var district_filter = PourOver.makeExactFilter("district", [fdistrict]); 
+             collection.addFilters([district_filter]); 
+            
+              if (finalfilter !=false)
+                {
+                finalfilter = finalfilter.and(collection.filters.district.getFn(fdistrict));
+                }
+              else
+                {  
+                finalfilter = collection.filters.district.getFn(fdistrict);          
+                }
+ 
+                
+        }  
+        
+        if(fpricef!=''||fpricet!='')
+        {
+             var price_range_filter = PourOver.makeRangeFilter("price_range", [[fpricef, fpricet]], {attr: "price"}); 
+             collection.addFilters([price_range_filter]);  
+            // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]); 
+             if (finalfilter !=false)
+                {
+                finalfilter = finalfilter.and(collection.filters.price_range.getFn([fpricef,fpricet]));
+                }
+              else
+                {  
+                finalfilter = collection.filters.price_range.getFn([fpricef,fpricet]);          
+                }  
+        }
+ 
+       // var group_filter = city_f.and(price_range_f);  
+        var myfilterfinal = collection.get(finalfilter.cids);  
+        console.log(myfilterfinal);
+        
+   
+        
+        
+        
+        
+       // console.log(collection); 
+        
+        
+        
+        /*
+        if(fareaf!=''||fareat!='')
+        {
+            
+            
+        } 
+        if(froomsf!=''||froomst!='')
+        {
+            
+            
+        }*/
+         
+        // collection.addFilters([city_filter,type_filter,district_filter,references_filter, price_range_filter]);   
+        //collection.addFilters([city_filter]);    
+        /*  
+        var city_f = collection.filters.city.getFn(fcity);
+        var type_f = collection.filters.type.getFn(ftype); 
+        var district_f = collection.filters.district.getFn(fdistrict);
+        var references_f = collection.filters.references.getFn(freferences); 
+        var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]);
+        */
+  
+   
+ 
+      //  var group_filter = city_f.and(type_f).and(type_f).and(city_f).and(references_f).and(price_range_f); 
+      //  var myfilterfinal = collection.get(group_filter.cids); 
+      //  console.log(myfilterfinal);
+        
+          
+       /* collection.filters.city.query(fcity);
+        collection.filters.type.query(ftype);
+        collection.filters.type.query(fdistrict);
+        collection.filters.references.query(freferences);
+       
+        collection.filters.price.query("price_range", [[fpricef, fpricet]], {attr: "price"});
+        
+    
+        var getCurrentFilters = function(){
+            
+            
+        var my_city_set = collection.filters.city.current_query, 
+            my_type_set = collection.filters.type.current_query, 
+            my_district_set = collection.filters.district.current_query,             
+            my_references_set = collection.filters.references.current_query,
+            my_price_set = collection.filters.price.current_query
+            
+            
+   
+        output_set = myth_set.and(hobby_set);
 
-    //make Range filter  
-    //CITY FILTER
+        return collection.get(output_set.cids);
+}*/
+ //var city_filter_return = collection.filters.city.getFn(fcity); 
+         
+ 
+});
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     
+   
 
+   
+    //var district_filter = PourOver.makeExactFilter("district", [""]);
+ 
+    /* 
+    var area = 
+ 
+    var rooms = 
+    
+    var references =
+    */
+ 
     //PRICE FILTER
-    var price_range_filter = PourOver.makeRangeFilter("price_range", [[300000, 400000]], {attr: "price"})
+    /*var price_range_filter = PourOver.makeRangeFilter("price_range", [[300000, 400000]], {attr: "price"})
     collection.addFilters([price_range_filter])
+    
     var some_price_cids = collection.filters.price_range.getFn([300000, 400000]).cids
+   
     var some_price = collection.get(some_price_cids)
+*/
 
-    //OUTPUT 
+   
+
+    //PRINT OUTPUT 
 
 
 </script>  
