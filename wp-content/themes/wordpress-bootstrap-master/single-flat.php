@@ -92,14 +92,9 @@
                                                     <i class="fa fa-money"></i><strong>
                                                        
                                                          <?php 
-                                                             $prop = get_post_meta( get_the_ID(), 'flat_props_'.$lang.'', true );
-                                                          
-                                                        
-                                                            var_dump($prop);
-                                                       
+                                                             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
                                                           ?>
-                                                        
-                                                         <?php echo esc_attr($prop[0]['preise|kaufpreis']) ?>
+                                                         <?php echo esc_attr($props['preise|kaufpreis']) ?>
                                                         
                                                     </strong>
                                                      
@@ -108,9 +103,7 @@
                                                     <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?>
                                                          
                                                     </strong></span>
-                                                    
-                                            
-                                            
+                                             
                                             <span class="propertyListBoxDataItemName"><i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong> Exclusive Apartments</span>
                                                     <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
  
@@ -120,12 +113,10 @@
                                             <a href="#" class="blue"><i class="fa fa-print"></i> Print reservation documents</a>
                                             <a href="#" class="blue"><i class="fa fa-download"></i> Download building data</a>
                                             <a href="#" class="blue"><i class="fa fa-download"></i> Download product data</a>
-                                            
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-        
+                            </div> 
                                     <div class="col-md-12 column">
                                 
                                         <div class="col-md-12 column border">

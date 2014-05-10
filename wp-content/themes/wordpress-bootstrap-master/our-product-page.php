@@ -173,16 +173,17 @@
                         $key = unserialize($key);
 
                         $url_image = wp_get_attachment_url( get_post_thumbnail_id( $val->ID ) );
-                        
-                        $url = get_permalink($val->ID);
-   
-                        $data_object.="{city:\"" . esc_attr($prop['geo|ort']) . "\", district:\"" . esc_attr($prop['geo|regionaler_zusatz']) . "\",area:" . esc_attr($prop['flaechen|wohnflaeche']) . ", rooms:".esc_attr($prop['flaechen|anzahl_zimmer']).", references:".esc_attr($prop['anbieternr']).",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"".$url."\", image_url:  \"".$url_image."\"},";
-                       
+                        $url = get_permalink($val->ID); 
+                        $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";  
+                        $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
+                        $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
+                        $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;    
+ 
+                        $data_object.="{city:\"".$city."\", district:\"".$district."\",area:".$area.", rooms:".$rooms.", references:".esc_attr($prop['anbieternr']).",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"".$url."\", image_url:  \"".$url_image."\"},";
                         $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
                         if ($i < 10):
                             ?> 
-
                             <tr>
                                 <td>   
                                     <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a>
@@ -210,17 +211,12 @@
                                 <td>
                                     <?php echo esc_attr($prop['preise|kaufpreis']) ?>
                                 </td>
-
                                 <td>
                                     <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
                                 </td>
-
-                                <td>
-
+                                <td> 
                                 </td>
-
                                 <td>
-
                                 </td>
                             </tr>
 
@@ -232,9 +228,9 @@
 
                 $autocomplete = substr("$autocomplete", 0, -1);
                 $autocomplete = "[" . $autocomplete . "]";
-
                 $data_object = substr("$data_object", 0, -1);
                 $data_object = "[" . $data_object . "]";
+                
                 ?>   
 
             </table>   
@@ -290,6 +286,9 @@
     
     
     
+    
+    
+    
 
     //PRICE FILTER
     var price_range_filter = PourOver.makeRangeFilter("price_range", [[300000, 400000]], {attr: "price"})
@@ -301,4 +300,38 @@
 
 
 </script>  
+
+
+
+<script type="text/javascript">
+    
+      jQuery(document).ready(function($) {
+          var count = 2;
+          $(window).scroll(function(){
+                  if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+                     loadArticle(count);
+                     count++;
+                  }
+          });
+ 
+          function loadArticle(pageNumber){   
+                  $('a#inifiniteLoader').show('fast');
+                  $.ajax({
+                      url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
+                      type:'POST',
+                      data: "action=infinite_scroll&page_no="+ pageNumber + '&loop_file=loop',
+                      success: function(html){
+                          $('a#inifiniteLoader').hide('1000');
+                          $("#content").append(html);    // This will be the div where our content will be loaded
+                      }
+                  });
+              return false;
+          }
+   
+      });
+      
+  </script>
+
+
+
 <?php get_footer(); ?> 
