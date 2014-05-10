@@ -161,12 +161,10 @@
                 <?php
                 $lang = qtrans_getLanguage();
                 $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
-                
+  
                 $i = 0;
                 $data_object = '';
-
-                $i = 0;
-
+                  
                 if (!empty($flat_props)):
                     foreach ($flat_props as $key => $val):
                         $prop = unserialize($val->prop);
@@ -177,8 +175,9 @@
      
                         $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";  
                         $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
-                        $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
-                        $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;    
+                        $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 1;
+                        
+                        $rooms = !empty(rtrim($prop['flaechen|anzahl_zimmer'])) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 1;    
  
                         $data_object.="{city:\"".$city."\", district:\"".$district."\",area:".$area.", rooms:".$rooms.", references:".esc_attr($prop['anbieternr']).",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"".$url."\", image_url:  \"".$url_image."\"},";
                         
@@ -282,26 +281,35 @@
     var collection = new PourOver.Collection(data);
 
     //make Range filter  
-    //CITY FILTER
+    //CITY FILTER 
     
+    var city_filter = PourOver.makeExactFilter("city", [""]);
+
+    var district_filter = PourOver.makeExactFilter("district", [""]);
     
+   
+    /* 
+    var area = 
+ 
+    var rooms = 
     
-    
-    
-    
-    
-    
-    
+    var references =
+    */
     
     
 
     //PRICE FILTER
     var price_range_filter = PourOver.makeRangeFilter("price_range", [[300000, 400000]], {attr: "price"})
     collection.addFilters([price_range_filter])
+    
     var some_price_cids = collection.filters.price_range.getFn([300000, 400000]).cids
+   
     var some_price = collection.get(some_price_cids)
 
-    //OUTPUT 
+
+   
+
+    //PRINT OUTPUT 
 
 
 </script>  
