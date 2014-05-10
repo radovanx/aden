@@ -524,7 +524,7 @@ class EstateProgram {
 
         $sql = "
             SELECT
-                flat.*
+                flat.*                
             FROM
                 wp_posts AS flat
             JOIN
@@ -539,7 +539,7 @@ class EstateProgram {
         return $wpdb->get_results($sql);
     }
 
-    static function get_flat_props_by_program($program_id, $langugage) {
+    static function get_flat_props_by_program($program_id, $langugage, $limit, $offset) {
 
         global $wpdb;
 
@@ -566,6 +566,14 @@ class EstateProgram {
             ORDER BY
                 flat.ID DESC
         ";
+        
+        if(!empty($limit)){
+            $sql .= " LIMIT '" . (int) $limit . "'";
+                
+            if(!empty($offset)){
+                $sql .= ", " . (int) $offset;
+            }    
+        }       
 
         return $wpdb->get_results($sql);
     }
@@ -576,7 +584,8 @@ class EstateProgram {
         $sql = "
             SELECT
                 p.ID,
-                m.meta_value as prop
+                m.meta_value as prop,                	
+                
             FROM
                 wp_posts AS p
             JOIN
@@ -587,6 +596,10 @@ class EstateProgram {
                 apartment2program AS a2p
             ON
                 a2p.apartment_id = p.ID 
+            LEFT JOIN
+                user_preference	AS up
+            ON    
+                up.flat_id = p.ID 
             WHERE
                 m.meta_key = 'flat_props_" . esc_sql($lang) . "'
             AND
