@@ -111,6 +111,11 @@
                                 </div>
                             </div>
                             <div class="col-md-4 column">
+                                <div class="border col-md-12 column border background contact_form_block">                                                                        
+                                    <h2 class="border-left uppercase"><?php _e('quel programme vous intéresse ?', 'wpbootstrap') ?></h2>
+                                    <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
+                                    <?php echo do_shortcode('[contact-form-7 id="4080" title=""]') ?>
+                                </div>
                                 <div class="border col-md-12 column">
                                     <h3 class="border-left uppercase">
                                         <?php _e("Key Facts", "wpbootstrap"); ?>
@@ -184,7 +189,7 @@
                                             $i = 0;
                                             if (!empty($flat_props)):
                                                 foreach ($flat_props as $key => $val):
-                                                         $prop = unserialize($val->prop);
+                                                    $prop = unserialize($val->prop);
                                                     ?>
                                                     <tr>
                                                         <td>   
@@ -253,7 +258,7 @@
         </div> <!-- end #main -->
     </div> <!-- end #content -->
 </div>
- 
+
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -359,7 +364,7 @@
         google.maps.event.addListenerOnce(panorama, 'idle', function() {
             // Fire when map tiles are completly loaded
         });
- 
+
     }
 </script>
 <?php get_footer(); ?>

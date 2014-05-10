@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="required" for="yourFirst">Firstname:</label>
+                    [text* Firstname  id:yourFirst class:form-control]	
+                </div>
+                <div class="form-group">
+                    <label class="required" for="yourLast">Firstname:</label>
+                    [text* Lastname id:yourLast class:form-control]
+                </div>
+                <div class="form-group">
+                    <label class="required" for="yourEmail">Your Email</label>
+                    [email* your-email id:yourEmail class:form-control]
+                </div>
+                <div class="form-group">
+                    <label class="required" for="phone">Phone</label>
+                    [tel* phone id:phone class:form-control]
+                </div>
+                <div class="form-group">
+                    <label class="required" for="yourMessage">Your Message</label>
+                    [select* program id:program class:form-control "Investissement locatif" "habitation "]
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="required" for="yourMessage">Your Message</label>
+                    [textarea* your-message id:yourMessage class:form-control]
+                </div>
+            </div>
+            <div class="col-md-12  clearfix">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-large btn-primary  pull-right">Send</button>
+                </div>                
+            </div>
+        </div>
+
+
+    </body>
+</html>

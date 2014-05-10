@@ -9,7 +9,6 @@
  * @link
  * @copyright 2014 a.
  */
-
 /**
  * Plugin class. This class should ideally be used to work with the
  * public-facing side of the WordPress site.
@@ -106,7 +105,7 @@ class EstateProgram {
 
         add_action('init', array(&$this, 'register_custom_post'));
         add_action('init', array(&$this, 'create_taxonomies'));
-        
+
         add_action('edit_user_profile_update', array($this, 'update_profile'));
         add_action('personal_options_update', array($this, 'update_profile'));
 
@@ -115,13 +114,13 @@ class EstateProgram {
          */
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
-        
-        
+
+
         $ajaxModule = new EstateProgramAjax();
     }
 
     /**
-     * 
+     *
      */
     public function update_profile($user_id) {
 
@@ -137,11 +136,11 @@ class EstateProgram {
             );
 
             foreach ($keys as $key) {
-                 update_user_meta($user_id, $key, $_POST[$key]);
+                update_user_meta($user_id, $key, $_POST[$key]);
             }
         }
-    }    
-    
+    }
+
     /**
      *
      */
@@ -212,7 +211,7 @@ class EstateProgram {
     }
 
     /**
-     * 
+     *
      */
     public function create_taxonomies() {
 
@@ -233,6 +232,24 @@ class EstateProgram {
         );
 
         register_taxonomy('type_of_accommodation', array('program'), $args);
+
+        ############################################################
+        # Show
+        $args = array(
+            'hierarchical' => true,
+            'labels' => array(
+                'name' => _x('Show', $this->plugin_slug),
+                'menu_name' => __('Show', $this->plugin_slug)
+            ),
+            'public' => false,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            //'query_var' => true,
+            'rewrite' => array('slug' => 'show'),
+                //'show_in_menu' => 'program_overview'
+        );
+
+        register_taxonomy('show', array('program'), $args);
 
         /*
           $args = array(
@@ -513,7 +530,7 @@ class EstateProgram {
     }
 
     /**
-     * 
+     *
      * @global type $wpdb
      * @param type $program_id
      * @return type
@@ -524,7 +541,7 @@ class EstateProgram {
 
         $sql = "
             SELECT
-                flat.*                
+                flat.*
             FROM
                 wp_posts AS flat
             JOIN
@@ -533,7 +550,7 @@ class EstateProgram {
                 a2p.apartment_id = flat.ID
             WHERE
                 a2p.program_id = '" . esc_sql($program_id) . "'
-                                
+
         ";
 
         return $wpdb->get_results($sql);
@@ -548,7 +565,7 @@ class EstateProgram {
                 pl.meta_key,
                 pl.meta_value,
                 flat.ID,
-                flat.post_title                
+                flat.post_title
             FROM
                 postmeta_lang AS pl
             JOIN
@@ -566,25 +583,25 @@ class EstateProgram {
             ORDER BY
                 flat.ID DESC
         ";
-        
-        if(!empty($limit)){
+
+        if (!empty($limit)) {
             $sql .= " LIMIT '" . (int) $limit . "'";
-                
-            if(!empty($offset)){
+
+            if (!empty($offset)) {
                 $sql .= ", " . (int) $offset;
-            }    
-        }       
+            }
+        }
 
         return $wpdb->get_results($sql);
     }
 
-    static function get_flats_props_by_program($program_id, $lang){
+    static function get_flats_props_by_program($program_id, $lang) {
 
         global $wpdb;
         $sql = "
             SELECT
                 p.ID,
-                m.meta_value as prop,                	
+                m.meta_value as prop,
                 IFNULL(up.flat_id, 0) as is_favorite,
                 p.post_name as slug
             FROM
@@ -596,15 +613,15 @@ class EstateProgram {
             JOIN
                 apartment2program AS a2p
             ON
-                a2p.apartment_id = p.ID 
+                a2p.apartment_id = p.ID
             LEFT JOIN
                 user_preference	AS up
-            ON    
-                up.flat_id = p.ID 
+            ON
+                up.flat_id = p.ID
             LEFT JOIN
                 wp_users AS u
             ON
-                up.user_id = u.ID AND u.ID = " . (int) get_current_user_id() . "                
+                up.user_id = u.ID AND u.ID = " . (int) get_current_user_id() . "
             WHERE
                 m.meta_key = 'flat_props_" . esc_sql($lang) . "'
             AND
@@ -616,10 +633,11 @@ class EstateProgram {
         ";
         return $wpdb->get_results($sql);
     }
+
     /**
-     * 
+     *
      */
-    public static function get_all_flats($program_id, $lang, $limit = null, $offset = null ){
+    public static function get_all_flats($program_id, $lang, $limit = null, $offset = null) {
         global $wpdb;
 
         $sql = "
@@ -627,7 +645,7 @@ class EstateProgram {
                 p.ID,
                 m.meta_value as prop,
                 IFNULL(up.flat_id, 0) as is_favorite,
-                p.post_name as slug                
+                p.post_name as slug
             FROM
                 wp_posts AS p
             JOIN
@@ -636,8 +654,8 @@ class EstateProgram {
                 m.post_id = p.ID
             LEFT JOIN
                 user_preference	AS up
-            ON    
-                up.flat_id = p.ID  
+            ON
+                up.flat_id = p.ID
             LEFT JOIN
                 wp_users AS u
             ON
@@ -650,26 +668,26 @@ class EstateProgram {
                 p.post_status = 'publish'
         ";
 
-        if(!is_null($limit)){
+        if (!is_null($limit)) {
             $sql .= " LIMIT " . (int) $limit;
-                
-            if(!is_null($offset)){
+
+            if (!is_null($offset)) {
                 $sql .= ", " . (int) $offset;
-            }    
-        }         
-        
-        return $wpdb->get_results($sql);        
+            }
+        }
+
+        return $wpdb->get_results($sql);
     }
-    
+
     /**
-     * 
+     *
      * @global type $wpdb
      * @param type $flat_id
      */
-    static public function is_user_favorite($flat_id){
-        
+    static public function is_user_favorite($flat_id) {
+
         global $wpdb;
-        
+
         $sql = "
             SELECT
                 flat_id
@@ -679,23 +697,23 @@ class EstateProgram {
                 flat_id = '" . (int) $flat_id . "'
             AND
                 user_id = '" . (int) get_current_user_id() . "'
-        ";        
-        
+        ";
+
         return (bool) $wpdb->get_var($sql);
     }
 
     /**
-     * 
+     *
      */
-    static public function user_preferences($lang, $limit = null, $offset = null){
-        
+    static public function user_preferences($lang, $limit = null, $offset = null) {
+
         global $wpdb;
-        
+
         $sql = "
-            SELECT 
+            SELECT
                 flat.*,
                 m.meta_value AS props
-            FROM                
+            FROM
                 user_preference AS up
             JOIN
                 wp_posts AS flat
@@ -708,20 +726,20 @@ class EstateProgram {
             WHERE
                 up.user_id = " . (int) get_current_user_id() . "
         ";
-        
-        if(!is_null($limit)){
+
+        if (!is_null($limit)) {
             $sql .= " LIMIT " . (int) $limit;
-            
-            if(!is_null($offset)){
+
+            if (!is_null($offset)) {
                 $sql .= ", " . $offset;
             }
         }
-        
-        return $wpdb->get_results($sql);                
+
+        return $wpdb->get_results($sql);
     }
-    
+
     /**
-     * 
+     *
      */
     public function define_image_sizes() {
         add_image_size('program_thumb', 316, 236, true);
