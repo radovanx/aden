@@ -712,7 +712,7 @@ class EstateProgram {
         $sql = "
             SELECT
                 flat.*,
-                m.meta_value AS props
+                m.meta_value AS prop
             FROM
                 user_preference AS up
             JOIN
