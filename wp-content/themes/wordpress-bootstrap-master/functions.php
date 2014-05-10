@@ -498,4 +498,31 @@ function add_scripts(){
 add_action('wp_enqueue_scripts', 'add_scripts');
 
 
+// ajax loading - better the is in the plugin files.
+
+function wp_infinitepaginate(){
+
+    
+    $loopFile        = $_POST['loop_file'];
+    $paged           = $_POST['page_no'];
+    $posts_per_page  = get_option('posts_per_page');
+ 
+    # Load the posts
+    query_posts(array('paged' => $paged ));
+    
+    
+    get_template_part( $loopFile ); 
+    exit;
+    
+    
+}
+
+add_action('wp_ajax_infinite_scroll', 'wp_infinitepaginate');  
+
+
+
+
+
+
+
 ?>
