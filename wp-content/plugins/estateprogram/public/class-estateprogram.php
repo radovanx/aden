@@ -585,7 +585,8 @@ class EstateProgram {
             SELECT
                 p.ID,
                 m.meta_value as prop,                	
-                
+                IFNULL(up.flat_id, 0) as is_favorite,
+                p.post_name as slug
             FROM
                 wp_posts AS p
             JOIN
@@ -600,6 +601,10 @@ class EstateProgram {
                 user_preference	AS up
             ON    
                 up.flat_id = p.ID 
+            LEFT JOIN
+                wp_users AS u
+            ON
+                up.user_id = u.ID AND u.ID = " . (int) get_current_user_id() . "                
             WHERE
                 m.meta_key = 'flat_props_" . esc_sql($lang) . "'
             AND
@@ -620,13 +625,23 @@ class EstateProgram {
         $sql = "
             SELECT
                 p.ID,
-                m.meta_value as prop
+                m.meta_value as prop,
+                IFNULL(up.flat_id, 0) as is_favorite,
+                p.post_name as slug                
             FROM
                 wp_posts AS p
             JOIN
                 wp_postmeta as m
             ON
                 m.post_id = p.ID
+            LEFT JOIN
+                user_preference	AS up
+            ON    
+                up.flat_id = p.ID  
+            LEFT JOIN
+                wp_users AS u
+            ON
+                up.user_id = u.ID AND u.ID = " . (int) get_current_user_id() . "
             WHERE
                 m.meta_key = 'flat_props_" . esc_sql($lang) . "'
             AND

@@ -174,7 +174,7 @@
 
                         $url_image = wp_get_attachment_url( get_post_thumbnail_id( $val->ID ) );
                         
-                        $url = 
+                        //$url = 
                         
                         
                         $data_object.="{city:\"" . esc_attr($prop['geo|ort']) . "\", district:\"" . esc_attr($prop['geo|regionaler_zusatz']) . "\",area:" . esc_attr($prop['flaechen|wohnflaeche']) . ", rooms:" . esc_attr($prop['flaechen|anzahl_zimmer']) . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . "},";
