@@ -160,7 +160,7 @@
  
                 <?php
                 $lang = qtrans_getLanguage();
-                $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
+                $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                 
                 $i = 0;
                 $data_object = '';
@@ -174,6 +174,7 @@
 
                         $url_image = wp_get_attachment_url( get_post_thumbnail_id( $val->ID ) );
                         $url = get_permalink($val->ID); 
+     
                         $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";  
                         $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
                         $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
@@ -182,22 +183,21 @@
                         $data_object.="{city:\"".$city."\", district:\"".$district."\",area:".$area.", rooms:".$rooms.", references:".esc_attr($prop['anbieternr']).",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"".$url."\", image_url:  \"".$url_image."\"},";
                         
                         //$url = 
-                        
-                        
+  
                         $data_object.="{city:\"" . esc_attr($prop['geo|ort']) . "\", district:\"" . esc_attr($prop['geo|regionaler_zusatz']) . "\",area:" . esc_attr($prop['flaechen|wohnflaeche']) . ", rooms:" . esc_attr($prop['flaechen|anzahl_zimmer']) . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . "},";
                         $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
-                        if ($i < 10):
+                     
                             ?> 
                             <tr>
                                 <td>   
-                                    <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a>
+                                    <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i><?php echo $val->is_favorite; ?></a>
                                 </td>
                                 <td>
                                     <?php echo esc_attr($prop['anbieternr']) ?>
                                 </td>
                                 <td>
-                                    <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
+                                    <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>, <?php echo esc_attr($prop['geo|plz']) ?> </a>
                                 </td>
                                 <td>
 
@@ -226,8 +226,8 @@
                             </tr>
 
                             <?php
-                        endif;
-                        $i++;
+                       
+                        
                     endforeach;
                 endif;
 
