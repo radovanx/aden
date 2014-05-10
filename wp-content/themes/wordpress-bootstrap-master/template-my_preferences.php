@@ -23,7 +23,7 @@
                         </section> <!-- end article section -->
 
                         <!-- reference list -->
-                        <div class="col-md-12 column">
+                        
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -100,7 +100,7 @@
                                     ?>
                                 </tbody>
                             </table>
-                        </div>                          
+                                              
                         <!-- /reference list -->
                         
                         <footer>
