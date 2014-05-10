@@ -677,7 +677,8 @@ class EstateProgram {
                 IFNULL(up.flat_id, 0) as is_favorite,
                 p.post_name as slug,
                 tt.term_taxonomy_id,
-                t.*                
+                t.term_id,
+                t.name AS term_name
             FROM
                 wp_posts AS p                
             JOIN
