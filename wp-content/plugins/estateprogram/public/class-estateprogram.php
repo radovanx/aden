@@ -619,7 +619,7 @@ class EstateProgram {
     /**
      * 
      */
-    public static function get_all_flats($program_id, $lang, $limit, $offset){
+    public static function get_all_flats($program_id, $lang, $limit = null, $offset = null ){
         global $wpdb;
 
         $sql = "
@@ -650,10 +650,10 @@ class EstateProgram {
                 p.post_status = 'publish'
         ";
 
-        if(!empty($limit)){
-            $sql .= " LIMIT '" . (int) $limit . "'";
+        if(!is_null($limit)){
+            $sql .= " LIMIT " . (int) $limit;
                 
-            if(!empty($offset)){
+            if(!is_null($offset)){
                 $sql .= ", " . (int) $offset;
             }    
         }         
