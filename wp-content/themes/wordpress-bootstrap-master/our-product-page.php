@@ -174,10 +174,10 @@
 
                         $url_image = wp_get_attachment_url( get_post_thumbnail_id( $val->ID ) );
                         
-                        $url = 
-                        
-                        
-                        $data_object.="{city:\"" . esc_attr($prop['geo|ort']) . "\", district:\"" . esc_attr($prop['geo|regionaler_zusatz']) . "\",area:" . esc_attr($prop['flaechen|wohnflaeche']) . ", rooms:" . esc_attr($prop['flaechen|anzahl_zimmer']) . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . "},";
+                        $url = get_permalink($val->ID);
+   
+                        $data_object.="{city:\"" . esc_attr($prop['geo|ort']) . "\", district:\"" . esc_attr($prop['geo|regionaler_zusatz']) . "\",area:" . esc_attr($prop['flaechen|wohnflaeche']) . ", rooms:".esc_attr($prop['flaechen|anzahl_zimmer']).", references:".esc_attr($prop['anbieternr']).",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"".$url."\", image_url:  \"".$url_image."\"},";
+                       
                         $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
                         if ($i < 10):

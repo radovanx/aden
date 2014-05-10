@@ -20,6 +20,9 @@
                             <div class="tab-pane fade in active" id="gallery_tab">
                                 <!--slider here --> 
                                 <?php
+                                
+                                $lang = qtrans_getLanguage();
+                                
                                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
                                 $url = $thumb['0'];
                                 ?>
@@ -86,8 +89,29 @@
                                             <abbr title="Phone">P:</abbr> (123) 456-7890
                                             </address>
                                                     <span class="propertyListBoxDataItemName">
-                                                    <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?></strong></span>
-                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong> Exclusive Apartments</span>
+                                                    <i class="fa fa-money"></i><strong>
+                                                       
+                                                         <?php 
+                                                             $prop = get_post_meta( get_the_ID(), 'flat_props_'.$lang.'', true );
+                                                          
+                                                        
+                                                            var_dump($prop);
+                                                       
+                                                          ?>
+                                                        
+                                                         <?php echo esc_attr($prop[0]['preise|kaufpreis']) ?>
+                                                        
+                                                    </strong>
+                                                     
+                                                    <strong class="red"> &euro; 
+                                                             
+                                                    <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?>
+                                                         
+                                                    </strong></span>
+                                                    
+                                            
+                                            
+                                            <span class="propertyListBoxDataItemName"><i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong> Exclusive Apartments</span>
                                                     <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
  
                                             <a  href="#" class="btn btn-lg bold btn-primary btn-block"><?php _e("Recommend product", "wpbootstrap"); ?></a>
