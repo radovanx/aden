@@ -78,10 +78,7 @@
                 <input type="text" name="country" id="country" value="<?php echo esc_attr(get_user_meta($profileuser->ID, 'country', true)) ?>" class="form-control input-lg" />
             </div>
 
-
-
             <?php do_action('show_user_profile', $profileuser); ?>
-
             
             <div class="col-md-12 column form-group">
                 <p class="submit">
