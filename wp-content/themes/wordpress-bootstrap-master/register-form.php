@@ -10,7 +10,10 @@
     <form name="registerform" id="registerform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('register'); ?>" method="post">
 
         <h2 class="border-left uppercase"><?php _e('Registration', 'wpbootstrap') ?></h2>
+ 
         <div class="row">
+            
+            <div class="col-md-12 column">	
             <div class="col-md-6">
 
                 <div class="form-group">
@@ -80,7 +83,8 @@
                     <input type="hidden" name="action" value="register" />
                     <div class="clearfix"></div>
                 </div> 
-            </div>    
+            </div> 
+                  </div>
         </div>
     </form>
     <?php //$template->the_action_links(array('register' => false)); ?>
