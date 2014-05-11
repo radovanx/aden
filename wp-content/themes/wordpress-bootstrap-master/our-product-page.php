@@ -238,7 +238,7 @@
              $lang = qtrans_getLanguage(); 
                 $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10); 
                 $i = 0;
-                $data_object = ''; 
+    
                 if (!empty($flat_props)):
                     foreach ($flat_props as $key => $val):
                         $prop = unserialize($val->prop);
