@@ -509,7 +509,7 @@ class EstateProgram {
      * @since    1.0.0
      */
     public function enqueue_styles() {
-        wp_enqueue_style($this->plugin_slug . '-plugin-styles', plugins_url('assets/css/public.css', __FILE__), array(), self::VERSION);
+        //wp_enqueue_style($this->plugin_slug . '-plugin-styles', plugins_url('assets/css/public.css', __FILE__), array(), self::VERSION);
     }
 
     /**

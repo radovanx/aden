@@ -13,9 +13,9 @@
 
             $.post(estateprogram.ajaxurl, data, function(response) {
                 if(1 == response){
-                    element.removeClass('blue').addClass('red');
+                    element.removeClass('fa-star-o blue').addClass('fa-star red');
                 } else {
-                    element.removeClass('red').addClass('blue');
+                    element.removeClass('fa-star red').addClass('fa-star-o blue');
                 }
             }).fail(function() {
                 //alert( "error" );
