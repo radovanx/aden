@@ -1,15 +1,34 @@
-<?php 
+<?php
 /**
  * Template Name: Buy page
  */
-
-get_header(); ?>
+get_header();
+?>
 <div class="container">
+
+
+
     <div id="content" class="clearfix row">
+
+
 
         <div id="main" class="col-sm-12 clearfix" role="main">
 
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+
+                    <?php if (has_post_thumbnail()): ?>            
+                        <div class="block">	  	  
+                            <?php
+                            $attr = array(
+                                'class' => 'img-responsive'
+                            );
+
+                            the_post_thumbnail('page_thumb', $attr);
+                            ?>  
+                        </div>            
+                    <?php endif; ?> 
+
 
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
@@ -32,13 +51,13 @@ get_header(); ?>
 
                     </article> <!-- end article -->
 
-                    
-                        <div class="border col-md-12 column border background contact_form_block">
-                            <h2 class="border-left uppercase"><?php _e('Contact Form', 'wpbootstrap') ?></h2>
-                            <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
-                            <?php echo do_shortcode('[contact-form-7 id="4082" title="Buy page form - en"]') ?>
-                        </div>
-                    
+
+                    <div class="border col-md-12 column border background contact_form_block">
+                        <h2 class="border-left uppercase"><?php _e('Contact Form', 'wpbootstrap') ?></h2>
+                        <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
+                        <?php echo do_shortcode('[contact-form-7 id="4082" title="Buy page form - en"]') ?>
+                    </div>
+
 
                 <?php endwhile; ?>
 
