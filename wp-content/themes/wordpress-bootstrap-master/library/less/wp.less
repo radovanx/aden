@@ -616,7 +616,7 @@ blockquote.pull-left{
     .border-left
     {
     border-left: 3px solid @red; 
-    padding-left: 10px;
+    padding-left: 15px;
     }
     .uppercase
     {
@@ -624,18 +624,21 @@ blockquote.pull-left{
     }
     .bigger-text
     {
-       font-size: @font-size-large
+       font-size: 15px;
          
     } 
+    .border-bottom
+    {
+        border-bottom: 1px solid @gray-border;
+        padding-bottom: 20px; 
+    }
     .primary
     {
     .bold; 
     .border-left;
     .uppercase;
     }
- 
     /*home page*/
-    
     .propertyListBoxDataItemName
     {
         display: block; 
@@ -644,7 +647,6 @@ blockquote.pull-left{
         {
             padding-right: 10px; 
         } 
-       
     }
     .thumbnail
     { 
@@ -677,10 +679,14 @@ blockquote.pull-left{
        margin: 0 !important;
 } 
 /*carousel home page*/
+
+.carousel-indicators
+{
+    display: none;
+    
+}
 .carousel .item img {
-   
-   min-width: 100%;
-   
+   min-width: 100%; 
 }
 .carousel
 {
@@ -758,23 +764,51 @@ blockquote.pull-left{
 {
     font-size:15px;
     margin-top: 15px; 
+    margin-bottom: 35px;
     address
     {
-        border-bottom: 1px solid @gray;
+        border-bottom: 1px solid #d8e1e9;
         padding-bottom: 15px;
+        line-height: 1.6;
     } 
+    
+    .propertyListBoxDataItemName
+    {
+       margin-bottom: 14px; 
+        
+    }
+    
+    .printlink,  .droplink
+    {
+     line-height: 35px;    
+        
+    }
+    .printlink>.droplink
+    {
+        margin-bottom: 20px;
+        
+    }
+    
+    .btn
+    {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        
+    }
+   
+    
     .propertyListBoxDataItemName
     {
      font-size:18px;   
-    } 
+    }
+   
 }
 
-
-
-
+ 
 /* carousel in the program-detail page */ 
 #myCarousel .col-xs-3 { 
     width: 20%; 
+    overflow: hidden;
 } 
 #myCarousel .carousel-control 
 {
@@ -872,10 +906,48 @@ input:-moz-placeholder { color:#bfcad2; font-size: 14px; font-weight: 400;}
     margin-top: 20px;
   
 }
-
-
-
+ 
 //table sizing 
+
+
+
+
+
+//about us page
+.testimonial
+{
+    
+   padding-top:25px;
+    padding-bottom:35px;
+   h1
+   {
+    margin-bottom: 25px;   
+       
+   }
+    
+   h4
+   {
+       margin-bottom: 25px; 
+   }
+   p
+   {
+       font-size: 14px;
+       color:#494949;
+       line-height: 1.7;
+       
+   }
+   
+   
+   
+   
+    
+    
+}
+
+
+
+
+
 /*magnific popup*/
 /* Magnific Popup CSS */
 .mfp-bg {

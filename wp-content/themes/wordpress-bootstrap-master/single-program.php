@@ -80,6 +80,7 @@
                                 <div class="column ">
                                     <div class="col-md-12 column border">
                                         <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
+                                      
                                         <ul class="list-unstyled">
                                             <li><i class="fa fa-check"></i>
                                                 Top location within the central press and lifestyle district of Berlin
@@ -205,9 +206,7 @@
 
                                                         </td>
                                                         <td>
-
                                                         </td>
-
                                                         <td>
                                                             <?php echo esc_attr($prop['geo|etage']) ?>          
                                                         </td>
@@ -282,18 +281,16 @@
 
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
 
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
-    // MAP //       
+    // MAP //     
+    
+     
     jQuery(document).ready(function($) {
         $('.create_map').click(function() {
 
-            $.ajax({
-                url: "http://maps.googleapis.com/maps/api/js?sensor=false&callback=MapApiLoaded",
-                dataType: "script",
-                timeout: 2000,
-                error: function() {
-                    // Handle error here
-                }})
+             MapApiLoaded()
         })
     });
 
@@ -318,10 +315,19 @@
         });
         // Trigger resize to correctly display the map
         google.maps.event.trigger(map, "resize");
+        
+        
+        google.maps.event.trigger(map, 'resize'); map.setZoom( map.getZoom() );
         // Map loaded trigger
         google.maps.event.addListenerOnce(map, 'idle', function() {
             // Fire when map tiles are completly loaded
+ 
         });
+        
+        google.maps.event.addListener(map, "idle", function(){
+         marker.setMap(map);
+        });
+  
     }
 
 //STREET//
@@ -362,8 +368,12 @@
                 document.getElementById('gmapstreet'), panoOptions);
 
         google.maps.event.trigger(panorama, "resize");
+        google.maps.event.trigger(panorama, 'resize'); panorama.setZoom( panorama.getZoom() );
+        
         google.maps.event.addListenerOnce(panorama, 'idle', function() {
             // Fire when map tiles are completly loaded
+            
+                alert('test');
         });
 
     }

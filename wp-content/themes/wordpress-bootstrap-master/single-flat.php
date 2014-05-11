@@ -116,21 +116,18 @@
                                               </span>
                                             <a  href="#" class="btn btn-lg bold btn-primary btn-block"><?php _e("Recommend product", "wpbootstrap"); ?></a>
    
-                                            <a href="#" class="blue clearfix"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
-                                            <a href="#" class="blue clearfix"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
-                                            <a href="#" class="blue clearfix"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
-                                            <a href="#" class="blue clearfix"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
+                                            <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
+                                            <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
+                                            <a href="#" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
+                                            <a href="#" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
                                         </div>
                                     </div>
                                 </div>
                             </div> 
                                     <div class="col-md-12 column">
-                                
                                         <div class="col-md-12 column border">
-                                        
                                         <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
-                                        <ul class="no-style featured-single-flat">
-                                            
+                                        <ul class="list-unstyled featured-single-flat">
                                             <li>
                                             <strong><?php _e("Type of property to search for:", "wpbootstrap"); ?> </strong>
                                             </li>
@@ -170,38 +167,32 @@
                                         </ul>
                                          </div>
                                     </div>
-                                    <div class="col-md-12 column">
+                                    <div class="col-md-12 column border-bottom margin-top">
                                      <h4 class="border-left uppercase"><?php _e("Description", "wpbootstrap"); ?></h4>    
-                                     <p>
-
+                                     <p class="bigger-text"> 
                                        <?php echo esc_attr($props['freitexte|ausstatt_beschr']) ?>    
-
                                      </p>
                                     </div>    
-                            <div class="col-md-6">
+                            <div class="col-md-6 border-bottom margin-top">
                             <h4 class="border-left uppercase"><?php _e("Description of the building", "wpbootstrap"); ?></h4>       
-                                  <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?>  
+                                 
+
+                            <p class="bigger-text"> <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?></p>  
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 border-bottom margin-top">
                             <h4 class="border-left uppercase"><?php _e("Description SURROUNDINGs", "wpbootstrap"); ?></h4>       
-                                  <?php echo esc_attr($props['freitexte|lage']) ?>
+                                 <p class="bigger-text"> <?php echo esc_attr($props['freitexte|lage']) ?></p>
                             </div>
-                            
-                            
                             <div class="col-md-12 column">
                              <h3 class="border-left uppercase"><?php _e("Area map", "wpbootstrap"); ?></h3>   
                              
                              <?php 
                                    $lang =  esc_attr($props['geo|geokoordinaten|breitengrad']);  
-                                   $long =  esc_attr($props['geo|geokoordinaten|laengengrad']);  
-    
-                                    
+                                   $long =  esc_attr($props['geo|geokoordinaten|laengengrad']);    
                               ?>
                              
-                             
                              <div id="map-canvas">
-                                 
-                       
+   
                              </div> 
                             </div>
         
@@ -248,30 +239,30 @@
     // MAP //     
     
     
-var lang = <?php echo $lang; ?>;
-        
+var lang = <?php echo $lang; ?>;   
 var long = <?php echo $long; ?>;       
- 
+  
+
 function initialize() {
   var mapOptions = {
     zoom: 8,
     center: new google.maps.LatLng(lang,long)
-  };
-
-  var map = new google.maps.Map(document.getElementById('map-canvas'),
+    };
+     
+    
+      
+      var map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
-}
-
+   
+    }  
 function loadScript() {
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
       'callback=initialize';
   document.body.appendChild(script);
-}
-
+} 
 window.onload = loadScript;
-
  
 </script>
 <?php get_footer(); ?>
