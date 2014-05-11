@@ -5,11 +5,30 @@
 get_header();
 ?>
 <div class="container">
+
+
+
     <div id="content" class="clearfix row">
+
+
 
         <div id="main" class="col-sm-12 clearfix" role="main">
 
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+
+                    <?php if (has_post_thumbnail()): ?>            
+                        <div class="block">	  	  
+                            <?php
+                            $attr = array(
+                                'class' => 'img-responsive'
+                            );
+
+                            the_post_thumbnail('page_thumb', $attr);
+                            ?>  
+                        </div>            
+                    <?php endif; ?> 
+
 
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 

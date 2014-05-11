@@ -10,7 +10,7 @@
     <div class="col-md-12 column">
         <?php $template->the_action_template_message('profile'); ?>
         <?php $template->the_errors(); ?>
-        <form id="your-profile" class="border background clearfix" action="<?php $template->the_action_url('profile'); ?>" method="post">
+        <form id="your-profile" class="border background clearfix" action="<?php $template->the_action_url('profile'); ?>" method="post" enctype='multipart/form-data'>
             <?php wp_nonce_field('update-user_' . $current_user->ID); ?>
             <input type="hidden" name="from" value="profile" />
             <input type="hidden" name="checkuser_id" value="<?php echo $current_user->ID; ?>" />
@@ -76,10 +76,26 @@
 
                 <label for="country"><?php _e('Country', 'wpbootstrap'); ?></label>
                 <input type="text" name="country" id="country" value="<?php echo esc_attr(get_user_meta($profileuser->ID, 'country', true)) ?>" class="form-control input-lg" />
+
+
+                <label for="user-logo"><?php _e('Logo', 'wpbootstrap'); ?></label>
+                <input type="file" name="user_logo" id="user-logo" />                
+
+                <?php
+                $attachment_id = get_user_meta(get_current_user_id(), 'logo', true);
+                if (!empty($attachment_id)) {
+                    $attr = array(
+                        //'class' => 'img-responsive'
+                    );
+                    echo wp_get_attachment_image($attachment_id, 'profile_logo');
+                }
+                ?>
+
+
             </div>
 
             <?php do_action('show_user_profile', $profileuser); ?>
-            
+
             <div class="col-md-12 column form-group">
                 <p class="submit">
                     <input type="hidden" name="action" value="profile" />
