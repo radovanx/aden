@@ -698,7 +698,8 @@ class EstateProgram {
                 p.post_name as slug,
                 tt.term_taxonomy_id,
                 t.term_id,
-                t.name AS term_name
+                t.name AS term_name,
+                a2p.program_id as program_id
             FROM
                 wp_posts AS p
             JOIN
@@ -739,7 +740,8 @@ class EstateProgram {
                 p.post_type = 'flat'
             AND
                 p.post_status = 'publish'
-                    ";
+            GTOUP BY 
+                p.ID";
 
         if (!is_null($limit)) {
             $sql .= " LIMIT " . (int) $limit;
