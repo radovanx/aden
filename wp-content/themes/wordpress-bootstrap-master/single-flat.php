@@ -75,13 +75,11 @@
                                 <footer>
                                 </footer> <!-- end article footer -->
                                 </article> <!-- end article -->
- 
                             </div>
                             <div class="col-md-4 column">
                                 <div class="border col-md-12 column">
                                     <div class="row clearfix">
-                                        <div class="col-md-12 column product-key-info">
-                                            
+                                        <div class="col-md-12 column product-key-info"> 
                                             <address>
                                             <strong>Adenimmo</strong><br>
                                             795 Folsom Ave, Suite 600<br>
@@ -122,39 +120,49 @@
                                         <div class="col-md-12 column border">
                                         
                                         <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
-                                        <ul class="no-style">
-                                            <li><i class="fa fa-check"></i>
-                                                Top location within the central press and lifestyle district of Berlin
+                                        <ul class="no-style featured-single-flat">
+                                            
+                                            <li>
+                                            <strong><?php _e("Type of property to search for:", "wpbootstrap"); ?> </strong>
                                             </li>
-                                            <li><i class="fa fa-check"></i>
-                                                Superb construction and quality of materials providing utmost comfort and privacy
+                                            <li>
+                                            <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
                                             </li>
-                                            <li><i class="fa fa-check"></i>
-                                                Excellent residential investment potential for a booming European capital city
+                                            <li>
+                                            <strong><?php _e("Purchase price /sm:", "wpbootstrap"); ?></strong>
                                             </li>
-                                            <li><i class="fa fa-check"></i>
-                                                In immediate vicitiny of world-class hotels, embassies and large international companies
+                                            <li>
+                                            <strong><?php _e("Apartment type:", "wpbootstrap"); ?> </strong>
                                             </li>
-                                            <li><i class="fa fa-check"></i>
-                                                Large penthouses with private roof terraces, smaller city living apartments
+                                            <li>
+                                            <strong><?php _e("Floor:", "wpbootstrap"); ?> </strong>
                                             </li>
-                                            <li><i class="fa fa-check"></i>
-                                                Option available to combine multiple apartments
+
+                                            <li>
+                                            <strong><?php _e("Number of floors:", "wpbootstrap"); ?> </strong>
                                             </li>
-                                            <li><i class="fa fa-check"></i>
-                                                On-site house concierge for daily errands and tasks
+                                            <li>
+                                            <strong><?php _e("Rooms:", "wpbootstrap"); ?> </strong>
                                             </li>
-                                            <li><i class="fa fa-check"></i>
-                                                Start of construction: ca. April 2014
+                                            <li>
+                                            <strong><?php _e("Bathroom(s):", "wpbootstrap"); ?> </strong>
+                                            </li>
+                                             <li>
+                                            <strong><?php _e("Elevator:", "wpbootstrap"); ?></strong>  
+                                            </li>
+                                            <li>
+                                            <strong><?php _e("Type of heating system:", "wpbootstrap"); ?></strong>
+                                            </li>
+                                              <li>
+                                            <strong><?php _e("Garage / parking spot:", "wpbootstrap"); ?></strong>
+                                            </li>
+                                            <li>
+                                            <strong><?php _e("Buyer commission (incl. VAT):", "wpbootstrap"); ?></strong>
                                             </li>
                                         </ul>
-
                                          </div>
-                                        
                                     </div>
-                                    
-                            
-                         
+
                                     <div class="col-md-12 column">
                             
                                      <h4 class="border-left uppercase"><?php _e("Description", "wpbootstrap"); ?></h4>    
