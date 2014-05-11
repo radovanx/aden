@@ -22,7 +22,6 @@
                                 <?php
                                 
                                 $lang = qtrans_getLanguage();
-                                
                                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
                                 $url = $thumb['0'];
                                 ?>
@@ -32,14 +31,12 @@
                                 <div id="myCarousel" class="carousel slide">
                                     <!-- Carousel items -->
                                     <div class="carousel-inner program-carousel">
-
                                         <?php
                                         $images = & get_children(array(
                                                     'post_parent' => $post->ID,
                                                     'post_type' => 'attachment',
                                                     'post_mime_type' => 'image'
                                         ));
-
                                         if (empty($images)) {
                                             // no attachments here
                                         } else {
@@ -87,30 +84,42 @@
                                             <abbr title="Phone">P:</abbr> (123) 456-7890
                                             </address>
                                                     <span class="propertyListBoxDataItemName">
-                                                    <i class="fa fa-money"></i><strong>
-                                                       
+                                                    <i class="fa fa-money"></i>
+                                                    <strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
+                                                    
+                                                    
+                                                    <strong class="red">
                                                          <?php 
-                                                             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
+                                                          $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
                                                           ?>
                                                          <?php echo esc_attr($props['preise|kaufpreis']) ?>
-                                                        
+                                                         &euro; 
                                                     </strong>
                                                      
-                                                    <strong class="red"> &euro; 
-                                                             
-                                                    <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?>
-                                                         
-                                                    </strong></span>
+                                                    </span>
                                              
-                                            <span class="propertyListBoxDataItemName"><i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong> Exclusive Apartments</span>
-                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
- 
+                                            <span class="propertyListBoxDataItemName">                                  
+                                                <i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong>
+                                                <strong class="red"> 
+                                                     <?php echo esc_attr($props['flaechen|wohnflaeche']) ?>
+                                                </strong>
+                                            </span>
+                                                
+                                            
+                                            <span class="propertyListBoxDataItemName">
+                                                <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
+                                                <strong class="red">
+                                                      
+                                                     <?php echo esc_attr($props['flaechen|anzahl_zimmer']) ?>
+                                                    
+                                                </strong>
+                                              </span>
                                             <a  href="#" class="btn btn-lg bold btn-primary btn-block"><?php _e("Recommend product", "wpbootstrap"); ?></a>
    
-                                            <a href="#" class="blue"><i class="fa fa-print"></i> Print presentation</a>
-                                            <a href="#" class="blue"><i class="fa fa-print"></i> Print reservation documents</a>
-                                            <a href="#" class="blue"><i class="fa fa-download"></i> Download building data</a>
-                                            <a href="#" class="blue"><i class="fa fa-download"></i> Download product data</a>
+                                            <a href="#" class="blue clearfix"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
+                                            <a href="#" class="blue clearfix"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
+                                            <a href="#" class="blue clearfix"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
+                                            <a href="#" class="blue clearfix"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +146,6 @@
                                             <li>
                                             <strong><?php _e("Floor:", "wpbootstrap"); ?> </strong>
                                             </li>
-
                                             <li>
                                             <strong><?php _e("Number of floors:", "wpbootstrap"); ?> </strong>
                                             </li>
@@ -162,51 +170,41 @@
                                         </ul>
                                          </div>
                                     </div>
-
                                     <div class="col-md-12 column">
-                            
                                      <h4 class="border-left uppercase"><?php _e("Description", "wpbootstrap"); ?></h4>    
-                                        
-                                        
-                            
-                              
+                                     <p>
+
+                                       <?php echo esc_attr($props['freitexte|ausstatt_beschr']) ?>    
+
+                                     </p>
                                     </div>    
-                            
                             <div class="col-md-6">
                             <h4 class="border-left uppercase"><?php _e("Description of the building", "wpbootstrap"); ?></h4>       
-                                
-                                
-                                
-                                
+                                  <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?>  
                             </div>
-                            
                             <div class="col-md-6">
                             <h4 class="border-left uppercase"><?php _e("Description SURROUNDINGs", "wpbootstrap"); ?></h4>       
-                                
-                                
-                                
-                                
+                                  <?php echo esc_attr($props['freitexte|lage']) ?>
                             </div>
                             
                             
                             <div class="col-md-12 column">
                              <h3 class="border-left uppercase"><?php _e("Area map", "wpbootstrap"); ?></h3>   
                              
-                             <div class="area_map">
+                             <?php 
+                                   $lang =  esc_attr($props['geo|geokoordinaten|breitengrad']);  
+                                   $long =  esc_attr($props['geo|geokoordinaten|laengengrad']);  
+    
+                                    
+                              ?>
+                             
+                             
+                             <div id="map-canvas">
                                  
-                                 
-                                 
-                                 
-                                 
+                       
                              </div> 
                             </div>
-                            
-                            
-                                    
-                            
-                            
-                            
-                    
+        
                     <?php endwhile; ?>
                 <?php else : ?>
                     <article id="post-not-found">
@@ -247,89 +245,33 @@
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
 
 <script>
-    // MAP //       
-    jQuery(document).ready(function($) {
-        $('.create_map').click(function() {
-
-            $.ajax({
-                url: "http://maps.googleapis.com/maps/api/js?sensor=false&callback=MapApiLoaded",
-                dataType: "script",
-                timeout: 2000,
-                error: function() {
-                    // Handle error here
-                }})
-        })
-    });
-
-    function MapApiLoaded() {
-        // Create google map
-        map = new google.maps.Map(jQuery('#gmap')[0], {
-            zoom: 8,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            panControl: false,
-            streetViewControl: false,
-            mapTypeControl: true
-        });
-
-
-        map.setCenter(new google.maps.LatLng(<?php echo $LangLong; ?>));
-        var myLatlng = new google.maps.LatLng(<?php echo $LangLong; ?>);
-
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: 'Hello World!'
-        });
-        // Trigger resize to correctly display the map
-        google.maps.event.trigger(map, "resize");
-        // Map loaded trigger
-        google.maps.event.addListenerOnce(map, 'idle', function() {
-            // Fire when map tiles are completly loaded
-        });
-    }
-
-//STREET//
-
-    jQuery(document).ready(function($) {
-        $('.create_street').click(function() {
-
-            $.ajax({
-                url: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=StreetApiLoaded",
-                dataType: "script",
-                timeout: 8000,
-                error: function() {
-                    // Handle error here
-                }})
-        })
-    });
-
-
-    function StreetApiLoaded() {
-        var fenway = new google.maps.LatLng(<?php echo $LangLong; ?>);
-
-        // Note: constructed panorama objects have visible: true
-        // set by default.
-        var panoOptions = {
-            position: fenway,
-            addressControlOptions: {
-                position: google.maps.ControlPosition.BOTTOM_CENTER
-            },
-            linksControl: false,
-            panControl: false,
-            zoomControlOptions: {
-                style: google.maps.ZoomControlStyle.SMALL
-            },
-            enableCloseButton: false
-        };
-
-        var panorama = new google.maps.StreetViewPanorama(
-                document.getElementById('gmapstreet'), panoOptions);
-
-        google.maps.event.trigger(panorama, "resize");
-        google.maps.event.addListenerOnce(panorama, 'idle', function() {
-            // Fire when map tiles are completly loaded
-        });
+    // MAP //     
+    
+    
+var lang = <?php echo $lang; ?>;
+        
+var long = <?php echo $long; ?>;       
  
-    }
+function initialize() {
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(lang,long)
+  };
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+}
+
+function loadScript() {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+      'callback=initialize';
+  document.body.appendChild(script);
+}
+
+window.onload = loadScript;
+
+ 
 </script>
 <?php get_footer(); ?>

@@ -1,5 +1,4 @@
 <?php get_header(); ?>
-
 <div class="visible-lg">
 <?php echo do_shortcode( '[image-carousel interval="12000"]') ?> 
 </div>
@@ -14,6 +13,7 @@
             $args = array(
                 'post_type' => 'program',
                 'post_status' => 'publish',
+  
             );
             $query = new WP_Query($args); 
             if ($query->have_posts()) {
@@ -66,4 +66,4 @@
               <h2 class="border-left"><?php _e("NEWSLETTER", "wpbootstrap"); ?></h2> 
         </div>
     </div></div>
-    <?php get_footer(); ?>
+    <?php get_footer();?>

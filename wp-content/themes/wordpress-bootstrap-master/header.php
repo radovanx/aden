@@ -43,8 +43,6 @@
                 </div> 
             </div> <!-- end .container -->
         </div> <!-- end .navbar -->
-
-
         <?php 
         
         $pages = array(

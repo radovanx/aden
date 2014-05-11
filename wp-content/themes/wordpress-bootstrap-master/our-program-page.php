@@ -40,14 +40,15 @@
                                     <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?></strong></span>             
                             </div>
                             <div class="panel-body excerpt"> 
-                                <?php the_excerpt() ?>
+                                <?php the_excerpt();?>
                             </div>
                             <div class="clearfix">		
                                 <span class="col-lg-6 nopadding">    
-                                    <a class="btn btn-lg bold btn-default btn-block btn-upper" href="<?php the_permalink(); ?> ">view details ></a> 
+                                    <a class="btn btn-lg bold btn-default btn-block btn-upper" href="<?php the_permalink(); ?>">view details ></a> 
                                 </span>
                                 <span class="col-lg-6 nopadding">
                                    <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?>">make an enquiry</a> 
+                                 </span>   
                             </div>
                         </div>	
                     </div>
@@ -56,6 +57,5 @@
             }
             wp_reset_query();
             ?>
-   
     </div></div>
     <?php get_footer(); ?>

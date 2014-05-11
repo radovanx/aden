@@ -80,7 +80,7 @@
                                 <div class="column ">
                                     <div class="col-md-12 column border">
                                         <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
-                                        <ul class="no-style">
+                                        <ul class="list-unstyled">
                                             <li><i class="fa fa-check"></i>
                                                 Top location within the central press and lifestyle district of Berlin
                                             </li>
@@ -157,10 +157,10 @@
                                         <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
                                     </select>
                                 </div>
-                                <div class="col-md-3">
+                                 <div class="col-md-3 big_icons">
                                     <a href="#" class="active blue"><i class="fa fa-list"></i></a>
                                     <a href="#" class="red"><i class="fa fa-th "></i></a>
-                                </div>
+                                 </div>
 
                                 <div class="col-md-12 column">
                                     <table class="table table-bordered">
@@ -191,7 +191,7 @@
                                                 foreach ($flat_props as $key => $val):
                                                     $prop = unserialize($val->prop);
                                                     ?>
-                                                    <tr>
+                                                    <tr class="<?php echo $i%2 ? 'background' : 'no-background';?>">
                                                         <td>   
                                                             <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a>
                                                         </td>
@@ -234,6 +234,7 @@
                                                         </td>
                                                     </tr>
                                                     <?php
+                                                    $i++;
                                                 endforeach;
                                             endif;
                                             ?>
