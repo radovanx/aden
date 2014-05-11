@@ -740,7 +740,7 @@ class EstateProgram {
                 p.post_type = 'flat'
             AND
                 p.post_status = 'publish'
-            GTOUP BY 
+            GROUP BY 
                 p.ID";
 
         if (!is_null($limit)) {
