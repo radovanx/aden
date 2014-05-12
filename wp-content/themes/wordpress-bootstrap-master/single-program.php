@@ -65,7 +65,7 @@
                                 </div>
                                 <!--/TAB CONTENT END-->   
 
-                                <ul class="nav nav-pills">
+                                <ul class="nav nav-pills margin-top">
                                     <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
                                     <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_map"><i class="fa fa-map-marker"></i>Map View</a></li>
                                     <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Street View</a> </li>
@@ -80,6 +80,7 @@
                                 <div class="column ">
                                     <div class="col-md-12 column border">
                                         <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
+                                      
                                         <ul class="list-unstyled">
                                             <li><i class="fa fa-check"></i>
                                                 Top location within the central press and lifestyle district of Berlin
@@ -106,7 +107,6 @@
                                                 Start of construction: ca. April 2014
                                             </li>
                                         </ul>
-
                                     </div>
                                 </div>
                             </div>
@@ -143,7 +143,6 @@
                                 </div>
                             </div>
                             <?php if (is_user_logged_in()): ?>
-
                                 <div class="col-md-6">
                                     <h3 class="border-left inline uppercase">
                                         <?php _e("List of products available in this program", "wpbootstrap"); ?>
@@ -158,11 +157,15 @@
                                     </select>
                                 </div>
                                  <div class="col-md-3 big_icons">
-                                    <a href="#" class="active blue"><i class="fa fa-list"></i></a>
-                                    <a href="#" class="red"><i class="fa fa-th "></i></a>
-                                 </div>
-
-                                <div class="col-md-12 column">
+                                    <ul class="nav nav-tabs">
+                                        <a href="#table" data-toggle="tab" class="active red"><i class="fa fa-th"></i></a>
+                                        <a href="#list"  data-toggle="tab" class="blue"><i class="fa fa-list"></i></a>
+                                     </ul>
+                                     </div>     
+                                <div class="col-md-12 column margin-top">
+                                      <!-- Tab panes -->
+                                    <div class="tab-content">  
+                                    <div class="tab-pane active" id="table"> 
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
@@ -202,12 +205,9 @@
                                                             <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
                                                         </td>
                                                         <td>
-
                                                         </td>
                                                         <td>
-
                                                         </td>
-
                                                         <td>
                                                             <?php echo esc_attr($prop['geo|etage']) ?>          
                                                         </td>
@@ -220,17 +220,12 @@
                                                         <td>
                                                             <?php echo esc_attr($prop['preise|kaufpreis']) ?>
                                                         </td>
-
                                                         <td>
                                                             <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
                                                         </td>
-
                                                         <td>
-
                                                         </td>
-
                                                         <td>
-
                                                         </td>
                                                     </tr>
                                                     <?php
@@ -240,6 +235,113 @@
                                             ?>
                                         </tbody>
                                     </table>
+                                    </div>                          
+                <div class="col-md-12 column border tab-pane" id="list">     
+<?php
+ 
+$i=0;
+
+if (!empty($flat_props)):
+    foreach ($flat_props as $key => $val):
+        $prop = unserialize($val->prop);
+        $key = unserialize($key);
+        $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
+        $url_image = $thumb['0'];
+        $url = get_permalink($val->ID);
+
+        $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
+        $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
+        $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
+        $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
+        $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
+        $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
+        $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
+        $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
+        $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
+        $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
+        $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
+        ?> 
+ 
+                            <div class="row">
+                                <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
+
+                                    <div class="col-md-3">  
+
+                                        <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>"/></a>    
+
+                                    </div>    
+                                    <div class="col-md-9"> 
+                                        <h4 class="blue"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
+                                        <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h4>
+
+                                        <div class="row">
+                                            <div class="col-md-3">  
+                                                <span class="data_item clearfix">
+                                                    <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong> 
+
+                                                    <?php echo esc_attr($prop['anbieternr']) ?>
+
+                                                </span>                         
+                                                <span class="data_item clearfix">
+                                                    <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong> 
+                                                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                </span>
+                                                <span class="data_item clearfix">
+                                                    <strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong> 
+                                                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                </span> 
+                                            </div>
+                                            <div class="col-md-3"> 
+                                                <span class="data_item clearfix">
+                                                    <strong><?php _e("Floor:", "wpbootstrap"); ?></strong> 
+                                                <?php echo $floor; ?>
+                                                </span>
+ 
+                                                <span class="data_item clearfix">
+                                                    <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong> 
+                                                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                </span>
+
+                                                <span class="data_item clearfix">
+                                                    <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong> 
+                                                     <?php echo $area; ?>
+                                                </span>
+
+                                            </div>
+
+                                            <div class="col-md-3"> 
+                                                <span class="data_item clearfix">
+                                                    <strong><?php _e("Price:", "wpbootstrap"); ?></strong> 
+                                                    <?php echo $price; ?>
+                                                </span>
+
+                                                <span class="data_item clearfix">
+                                                    <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong> 
+                                                    <?php echo $pricem; ?>
+                                                </span>
+                                                <span class="data_item clearfix">
+                                                    <strong><?php _e("Yield:", "wpbootstrap"); ?></strong> 
+
+                                                </span>
+                                            </div> 
+                                            <div class="col-md-3"> 
+                                                <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
+                                                <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
+                                                </strong>
+                                                <a href="<?php echo $url; ?>" class=" "><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
+                                            </div>  
+                                        </div>  
+                                    </div>    
+                                </div>  
+                            </div> 
+        <?php
+        $i++;
+    endforeach;
+endif;
+?>  
+ </div>       
+ </div>    
+       
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -257,8 +359,7 @@
                     </article>
                 <?php endif; ?>
         </div> <!-- end #main -->
-    </div> <!-- end #content -->
-</div>
+  
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -280,20 +381,22 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+
+
+
+
+
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
 
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
-    // MAP //       
+    // MAP //     
+ 
     jQuery(document).ready(function($) {
         $('.create_map').click(function() {
 
-            $.ajax({
-                url: "http://maps.googleapis.com/maps/api/js?sensor=false&callback=MapApiLoaded",
-                dataType: "script",
-                timeout: 2000,
-                error: function() {
-                    // Handle error here
-                }})
+             MapApiLoaded()
         })
     });
 
@@ -318,10 +421,19 @@
         });
         // Trigger resize to correctly display the map
         google.maps.event.trigger(map, "resize");
+        
+        
+        google.maps.event.trigger(map, 'resize'); map.setZoom( map.getZoom() );
         // Map loaded trigger
         google.maps.event.addListenerOnce(map, 'idle', function() {
             // Fire when map tiles are completly loaded
+ 
         });
+        
+        google.maps.event.addListener(map, "idle", function(){
+         marker.setMap(map);
+        });
+  
     }
 
 //STREET//
@@ -360,12 +472,12 @@
 
         var panorama = new google.maps.StreetViewPanorama(
                 document.getElementById('gmapstreet'), panoOptions);
-
         google.maps.event.trigger(panorama, "resize");
+        google.maps.event.trigger(panorama, 'resize'); panorama.setZoom( panorama.getZoom() );
         google.maps.event.addListenerOnce(panorama, 'idle', function() {
             // Fire when map tiles are completly loaded
-        });
 
+        });
     }
 </script>
 <?php get_footer(); ?>

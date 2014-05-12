@@ -132,11 +132,8 @@
         
         </div>
         <div class="col-md-12 column margin-top">
-
             <!-- Tab panes -->
             <div class="tab-content">      
-
-
                 <div class="tab-pane active" id="table"> 
                 
                 <table class="table table-bordered">
@@ -188,8 +185,6 @@
 
                                 if ($i < 10):
                                     ?> 
-
-
                                     <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
                                         <td>   
                                             <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i><?php echo $val->is_favorite; ?></a>
