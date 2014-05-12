@@ -8,11 +8,12 @@ Theme My Login will always look in your theme's directory first, before using th
 <div class="row clearfix"> 
 <div class="login" id="theme-my-login<?php $template->the_instance(); ?>">
  <div class="col-md-6 column">	
-    <?php $template->the_errors(); ?>
-  
-    <form name="loginform" class="border background clearfix searchform col-md-12" id="loginform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url( 'login' ); ?>" method="post">
+    <div class="bg-danger text-danger"><?php $template->the_errors(); ?></div>
+    <form name="loginform" class="border background clearfix col-md-12" id="loginform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url( 'login' ); ?>" method="post">
  
-        <h2 class="border-left uppercase"><?php $template->the_action_template_message( 'login' ); ?></h2>
+        <h2 class="border-left uppercase "><?php _e('Log in', 'wpbootstrap') ?></h2>
+        
+        <h2><?php $template->the_action_template_message( 'login' ); ?></h2>
         <div class="col-md-12 column">	
         
                 <div class="form-group">
@@ -31,11 +32,15 @@ Theme My Login will always look in your theme's directory first, before using th
                         <label for="rememberme<?php $template->the_instance(); ?>" class="input-lg"><?php esc_attr_e( 'Remember Me' ); ?></label>
                 </div>
 		<div class="form-group">
+                    <div class="row">
+                    <div class="col-md-12 column">	
                     <input type="submit" name="wp-submit" class="pull-right btn btn-primary btn-lg" id="wp-submit<?php $template->the_instance(); ?>" value="<?php esc_attr_e( 'Log In' ); ?>" />
 			<input type="hidden" name="redirect_to" value="<?php $template->the_redirect_url( 'login' ); ?>" />
 			<input type="hidden" name="instance" value="<?php $template->the_instance(); ?>" />
 			<input type="hidden" name="action" value="login" />
                 </div>
+                    </div>
+                     </div>
                </div> 
 	</form>
 	<?php $template->the_action_links( array( 'login' => false ) ); ?>
