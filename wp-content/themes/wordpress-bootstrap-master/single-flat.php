@@ -24,7 +24,10 @@
                                 $lang = qtrans_getLanguage();
                                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
                                 $url = $thumb['0'];
+                                 
+                                $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
                                 ?>
+            
                                 <a href="<?php echo $url; ?>">
                                     <?php the_post_thumbnail('project-detail-big'); ?>
                                 </a>
@@ -63,10 +66,8 @@
                                             <!--/myCarousel-->
                                         </div>
                                     </div>
-                                
                                 </div>
                                 <!--/TAB CONTENT END-->   
- 
                                 <section class="post_content clearfix" itemprop="articleBody">
                                 </section> <!-- end article section -->
                                 <footer>
@@ -77,27 +78,26 @@
                                 <div class="border col-md-12 column">
                                     <div class="row clearfix">
                                         <div class="col-md-12 column product-key-info"> 
+                                             
                                             <address>
-                                            <strong>Adenimmo</strong><br>
-                                            795 Folsom Ave, Suite 600<br>
-                                            San Francisco, CA 94107<br>
-                                            <abbr title="Phone">P:</abbr> (123) 456-7890
+                                               
+                                               <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br> 
+                                               <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
+                                               <br><?php echo esc_attr($props['kontaktperson|hausnummer']) ?> <?php echo esc_attr($props['kontaktperson|strasse']) ?>  
+                                               <br><?php echo esc_attr($props['kontaktperson|ort']) ?> <?php echo esc_attr($props['kontaktperson|plz']) ?><br>
+                                               <abbr title="Phone">Phone:</abbr> <?php echo esc_attr($props['kontaktperson|tel_durchw']) ?><br>
+                                               <abbr title="Email">Email:</abbr> <?php echo esc_attr($props['kontaktperson|email_direkt']) ?>
                                             </address>
+                                            
+                                            
                                                     <span class="propertyListBoxDataItemName">
                                                     <i class="fa fa-money"></i>
                                                     <strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
-                                                    
-                                                    
                                                     <strong class="red">
-                                                         <?php 
-                                                          $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
-                                                          ?>
                                                          <?php echo esc_attr($props['preise|kaufpreis']) ?>
                                                          &euro; 
                                                     </strong>
-                                                     
                                                     </span>
-                                             
                                             <span class="propertyListBoxDataItemName">                                  
                                                 <i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong>
                                                 <strong class="red"> 
@@ -213,7 +213,6 @@
     </div> <!-- end #content -->
 </div>
  
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -266,3 +265,6 @@ window.onload = loadScript;
  
 </script>
 <?php get_footer(); ?>
+
+
+

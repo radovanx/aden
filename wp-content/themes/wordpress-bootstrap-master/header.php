@@ -45,24 +45,28 @@
         </div> <!-- end .navbar -->
         <?php 
         
-        $pages = array(
+      /*  $pages = array(
             3305, // My preferences 
             1755, // Profile
             1791, // Search 
             3314, // Webinars
             3310, // Programs
-        );
+        );*/
         
-        if (current_user_can('see_detail') && (is_page($pages) || is_singular('flat'))) : ?>
+ 
+        
+        if (current_user_can('see_detail') && (false == is_front_page())): ?>
             <div class="container">
                 <div class="content">
                     <div class="row">
                         <div class="col-sm-12 clearfix">
+                         
+
                             <?php
                             wp_nav_menu(
                                     array(
                                         'menu' => 'user_menu', /* menu name */
-                                        'menu_class' => 'nav navbar-nav',
+                                        'menu_class' => 'nav navbar-nav collapse navbar-collapse navbar-responsive-collapse navbar',
                                         'theme_location' => 'main_nav', /* where in the theme it's assigned */
                                         'container' => 'false', /* container class */
                                         'fallback_cb' => 'wp_bootstrap_main_nav_fallback', /* menu fallback */

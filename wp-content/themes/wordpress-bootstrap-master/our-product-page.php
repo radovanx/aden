@@ -370,12 +370,10 @@ endif;
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
+</div><!-- /.modal --> 
 <script>
     var availableCity;
-    availableCity = <?php echo $autocomplete; ?>
+    availableCity = <?php echo $autocomplete; ?>;
     GetUnique(availableCity)
     function GetUnique(inputArray)
     {
