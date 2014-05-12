@@ -4,13 +4,13 @@
   Theme My Login will always look in your theme's directory first, before using this default template.
  */
 ?>
+
+<div class="bg-danger text-danger"><?php $template->the_errors(); ?></div> 
 <div class="login border col-md-12 column border background contact_form_block" id="theme-my-login<?php $template->the_instance(); ?>">
     <?php //$template->the_action_template_message('register'); ?>
-    <?php $template->the_errors(); ?>
-    <form name="registerform" id="registerform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('register'); ?>" method="post">
-
+    
+    <form name="registerform" id="registerform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('register'); ?>" method="post"> 
         <h2 class="border-left uppercase"><?php _e('Registration', 'wpbootstrap') ?></h2>
- 
         <div class="row">
             
             <div class="col-md-12 column">	
