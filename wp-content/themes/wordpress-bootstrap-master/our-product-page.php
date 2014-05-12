@@ -227,7 +227,6 @@
                                 $i++;
                             endforeach;
                         endif;
-
                         $autocomplete = substr("$autocomplete", 0, -1);
                         $autocomplete = "[" . $autocomplete . "]";
                         $data_object = substr("$data_object", 0, -1);
@@ -236,8 +235,7 @@
                     </tbody>                 
                 </table>  
                 </div>    
-                    
-                    
+  
                 <div class="col-md-12 column border tab-pane" id="list">     
 <?php
 $lang = qtrans_getLanguage();
@@ -264,15 +262,12 @@ if (!empty($flat_props)):
         $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
         $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
         ?> 
-
-
+ 
                             <div class="row">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
 
                                     <div class="col-md-3">  
-
                                         <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>"/></a>    
-
                                     </div>    
                                     <div class="col-md-9"> 
                                         <h4 class="blue"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  

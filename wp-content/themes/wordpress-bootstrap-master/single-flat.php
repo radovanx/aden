@@ -14,13 +14,11 @@
         <div id="main" class="col-md-8 column clearfix" role="main">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="gallery_tab">
                                 <!--slider here --> 
                                 <?php
-                                
                                 $lang = qtrans_getLanguage();
                                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
                                 $url = $thumb['0'];
@@ -78,7 +76,6 @@
                                 <div class="border col-md-12 column">
                                     <div class="row clearfix">
                                         <div class="col-md-12 column product-key-info"> 
-                                             
                                             <address>
                                                
                                                <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br> 
@@ -104,8 +101,7 @@
                                                      <?php echo esc_attr($props['flaechen|wohnflaeche']) ?>
                                                 </strong>
                                             </span>
-                                                
-                                            
+ 
                                             <span class="propertyListBoxDataItemName">
                                                 <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
                                                 <strong class="red">
@@ -236,12 +232,10 @@
 
 <script>
     // MAP //     
-    
-    
+      
 var lang = <?php echo $lang; ?>;   
 var long = <?php echo $long; ?>;       
-  
-
+   
 function initialize() {
   var mapOptions = {
     zoom: 8,
