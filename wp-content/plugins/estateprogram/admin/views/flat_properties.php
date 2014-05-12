@@ -22,6 +22,8 @@ $tags = EstateProgram::$tags_apartment;
 
 global $q_config;
 $el = qtrans_getSortedLanguages();
+
+/*
 ?>
 <script type="text/javascript">
 <?php
@@ -42,9 +44,11 @@ foreach ($el as $language) {
         qtrans_switch_listpostbox('flat_properties', 'listproperties', '<?php echo $q_config['default_language'] ?>');
     });
 </script>
-
+*/
+?>
 <div id="flat-properties">
     <?php foreach ($el as $lang): ?>
+        <h2 style="text-transform: uppercase;"><?php echo $lang ?></h2>
         <div id="listproperties_<?php echo $lang ?>" class="listproperties">
             <?php
             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
