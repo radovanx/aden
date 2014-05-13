@@ -909,4 +909,27 @@ class EstateProgram {
         return $wpdb->get_results($sql);
     }
 
+    /**
+     * 
+     * @global type $wpdb
+     * @param type $lang
+     * @return type
+     */
+    public static function cities($lang){
+        
+        global $wpdb;
+        
+        $sql = "
+            SELECT
+                *
+            FROM
+                city
+            WHERE
+                lang = '" . esc_sql($lang) . "'
+            ";
+        
+        return $wpdb->get_result($sql);
+        
+    }
+    
 }

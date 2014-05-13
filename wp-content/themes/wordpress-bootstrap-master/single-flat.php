@@ -114,7 +114,7 @@
                                                     
                                                 </strong>
                                               </span>
-                                            <a  href="#" class="btn btn-lg bold btn-primary btn-block"><?php _e("Recommend product", "wpbootstrap"); ?></a>
+                                            <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
    
                                             <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
                                             <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
@@ -213,25 +213,29 @@
     </div> <!-- end #content -->
 </div>
  
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    
+<div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><?php echo the_title(); ?></h4>
+                <h4 class="modal-title"><?php _e('Recommend this product', '') ?></h4>
             </div>
             <div class="modal-body">
-
-                <?php _e("You modified", "wpbootstrap"); ?>
-
+                <?php _e("Do you really want to remove this preference?", "wpbootstrap"); ?>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>-->
+
+                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete"><?php _e('Yes', 'wpbootstrap') ?></button>
+                    <button type="button" data-dismiss="modal" class="btn"><?php _e('No', 'wpbootstrap') ?></button>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div><!-- /.modal -->    
+    
+
 
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
 

@@ -19,7 +19,6 @@ require_once(ABSPATH . "wp-admin/includes/image.php");
 function parse_nodes($node, $prefix = '') {
 
     //var_dump($node);
-
     // nechci obrazky
     if ($node->getName() == 'anhaenge') {
         return;
@@ -134,6 +133,16 @@ function grab_it($xml, $lang) {
                 continue;
             }
 
+            if ('geo|ort' == $key) {
+                $sql = "REPLACE INTO
+                            city (lang, city) 
+                         VALUES(
+                            '" . $lang . "',
+                            '" . $val . "')";
+                
+                $wpdb->query($sql);
+            }
+
             $props[$key] = rtrim($val);
             //update_post_metalang($apartment_id, $wp_lang, $key, $val);
         }
@@ -224,16 +233,16 @@ function grab_it($xml, $lang) {
 
             $image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
 
-            if(false !== strpos($image_path, 'http')){
-                if(false !== strpos($image_path, 'dropbox')){
+            if (false !== strpos($image_path, 'http')) {
+                if (false !== strpos($image_path, 'dropbox')) {
                     $props['dropbox'] = $image_file;
                 }
-                
-                if(false !== strpos($image_path, 'youtu')){
+
+                if (false !== strpos($image_path, 'youtu')) {
                     $props['youtube'] = $image_file;
-                }                
+                }
             }
-            
+
             if (is_file($image_path)) {
 
                 $finfo = pathinfo($image_path);
@@ -297,7 +306,7 @@ function grab_it($xml, $lang) {
                 }
             }
         }
-        
+
         $wp_lang = EstateProgram::$langs[$lang];
         update_post_meta($apartment_id, 'flat_props_' . $wp_lang, $props);
     }

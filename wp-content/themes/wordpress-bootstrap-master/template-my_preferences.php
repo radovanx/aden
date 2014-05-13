@@ -142,7 +142,7 @@
             </div>
             <div class="modal-body">
 
-                <?php _e("Do you really want to remove this preference", "wpbootstrap"); ?>
+                <?php _e("Do you really want to remove this preference?", "wpbootstrap"); ?>
 
             </div>
             <div class="modal-footer">
