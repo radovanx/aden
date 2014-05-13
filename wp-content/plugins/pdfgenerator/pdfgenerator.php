@@ -1,0 +1,90 @@
+<?php
+/**
+ * The WordPress Plugin Boilerplate.
+ *
+ * A foundation off of which to build well-documented WordPress plugins that
+ * also follow WordPress Coding Standards and PHP best practices.
+ *
+ * @package   pdfgenerator
+ * @author    Radomir Bednar <radomir@web-4-all.cz>
+ * @license   GPL-2.0+
+ * @link      
+ * @copyright 2014 Radomir Bednar
+ *
+ * @wordpress-plugin
+ * Plugin Name:       pdfgenerator
+ * Plugin URI:       pdfgenerator
+ * Description:       PDF GENERATOR
+ * Version:           1.0.0
+ * Author:       Radomir Bednar
+ * Author URI:       
+ * Text Domain:       pdfgenerator
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Domain Path:       /languages
+ * GitHub Plugin URI: https://github.com/<owner>/<repo>
+ */
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/*----------------------------------------------------------------------------*
+ * Public-Facing Functionality
+ *----------------------------------------------------------------------------*/
+
+/*
+ * @TODO:
+ *
+ * - replace `class-pdfgenerator.php` with the name of the plugin's class file
+ *
+ */
+require_once( plugin_dir_path( __FILE__ ) . 'public/class-pdfgenerator.php' );
+
+/*
+ * Register hooks that are fired when the plugin is activated or deactivated.
+ * When the plugin is deleted, the uninstall.php file is loaded.
+ *
+ * @TODO:
+ *
+ * - replace pdfgenerator with the name of the class defined in
+ *   `class-pdfgenerator.php`
+ */
+register_activation_hook( __FILE__, array( 'pdfgenerator', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'pdfgenerator', 'deactivate' ) );
+
+/*
+ * @TODO:
+ *
+ * - replace pdfgenerator with the name of the class defined in
+ *   `class-pdfgenerator.php`
+ */
+add_action( 'plugins_loaded', array( 'pdfgenerator', 'get_instance' ) );
+
+/*----------------------------------------------------------------------------*
+ * Dashboard and Administrative Functionality
+ *----------------------------------------------------------------------------*/
+
+/*
+ * @TODO:
+ *
+ * - replace `class-pdfgenerator-admin.php` with the name of the plugin's admin file
+ * - replace pdfgenerator_Admin with the name of the class defined in
+ *   `class-pdfgenerator-admin.php`
+ *
+ * If you want to include Ajax within the dashboard, change the following
+ * conditional to:
+ *
+ * if ( is_admin() ) {
+ *   ...
+ * }
+ *
+ * The code below is intended to to give the lightest footprint possible.
+ */
+if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+
+	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-pdfgenerator-admin.php' );
+	add_action( 'plugins_loaded', array( 'pdfgenerator_Admin', 'get_instance' ) );
+
+}

@@ -76,25 +76,52 @@
                     <div class="row">
 
                         <div class="form-group col-md-6">
-                            <label for="Areaf"><?php _e("Area from:", "wpbootstrap"); ?></label><input name="Areaf" class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />
+                            <label for="Areaf"><?php _e("Area from (m2):", "wpbootstrap"); ?></label><input name="Areaf" class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="Areat"><?php _e("Area to:", "wpbootstrap"); ?></label><input name="Areat" class="form-control input-lg" id="Areat" type="text" placeholder="Area to:" />
+                            <label for="Areat"><?php _e("Area to (m2):", "wpbootstrap"); ?></label><input name="Areat" class="form-control input-lg" id="Areat" type="text" placeholder="Area to:" />
                         </div>
                     </div>      
 
                     <div class="row">    
                         <div class="form-group col-md-6">
-                            <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label><input name="Roomsf" class="form-control input-lg" id="Roomsf" type="text" placeholder="Rooms from:" />
-                        </div>
-
+                             <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label> 
+                             <select class="form-control input-lg" name="Roomsf" > 
+                                 <option value="1">1</option>
+                                 <option value="1">2</option>
+                                 <option value="1">3</option> 
+                                 <option value="1">4</option>
+                                 <option value="1">5</option>
+                                 <option value="1">6</option>
+                                 <option value="1">7</option>
+                                 <option value="1">8</option>
+                                 <option value="1">9</option>
+                                 <option value="1">10</option>
+                                 <option value="1">11</option>
+                                 <option value="1">12</option> 
+                             </select>     
+                        </div> 
                         <div class="form-group col-md-6">
-                            <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label><input name="Roomst" class="form-control input-lg" id="Roomst" type="text" placeholder="Rooms to:" />
+                            <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label>
+                             <select class="form-control input-lg" name="Roomst" > 
+                                 <option value="1">1</option>
+                                 <option value="1">2</option>
+                                 <option value="1">3</option> 
+                                 <option value="1">4</option>
+                                 <option value="1">5</option>
+                                 <option value="1">6</option>
+                                 <option value="1">7</option>
+                                 <option value="1">8</option>
+                                 <option value="1">9</option>
+                                 <option value="1">10</option>
+                                 <option value="1">11</option>
+                                 <option value="1">12</option>
+                             </select>    
                         </div> 
                         <div class="form-group col-md-6 col-md-offset-6">  
 
-                            <button type="submit" class="btn btn-primary btn-lg btn-block"><i class="fa fa-search"></i>Search</button>      
+                            <button type="submit" class="btn btn-primary btn-lg btn-block searchbutton margin-button"><i class="fa fa-search"></i>Search</button>      
 
                         </div>   
                     </div>       
@@ -178,8 +205,7 @@
                                 $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
                                 $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                 $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-
-
+ 
                                 $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . "   },";
                                 $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
@@ -227,7 +253,6 @@
                                 $i++;
                             endforeach;
                         endif;
-
                         $autocomplete = substr("$autocomplete", 0, -1);
                         $autocomplete = "[" . $autocomplete . "]";
                         $data_object = substr("$data_object", 0, -1);
@@ -236,8 +261,7 @@
                     </tbody>                 
                 </table>  
                 </div>    
-                    
-                    
+  
                 <div class="col-md-12 column border tab-pane" id="list">     
 <?php
 $lang = qtrans_getLanguage();
@@ -263,53 +287,53 @@ if (!empty($flat_props)):
         $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
         $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
         $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
+        
+        //$rentalstatus = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : '-';
+        //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-";
+ 
         ?> 
-
-
                             <div class="row">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
 
                                     <div class="col-md-3">  
-
                                         <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>"/></a>    
-
                                     </div>    
                                     <div class="col-md-9"> 
                                         <h4 class="blue"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
-        <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h4>
+                                        <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h4>
 
                                         <div class="row">
                                             <div class="col-md-3">  
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong> 
 
-        <?php echo esc_attr($prop['anbieternr']) ?>
+                                                    <?php echo esc_attr($prop['anbieternr']) ?>
 
                                                 </span>                         
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong> 
-        <?php echo esc_attr($prop['anbieternr']) ?>
+                                                    <?php echo esc_attr($prop['anbieternr']) ?>
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong> 
-        <?php echo esc_attr($prop['anbieternr']) ?>
+                                                <?php echo esc_attr($prop['anbieternr']) ?>
                                                 </span> 
                                             </div>
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Floor:", "wpbootstrap"); ?></strong> 
-        <?php echo $floor; ?>
+                                                <?php echo $floor; ?>
                                                 </span>
 
 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong> 
-        <?php echo esc_attr($prop['anbieternr']) ?>
+                                                 <?php echo esc_attr($prop['anbieternr']) ?>
                                                 </span>
 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong> 
-        <?php echo $area; ?>
+                                                <?php echo $area; ?>
                                                 </span>
 
                                             </div>
@@ -317,12 +341,12 @@ if (!empty($flat_props)):
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price:", "wpbootstrap"); ?></strong> 
-        <?php echo $price; ?>
+                                                <?php echo $price; ?>
                                                 </span>
 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong> 
-        <?php echo $pricem; ?>
+                                                <?php echo $pricem; ?>
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Yield:", "wpbootstrap"); ?></strong> 
@@ -330,9 +354,13 @@ if (!empty($flat_props)):
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
-                                                <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-        <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
-                                                </strong>
+                                                 <a class="add-to-preference" href="#myModal" data-flat_id="3316" data-toggle="modal">
+                                                    
+                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>     </strong>
+                                                     <strong class="blue clearfix">
+                                                    <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
+                                                    </strong>     
+                                                 
                                                 <a href="<?php echo $url; ?>" class=" "><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
                                             </div>  
                                         </div>  
@@ -347,11 +375,8 @@ endif;
                 </div>   
             </div>
         </div>
-
-
     </div>
     <!-- /all product --> 
-
 </div> 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -370,12 +395,10 @@ endif;
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
+</div><!-- /.modal --> 
 <script>
     var availableCity;
-    availableCity = <?php echo $autocomplete; ?>
+    availableCity = <?php echo $autocomplete; ?>;
     GetUnique(availableCity)
     function GetUnique(inputArray)
     {
@@ -391,6 +414,7 @@ endif;
     }
     availableCity = GetUnique(availableCity)
 </script>
+ 
 
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
@@ -420,19 +444,14 @@ endif;
         var froomsf = SerializedObject[8].value;
         var froomst = SerializedObject[9].value;
         var fpricef = SerializedObject[2].value;
-        var fpricet = SerializedObject[3].value;
-
-        //make a filter
-
+        var fpricet = SerializedObject[3].value; 
+        //make a filter 
         var finalfilter = false;
-
-
         if (fcity != '')
         {
             var city_filter = PourOver.makeExactFilter("city", [fcity]);
             collection.addFilters([city_filter]);
-            finalfilter = collection.filters.city.getFn(fcity);
-
+            finalfilter = collection.filters.city.getFn(fcity); 
         }
         if (ftype != '')
         {
@@ -482,8 +501,6 @@ endif;
             }
 
         }
-
-
         if (fpricef != '' && fpricet == '')
         {
             var price_range_filter = PourOver.makeRangeFilter("price_range", [[fpricef, 100000000]], {attr: "price"});
@@ -527,7 +544,6 @@ endif;
                 finalfilter = collection.filters.price_range.getFn([fpricef, fpricet]);
             }
         }
-
         if (fareaf != '' || fareat != '')
         {
             var area_range_filter = PourOver.makeRangeFilter("area_range", [[fareaf, fareat]], {attr: "area"});
@@ -542,9 +558,6 @@ endif;
                 finalfilter = collection.filters.area_range.getFn([fareaf, fareat]);
             }
         }
-
-
-
         else if (fareaf == '' && fareat != '')
         {
             var area_range_filter = PourOver.makeRangeFilter("area_range", [[0, fareat]], {attr: "area"});
@@ -620,7 +633,6 @@ endif;
         else
         {
             jQuery("#table_data_filter").empty();
-
             jQuery.each(myfilterfinal, function(i, val) {
 
                 /*    area
@@ -661,28 +673,32 @@ endif;
                  
                  zip*/
 
-                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td></tr>";
-
+                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td>\n\
+                                              <td></td>
+                                                    
+   
+</tr>";
                 jQuery("tbody").append(table_data);
-
-
+ 
             });
-        }
-
+        } 
         /*<tr> 
          <td>
          <a href=" " class="blue"> </a>
          </td>
-         </tr>
-         
-         
-         
+         </tr> 
          */
-
     });
-</script>  
-
-
+</script>   
+ 
+<script>
+     
+jQuery(document).ready(function($) { 
+$( ".searchbutton" ).fadeIn( "fast", function() { 
+});
+});       
+</script>
+ 
 <script type="text/javascript">
 //strankovani
     jQuery(document).ready(function($) {

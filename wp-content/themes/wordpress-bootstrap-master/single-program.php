@@ -143,12 +143,12 @@
                                 </div>
                             </div>
                             <?php if (is_user_logged_in()): ?>
-                                <div class="col-md-6">
+                                <div class="col-md-6 ">
                                     <h3 class="border-left inline uppercase">
                                         <?php _e("List of products available in this program", "wpbootstrap"); ?>
                                     </h3>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 margin-top">
                                     <select name="sort_by_list" class="form-control input-lg">
                                         <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
                                         <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
@@ -156,7 +156,7 @@
                                         <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
                                     </select>
                                 </div>
-                                 <div class="col-md-3 big_icons">
+                                 <div class="col-md-3 big_icons margin-top">
                                     <ul class="nav nav-tabs">
                                         <a href="#table" data-toggle="tab" class="active red"><i class="fa fa-th"></i></a>
                                         <a href="#list"  data-toggle="tab" class="blue"><i class="fa fa-list"></i></a>
@@ -237,10 +237,8 @@
                                     </table>
                                     </div>                          
                 <div class="col-md-12 column border tab-pane" id="list">     
-<?php
- 
-$i=0;
-
+<?php 
+$i=0; 
 if (!empty($flat_props)):
     foreach ($flat_props as $key => $val):
         $prop = unserialize($val->prop);
@@ -358,10 +356,7 @@ endif;
                         </footer>
                     </article>
                 <?php endif; ?>
-        </div> <!-- end #main -->
-  
-
-
+        </div> <!-- end #main --> 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -379,16 +374,8 @@ endif;
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-
-
-
-
-<?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
-
-
+</div><!-- /.modal --> 
+<?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>  
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
     // MAP //     
@@ -409,8 +396,7 @@ endif;
             streetViewControl: false,
             mapTypeControl: true
         });
-
-
+ 
         map.setCenter(new google.maps.LatLng(<?php echo $LangLong; ?>));
         var myLatlng = new google.maps.LatLng(<?php echo $LangLong; ?>);
 
