@@ -67,6 +67,8 @@ function parse_nodes($node, $prefix = '') {
  *
  */
 function grab_it($xml, $lang) {
+    
+    $wp_lang = EstateProgram::$langs[$lang];
 
     $processed_program = array();
 
@@ -137,7 +139,7 @@ function grab_it($xml, $lang) {
                 $sql = "REPLACE INTO
                             city (lang, city) 
                          VALUES(
-                            '" . $lang . "',
+                            '" . $wp_lang . "',
                             '" . $val . "')";
                 
                 $wpdb->query($sql);
@@ -307,7 +309,7 @@ function grab_it($xml, $lang) {
             }
         }
 
-        $wp_lang = EstateProgram::$langs[$lang];
+        
         update_post_meta($apartment_id, 'flat_props_' . $wp_lang, $props);
     }
 }

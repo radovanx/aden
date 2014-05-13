@@ -921,14 +921,14 @@ class EstateProgram {
         
         $sql = "
             SELECT
-                *
+                city
             FROM
                 city
             WHERE
                 lang = '" . esc_sql($lang) . "'
             ";
         
-        return $wpdb->get_result($sql);
+        return $wpdb->get_col($sql);
         
     }
     
