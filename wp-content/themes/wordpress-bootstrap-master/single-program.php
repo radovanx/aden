@@ -196,7 +196,7 @@
                                                     ?>
                                                     <tr class="<?php echo $i%2 ? 'background' : 'no-background';?>">
                                                         <td>   
-                                                            <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa fa-star-o <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red' : 'blue' ?>"></i></a>
+                                                            <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i></a>
                                                         </td>
                                                         <td>
                                                             <?php echo esc_attr($prop['anbieternr']) ?>

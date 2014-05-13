@@ -125,8 +125,44 @@ class EstateProgram {
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
 
+        add_filter('authenticate', array(&$this, 'check_login'), 100, 3);
 
         $ajaxModule = new EstateProgramAjax();
+    }
+
+    /**
+     * kouknu jestli datum registrace je mensi 15 dní
+     * 
+     * @param type $user
+     * @param type $username
+     * @param type $password
+     * @return null
+     */
+    function check_login($user, $username, $password) {
+        // this filter is called on the log in page
+        // make sure we have a username before we move forward
+        //if (!empty($username)) {
+        
+        
+        
+        if($user instanceof WP_User && user_can($user, 'only_demo')){
+
+            $user_data = $user->data;
+
+            $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user_data->user_registered);
+
+            $valid_to = clone $register_date;
+            $valid_to->modify("+15 day");
+
+            $now = new DateTime();
+
+            if ($now > $valid_to) {
+                $user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: We are really sorry, your account has not been approved.'));
+            } else {
+                return $user;
+            }
+        }
+        return $user;
     }
 
     /**
@@ -361,12 +397,28 @@ class EstateProgram {
      */
     public static function activate($network_wide) {
 
+        // nechci pending roli
+        remove_role('pending');
+
+
+
+        $result = add_role(
+                'waiting_for_approval', __('Waiting for approval'), array(
+                //'read' => true, // true allows this capability
+                //'edit_posts' => true,
+                //'delete_posts' => false, // Use false to explicitly deny
+                )
+        );
+
+
         $role_names = array(
             'administrator',
             'editor',
             'author',
             'contributor',
             'subscriber',
+            'waiting_for_approval',
+                //'pending'
         );
 
 
@@ -375,6 +427,8 @@ class EstateProgram {
             $role->add_cap('see_detail');
         }
 
+        $waiting_for_approval_role = get_role('waiting_for_approval');
+        $waiting_for_approval_role->add_cap('only_demo');
 
         if (function_exists('is_multisite') && is_multisite()) {
 
@@ -638,11 +692,11 @@ class EstateProgram {
             LEFT JOIN
                 user_preference	AS up
             ON
-                up.flat_id = p.ID
+                up.flat_id = p.ID AND up.user_id = " . (int) get_current_user_id() . "
             LEFT JOIN
                 wp_users AS u
             ON
-                up.user_id = u.ID AND u.ID = " . (int) get_current_user_id() . "
+                up.user_id = u.ID
             WHERE
                 m.meta_key = 'flat_props_" . esc_sql($lang) . "'
             AND
@@ -690,15 +744,65 @@ class EstateProgram {
           p.post_status = 'publish'
           "; */
 
+        /*
+          $sql = "SELECT
+          p.ID,
+          m.meta_value as prop,
+          IFNULL(up.flat_id, 0) as is_favorite,
+          p.post_name as slug,
+          tt.term_taxonomy_id,
+          t.term_id,
+          t.name AS term_name,
+          a2p.program_id as program_id
+          FROM
+          wp_posts AS p
+          JOIN
+          wp_postmeta as m
+          ON
+          m.post_id = p.ID
+          JOIN
+          apartment2program AS a2p
+          ON
+          a2p.apartment_id = p.ID
+          JOIN
+          wp_posts AS program
+          ON
+          a2p.program_id = program.ID
+          LEFT JOIN
+          wp_term_relationships AS tr
+          ON
+          program.ID = tr.object_id
+          LEFT JOIN
+          wp_term_taxonomy AS tt
+          ON
+          tt.term_taxonomy_id = tr.term_taxonomy_id AND tt.taxonomy = 'type_of_accommodation'
+          LEFT JOIN
+          wp_terms AS t
+          ON
+          t.term_id = tt.term_id
+          LEFT JOIN
+          user_preference	AS up
+          ON
+          up.flat_id = p.ID
+          LEFT JOIN
+          wp_users AS u
+          ON
+          up.user_id = u.ID AND u.ID = " . (int) get_current_user_id() . "
+          WHERE
+          m.meta_key = 'flat_props_" . esc_sql($lang) . "'
+          AND
+          p.post_type = 'flat'
+          AND
+          p.post_status = 'publish'
+          GROUP BY
+          p.ID";
+         */
 
         $sql = "SELECT
                 p.ID,
                 m.meta_value as prop,
                 IFNULL(up.flat_id, 0) as is_favorite,
                 p.post_name as slug,
-                tt.term_taxonomy_id,
-                t.term_id,
-                t.name AS term_name,
                 a2p.program_id as program_id
             FROM
                 wp_posts AS p
@@ -715,25 +819,13 @@ class EstateProgram {
             ON
               a2p.program_id = program.ID
             LEFT JOIN
-                wp_term_relationships AS tr
-            ON
-                program.ID = tr.object_id
-            LEFT JOIN
-                wp_term_taxonomy AS tt
-            ON
-                tt.term_taxonomy_id = tr.term_taxonomy_id AND tt.taxonomy = 'type_of_accommodation'
-            LEFT JOIN
-                wp_terms AS t
-            ON
-              t.term_id = tt.term_id
-            LEFT JOIN
                 user_preference	AS up
             ON
-                up.flat_id = p.ID
+                up.flat_id = p.ID AND up.user_id = " . (int) get_current_user_id() . "
             LEFT JOIN
                 wp_users AS u
             ON
-                up.user_id = u.ID AND u.ID = " . (int) get_current_user_id() . "
+                up.user_id = u.ID
             WHERE
                 m.meta_key = 'flat_props_" . esc_sql($lang) . "'
             AND
@@ -797,9 +889,13 @@ class EstateProgram {
             LEFT JOIN
                 wp_postmeta as m
             ON
-                m.post_id = flat.ID AND m.meta_key = 'flat_props_$lang'
+                m.post_id = flat.ID 
+            AND 
+                m.meta_key = 'flat_props_$lang'
             WHERE
                 up.user_id = " . (int) get_current_user_id() . "
+            AND
+                flat.post_status = 'publish'
         ";
 
         if (!is_null($limit)) {

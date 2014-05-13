@@ -17,9 +17,11 @@ Theme My Login will always look in your theme's directory first, before using th
         <div class="col-md-12 column">	
         
                 <div class="form-group">
-			<label for="user_login<?php $template->the_instance(); ?>"><?php _e( 'Username' ); ?></label>
+			<label for="user_login<?php $template->the_instance(); ?>"><?php _e( 'Email' ); ?></label>
 			<input type="text" name="log" class="form-control input-lg" id="user_login<?php $template->the_instance(); ?>" class="input" value="<?php $template->the_posted_value( 'log' ); ?>" size="20" />
 		</div>
+            
+            
 		<div class="form-group">
 			<label for="user_pass<?php $template->the_instance(); ?>"><?php _e( 'Password' ); ?></label>
 			<input type="password" name="pwd" class="form-control input-lg" id="user_pass<?php $template->the_instance(); ?>" class="input" value="" size="20" />

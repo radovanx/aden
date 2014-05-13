@@ -16,10 +16,12 @@
             <div class="col-md-12 column">	
             <div class="col-md-6">
 
+                <!--
                 <div class="form-group">
                     <label for="user_login<?php $template->the_instance(); ?>"><?php _e('Login', 'wpbootstrap'); ?></label>
                     <input type="text" name="user_login" id="user_login<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('user_login'); ?>" size="20">
                 </div>
+                -->
 
                 <div class="form-group">
                     <label for="title<?php $template->the_instance(); ?>"><?php _e('Title:', 'wpbootstrap'); ?></label>
