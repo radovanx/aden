@@ -361,12 +361,17 @@ class EstateProgram {
      */
     public static function activate($network_wide) {
 
+        // nechci pending roli
+        remove_role( 'pending' );
+        
+        
+        
         $result = add_role(
-                'waiting_for_approval', __('Waiting for approval'), array(
-            'read' => true, // true allows this capability
-            'edit_posts' => true,
-            'delete_posts' => false, // Use false to explicitly deny
-                )
+            'waiting_for_approval', __('Waiting for approval'), array(
+                //'read' => true, // true allows this capability
+                //'edit_posts' => true,
+                //'delete_posts' => false, // Use false to explicitly deny
+            )
         );
 
 
@@ -377,7 +382,7 @@ class EstateProgram {
             'contributor',
             'subscriber',
             'waiting_for_approval',
-            'pending'
+            //'pending'
         );
 
 

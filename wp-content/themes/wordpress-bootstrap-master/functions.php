@@ -257,18 +257,18 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
         if ($template_file == 'page-homepage.php') {
             add_meta_box(
-                    'homepage_meta_box', // $id  
-                    'Optional Homepage Tagline', // $title  
-                    'show_homepage_meta_box', // $callback  
-                    'page', // $page  
-                    'normal', // $context  
-                    'high'); // $priority  
+                    'homepage_meta_box', // $id
+                    'Optional Homepage Tagline', // $title
+                    'show_homepage_meta_box', // $callback
+                    'page', // $page
+                    'normal', // $context
+                    'high'); // $priority
         }
     }
 
     add_action('add_meta_boxes', 'add_homepage_meta_box');
 
-// Field Array  
+// Field Array
     $prefix = 'custom_';
     $custom_meta_fields = array(
         array(
@@ -279,7 +279,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         )
     );
 
-// The Homepage Meta Box Callback  
+// The Homepage Meta Box Callback
     function show_homepage_meta_box() {
         global $custom_meta_fields, $post;
 
@@ -290,36 +290,36 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         echo '<table class="form-table">';
 
         foreach ($custom_meta_fields as $field) {
-            // get value of this field if it exists for this post  
+            // get value of this field if it exists for this post
             $meta = get_post_meta($post->ID, $field['id'], true);
-            // begin a table row with  
-            echo '<tr> 
-              <th><label for="' . $field['id'] . '">' . $field['label'] . '</label></th> 
+            // begin a table row with
+            echo '<tr>
+              <th><label for="' . $field['id'] . '">' . $field['label'] . '</label></th>
               <td>';
             switch ($field['type']) {
-                // text  
+                // text
                 case 'text':
-                    echo '<input type="text" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . $meta . '" size="60" /> 
+                    echo '<input type="text" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . $meta . '" size="60" />
                           <br /><span class="description">' . $field['desc'] . '</span>';
                     break;
 
-                // textarea  
+                // textarea
                 case 'textarea':
-                    echo '<textarea name="' . $field['id'] . '" id="' . $field['id'] . '" cols="80" rows="4">' . $meta . '</textarea> 
+                    echo '<textarea name="' . $field['id'] . '" id="' . $field['id'] . '" cols="80" rows="4">' . $meta . '</textarea>
                           <br /><span class="description">' . $field['desc'] . '</span>';
                     break;
-            } //end switch  
+            } //end switch
             echo '</td></tr>';
-        } // end foreach  
-        echo '</table>'; // end table  
+        } // end foreach
+        echo '</table>'; // end table
     }
 
-// Save the Data  
+// Save the Data
     function save_homepage_meta($post_id) {
 
         global $custom_meta_fields;
 
-        // verify nonce  
+        // verify nonce
         if (!isset($_POST['wpbs_nonce']) || !wp_verify_nonce($_POST['wpbs_nonce'], basename(__FILE__)))
             return $post_id;
 
@@ -335,7 +335,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             return $post_id;
         }
 
-        // loop through fields and save the data  
+        // loop through fields and save the data
         foreach ($custom_meta_fields as $field) {
             $old = get_post_meta($post_id, $field['id'], true);
             $new = $_POST[$field['id']];
@@ -490,7 +490,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     add_image_size('project-detail-thumb', 395, 180, true);
     add_image_size('project-detail-big', 750, 500, true);
     add_image_size('project-detail-small', 150, 100, true);
-    
+
     add_image_size('flat-small', 265, 200, true);
 
 //autocomplete
@@ -541,7 +541,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             $out['error'][] = "max size";
         };
 
-        //extension  
+        //extension
         if (count($out['error']) > 0) {
             return $out;
         } else {
@@ -555,6 +555,14 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             update_user_meta($user_id, 'logo', $attach_id);
             //return id of image
             return $attach_id;
+        }
+    }
+
+    ################################################################
+    //// nahrazeni pole user_login při registraci polem user_email
+    if (!is_user_logged_in()) {
+        if (isset($_POST['action']) && 'register' == $_POST['action']) {
+            $_POST['user_login'] = $_POST['user_email'];
         }
     }
     ?>
