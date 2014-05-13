@@ -66,20 +66,13 @@ function parse_nodes($node, $prefix = '') {
 /**
  *
  */
-function grab_it($xml, $lang) {
-    
+function grab_it($file, $lang, $source_path) {
+
+    $xml = simplexml_load_file($file);
+
     $wp_lang = EstateProgram::$langs[$lang];
 
-    $processed_program = array();
-
     global $wpdb;
-
-    $exclude_tag = array(
-        'anhaenge'
-    );
-
-    //
-    //$uebertragung = $xml->xpath('/openimmo/uebertragung');
 
     $result = $xml->xpath('/openimmo/anbieter');
 
@@ -88,7 +81,6 @@ function grab_it($xml, $lang) {
         $anbieternr = (string) $anbieter->anbieternr;
         $firma = (string) $anbieter->firma;
         $openimmo_anid = (string) $anbieter->openimmo_anid;
-
 
         $ret = parse_nodes($anbieter);
 
@@ -116,12 +108,11 @@ function grab_it($xml, $lang) {
 
         if (!empty($apartment_id)) {
             $post_information['ID'] = $apartment_id;
+            wp_insert_post($post_information);
+        } else {
+            update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
+            $apartment_id = wp_insert_post($post_information);
         }
-
-        $apartment_id = wp_insert_post($post_information);
-
-
-        update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
 
         $props = array();
         $excl = array('anhaenge', 'anhang');
@@ -137,11 +128,11 @@ function grab_it($xml, $lang) {
 
             if ('geo|ort' == $key) {
                 $sql = "REPLACE INTO
-                            city (lang, city) 
+                            city (lang, city)
                          VALUES(
                             '" . $wp_lang . "',
                             '" . $val . "')";
-                
+
                 $wpdb->query($sql);
             }
 
@@ -228,22 +219,38 @@ function grab_it($xml, $lang) {
 
         $set_apartment_thumb = true;
 
+        //$props['dropbox'] = array();
+        //$props['youtube'] = array();
+
         foreach ($images as $image) {
             $file = $image->xpath('daten/pfad');
             $image_title = (string) $image->anhangtitel;
             $image_file = (string) $file[0];
 
-            $image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
+            //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
 
-            if (false !== strpos($image_path, 'http')) {
-                if (false !== strpos($image_path, 'dropbox')) {
-                    $props['dropbox'] = $image_file;
+            if (false !== strpos($image_file, 'http')) {
+                if (false !== strpos($image_file, 'dropbox')) {
+
+                    if (false !== strpos($image_title, 'flat')) {
+                        $props['dropbox|flat'] = $image_file;
+                        continue;
+                    }
+
+                    if (false !== strpos($image_title, 'building')) {
+                        $props['dropbox|building'] = $image_file;
+                        continue;
+                    }
                 }
 
-                if (false !== strpos($image_path, 'youtu')) {
+                if (false !== strpos($image_file, 'youtu')) {
                     $props['youtube'] = $image_file;
+                    continue;
                 }
             }
+
+            //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;            
+            $image_path = $source_path . DIRECTORY_SEPARATOR . $image_file;
 
             if (is_file($image_path)) {
 
@@ -309,10 +316,12 @@ function grab_it($xml, $lang) {
             }
         }
 
-        
+
         update_post_meta($apartment_id, 'flat_props_' . $wp_lang, $props);
     }
 }
+
+$err = array();
 
 // start programu
 global $wpdb;
@@ -321,7 +330,7 @@ $langs = EstateProgram::$langs;
 
 foreach ($langs as $key => $val) {
 
-    $source_dir = ABSPATH . 'ftp' . DIRECTORY_SEPARATOR . $key;
+    $source_dir = ABSPATH . $key;
 
     if (!is_dir($source_dir)) {
         throw new Exception('Zdrojový adresář ' . $source_dir . ' neexistuje');
@@ -333,14 +342,72 @@ foreach ($langs as $key => $val) {
             $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
             $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
-            if ('xml' == $ext) {
-                if (file_exists($file)) {
-                    $xml = simplexml_load_file($file);
-                    grab_it($xml, $key);
-                    //
-                } else {
-                    throw new Exception('Nepodařilo se otevřít soubor ' . $file);
+            if ('zip' != strtolower($ext)) {
+                continue;
+            }
+
+            $zip = new ZipArchive;
+            $res = $zip->open($file);
+
+            // extrahovani zipu do tempu
+            if (true == $res) {
+
+                //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
+                $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
+
+                if (!is_dir($temp_dir)) {
+                    if (!mkdir($temp_dir, 0775)) {
+                        throw new Exception('unable create temp dir');
+                    }
                 }
+
+                $zip->extractTo($temp_dir);
+                $zip->close();
+
+                $in_temp = array();
+
+                // projdu unzipovany xml
+                if ($temp_handle = opendir($temp_dir)) {
+                    while (false !== ($entry = readdir($temp_handle))) {
+
+                        $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
+                        $temp_file_ext = strtolower(pathinfo($temp_file, PATHINFO_EXTENSION));
+
+                        if (is_file($temp_file)) {
+                            $in_temp[] = $temp_file;
+                        }
+
+                        if ('xml' == $temp_file_ext) {
+                            grab_it($temp_file, $key, $temp_dir);
+                        }
+                    }
+
+                    //promažu temp
+                    foreach ($in_temp as $temp_file) {
+                        unlink($temp_file);
+                    }
+
+                    // přesunu zdrovy zip do archivu
+                    $archiv_dir = $source_dir . DIRECTORY_SEPARATOR . 'archiv';
+
+                    if (!is_dir($archiv_dir)) {
+                        if (!mkdir($archiv_dir, 0775)) {
+                            throw new Exception('unable create archiv dir');
+                        }
+                    }
+                    
+                    rename($file, $archiv_dir . DIRECTORY_SEPARATOR . basename($file));                    
+                }
+
+
+                /*
+                  if ($temp_handle2 = opendir($temp_dir)) {
+                  while (false !== ($entry = readdir($temp_handle2))) {
+                  $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
+                  }
+                  } */
+            } else {
+                $err[] = esc_attr('Zip: resource failed - ' . $file);
             }
         }
     } else {

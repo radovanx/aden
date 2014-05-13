@@ -52,7 +52,7 @@ EstateProgram::$tags_program = array(
 );
 
 EstateProgram::$langs = array(
-    'fr' => 'fr',
+    'fre' => 'fr',
     'eng' => 'en',
 );
 
