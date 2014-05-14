@@ -124,6 +124,7 @@
                             </div>
                             <div class="col-md-12 column">
                                 <div class="col-md-12 column border">
+                                    <!-- apartment properties -->
                                     <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
                                     <ul class="list-unstyled featured-single-flat">
                                         <li>
@@ -140,6 +141,11 @@
                                         </li>
                                         <li>
                                             <strong><?php _e("Purchase price /sm:", "wpbootstrap"); ?></strong>
+                                            <?php 
+                                            if(isset($props['preise|kaufpreis_pro_qm'])):
+                                                echo esc_attr($props['preise|kaufpreis_pro_qm']). ' '; echo esc_attr($props['preise|waehrung|iso_waehrung']);
+                                            endif;    
+                                            ?>
                                         </li>
                                         <?php if (isset(EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']])): ?>
                                             <li>
@@ -202,6 +208,7 @@
                                             ?>
                                         </li>
                                     </ul>
+                                    <!-- /apartment properties -->
                                 </div>
                             </div>
                             <div class="col-md-12 column border-bottom margin-top">

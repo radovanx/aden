@@ -150,6 +150,10 @@ class EstateProgram {
         add_action('parse_request', array(&$this, 'parse_request'));
         add_action('init', array(&$this, 'do_rewrite'));
         add_filter('query_vars', array(&$this, 'query_vars'));
+
+
+        add_action('type_of_accommodation_add_form', 'qtrans_modifyTermFormFor');
+        add_action('type_of_accommodation_edit_form', 'qtrans_modifyTermFormFor');
     }
 
     public function query_vars($public_query_vars) {
@@ -277,7 +281,7 @@ class EstateProgram {
                 'thumbnail',
                 'title',
                 'editor',
-                'excerpt',
+                //'excerpt',
                 'author'
             ),
             'menu_position' => 7,
