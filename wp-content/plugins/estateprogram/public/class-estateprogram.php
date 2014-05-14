@@ -146,6 +146,7 @@ class EstateProgram {
 
     public function query_vars($public_query_vars) {
         $public_query_vars[] = 'action';
+        $public_query_vars[] = 'source-file';
         //$public_query_vars[] = 'product-id';
         //$public_query_vars[] = 'program-id';
         return $public_query_vars;
@@ -153,7 +154,7 @@ class EstateProgram {
 
     function do_rewrite() {
         //add_rewrite_rule("download-product-data/([^/]+)/?$", 'index.php?action=generate-pdf&product-id=$matches[1]', 'top');
-        add_rewrite_rule("grab-source-xml/([^/]+)?$", 'index.php?action=grab-source-xml&file=$matches[1]', 'top');
+        add_rewrite_rule("grab-source-xml/([^/]+)?$", 'index.php?action=grab-source-xml&source-file=$matches[1]', 'top');
     }
 
     public function parse_request(&$wp) {
