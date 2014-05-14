@@ -175,8 +175,12 @@ class EstateProgram_Admin {
         if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
             $meta_keys = array(
                 //'_program_street',
-                '_program_location',
+                //'_program_region',
                 //'_program_city',
+                //'_program_house_number',
+                //'_program_postcode',
+                '_program_address',
+                '_program_location',
                 //'_program_district',
                 '_program_apartments',
                 '_program_price_from',
@@ -188,7 +192,7 @@ class EstateProgram_Admin {
                 '_program_latitude',
                 '_program_longitude',
                 //'_house_number',
-                '_program_address',
+                //'_program_address',
                 '_program_hightlight',
                 '_program_commission'
             );

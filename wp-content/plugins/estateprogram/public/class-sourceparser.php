@@ -131,13 +131,30 @@ class SourceParser {
                             '" . $val . "')";
 
                     $wpdb->query($sql);
+                    
+                    $last_city_id = $wpdb->insert_id;
                 }
+                
+                if ('geo|regionaler_zusatz' == $key) {                    
+                    $region = $val;
+                }                
 
                 $props[$key] = rtrim($val);
                 //update_post_metalang($apartment_id, $wp_lang, $key, $val);
             }
 
 
+            if(!empty($last_city_id) && !empty($region)){
+                    $sql = "REPLACE INTO
+                            region (lang, region, id_city)
+                         VALUES(
+                            '" . $wp_lang . "',
+                            '" . $region . "',
+                            " . $last_city_id . ")";
+
+                    $wpdb->query($sql);                
+            }
+            
 
             // zjistim jestli existuje program na stejne adrese
             $cityNode = $anbieter->xpath('immobilie/geo/ort');

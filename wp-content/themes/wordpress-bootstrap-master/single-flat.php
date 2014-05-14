@@ -107,7 +107,7 @@
                                             </span>
                                             <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
 
-                                            <a href="/generate-pdf/product/product_id" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
+                                            <a href="/generate-pdf/product/<?php echo $post->ID ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
                                             <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
 
                                             <?php if (!empty($props['dropbox|building'])): ?>

@@ -91,14 +91,14 @@ class pdfgenerator {
 
     public function query_vars($public_query_vars) {
         $public_query_vars[] = 'action';
-        $public_query_vars[] = 'product-id';
-        $public_query_vars[] = 'program-id';
+        $public_query_vars[] = 'product_id';
+        $public_query_vars[] = 'product_type';
         return $public_query_vars;
     }
 
     function do_rewrite() {
-        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&type=$matches[1]&id=$matches[2]', 'top');
-        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&type=$matches[1]&id=$matches[1]', 'top');
+        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]', 'top');
+        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]', 'top');
     }
 
     public function parse_request(&$wp) {
@@ -112,12 +112,12 @@ class pdfgenerator {
             require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
             $mpdf = new mPDF();
 
-            if (isset($q['type'])) {
-                switch ($q['type']) {
+            if (isset($q['product_type'])) {
+                switch ($q['product_type']) {
                     case 'product':
 
-                        if (isset($q['id'])) {
-                            $product = get_post($q['id']);
+                        if (isset($q['product_id'])) {
+                            $product = get_post($q['product_id']);
 
                             ob_start();
                             require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
