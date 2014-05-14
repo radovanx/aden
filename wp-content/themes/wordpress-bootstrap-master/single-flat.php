@@ -76,7 +76,6 @@
                                     <div class="row clearfix">
                                         <div class="col-md-12 column product-key-info">
                                             <address>
-
                                                 <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br>
                                                 <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                                 <br><?php echo esc_attr($props['kontaktperson|hausnummer']) ?> <?php echo esc_attr($props['kontaktperson|strasse']) ?>
@@ -84,7 +83,6 @@
                                                 <abbr title="Phone">Phone:</abbr> <?php echo esc_attr($props['kontaktperson|tel_durchw']) ?><br>
                                                 <abbr title="Email">Email:</abbr> <?php echo esc_attr($props['kontaktperson|email_direkt']) ?>
                                             </address>
-
 
                                             <span class="propertyListBoxDataItemName">
                                                 <i class="fa fa-money"></i>
@@ -113,8 +111,15 @@
 
                                             <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
                                             <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
-                                            <a href="/download-program-data/<?php the_ID() ?>" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
-                                            <a href="/download-product-data/<?php the_ID() ?>" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
+
+                                            <?php if (!empty($props['dropbox|building'])): ?>
+                                                <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
+                                            <?php endif; ?>
+
+                                            <?php if (!empty($props['dropbox|flat'])): ?>
+                                                <a href="<?php echo esc_attr($props['dropbox|flat']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
+                                            <?php endif; ?>
+
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +211,6 @@
         </div> <!-- end #content -->
     </div>
 
-
     <div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -230,8 +234,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-
 
     <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
 

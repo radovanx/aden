@@ -61,7 +61,6 @@ EstateProgram::$rental_status = array(
     'eng' => 'en',
 );
 
-
 class EstateProgram {
 
     /**
@@ -101,10 +100,8 @@ class EstateProgram {
     static $tags_program;
     static $langs;
     static $rental_status;
-
-    
     public static $cron_url;
-    
+
     /**
      * Initialize the plugin by setting localization and loading public scripts
      * and styles.
@@ -112,8 +109,8 @@ class EstateProgram {
      * @since     1.0.0
      */
     private function __construct() {
-        
-        EstateProgram::$cron_url = plugins_url( '/cron/script.php', __FILE__ );
+
+        EstateProgram::$cron_url = plugins_url('/cron/script.php', __FILE__);
 
         // Load plugin text domain
         add_action('init', array($this, 'load_plugin_textdomain'));
@@ -142,23 +139,41 @@ class EstateProgram {
         $ajaxModule = new EstateProgramAjax();
 
         //add_action('init', array(&$this, 'rewrite'));
+        add_action('parse_request', array(&$this, 'parse_request'));
+        add_action('init', array(&$this, 'do_rewrite'));
+        add_filter('query_vars', array(&$this, 'query_vars'));
     }
 
-    public function rewrite() {
-        
-        //$script_url = plugins_url( '/cron/script.php', __FILE__ );
-        
-        //'grab.php\?file=([^/]+)?$', $script_url . '?file=$matches[1]', 'top'
-        
-        /*
-        add_rewrite_rule(
-                'grab.php$', $script_url, 'top'
-        );*/
+    public function query_vars($public_query_vars) {
+        $public_query_vars[] = 'action';
+        //$public_query_vars[] = 'product-id';
+        //$public_query_vars[] = 'program-id';
+        return $public_query_vars;
+    }
+
+    function do_rewrite() {
+        //add_rewrite_rule("download-product-data/([^/]+)/?$", 'index.php?action=generate-pdf&product-id=$matches[1]', 'top');
+        add_rewrite_rule("grab-source-xml/([^/]+)?$", 'index.php?action=grab-source-xml&file=$matches[1]', 'top');
+    }
+
+    public function parse_request(&$wp) {
+
+        $q = $wp->query_vars;
+
+        if (isset($q['action']) && 'grab-source-xml' == $q['action']) {
+
+            //$lang = qtrans_getLanguage();
+
+            
+            
+            //require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
+            //$mpdf = new mPDF();
+        }
     }
 
     /**
      * kouknu jestli datum registrace je mensi 15 dní
-     * 
+     *
      * @param type $user
      * @param type $username
      * @param type $password
@@ -279,7 +294,7 @@ class EstateProgram {
             'supports' => array(
                 'thumbnail',
                 'title',
-                 'editor',
+                'editor',
                 // 'excerpt',
                 'author'
             ),
@@ -858,7 +873,7 @@ class EstateProgram {
                 p.post_type = 'flat'
             AND
                 p.post_status = 'publish'
-            GROUP BY 
+            GROUP BY
                 p.ID";
 
         if (!is_null($limit)) {
@@ -915,8 +930,8 @@ class EstateProgram {
             LEFT JOIN
                 wp_postmeta as m
             ON
-                m.post_id = flat.ID 
-            AND 
+                m.post_id = flat.ID
+            AND
                 m.meta_key = 'flat_props_$lang'
             WHERE
                 up.user_id = " . (int) get_current_user_id() . "
@@ -936,7 +951,7 @@ class EstateProgram {
     }
 
     /**
-     * 
+     *
      * @global type $wpdb
      * @param type $lang
      * @return type
