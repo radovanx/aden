@@ -259,6 +259,8 @@ class SourceParser {
 
                     if (copy($image_path, $new_path)) {
 
+                        chmod($new_path, 0775);
+                        
                         $basename = basename($new_path);
 
                         // Check the type of tile. We'll use this as the 'post_mime_type'.
@@ -381,6 +383,9 @@ class SourceParser {
                             while (false !== ($entry = readdir($temp_handle))) {
 
                                 $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
+                                
+                                chmod($temp_file, 0775);
+                                
                                 $temp_file_ext = strtolower(pathinfo($temp_file, PATHINFO_EXTENSION));
 
                                 if (is_file($temp_file)) {
