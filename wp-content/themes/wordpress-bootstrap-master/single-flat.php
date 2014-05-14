@@ -137,26 +137,48 @@
                                         <li>
                                             <strong><?php _e("Purchase price /sm:", "wpbootstrap"); ?></strong>
                                         </li>
-                                        <li>
-                                            <strong><?php _e("Apartment type:", "wpbootstrap"); ?> </strong>
-                                        </li>
+                                        <?php if (isset(EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']])): ?>
+                                            <li>
+                                                <strong><?php _e("Apartment type:", "wpbootstrap"); ?> </strong>
+                                                <?php echo EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']] ?>
+                                            </li>
+                                        <?php endif; ?>
+
+
+
                                         <li>
                                             <strong><?php _e("Floor:", "wpbootstrap"); ?> </strong>
+
+                                            <?php
+                                            if (isset($props['geo|etage'])):
+                                                echo esc_attr($props['geo|etage']);
+                                            endif;
+                                            ?>
                                         </li>
+
                                         <li>
                                             <strong><?php _e("Number of floors:", "wpbootstrap"); ?> </strong>
                                         </li>
                                         <li>
                                             <strong><?php _e("Rooms:", "wpbootstrap"); ?> </strong>
+                                            <?php
+                                            if ($props['flaechen|anzahl_zimmer']):
+                                                echo (int) $props['flaechen|anzahl_zimmer'];
+                                            endif;
+                                            ?>
                                         </li>
                                         <li>
                                             <strong><?php _e("Bathroom(s):", "wpbootstrap"); ?> </strong>
                                         </li>
                                         <li>
                                             <strong><?php _e("Elevator:", "wpbootstrap"); ?></strong>
+
                                         </li>
                                         <li>
                                             <strong><?php _e("Type of heating system:", "wpbootstrap"); ?></strong>
+                                            <?php
+                                            echo EstateProgram::heatingSystem($props);
+                                            ?>
                                         </li>
                                         <li>
                                             <strong><?php _e("Garage / parking spot:", "wpbootstrap"); ?></strong>

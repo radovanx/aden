@@ -61,6 +61,13 @@ EstateProgram::$rental_status = array(
     'eng' => 'en',
 );
 
+EstateProgram::$apartment_type = array(
+    'ETAGE' => __("appart d’etage", 'estateprogram'),
+    'DACHGESCHOSS' => __("Combles", 'estateprogram'),
+    'ERDGESCHOSS' => __("Rez de chaussée", 'estateprogram'),
+    'MAISONETTE' => __("duplex", 'estateprogram')
+);
+
 class EstateProgram {
 
     /**
@@ -86,7 +93,7 @@ class EstateProgram {
      *
      * @var      string
      */
-    protected $plugin_slug = 'estateprogram';
+    public $plugin_slug = 'estateprogram';
 
     /**
      * Instance of this class.
@@ -101,6 +108,7 @@ class EstateProgram {
     static $langs;
     static $rental_status;
     public static $cron_url;
+    public static $apartment_type;
 
     /**
      * Initialize the plugin by setting localization and loading public scripts
@@ -170,7 +178,7 @@ class EstateProgram {
             if ('all' == $file) {
                 SourceParser::all();
             }
-            
+
             exit;
             //require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
             //$mpdf = new mPDF();
@@ -240,7 +248,7 @@ class EstateProgram {
             try {
                 //upload_logo($user_id, 'user_logo');
             } catch (Exception $e) {
-
+                
             }
         }
     }
@@ -976,6 +984,24 @@ class EstateProgram {
             ";
 
         return $wpdb->get_col($sql);
+    }
+
+    static public function heatingSystem($props) {
+        $arr = array();
+
+        if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
+            $arr[] = __('chauffage par le sol', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
+            $arr[] = __('chauffage central', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
+            $arr[] = __('chauffage individuel', 'wpbootstrap');
+        }
+
+        return implode(', ', $arr);
     }
 
 }
