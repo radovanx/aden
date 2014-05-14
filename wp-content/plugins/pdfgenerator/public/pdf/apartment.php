@@ -70,9 +70,11 @@
                 <tr>
                     <td class="border-bottom" style="width:100%;"><h1>Logo</h1></td>
                     <td class="border-bottom" style="text-align: right; width:100%;">
-                        <b>Firma</b>
-                        <p>ulice | 110 00 mesto </p>
-                        <p>telefon | fax</p>
+                        <h4>
+                        Firma
+                        ulice | 110 00 mesto
+                        telefon | fax
+                        </h4>
                     </td>
                 </tr>
                 <tr>                    

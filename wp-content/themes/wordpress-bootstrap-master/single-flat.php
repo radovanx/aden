@@ -170,8 +170,6 @@
                             </div>
                             <div class="col-md-6 border-bottom margin-top">
                                 <h4 class="border-left uppercase"><?php _e("Description of the building", "wpbootstrap"); ?></h4>
-
-
                                 <p class="bigger-text"> <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?></p>
                             </div>
                             <div class="col-md-6 border-bottom margin-top">

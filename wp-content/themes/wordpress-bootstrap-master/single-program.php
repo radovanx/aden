@@ -6,51 +6,51 @@
             <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?></h1></div>
         </div>
         <div id="main" class="col-md-8 column clearfix" role="main">
-<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="gallery_tab">
                                 <!--slider here --> 
-        <?php
-        $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
-        $url = $thumb['0'];
-        ?>
+                                <?php
+                                $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
+                                $url = $thumb['0'];
+                                ?>
                                 <a href="<?php echo $url; ?>">
-                                <?php the_post_thumbnail('project-detail-big'); ?>
+                                    <?php the_post_thumbnail('project-detail-big'); ?>
                                 </a>
                                 <div id="myCarousel" class="carousel slide">
                                     <!-- Carousel items -->
                                     <div class="carousel-inner program-carousel">
 
-        <?php
-        $images = & get_children(array(
-                    'post_parent' => $post->ID,
-                    'post_type' => 'attachment',
-                    'post_mime_type' => 'image'
-        ));
+                                        <?php
+                                        $images = & get_children(array(
+                                                    'post_parent' => $post->ID,
+                                                    'post_type' => 'attachment',
+                                                    'post_mime_type' => 'image'
+                                        ));
 
-        if (empty($images)) {
-            // no attachments here
-        } else {
-            $i = 1;
-            ?>
+                                        if (empty($images)) {
+                                            // no attachments here
+                                        } else {
+                                            $i = 1;
+                                            ?>
                                             <div class="item active"><div class="row">
-                                            <?php
-                                            foreach ($images as $attachment_id => $attachment) {
-                                                $full_size = wp_get_attachment_image_src($attachment_id, 'full');
-                                                $full_size = $full_size[0];
-                                                echo '<div class="col-xs-3 nopadding"><a href="' . $full_size . '">';
-                                                echo wp_get_attachment_image($attachment_id, 'project-detail-small');
-                                                echo '</a>';
-                                                echo '</div>';
-                                                echo $i % 5 == 0 ? '</div></div><div class="item"><div class="row">' : '';
-                                                $i++;
-                                            }
-                                            echo '</div></div>';
-                                        }
-                                        ?>
+                                                    <?php
+                                                    foreach ($images as $attachment_id => $attachment) {
+                                                        $full_size = wp_get_attachment_image_src($attachment_id, 'full');
+                                                        $full_size = $full_size[0];
+                                                        echo '<div class="col-xs-3 nopadding"><a href="' . $full_size . '">';
+                                                        echo wp_get_attachment_image($attachment_id, 'project-detail-small');
+                                                        echo '</a>';
+                                                        echo '</div>';
+                                                        echo $i % 5 == 0 ? '</div></div><div class="item"><div class="row">' : '';
+                                                        $i++;
+                                                    }
+                                                    echo '</div></div>';
+                                                }
+                                                ?>
                                             </div>
                                             <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
                                             <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
@@ -115,11 +115,11 @@
                                 <div class="border col-md-12 column border background contact_form_block">                                                                        
                                     <h2 class="border-left uppercase"><?php _e('quel programme vous intéresse ?', 'wpbootstrap') ?></h2>
                                     <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
-        <?php echo do_shortcode('[contact-form-7 id="4080" title=""]') ?>
+                                    <?php echo do_shortcode('[contact-form-7 id="4080" title=""]') ?>
                                 </div>
                                 <div class="border col-md-12 column">
                                     <h3 class="border-left uppercase">
-        <?php _e("Key Facts", "wpbootstrap"); ?>
+                                        <?php _e("Key Facts", "wpbootstrap"); ?>
                                     </h3>
                                     <div class="row clearfix">
                                         <div class="col-md-12 column">
@@ -143,10 +143,10 @@
                                     </div>
                                 </div>
                             </div>
-        <?php if (is_user_logged_in()): ?>
+                            <?php if (is_user_logged_in()): ?>
                                 <div class="col-md-6 ">
                                     <h3 class="border-left inline uppercase">
-            <?php _e("List of products available in this program", "wpbootstrap"); ?>
+                                        <?php _e("List of products available in this program", "wpbootstrap"); ?>
                                     </h3>
                                 </div>
                                 <div class="col-md-3 margin-top">
@@ -185,10 +185,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-            <?php
-            $lang = qtrans_getLanguage();
-            $flat_props = EstateProgram::get_flats_props_by_program($post->ID, $lang);
-            ?>
+                                                    <?php
+                                                    $lang = qtrans_getLanguage();
+                                                    $flat_props = EstateProgram::get_flats_props_by_program($post->ID, $lang);
+                                                    ?>
                                                     <?php
                                                     $i = 0;
                                                     if (!empty($flat_props)):
@@ -200,66 +200,72 @@
                                                                     <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i></a>
                                                                 </td>
                                                                 <td>
-                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                                    <?php echo esc_attr($prop['anbieternr']) ?>
                                                                 </td>
                                                                 <td>
                                                                     <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
                                                                 </td>
-                                                                <td>
+                                                                <td>                                                                    
+                                                                    <?php echo esc_attr($prop['geo|wohnungsnr']) ?>
+                                                                </td>
+                                                                <td>                                                                    
+                                                                    <?php 
+                                                                    if (isset(EstateProgram::$rental_status[$prop['verwaltung_objekt|vermietet']])){
+                                                                        _e(EstateProgram::$rental_status[$prop['verwaltung_objekt|vermietet']]);
+                                                                    } 
+                                                                    ?>                                                                    
                                                                 </td>
                                                                 <td>
+                                                                    <?php echo esc_attr($prop['geo|etage']) ?>          
                                                                 </td>
                                                                 <td>
-                    <?php echo esc_attr($prop['geo|etage']) ?>          
+                                                                    <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
                                                                 </td>
                                                                 <td>
-                    <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
+                                                                    <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
                                                                 </td>
                                                                 <td>
-                    <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
+                                                                    <?php echo esc_attr($prop['preise|kaufpreis']) ?>
                                                                 </td>
                                                                 <td>
-                    <?php echo esc_attr($prop['preise|kaufpreis']) ?>
-                                                                </td>
-                                                                <td>
-                    <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
+                                                                    <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
                                                                 </td>
                                                                 <td>
                                                                 </td>
                                                                 <td>
                                                                 </td>
                                                             </tr>
-                    <?php
-                    $i++;
-                endforeach;
-            endif;
-            ?>
+                                                            <?php
+                                                            $i++;
+                                                        endforeach;
+                                                    endif;
+                                                    ?>
                                                 </tbody>
                                             </table>
                                         </div>                          
                                         <div class="col-md-12 column border tab-pane" id="list">     
-            <?php
-            $i = 0;
-            if (!empty($flat_props)):
-                foreach ($flat_props as $key => $val):
-                    $prop = unserialize($val->prop);
-                    $key = unserialize($key);
-                    $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
-                    $url_image = $thumb['0'];
-                    $url = get_permalink($val->ID);
+                                            <?php
+                                            $i = 0;
+                                            if (!empty($flat_props)):
+                                                foreach ($flat_props as $key => $val):
+                                                    $prop = unserialize($val->prop);
+                                                    $key = unserialize($key);
+                                                    $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
+                                                    $url_image = $thumb['0'];
+                                                    $url = get_permalink($val->ID);
 
-                    $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
-                    $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
-                    $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
-                    $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
-                    $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
-                    $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
-                    $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
-                    $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
-                    $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
-                    $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
-                    $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-                    ?> 
+                                                    $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
+                                                    $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
+                                                    $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
+                                                    $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
+                                                    $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
+                                                    $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
+                                                    $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
+                                                    $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
+                                                    $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
+                                                    $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
+                                                    $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
+                                                    ?> 
 
                                                     <div class="row">
                                                         <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
@@ -271,39 +277,39 @@
                                                             </div>    
                                                             <div class="col-md-9"> 
                                                                 <h4 class="blue"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
-                    <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h4>
+                                                                        <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h4>
 
                                                                 <div class="row">
                                                                     <div class="col-md-3">  
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong> 
 
-                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                                            <?php echo esc_attr($prop['anbieternr']) ?>
 
                                                                         </span>                         
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong> 
-                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                                            <?php echo esc_attr($prop['anbieternr']) ?>
                                                                         </span>
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong> 
-                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                                            <?php echo esc_attr($prop['anbieternr']) ?>
                                                                         </span> 
                                                                     </div>
                                                                     <div class="col-md-3"> 
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Floor:", "wpbootstrap"); ?></strong> 
-                    <?php echo $floor; ?>
+                                                                            <?php echo $floor; ?>
                                                                         </span>
 
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong> 
-                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                                            <?php echo esc_attr($prop['anbieternr']) ?>
                                                                         </span>
 
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong> 
-                    <?php echo $area; ?>
+                                                                            <?php echo $area; ?>
                                                                         </span>
 
                                                                     </div>
@@ -311,12 +317,12 @@
                                                                     <div class="col-md-3"> 
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Price:", "wpbootstrap"); ?></strong> 
-                    <?php echo $price; ?>
+                                                                            <?php echo $price; ?>
                                                                         </span>
 
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong> 
-                    <?php echo $pricem; ?>
+                                                                            <?php echo $pricem; ?>
                                                                         </span>
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Yield:", "wpbootstrap"); ?></strong> 
@@ -325,7 +331,7 @@
                                                                     </div> 
                                                                     <div class="col-md-3"> 
                                                                         <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-                    <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
+                                                                            <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
                                                                         </strong>
                                                                         <a href="<?php echo $url; ?>" class=" "><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
                                                                     </div>  
@@ -333,17 +339,17 @@
                                                             </div>    
                                                         </div>  
                                                     </div> 
-                    <?php
-                    $i++;
-                endforeach;
-            endif;
-            ?>  
+                                                    <?php
+                                                    $i++;
+                                                endforeach;
+                                            endif;
+                                            ?>  
                                         </div>       
                                     </div>    
 
                                 </div>
                             </div>
-        <?php endif; ?>
+                        <?php endif; ?>
                     <?php endwhile; ?>
                 <?php else : ?>
                     <article id="post-not-found">
@@ -356,7 +362,7 @@
                         <footer>
                         </footer>
                     </article>
-<?php endif; ?>
+                <?php endif; ?>
         </div> <!-- end #main --> 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -367,7 +373,7 @@
                     </div>
                     <div class="modal-body">
 
-<?php _e("You modified", "wpbootstrap"); ?>
+                        <?php _e("You modified", "wpbootstrap"); ?>
 
                     </div>
                     <div class="modal-footer">
@@ -376,7 +382,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal --> 
-<?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>  
+        <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>  
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
         <script>
             // MAP //     

@@ -56,6 +56,12 @@ EstateProgram::$langs = array(
     'eng' => 'en',
 );
 
+EstateProgram::$rental_status = array(
+    'fre' => 'fr',
+    'eng' => 'en',
+);
+
+
 class EstateProgram {
 
     /**
@@ -94,6 +100,7 @@ class EstateProgram {
     static $tags_apartment;
     static $tags_program;
     static $langs;
+    static $rental_status;
 
     
     public static $cron_url;
@@ -272,7 +279,7 @@ class EstateProgram {
             'supports' => array(
                 'thumbnail',
                 'title',
-                // 'editor',
+                 'editor',
                 // 'excerpt',
                 'author'
             ),
