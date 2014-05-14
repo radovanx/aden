@@ -95,6 +95,9 @@ class EstateProgram {
     static $tags_program;
     static $langs;
 
+    
+    public static $cron_url;
+    
     /**
      * Initialize the plugin by setting localization and loading public scripts
      * and styles.
@@ -102,6 +105,8 @@ class EstateProgram {
      * @since     1.0.0
      */
     private function __construct() {
+        
+        EstateProgram::$cron_url = plugins_url( '/cron/script.php', __FILE__ );
 
         // Load plugin text domain
         add_action('init', array($this, 'load_plugin_textdomain'));
