@@ -1,5 +1,7 @@
 <?php
 
+echo 'hello'; exit;
+
 $time = microtime(true); // time in Microseconds
 
 define('WP_USE_THEMES', FALSE);
