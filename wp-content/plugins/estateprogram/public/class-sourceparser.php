@@ -49,7 +49,6 @@ class SourceParser {
         return $return;
     }
 
-
     /**
      *
      */
@@ -87,19 +86,30 @@ class SourceParser {
 
             //
             $post_information = array(
-                'post_title' => $ret['freitexte|objekttitel'],
+                //'post_title' => $ret['freitexte|objekttitel'],
                 'post_content' => '',
                 'post_type' => 'flat',
                 'post_status' => 'publish',
             );
 
             if (!empty($apartment_id)) {
+
+                $post_title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $apartment_id);
+
+                $pattern = "~<!--:$wp_lang-->(.*)<!--:-->~U";
+
+                $post_title = preg_replace($pattern, '', $post_title);
+
+                $post_information['post_title'] = $post_title . '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
                 $post_information['ID'] = $apartment_id;
+
                 wp_insert_post($post_information);
             } else {
-                update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
                 $apartment_id = wp_insert_post($post_information);
+                $post_information['post_title'] = '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
             }
+
+            update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
 
             $props = array();
             $excl = array('anhaenge', 'anhang');
@@ -144,7 +154,8 @@ class SourceParser {
 
             $sql = "
           SELECT
-            p.ID
+            p.ID,
+            p.post_title
           FROM
             " . $wpdb->prefix . "postmeta as pm1
           JOIN
@@ -184,7 +195,7 @@ class SourceParser {
           ";
 
 
-            $program_id = $wpdb->get_var($sql);
+            $program_id = $wpdb->get_row($sql);
 
             //
             if (!empty($program_id)) {
@@ -236,7 +247,7 @@ class SourceParser {
                     }
                 }
 
-                //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;            
+                //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
                 $image_path = $source_path . DIRECTORY_SEPARATOR . $image_file;
 
                 if (is_file($image_path)) {
@@ -314,8 +325,8 @@ class SourceParser {
         global $wpdb;
 
         $langs = EstateProgram::$langs;
-        
-        
+
+
 
         foreach ($langs as $key => $val) {
 
@@ -324,31 +335,30 @@ class SourceParser {
             if (!is_dir($source_dir)) {
                 throw new Exception('Zdrojový adresář ' . $source_dir . ' neexistuje');
             }
-            
-           // var_dump($source_dir);
+
+            // var_dump($source_dir);
 
             if ($handle = opendir($source_dir)) {
-                
-                while (false !== ($entry = readdir($handle))) {                                    
-                    
+
+                while (false !== ($entry = readdir($handle))) {
+
                     //var_dump($entry);
-                    
+
                     $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
                     $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
                     //var_dump($ext);
-                    
+
                     if ('zip' != strtolower($ext)) {
                         continue;
                     }
 
-                   // var_dump($file);
-                    
+                    // var_dump($file);
+
                     $zip = new ZipArchive;
                     $res = $zip->open($file);
-                    
-                    //var_dump($file);
 
+                    //var_dump($file);
                     // extrahovani zipu do tempu
                     if (true == $res) {
 
