@@ -36,7 +36,23 @@
             <form role="form" class="border background clearfix searchform col-md-12">
                 <div class="col-md-6 column">
                     <div class="form-group">
-                        <label for="City"><?php _e("City:", "wpbootstrap"); ?></label><input name="city" class="form-control input-lg" id="City"  type="text"  placeholder="City:"/>
+                     
+                        <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
+                         
+                    
+                        <div class="row">
+          
+                     
+                        <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox1" value="Prague" class="">Prague
+                        </label>
+                        <label class="checkbox-inline">
+                        <input type="checkbox" id="inlineCheckbox2" value="Berlin" class="">Berlin
+                        </label>
+      
+                        </div>
+                        
+                    
                     </div>
                     <div class="form-group">
                         <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label>
@@ -89,40 +105,38 @@
                              <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label> 
                              <select class="form-control input-lg" name="Roomsf" > 
                                  <option value="1">1</option>
-                                 <option value="1">2</option>
-                                 <option value="1">3</option> 
-                                 <option value="1">4</option>
-                                 <option value="1">5</option>
-                                 <option value="1">6</option>
-                                 <option value="1">7</option>
-                                 <option value="1">8</option>
-                                 <option value="1">9</option>
-                                 <option value="1">10</option>
-                                 <option value="1">11</option>
-                                 <option value="1">12</option> 
+                                 <option value="2">2</option>
+                                 <option value="3">3</option> 
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 <option value="9">9</option>
+                                 <option value="10">10</option>
+                                 <option value="11">11</option>
+                                 <option value="12">12</option> 
                              </select>     
                         </div> 
                         <div class="form-group col-md-6">
                             <label for="Roomst"><?php _e("Rooms to:", "wpbootstrap"); ?></label>
                              <select class="form-control input-lg" name="Roomst" > 
                                  <option value="1">1</option>
-                                 <option value="1">2</option>
-                                 <option value="1">3</option> 
-                                 <option value="1">4</option>
-                                 <option value="1">5</option>
-                                 <option value="1">6</option>
-                                 <option value="1">7</option>
-                                 <option value="1">8</option>
-                                 <option value="1">9</option>
-                                 <option value="1">10</option>
-                                 <option value="1">11</option>
-                                 <option value="1">12</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option> 
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 <option value="9">9</option>
+                                 <option value="10">10</option>
+                                 <option value="11">11</option>
+                                 <option value="12">12</option>
                              </select>    
                         </div> 
                         <div class="form-group col-md-6 col-md-offset-6">  
-
-                            <button type="submit" class="btn btn-primary btn-lg btn-block searchbutton margin-button"><i class="fa fa-search"></i>Search</button>      
-
+                            <button type="submit" class="btn btn-primary btn-lg btn-block searchbutton margin-button"><i class="fa fa-search"></i>Search</button>
                         </div>   
                     </div>       
                 </div>
@@ -136,7 +150,6 @@
                 <?php _e("All products", "wpbootstrap"); ?>
             </h3>
         </div>
-
         <div class="col-md-3">
             <select name="sort_by_list" class="form-control input-lg">
                 <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
@@ -146,8 +159,7 @@
             </select>
         </div>
         <div class="col-md-3 big_icons">
-          
-        
+
         <!-- Nav tabs -->
     <ul class="nav nav-tabs">
     
@@ -162,7 +174,6 @@
             <!-- Tab panes -->
             <div class="tab-content">      
                 <div class="tab-pane active" id="table"> 
-                
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -207,6 +218,7 @@
                                 $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
  
                                 $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . "   },";
+                                
                                 $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
                                 if ($i < 10):
@@ -261,7 +273,6 @@
                     </tbody>                 
                 </table>  
                 </div>    
-  
                 <div class="col-md-12 column border tab-pane" id="list">     
 <?php
 $lang = qtrans_getLanguage();
@@ -294,7 +305,6 @@ if (!empty($flat_props)):
         ?> 
                             <div class="row">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
-
                                     <div class="col-md-3">  
                                         <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>"/></a>    
                                     </div>    
@@ -306,9 +316,7 @@ if (!empty($flat_props)):
                                             <div class="col-md-3">  
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong> 
-
                                                     <?php echo esc_attr($prop['anbieternr']) ?>
-
                                                 </span>                         
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong> 
@@ -574,7 +582,10 @@ endif;
         }
 
         //ROOMS    
-        if (froomsf != '' || froomst != '')
+     
+     
+     
+         if (froomsf != '' || froomst != '')
         {
             var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"});
             collection.addFilters([rooms_range_filter]);
@@ -587,35 +598,10 @@ endif;
             {
                 finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
             }
-        }
-        else if (froomsf != '' && froomst == '')
-        {
-            var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, 999999999]], {attr: "rooms"});
-            collection.addFilters([rooms_range_filter]);
-            // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]);  
-            if (finalfilter != false)
-            {
-                finalfilter = finalfilter.and(collection.filters.rooms_range.getFn([froomsf, 999999999]));
-            }
-            else
-            {
-                finalfilter = collection.filters.rooms_range.getFn([froomsf, 999999999]);
-            }
-        }
-        else if (froomsf == '' && froomst != '')
-        {
-            var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[0, froomst]], {attr: "rooms"});
-            collection.addFilters([rooms_range_filter]);
-            // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]);  
-            if (finalfilter != false)
-            {
-                finalfilter = finalfilter.and(collection.filters.rooms_range.getFn([0, froomst]));
-            }
-            else
-            {
-                finalfilter = collection.filters.rooms_range.getFn([0, froomst]);
-            }
-        }
+        } 
+        
+        
+        
 
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
@@ -673,11 +659,7 @@ endif;
                  
                  zip*/
 
-                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td>\n\
-                                              <td></td>
-                                                    
-   
-</tr>";
+                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td><td></td></tr>";
                 jQuery("tbody").append(table_data);
  
             });
