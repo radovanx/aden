@@ -2,7 +2,7 @@
 
 $time = microtime(true); // time in Microseconds
 
-define('WP_USE_THEMES', FALSE);
+
 require( 'wp-load.php' );
 
 require_once(ABSPATH . "wp-admin/includes/image.php");
@@ -109,7 +109,7 @@ class SourceParser {
 
                 $split = explode('|', $key);
 
-                if ((empty(rtrim($val)) && count($split) > 1) || in_array($split[0], $excl)) {
+                if ((false == (rtrim($val)) && count($split) > 1) || in_array($split[0], $excl)) {
                     continue;
                 }
 
@@ -314,27 +314,40 @@ class SourceParser {
         global $wpdb;
 
         $langs = EstateProgram::$langs;
+        
+        
 
         foreach ($langs as $key => $val) {
 
-            $source_dir = ABSPATH . $key;
+            $source_dir = ABSPATH . $key . '/';
 
             if (!is_dir($source_dir)) {
                 throw new Exception('Zdrojový adresář ' . $source_dir . ' neexistuje');
             }
+            
+           // var_dump($source_dir);
 
             if ($handle = opendir($source_dir)) {
-                while (false !== ($entry = readdir($handle))) {
-
+                
+                while (false !== ($entry = readdir($handle))) {                                    
+                    
+                    //var_dump($entry);
+                    
                     $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
                     $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
+                    //var_dump($ext);
+                    
                     if ('zip' != strtolower($ext)) {
                         continue;
                     }
 
+                   // var_dump($file);
+                    
                     $zip = new ZipArchive;
                     $res = $zip->open($file);
+                    
+                    //var_dump($file);
 
                     // extrahovani zipu do tempu
                     if (true == $res) {

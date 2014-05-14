@@ -163,17 +163,13 @@ class EstateProgram {
 
         if (isset($q['action']) && 'grab-source-xml' == $q['action']) {
 
-            require_once( plugin_dir_path(__FILE__) . 'class-sourceparser.php' );
-            
-            
+            require_once 'class-sourceparser.php';
+
             $file = $q['source-file'];
-            
-            if('all' == $file){
+
+            if ('all' == $file) {
                 SourceParser::all();
             }
-            
-            //$lang = qtrans_getLanguage();
-
             
             exit;
             //require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
@@ -244,7 +240,7 @@ class EstateProgram {
             try {
                 //upload_logo($user_id, 'user_logo');
             } catch (Exception $e) {
-                
+
             }
         }
     }
