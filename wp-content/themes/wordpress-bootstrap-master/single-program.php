@@ -119,15 +119,21 @@
                                                     <?php 
                                                     $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation', $args ); 
                                                     
+                                                    $type_of_accomodation = array();
+                                                    
+                                                    foreach($terms as $t){
+                                                        $type_of_accomodation[] = $t->name;
+                                                    }
+                                                    
                                                     ?>
                                                     
-                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-home round-border"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong> </span>
+                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-home round-border"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong> <?php echo implode(', ', $type_of_accomodation) ?></span>
                                                 </div>
                                                 <div class="panel-body">
-                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
+                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong> <?php esc_attr_e(get_post_meta($post->ID, '_program_address', true)) ?></span>
                                                 </div>
                                                 <div class="panel-body">
-                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²
+                                                    <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong> <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²
                                                     </span>
                                                 </div>
                                                 <div class="panel-body">
