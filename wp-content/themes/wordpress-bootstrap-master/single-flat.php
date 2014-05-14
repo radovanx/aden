@@ -102,9 +102,7 @@
                                             <span class="propertyListBoxDataItemName">
                                                 <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
                                                 <strong class="red">
-
-                                                    <?php echo esc_attr($props['flaechen|anzahl_zimmer']) ?>
-
+                                                    <?php echo (int) $props['flaechen|anzahl_zimmer'] ?>
                                                 </strong>
                                             </span>
                                             <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
@@ -133,6 +131,12 @@
                                         </li>
                                         <li>
                                             <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
+                                            <?php
+                                            if (isset($props['zustand_angaben|baujahr'])):
+                                                echo esc_attr($props['zustand_angaben|baujahr']);
+                                            endif;
+                                            ?>
+
                                         </li>
                                         <li>
                                             <strong><?php _e("Purchase price /sm:", "wpbootstrap"); ?></strong>
@@ -169,9 +173,15 @@
                                         </li>
                                         <li>
                                             <strong><?php _e("Bathroom(s):", "wpbootstrap"); ?> </strong>
+                                            <?php
+                                            if (isset($props['flaechen|anzahl_badezimmer'])) {
+                                                echo (int) $props['flaechen|anzahl_badezimmer'];
+                                            }
+                                            ?>
                                         </li>
                                         <li>
                                             <strong><?php _e("Elevator:", "wpbootstrap"); ?></strong>
+
 
                                         </li>
                                         <li>
@@ -185,6 +195,11 @@
                                         </li>
                                         <li>
                                             <strong><?php _e("Buyer commission (incl. VAT):", "wpbootstrap"); ?></strong>
+                                            <?php
+                                            if (isset($props['preise|aussen_courtage'])):
+                                                echo esc_attr($props['preise|aussen_courtage']);
+                                            endif;
+                                            ?>
                                         </li>
                                     </ul>
                                 </div>
