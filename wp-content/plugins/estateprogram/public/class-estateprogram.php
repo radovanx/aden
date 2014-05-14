@@ -253,8 +253,8 @@ class EstateProgram {
             'supports' => array(
                 'thumbnail',
                 'title',
-                'editor',
-                'excerpt',
+               // 'editor',
+               // 'excerpt',
                 'author'
             ),
             'menu_position' => 8,
