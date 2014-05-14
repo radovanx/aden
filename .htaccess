@@ -3,7 +3,6 @@
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
-RewriteRule ^grab.php$ /http://www.adenimmo.localhost/wp-content/plugins/estateprogram/public/cron/script.php [QSA,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]

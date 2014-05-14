@@ -154,7 +154,7 @@ class EstateProgram {
 
     function do_rewrite() {
         //add_rewrite_rule("download-product-data/([^/]+)/?$", 'index.php?action=generate-pdf&product-id=$matches[1]', 'top');
-        add_rewrite_rule("grab-source-xml/([^/]+)?$", 'index.php?action=grab-source-xml&source-file=$matches[1]', 'top');
+        add_rewrite_rule("grab-source-xml/([^/]+)/?$", 'index.php?action=grab-source-xml&source-file=$matches[1]', 'top');
     }
 
     public function parse_request(&$wp) {
@@ -163,10 +163,19 @@ class EstateProgram {
 
         if (isset($q['action']) && 'grab-source-xml' == $q['action']) {
 
+            require_once( plugin_dir_path(__FILE__) . 'class-sourceparser.php' );
+            
+            
+            $file = $q['source-file'];
+            
+            if('all' == $file){
+                SourceParser::all();
+            }
+            
             //$lang = qtrans_getLanguage();
 
             
-            
+            exit;
             //require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
             //$mpdf = new mPDF();
         }
