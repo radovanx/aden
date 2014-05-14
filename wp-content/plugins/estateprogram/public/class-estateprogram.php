@@ -128,6 +128,20 @@ class EstateProgram {
         add_filter('authenticate', array(&$this, 'check_login'), 100, 3);
 
         $ajaxModule = new EstateProgramAjax();
+
+        //add_action('init', array(&$this, 'rewrite'));
+    }
+
+    public function rewrite() {
+        
+        //$script_url = plugins_url( '/cron/script.php', __FILE__ );
+        
+        //'grab.php\?file=([^/]+)?$', $script_url . '?file=$matches[1]', 'top'
+        
+        /*
+        add_rewrite_rule(
+                'grab.php$', $script_url, 'top'
+        );*/
     }
 
     /**
@@ -142,10 +156,10 @@ class EstateProgram {
         // this filter is called on the log in page
         // make sure we have a username before we move forward
         //if (!empty($username)) {
-        
-        
-        
-        if($user instanceof WP_User && user_can($user, 'only_demo')){
+
+
+
+        if ($user instanceof WP_User && user_can($user, 'only_demo')) {
 
             $user_data = $user->data;
 
@@ -253,8 +267,8 @@ class EstateProgram {
             'supports' => array(
                 'thumbnail',
                 'title',
-               // 'editor',
-               // 'excerpt',
+                // 'editor',
+                // 'excerpt',
                 'author'
             ),
             'menu_position' => 8,
@@ -915,10 +929,10 @@ class EstateProgram {
      * @param type $lang
      * @return type
      */
-    public static function cities($lang){
-        
+    public static function cities($lang) {
+
         global $wpdb;
-        
+
         $sql = "
             SELECT
                 city
@@ -927,9 +941,8 @@ class EstateProgram {
             WHERE
                 lang = '" . esc_sql($lang) . "'
             ";
-        
+
         return $wpdb->get_col($sql);
-        
     }
-    
+
 }

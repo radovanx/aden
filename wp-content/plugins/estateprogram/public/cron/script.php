@@ -1,11 +1,9 @@
 <?php
 
-echo 'hello'; exit;
-
 $time = microtime(true); // time in Microseconds
 
 define('WP_USE_THEMES', FALSE);
-require( '../wp-load.php' );
+require( '../../../../../wp-load.php' );
 
 require_once(ABSPATH . "wp-admin/includes/image.php");
 require_once(ABSPATH . "wp-admin/includes/file.php");
