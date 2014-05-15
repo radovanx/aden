@@ -52,10 +52,18 @@ class SourceParser {
     /**
      *
      */
-    function grab_it($file, $lang, $source_path) {
+    function grab_it($file, $lang, $source_dir) {
 
+        $temp_dir = realpath($source_dir . DIRECTORY_SEPARATOR . 'temp');
+        
         $realpath = realpath($file);
+        
+        //$temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
 
+        if(!file_exists($file)){
+            return;
+        }
+        
         $xml = simplexml_load_file($realpath);
 
         $wp_lang = EstateProgram::$langs[$lang];
@@ -126,7 +134,7 @@ class SourceParser {
                 $pattern = "~<!--:$wp_lang-->(.*)<!--:-->~U";
                 $post_title = preg_replace($pattern, '', $post_title);
 
-                if (false != trim($ret['freitexte|objekttitel'])) {
+                if (!empty($ret['freitexte|objekttitel'])) {
                     $post_information['post_title'] = $post_title . '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
                 }
                 $post_information['ID'] = $apartment_id;
@@ -273,9 +281,9 @@ class SourceParser {
                 }
 
                 //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
-                $image_path = $source_path . DIRECTORY_SEPARATOR . $image_file;
+                $image_path = $temp_dir . DIRECTORY_SEPARATOR . $image_file;
 
-                if (is_file($image_path)) {
+                if (file_exists($image_path)) {
 
                     $finfo = pathinfo($image_path);
                     $wp_upload_dir = wp_upload_dir();
@@ -357,7 +365,7 @@ class SourceParser {
 
         foreach ($langs as $key => $val) {
 
-            $source_dir = ABSPATH . $key . '/';
+            $source_dir = ABSPATH . $key;
 
             if (!is_dir($source_dir)) {
                 throw new Exception('Zdrojový adresář ' . $source_dir . ' neexistuje');
@@ -372,7 +380,7 @@ class SourceParser {
                     $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
                     $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
 
-                    SourceParser::read_zip($file, $key, $temp_dir);
+                    SourceParser::read_zip($file, $key, $source_dir );
                 }
             } else {
                 throw new Exception('Nepodařilo se otevřít zdrojový adresář ' . $source_dir . ' neexistuje');
@@ -388,8 +396,10 @@ class SourceParser {
      * @return type
      * @throws Exception
      */
-    public static function read_zip($file, $dir, $temp_dir) {
+    public static function read_zip($file, $dir, $source_dir) {
 
+        $temp_dir = realpath($source_dir . DIRECTORY_SEPARATOR . 'temp');
+        
         $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
         if ('zip' != strtolower($ext)) {
@@ -432,7 +442,7 @@ class SourceParser {
                     }
 
                     if ('xml' == $temp_file_ext) {
-                        SourceParser::grab_it($temp_file, $dir, $temp_dir);
+                        SourceParser::grab_it($temp_file, $dir, $source_dir);
                     }
                 }
 

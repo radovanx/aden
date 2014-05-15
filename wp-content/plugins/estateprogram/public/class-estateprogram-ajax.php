@@ -34,7 +34,7 @@ class EstateProgramAjax {
         $file = $source_dir . $filename;
         
         try{
-            SourceParser::read_zip($file, $dir, $temp_dir);
+            SourceParser::read_zip($file, $dir, $source_dir);
             echo 'ok';
         } Catch (Exception $e){
             header("HTTP/1.0 404 Not Found");
