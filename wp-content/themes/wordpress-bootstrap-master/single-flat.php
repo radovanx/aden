@@ -76,7 +76,6 @@
                                     <div class="row clearfix">
                                         <div class="col-md-12 column product-key-info">
                                             <address>
-
                                                 <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br>
                                                 <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                                 <br><?php echo esc_attr($props['kontaktperson|hausnummer']) ?> <?php echo esc_attr($props['kontaktperson|strasse']) ?>
@@ -84,7 +83,6 @@
                                                 <abbr title="Phone">Phone:</abbr> <?php echo esc_attr($props['kontaktperson|tel_durchw']) ?><br>
                                                 <abbr title="Email">Email:</abbr> <?php echo esc_attr($props['kontaktperson|email_direkt']) ?>
                                             </address>
-
 
                                             <span class="propertyListBoxDataItemName">
                                                 <i class="fa fa-money"></i>
@@ -104,23 +102,29 @@
                                             <span class="propertyListBoxDataItemName">
                                                 <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
                                                 <strong class="red">
-
-                                                    <?php echo esc_attr($props['flaechen|anzahl_zimmer']) ?>
-
+                                                    <?php echo (int) $props['flaechen|anzahl_zimmer'] ?>
                                                 </strong>
                                             </span>
                                             <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
 
                                             <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
                                             <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
-                                            <a href="#" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
-                                            <a href="#" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
+
+                                            <?php if (!empty($props['dropbox|building'])): ?>
+                                                <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
+                                            <?php endif; ?>
+
+                                            <?php if (!empty($props['dropbox|flat'])): ?>
+                                                <a href="<?php echo esc_attr($props['dropbox|flat']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
+                                            <?php endif; ?>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 column">
                                 <div class="col-md-12 column border">
+                                    <!-- apartment properties -->
                                     <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
                                     <ul class="list-unstyled featured-single-flat">
                                         <li>
@@ -128,38 +132,83 @@
                                         </li>
                                         <li>
                                             <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
+                                            <?php
+                                            if (isset($props['zustand_angaben|baujahr'])):
+                                                echo esc_attr($props['zustand_angaben|baujahr']);
+                                            endif;
+                                            ?>
+
                                         </li>
                                         <li>
                                             <strong><?php _e("Purchase price /sm:", "wpbootstrap"); ?></strong>
+                                            <?php 
+                                            if(isset($props['preise|kaufpreis_pro_qm'])):
+                                                echo esc_attr($props['preise|kaufpreis_pro_qm']). ' '; echo esc_attr($props['preise|waehrung|iso_waehrung']);
+                                            endif;    
+                                            ?>
                                         </li>
-                                        <li>
-                                            <strong><?php _e("Apartment type:", "wpbootstrap"); ?> </strong>
-                                        </li>
+                                        <?php if (isset(EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']])): ?>
+                                            <li>
+                                                <strong><?php _e("Apartment type:", "wpbootstrap"); ?> </strong>
+                                                <?php echo EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']] ?>
+                                            </li>
+                                        <?php endif; ?>
+
+
+
                                         <li>
                                             <strong><?php _e("Floor:", "wpbootstrap"); ?> </strong>
+
+                                            <?php
+                                            if (isset($props['geo|etage'])):
+                                                echo esc_attr($props['geo|etage']);
+                                            endif;
+                                            ?>
                                         </li>
+
                                         <li>
                                             <strong><?php _e("Number of floors:", "wpbootstrap"); ?> </strong>
                                         </li>
                                         <li>
                                             <strong><?php _e("Rooms:", "wpbootstrap"); ?> </strong>
+                                            <?php
+                                            if ($props['flaechen|anzahl_zimmer']):
+                                                echo (int) $props['flaechen|anzahl_zimmer'];
+                                            endif;
+                                            ?>
                                         </li>
                                         <li>
                                             <strong><?php _e("Bathroom(s):", "wpbootstrap"); ?> </strong>
+                                            <?php
+                                            if (isset($props['flaechen|anzahl_badezimmer'])) {
+                                                echo (int) $props['flaechen|anzahl_badezimmer'];
+                                            }
+                                            ?>
                                         </li>
                                         <li>
                                             <strong><?php _e("Elevator:", "wpbootstrap"); ?></strong>
+
+
                                         </li>
                                         <li>
                                             <strong><?php _e("Type of heating system:", "wpbootstrap"); ?></strong>
+                                            <?php
+                                            echo EstateProgram::heatingSystem($props);
+                                            ?>
                                         </li>
                                         <li>
                                             <strong><?php _e("Garage / parking spot:", "wpbootstrap"); ?></strong>
                                         </li>
                                         <li>
                                             <strong><?php _e("Buyer commission (incl. VAT):", "wpbootstrap"); ?></strong>
+                                            <?php
+                                            if (isset($props['preise|aussen_courtage'])):
+                                                echo esc_attr($props['preise|aussen_courtage']);
+                                            endif;
+                                            ?>
                                         </li>
                                     </ul>
+                                    <!-- /apartment properties -->
                                 </div>
                             </div>
                             <div class="col-md-12 column border-bottom margin-top">
@@ -170,8 +219,6 @@
                             </div>
                             <div class="col-md-6 border-bottom margin-top">
                                 <h4 class="border-left uppercase"><?php _e("Description of the building", "wpbootstrap"); ?></h4>
-
-
                                 <p class="bigger-text"> <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?></p>
                             </div>
                             <div class="col-md-6 border-bottom margin-top">
@@ -208,7 +255,6 @@
         </div> <!-- end #content -->
     </div>
 
-
     <div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -232,8 +278,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-
 
     <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
 

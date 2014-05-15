@@ -6,17 +6,17 @@
  * also follow WordPress Coding Standards and PHP best practices.
  *
  * @package   pdfgenerator
- * @author    Radomir Bednar <radomir@web-4-all.cz>
+ * @author    w4a
  * @license   GPL-2.0+
  * @link      
- * @copyright 2014 Radomir Bednar
+ * @copyright 
  *
  * @wordpress-plugin
  * Plugin Name:       pdfgenerator
  * Plugin URI:       pdfgenerator
  * Description:       PDF GENERATOR
  * Version:           1.0.0
- * Author:       Radomir Bednar
+ * Author: w4a
  * Author URI:       
  * Text Domain:       pdfgenerator
  * License:           GPL-2.0+

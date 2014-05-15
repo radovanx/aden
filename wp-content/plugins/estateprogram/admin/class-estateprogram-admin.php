@@ -112,7 +112,7 @@ class EstateProgram_Admin {
     }
 
     /**
-     * 
+     *
      */
     public function profile_boxes($user) {
         include_once( 'views/user_profile.php' );
@@ -120,7 +120,7 @@ class EstateProgram_Admin {
     }
 
     /**
-     * 
+     *
      */
     /*
       public function update_profile($user_id) {
@@ -143,7 +143,7 @@ class EstateProgram_Admin {
       } */
 
     /**
-     * 
+     *
      * @global type $post
      */
     public function clean_post_data() {
@@ -174,19 +174,26 @@ class EstateProgram_Admin {
 
         if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
             $meta_keys = array(
-                '_program_street',
-                '_program_city',
-                '_program_district',
+                //'_program_street',
+                '_program_location',
+                //'_program_city',
+                //'_program_district',
+                '_program_apartments',
                 '_program_price_from',
                 '_program_price_to',
                 '_program_surface_to',
                 '_program_surface_from',
-                '_program_elevator',
-                '_program_postcode',
+                //'_program_elevator',
+                //'_program_postcode',
                 '_program_latitude',
                 '_program_longitude',
-                '_house_number'
+                //'_house_number',
+                '_program_address',
+                '_program_hightlight',
+                '_program_commission'
             );
+
+
 
             $this->process_save($post->ID, $meta_keys);
         }
@@ -205,7 +212,7 @@ class EstateProgram_Admin {
             //
             if (!empty($_POST['flat2program'])) {
                 $sql = "
-                    REPLACE INTO 
+                    REPLACE INTO
                         apartment2program (apartment_id, program_id)
                     VALUES (
                         '" . (int) $post->ID . "',
@@ -224,9 +231,41 @@ class EstateProgram_Admin {
         }
     }
 
+    /**
+     *
+     * @param type $post_id
+     * @param type $meta_keys
+     */
     protected function process_save($post_id, $meta_keys) {
 
+        $langs = qtrans_getSortedLanguages();
+
         foreach ($meta_keys as $key) {
+
+            // kouknu jestli existují jazykové verze
+            $mam = false;
+
+            $content = '';
+            foreach ($langs as $lang) {
+                $lang_key = $key . '_' . $lang;
+                if (isset($_POST[$lang_key])) {
+                    $mam = true;
+
+                    if (!empty($_POST[$lang_key])) {
+                        $content .= '<!--:' . $lang . '-->' . $_POST[$lang_key] . '<!--:-->';
+                    }
+                }
+            }
+
+            if ($mam) {
+                if (empty($content)) {
+                    delete_post_meta($post->ID, $key);
+                } else {
+                    update_post_meta($post_id, $key, $content);
+                }
+                continue;
+            }
+
             if (isset($_POST[$key]) && ('' != $_POST[$key])) {
                 update_post_meta($post_id, $key, $_POST[$key]);
             } else {
@@ -261,21 +300,12 @@ class EstateProgram_Admin {
         add_meta_box(
                 'flat2program', __('Assign to program', $this->plugin_slug), array($this, 'flat2program'), 'flat', 'side'
         );
+        
+        add_meta_box(
+                'program_hightlight', __('Program hightlight', $this->plugin_slug), array($this, 'program_hightlight'), 'program'
+        );        
 
-        /*
-          global $post;
 
-          //////////////
-          if ('flat' == $post->post_type) {
-
-          $tags = EstateProgram::$tags_apartment;
-
-          foreach ($tags as $tag) {
-          add_meta_box(
-          'flat_properties', __('Flat properties', $this->plugin_slug), array($this, 'flat_properties'), 'flat'
-          );
-          }
-          } */
     }
 
     public function flat2program() {
@@ -284,20 +314,20 @@ class EstateProgram_Admin {
         global $wpdb;
 
         $sql = "
-            SELECT 
-                ID 
-            FROM 
-                wp_posts 
-            WHERE 
-                post_type='program' 
-            AND 
+            SELECT
+                ID
+            FROM
+                wp_posts
+            WHERE
+                post_type='program'
+            AND
                 post_status IN ('publish', 'future', 'pending', 'private')";
 
         $programs = $wpdb->get_results($sql);
 
         $sql = "
-            SELECT 
-                program_id 
+            SELECT
+                program_id
             FROM
                 apartment2program
             WHERE
@@ -320,6 +350,12 @@ class EstateProgram_Admin {
         global $wpdb;
         include_once( 'views/flat_properties.php' );
         wp_nonce_field(__FILE__, 'flat_post_nonce');
+    }
+
+
+    public function program_hightlight() {
+        global $post;
+        include_once( 'views/program_hightlight.php' );
     }
 
     /**

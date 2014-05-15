@@ -784,6 +784,11 @@ function qtrans_use($lang, $text, $show_available=false) {
 		return $content[$lang];
 	}
 	// content not available in requested language (bad!!) what now?
+        
+        if(false === $show_available){
+            return '';
+        }
+        
 	if(!$show_available){
 		// check if content is available in default language, if not return first language found. (prevent empty result)
 		if($lang!=$q_config['default_language'])

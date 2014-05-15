@@ -56,6 +56,18 @@ EstateProgram::$langs = array(
     'eng' => 'en',
 );
 
+EstateProgram::$rental_status = array(
+    'fre' => 'fr',
+    'eng' => 'en',
+);
+
+EstateProgram::$apartment_type = array(
+    'ETAGE' => __("appart d’etage", 'estateprogram'),
+    'DACHGESCHOSS' => __("Combles", 'estateprogram'),
+    'ERDGESCHOSS' => __("Rez de chaussée", 'estateprogram'),
+    'MAISONETTE' => __("duplex", 'estateprogram')
+);
+
 class EstateProgram {
 
     /**
@@ -81,7 +93,7 @@ class EstateProgram {
      *
      * @var      string
      */
-    protected $plugin_slug = 'estateprogram';
+    public $plugin_slug = 'estateprogram';
 
     /**
      * Instance of this class.
@@ -94,6 +106,9 @@ class EstateProgram {
     static $tags_apartment;
     static $tags_program;
     static $langs;
+    static $rental_status;
+    public static $cron_url;
+    public static $apartment_type;
 
     /**
      * Initialize the plugin by setting localization and loading public scripts
@@ -102,6 +117,8 @@ class EstateProgram {
      * @since     1.0.0
      */
     private function __construct() {
+
+        EstateProgram::$cron_url = plugins_url('/cron/script.php', __FILE__);
 
         // Load plugin text domain
         add_action('init', array($this, 'load_plugin_textdomain'));
@@ -128,11 +145,53 @@ class EstateProgram {
         add_filter('authenticate', array(&$this, 'check_login'), 100, 3);
 
         $ajaxModule = new EstateProgramAjax();
+
+        //add_action('init', array(&$this, 'rewrite'));
+        add_action('parse_request', array(&$this, 'parse_request'));
+        add_action('init', array(&$this, 'do_rewrite'));
+        add_filter('query_vars', array(&$this, 'query_vars'));
+
+
+        add_action('type_of_accommodation_add_form', 'qtrans_modifyTermFormFor');
+        add_action('type_of_accommodation_edit_form', 'qtrans_modifyTermFormFor');
+    }
+
+    public function query_vars($public_query_vars) {
+        $public_query_vars[] = 'action';
+        $public_query_vars[] = 'source-file';
+        //$public_query_vars[] = 'product-id';
+        //$public_query_vars[] = 'program-id';
+        return $public_query_vars;
+    }
+
+    function do_rewrite() {
+        //add_rewrite_rule("download-product-data/([^/]+)/?$", 'index.php?action=generate-pdf&product-id=$matches[1]', 'top');
+        add_rewrite_rule("grab-source-xml/([^/]+)/?$", 'index.php?action=grab-source-xml&source-file=$matches[1]', 'top');
+    }
+
+    public function parse_request(&$wp) {
+
+        $q = $wp->query_vars;
+
+        if (isset($q['action']) && 'grab-source-xml' == $q['action']) {
+
+            require_once 'class-sourceparser.php';
+
+            $file = $q['source-file'];
+
+            if ('all' == $file) {
+                SourceParser::all();
+            }
+
+            exit;
+            //require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
+            //$mpdf = new mPDF();
+        }
     }
 
     /**
      * kouknu jestli datum registrace je mensi 15 dní
-     * 
+     *
      * @param type $user
      * @param type $username
      * @param type $password
@@ -142,10 +201,10 @@ class EstateProgram {
         // this filter is called on the log in page
         // make sure we have a username before we move forward
         //if (!empty($username)) {
-        
-        
-        
-        if($user instanceof WP_User && user_can($user, 'only_demo')){
+
+
+
+        if ($user instanceof WP_User && user_can($user, 'only_demo')) {
 
             $user_data = $user->data;
 
@@ -222,7 +281,7 @@ class EstateProgram {
                 'thumbnail',
                 'title',
                 'editor',
-                'excerpt',
+                //'excerpt',
                 'author'
             ),
             'menu_position' => 7,
@@ -254,7 +313,7 @@ class EstateProgram {
                 'thumbnail',
                 'title',
                 'editor',
-                'excerpt',
+                // 'excerpt',
                 'author'
             ),
             'menu_position' => 8,
@@ -832,7 +891,7 @@ class EstateProgram {
                 p.post_type = 'flat'
             AND
                 p.post_status = 'publish'
-            GROUP BY 
+            GROUP BY
                 p.ID";
 
         if (!is_null($limit)) {
@@ -889,8 +948,8 @@ class EstateProgram {
             LEFT JOIN
                 wp_postmeta as m
             ON
-                m.post_id = flat.ID 
-            AND 
+                m.post_id = flat.ID
+            AND
                 m.meta_key = 'flat_props_$lang'
             WHERE
                 up.user_id = " . (int) get_current_user_id() . "
@@ -910,15 +969,15 @@ class EstateProgram {
     }
 
     /**
-     * 
+     *
      * @global type $wpdb
      * @param type $lang
      * @return type
      */
-    public static function cities($lang){
-        
+    public static function cities($lang) {
+
         global $wpdb;
-        
+
         $sql = "
             SELECT
                 city
@@ -927,9 +986,26 @@ class EstateProgram {
             WHERE
                 lang = '" . esc_sql($lang) . "'
             ";
-        
+
         return $wpdb->get_col($sql);
-        
     }
-    
+
+    static public function heatingSystem($props) {
+        $arr = array();
+
+        if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
+            $arr[] = __('chauffage par le sol', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
+            $arr[] = __('chauffage central', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
+            $arr[] = __('chauffage individuel', 'wpbootstrap');
+        }
+
+        return implode(', ', $arr);
+    }
+
 }
