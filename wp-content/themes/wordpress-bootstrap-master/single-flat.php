@@ -15,10 +15,18 @@
             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true); 
             $program_id = EstateProgram::flat_program_id($post->ID); 
             $title = get_the_title($post->ID);
+            
+            $video = get_post_meta($post->ID, 'youtube' . $lang, true);
+ 
             ?>
         <div class="col-md-12 column">
             <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?> 
-            <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a></h1>
+            <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
+            
+            <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
+            <strong class="blue pull-right doublesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
+            </a>    
+                </h1>
             </div>
         </div>
         <div id="main" class="col-md-8 column clearfix" role="main">
@@ -66,7 +74,13 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="video_tab">
-                                    <?php 
+                                  
+
+
+                                  <?php 
+                                  
+                                    
+                                  
                                     if (!empty($video)):
                                     ?>
                                     <div class="flex-video">
@@ -83,8 +97,9 @@
                                 <ul class="nav nav-pills margin-top">
                                     <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
                                     <?php            
-                                                  if (!empty($video)):
+                                      if (!empty($video)):
                                     ?> 
+        
                                     <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Video</a></li>
                                     <?php endif; ?>    
                                 </ul> 
@@ -365,7 +380,6 @@
                                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
                                                     $url_image = $thumb['0'];
                                                     $url = get_permalink($val->ID);
-
                                                     $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
                                                     $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
                                                     $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
@@ -391,9 +405,7 @@
                                                                     <div class="col-md-3">
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong>
-
                                                                             <?php echo esc_attr($prop['anbieternr']) ?>
-
                                                                         </span>
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong>
@@ -492,6 +504,27 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal --> 
+    
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?php echo the_title(); ?></h4>
+            </div>
+            <div class="modal-body">
+
+<?php _e("You modified", "wpbootstrap"); ?>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal --> 
+    
+    
     <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
     <script> 
     // MAP // 
@@ -535,10 +568,7 @@
     function initializeMap() {
         initialize(params);
     } 
-    </script>
-    
-    
-    
+    </script> 
 <script>    
 jQuery(document).ready(function($) {
 
@@ -553,9 +583,5 @@ $('.parent-container').magnificPopup({
 });
  
 });
-</script>
-    
-    
-    
-    
+</script> 
 <?php get_footer(); ?> 

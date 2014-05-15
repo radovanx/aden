@@ -64,7 +64,7 @@
                                     </div>
                                      <div class="tab-pane fade" id="video_tab">
  
-                                   <?php $video = get_post_meta($post->ID, '_program_video', true);  
+                                    <?php $video = get_post_meta($post->ID, '_program_video', true);  
      
                                      if (!empty($video)):
                                     ?>

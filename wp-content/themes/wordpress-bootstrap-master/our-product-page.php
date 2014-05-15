@@ -10,7 +10,7 @@
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <header> 
-                            <div class="page-header"><h1 class="page-title border-left uppercase" itemprop="headline"><?php the_title(); ?>  </h1>
+                            <div class="page-header"><h1 class="page-title border-left uppercase" itemprop="headline"><?php the_title(); ?></h1>
                                 <h2><small>Select a property type and start your search</small></h2>
                             </div>
                         </header> <!-- end article header --> 
@@ -271,7 +271,7 @@ if (!empty($flat_props)):
         
         $prop = unserialize($val->prop);
         $key = unserialize($key);
-        $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
+        $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
         $url_image = $thumb['0'];
         $url = get_permalink($val->ID);
 
@@ -295,11 +295,11 @@ if (!empty($flat_props)):
                                 <div class="row">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
                                     <div class="col-md-3">  
-                                        <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>"/></a>    
+                                        <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>" class="img-responsive" alt="<?php echo $name; ?>" /></a>    
                                     </div>    
                                     <div class="col-md-9"> 
-                                        <h4 class="blue"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
-                                        <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h4>
+                                        <h4 class="blue"><a href="<?php echo $url; ?>"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
+                                        <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></a></h4>
 
                                         <div class="row">
                                             <div class="col-md-3">  
@@ -350,10 +350,11 @@ if (!empty($flat_props)):
                                             <div class="col-md-3"> 
                                                  <a class="add-to-preference" href="#myModal" data-flat_id="3316" data-toggle="modal">
                                                     
-                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>     </strong>
+                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
                                                      <strong class="blue clearfix">
-                                                    <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
-                                                    </strong>     
+                                                     <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
+                                                     </strong>    
+                                                 </a>   
                                                  
                                                 <a href="<?php echo $url; ?>" class=" "><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
                                             </div>  
