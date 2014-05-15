@@ -23,7 +23,6 @@
                                 <div id="myCarousel" class="carousel slide">
                                     <!-- Carousel items -->
                                     <div class="carousel-inner program-carousel">
-
                                         <?php
                                         $images = & get_children(array(
                                                     'post_parent' => $post->ID,

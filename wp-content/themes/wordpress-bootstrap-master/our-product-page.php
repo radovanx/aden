@@ -177,7 +177,7 @@
                     <tbody id="table_data_filter">    
                         <?php
                         $lang = qtrans_getLanguage();
-                        $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 1500);
+                        $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
                         $i = 0;
                         $data_object = '';
                         if (!empty($flat_props)):
