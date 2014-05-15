@@ -17,7 +17,7 @@
                                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
                                 $url = $thumb['0'];
                                 ?>
-                                <a href="<?php echo $url; ?>">
+                                <a href="<?php echo $url; ?>" class="test-popup-link">
                                     <?php the_post_thumbnail('project-detail-big'); ?>
                                 </a>
                                 <div id="myCarousel" class="carousel slide">
@@ -35,7 +35,7 @@
                                         } else {
                                             $i = 1;
                                             ?>
-                                            <div class="item active"><div class="row">
+                                            <div class="item active"><div class="row parent-container">
                                                     <?php
                                                     foreach ($images as $attachment_id => $attachment) {
                                                         $full_size = wp_get_attachment_image_src($attachment_id, 'full');
@@ -121,7 +121,7 @@
                             </div>
                             <div class="col-md-4 column">
                                 <div class="border col-md-12 column border background contact_form_block">
-                                    <h2 class="border-left uppercase"><?php _e('quel programme vous intéresse ?', 'wpbootstrap') ?></h2>
+                                    <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
                                     <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
                                     <?php echo do_shortcode('[contact-form-7 id="4080" title=""]') ?>
                                 </div>

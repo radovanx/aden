@@ -27,9 +27,9 @@
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="gallery_tab">
                                 <!--slider here --> 
-                                <a href="<?php echo $url; ?>">
+                                <span class="test-popup-link">
                                     <?php the_post_thumbnail('project-detail-big'); ?>
-                                </a>
+                                </span>    
                                 <div id="myCarousel" class="carousel slide">
                                     <!-- Carousel items -->
                                     <div class="carousel-inner program-carousel">
@@ -44,7 +44,7 @@
                                         } else {
                                             $i = 1;
                                             ?>
-                                            <div class="item active"><div class="row">
+                                            <div class="item active parent-container"><div class="row">
                                                     <?php
                                                     foreach ($images as $attachment_id => $attachment) {
                                                         $full_size = wp_get_attachment_image_src($attachment_id, 'full');
@@ -66,12 +66,27 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane fade" id="video_tab">
+                                    <?php 
+                                    if (!empty($video)):
+                                    ?>
+                                    <div class="flex-video">
+                                        <?php
+                                        global $wp_embed;
+                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $youtube . '[/embed]');
+                                        echo $post_embed;
+                                        ?>
+                                    </div>
+                                    <?php endif; ?> 
                                     </div>
                                 </div>
                                 <!--/TAB CONTENT END-->                                 
                                 <ul class="nav nav-pills margin-top">
                                     <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
+                                    <?php            
+                                                  if (!empty($video)):
+                                    ?> 
                                     <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Video</a></li>
+                                    <?php endif; ?>    
                                 </ul> 
                                 <section class="post_content clearfix" itemprop="articleBody">
                                 </section> <!-- end article section -->
@@ -451,7 +466,7 @@
                             </footer>
                         </article>
                     <?php endif; ?>
-                </div> <!-- end #main -->
+                  <!-- end #main -->
         </div> <!-- end #content -->
     </div>
     <div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
@@ -521,4 +536,26 @@
         initialize(params);
     } 
     </script>
+    
+    
+    
+<script>    
+jQuery(document).ready(function($) {
+
+$( ".test-popup-link" ).click(function(event) {
+ 
+$('.parent-container').magnificPopup({
+  delegate: 'a', // child items selector, by clicking on it popup will open
+  type: 'image',
+  gallery:{enabled:true} 
+  // other options
+});
+});
+ 
+});
+</script>
+    
+    
+    
+    
 <?php get_footer(); ?> 
