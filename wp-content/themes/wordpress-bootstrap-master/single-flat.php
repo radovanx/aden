@@ -63,8 +63,14 @@
                                             <!--/myCarousel-->
                                         </div>
                                     </div>
+                                    <div class="tab-pane fade" id="video_tab">
+                                    </div>
                                 </div>
-                                <!--/TAB CONTENT END-->
+                                <!--/TAB CONTENT END-->                                 
+                                <ul class="nav nav-pills margin-top">
+                                    <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
+                                    <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Video</a></li>
+                                </ul> 
                                 <section class="post_content clearfix" itemprop="articleBody">
                                 </section> <!-- end article section -->
                                 <footer>
@@ -82,8 +88,7 @@
                                                 <br><?php echo esc_attr($props['kontaktperson|ort']) ?> <?php echo esc_attr($props['kontaktperson|plz']) ?><br>
                                                 <abbr title="Phone">Phone:</abbr> <?php echo esc_attr($props['kontaktperson|tel_durchw']) ?><br>
                                                 <abbr title="Email">Email:</abbr> <?php echo esc_attr($props['kontaktperson|email_direkt']) ?>
-                                            </address>
-
+                                            </address> 
                                             <span class="propertyListBoxDataItemName">
                                                 <i class="fa fa-money"></i>
                                                 <strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
@@ -106,18 +111,14 @@
                                                 </strong>
                                             </span>
                                             <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
-
                                             <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
-                                            <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
-
+                                            <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a> 
                                             <?php if (!empty($props['dropbox|building'])): ?>
                                                 <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
-                                            <?php endif; ?>
-
+                                            <?php endif; ?> 
                                             <?php if (!empty($props['dropbox|flat'])): ?>
                                                 <a href="<?php echo esc_attr($props['dropbox|flat']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
-                                            <?php endif; ?>
-
+                                            <?php endif; ?> 
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +138,6 @@
                                                 echo esc_attr($props['zustand_angaben|baujahr']);
                                             endif;
                                             ?>
-
                                         </li>
                                         <li>
                                             <strong><?php _e("Purchase price /sm:", "wpbootstrap"); ?></strong>
@@ -153,9 +153,7 @@
                                                 <?php echo EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']] ?>
                                             </li>
                                         <?php endif; ?>
-
-
-
+ 
                                         <li>
                                             <strong><?php _e("Floor:", "wpbootstrap"); ?> </strong>
 
@@ -187,8 +185,9 @@
                                         </li>
                                         <li>
                                             <strong><?php _e("Elevator:", "wpbootstrap"); ?></strong>
-
-
+ 
+                                            
+                                                
                                         </li>
                                         <li>
                                             <strong><?php _e("Type of heating system:", "wpbootstrap"); ?></strong>
@@ -277,10 +276,8 @@
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-    <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
-
+    </div><!-- /.modal --> 
+    <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
     <script>
         // MAP //
 
@@ -291,8 +288,11 @@
             var mapOptions = {
                 zoom: 8,
                 center: new google.maps.LatLng(lang, long)
-            };
-
+            }; 
+            
+            
+            
+            
             var map = new google.maps.Map(document.getElementById('map-canvas'),
                     mapOptions);
 
@@ -307,7 +307,4 @@
         window.onload = loadScript;
 
     </script>
-    <?php get_footer(); ?>
-
-
-
+<?php get_footer(); ?> 

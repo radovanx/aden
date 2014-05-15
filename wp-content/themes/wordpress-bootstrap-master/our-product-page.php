@@ -20,7 +20,6 @@
                 <article id="post-not-found">
                     <header>
                         <h1><?php _e("Not Found", "wpbootstrap"); ?><small></small></h1>
-
                     </header>
                     <section class="post_content">
                         <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p>
@@ -38,20 +37,14 @@
                     <div class="form-group"> 
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
                         <div class="row"> 
-                          
                         <?php $lang = qtrans_getLanguage();
-                        $cities = EstateProgram::cities($lang);
-                        
-                        ?>
-                            
-                            
-                            <label class="checkbox-inline">
-                        <input type="checkbox" id="inlineCheckbox1" value="Prague" class="">Prague
-                        </label>
+                        $cities = EstateProgram::cities($lang);  
+                        foreach ($cities as $key => $value):  
+                        ?>  
                         <label class="checkbox-inline">
-                        <input type="checkbox" id="inlineCheckbox2" value="Berlin" class="">Berlin
+                        <input type="checkbox" id="inlineCheckbox1" value="<?php echo $value;?>" class=""><?php echo $value;?>
                         </label>
-      
+                        <?php endforeach; ?>    
                         </div>                
                     </div>
                     <div class="form-group">
@@ -70,7 +63,6 @@
                             <?php endforeach; ?>
                         </select> 
                     </div>
-
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
@@ -80,7 +72,6 @@
                             <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input  name="Pricet" class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
                     </div>
@@ -90,16 +81,13 @@
                         <label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input name="Disctrict" class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>
                     </div>
                     <div class="row">
-
                         <div class="form-group col-md-6">
                             <label for="Areaf"><?php _e("Area from (m2):", "wpbootstrap"); ?></label><input name="Areaf" class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />
                         </div>
-
                         <div class="form-group col-md-6">
                             <label for="Areat"><?php _e("Area to (m2):", "wpbootstrap"); ?></label><input name="Areat" class="form-control input-lg" id="Areat" type="text" placeholder="Area to:" />
                         </div>
                     </div>      
-
                     <div class="row">    
                         <div class="form-group col-md-6">
                              <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label> 

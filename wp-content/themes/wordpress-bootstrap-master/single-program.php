@@ -63,13 +63,33 @@
                                     <div class="tab-pane fade" id="street_tab">
                                         <div id="gmapstreet" class="gmapstreet">street</div>
                                     </div>
+                                     <div class="tab-pane fade" id="video_tab">
+ 
+                                   <?php $video = get_post_meta($post->ID, '_program_video', true);  
+     
+                                     if (!empty($video)):
+                                    ?>
+                                    <div class="flex-video">
+                                        <?php
+                                        global $wp_embed;
+                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $youtube . '[/embed]');
+                                        echo $post_embed;
+                                        ?>
+                                    </div>
+                                <?php endif; ?>
+                                    </div>
                                 </div>
                                 <!--/TAB CONTENT END-->   
 
                                 <ul class="nav nav-pills margin-top">
                                     <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
                                     <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_map"><i class="fa fa-map-marker"></i>Map View</a></li>
-                                    <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Street View</a> </li>
+                                    <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-globe"></i>Street View</a> </li>
+                                    <?php $video = get_post_meta($post->ID, '_program_video', true);   
+                                     if (!empty($video)):
+                                    ?> 
+                                    <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Video</a></li>
+                                    <?php endif; ?>
                                 </ul>
 
                                 <section class="post_content clearfix" itemprop="articleBody">
@@ -83,6 +103,7 @@
                                         <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
 
                                         <ul class="list-unstyled">
+                                        
                                             <li><i class="fa fa-check"></i>
                                                 Top location within the central press and lifestyle district of Berlin
                                             </li>
@@ -107,6 +128,7 @@
                                             <li><i class="fa fa-check"></i>
                                                 Start of construction: ca. April 2014
                                             </li>
+ 
                                         </ul>
                                     </div>
                                 </div>

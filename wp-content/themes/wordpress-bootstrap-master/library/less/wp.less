@@ -122,6 +122,61 @@ ul.nav {
 	}
 }
 
+
+
+ 
+@media(min-width: @screen-desktop){
+ .navbar-nav {
+    > li > a { 
+        padding-left: 20px;
+        padding-right: 20px;    
+    }    
+    li.red a
+    {
+        background: url("../../images/login_icon.png") no-repeat scroll 23% 50% rgba(0, 0, 0, 0);
+        border-left: 1px solid #DBDBDB;
+        color: #C83939;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-top: 15px;
+        padding-bottom: 10px;
+        padding-left: 60px;
+        padding-top: 15px;
+    } 
+}   
+    
+    
+}    /* or @screen-md */
+@media(min-width: @screen-lg-desktop){
+    
+ .navbar-nav {
+    > li > a {
+        
+        padding-left: 20px;
+        padding-right: 20px;
+    }    
+    li.red a
+    {
+        background: url("../../images/login_icon.png") no-repeat scroll 23% 50% rgba(0, 0, 0, 0);
+        border-left: 1px solid #DBDBDB;
+        color: #C83939;
+        margin-bottom: 10px;
+        margin-left: 10px;
+        margin-top: 15px;
+        padding-bottom: 10px;
+        padding-left: 60px;
+        padding-top: 15px;
+    } 
+}    
+}
+
+
+
+
+
+
+
+
 /* post styling */
 
 #main p.meta{
@@ -853,12 +908,8 @@ input:-moz-placeholder { color:#bfcad2; font-size: 14px; font-weight: 400;}
         margin-top: 25px;
         display: none;
         
-    }
-
-        
-}
-
-
+    }   
+} 
 .big_icons
 {
     font-size: 22px;
@@ -876,11 +927,8 @@ input:-moz-placeholder { color:#bfcad2; font-size: 14px; font-weight: 400;}
     }
     .nav-tabs
     {
-       border-bottom: none;
-        
+       border-bottom: none;    
     }
-    
- 
 }
 //box sizing
 .flats_box
@@ -910,22 +958,44 @@ input:-moz-placeholder { color:#bfcad2; font-size: 14px; font-weight: 400;}
  
 .margin-top
 {
-    margin-top: 20px;
-  
-}
- 
+    margin-top: 20px; 
+} 
 //table sizing 
+.tablesorter-header
+{
+    :after
+        {
+    content:"\f0dc";
+    font-family: 'FontAwesome';
+    float: right;     
+    } 
+    &.tablesorter-headerAsc
+    { 
+    :after
+        {
+    content:"\f0de";
+    font-family: 'FontAwesome';
+    float: right;     
+    }        
+    }
+     &.tablesorter-headerDesc
+     { 
+    :after
+        {
+    
+    content:"\f0dd";
+    font-family: 'FontAwesome';
+    float: right;     
+    }        
+    } 
+}
 
-
-
-
-
+ 
 //about us page
 .testimonial
 {
-    
    padding-top:25px;
-    padding-bottom:35px;
+   padding-bottom:35px;
    h1
    {
     margin-bottom: 25px;   
@@ -1330,6 +1400,10 @@ ul.ui-autocomplete
 {
     list-style: none;    
 }
+
+
+
+
 
 
 
