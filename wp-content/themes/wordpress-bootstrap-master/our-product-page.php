@@ -35,24 +35,24 @@
         <div class="col-md-12 column">         
             <form role="form" class="border background clearfix searchform col-md-12">
                 <div class="col-md-6 column">
-                    <div class="form-group">
-                     
+                    <div class="form-group"> 
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
-                         
-                    
-                        <div class="row">
-          
-                     
-                        <label class="checkbox-inline">
+                        <div class="row"> 
+                          
+                        <?php $lang = qtrans_getLanguage();
+                        $cities = EstateProgram::cities($lang);
+                        
+                        ?>
+                            
+                            
+                            <label class="checkbox-inline">
                         <input type="checkbox" id="inlineCheckbox1" value="Prague" class="">Prague
                         </label>
                         <label class="checkbox-inline">
                         <input type="checkbox" id="inlineCheckbox2" value="Berlin" class="">Berlin
                         </label>
       
-                        </div>
-                        
-                    
+                        </div>                
                     </div>
                     <div class="form-group">
                         <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label>
@@ -158,17 +158,12 @@
                 <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
             </select>
         </div>
-        <div class="col-md-3 big_icons">
-
+        <div class="col-md-3 big_icons"> 
         <!-- Nav tabs -->
-    <ul class="nav nav-tabs">
-    
+    <ul class="nav nav-tabs"> 
         <a href="#table" data-toggle="tab" class="active red"><i class="fa fa-th"></i></a>
-        <a href="#list"  data-toggle="tab" class="blue"><i class="fa fa-list"></i></a>
-  
-    </ul>
-        
-        
+        <a href="#list"  data-toggle="tab" class="blue"><i class="fa fa-list"></i></a> 
+    </ul> 
         </div>
         <div class="col-md-12 column margin-top">
             <!-- Tab panes -->
@@ -216,9 +211,11 @@
                                 $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
                                 $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                 $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
- 
+                                $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;   
+                                $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";   
+                                $status=isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
                                 $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . "   },";
-                                
+                               
                                 $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
                                 if ($i < 10):
@@ -234,32 +231,33 @@
                                             <a href="<?php echo $url; ?>" class="blue"><?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?> </a>
                                         </td>
                                         <td>
-
+                                             <?php echo $flat_num;?>       
                                         </td>
                                         <td>
+                                             <?php echo $rental_status;?> 
                                         </td>
                                         <td>
-                                            <?php echo $floor ?>          
+                                            <?php echo $floor;?>          
                                         </td>
                                         <td>
-                                            <?php echo (int) $rooms ?>
+                                            <?php echo (int) $rooms;?>
                                         </td>
                                         <td>
                                             <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
                                         </td>
                                         <td>
-                                            <?php echo $price; ?>
+                                            <?php echo $price;?>
                                         </td>
                                         <td>
-                                            <?php echo $pricem; ?>
+                                            <?php echo $pricem;?>
                                         </td>
                                         <td>  
-
+                                           
                                         </td>
                                         <td>
+                                            <?php echo $status;?>
                                         </td>
                                     </tr>
-
                                     <?php
                                 endif;
                                 $i++;
@@ -281,6 +279,7 @@ $i = 0;
 
 if (!empty($flat_props)):
     foreach ($flat_props as $key => $val):
+        
         $prop = unserialize($val->prop);
         $key = unserialize($key);
         $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
@@ -297,13 +296,14 @@ if (!empty($flat_props)):
         $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
         $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
         $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
-        $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
+        $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";  
         
-        //$rentalstatus = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : '-';
-        //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-";
- 
+        $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";  
+          
+        //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
+        
         ?> 
-                            <div class="row">
+                                <div class="row">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
                                     <div class="col-md-3">  
                                         <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>"/></a>    
@@ -324,7 +324,7 @@ if (!empty($flat_props)):
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong> 
-                                                <?php echo esc_attr($prop['anbieternr']) ?>
+                                                <?php echo $rental_status; ?>
                                                 </span> 
                                             </div>
                                             <div class="col-md-3"> 
@@ -332,8 +332,7 @@ if (!empty($flat_props)):
                                                     <strong><?php _e("Floor:", "wpbootstrap"); ?></strong> 
                                                 <?php echo $floor; ?>
                                                 </span>
-
-
+ 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong> 
                                                  <?php echo esc_attr($prop['anbieternr']) ?>
@@ -358,7 +357,7 @@ if (!empty($flat_props)):
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Yield:", "wpbootstrap"); ?></strong> 
-
+                                                        
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
@@ -494,8 +493,7 @@ endif;
 
         }
         if (fdistrict != '')
-        {
-
+        { 
             var district_filter = PourOver.makeExactFilter("district", [fdistrict]);
             collection.addFilters([district_filter]);
 
@@ -507,7 +505,6 @@ endif;
             {
                 finalfilter = collection.filters.district.getFn(fdistrict);
             }
-
         }
         if (fpricef != '' && fpricet == '')
         {
@@ -580,11 +577,7 @@ endif;
                 finalfilter = collection.filters.area_range.getFn([0, fareat]);
             }
         }
-
-        //ROOMS    
-     
-     
-     
+        //ROOMS     
          if (froomsf != '' || froomst != '')
         {
             var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"});
@@ -600,9 +593,7 @@ endif;
             }
         } 
         
-        
-        
-
+ 
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
         // console.log(myfilterfinal);
@@ -659,7 +650,9 @@ endif;
                  
                  zip*/
 
-                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td><td></td></tr>";
+                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td>\n\
+        
+<td></td></tr>";
                 jQuery("tbody").append(table_data);
  
             });

@@ -43,12 +43,9 @@
                                 <?php the_excerpt();?>
                             </div>
                             <div class="clearfix">		
-                                <span class="col-lg-6 nopadding">    
-                                    <a class="btn btn-lg bold btn-default btn-block btn-upper" href="<?php the_permalink(); ?>">view details ></a> 
-                                </span>
-                                <span class="col-lg-6 nopadding">
-                                   <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?>">make an enquiry</a> 
-                                 </span>   
+                                <span class="col-lg-12 nopadding">    
+                                    <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?>">view details ></a> 
+                                </span> 
                             </div>
                         </div>	
                     </div>
