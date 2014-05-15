@@ -221,7 +221,7 @@
                                                                     <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i></a>
                                                                 </td>
                                                                 <td>
-                                                                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                                   <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
                                                                 </td>
                                                                 <td>
                                                                     <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
@@ -304,9 +304,7 @@
                                                                     <div class="col-md-3">
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong>
-
-                                                                            <?php echo esc_attr($prop['anbieternr']) ?>
-
+                                                                            <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
                                                                         </span>
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong>

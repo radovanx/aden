@@ -202,6 +202,7 @@
                                 $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;   
                                 $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";   
                                 $status=isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
+                                
                                 $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . "   },";
                                
                                 $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
@@ -213,7 +214,7 @@
                                             <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><?php echo $val->is_favorite; ?></a>
                                         </td>
                                         <td>
-                                            <?php echo esc_attr($prop['anbieternr']) ?>
+                                            <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
                                         </td>
                                         <td>
                                             <a href="<?php echo $url; ?>" class="blue"><?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?> </a>
@@ -304,7 +305,7 @@ if (!empty($flat_props)):
                                             <div class="col-md-3">  
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                    <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
                                                 </span>                         
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong> 
@@ -330,9 +331,7 @@ if (!empty($flat_props)):
                                                     <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong> 
                                                 <?php echo $area; ?>
                                                 </span>
-
                                             </div>
-
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price:", "wpbootstrap"); ?></strong> 
