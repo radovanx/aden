@@ -70,16 +70,20 @@ class SourceParser {
             $firma = (string) $anbieter->firma;
             $openimmo_anid = (string) $anbieter->openimmo_anid;
 
+            $unique_identificator_node = $anbieter->xpath('immobilie/verwaltung_techn/objektnr_extern');
 
+            $unique_identificator = (string) $unique_identificator_node[0];
+
+            //var_dump($unique_identificator); exit;
             // 
-            $cityNode = $anbieter->xpath('immobilie/geo/ort');
-            $city = (string) $cityNode[0];
+            //$cityNode = $anbieter->xpath('immobilie/geo/ort');
+            //$city = (string) $cityNode[0];
 
             $streetNode = $anbieter->xpath('immobilie/geo/strasse');
             $street = (string) $streetNode[0];
 
-            $regionNode = $anbieter->xpath('immobilie/geo/regionaler_zusatz');
-            $region = (string) $regionNode[0];
+            //$regionNode = $anbieter->xpath('immobilie/geo/regionaler_zusatz');
+            //$region = (string) $regionNode[0];
 
             $houseNumberNode = $anbieter->xpath('immobilie/geo/hausnummer');
             $houseNumber = (string) $houseNumberNode[0];
@@ -94,21 +98,13 @@ class SourceParser {
             FROM
                 wp_posts AS p
             JOIN
-                wp_postmeta AS pm1                
+                wp_postmeta AS pm                
             ON
-                pm1.post_id = p.ID
-            JOIN
-                wp_postmeta AS pm2
-            ON
-                pm2.post_id = p.ID
+                pm.post_id = p.ID
             WHERE
-                pm1.meta_key = 'apartment_street'
+                pm.meta_key = 'unique_identificator'
             AND
-                pm2.meta_key = 'apartment_house_number'
-            AND
-                pm1.meta_value = '" . esc_sql(trim($street)) . "'
-            AND
-                pm2.meta_value = '" . esc_sql(trim($houseNumber)) . "'
+                pm.meta_value = '" . esc_sql(trim($unique_identificator)) . "'
             AND
                 p.post_type = 'flat'
             ";
@@ -130,7 +126,7 @@ class SourceParser {
                 $pattern = "~<!--:$wp_lang-->(.*)<!--:-->~U";
                 $post_title = preg_replace($pattern, '', $post_title);
 
-                if(false != trim($ret['freitexte|objekttitel'])){                
+                if (false != trim($ret['freitexte|objekttitel'])) {
                     $post_information['post_title'] = $post_title . '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
                 }
                 $post_information['ID'] = $apartment_id;
@@ -146,9 +142,9 @@ class SourceParser {
                 }
             }
 
-            update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
-            update_post_meta((int) $apartment_id, 'apartment_street', $street);
-            update_post_meta((int) $apartment_id, 'apartment_house_number', $houseNumber);
+            update_post_meta((int) $apartment_id, 'unique_identificator', $unique_identificator);
+            //update_post_meta((int) $apartment_id, 'apartment_street', $street);
+            //update_post_meta((int) $apartment_id, 'apartment_house_number', $houseNumber);
 
             $props = array();
             $excl = array('anhaenge', 'anhang');
@@ -288,7 +284,7 @@ class SourceParser {
 
                     if (copy($image_path, $new_path)) {
 
-                        chmod($new_path, 0775);
+                        //chmod($new_path, 0775);
 
                         $basename = basename($new_path);
 
@@ -409,11 +405,12 @@ class SourceParser {
         // extrahovani zipu do tempu
         if (true == $res) {
             //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
+            /*
             if (!is_dir($temp_dir)) {
                 if (!mkdir($temp_dir, 0775)) {
                     throw new Exception('unable create temp dir');
                 }
-            }
+            }*/
 
             $zip->extractTo($temp_dir);
             $zip->close();
@@ -426,7 +423,7 @@ class SourceParser {
 
                     $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
 
-                    chmod($temp_file, 0775);
+                    //chmod($temp_file, 0775);
 
                     $temp_file_ext = strtolower(pathinfo($temp_file, PATHINFO_EXTENSION));
 
@@ -447,11 +444,12 @@ class SourceParser {
                 // přesunu zdrovy zip do archivu
                 $archiv_dir = $source_dir . DIRECTORY_SEPARATOR . 'archiv';
 
+                /*
                 if (!is_dir($archiv_dir)) {
                     if (!mkdir($archiv_dir, 0775)) {
                         throw new Exception('unable create archiv dir');
                     }
-                }
+                }*/
 
                 rename($file, $archiv_dir . DIRECTORY_SEPARATOR . basename($file));
             }

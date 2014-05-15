@@ -1007,5 +1007,16 @@ class EstateProgram {
 
         return implode(', ', $arr);
     }
+    
+    
+    static function flat_program_id($apartment_id){
+        
+        global $wpdb;
+        
+        $sql = "SLECT program_id FROM apartment2program WHERE apartment_id = " . (int) $apartment_id;
+        
+        return $wpdb->get_var($sql);
+        
+    }
 
 }
