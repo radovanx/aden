@@ -18,7 +18,6 @@
             if ($query->have_posts()) {
                 while ($query->have_posts()) : $query->the_post();
                     ?>
-                
                     <?php
                     $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation', $args);
                     $type_of_accomodation = array();
