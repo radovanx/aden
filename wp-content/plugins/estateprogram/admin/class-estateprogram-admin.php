@@ -104,11 +104,12 @@ class EstateProgram_Admin {
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
     }
-    
-    
-    public function parse_xml(){
-            include 'views/parse_xml.php';
-        }    
+
+
+
+    public function parse_xml() {
+        include 'views/parse_xml.php';
+    }
 
     public function admin_init() {
         if (current_user_can('delete_posts')) {
@@ -179,6 +180,7 @@ class EstateProgram_Admin {
 
         if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
             $meta_keys = array(
+                '_program_video',
                 '_program_street',
                 '_program_region',
                 '_program_city',
@@ -309,12 +311,10 @@ class EstateProgram_Admin {
         add_meta_box(
                 'flat2program', __('Assign to program', $this->plugin_slug), array($this, 'flat2program'), 'flat', 'side'
         );
-        
+
         add_meta_box(
                 'program_hightlight', __('Program hightlight', $this->plugin_slug), array($this, 'program_hightlight'), 'program'
-        );        
-
-
+        );
     }
 
     public function flat2program() {
@@ -360,7 +360,6 @@ class EstateProgram_Admin {
         include_once( 'views/flat_properties.php' );
         wp_nonce_field(__FILE__, 'flat_post_nonce');
     }
-
 
     public function program_hightlight() {
         global $post;
@@ -450,11 +449,10 @@ class EstateProgram_Admin {
     public function add_plugin_admin_menu() {
 
         add_menu_page('Parse XML', 'Parse XML', 'manage_options', 'parse_xml', array(&$this, 'parse_xml'));
-        
-        //add_menu_page('Program', 'Program', 'manage_options', 'program_overview', array(&$this, 'program_overviw'));
 
+        //add_menu_page('Program', 'Program', 'manage_options', 'program_overview', array(&$this, 'program_overviw'));
         //add_submenu_page('edit.php?post_type=flat', __('Contribution Amount', 'campaign'), __('Contribution Amount', 'campaign'), 'manage_options', 'parse_xml', array(&$this, 'index'));
-        
+
 
         /*
          * Add a settings page for this plugin to the Settings menu.

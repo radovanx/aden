@@ -3,7 +3,7 @@
 $time = microtime(true); // time in Microseconds
 
 
-require( 'wp-load.php' );
+require( ABSPATH . 'wp-load.php' );
 
 require_once(ABSPATH . "wp-admin/includes/image.php");
 require_once(ABSPATH . "wp-admin/includes/file.php");
@@ -54,7 +54,9 @@ class SourceParser {
      */
     function grab_it($file, $lang, $source_path) {
 
-        $xml = simplexml_load_file($file);
+        $realpath = realpath($file);
+
+        $xml = simplexml_load_file($realpath);
 
         $wp_lang = EstateProgram::$langs[$lang];
 
@@ -128,14 +130,16 @@ class SourceParser {
                 $pattern = "~<!--:$wp_lang-->(.*)<!--:-->~U";
                 $post_title = preg_replace($pattern, '', $post_title);
 
-                $post_information['post_title'] = $post_title . '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
+                if(false != trim($ret['freitexte|objekttitel'])){                
+                    $post_information['post_title'] = $post_title . '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
+                }
                 $post_information['ID'] = $apartment_id;
 
                 wp_insert_post($post_information);
             } else {
                 $apartment_id = wp_insert_post($post_information);
-                
-                if(!empty($ret['freitexte|objekttitel'])){                
+
+                if (!empty($ret['freitexte|objekttitel'])) {
                     $post_information['post_title'] = '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
                 } else {
                     $post_information['post_title'] = '';
@@ -369,90 +373,98 @@ class SourceParser {
 
                 while (false !== ($entry = readdir($handle))) {
 
-                    //var_dump($entry);
-
                     $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
-                    $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                    $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
 
-                    //var_dump($ext);
-
-                    if ('zip' != strtolower($ext)) {
-                        continue;
-                    }
-
-                    // var_dump($file);
-
-                    $zip = new ZipArchive;
-                    $res = $zip->open($file);
-
-                    //var_dump($file);
-                    // extrahovani zipu do tempu
-                    if (true == $res) {
-
-                        //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
-                        $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
-
-                        if (!is_dir($temp_dir)) {
-                            if (!mkdir($temp_dir, 0775)) {
-                                throw new Exception('unable create temp dir');
-                            }
-                        }
-
-                        $zip->extractTo($temp_dir);
-                        $zip->close();
-
-                        $in_temp = array();
-
-                        // projdu unzipovany xml
-                        if ($temp_handle = opendir($temp_dir)) {
-                            while (false !== ($entry = readdir($temp_handle))) {
-
-                                $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
-
-                                chmod($temp_file, 0775);
-
-                                $temp_file_ext = strtolower(pathinfo($temp_file, PATHINFO_EXTENSION));
-
-                                if (is_file($temp_file)) {
-                                    $in_temp[] = $temp_file;
-                                }
-
-                                if ('xml' == $temp_file_ext) {
-                                    SourceParser::grab_it($temp_file, $key, $temp_dir);
-                                }
-                            }
-
-                            //promažu temp
-                            foreach ($in_temp as $temp_file) {
-                                unlink($temp_file);
-                            }
-
-                            // přesunu zdrovy zip do archivu
-                            $archiv_dir = $source_dir . DIRECTORY_SEPARATOR . 'archiv';
-
-                            if (!is_dir($archiv_dir)) {
-                                if (!mkdir($archiv_dir, 0775)) {
-                                    throw new Exception('unable create archiv dir');
-                                }
-                            }
-
-                            rename($file, $archiv_dir . DIRECTORY_SEPARATOR . basename($file));
-                        }
-
-
-                        /*
-                          if ($temp_handle2 = opendir($temp_dir)) {
-                          while (false !== ($entry = readdir($temp_handle2))) {
-                          $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
-                          }
-                          } */
-                    } else {
-                        $err[] = esc_attr('Zip: resource failed - ' . $file);
-                    }
+                    SourceParser::read_zip($file, $key, $temp_dir);
                 }
             } else {
                 throw new Exception('Nepodařilo se otevřít zdrojový adresář ' . $source_dir . ' neexistuje');
             }
+        }
+    }
+
+    /**
+     * 
+     * @param type $fil
+     * @param type $dir
+     * @param type $temp
+     * @return type
+     * @throws Exception
+     */
+    public static function read_zip($file, $dir, $temp_dir) {
+
+        $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+        if ('zip' != strtolower($ext)) {
+            return;
+        }
+
+        // var_dump($file);
+
+        $zip = new ZipArchive;
+        $res = $zip->open($file);
+
+        //var_dump($file);
+        // extrahovani zipu do tempu
+        if (true == $res) {
+            //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
+            if (!is_dir($temp_dir)) {
+                if (!mkdir($temp_dir, 0775)) {
+                    throw new Exception('unable create temp dir');
+                }
+            }
+
+            $zip->extractTo($temp_dir);
+            $zip->close();
+
+            $in_temp = array();
+
+            // projdu unzipovany xml
+            if ($temp_handle = opendir($temp_dir)) {
+                while (false !== ($entry = readdir($temp_handle))) {
+
+                    $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
+
+                    chmod($temp_file, 0775);
+
+                    $temp_file_ext = strtolower(pathinfo($temp_file, PATHINFO_EXTENSION));
+
+                    if (is_file($temp_file)) {
+                        $in_temp[] = $temp_file;
+                    }
+
+                    if ('xml' == $temp_file_ext) {
+                        SourceParser::grab_it($temp_file, $dir, $temp_dir);
+                    }
+                }
+
+                //promažu temp
+                foreach ($in_temp as $temp_file) {
+                    unlink($temp_file);
+                }
+
+                // přesunu zdrovy zip do archivu
+                $archiv_dir = $source_dir . DIRECTORY_SEPARATOR . 'archiv';
+
+                if (!is_dir($archiv_dir)) {
+                    if (!mkdir($archiv_dir, 0775)) {
+                        throw new Exception('unable create archiv dir');
+                    }
+                }
+
+                rename($file, $archiv_dir . DIRECTORY_SEPARATOR . basename($file));
+            }
+
+
+            /*
+              if ($temp_handle2 = opendir($temp_dir)) {
+              while (false !== ($entry = readdir($temp_handle2))) {
+              $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
+              }
+              } */
+        } else {
+            $err[] = esc_attr('Zip: resource failed - ' . $file);
         }
     }
 

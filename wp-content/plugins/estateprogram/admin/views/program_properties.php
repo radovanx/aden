@@ -100,7 +100,7 @@
 <tr>
     <th class="textleft"><label for="_program_video"><?php _e('Video url', $this->plugin_slug) ?></label></th>
     <td>
-        <input id="_program_video" type="text" name="_program_video" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_video', true)) ?>">
+        <input id="_program_video" style="width:340px;" type="text" name="_program_video" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_video', true)) ?>">
     </td>
 </tr>
 <tr>
