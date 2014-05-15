@@ -49,7 +49,6 @@ class SourceParser {
         return $return;
     }
 
-
     /**
      *
      */
@@ -69,37 +68,83 @@ class SourceParser {
             $firma = (string) $anbieter->firma;
             $openimmo_anid = (string) $anbieter->openimmo_anid;
 
+
+            // 
+            $cityNode = $anbieter->xpath('immobilie/geo/ort');
+            $city = (string) $cityNode[0];
+
+            $streetNode = $anbieter->xpath('immobilie/geo/strasse');
+            $street = (string) $streetNode[0];
+
+            $regionNode = $anbieter->xpath('immobilie/geo/regionaler_zusatz');
+            $region = (string) $regionNode[0];
+
+            $houseNumberNode = $anbieter->xpath('immobilie/geo/hausnummer');
+            $houseNumber = (string) $houseNumberNode[0];
+
             $ret = SourceParser::parse_nodes($anbieter);
 
+
+            // zjistim jestli existuje apartment na stejne adrese            
             $sql = "
             SELECT
-                post_id
+                p.ID
             FROM
-                " . $wpdb->prefix . "postmeta
+                wp_posts AS p
             JOIN
-                " . $wpdb->prefix . "posts
+                wp_postmeta AS pm1                
+            ON
+                pm1.post_id = p.ID
+            JOIN
+                wp_postmeta AS pm2
+            ON
+                pm2.post_id = p.ID
             WHERE
-                meta_key = 'anbieternr'
+                pm1.meta_key = 'apartment_street'
             AND
-                meta_value = '" . esc_sql($anbieternr) . "'";
+                pm2.meta_key = 'apartment_house_number'
+            AND
+                pm1.meta_value = '" . esc_sql(trim($street)) . "'
+            AND
+                pm2.meta_value = '" . esc_sql(trim($houseNumber)) . "'
+            AND
+                p.post_type = 'flat'
+            ";
 
             $apartment_id = $wpdb->get_var($sql);
 
             //
             $post_information = array(
-                'post_title' => $ret['freitexte|objekttitel'],
+                //'post_title' => $ret['freitexte|objekttitel'],
                 'post_content' => '',
                 'post_type' => 'flat',
                 'post_status' => 'publish',
             );
 
+
             if (!empty($apartment_id)) {
+
+                $post_title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $apartment_id);
+                $pattern = "~<!--:$wp_lang-->(.*)<!--:-->~U";
+                $post_title = preg_replace($pattern, '', $post_title);
+
+                $post_information['post_title'] = $post_title . '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
                 $post_information['ID'] = $apartment_id;
+
                 wp_insert_post($post_information);
             } else {
-                update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
                 $apartment_id = wp_insert_post($post_information);
+                
+                if(!empty($ret['freitexte|objekttitel'])){                
+                    $post_information['post_title'] = '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
+                } else {
+                    $post_information['post_title'] = '';
+                }
             }
+
+            update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
+            update_post_meta((int) $apartment_id, 'apartment_street', $street);
+            update_post_meta((int) $apartment_id, 'apartment_house_number', $houseNumber);
 
             $props = array();
             $excl = array('anhaenge', 'anhang');
@@ -121,6 +166,12 @@ class SourceParser {
                             '" . $val . "')";
 
                     $wpdb->query($sql);
+
+                    $last_city_id = $wpdb->insert_id;
+                }
+
+                if ('geo|regionaler_zusatz' == $key) {
+                    $region = $val;
                 }
 
                 $props[$key] = rtrim($val);
@@ -128,55 +179,40 @@ class SourceParser {
             }
 
 
+            if (!empty($last_city_id) && !empty($region)) {
+                $sql = "REPLACE INTO
+                            region (lang, region, id_city)
+                         VALUES(
+                            '" . $wp_lang . "',
+                            '" . $region . "',
+                            " . $last_city_id . ")";
+
+                $wpdb->query($sql);
+            }
+
+
 
             // zjistim jestli existuje program na stejne adrese
-            $cityNode = $anbieter->xpath('immobilie/geo/ort');
-            $city = (string) $cityNode[0];
-
-            $streetNode = $anbieter->xpath('immobilie/geo/strasse');
-            $street = (string) $streetNode[0];
-
-            $regionNode = $anbieter->xpath('immobilie/geo/regionaler_zusatz');
-            $region = (string) $regionNode[0];
-
-            $houseNumberNode = $anbieter->xpath('immobilie/geo/hausnummer');
-            $houseNumber = (string) $houseNumberNode[0];
-
             $sql = "
           SELECT
-            p.ID
+            p.ID,
+            p.post_title
           FROM
-            " . $wpdb->prefix . "postmeta as pm1
-          JOIN
-            " . $wpdb->prefix . "postmeta as pm2
-          ON
-            pm1.post_id = pm2.post_id
-          JOIN
-            " . $wpdb->prefix . "postmeta as pm3
-          ON
-            pm1.post_id = pm3.post_id
+             " . $wpdb->prefix . "postmeta as pm2
           JOIN
             " . $wpdb->prefix . "postmeta as pm4
           ON
-            pm1.post_id = pm4.post_id
+            pm2.post_id = pm4.post_id
           JOIN
             " . $wpdb->prefix . "posts as p
           ON
-            p.ID = pm1.post_id
+            p.ID = pm2.post_id
           WHERE
-            pm1.meta_key = '_program_city'
-          AND
             pm2.meta_key = '_program_street'
           AND
-            pm3.meta_key = '_program_district'
-          AND
-            pm4.meta_key = '_house_number'
-          AND
-            pm1.meta_value = '" . esc_sql(rtrim($city)) . "'
+            pm4.meta_key = '_program_house_number'
           AND
             pm2.meta_value = '" . esc_sql(rtrim($street)) . "'
-          AND
-            pm3.meta_value = '" . esc_sql(rtrim($region)) . "'
           AND
             pm4.meta_value = '" . esc_sql(rtrim($houseNumber)) . "'
           AND
@@ -236,7 +272,7 @@ class SourceParser {
                     }
                 }
 
-                //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;            
+                //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
                 $image_path = $source_path . DIRECTORY_SEPARATOR . $image_file;
 
                 if (is_file($image_path)) {
@@ -247,6 +283,8 @@ class SourceParser {
                     $new_path = $wp_upload_dir['path'] . '/' . $image_file;
 
                     if (copy($image_path, $new_path)) {
+
+                        chmod($new_path, 0775);
 
                         $basename = basename($new_path);
 
@@ -314,8 +352,8 @@ class SourceParser {
         global $wpdb;
 
         $langs = EstateProgram::$langs;
-        
-        
+
+
 
         foreach ($langs as $key => $val) {
 
@@ -324,31 +362,30 @@ class SourceParser {
             if (!is_dir($source_dir)) {
                 throw new Exception('Zdrojový adresář ' . $source_dir . ' neexistuje');
             }
-            
-           // var_dump($source_dir);
+
+            // var_dump($source_dir);
 
             if ($handle = opendir($source_dir)) {
-                
-                while (false !== ($entry = readdir($handle))) {                                    
-                    
+
+                while (false !== ($entry = readdir($handle))) {
+
                     //var_dump($entry);
-                    
+
                     $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
                     $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
                     //var_dump($ext);
-                    
+
                     if ('zip' != strtolower($ext)) {
                         continue;
                     }
 
-                   // var_dump($file);
-                    
+                    // var_dump($file);
+
                     $zip = new ZipArchive;
                     $res = $zip->open($file);
-                    
-                    //var_dump($file);
 
+                    //var_dump($file);
                     // extrahovani zipu do tempu
                     if (true == $res) {
 
@@ -371,6 +408,9 @@ class SourceParser {
                             while (false !== ($entry = readdir($temp_handle))) {
 
                                 $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
+
+                                chmod($temp_file, 0775);
+
                                 $temp_file_ext = strtolower(pathinfo($temp_file, PATHINFO_EXTENSION));
 
                                 if (is_file($temp_file)) {

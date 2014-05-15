@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openimmo >
+    <uebertragung xmlns="" art="OFFLINE" umfang="TEIL" modus="CHANGE" version="1.2.4" sendersoftware="OOF" senderversion="$Rev: 41634 $" techn_email="berlin@aden-immo.com" timestamp="2014-05-15T09:16:08.0+00:00"/>
+    <anbieter xmlns="">
+        <anbieternr>adenimmoeb4allcz</anbieternr>
+        <firma>ADEN Immo GmbH</firma>
+        <openimmo_anid>adenimmoeb4allcz</openimmo_anid>
+        <immobilie>
+            <objektkategorie>
+                <nutzungsart WOHNEN="1" GEWERBE="0"/>
+                <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                <objektart>
+                    <wohnung wohnungtyp="ETAGE"/>
+                </objektart>
+            </objektkategorie>
+            <geo>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <geokoordinaten breitengrad="52.51183" laengengrad="13.47557"/>
+                <strasse>Gürtelstraße</strasse>
+                <hausnummer>28</hausnummer>
+                <land iso_land="DEU"/>
+                <etage>1</etage>
+                <regionaler_zusatz>Friedrichshain</regionaler_zusatz>
+            </geo>
+            <kontaktperson>
+                <email_zentrale>berlin@aden-immo.com</email_zentrale>
+                <email_direkt>olivier.montero@aden-immo.com</email_direkt>
+                <tel_zentrale>+49 30 61675115</tel_zentrale>
+                <tel_durchw>+49 30 61675115</tel_durchw>
+                <tel_fax>+49 30 61675114</tel_fax>
+                <name>Montero</name>
+                <vorname>Olivier</vorname>
+                <anrede>Herr</anrede>
+                <anrede_brief>Cher Monsieur Montero,</anrede_brief>
+                <firma>ADEN Immo GmbH</firma>
+                <zusatzfeld/>
+                <strasse>Günberger Straße</strasse>
+                <hausnummer>50</hausnummer>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <land iso_land="DEU"/>
+                <url>www.aden-immo.com</url>
+            </kontaktperson>
+            <preise>
+                <kaufpreis>130000.00</kaufpreis>
+                <zzg_mehrwertsteuer>1</zzg_mehrwertsteuer>
+                <hausgeld>178.00</hausgeld>
+                <kaufpreis_pro_qm>3171.51</kaufpreis_pro_qm>
+                <provisionspflichtig>1</provisionspflichtig>
+                <aussen_courtage mit_mwst="1">7,14% incl. VAT</aussen_courtage>
+                <waehrung iso_waehrung="EUR"/>
+                <stp_sonstige platzart="SONSTIGES" stellplatzmiete="0.00" stellplatzkaufpreis="0.00" anzahl="0"/>
+            </preise>
+            <versteigerung/>
+            <flaechen>
+                <wohnflaeche>40.99</wohnflaeche>
+                <anzahl_zimmer>2.00</anzahl_zimmer>
+                <anzahl_schlafzimmer>1.00</anzahl_schlafzimmer>
+                <anzahl_badezimmer>1.00</anzahl_badezimmer>
+            </flaechen>
+            <ausstattung>
+                <boden/>
+                <heizungsart ZENTRAL="1"/>
+                <befeuerung FERN="1"/>
+                <fahrstuhl PERSONEN="1"/>
+                <unterkellert keller="JA"/>
+            </ausstattung>
+            <zustand_angaben>
+                <baujahr>1900</baujahr>
+                <zustand zustand_art="TEIL_VOLLSANIERT"/>
+                <verkaufstatus stand="OFFEN"/>
+            </zustand_angaben>
+            <bewertung/>
+            <infrastruktur/>
+            <freitexte>
+                <objekttitel>Renovated: bright, nice, charming 2 room apartment!</objekttitel>
+                <dreizeiler/>
+                <lage>Located in the much demanded district of Berlin- Friedrichshain, it has a lot to offer: Restaurants, Cafés, bars are close-by. Also the popular Traveplatz is within walking distance. S- and U-Bahn provide a good connection to public transportation.  </lage>
+                <ausstatt_beschr>Situated on the 1st floor, this nice 2-room apartment disposes of a large living room with an open kitchen, a bedroom  and a bathroom. During the renovation works a new wooden parquet floorhas been added. New doors, windows and a balcony provide a high standard of living. Also, an elevator is available.</ausstatt_beschr>
+                <objektbeschreibung>This building was constructed at the beginning of the 20th century. Currently it is being completely renovated. An elevator will be built, as well as balconies for each apartment. We have other apartments to offer in the same building. Contact us for further information!
+
+
+
+                </objektbeschreibung>
+                <sonstige_angaben/>
+            </freitexte>
+            <anhaenge>
+                <anhang location="EXTERN" gruppe="TITELBILD">
+                    <anhangtitel>Living room with balcony</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16486.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Facade</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_13595.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="GRUNDRISS">
+                    <anhangtitel>Floorplan</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_19060.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Living room</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16484.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Bathroom</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_13599.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Bedroom</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16488.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Entrance</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16494.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Balcony</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16496.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Neighbourhood</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16492.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="LINKS">
+                    <anhangtitel>Link Flat</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="LINKS">
+                    <anhangtitel>Link Building</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+            <verwaltung_objekt>
+                <objektadresse_freigeben>0</objektadresse_freigeben>
+                <verfuegbar_ab>November 2013</verfuegbar_ab>
+            </verwaltung_objekt>
+            <verwaltung_techn>
+                <objektnr_intern>2979</objektnr_intern>
+                <objektnr_extern>BO-GU-28-6</objektnr_extern>
+                <aktion aktionart="CHANGE"/>
+                <openimmo_obid>adenimmoeb4allcz_2979_BO-GU-28-6</openimmo_obid>
+                <kennung_ursprung>onOffice Software</kennung_ursprung>
+                <stand_vom>2014-05-15</stand_vom>
+                <weitergabe_generell>1</weitergabe_generell>
+            </verwaltung_techn>
+        </immobilie>
+    </anbieter>
+</openimmo>

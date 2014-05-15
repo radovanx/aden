@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openimmo >
+    <uebertragung xmlns="" art="OFFLINE" umfang="TEIL" modus="CHANGE" version="1.2.4" sendersoftware="OOF" senderversion="$Rev: 41634 $" techn_email="berlin@aden-immo.com" timestamp="2014-05-15T09:17:34.0+00:00"/>
+    <anbieter xmlns="">
+        <anbieternr>adenimmoeb4allcz</anbieternr>
+        <firma>ADEN Immo GmbH</firma>
+        <openimmo_anid>adenimmoeb4allcz</openimmo_anid>
+        <immobilie>
+            <objektkategorie>
+                <nutzungsart WOHNEN="0" GEWERBE="0" ANLAGE="1"/>
+                <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                <objektart>
+                    <wohnung wohnungtyp="ETAGE"/>
+                </objektart>
+            </objektkategorie>
+            <geo>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <geokoordinaten breitengrad="52.50624" laengengrad="13.46584"/>
+                <strasse>Sonntagstraße</strasse>
+                <hausnummer>12</hausnummer>
+                <land iso_land="DEU"/>
+                <etage>2</etage>
+                <anzahl_etagen>5</anzahl_etagen>
+                <wohnungsnr>21</wohnungsnr>
+                <regionaler_zusatz>Friedrichshain</regionaler_zusatz>
+            </geo>
+            <kontaktperson>
+                <email_zentrale>berlin@aden-immo.com</email_zentrale>
+                <email_direkt>lars.drewes@aden-immo.com</email_direkt>
+                <tel_zentrale>+49 30 61675115</tel_zentrale>
+                <tel_durchw>+49 151 41908862</tel_durchw>
+                <tel_fax>+49 30 61675114</tel_fax>
+                <tel_handy>+49 151 41908862</tel_handy>
+                <name>Drewes</name>
+                <vorname>Lars</vorname>
+                <anrede>Herr</anrede>
+                <anrede_brief>Sehr geehrter Herr Drewes,</anrede_brief>
+                <firma>ADEN Immo GmbH</firma>
+                <zusatzfeld/>
+                <strasse>Grünberger Str.</strasse>
+                <hausnummer>50</hausnummer>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <land iso_land="DEU"/>
+                <url>www.aden-immo.com</url>
+            </kontaktperson>
+            <preise>
+                <kaufpreis>147155.00</kaufpreis>
+                <hausgeld>213.25</hausgeld>
+                <kaufpreis_pro_qm>2385.01</kaufpreis_pro_qm>
+                <provisionspflichtig>0</provisionspflichtig>
+                <aussen_courtage>7,14% incl. VAT</aussen_courtage>
+                <waehrung iso_waehrung="EUR"/>
+                <mieteinnahmen_ist periode="JAHR">3867.24</mieteinnahmen_ist>
+                <stp_sonstige platzart="SONSTIGES" stellplatzmiete="0.00" stellplatzkaufpreis="0.00" anzahl="0"/>
+            </preise>
+            <versteigerung/>
+            <flaechen>
+                <wohnflaeche>61.70</wohnflaeche>
+                <anzahl_zimmer>2.00</anzahl_zimmer>
+                <anzahl_schlafzimmer>1.00</anzahl_schlafzimmer>
+                <anzahl_badezimmer>1.00</anzahl_badezimmer>
+                <vermietbare_flaeche>61.70</vermietbare_flaeche>
+            </flaechen>
+            <ausstattung>
+                <boden DIELEN="1"/>
+                <heizungsart ZENTRAL="1"/>
+                <befeuerung GAS="1"/>
+                <unterkellert keller="JA"/>
+            </ausstattung>
+            <zustand_angaben>
+                <baujahr>1900</baujahr>
+                <zustand zustand_art="MODERNISIERT"/>
+                <verkaufstatus stand="OFFEN"/>
+                <user_defined_simplefield feldname="epass_baujahr">1900</user_defined_simplefield>
+            </zustand_angaben>
+            <bewertung/>
+            <infrastruktur/>
+            <freitexte>
+                <objekttitel>Best location: Ostkreuz, cosy 2 room apartment!!</objekttitel>
+                <dreizeiler/>
+                <lage>Located in the Sonntagstr., very close to Ostkreuz station on the Ring-Bahn you have direct access to everything needed for a living: cafés, restaurants, shops, public transportation. This street is also very "green" with the Annemirl Bauer Platz.</lage>
+                <ausstatt_beschr>Cosy and convienient 2 room apartment with a nice living room decorated with stucco. You also have a nice balcony and a separated WC. </ausstatt_beschr>
+                <objektbeschreibung>Nice Altbau being renovated and reconditioned:
+                    - Facade and balconies
+                    - Courtyard rearrangement
+                    - Stairway renovated
+                    - 20.000€ in the co-ownership fund
+                </objektbeschreibung>
+                <sonstige_angaben/>
+            </freitexte>
+            <anhaenge>
+                <anhang location="EXTERN" gruppe="TITELBILD">
+                    <anhangtitel>facade</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16408.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>room example</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16400.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="GRUNDRISS">
+                    <anhangtitel>plan</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16410.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>energie passport</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_28106.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>detail altbau</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16394.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>street</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16398.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>door</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16378.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>staircase</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16404.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>staircase</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16402.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>balcony view</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16392.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="LINKS">
+                    <anhangtitel>Link Flat</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="LINKS">
+                    <anhangtitel>Link building</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+            <verwaltung_objekt>
+                <objektadresse_freigeben>1</objektadresse_freigeben>
+                <vermietet>1</vermietet>
+            </verwaltung_objekt>
+            <verwaltung_techn>
+                <objektnr_intern>4244</objektnr_intern>
+                <objektnr_extern>BO-SO-12-21</objektnr_extern>
+                <aktion aktionart="CHANGE"/>
+                <openimmo_obid>adenimmoeb4allcz_4244_BO-SO-12-21</openimmo_obid>
+                <kennung_ursprung>onOffice Software</kennung_ursprung>
+                <stand_vom>2014-05-15</stand_vom>
+                <weitergabe_generell>1</weitergabe_generell>
+            </verwaltung_techn>
+        </immobilie>
+    </anbieter>
+</openimmo>

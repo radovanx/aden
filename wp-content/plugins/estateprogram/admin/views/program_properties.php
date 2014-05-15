@@ -6,18 +6,6 @@
             <td colspan="2"><h3 style="text-transform: uppercase;"><?php echo $lang ?></h3></td>
         </tr>
         <tr>
-            <th class="textleft"><label for="_program_location"><?php _e('Location', $this->plugin_slug); ?></label></th>
-            <td>
-                <input id="program-street" type="text" name="_program_location_<?php echo $lang ?>" value="<?php echo esc_attr(qtrans_use($lang, get_post_meta($post->ID, '_program_location', true), false)) ?>">
-            </td>
-        </tr>
-        <tr>
-            <th class="textleft"><label for="_program_address"><?php _e('Address', $this->plugin_slug); ?></label></th>
-            <td>
-                <input id="_program_address" type="text" name="_program_address_<?php echo $lang ?>" value="<?php echo esc_attr(qtrans_use($lang, get_post_meta($post->ID, '_program_address', true), false)) ?>">
-            </td>
-        </tr>
-        <tr>
             <th class="textleft"><label for="_program_apartments"><?php _e('Apartments', $this->plugin_slug); ?></label></th>
             <td>
                 <input id="_program_apartments" type="text" name="_program_apartments_<?php echo $lang ?>" value="<?php echo esc_attr(qtrans_use($lang, get_post_meta($post->ID, '_program_apartments', true), false)) ?>">
@@ -28,6 +16,96 @@
     <tr>
         <th colspan="2"><h3>&nbsp</h3></th>
 </tr>
+<!--
+<tr>
+    <th class="textleft"><label for="_program_street"><?php _e('Street', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="program-postcode" type="text" name="_program_street" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_house_number"><?php _e('Houser number', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="program-postcode" type="text" name="_program_house_number" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_house_number', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_region"><?php _e('Region', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="program-postcode" type="text" name="_program_region" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_region', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_city"><?php _e('City', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="program-postcode" type="text" name="_program_city" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="program-postcode"><?php _e('Postcode', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="program-postcode" type="text" name="_program_postcode" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_postcode', true)) ?>">
+    </td>
+</tr>
+-->
+<!--
+<tr>
+    <th class="textleft"><label for="_program_location"><?php _e('Location', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_location" type="text" name="_program_location" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_location', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_address"><?php _e('Address', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="program-postcode" type="text" name="_program_address" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_address', true)) ?>">
+    </td>
+</tr>-->
+
+<tr>
+    <th class="textleft"><label for="_program_street"><?php _e('Street', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_street" type="text" name="_program_street" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_house_number"><?php _e('House number', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_house_number" type="text" name="_program_house_number" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_house_number', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_region"><?php _e('Region', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_region" type="text" name="_program_region" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_region', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_city"><?php _e('City', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_city" type="text" name="_program_city" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_postcode"><?php _e('Postcode', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_postcode" type="text" name="_program_postcode" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_postcode', true)) ?>">
+    </td>
+</tr>
+
+
+<tr>
+    <th colspan="2"><h3>&nbsp</h3></th>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_video"><?php _e('Video url', $this->plugin_slug) ?></label></th>
+    <td>
+        <input id="_program_video" type="text" name="_program_video" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_video', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th colspan="2"><h3>&nbsp</h3></th>
+</tr>
 
 <tr>
     <th class="textleft"><label for="_program_commission"><?php _e('Commission (incl. VAT)', $this->plugin_slug) ?></label></th>
@@ -35,14 +113,6 @@
         <input id="_program_commission" type="text" name="_program_commission" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_commission', true)) ?>">
     </td>
 </tr>
-<!--
-<tr>
-    <th class="textleft"><label for="program-postcode"><?php _e('Program postcode', $this->plugin_slug); ?></label></th>
-    <td>
-        <input id="program-postcode" type="text" name="_program_postcode" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_postcode', true)) ?>">
-    </td>
-</tr>
--->
 <tr>
     <th class="textleft"><label for="program-latitude"><?php _e('Program latitude', $this->plugin_slug); ?></label></th>
     <td>

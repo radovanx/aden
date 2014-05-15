@@ -91,14 +91,14 @@ class pdfgenerator {
 
     public function query_vars($public_query_vars) {
         $public_query_vars[] = 'action';
-        $public_query_vars[] = 'product-id';
-        $public_query_vars[] = 'program-id';
+        $public_query_vars[] = 'product_id';
+        $public_query_vars[] = 'product_type';
         return $public_query_vars;
     }
 
     function do_rewrite() {
-        add_rewrite_rule("download-product-data/([^/]+)/?$", 'index.php?action=generate-pdf&product-id=$matches[1]', 'top');
-        add_rewrite_rule("download-program-data/([^/]+)/?$", 'index.php?action=generate-pdf&program-id=$matches[1]', 'top');
+        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]', 'top');
+        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]', 'top');
     }
 
     public function parse_request(&$wp) {
@@ -112,25 +112,49 @@ class pdfgenerator {
             require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
             $mpdf = new mPDF();
 
-            ob_start();
-            require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
-            $html = ob_get_contents();
-            ob_end_clean();
+            if (isset($q['product_type'])) {
+                switch ($q['product_type']) {
+                    case 'product':
 
-            $mpdf->WriteHTML($html);
+                        if (isset($q['product_id'])) {
+                            $product = get_post($q['product_id']);
 
-            if (isset($q['product-id'])) {
+                            ob_start();
+                            require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
+                            $html = ob_get_contents();
+                            ob_end_clean();
+                            
+                            $filename = get_the_title($product_id);
+                        }
 
-                $product_id = $q['product-id'];
-                $product = get_post($product_id);
-                $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
 
-                //$props = unserialize($props_data);
 
-                $template = plugin_dir_path(__FILE__) . 'pdf/apartment.php';
 
-                $filename = get_the_title($product_id);
+
+                        $mpdf->WriteHTML($html);
+
+                        if (isset($q['product-id'])) {
+
+                            $product_id = $q['product-id'];
+                            $product = get_post($product_id);
+                            $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
+
+                            //$props = unserialize($props_data);
+
+                            $template = plugin_dir_path(__FILE__) . 'pdf/apartment.php';
+
+                            $filename = get_the_title($product_id);
+                        }
+                        break;
+                    case '':
+                        break;
+                }
             }
+
+
+
+
+
 
             if (isset($q['program-id'])) {
                 

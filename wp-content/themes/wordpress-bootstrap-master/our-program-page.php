@@ -4,7 +4,7 @@
  */
 ?>
 <?php get_header(); ?> 
-    <div class="container">
+<div class="container">
     <div class="row clearfix"> 
           <div class="col-md-12 column"> 
         <header> 
@@ -55,4 +55,4 @@
             wp_reset_query();
             ?>
     </div></div>
-    <?php get_footer(); ?>
+<?php get_footer(); ?>
