@@ -68,19 +68,48 @@ class SourceParser {
             $firma = (string) $anbieter->firma;
             $openimmo_anid = (string) $anbieter->openimmo_anid;
 
+
+            // 
+            $cityNode = $anbieter->xpath('immobilie/geo/ort');
+            $city = (string) $cityNode[0];
+
+            $streetNode = $anbieter->xpath('immobilie/geo/strasse');
+            $street = (string) $streetNode[0];
+
+            $regionNode = $anbieter->xpath('immobilie/geo/regionaler_zusatz');
+            $region = (string) $regionNode[0];
+
+            $houseNumberNode = $anbieter->xpath('immobilie/geo/hausnummer');
+            $houseNumber = (string) $houseNumberNode[0];
+
             $ret = SourceParser::parse_nodes($anbieter);
 
+
+            // zjistim jestli existuje apartment na stejne adrese            
             $sql = "
             SELECT
-                post_id
+                p.ID
             FROM
-                " . $wpdb->prefix . "postmeta
+                wp_posts AS p
             JOIN
-                " . $wpdb->prefix . "posts
+                wp_postmeta AS pm1                
+            ON
+                pm1.post_id = p.ID
+            JOIN
+                wp_postmeta AS pm2
+            ON
+                pm2.post_id = p.ID
             WHERE
-                meta_key = 'anbieternr'
+                pm1.meta_key = 'apartment_street'
             AND
-                meta_value = '" . esc_sql($anbieternr) . "'";
+                pm2.meta_key = 'apartment_house_number'
+            AND
+                pm1.meta_value = '" . esc_sql(trim($street)) . "'
+            AND
+                pm2.meta_value = '" . esc_sql(trim($houseNumber)) . "'
+            AND
+                p.post_type = 'flat'
+            ";
 
             $apartment_id = $wpdb->get_var($sql);
 
@@ -92,12 +121,11 @@ class SourceParser {
                 'post_status' => 'publish',
             );
 
+
             if (!empty($apartment_id)) {
 
                 $post_title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $apartment_id);
-
                 $pattern = "~<!--:$wp_lang-->(.*)<!--:-->~U";
-
                 $post_title = preg_replace($pattern, '', $post_title);
 
                 $post_information['post_title'] = $post_title . '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
@@ -106,10 +134,17 @@ class SourceParser {
                 wp_insert_post($post_information);
             } else {
                 $apartment_id = wp_insert_post($post_information);
-                $post_information['post_title'] = '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
+                
+                if(!empty($ret['freitexte|objekttitel'])){                
+                    $post_information['post_title'] = '<!--:' . $wp_lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
+                } else {
+                    $post_information['post_title'] = '';
+                }
             }
 
             update_post_meta((int) $apartment_id, 'anbieternr', $anbieternr);
+            update_post_meta((int) $apartment_id, 'apartment_street', $street);
+            update_post_meta((int) $apartment_id, 'apartment_house_number', $houseNumber);
 
             $props = array();
             $excl = array('anhaenge', 'anhang');
@@ -131,44 +166,33 @@ class SourceParser {
                             '" . $val . "')";
 
                     $wpdb->query($sql);
-                    
+
                     $last_city_id = $wpdb->insert_id;
                 }
-                
-                if ('geo|regionaler_zusatz' == $key) {                    
+
+                if ('geo|regionaler_zusatz' == $key) {
                     $region = $val;
-                }                
+                }
 
                 $props[$key] = rtrim($val);
                 //update_post_metalang($apartment_id, $wp_lang, $key, $val);
             }
 
 
-            if(!empty($last_city_id) && !empty($region)){
-                    $sql = "REPLACE INTO
+            if (!empty($last_city_id) && !empty($region)) {
+                $sql = "REPLACE INTO
                             region (lang, region, id_city)
                          VALUES(
                             '" . $wp_lang . "',
                             '" . $region . "',
                             " . $last_city_id . ")";
 
-                    $wpdb->query($sql);                
+                $wpdb->query($sql);
             }
-            
+
+
 
             // zjistim jestli existuje program na stejne adrese
-            $cityNode = $anbieter->xpath('immobilie/geo/ort');
-            $city = (string) $cityNode[0];
-
-            $streetNode = $anbieter->xpath('immobilie/geo/strasse');
-            $street = (string) $streetNode[0];
-
-            $regionNode = $anbieter->xpath('immobilie/geo/regionaler_zusatz');
-            $region = (string) $regionNode[0];
-
-            $houseNumberNode = $anbieter->xpath('immobilie/geo/hausnummer');
-            $houseNumber = (string) $houseNumberNode[0];
-
             $sql = "
           SELECT
             p.ID,
@@ -192,19 +216,11 @@ class SourceParser {
           ON
             p.ID = pm1.post_id
           WHERE
-            pm1.meta_key = '_program_city'
-          AND
             pm2.meta_key = '_program_street'
-          AND
-            pm3.meta_key = '_program_district'
           AND
             pm4.meta_key = '_house_number'
           AND
-            pm1.meta_value = '" . esc_sql(rtrim($city)) . "'
-          AND
             pm2.meta_value = '" . esc_sql(rtrim($street)) . "'
-          AND
-            pm3.meta_value = '" . esc_sql(rtrim($region)) . "'
           AND
             pm4.meta_value = '" . esc_sql(rtrim($houseNumber)) . "'
           AND
@@ -277,7 +293,7 @@ class SourceParser {
                     if (copy($image_path, $new_path)) {
 
                         chmod($new_path, 0775);
-                        
+
                         $basename = basename($new_path);
 
                         // Check the type of tile. We'll use this as the 'post_mime_type'.
@@ -400,9 +416,9 @@ class SourceParser {
                             while (false !== ($entry = readdir($temp_handle))) {
 
                                 $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
-                                
+
                                 chmod($temp_file, 0775);
-                                
+
                                 $temp_file_ext = strtolower(pathinfo($temp_file, PATHINFO_EXTENSION));
 
                                 if (is_file($temp_file)) {

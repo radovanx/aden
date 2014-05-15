@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openimmo >
+    <uebertragung xmlns="" art="OFFLINE" umfang="TEIL" modus="CHANGE" version="1.2.4" sendersoftware="OOF" senderversion="$Rev: 41634 $" techn_email="berlin@aden-immo.com" timestamp="2014-05-14T15:47:30.0+00:00"/>
+    <anbieter xmlns="">
+        <anbieternr>adenimmoeb4allcz</anbieternr>
+        <firma>ADEN Immo GmbH</firma>
+        <openimmo_anid>adenimmoeb4allcz</openimmo_anid>
+        <immobilie>
+            <objektkategorie>
+                <nutzungsart WOHNEN="0" GEWERBE="0" ANLAGE="1"/>
+                <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                <objektart>
+                    <wohnung wohnungtyp="ETAGE"/>
+                </objektart>
+            </objektkategorie>
+            <geo>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <geokoordinaten breitengrad="52.50629" laengengrad="13.46586"/>
+                <strasse>Böcklinstraße</strasse>
+                <hausnummer>6</hausnummer>
+                <land iso_land="DEU"/>
+                <etage>3</etage>
+                <anzahl_etagen>5</anzahl_etagen>
+                <wohnungsnr>24</wohnungsnr>
+                <regionaler_zusatz>Friedrichshain</regionaler_zusatz>
+            </geo>
+            <kontaktperson>
+                <email_zentrale>berlin@aden-immo.com</email_zentrale>
+                <email_direkt>lars.drewes@aden-immo.com</email_direkt>
+                <tel_zentrale>+49 30 61675115</tel_zentrale>
+                <tel_durchw>+49 151 41908862</tel_durchw>
+                <tel_fax>+49 30 61675114</tel_fax>
+                <tel_handy>+49 151 41908862</tel_handy>
+                <name>Drewes</name>
+                <vorname>Lars</vorname>
+                <anrede>Herr</anrede>
+                <anrede_brief>Sehr geehrter Herr Drewes,</anrede_brief>
+                <firma>ADEN Immo GmbH</firma>
+                <zusatzfeld/>
+                <strasse>Grünberger Str.</strasse>
+                <hausnummer>50</hausnummer>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <land iso_land="DEU"/>
+                <url>www.aden-immo.com</url>
+            </kontaktperson>
+            <preise>
+                <kaufpreis>150668.00</kaufpreis>
+                <hausgeld>214.74</hausgeld>
+                <kaufpreis_pro_qm>2437.99</kaufpreis_pro_qm>
+                <provisionspflichtig>0</provisionspflichtig>
+                <aussen_courtage>7,14 % VAT incl.</aussen_courtage>
+                <waehrung iso_waehrung="EUR"/>
+                <mieteinnahmen_ist periode="JAHR">3979.8</mieteinnahmen_ist>
+                <stp_sonstige platzart="SONSTIGES" stellplatzmiete="0.00" stellplatzkaufpreis="0.00" anzahl="0"/>
+            </preise>
+            <versteigerung/>
+            <flaechen>
+                <wohnflaeche>61.80</wohnflaeche>
+                <gesamtflaeche>61.80</gesamtflaeche>
+                <anzahl_zimmer>2.00</anzahl_zimmer>
+                <anzahl_schlafzimmer>1.00</anzahl_schlafzimmer>
+                <anzahl_badezimmer>1.00</anzahl_badezimmer>
+                <vermietbare_flaeche>61.80</vermietbare_flaeche>
+            </flaechen>
+            <ausstattung>
+                <boden DIELEN="1"/>
+                <heizungsart ZENTRAL="1"/>
+                <befeuerung GAS="1"/>
+                <unterkellert keller="JA"/>
+            </ausstattung>
+            <zustand_angaben>
+                <baujahr>1900</baujahr>
+                <zustand zustand_art="MODERNISIERT"/>
+                <verkaufstatus stand="OFFEN"/>
+                <user_defined_simplefield feldname="epass_baujahr">1900</user_defined_simplefield>
+            </zustand_angaben>
+            <bewertung/>
+            <infrastruktur/>
+            <freitexte>
+                <objekttitel>Nice flat in Friedrichshain sold rented!</objekttitel>
+                <dreizeiler/>
+                <lage>Conveniently located in Friedrichshain, this property offers all the amenities on site. A plethora of restaurants, cafes, small shops are located in the street. Moreover, the Ostkreuz S-bahn station is 300m  away and offers access the Ring-Bahn and the new airport in less than 30 minutes</lage>
+                <ausstatt_beschr>This apartment with an attractive configuration has a charming room with access to a balcony, entrance hall with storage room, large living room with an open kitchen and a west-facing balcony. The apartment is rented. The rental income is € 331.65.</ausstatt_beschr>
+                <objektbeschreibung>This project for split sale is being renovated: 
+                    - Facade and balconies 
+                    - New layout of the courtyard 
+                    - Renovation of the staircase 
+                    - € 20,000 in working capital</objektbeschreibung>
+                <sonstige_angaben/>
+            </freitexte>
+            <anhaenge>
+                <anhang location="EXTERN" gruppe="TITELBILD">
+                    <anhangtitel>Facade</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_20552.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>staircase</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_20386.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="GRUNDRISS">
+                    <anhangtitel>plan</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_22240.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>door</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_20400.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Sonntagstraße </anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_20542.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>electricity</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_22250.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>chauffage</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_22242.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Energie ID</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_20544.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="FILMLINK">
+                    <format/>
+                    <daten>
+                        <pfad>http://youtu.be/8vVjqG9hgio</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="LINKS">
+                    <anhangtitel>Link flat</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.dropbox.com/sh/50jmj22f2p3zbbm/AADnuP89JLkCkdtIg4y5Xr7Ea</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="LINKS">
+                    <anhangtitel>Link building</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+            <verwaltung_objekt>
+                <objektadresse_freigeben>1</objektadresse_freigeben>
+                <vermietet>1</vermietet>
+            </verwaltung_objekt>
+            <verwaltung_techn>
+                <objektnr_intern>5304</objektnr_intern>
+                <objektnr_extern>BO-BO-06-24</objektnr_extern>
+                <aktion aktionart="CHANGE"/>
+                <openimmo_obid>adenimmoeb4allcz_5304_BO-BO-06-24</openimmo_obid>
+                <kennung_ursprung>onOffice Software</kennung_ursprung>
+                <stand_vom>2014-05-14</stand_vom>
+                <weitergabe_generell>1</weitergabe_generell>
+            </verwaltung_techn>
+        </immobilie>
+    </anbieter>
+</openimmo>

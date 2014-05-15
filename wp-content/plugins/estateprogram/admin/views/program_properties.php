@@ -48,6 +48,7 @@
     </td>
 </tr>
 -->
+<!--
 <tr>
     <th class="textleft"><label for="_program_location"><?php _e('Location', $this->plugin_slug); ?></label></th>
     <td>
@@ -59,8 +60,38 @@
     <td>
         <input id="program-postcode" type="text" name="_program_address" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_address', true)) ?>">
     </td>
-</tr>
+</tr>-->
 
+<tr>
+    <th class="textleft"><label for="_program_street"><?php _e('Street', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_street" type="text" name="_program_street" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_house_number"><?php _e('House number', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_house_number" type="text" name="_program_house_number" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_house_number', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_region"><?php _e('Region', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_region" type="text" name="_program_region" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_region', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_city"><?php _e('City', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_city" type="text" name="_program_city" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th class="textleft"><label for="_program_postcode"><?php _e('Postcode', $this->plugin_slug); ?></label></th>
+    <td>
+        <input id="_program_postcode" type="text" name="_program_postcode" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_postcode', true)) ?>">
+    </td>
+</tr>
 
 
 <tr>

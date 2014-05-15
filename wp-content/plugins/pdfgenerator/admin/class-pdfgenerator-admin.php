@@ -88,9 +88,17 @@ class pdfgenerator_Admin {
 		 */
 		add_action( '@TODO', array( $this, 'action_method_name' ) );
 		add_filter( '@TODO', array( $this, 'filter_method_name' ) );
+                
+                //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
+                
+                
 
 	}
 
+        
+
+        
+        
 	/**
 	 * Return an instance of this class.
 	 *
@@ -186,15 +194,21 @@ class pdfgenerator_Admin {
 		 * - Change 'manage_options' to the capability you see fit
 		 *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
 		 */
+            /*
 		$this->plugin_screen_hook_suffix = add_options_page(
-			__( 'Page Title', $this->plugin_slug ),
-			__( 'Menu Text', $this->plugin_slug ),
+			__( 'Parse XML setting', $this->plugin_slug ),
+			__( 'PARSE XML setting', $this->plugin_slug ),
 			'manage_options',
 			$this->plugin_slug,
-			array( $this, 'display_plugin_admin_page' )
-		);
-
+			array( $this, 'parse_xml' )
+		);*/
+            
+            
+           // add_menu_page('Parse XML', 'Parse XML', 'manage_options', 'parse_xml', array(&$this, 'parse_xml'));
 	}
+        
+        
+    
 
 	/**
 	 * Render the settings page for this plugin.

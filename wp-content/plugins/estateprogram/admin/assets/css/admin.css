@@ -5,3 +5,31 @@
 .handlediv {
     margin-left: 10px;
 }
+
+.directory-table {
+    width: 200px;
+    float: left;
+    margin: 10px 10px 10px 0;
+    background: white;
+    border-collapse:collapse;
+}
+.directory-table thead td {
+    border-bottom: 1px solid silver;
+    border-bottom: 2px solid silver; 
+    background: #ffe6a9;
+}
+.directory-table {
+    border: 1px solid silver;
+}
+.directory-table td {
+    border-bottom: 1px solid silver;
+    padding: 4px 6px;
+    color: black;
+}
+
+.parse-button.button {
+    padding: 0 40px;
+    line-height: 40px;
+    height: 44px;
+    font-size: 18px;
+}

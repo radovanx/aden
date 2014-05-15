@@ -40,7 +40,7 @@ class EstateProgram_Admin {
      *
      * @var      string
      */
-    protected $plugin_screen_hook_suffix = array('program', 'flat');
+    protected $plugin_screen_hook_suffix = array('program', 'flat', "toplevel_page_parse_xml");
 
     /**
      * Initialize the plugin by loading admin scripts & styles and adding a
@@ -89,7 +89,7 @@ class EstateProgram_Admin {
         add_action('edit_user_profile', array($this, 'profile_boxes'));
 //        add_action('edit_user_profile_update', array($this, 'update_profile'));
         // Add the options page and menu item.
-        //add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
+        add_action('admin_menu', array($this, 'add_plugin_admin_menu'));
         //add_action('admin_menu', array(&$this, 'register_menu_page'));
         // Add an action link pointing to the options page.
         $plugin_basename = plugin_basename(plugin_dir_path(__DIR__) . $this->plugin_slug . '.php');
@@ -104,6 +104,11 @@ class EstateProgram_Admin {
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
     }
+    
+    
+    public function parse_xml(){
+            include 'views/parse_xml.php';
+        }    
 
     public function admin_init() {
         if (current_user_can('delete_posts')) {
@@ -174,13 +179,13 @@ class EstateProgram_Admin {
 
         if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
             $meta_keys = array(
-                //'_program_street',
-                //'_program_region',
-                //'_program_city',
-                //'_program_house_number',
-                //'_program_postcode',
-                '_program_address',
-                '_program_location',
+                '_program_street',
+                '_program_region',
+                '_program_city',
+                '_program_house_number',
+                '_program_postcode',
+                //'_program_address',
+                //'_program_location',
                 //'_program_district',
                 '_program_apartments',
                 '_program_price_from',
@@ -444,8 +449,12 @@ class EstateProgram_Admin {
      */
     public function add_plugin_admin_menu() {
 
-        add_menu_page('Program', 'Program', 'manage_options', 'program_overview', array(&$this, 'program_overview'));
+        add_menu_page('Parse XML', 'Parse XML', 'manage_options', 'parse_xml', array(&$this, 'parse_xml'));
+        
+        //add_menu_page('Program', 'Program', 'manage_options', 'program_overview', array(&$this, 'program_overviw'));
 
+        //add_submenu_page('edit.php?post_type=flat', __('Contribution Amount', 'campaign'), __('Contribution Amount', 'campaign'), 'manage_options', 'parse_xml', array(&$this, 'index'));
+        
 
         /*
          * Add a settings page for this plugin to the Settings menu.
