@@ -6,33 +6,27 @@
 ?>
 <?php get_header(); ?>
 <div class="container">
-    <div id="content" class="clearfix row">
-        
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-        
+    <div id="content" class="clearfix row"> 
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>         
          <?php
             $lang = qtrans_getLanguage();
             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
             $url = $thumb['0']; 
-            
-            $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
-       
-            
+            $props = get_post_meta($post->ID, 'flat_props_' . $lang, true); 
+            $program_id = EstateProgram::flat_program_id($post->ID); 
+            $title = get_the_title($post->ID);
             ?>
         <div class="col-md-12 column">
             <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?> 
-                    <small class=""><a href="">             </a></small>
-                                    </h1></div>
+            <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a></h1>
+            </div>
         </div>
         <div id="main" class="col-md-8 column clearfix" role="main">
-         
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="gallery_tab">
-                                <!--slider here -->
-                               
-
+                                <!--slider here --> 
                                 <a href="<?php echo $url; ?>">
                                     <?php the_post_thumbnail('project-detail-big'); ?>
                                 </a>
@@ -111,7 +105,6 @@
                                                     <?php echo esc_attr($props['flaechen|wohnflaeche']) ?>
                                                 </strong>
                                             </span>
-
                                             <span class="propertyListBoxDataItemName">
                                                 <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
                                                 <strong class="red">
@@ -137,82 +130,107 @@
                                 <div class="col-md-12 column border">
                                     <!-- apartment properties -->
                                     <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
-                                    <ul class="list-unstyled featured-single-flat">
-                                        <li>
-                                            <strong><?php _e("Type of property to search for:", "wpbootstrap"); ?> </strong>
+                                    <ul class="list-unstyled featured-single-flat bigger-text">
+                                        <li class="col-md-6 border-bottom">
+                                            <strong><?php _e("Type of property to search for:", "wpbootstrap"); ?></strong>
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 border-bottom">
                                             <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
-                                            <?php
+                                            <span class="pull-right"><?php
                                             if (isset($props['zustand_angaben|baujahr'])):
                                                 echo esc_attr($props['zustand_angaben|baujahr']);
                                             endif;
                                             ?>
+                                            </span>  
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 border-bottom">
                                             <strong><?php _e("Purchase price /sm:", "wpbootstrap"); ?></strong>
+                                             <span class="pull-right">
                                             <?php 
                                             if(isset($props['preise|kaufpreis_pro_qm'])):
                                                 echo esc_attr($props['preise|kaufpreis_pro_qm']). ' '; echo esc_attr($props['preise|waehrung|iso_waehrung']);
                                             endif;    
                                             ?>
+                                             </span>
                                         </li>
                                         <?php if (isset(EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']])): ?>
-                                            <li>
+                                            <li class="col-md-6 border-bottom">
                                                 <strong><?php _e("Apartment type:", "wpbootstrap"); ?> </strong>
+                                                <span class="pull-right">    
                                                 <?php echo EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']] ?>
+                                                </span>
                                             </li>
                                         <?php endif; ?>
- 
-                                        <li>
+                                        <li class="col-md-6 border-bottom">
                                             <strong><?php _e("Floor:", "wpbootstrap"); ?> </strong>
-
+                                            <span class="pull-right">
                                             <?php
                                             if (isset($props['geo|etage'])):
                                                 echo esc_attr($props['geo|etage']);
                                             endif;
                                             ?>
-                                        </li>
-
-                                        <li>
+                                            </span>    
+                                        </li> 
+                                        <li class="col-md-6 border-bottom">
                                             <strong><?php _e("Number of floors:", "wpbootstrap"); ?> </strong>
+                                             <span class="pull-right">
+                                             <?php
+                                            if ($props['geo|anzahl_etagen']):
+                                                echo (int) $props['geo|anzahl_etagen'];
+                                            endif;
+                                            ?>
+                                           </span>
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 border-bottom">
                                             <strong><?php _e("Rooms:", "wpbootstrap"); ?> </strong>
-                                            <?php
+                                            <span class="pull-right">
+                                             <?php
                                             if ($props['flaechen|anzahl_zimmer']):
                                                 echo (int) $props['flaechen|anzahl_zimmer'];
                                             endif;
                                             ?>
+                                           </span>
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 border-bottom">
                                             <strong><?php _e("Bathroom(s):", "wpbootstrap"); ?> </strong>
+                                            <span class="pull-right">
                                             <?php
                                             if (isset($props['flaechen|anzahl_badezimmer'])) {
                                                 echo (int) $props['flaechen|anzahl_badezimmer'];
                                             }
                                             ?>
+                                            </span>    
                                         </li>
-                                        <li>
-                                            <strong><?php _e("Elevator:", "wpbootstrap"); ?></strong>
-      
+                                        <li class="col-md-6 border-bottom">
+                                        <strong><?php _e("Elevator:", "wpbootstrap"); ?></strong> 
+                                          <span class="pull-right">
+                                            <?php  echo isset($prop['ausstattung|fahrstuhl|PERSONEN']) ? "YES" : "NO"; ?>      
+                                          </span>  
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 border-bottom">
                                             <strong><?php _e("Type of heating system:", "wpbootstrap"); ?></strong>
-                                            <?php
+                                             <span class="pull-right">
+                                                <?php
                                             echo EstateProgram::heatingSystem($props);
                                             ?>
+                                             </span>     
                                         </li>
-                                        <li>
-                                            <strong><?php _e("Garage / parking spot:", "wpbootstrap"); ?></strong>
+                                        <li class="col-md-6 border-bottom">
+                                            <strong><?php _e("Garage / parking spot:", "wpbootstrap"); ?>
+                                            </strong>
+                                            <span class="pull-right">
+                                               <?php  echo (int)($props['preise|stp_sonstige|stellplatzmiete ']); ?>
+                                            </span>
                                         </li>
-                                        <li>
+                                        <li class="col-md-6 border-bottom">
                                             <strong><?php _e("Buyer commission (incl. VAT):", "wpbootstrap"); ?></strong>
-                                            <?php
+                                           <span class="pull-right">
+                                             <?php
                                             if (isset($props['preise|aussen_courtage'])):
                                                 echo esc_attr($props['preise|aussen_courtage']);
                                             endif;
                                             ?>
+                                           </span>
                                         </li>
                                     </ul>
                                     <!-- /apartment properties -->
@@ -224,14 +242,15 @@
                                     <?php echo esc_attr($props['freitexte|ausstatt_beschr']) ?>
                                 </p>
                             </div>
-                            <div class="col-md-6 border-bottom margin-top">
+                            <div class="col-md-6 margin-top">
                                 <h4 class="border-left uppercase"><?php _e("Description of the building", "wpbootstrap"); ?></h4>
                                 <p class="bigger-text"> <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?></p>
                             </div>
-                            <div class="col-md-6 border-bottom margin-top">
+                            <div class="col-md-6 margin-top">
                                 <h4 class="border-left uppercase"><?php _e("Description SURROUNDINGs", "wpbootstrap"); ?></h4>
                                 <p class="bigger-text"> <?php echo esc_attr($props['freitexte|lage']) ?></p>
                             </div>
+                            <div class="clearfix border-bottom"></div>
                             <div class="col-md-12 column">
                                 <h3 class="border-left uppercase"><?php _e("Area map", "wpbootstrap"); ?></h3> 
                                 <?php
@@ -240,8 +259,7 @@
                                 ?> 
                                 <div id="map-canvas">
                                 </div>
-                            </div>
-    
+                            </div> 
                             <div class="col-md-12 column margin-top">
                                     <!-- Tab panes -->
                                     <div class="tab-content">
@@ -345,14 +363,10 @@
                                                     $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                                     ?>
-
                                                     <div class="row">
                                                         <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box">
-
                                                             <div class="col-md-3">
-
                                                                 <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>"/></a>
-
                                                             </div>
                                                             <div class="col-md-9">
                                                                 <h4 class="blue"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>
@@ -390,9 +404,7 @@
                                                                             <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong>
                                                                             <?php echo $area; ?>
                                                                         </span>
-
                                                                     </div>
-
                                                                     <div class="col-md-3">
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Price:", "wpbootstrap"); ?></strong>
@@ -466,40 +478,47 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal --> 
     <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
-    <script>
-        // MAP //
-
-        var lang = <?php echo $langt; ?>;
-        var long = <?php echo $longt; ?>;
-        
-        
-
-        function initialize() {
-            var mapOptions = {
-                zoom: 8,
-                center: new google.maps.LatLng(lang, long)
-            }; 
-             
-            var map = new google.maps.Map(document.getElementById('map-canvas'),
-                    mapOptions);
-             
-            var marker = new google.maps.Marker({
-            position: lang, long,
-            title:"Hello World!"
-            });
- 
-             
-                    
-
-        }
-        function loadScript() {
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
-                    'callback=initialize';
-            document.body.appendChild(script);
-        }
-        window.onload = loadScript;
-
+    <script> 
+    // MAP // 
+    var params;  
+    var lang = <?php echo $langt; ?>;
+    var long = <?php echo $longt; ?>; 
+    // dom ready
+    jQuery(function () {      
+        //if (typeof google !== "undefined"){
+        if (window.google && google.maps) {
+            // Map script is already loaded           
+            initializeMap();
+        } else {
+            
+            lazyLoadGoogleMap();            
+        }      
+    }); 
+    function initialize(params) {
+        var myLatlng = new google.maps.LatLng(lang, long);
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };        
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "<?php echo $title; ?>"
+        });        
+    } 
+    function lazyLoadGoogleMap() {
+        jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
+        .done(function (script, textStatus) {            
+            //alert("Google map script loaded successfully");
+        })
+        .fail(function (jqxhr, settings, ex) {
+            //alert("Could not load Google Map script: " + jqxhr);
+        });
+    } 
+    function initializeMap() {
+        initialize(params);
+    } 
     </script>
 <?php get_footer(); ?> 
