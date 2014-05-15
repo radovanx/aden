@@ -105,11 +105,10 @@
                                     <div class="column ">
                                         <div class="col-md-12 column border">
                                             <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
-
-
-                                            <ul class="list-unstyled">
-                                                <li><i class="fa fa-check"></i>
-                                                    <?php echo str_replace(';', '</li><li><i class="fa fa-check"></i>', $summary) ?>
+ 
+                                            <ul class="list-unstyled bigger-text line-big">
+                                                <li><i class="fa fa-check red"></i>
+                                                    <?php echo str_replace(';', '</li><li><i class="fa fa-check red"></i>', $summary) ?>
                                                 </li>
                                                 <!--
                                                 <li><i class="fa fa-check"></i>
