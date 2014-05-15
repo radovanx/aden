@@ -31,15 +31,17 @@
                             </div> 
                             <div class="panel-body">  
                                 <span class="propertyListBoxDataItemName">
-                                    <i class="fa fa-home"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong> Exclusive Apartments</span>                      
+                                    <i class="fa fa-home"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong><span class="pull-right">    </span></span>                      
                                 <span class="propertyListBoxDataItemName">
-                                    <i class="fa fa-map-marker"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_district', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span>
+                                <i class="fa fa-map-marker"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong>
+                                <span class="pull-right">
+                                    <?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_house_number', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_region', true)); ?> <?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)); ?></span></span>
                                 <span class="propertyListBoxDataItemName">
-                                    <i class="fa fa-arrows-alt"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²</span>
+                                    <i class="fa fa-arrows-alt"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong> <span class="pull-right"><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²</span></span>
                                 <span class="propertyListBoxDataItemName">
-                                    <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?></strong></span>             
+                                    <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red pull-right"> &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?></strong></span>            
                             </div>
-                            <div class="panel-body excerpt"> 
+                            <div class="panel-body excerpt">  
                                 <?php the_excerpt();?>
                             </div>
                             <div class="clearfix">		

@@ -166,16 +166,16 @@ ul.nav {
         padding-bottom: 10px;
         padding-left: 60px;
         padding-top: 15px;
-    } 
+    }
+    
+    li.red a:hover
+    {
+        background: url("../../images/login_icon.png") no-repeat scroll 23% 50% rgba(0, 0, 0, 0);
+      
+    }    
 }    
 }
-
-
-
-
-
-
-
+ 
 
 /* post styling */
 
@@ -654,8 +654,11 @@ blockquote.pull-left{
 		padding-left: 0;
 		padding-right: 0;
 	}
-    }   
-     
+    }    
+    .doublesmall
+    {
+        font-size: 0.5em; 
+    } 
     .red
     {
     color:@red;
@@ -679,8 +682,7 @@ blockquote.pull-left{
     }
     .bigger-text
     {
-       font-size: 15px;
-         
+       font-size: 15px;   
     } 
     .border-bottom
     {
@@ -812,6 +814,17 @@ blockquote.pull-left{
     {
         border-bottom: 1px solid @gray-border; 
     }   
+}  
+.featured-single-flat
+{
+    padding-bottom:15px;
+    overflow:auto; 
+   .border-bottom
+   {   
+    padding-bottom: 15px;
+    padding-top: 15px;
+   }
+    
 } 
 /* product key block */
 
@@ -825,14 +838,11 @@ blockquote.pull-left{
         border-bottom: 1px solid #d8e1e9;
         padding-bottom: 15px;
         line-height: 1.6;
-    } 
-    
+    }  
     .propertyListBoxDataItemName
     {
-       margin-bottom: 14px; 
-        
-    }
-    
+       margin-bottom: 14px;    
+    } 
     .printlink,  .droplink
     {
      line-height: 35px;    
@@ -840,10 +850,8 @@ blockquote.pull-left{
     }
     .printlink>.droplink
     {
-        margin-bottom: 20px;
-        
+        margin-bottom: 20px;    
     }
-    
     .btn
     {
         margin-top: 20px;
@@ -858,7 +866,19 @@ blockquote.pull-left{
     }
    
 }
+/* PROGRAM PAGE */
 
+.line-big
+    { 
+        line-height: 1.6em;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    
+    .list-unstyled i
+    {
+        padding-right: 7px;        
+    }
  
 /* carousel in the program-detail page */ 
 #myCarousel .col-xs-3 { 
@@ -906,8 +926,7 @@ input:-moz-placeholder { color:#bfcad2; font-size: 14px; font-weight: 400;}
     .btn
     {
         margin-top: 25px;
-        display: none;
-        
+        display: none; 
     }   
 } 
 .big_icons

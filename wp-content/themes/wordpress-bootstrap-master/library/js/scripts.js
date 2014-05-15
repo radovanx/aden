@@ -1421,3 +1421,8 @@ jQuery(function() {
         });
     }
 });
+
+jQuery('.magnific_image').magnificPopup({ 
+  type: 'image'
+	// other options
+});
