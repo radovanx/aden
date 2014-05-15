@@ -52,16 +52,13 @@
             3314, // Webinars
             3310, // Programs
         );*/
-        
  
-        
-        if (current_user_can('see_detail') && (false == is_front_page())): ?>
+        if (current_user_can('see_detail')): ?>
             <div class="container">
                 <div class="content">
                     <div class="row">
                         <div class="col-sm-12 clearfix">
-                         
-
+ 
                             <?php
                             wp_nav_menu(
                                     array(
