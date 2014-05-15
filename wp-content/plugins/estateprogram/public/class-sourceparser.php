@@ -210,7 +210,7 @@ class SourceParser {
           WHERE
             pm2.meta_key = '_program_street'
           AND
-            pm4.meta_key = '_house_number'
+            pm4.meta_key = '_program_house_number'
           AND
             pm2.meta_value = '" . esc_sql(rtrim($street)) . "'
           AND
