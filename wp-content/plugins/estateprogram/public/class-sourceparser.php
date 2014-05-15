@@ -198,23 +198,15 @@ class SourceParser {
             p.ID,
             p.post_title
           FROM
-            " . $wpdb->prefix . "postmeta as pm1
-          JOIN
-            " . $wpdb->prefix . "postmeta as pm2
-          ON
-            pm1.post_id = pm2.post_id
-          JOIN
-            " . $wpdb->prefix . "postmeta as pm3
-          ON
-            pm1.post_id = pm3.post_id
+             " . $wpdb->prefix . "postmeta as pm2
           JOIN
             " . $wpdb->prefix . "postmeta as pm4
           ON
-            pm1.post_id = pm4.post_id
+            pm2.post_id = pm4.post_id
           JOIN
             " . $wpdb->prefix . "posts as p
           ON
-            p.ID = pm1.post_id
+            p.ID = pm2.post_id
           WHERE
             pm2.meta_key = '_program_street'
           AND
