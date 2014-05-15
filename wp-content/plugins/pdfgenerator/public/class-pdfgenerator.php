@@ -47,7 +47,7 @@ class pdfgenerator {
      *
      * @var      string
      */
-    protected $plugin_slug = 'pdfgenerator';
+    public $plugin_slug = 'pdfgenerator';
 
     /**
      * Instance of this class.
@@ -119,22 +119,28 @@ class pdfgenerator {
                         if (isset($q['product_id'])) {
                             $product = get_post($q['product_id']);
 
+                            $lang = qtrans_getLanguage();
+                            $props = get_post_meta($product->ID, 'flat_props_'. $lang, true);
+                            
                             ob_start();
                             require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
                             $html = ob_get_contents();
                             ob_end_clean();
                             
                             $filename = get_the_title($product_id);
+                            
+                            $mpdf->WriteHTML($html);
+                            $mpdf->Output($filename, 'D');
                         }
 
 
 
 
 
-                        $mpdf->WriteHTML($html);
+                        //$mpdf->WriteHTML($html);
 
                         if (isset($q['product-id'])) {
-
+/*
                             $product_id = $q['product-id'];
                             $product = get_post($product_id);
                             $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
@@ -144,6 +150,7 @@ class pdfgenerator {
                             $template = plugin_dir_path(__FILE__) . 'pdf/apartment.php';
 
                             $filename = get_the_title($product_id);
+                            */
                         }
                         break;
                     case '':
