@@ -3,253 +3,198 @@
     <head>
         <title><?php echo $filename ?></title>
         <style>
-            *
-            {
-                margin:0;
-                padding:0;
-                font-family:Arial;
-                font-size:14pt;
-                color:#000;
+            * {
+                padding: 0;
+                margin: 0;
             }
-            body
-            {
-                width:100%;
-                font-family:Arial;
-                font-size:14pt;
-                margin:0;
-                padding:0;
+            body {
+                font-family: arial;
+            }
+            .fleft {
+                float: left;
             }
 
-            p
-            {
-                margin:0;
-                padding:0;
+            .fright {
+                float: right;
+            }
+            .w100 {
+                width: 100%;
+            }
+            .w50{
+                width: 50%;
+            }
+            .w25 {
+                width: 25%;
+            }
+            .text-right {
+                text-align: right;
             }
 
+
+            .big-border-bottom {
+                border-bottom: 1px solid #e8e8e8;
+            }
+            .red-color {
+                color: #990033;
+            }
+            .gray-color {
+                color: gray;
+            }
+            .decoration-none {
+                text-decoration: none;
+            }
+
+            .text-block {
+                font-size: 13px;
+            }
+            .text-center {
+                text-align: center;
+            }
+            .block {
+                margin-bottom: 20px;
+            }
+
+            h3 {
+                font-size: 14px;
+            }
+
+            .red-label {
+                background: #990033;
+                color: white;
+                font-size: 22px;
+                margin: 10px 0;
+                padding: 2mm 10mm;
+            }
+            .clearfix {
+                clear: both;
+            }
+            /*
             #wrapper
             {
                 width:180mm;
                 margin:0 15mm;
+            }*/
+
+            .base-info {
+                margin-bottom: 5mm;
+                margin-top: 5mm;
+            }
+            .vbottom {
+                vertical-align: bottom;
             }
 
-            .page
-            {
-                height:297mm;
-                width:210mm;
-                page-break-after:always;
+            .border-left {
+                border-left: 3px solid #990033;
+                padding-left: 15px;
             }
-
-            table
-            {
-                border-spacing:0;
+            .small-label {
+                font-size: 18px;
+            }
+            table {
                 border-collapse: collapse;
             }
-
-            .border-bottom {
-                border-bottom: 4px solid silver;
+            .features td {
+                vertical-align: top;
+                border-bottom: 1px solid #D8D8D8;
+                margin-top: 2mm;
+                margin-bottom: 2mm;
             }
-
-            h2 {
-                text-align:center; 
-                font-weight:bold; 
-                padding-top:5mm; 
-                font-size: 20px; 
-                background: red;
-            }
-
-            
-            p {
-                font-size: 14px;
-            }
+            .features .t2 {
+                padding-right: 2mm;
+            } 
+            .features .t3 {
+                padding-left: 2mm;
+            }             
         </style>
     </head>
     <body>
+        <?php
+        $current_user = wp_get_current_user();
+        ?>
         <div id="wrapper">
-
-            <table style="width:180mm;">
+            <table class="w100 big-border-bottom">
                 <tr>
-                    <td class="border-bottom" style="width:100%;"><h1>Logo</h1></td>
-                    <td class="border-bottom" style="text-align: right; width:100%;">
-                        <h4>
-                        Firma
-                        ulice | 110 00 mesto
-                        telefon | fax
-                        </h4>
+                    <td class="w50">
+                        <?php
+                        $attachment_id = get_user_meta(get_current_user_id(), 'logo', true);
+
+                        if (!empty($attachment_id)) {
+                            $atts = array(
+                                'class' => 'fleft'
+                            );
+                            echo wp_get_attachment_image($attachment_id, 'pdf_logo', $atts);
+                        }
+                        ?>
                     </td>
-                </tr>
-                <tr>                    
-                    <td colspan="2" style="text-align:right; width:100%;">
-                        <a href="#">www.aden-immo.com</a> | <a href="#">berlin@aden-immo.com</a>
+                    <td class="w50 text-right text-block vbottom">
+                        <h3><?php echo get_user_meta(get_current_user_id(), 'company', true) ?></h3>
+                        <?php echo get_user_meta(get_current_user_id(), 'address', true) ?>  | <?php echo get_user_meta(get_current_user_id(), 'city', true) ?><br>
+                        <?php _e('tel:', $this->plugin_slug) ?>  <?php echo get_user_meta(get_current_user_id(), 'phone', true) ?>
                     </td>
                 </tr>
             </table>
 
+            <div class="text-right text-block"><a class="red-color decoration-none" href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a></div>
 
-            <table style="width:100%;">
+            <table class="w100 base-info">
                 <tr>
-                    <td style="width: 50%">Ref: MUE-DA-16</td>
-                    <td style="width: 50%; text-align: right;">
-                        Loyer 1.450 EUR <br>
-                        - 10245 Berlin / Friedrichshain
+                    <td class="w50 vbottom">
+                        <?php _e('Ref:', $this->plugin_slug) ?> <span class="gray-color"><?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?></span>
+                    </td>
+                    <td class="w50 right-head-box text-right">
+                        <h2><?php _e('Loyer', $this->plugin_slug) ?> <span class="red-color"><?php esc_attr_e($props['preise|kaufpreis']) ?> <?php esc_attr_e($props['preise|waehrung|iso_waehrung']) ?></span></h2>
+                        <?php esc_attr_e($props['geo|strasse']) ?> <?php esc_attr_e($props['geo|wohnungsnr']) ?>,
+                        <?php esc_attr_e($props['geo|plz']) ?> <?php esc_attr_e($props['geo|ort']) ?> <?php echo empty($props['geo|regionaler_zusatz']) ? '' : ' - ' . $props['geo|regionaler_zusatz'] ?>
                     </td>
                 </tr>
             </table>
 
-            <h2>3-pieces de charme avec balcon dans bel Albau a friedrichshain</h2>
+            <div class="red-label text-center"><?php echo get_the_title($product->ID) ?></div>
 
-            <table style="width:180mm;">
+            <h2 class="small-label border-left"><?php _e('Features', $this->plugin_slug) ?></h2>
+            <table class="features w100">
                 <tr>
-                    <td style="width: 50%">
-                        <table style="width:100%">
-                            <tr>
-                                <td style="width: 50%">Type</td>
-                                <td style="width: 50%">Appartement</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%">Nombre de pieces</td>
-                                <td style="width: 50%">3.5</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%">Surface:  </td>
-                                <td style="width: 50%">114 m2</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%">Etage:  </td>
-                                <td style="width: 50%">1 er etage sur rue</td>
-                            </tr>
-                            <tr>
-                                <td style="width: 50%">Charges mensuelles  </td>
-                                <td style="width: 50%">250 EUR</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="width:100%;">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td style="width:50%;">Anné construction  </td>
-                                <td style="width:50%;">250 EUR</td>
-                            </tr>
-                            <tr>
-                                <td style="width:50%;">Etat  </td>
-                                <td style="width:50%;">Bien entretrenu</td>
-                            </tr>
-                            <tr>
-                                <td style="width:50%;">Type de chauffage </td>
-                                <td style="width:50%;">Chauffage central</td>
-                            </tr>
-                            <tr>
-                                <td style="width:50%;">Balcon/Terrase </td>
-                                <td style="width:50%;">Oui</td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" style="width: 100%;">&nbsp;</td>
-                            </tr>
-                            <tr>
-                                <td style="width:50%;">Loyer </td>
-                                <td style="width:50%;"><b>1.250 EUR</b></td>
-                            </tr>
-                            <tr>
-                                <td style="width:50%;">Caution </td>
-                                <td style="width:50%;"><b>3 mois de loyer</b></td>
-                            </tr>                            
-                        </table>
-                    </td>
-
-                    <td style="width: 50%">
-                        obrazek
-                    </td>
+                    <td class="w25"><?php _e('Ref:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right t2"></td>
+                    <td class="w25 t3"><?php _e('Year of construction:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right"><?php echo esc_attr($props['zustand_angaben|baujahr']) ?></td>
                 </tr>
-
                 <tr>
-                    <td style="width: 50%">Obrazek</td>
-                    <td style="width: 50%">Obrazek</td>
+                    <td class="w25"><?php _e('Purchase price /sm:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right t2"><?php echo esc_attr($props['preise|kaufpreis_pro_qm']) . ' ';
+                        echo esc_attr($props['preise|waehrung|iso_waehrung']) ?></td>
+                    <td class="w25 t3"><?php _e('Apartment type:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right"><?php echo EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']] ?></td>
                 </tr>
-            </table>
-
-
-            <h2>Description de l apartment, immeuble et enviroe</h2>
-
-            <table style="width:100%; background: green;">
                 <tr>
-                    <td style="width: 50%">
-                        Hello
-                    </td>
-                    <td style="width: 50%">
-                        Hows going
-                    </td>    
+                    <td class="w25"><?php _e('Floor:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right t2"><?php echo esc_attr($props['geo|etage']) ?></td>
+                    <td class="w25 t3"><?php _e('Number of floors:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right"></td>
                 </tr>
-            </table>
-
-            <h2>Galeries des images</h2>
-
-            <div class="image-wrap">
-                <div class="image-image">
-                    obrazek
-                </div>
-                <div class="iamge-title">
-                    obrazek title
-                </div>    
-            </div>    
-
-
-            <div class="image-wrap">
-                <div class="image-image">
-                    obrazek
-                </div>
-                <div class="iamge-title">
-                    obrazek title
-                </div>    
-            </div>
-
-
-            <div class="image-wrap">
-                <div class="image-image">
-                    obrazek
-                </div>
-                <div class="iamge-title">
-                    obrazek title
-                </div>    
-            </div>
-
-            <div class="image-wrap">
-                <div class="image-image">
-                    obrazek
-                </div>
-                <div class="iamge-title">
-                    obrazek title
-                </div>    
-            </div>            
-
-            <div class="image-wrap">
-                <div class="image-image">
-                    obrazek
-                </div>
-                <div class="iamge-title">
-                    obrazek title
-                </div>    
-            </div>
-
-            <div class="image-wrap">
-                <div class="image-image">
-                    obrazek
-                </div>
-                <div class="iamge-title">
-                    obrazek title
-                </div>    
-            </div>            
-
-
+                <tr>
+                    <td class="w25"><?php _e('Rooms:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right t2"><?php echo (int) $props['flaechen|anzahl_zimmer']; ?></td>
+                    <td class="w25 t3"><?php _e('Bathroom(s):', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right"><?php echo (int) $props['flaechen|anzahl_badezimmer'] ?></td>
+                </tr>
+                <tr>
+                    <td class="w25"><?php _e('Elevator:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right t2"><?php echo isset($prop['ausstattung|fahrstuhl|PERSONEN']) ? __("YES", $this->plugin_slug) : __("NO", $this->plugin_slug); ?></td>
+                    <td class="w25 t3"><?php _e('Type of heating system:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right"><?php echo EstateProgram::heatingSystem($props) ?></td>
+                </tr>
+                <tr>
+                    <td class="w25"><?php _e('Garage / parking spot:', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right t2"></td>
+                    <td class="w25 t3"><?php _e('Buyer commission (incl. VAT):', $this->plugin_slug) ?></td>
+                    <td class="w25 text-right"><?php echo esc_attr($props['preise|aussen_courtage']) ?></td>
+                </tr>                
+            </table>    
 
         </div>
 
-    <htmlpagefooter name="footer">
-        <hr />
-        <div id="footer">
-            <table>
-                <tr><td>Software Solutions</td><td>Mobile Solutions</td><td>Web Solutions</td></tr>
-            </table>
-        </div>
-    </htmlpagefooter>
-    <sethtmlpagefooter name="footer" value="on" />
 
-</body>
+
+    </body>
 </html>
