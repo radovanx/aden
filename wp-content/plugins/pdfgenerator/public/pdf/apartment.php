@@ -33,7 +33,12 @@
             <table class="w100">
                 <tr>
                     <td class="w50">
-                        logo
+                        <?php 
+                        $attachment_id = get_user_meta(get_current_user_id(), 'logo', true);
+                        
+                        
+                        
+                        ?>
                     </td>
                     <td class="w50 tright">
                         <p>
