@@ -138,7 +138,7 @@
                 <?php _e("All products", "wpbootstrap"); ?>
             </h3>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 hidden">
             <select name="sort_by_list" class="form-control input-lg">
                 <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
                 <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
@@ -146,7 +146,7 @@
                 <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
             </select>
         </div>
-        <div class="col-md-3 big_icons"> 
+        <div class="col-md-3 pull-right big_icons margin-top">
         <!-- Nav tabs -->
     <ul class="nav nav-tabs"> 
         <a href="#table" data-toggle="tab" class="active red"><i class="fa fa-th"></i></a>
