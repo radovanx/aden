@@ -2,9 +2,39 @@
     jQuery(document).ready(function() {
 
         jQuery('#parse-xml').click(function() {
-            jQuery('.source-xml').each(function(i, e) {
-                console.log(this.html());
+
+            var requests = Array();
+
+            jQuery('.source-xml').each(function(i) {
+
+                var filename = jQuery(this).text();
+                requests.push(jQuery.post(ajaxurl+'?action=backend_parse_xml&file='+filename));
+
+
+                /*
+                 var filename = jQuery(this).text();
+                 var row = jQuery(this);
+                 
+                 var data = {
+                 action: 'backend_source_xml',
+                 filename: filename
+                 };
+                 
+                 jQuery.post(ajaxurl, data, function(response) {
+                 //jQuery()
+                 }).fail(function() {
+                 //alert( "error" );
+                 })*/
             });
+            
+            var defer = jQuery.when.apply(jQuery, requests);
+            
+            /*
+            defer.done(function(){
+                jQuery.each(arguments, function(index, responseData){
+                    
+                })
+            });*/
         });
 
     });

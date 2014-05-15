@@ -220,7 +220,7 @@ class SourceParser {
           ";
 
 
-            $program_id = $wpdb->get_row($sql);
+            $program_id = $wpdb->get_var($sql);
 
             //
             if (!empty($program_id)) {

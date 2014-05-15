@@ -97,6 +97,15 @@
 <tr>
     <th colspan="2"><h3>&nbsp</h3></th>
 </tr>
+<tr>
+    <th class="textleft"><label for="_program_video"><?php _e('Video url', $this->plugin_slug) ?></label></th>
+    <td>
+        <input id="_program_video" type="text" name="_program_video" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_video', true)) ?>">
+    </td>
+</tr>
+<tr>
+    <th colspan="2"><h3>&nbsp</h3></th>
+</tr>
 
 <tr>
     <th class="textleft"><label for="_program_commission"><?php _e('Commission (incl. VAT)', $this->plugin_slug) ?></label></th>

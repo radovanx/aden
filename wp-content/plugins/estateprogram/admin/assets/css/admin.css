@@ -12,15 +12,14 @@
     margin: 10px 10px 10px 0;
     background: white;
     border-collapse:collapse;
+    border: 1px solid silver;
 }
 .directory-table thead td {
     border-bottom: 1px solid silver;
     border-bottom: 2px solid silver; 
     background: #ffe6a9;
 }
-.directory-table {
-    border: 1px solid silver;
-}
+
 .directory-table td {
     border-bottom: 1px solid silver;
     padding: 4px 6px;
