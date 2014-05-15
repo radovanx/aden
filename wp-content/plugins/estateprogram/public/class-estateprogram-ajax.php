@@ -13,8 +13,38 @@ class EstateProgramAjax {
     public function __construct() {
         add_action('wp_ajax_add_to_preference', array(&$this, 'add_to_preference'));
         add_action('wp_ajax_nopriv_add_to_preference', array(&$this, 'add_to_preference'));
+        
+        add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml'));
+        //add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
     }
 
+    
+    public function backend_parse_xml(){
+        
+        require_once 'class-sourceparser.php';
+        
+        $dir = $_GET['dir'];
+        $filename = $_GET['file'];
+        
+        
+        $source_dir = ABSPATH . $dir . DIRECTORY_SEPARATOR;
+        $source_file = $source_dir . $filename;
+        $temp_dir = $source_dir . 'temp';
+        
+        $file = $source_dir . $filename;
+        
+        try{
+            SourceParser::read_zip($file, $dir, $temp_dir);
+            echo 'ok';
+        } Catch (Exception $e){
+            header("HTTP/1.0 404 Not Found");
+            echo $e->getMessage();
+            die();            
+        }
+        
+        exit;
+    }
+    
     /**
      *
      * @global type $wpdb
