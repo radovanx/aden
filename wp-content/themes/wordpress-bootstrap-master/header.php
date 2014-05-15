@@ -55,7 +55,7 @@
         
  
         
-        if (current_user_can('see_detail') && (false == is_front_page())): ?>
+        if (current_user_can('see_detail')): ?>
             <div class="container">
                 <div class="content">
                     <div class="row">
