@@ -65,13 +65,12 @@
                                      <div class="tab-pane fade" id="video_tab">
  
                                     <?php $video = get_post_meta($post->ID, '_program_video', true);  
-     
                                      if (!empty($video)):
                                     ?>
                                     <div class="flex-video">
                                         <?php
                                         global $wp_embed;
-                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $youtube . '[/embed]');
+                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $video . '[/embed]');
                                         echo $post_embed;
                                         ?>
                                     </div>
@@ -84,7 +83,10 @@
                                     <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
                                     <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_map"><i class="fa fa-map-marker"></i>Map View</a></li>
                                     <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-globe"></i>Street View</a> </li>
-                                    <?php $video = get_post_meta($post->ID, '_program_video', true);   
+                                   
+                                    
+                                    
+                                     <?php $video = get_post_meta($post->ID, '_program_video', true);   
                                      if (!empty($video)):
                                     ?> 
                                     <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Video</a></li>
