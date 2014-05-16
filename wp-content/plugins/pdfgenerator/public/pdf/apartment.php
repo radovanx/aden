@@ -122,13 +122,17 @@
             .row {
 
             }
-            .gallery-table td {
-                background: #cdcdcd;
+            .gallery-table td {                
                 text-align: center;
-                vertical-align: middle;
-                border-bottom: 6mm solid white;
+                vertical-align: middle;                
             }
 
+            .gallery-table .t1,
+            .gallery-table .t2 {
+                background: #cdcdcd;
+                border-bottom: 6mm solid white;
+            }
+            
             .gallery-table .t1 {
                 border-right: 3mm solid white;
             }
@@ -259,51 +263,36 @@
             <div class="red-label text-center" style="page-break-before:always;"><?php _e('Galerie des images', $this->plugin_slug) ?></div>    
 
             <table class="gallery-table">
-                <tr>
-                    <?php
-                    $i = 1;
-                    foreach ($images as $attachment_id => $attachment):
-                        ?>
-                        <td class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>"><?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?></td>                        
+                <tbody>
+                    <tr>
                         <?php
-                        echo 0 == $i % 2 ? '</tr><tr>' : '';
-                        $i++;
-                    endforeach;
-                    ?>
-                </tr>
+                        $i = 1;
+                        foreach ($images as $attachment_id => $attachment):
+                            ?>
+                            <td class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>">   
+                                <table style="height: 100%; min-height: 100%;">
+                                    <tr>
+                                        <td>
+                                            <?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?>                        
+                                        </td>
+                                    </tr>
+                                    <tr>    
+                                        <td class="vbottom">
+                                            <?php echo get_the_title($attachment_id) ?>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+
+                            <?php
+                            echo 0 == $i % 2 ? '</tr><tr>' : '';
+                            $i++;
+                        endforeach;
+                        ?>
+                    </tr>
+                </tbody>
             </table>
 
-
-            <div style="page-break-before:always;">
-                <?php
-                $images = & get_children(array(
-                            'post_parent' => $product->ID,
-                            'post_type' => 'attachment',
-                            'post_mime_type' => 'image'
-                ));
-
-                if (!empty($images)):
-                    ?>
-                    <div class="red-label text-center"><?php _e('Galerie des images', $this->plugin_slug) ?></div>
-
-                    <?php
-                    $i = 1;
-                    foreach ($images as $attachment_id => $attachment):
-                        ?>
-                        <div class="image-wrap <?php echo $i % 2 != 0 ? 'fleft' : 'fright' ?>">
-                            <div class="in">
-                                <?php // echo wp_get_attachment_image($attachment_id, 'pdf_thumb')  ?>
-                            </div>
-                            <div class="image-label"><?php echo get_the_title($attachment_id) ?></div>
-                        </div>
-                        <?php
-                        echo 0 == $i % 2 ? '<div class="clearfix"></div>' : '';
-                        $i++;
-                    endforeach;
-                endif;
-                ?>
-
-            </div>
         </div>
 
 
