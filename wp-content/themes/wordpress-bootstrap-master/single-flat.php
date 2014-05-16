@@ -13,9 +13,15 @@
             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
             $url = $thumb['0']; 
             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true); 
-            $program_id = EstateProgram::flat_program_id($post->ID); 
-            $title = get_the_title($post->ID);
             
+            
+            $program_id = EstateProgram::flat_program_id($post->ID); 
+ 
+            
+            var_dump($program_id);
+            
+            
+            $title = get_the_title($post->ID);
             $video = get_post_meta($post->ID, 'youtube' . $lang, true);
  
             ?>
@@ -37,50 +43,35 @@
                                 <!--slider here --> 
                                 <span class="test-popup-link">
                                     <?php the_post_thumbnail('project-detail-big'); ?>
-                                </span>    
-                                <div id="myCarousel" class="carousel slide">
-                                    <!-- Carousel items -->
-                                    <div class="carousel-inner program-carousel">
-                                        <?php
-                                        $images = & get_children(array(
+                                </span>                                     
+                                        <ul class="bxslider parent-container">
+                                         <?php
+ 
+                                            $images = & get_children(array(
                                                     'post_parent' => $post->ID,
                                                     'post_type' => 'attachment',
                                                     'post_mime_type' => 'image'
-                                        ));
-                                        if (empty($images)) {
+                                            ));
+                                            if (empty($images)) {
                                             // no attachments here
-                                        } else {
+                                            } else {
                                             $i = 1;
                                             ?>
-                                            <div class="item active parent-container"><div class="row">
                                                     <?php
                                                     foreach ($images as $attachment_id => $attachment) {
                                                         $full_size = wp_get_attachment_image_src($attachment_id, 'full');
                                                         $full_size = $full_size[0];
-                                                        echo '<div class="col-xs-3 nopadding"><a href="' . $full_size . '">';
-                                                        echo wp_get_attachment_image($attachment_id, 'project-detail-small');
-                                                        echo '</a>';
-                                                        echo '</div>';
-                                                        echo $i % 5 == 0 ? '</div></div><div class="item"><div class="row">' : '';
+                                                        
+                       echo '<li><a href="'.$full_size.'">'.wp_get_attachment_image($attachment_id, 'project-detail-small').'</a></li>';
+                                                          
                                                         $i++;
                                                     }
-                                                    echo '</div></div>';
-                                                }
-                                                ?>
-                                            </div>
-                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                                            <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-                                            <!--/myCarousel-->
-                                        </div>
-                                    </div>
+                                                } 
+                                                ?> 
+                                        </ul>
+                                    </div> 
                                     <div class="tab-pane fade" id="video_tab">
-                                  
-
-
                                   <?php 
-                                  
-                                    
-                                  
                                     if (!empty($video)):
                                     ?>
                                     <div class="flex-video">

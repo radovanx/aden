@@ -52,7 +52,6 @@
                                 <span class="col-lg-12 nopadding">    
                                     <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?> ">view details ></a> 
                                 </span>
-                                
                             </div>
                         </div>	
                     </div>
@@ -62,7 +61,7 @@
             wp_reset_query();
             ?>
             </div> 
-         </div>  
+            </div>  
             <div class="save col-md-3 column border background contact_form_block">  
                 <h3>
                  <?php _e("Guide" , "wpbootstrap"); ?>  </br> 
@@ -80,8 +79,8 @@
             <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
              <?php echo do_shortcode( '[contact-form-7 id="1728" title="contact-home-en"]' ) ?>  
             </div> 
-           <div class="col-md-3 column border background contact_form_block"> 
+            <div class="col-md-3 column border background contact_form_block"> 
               <h2 class="border-left"><?php _e("NEWSLETTER", "wpbootstrap"); ?></h2> 
-        </div>
+            </div>
     </div></div>
     <?php get_footer();?>
