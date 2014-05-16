@@ -34,6 +34,15 @@ if (!defined('WPINC')) {
  * Public-Facing Functionality
  * ---------------------------------------------------------------------------- */
 
+
+
+add_image_size('program_thumb', 316, 236, true);
+add_image_size('page_thumb', 1200, 260, true);
+add_image_size('profile_logo', 160, 160, false);
+add_image_size('pdf_logo', 260, 40, false);
+add_image_size('pdf_thumb', 324, 238, false);
+
+
 /*
  * @TODO:
  *
@@ -86,7 +95,7 @@ add_action('plugins_loaded', array('EstateProgram', 'get_instance'));
 if (is_admin() && (!defined('DOING_AJAX') || !DOING_AJAX )) {
 
     require_once( plugin_dir_path(__FILE__) . 'public/class-sourceparser.php' );
-    
+
     require_once( plugin_dir_path(__FILE__) . 'admin/class-estateprogram-admin.php' );
     add_action('plugins_loaded', array('EstateProgram_Admin', 'get_instance'));
 }

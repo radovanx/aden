@@ -135,7 +135,10 @@ class pdfgenerator {
                             $product = get_post($q['product_id']);
 
                             $lang = qtrans_getLanguage();
-                            $props = get_post_meta($product->ID, 'flat_props_'. $lang, true);
+                            $props = get_post_meta($product->ID, 'flat_props_'. $lang, true);                            
+                           
+                            //require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
+                            //exit;
                             
                             ob_start();
                             require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";

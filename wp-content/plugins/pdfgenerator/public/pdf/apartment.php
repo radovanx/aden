@@ -109,7 +109,7 @@
             /**/
             .image-wrap {
                 width: 87mm;
-                margin-bottom: 6mm;                
+                margin-bottom: 6mm;
                 text-align: center;
                 vertical-align: middle;
                 /*border: 1px solid red;*/
@@ -122,30 +122,41 @@
             .row {
 
             }
-            .gallery-table td {                
+            .gallery-table td {
                 text-align: center;
-                vertical-align: middle;                
+                vertical-align: middle;
             }
 
             .gallery-table .t1,
-            .gallery-table .t2 {
-                background: #cdcdcd;
+            .gallery-table .t2 {                
                 border-bottom: 6mm solid white;
             }
-            
+
             .gallery-table .t1 {
                 border-right: 3mm solid white;
             }
 
             .gallery-table .t2 {
                 border-left: 3mm solid white;
-            }            
+            }
+            
+            .img-title {
+                border-top: 1px solid white;
+            }
+            
+            .background-gray {
+                background: #cdcdcd;
+            }
 
             /*
             .img {
                 page-break-inside: avoid;
                 -fs-fit-images-to-width: 6in;
             }*/
+
+
+
+
         </style>
     </head>
     <body>
@@ -260,24 +271,26 @@
             ));
             ?>
 
-            <div class="red-label text-center" style="page-break-before:always;"><?php _e('Galerie des images', $this->plugin_slug) ?></div>    
+            <div class="red-label text-center" style="page-break-before:always;"><?php _e('Galerie des images', $this->plugin_slug) ?></div>
 
-            <table class="gallery-table">
+
+            <?php $i = 1; ?>
+            <table class="gallery-table"  style="page-break-inside: avoid;">
                 <tbody>
                     <tr>
+
                         <?php
-                        $i = 1;
                         foreach ($images as $attachment_id => $attachment):
                             ?>
-                            <td class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>">   
-                                <table style="height: 100%; min-height: 100%;">
+                            <td style="width: 90mm;" class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>">    
+                                <table class="img-table-in" style="width: 90mm;">
                                     <tr>
-                                        <td>
-                                            <?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?>                        
+                                        <td class="background-gray" style="width: 100%; height: 258px; min-height: 258px !important;">
+                                            <?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?>
                                         </td>
                                     </tr>
-                                    <tr>    
-                                        <td class="vbottom">
+                                    <tr>
+                                        <td style="width: 90mm;" class="vbottom img-title">
                                             <?php echo get_the_title($attachment_id) ?>
                                         </td>
                                     </tr>
@@ -285,12 +298,13 @@
                             </td>
 
                             <?php
-                            echo 0 == $i % 2 ? '</tr><tr>' : '';
+                            echo 0 == $i % 2 ? '</tr></tbody></table><table class="gallery-table"  style="page-break-inside: avoid;"><tbody><tr>' : '';
                             $i++;
                         endforeach;
                         ?>
+                        </td>
                     </tr>
-                </tbody>
+                </tbody>                                
             </table>
 
         </div>
