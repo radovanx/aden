@@ -30,6 +30,7 @@ function define_image_sizes() {
     add_image_size('page_thumb', 1200, 260, true);
     add_image_size('profile_logo', 160, 160, false);
     add_image_size('pdf_logo', 260, 40, false);
+    add_image_size('pdf_thumb', 368, 494, false);
 }
 
 EstateProgram::$tags_apartment = array(

@@ -110,7 +110,22 @@ class pdfgenerator {
             $lang = qtrans_getLanguage();
 
             require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
-            $mpdf = new mPDF();
+            
+            $mpdf = new mPDF();            
+            
+            /*
+            $mpdf = new mPDF(
+                 '', //mode
+                 'A4', // format   
+                 '', // font size
+                 '', // default font
+                 '', // margin left
+                 '', // margin right
+                 '', // margin top
+                 '', // margin bottom
+                 '', // margin header
+                 '' // margin footer   
+            );*/
 
             if (isset($q['product_type'])) {
                 switch ($q['product_type']) {
