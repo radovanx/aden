@@ -241,7 +241,8 @@
                                             <?php echo $pricem;?>
                                         </td>
                                         <td>  
-                                           
+                                         
+                       
                                         </td>
                                         <td>
                                             <?php echo $status;?>
@@ -475,10 +476,8 @@ endif;
             else
             {
                 finalfilter = collection.filters.references.getFn(freferences);
-            }
-
-            // var references_f = collection.filters.references.getFn(freferences); 
-
+            } 
+            // var references_f = collection.filters.references.getFn(freferences);  
         }
         if (fdistrict != '')
         { 

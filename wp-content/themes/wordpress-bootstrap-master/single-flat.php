@@ -15,7 +15,10 @@
             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);  
             $program_id = EstateProgram::flat_program_id($post->ID);  
             $title = get_the_title($post->ID); 
-            $video =  $props['youtube'];         
+            $video =  $props['youtube'];   
+            
+            
+            
             ?>
         <div class="col-md-12 column">
             <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?> 
