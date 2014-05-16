@@ -13,14 +13,9 @@
             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
             $url = $thumb['0']; 
             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true); 
-            
-            
+
             $program_id = EstateProgram::flat_program_id($post->ID); 
- 
-            
-            var_dump($program_id);
-            
-            
+
             $title = get_the_title($post->ID);
             $video = get_post_meta($post->ID, 'youtube' . $lang, true);
  
@@ -571,8 +566,7 @@ $('.parent-container').magnificPopup({
   gallery:{enabled:true} 
   // other options
 });
-});
- 
+}); 
 });
 </script> 
 <?php get_footer(); ?> 
