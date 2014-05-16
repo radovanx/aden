@@ -109,23 +109,39 @@
             /**/
             .image-wrap {
                 width: 87mm;
-                margin-bottom: 6mm;
-                background: #cdcdcd;
+                margin-bottom: 6mm;                
                 text-align: center;
                 vertical-align: middle;
-                border: 1px solid red;
+                /*border: 1px solid red;*/
             }
             .image-wrap .in {
-                height: 100mm;
+                height: 74mm;
+                /*border: 1px solid red;*/
                 width: 100%;
             }
             .row {
 
             }
+            .gallery-table td {
+                background: #cdcdcd;
+                text-align: center;
+                vertical-align: middle;
+                border-bottom: 6mm solid white;
+            }
+
+            .gallery-table .t1 {
+                border-right: 3mm solid white;
+            }
+
+            .gallery-table .t2 {
+                border-left: 3mm solid white;
+            }            
+
+            /*
             .img {
                 page-break-inside: avoid;
-                -fs-fit-images-to-width: 6in; 
-            }
+                -fs-fit-images-to-width: 6in;
+            }*/
         </style>
     </head>
     <body>
@@ -232,39 +248,62 @@
                 <p class="text-block block"><?php echo $props['freitexte|lage'] ?></p>
             <?php endif; ?>
 
+            <?php
+            $images = & get_children(array(
+                        'post_parent' => $product->ID,
+                        'post_type' => 'attachment',
+                        'post_mime_type' => 'image'
+            ));
+            ?>
 
+            <div class="red-label text-center" style="page-break-before:always;"><?php _e('Galerie des images', $this->plugin_slug) ?></div>    
 
-                        <!--<div style="page-break-after:always;page-break-before:always;">-->
-                        <?php
-                        $images = & get_children(array(
-                                    'post_parent' => $product->ID,
-                                    'post_type' => 'attachment',
-                                    'post_mime_type' => 'image'
-                        ));
-
-                        if (!empty($images)):
-                            ?>
-                            <div class="red-label text-center"><?php _e('Galerie des images', $this->plugin_slug) ?></div>
-
-                            <?php
-                            $i = 0;
-                            foreach ($images as $attachment_id => $attachment):
-                                ?>
-
-                            <div style="position: relative;" class="image-wrap <?php echo $i % 2 == 0 ? 'fleft' : 'fright' ?>">
-                                    <div style="page-break-inside: avoid; page-break-inside: avoid;" class="in">
-                                        <?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?>
-                                    </div>
-                                    <div class="image-label"><?php echo get_the_title($attachment_id) ?></div>
-                                </div>
-                                <div class="clearfix"></div>
-                                <?php
-                                $i++;
-                            endforeach;
-                        endif;
+            <table class="gallery-table">
+                <tr>
+                    <?php
+                    $i = 1;
+                    foreach ($images as $attachment_id => $attachment):
                         ?>
+                        <td class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>"><?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?></td>                        
+                        <?php
+                        echo 0 == $i % 2 ? '</tr><tr>' : '';
+                        $i++;
+                    endforeach;
+                    ?>
+                </tr>
+            </table>
 
-            <!--</div>-->
+
+            <div style="page-break-before:always;">
+                <?php
+                $images = & get_children(array(
+                            'post_parent' => $product->ID,
+                            'post_type' => 'attachment',
+                            'post_mime_type' => 'image'
+                ));
+
+                if (!empty($images)):
+                    ?>
+                    <div class="red-label text-center"><?php _e('Galerie des images', $this->plugin_slug) ?></div>
+
+                    <?php
+                    $i = 1;
+                    foreach ($images as $attachment_id => $attachment):
+                        ?>
+                        <div class="image-wrap <?php echo $i % 2 != 0 ? 'fleft' : 'fright' ?>">
+                            <div class="in">
+                                <?php // echo wp_get_attachment_image($attachment_id, 'pdf_thumb')  ?>
+                            </div>
+                            <div class="image-label"><?php echo get_the_title($attachment_id) ?></div>
+                        </div>
+                        <?php
+                        echo 0 == $i % 2 ? '<div class="clearfix"></div>' : '';
+                        $i++;
+                    endforeach;
+                endif;
+                ?>
+
+            </div>
         </div>
 
 
