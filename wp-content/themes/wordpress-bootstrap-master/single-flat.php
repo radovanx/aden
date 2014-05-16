@@ -17,8 +17,9 @@
             $program_id = EstateProgram::flat_program_id($post->ID); 
 
             $title = get_the_title($post->ID);
-            $video = get_post_meta($post->ID, 'youtube' . $lang, true);
- 
+          
+            $video =  $props['youtube'];
+                      
             ?>
         <div class="col-md-12 column">
             <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?> 
@@ -86,8 +87,10 @@
                                       if (!empty($video)):
                                     ?> 
         
-                                    <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Video</a></li>
-                                    <?php endif; ?>    
+                                    <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i>Video</a></li>
+                                   
+
+                                 <?php endif; ?>    
                                 </ul> 
                                 <section class="post_content clearfix" itemprop="articleBody">
                                 </section> <!-- end article section -->
