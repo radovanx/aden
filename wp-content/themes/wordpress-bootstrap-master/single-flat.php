@@ -12,18 +12,14 @@
             $lang = qtrans_getLanguage();
             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
             $url = $thumb['0']; 
-            $props = get_post_meta($post->ID, 'flat_props_' . $lang, true); 
-
-            $program_id = EstateProgram::flat_program_id($post->ID); 
-
-            $title = get_the_title($post->ID);
-          
-            $video =  $props['youtube'];
-                      
+            $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);  
+            $program_id = EstateProgram::flat_program_id($post->ID);  
+            $title = get_the_title($post->ID); 
+            $video =  $props['youtube'];         
             ?>
         <div class="col-md-12 column">
             <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?> 
-            <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
+            <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
             
             <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
             <strong class="blue pull-right doublesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
@@ -73,7 +69,7 @@
                                     <div class="flex-video">
                                         <?php
                                         global $wp_embed;
-                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $youtube . '[/embed]');
+                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $video . '[/embed]');
                                         echo $post_embed;
                                         ?>
                                     </div>
