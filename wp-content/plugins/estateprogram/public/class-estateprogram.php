@@ -1015,7 +1015,7 @@ class EstateProgram {
         
         global $wpdb;
         
-        $sql = "SLECT program_id FROM apartment2program WHERE apartment_id = " . (int) $apartment_id;
+        $sql = "SELECT program_id FROM apartment2program WHERE apartment_id = " . (int) $apartment_id;
         
         return $wpdb->get_var($sql);
         
