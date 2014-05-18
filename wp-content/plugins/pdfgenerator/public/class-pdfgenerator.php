@@ -23,7 +23,6 @@
  * @author  Your Name <email@example.com>
  */
 class pdfgenerator {
-
     /**
      * Plugin version, used for cache-busting of style and script file references.
      *
@@ -31,6 +30,7 @@ class pdfgenerator {
      *
      * @var     string
      */
+
     const VERSION = '1.0.0';
 
     /**
@@ -110,22 +110,22 @@ class pdfgenerator {
             $lang = qtrans_getLanguage();
 
             require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
-            
-            $mpdf = new mPDF();            
-            
+
+            $mpdf = new mPDF();
+
             /*
-            $mpdf = new mPDF(
-                 '', //mode
-                 'A4', // format   
-                 '', // font size
-                 '', // default font
-                 '', // margin left
-                 '', // margin right
-                 '', // margin top
-                 '', // margin bottom
-                 '', // margin header
-                 '' // margin footer   
-            );*/
+              $mpdf = new mPDF(
+              '', //mode
+              'A4', // format
+              '', // font size
+              '', // default font
+              '', // margin left
+              '', // margin right
+              '', // margin top
+              '', // margin bottom
+              '', // margin header
+              '' // margin footer
+              ); */
 
             if (isset($q['product_type'])) {
                 switch ($q['product_type']) {
@@ -135,18 +135,22 @@ class pdfgenerator {
                             $product = get_post($q['product_id']);
 
                             $lang = qtrans_getLanguage();
-                            $props = get_post_meta($product->ID, 'flat_props_'. $lang, true);                            
-                           
+                            $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
+
                             //require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
                             //exit;
-                            
+
                             ob_start();
                             require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
                             $html = ob_get_contents();
                             ob_end_clean();
-                            
-                            $filename = get_the_title($product_id);
-                            
+
+                            if (empty($props['verwaltung_techn|objektnr_extern'])) {
+                                $filename = get_the_title($product_id);
+                            } else {
+                                $filename = $props['verwaltung_techn|objektnr_extern'];
+                            }
+
                             $mpdf->WriteHTML($html);
                             $mpdf->Output($filename, 'D');
                         }
@@ -158,17 +162,17 @@ class pdfgenerator {
                         //$mpdf->WriteHTML($html);
 
                         if (isset($q['product-id'])) {
-/*
-                            $product_id = $q['product-id'];
-                            $product = get_post($product_id);
-                            $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
+                            /*
+                              $product_id = $q['product-id'];
+                              $product = get_post($product_id);
+                              $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
 
-                            //$props = unserialize($props_data);
+                              //$props = unserialize($props_data);
 
-                            $template = plugin_dir_path(__FILE__) . 'pdf/apartment.php';
+                              $template = plugin_dir_path(__FILE__) . 'pdf/apartment.php';
 
-                            $filename = get_the_title($product_id);
-                            */
+                              $filename = get_the_title($product_id);
+                             */
                         }
                         break;
                     case '':
@@ -186,7 +190,7 @@ class pdfgenerator {
             }
 
             $mpdf->Output($filename, 'D');
-            //$mpdf->Output('filename.pdf', 'F');            
+            //$mpdf->Output('filename.pdf', 'F');
             exit;
         }
     }
