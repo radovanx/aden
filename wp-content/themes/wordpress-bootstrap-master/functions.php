@@ -565,4 +565,15 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             $_POST['user_login'] = $_POST['user_email'];
         }
     }
+
+    //
+
+    function redirect_if_not_logged() {
+        if (!is_user_logged_in()) {
+            if (!is_user_logged_in()) {
+                wp_redirect(get_page_link(15));
+                exit;
+            }
+        }
+    }
     ?>

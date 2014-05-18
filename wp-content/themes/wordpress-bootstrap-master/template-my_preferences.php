@@ -3,7 +3,10 @@
  * Template Name: User preferences
  */
 ?>
-<?php get_header(); ?>
+<?php
+redirect_if_not_logged();
+get_header(); 
+?>
 <div class="container">
     <div id="content" class="clearfix row">
 
