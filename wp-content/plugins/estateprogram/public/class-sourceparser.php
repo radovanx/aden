@@ -71,7 +71,7 @@ class SourceParser {
         $result = $xml->xpath('/openimmo/anbieter');
 
         foreach ($result as $anbieter) {
-            // 
+            //
             $unique_identificator_node = $anbieter->xpath('immobilie/verwaltung_techn/objektnr_extern');
             // id inzeratu
             $unique_identificator = (string) $unique_identificator_node[0];
@@ -88,14 +88,14 @@ class SourceParser {
             $ret = SourceParser::parse_nodes($anbieter);
 
 
-            // zjistim jestli existuje apartment na stejne adrese            
+            // zjistim jestli existuje apartment na stejne adrese
             $sql = "
             SELECT
                 p.ID
             FROM
                 wp_posts AS p
             JOIN
-                wp_postmeta AS pm                
+                wp_postmeta AS pm
             ON
                 pm.post_id = p.ID
             WHERE
@@ -351,7 +351,7 @@ class SourceParser {
     }
 
     /**
-     * 
+     *
      * @global type $wpdb
      * @throws Exception
      */
@@ -386,7 +386,7 @@ class SourceParser {
     }
 
     /**
-     * 
+     *
      * @param type $fil
      * @param type $dir
      * @param type $temp
