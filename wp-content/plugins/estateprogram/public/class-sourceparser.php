@@ -55,13 +55,13 @@ class SourceParser {
     function grab_it($file, $lang, $source_dir) {
 
         $temp_dir = realpath($source_dir . DIRECTORY_SEPARATOR . 'temp');
-        
+
         $realpath = realpath($file);
 
-        if(!file_exists($file)){
+        if (!file_exists($file)) {
             return;
         }
-        
+
         $xml = simplexml_load_file($realpath);
 
         $wp_lang = EstateProgram::$langs[$lang];
@@ -72,7 +72,7 @@ class SourceParser {
 
         foreach ($result as $anbieter) {
             // 
-            $unique_identificator_node = $anbieter->xpath('immobilie/verwaltung_techn/objektnr_extern');           
+            $unique_identificator_node = $anbieter->xpath('immobilie/verwaltung_techn/objektnr_extern');
             // id inzeratu
             $unique_identificator = (string) $unique_identificator_node[0];
 
@@ -156,18 +156,53 @@ class SourceParser {
                 }
 
                 // podržim si město
-                if ('geo|ort' == $key){
+                if ('geo|ort' == $key) {
                     $city = $val;
                 }
-                
+
                 // podržim region
                 if ('geo|regionaler_zusatz' == $key) {
                     $region = $val;
                 }
 
                 // pole s vlastnostrmi bytu
-                $props[$key] = rtrim($val);                
+                $props[$key] = rtrim($val);
             }
+
+            //
+            wp_set_object_terms($apartment_id, null, 'location');
+
+            if (!empty($city)) {
+
+                $flat_location_terms = array();
+
+                $city_term = term_exists($city, 'location');
+
+                // uložim město
+                if (empty($city_term)) {
+                    $city_term = wp_insert_term($city, 'location');
+                }
+
+                $city_term_id = $city_term['term_id'];
+                // spraruju mesto s bytem
+                wp_set_post_terms($apartment_id, $city_term_id, 'location', true);
+
+                // ulozim region
+                if (!empty($region) && !empty($city_term_id)) {
+
+                    $region_term = term_exists($region, 'location');
+
+                    if (empty($region_term)) {
+                        $region_term = wp_insert_term($region, 'location', array(
+                            'parent' => $city_term_id
+                                ));
+                    }
+                    // spraruju region s bytem
+                    wp_set_post_terms($apartment_id, $region_term['term_id'], 'location', true);
+                }
+            }
+
+
 
             // zjistim jestli existuje program na stejne adrese
             $sql = "
@@ -208,7 +243,7 @@ class SourceParser {
                       '" . (int) $apartment_id . "',
                       '" . (int) $program_id . "'
                     )
-          ";
+                ";
 
                 $wpdb->query($sql);
             }
@@ -342,7 +377,7 @@ class SourceParser {
                     $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
                     $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
 
-                    SourceParser::read_zip($file, $key, $source_dir );
+                    SourceParser::read_zip($file, $key, $source_dir);
                 }
             } else {
                 throw new Exception('Nepodařilo se otevřít zdrojový adresář ' . $source_dir . ' neexistuje');
@@ -361,13 +396,13 @@ class SourceParser {
     public static function read_zip($file, $dir, $source_dir) {
 
         $temp_dir = $source_dir . 'temp';
-        
-        if(!is_dir($temp_dir)){
-            if(!mkdir($temp_dir, 0775, true)){
+
+        if (!is_dir($temp_dir)) {
+            if (!mkdir($temp_dir, 0775, true)) {
                 throw new Exception("cannot create temp directory");
             }
         }
-        
+
         $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 
         if ('zip' != strtolower($ext)) {
@@ -410,7 +445,7 @@ class SourceParser {
                 // přesunu zdrovy zip do archivu
                 $archiv_dir = $source_dir . DIRECTORY_SEPARATOR . 'archiv';
 
-                
+
                 if (!is_dir($archiv_dir)) {
                     if (!mkdir($archiv_dir, 0775)) {
                         throw new Exception('unable create archiv dir');

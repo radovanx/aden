@@ -379,7 +379,7 @@ class EstateProgram {
                 //'show_in_menu' => 'program_overview'
         );
 
-        register_taxonomy('location', array('program'), $args);        
+        register_taxonomy('location', array('flat'), $args);        
 
         /*
           $args = array(
