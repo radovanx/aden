@@ -57,8 +57,6 @@ class SourceParser {
         $temp_dir = realpath($source_dir . DIRECTORY_SEPARATOR . 'temp');
         
         $realpath = realpath($file);
-        
-        //$temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
 
         if(!file_exists($file)){
             return;
@@ -73,19 +71,10 @@ class SourceParser {
         $result = $xml->xpath('/openimmo/anbieter');
 
         foreach ($result as $anbieter) {
-
-            $anbieternr = (string) $anbieter->anbieternr;
-            $firma = (string) $anbieter->firma;
-            $openimmo_anid = (string) $anbieter->openimmo_anid;
-
-            $unique_identificator_node = $anbieter->xpath('immobilie/verwaltung_techn/objektnr_extern');
-
-            $unique_identificator = (string) $unique_identificator_node[0];
-
-            //var_dump($unique_identificator); exit;
             // 
-            //$cityNode = $anbieter->xpath('immobilie/geo/ort');
-            //$city = (string) $cityNode[0];
+            $unique_identificator_node = $anbieter->xpath('immobilie/verwaltung_techn/objektnr_extern');           
+            // id inzeratu
+            $unique_identificator = (string) $unique_identificator_node[0];
 
             $streetNode = $anbieter->xpath('immobilie/geo/strasse');
             $street = (string) $streetNode[0];
@@ -150,11 +139,11 @@ class SourceParser {
                 }
             }
 
+            // id inzeratu
             update_post_meta((int) $apartment_id, 'unique_identificator', $unique_identificator);
-            //update_post_meta((int) $apartment_id, 'apartment_street', $street);
-            //update_post_meta((int) $apartment_id, 'apartment_house_number', $houseNumber);
 
             $props = array();
+            // nechci obrazky do vlastností
             $excl = array('anhaenge', 'anhang');
 
             // nasázím vlastnosti bytu
@@ -166,67 +155,46 @@ class SourceParser {
                     continue;
                 }
 
-                if ('geo|ort' == $key) {
-                    $sql = "REPLACE INTO
-                            city (lang, city)
-                         VALUES(
-                            '" . $wp_lang . "',
-                            '" . $val . "')";
-
-                    $wpdb->query($sql);
-
-                    $last_city_id = $wpdb->insert_id;
+                // podržim si město
+                if ('geo|ort' == $key){
+                    $city = $val;
                 }
-
+                
+                // podržim region
                 if ('geo|regionaler_zusatz' == $key) {
                     $region = $val;
                 }
 
-                $props[$key] = rtrim($val);
-                //update_post_metalang($apartment_id, $wp_lang, $key, $val);
+                // pole s vlastnostrmi bytu
+                $props[$key] = rtrim($val);                
             }
-
-
-            if (!empty($last_city_id) && !empty($region)) {
-                $sql = "REPLACE INTO
-                            region (lang, region, id_city)
-                         VALUES(
-                            '" . $wp_lang . "',
-                            '" . $region . "',
-                            " . $last_city_id . ")";
-
-                $wpdb->query($sql);
-            }
-
-
 
             // zjistim jestli existuje program na stejne adrese
             $sql = "
-          SELECT
-            p.ID,
-            p.post_title
-          FROM
-             " . $wpdb->prefix . "postmeta as pm2
-          JOIN
-            " . $wpdb->prefix . "postmeta as pm4
-          ON
-            pm2.post_id = pm4.post_id
-          JOIN
-            " . $wpdb->prefix . "posts as p
-          ON
-            p.ID = pm2.post_id
-          WHERE
-            pm2.meta_key = '_program_street'
-          AND
-            pm4.meta_key = '_program_house_number'
-          AND
-            pm2.meta_value = '" . esc_sql(rtrim($street)) . "'
-          AND
-            pm4.meta_value = '" . esc_sql(rtrim($houseNumber)) . "'
-          AND
-            p.post_type = 'program'
+                SELECT
+                  p.ID,
+                  p.post_title
+                FROM
+                   " . $wpdb->prefix . "postmeta as pm2
+                JOIN
+                  " . $wpdb->prefix . "postmeta as pm4
+                ON
+                  pm2.post_id = pm4.post_id
+                JOIN
+                  " . $wpdb->prefix . "posts as p
+                ON
+                  p.ID = pm2.post_id
+                WHERE
+                  pm2.meta_key = '_program_street'
+                AND
+                  pm4.meta_key = '_program_house_number'
+                AND
+                  pm2.meta_value = '" . esc_sql(rtrim($street)) . "'
+                AND
+                  pm4.meta_value = '" . esc_sql(rtrim($houseNumber)) . "'
+                AND
+                  p.post_type = 'program'
           ";
-
 
             $program_id = $wpdb->get_var($sql);
 
@@ -234,12 +202,12 @@ class SourceParser {
             if (!empty($program_id)) {
                 // ulozim vztah mezi programem a bytem
                 $sql = "
-          REPLACE INTO
-            apartment2program (apartment_id, program_id)
-          VALUES(
-            '" . (int) $apartment_id . "',
-            '" . (int) $program_id . "'
-          )
+                    REPLACE INTO
+                      apartment2program (apartment_id, program_id)
+                    VALUES(
+                      '" . (int) $apartment_id . "',
+                      '" . (int) $program_id . "'
+                    )
           ";
 
                 $wpdb->query($sql);
@@ -250,15 +218,11 @@ class SourceParser {
 
             $set_apartment_thumb = true;
 
-            //$props['dropbox'] = array();
-            //$props['youtube'] = array();
-
+            //
             foreach ($images as $image) {
                 $file = $image->xpath('daten/pfad');
                 $image_title = (string) $image->anhangtitel;
                 $image_file = (string) $file[0];
-
-                //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
 
                 if (false !== strpos($image_file, 'http')) {
                     if (false !== strpos($image_file, 'dropbox')) {
@@ -291,8 +255,6 @@ class SourceParser {
                     $new_path = $wp_upload_dir['path'] . '/' . $image_file;
 
                     if (copy($image_path, $new_path)) {
-
-                        //chmod($new_path, 0775);
 
                         $basename = basename($new_path);
 
@@ -353,6 +315,11 @@ class SourceParser {
         }
     }
 
+    /**
+     * 
+     * @global type $wpdb
+     * @throws Exception
+     */
     public static function all() {
         $err = array();
 
@@ -360,9 +327,6 @@ class SourceParser {
         global $wpdb;
 
         $langs = EstateProgram::$langs;
-
-
-
         foreach ($langs as $key => $val) {
 
             $source_dir = ABSPATH . $key;
@@ -370,8 +334,6 @@ class SourceParser {
             if (!is_dir($source_dir)) {
                 throw new Exception('Zdrojový adresář ' . $source_dir . ' neexistuje');
             }
-
-            // var_dump($source_dir);
 
             if ($handle = opendir($source_dir)) {
 
@@ -412,21 +374,11 @@ class SourceParser {
             return;
         }
 
-        // var_dump($file);
-
         $zip = new ZipArchive;
         $res = $zip->open($file);
 
-        //var_dump($file);
         // extrahovani zipu do tempu
         if (true == $res) {
-            //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
-            /*
-            if (!is_dir($temp_dir)) {
-                if (!mkdir($temp_dir, 0775)) {
-                    throw new Exception('unable create temp dir');
-                }
-            }*/
 
             $zip->extractTo($temp_dir);
             $zip->close();
@@ -438,8 +390,6 @@ class SourceParser {
                 while (false !== ($entry = readdir($temp_handle))) {
 
                     $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
-
-                    //chmod($temp_file, 0775);
 
                     $temp_file_ext = strtolower(pathinfo($temp_file, PATHINFO_EXTENSION));
 
@@ -460,23 +410,15 @@ class SourceParser {
                 // přesunu zdrovy zip do archivu
                 $archiv_dir = $source_dir . DIRECTORY_SEPARATOR . 'archiv';
 
-                /*
+                
                 if (!is_dir($archiv_dir)) {
                     if (!mkdir($archiv_dir, 0775)) {
                         throw new Exception('unable create archiv dir');
                     }
-                }*/
+                }
 
                 rename($file, $archiv_dir . DIRECTORY_SEPARATOR . basename($file));
             }
-
-
-            /*
-              if ($temp_handle2 = opendir($temp_dir)) {
-              while (false !== ($entry = readdir($temp_handle2))) {
-              $temp_file = $temp_dir . DIRECTORY_SEPARATOR . $entry;
-              }
-              } */
         } else {
             $err[] = esc_attr('Zip: resource failed - ' . $file);
         }
