@@ -398,7 +398,13 @@ class SourceParser {
      */
     public static function read_zip($file, $dir, $source_dir) {
 
-        $temp_dir = realpath($source_dir . DIRECTORY_SEPARATOR . 'temp');
+        $temp_dir = $source_dir . 'temp';
+        
+        if(!is_dir($temp_dir)){
+            if(!mkdir($temp_dir, 0775, true)){
+                throw new Exception("cannot create temp directory");
+            }
+        }
         
         $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
 

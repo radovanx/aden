@@ -29,7 +29,7 @@ class EstateProgramAjax {
         
         $source_dir = ABSPATH . $dir . DIRECTORY_SEPARATOR;
         $source_file = $source_dir . $filename;
-        $temp_dir = $source_dir . 'temp';
+        //$temp_dir = $source_dir . 'temp';
         
         $file = $source_dir . $filename;
         
