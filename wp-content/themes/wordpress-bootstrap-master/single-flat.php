@@ -94,6 +94,8 @@
                                 </article> <!-- end article -->
                             </div>
                             <div class="col-md-5 column">
+                                
+                                
                                 <div class="border col-md-12 column">
                                     <div class="row clearfix">
                                         <div class="col-md-12 column product-key-info">
