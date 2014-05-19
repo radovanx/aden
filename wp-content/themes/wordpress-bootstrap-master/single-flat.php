@@ -22,7 +22,7 @@
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
 
                             <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
-                                <strong class="blue pull-right doublesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
+                                <strong class="blue triplesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
                             </a>
                         </h1>
                     </div>

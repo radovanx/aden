@@ -50,7 +50,7 @@ get_header(); ?>
                             foreach ($cities as $key => $value):
                                 ?>  
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="city[]" class="city-checkbox" value="<?php echo $value->term_id; ?>"><?php _e($value->name); ?>
+                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="cities" class="city-checkbox" value="<?php _e($value->name); ?>"><?php _e($value->name); ?>
                                 </label>
                             <?php endforeach; ?>
                             <!-- /cities from taxonomy -->
@@ -68,7 +68,7 @@ get_header(); ?>
                         <select class="form-control input-lg" name="type" >
                             <option value="">---</option>
                             <?php foreach ($accomodion_types as $type): ?>
-                                <option class="city-checkbox" value="<?php echo $type->term_id; ?>"><?php _e($type->name) ?></option>
+                                <option class="city-checkbox" value="<?php echo $type->name; ?>"><?php _e($type->name) ?></option>
                             <?php endforeach; ?>
                         </select> 
                     </div>
@@ -224,7 +224,9 @@ get_header(); ?>
 
                                     if ($i < 10):
                                         ?> 
-                                        <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
+                                       
+                            
+                                            <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
                                             <td>   
                                                 <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><?php echo $val->is_favorite; ?></a>
                                             </td>
@@ -255,14 +257,14 @@ get_header(); ?>
                                             <td>
                                                 <?php echo $pricem; ?>
                                             </td>
-                                            <td>  
-
-
+                                            <td>   
                                             </td>
                                             <td>
                                                 <?php echo $status; ?>
                                             </td>
                                         </tr>
+                                        
+                                            
                                         <?php
                                     endif;
                                     $i++;
@@ -288,7 +290,6 @@ get_header(); ?>
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                             $url_image = $thumb['0'];
                             $url = get_permalink($val->ID);
-
                             $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
                             $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
                             $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
@@ -308,7 +309,7 @@ get_header(); ?>
                             <div class="row">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
                                     <div class="col-md-3">  
-                                        <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>" class="img-responsive" alt="<?php echo $name; ?>" /></a>    
+                                        <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>" class="img-responsive" alt="<?php echo $name; ?>"/></a>    
                                     </div>    
                                     <div class="col-md-9"> 
                                         <h4 class="blue"><a href="<?php echo $url; ?>"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
@@ -356,12 +357,11 @@ get_header(); ?>
                                                     <?php echo $pricem; ?>
                                                 </span>
                                                 <span class="data_item clearfix">
-                                                    <strong><?php _e("Yield:", "wpbootstrap"); ?></strong> 
-
+                                                    <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>  
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
-                                                <a class="add-to-preference pull-right" href="#myModal" data-flat_id="3316" data-toggle="modal">
+                                                <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
 
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
                                                     <strong class="blue clearfix pull-right">
@@ -403,9 +403,7 @@ get_header(); ?>
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
 <script>
-    
-    
-    
+  
       jQuery(function() {
         jQuery('.city-checkbox').click(function() {
         if(jQuery(this).is(':checked')){
@@ -421,10 +419,12 @@ get_header(); ?>
         }
         });
         });
-    
-    
-    
-    
+        
+        
+        
+        
+        
+ 
     var availableCity;
     availableCity = <?php echo $autocomplete; ?>;
     GetUnique(availableCity)
@@ -447,40 +447,38 @@ get_header(); ?>
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
 <script>
 
-    var data = <?php echo $data_object; ?>;
-    var collection = new PourOver.Collection(data);
+    var datatable = <?php echo $data_object; ?>;
+    var collection = new PourOver.Collection(datatable);
     //make Range filter  
     //CITY FILTER  
-    function CityFilter(fcity)
-    {
-        var city_filter = PourOver.makeExactFilter("city", [fcity]);
-        collection.addFilters([city_filter]);
-        var city_filter_return = collection.filters.city.getFn(fcity);
-        return city_filter_return;
-    }
-    jQuery("form").on("submit", function(event) {
-        event.preventDefault();
-        var SerializedObject = (jQuery("form").serializeArray());
-        //value from form
+  
       
-      
-      
-        console.log(SerializedObject);
-      
-      
+  
+        jQuery("form").on("submit", function(event) { 
+        event.preventDefault();  
+        var values = {};
+        jQuery.each(jQuery('form').serializeArray(), function(i, field) { 
+            values[field.name] = field.value; 
+        });
        
-         
+ 
+        jQuery( ":checkbox" ).click( showValues );
+   
+   
         var fcity = SerializedObject[0].value;
-        var ftype = SerializedObject[1].value;
-        var freferences = SerializedObject[4].value;
         var fdistrict = SerializedObject[5].value;
-        var fareaf = SerializedObject[6].value;
-        var fareat = SerializedObject[7].value;
-        var froomsf = SerializedObject[8].value;
-        var froomst = SerializedObject[9].value;
-        var fpricef = SerializedObject[2].value;
-        var fpricet = SerializedObject[3].value; 
+        
+        var ftype = values.type;      
+        var freferences = values.References;     
+        var fareaf = values.Areaf;   
+        var fareat = values.Areat;  
+        var froomsf = values.Roomsf;
+        var froomst = values.Roomst; 
+        var fpricef = values.Pricef;
+        var fpricet = values.Pricet; 
+            
         //make a filter 
+         
         var finalfilter = false;
         if (fcity != '')
         {
@@ -620,16 +618,12 @@ get_header(); ?>
         }  
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
-        // console.log(myfilterfinal);
-
+        // console.log(myfilterfinal); 
         if (jQuery.isEmptyObject(myfilterfinal))
         {
-            jQuery("#table_data_filter").empty();
-
-
+            jQuery("#table_data_filter").empty(); 
             var table_data = "<tr><td><h1> NO RESULT FOUND </h1></td></tr>";
-            jQuery("tbody").append(table_data);
-
+            jQuery("tbody").append(table_data); 
         }
         else
         {
@@ -686,16 +680,13 @@ get_header(); ?>
          </tr> 
          */
              });
-</script>   
-
-<script>
-     
+</script>    
+<script>   
     jQuery(document).ready(function($) { 
         $( ".searchbutton" ).fadeIn( "fast", function() { 
         });
     });       
-</script>
-
+</script> 
 <script type="text/javascript">
     //strankovani
     jQuery(document).ready(function($) {

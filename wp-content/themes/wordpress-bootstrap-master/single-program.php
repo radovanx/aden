@@ -10,51 +10,37 @@
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting"> 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="gallery_tab">
+                            
+                                <div class="tab-pane fade in active" id="gallery_tab">
                                 <!--slider here -->
-                                <?php
-                                $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
-                                $url = $thumb['0'];
-                                ?>
-                                <a href="<?php echo $url; ?>" class="test-popup-link">
+                                <span class="test-popup-link">
                                     <?php the_post_thumbnail('project-detail-big'); ?>
-                                </a>
-                                <div id="myCarousel" class="carousel slide">
-                                    <!-- Carousel items -->
-                                    <div class="carousel-inner program-carousel">
+                                </span>
+                                <ul class="bxslider parent-container">
+                                    <?php
+                                    $images = & get_children(array(
+                                                'post_parent' => $post->ID,
+                                                'post_type' => 'attachment',
+                                                'post_mime_type' => 'image'
+                                    ));
+                                    if (empty($images)) {
+                                        // no attachments here
+                                    } else {
+                                        $i = 1;
+                                        ?>
                                         <?php
-                                        $images = & get_children(array(
-                                                    'post_parent' => $post->ID,
-                                                    'post_type' => 'attachment',
-                                                    'post_mime_type' => 'image'
-                                        ));
+                                        foreach ($images as $attachment_id => $attachment) {
+                                            $full_size = wp_get_attachment_image_src($attachment_id, 'full');
+                                            $full_size = $full_size[0];
 
-                                        if (empty($images)) {
-                                            // no attachments here
-                                        } else {
-                                            $i = 1;
-                                            ?>
-                                            <div class="item active"><div class="row parent-container">
-                                                    <?php
-                                                    foreach ($images as $attachment_id => $attachment) {
-                                                        $full_size = wp_get_attachment_image_src($attachment_id, 'full');
-                                                        $full_size = $full_size[0];
-                                                        echo '<div class="col-xs-3 nopadding"><a href="' . $full_size . '">';
-                                                        echo wp_get_attachment_image($attachment_id, 'project-detail-small');
-                                                        echo '</a>';
-                                                        echo '</div>';
-                                                        echo $i % 5 == 0 ? '</div></div><div class="item"><div class="row">' : '';
-                                                        $i++;
-                                                    }
-                                                    echo '</div></div>';
-                                                }
-                                                ?>
-                                            </div>
-                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                                            <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-                                            <!--/myCarousel-->
-                                        </div>
-                                    </div>
+                                            echo '<li><a href="' . $full_size . '">' . wp_get_attachment_image($attachment_id, 'project-detail-small') . '</a></li>';
+
+                                            $i++;
+                                        }
+                                    }
+                                    ?>
+                                </ul>
+                            </div>
                                     <div class="tab-pane fade" id="map_tab">
                                         <div id="gmap" class="gmap">google map</div>
                                     </div>
@@ -389,48 +375,63 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-        <script>
-            // MAP //
+        <?php $lang = esc_attr(get_post_meta($post->ID, '_program_latitude', true)); ?> 
+        <?php $long = esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
+        
+        
+        
+  
+  <script>
+    // MAP //
 
-            jQuery(document).ready(function($) {
-                $('.create_map').click(function() {
-
-                    MapApiLoaded()
-                })
-            });
-
-            function MapApiLoaded() {
-                // Create google map
-                map = new google.maps.Map(jQuery('#gmap')[0], {
-                    zoom: 8,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    panControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: true
-                });
-
-                map.setCenter(new google.maps.LatLng(<?php echo $LangLong; ?>));
-                var myLatlng = new google.maps.LatLng(<?php echo $LangLong; ?>); 
-                var marker = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map,
-                    title: 'Hello World!'
-                });
-                // Trigger resize to correctly display the map
-                google.maps.event.trigger(map, "resize");
+    var params;
+    
+    var lang = <?php echo $lang; ?>;    
+    var long = <?php echo $long; ?>;
+    // dom ready
  
-                google.maps.event.trigger(map, 'resize');
-                map.setZoom(map.getZoom());
-                // Map loaded trigger
-                google.maps.event.addListenerOnce(map, 'idle', function() {
-                    // Fire when map tiles are completly loaded 
-                }); 
-                google.maps.event.addListener(map, "idle", function() {
-                    marker.setMap(map);
-                }); 
-            } 
+      jQuery(document).ready(function($) {
+        //if (typeof google !== "undefined"){
+        if (window.google && google.maps) {
+            // Map script is already loaded
+            initializeMap();
+        } else {
+
+            lazyLoadGoogleMap();
+        }
+    });
+    function initialize(params) {
+        var myLatlng = new google.maps.LatLng(lang, long);
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "<?php echo $title; ?>"
+        });
+    }
+    
+    function lazyLoadGoogleMap() {
+        jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
+                .done(function(script, textStatus) {
+                    //alert("Google map script loaded successfully");
+                })
+                .fail(function(jqxhr, settings, ex) {
+                    //alert("Could not load Google Map script: " + jqxhr);
+                });
+    }
+    function initializeMap() {
+        initialize(params);
+    }
+    
+    
+    
+            
+             
             //STREET// 
             jQuery(document).ready(function($) {
                 $('.create_street').click(function() { 
