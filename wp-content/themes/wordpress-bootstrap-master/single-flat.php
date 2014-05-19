@@ -22,7 +22,7 @@
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
 
                             <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
-                                <strong class="blue pull-right doublesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
+                                <strong class="blue triplesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
                             </a>
                         </h1>
                     </div>
@@ -299,7 +299,7 @@
                                 <tbody>
                                     <?php
                                     $lang = qtrans_getLanguage();
-                                    $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang);
+                                    $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang, $post->ID);
                                     ?>
                                     <?php
                                     $i = 0;
@@ -487,8 +487,8 @@
                 data: data,
                 beforeSend: function() {
                     jQuery('#form-response').html('').hide();
-                    jQuery('#send_recommendation').attr('disabled','disabled');
-                    jQuery('#loading-recommand').hide();
+                    jQuery('#send_recommendation').attr('disabled', 'disabled');
+                    jQuery('#loading-recommand').show();
                 },
                 success: function(response) {
                     jQuery('#form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
@@ -497,13 +497,20 @@
                 error: function(response) {
                     jQuery('#form-response').show().html('<div class="alert alert-danger">' + response.responseText + '</div>');
                 },
-                complete: function(response){
+                complete: function(response) {
                     jQuery('#send_recommendation').removeAttr('disabled');
-                    jQuery('#loading-recommand').hide();
-                }                        
+                    jQuery('#loading-recommand').hide();                    
+                }
             });
 
             event.preventDefault();
+        });
+
+
+        jQuery('#recomendModal').on('hidden.bs.modal', function(e) {
+            jQuery('#loading-recommand').hide();
+            jQuery('.erase-after-sent').val('');
+            jQuery('#form-response').html('').hide();
         });
     });
 </script>
