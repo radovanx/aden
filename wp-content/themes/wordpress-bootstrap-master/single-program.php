@@ -11,33 +11,45 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
 
-                            <!-- img list -->
-                            <script>
-                                jQuery(document).ready(function() {
-                                    jQuery(".parent-container a").click(function(event) {
-                                        event.preventDefault();
-                                        var view = jQuery(this).attr("data-view");
-                                        var href = jQuery(this).attr("data-view");
-                                        alert("Handler for .click() called.");
-                                    });
-                                });
-                            </script>
+                            <!-- img list -->      
                             <div class="tab-pane fade in active" id="gallery_tab">
                                 <!--slider here -->
-                                <span id="thumb-view" class="test-popup-link">
-                                    <?php
-                                    $full_url = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full');
-                                    $full_url = $full_url[0];
-                                    ?>
-                                    <a href="<?php echo $full_url ?>"></a>
+                                <?php if (has_post_thumbnail()): ?>
+                                    <script>
+                                        jQuery(document).ready(function() {
+                                            jQuery(".parent-container a").click(function(event) {
+                                                event.preventDefault();
+
+                                                var view_link = jQuery(this).attr("data-view");
+                                                jQuery('#view-wrap').attr('src', view_link);
+
+                                                var full_link = jQuery(this).attr("href");
+                                                jQuery('#full-view').attr('href', full_link);
+                                            });
+
+                                            jQuery('.view-in-box').magnificPopup({
+                                                delegate: 'a', // child items selector, by clicking on it popup will open
+                                                type: 'image',
+                                                gallery: {enabled: true}
+                                                // other options
+                                            });
+                                        });
+                                    </script>                                
+                                    <span id="thumb-view" class="test-popup-link view-in-box">
                                         <?php
-                                        $atts = array(
-                                            'id' => 'view-wrap'
-                                        );
-                                        the_post_thumbnail('project-detail-big', $atts);
+                                        $full_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+                                        $full_url = $full_url[0];
                                         ?>
-                                    </a>
-                                </span>
+                                        <a id="full-view" href="<?php echo $full_url ?>">
+                                            <?php
+                                            $atts = array(
+                                                'id' => 'view-wrap'
+                                            );
+                                            the_post_thumbnail('project-detail-big', $atts);
+                                            ?>
+                                        </a>
+                                    </span>
+                                <?php endif; ?>
                                 <ul class="bxslider parent-container">
                                     <?php
                                     $images = & get_children(array(
