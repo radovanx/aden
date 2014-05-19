@@ -375,45 +375,61 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-        <script>
-            // MAP //
+        <?php $lang = esc_attr(get_post_meta($post->ID, '_program_latitude', true)); ?> 
+        <?php $long = esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
+        
+        
+        
+  
+  <script>
+    // MAP //
 
-            jQuery(document).ready(function($) {
-                $('.create_map').click(function() {
-
-                    MapApiLoaded()
-                })
-            });
-
-            function MapApiLoaded() {
-                // Create google map
-                map = new google.maps.Map(jQuery('#gmap')[0], {
-                    zoom: 8,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    panControl: false,
-                    streetViewControl: false,
-                    mapTypeControl: true
-                });
-
-                map.setCenter(new google.maps.LatLng(<?php echo $LangLong; ?>));
-                var myLatlng = new google.maps.LatLng(<?php echo $LangLong; ?>); 
-                var marker = new google.maps.Marker({
-                    position: myLatlng,
-                    map: map, 
-                    title: 'Hello World!'
-                });
-                // Trigger resize to correctly display the map
+    var params;
+    
+    var lang = <?php echo $lang; ?>;    
+    var long = <?php echo $long; ?>;
+    // dom ready
  
-                google.maps.event.trigger(map, 'resize');
-                map.setZoom(map.getZoom());
-                // Map loaded trigger
-                google.maps.event.addListenerOnce(map, 'idle', function() {
-                    // Fire when map tiles are completly loaded 
-                }); 
-              
-            } 
+      jQuery(document).ready(function($) {
+        //if (typeof google !== "undefined"){
+        if (window.google && google.maps) {
+            // Map script is already loaded
+            initializeMap();
+        } else {
+
+            lazyLoadGoogleMap();
+        }
+    });
+    function initialize(params) {
+        var myLatlng = new google.maps.LatLng(lang, long);
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "<?php echo $title; ?>"
+        });
+    }
+    
+    function lazyLoadGoogleMap() {
+        jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
+                .done(function(script, textStatus) {
+                    //alert("Google map script loaded successfully");
+                })
+                .fail(function(jqxhr, settings, ex) {
+                    //alert("Could not load Google Map script: " + jqxhr);
+                });
+    }
+    function initializeMap() {
+        initialize(params);
+    }
+    
+    
+    
             
              
             //STREET// 

@@ -50,7 +50,7 @@ get_header(); ?>
                             foreach ($cities as $key => $value):
                                 ?>  
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="city[]" class="city-checkbox" value="<?php echo $value->term_id; ?>"><?php _e($value->name); ?>
+                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="city[]" class="city-checkbox" value="<?php _e($value->name); ?>"><?php _e($value->name); ?>
                                 </label>
                             <?php endforeach; ?>
                             <!-- /cities from taxonomy -->
@@ -457,28 +457,48 @@ get_header(); ?>
         return city_filter_return;
     }
     jQuery("form").on("submit", function(event) {
-        event.preventDefault();
-        var SerializedObject = (jQuery("form").serializeArray());
-        //value from form
-      
-      
-      
-        console.log(SerializedObject);
-      
-      
+        event.preventDefault(); 
        
-         
+        
+        var SerializedObject = (jQuery("form").serialize());
+ 
+        console.log(SerializedObject);
+        
+        
+        
+        
+  
+        
         var fcity = SerializedObject[0].value;
+        
+        
+        
         var ftype = SerializedObject[1].value;
+        
+        
         var freferences = SerializedObject[4].value;
+        
+        
         var fdistrict = SerializedObject[5].value;
+        
+        
         var fareaf = SerializedObject[6].value;
+        
+        
         var fareat = SerializedObject[7].value;
+        
+        
         var froomsf = SerializedObject[8].value;
+        
         var froomst = SerializedObject[9].value;
+        
         var fpricef = SerializedObject[2].value;
+        
         var fpricet = SerializedObject[3].value; 
+        
+       
         //make a filter 
+         
         var finalfilter = false;
         if (fcity != '')
         {
