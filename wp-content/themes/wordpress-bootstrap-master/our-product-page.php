@@ -39,39 +39,18 @@ get_header(); ?>
                     <div class="form-group"> 
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
                         <div class="row"> 
-                            <!-- cities from taxonomy -->
-                            <script>
-                                jQuery(function() {
-                                    jQuery('.city-checkbox').click(function() {
-                                        if(jQuery(this).is(':checked')){
-                                            var data = {
-                                                'action':'get_district',
-                                                'id':+jQuery(this).val()
-                                            }; 
-                                            jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
-                                                console.log(response);
-                                                jQuery('#district-list').append(response);                                                
-                                            });                                            
-                                        } else {
-                                            jQuery('#district-wrap-'+jQuery(this).val()).remove();
-                                        }
-                                    });
-                                });
-                            </script>                              
+                            <!-- cities from taxonomy -->                    
                             <?php
                             $args = array(
                                 'taxonomy' => 'location',
                                 'hide_empty' => true,
                                 'parent' => 0
                             );
-
-                            
                             $cities = get_categories($args);
-
                             foreach ($cities as $key => $value):
                                 ?>  
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->term_id ?>" name="city[]" class="city-checkbox" value="<?php echo $value->term_id ?>"><?php _e($value->name) ?>
+                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="city[]" class="city-checkbox" value="<?php echo $value->term_id; ?>"><?php _e($value->name); ?>
                                 </label>
                             <?php endforeach; ?>
                             <!-- /cities from taxonomy -->
@@ -89,7 +68,7 @@ get_header(); ?>
                         <select class="form-control input-lg" name="type" >
                             <option value="">---</option>
                             <?php foreach ($accomodion_types as $type): ?>
-                                <option class="city-checkbox" value="<?php echo $type->term_id ?>"><?php _e($type->name) ?></option>
+                                <option class="city-checkbox" value="<?php echo $type->term_id; ?>"><?php _e($type->name) ?></option>
                             <?php endforeach; ?>
                         </select> 
                     </div>
@@ -424,6 +403,28 @@ get_header(); ?>
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
 <script>
+    
+    
+    
+      jQuery(function() {
+        jQuery('.city-checkbox').click(function() {
+        if(jQuery(this).is(':checked')){
+        var data = {
+         'action':'get_district',
+         'id':+jQuery(this).val()
+        }; 
+        jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
+        jQuery('#district-list').append(response);                                                
+        });                                            
+        } else {
+        jQuery('#district-wrap-'+jQuery(this).val()).remove();
+        }
+        });
+        });
+    
+    
+    
+    
     var availableCity;
     availableCity = <?php echo $autocomplete; ?>;
     GetUnique(availableCity)
@@ -441,8 +442,7 @@ get_header(); ?>
     }
     availableCity = GetUnique(availableCity)
 </script>
-
-
+ 
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
 <script>
