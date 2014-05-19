@@ -13,14 +13,14 @@ class EstateProgramAjax {
         add_action('wp_ajax_add_to_preference', array(&$this, 'add_to_preference'));
         add_action('wp_ajax_nopriv_add_to_preference', array(&$this, 'add_to_preference'));
 
-        add_action('wp_ajax_get_distrtict', array(&$this, 'get_distrtict'));
-        add_action('wp_ajax_nopriv_get_distrtict', array(&$this, 'get_distrtict'));
+        add_action('wp_ajax_get_district', array(&$this, 'get_district'));
+        add_action('wp_ajax_nopriv_get_district', array(&$this, 'get_district'));
 
         add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml'));
 //add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
     }
 
-    public function get_distrtict() {
+    public function get_district() {
         $parent_id = $_POST['id'];
 
         $args = array(
@@ -50,6 +50,8 @@ class EstateProgramAjax {
 
         require_once 'class-sourceparser.php';
 
+        $parser = new SourceParser();
+        
         $dir = $_GET['dir'];
         $filename = $_GET['file'];
 

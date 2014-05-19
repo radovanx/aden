@@ -31,4 +31,11 @@
     line-height: 40px;
     height: 44px;
     font-size: 18px;
+    float: left;
+}
+.clearfix {
+    clear: both;
+}
+#parse-state {
+    float: left;
 }

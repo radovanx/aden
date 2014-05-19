@@ -11,7 +11,16 @@ require_once(ABSPATH . "wp-admin/includes/media.php");
 require_once(ABSPATH . "wp-admin/includes/image.php");
 
 class SourceParser {
+    
+    public $plugin_url;
 
+    public function __construct() {
+        $plugin_url = plugin_dir_url(__FILE__);
+        
+        $x = 1;
+        $y = $x;
+    }
+    
     /**
      *
      * @param type $node

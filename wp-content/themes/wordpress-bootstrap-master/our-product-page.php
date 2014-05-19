@@ -45,7 +45,7 @@ get_header(); ?>
                                     jQuery('.city-checkbox').click(function() {
                                         if(jQuery(this).is(':checked')){
                                             var data = {
-                                                'action':'get_distrtict',
+                                                'action':'get_district',
                                                 'id':+jQuery(this).val()
                                             }; 
                                             jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
