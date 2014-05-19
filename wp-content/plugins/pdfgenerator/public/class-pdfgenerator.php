@@ -192,12 +192,12 @@ class pdfgenerator {
     }
 
     function recommend_product() {
-        
+
         if (empty($_POST['id'])) {
             header("HTTP/1.0 404 Not Found");
             _e('Error: could not find presentatiion', $this->plugin_slug);
             die();
-        }        
+        }
 
         $id = $_POST['id'];
 
@@ -227,8 +227,8 @@ class pdfgenerator {
             die();
         }
 
-        $message = strip_tags($_POST['receiver_message']);        
-        $message = str_replace("\n", "\r\n", $message);        
+        $message = strip_tags($_POST['receiver_message']);
+        $message = str_replace("\n", "\r\n", $message);
 
         $lang = qtrans_getLanguage();
         $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
@@ -263,8 +263,7 @@ class pdfgenerator {
 
         $filename = $filename . '.pdf';
 
-       // $message = esc_attr($message);
-
+        // $message = esc_attr($message);
 // a random hash will be necessary to send mixed content
         $separator = md5(time());
 // carriage return type (we use a PHP end of line constant)
@@ -291,7 +290,29 @@ class pdfgenerator {
         $body .= $attachment . $eol;
         $body .= "--" . $separator . "--";
 // send message
-        mail($to, $subject, $body, $headers);
+        if (false === mail($to, $subject, $body, $headers)) {
+            header("HTTP/1.0 404 Not Found");
+            _e('Email could not be sent, please contact administrator of this server.', $this->plugin_slug);
+            die();
+        }
+
+        // ulozim zaznam
+        
+        global $wpdb;
+        
+        $sql = "
+            INSERT INTO
+                recommendation (user_id, receiver, when_sent, product_id, product)
+            VALUES (
+                '" . get_current_user_id() . "',
+                '" . esc_sql($to) . "',
+                NOW(),
+                '" . $product->ID . "',
+                '" . esc_sql(serialize($props)) . "'
+            );
+        ";
+        
+        $wpdb->query($sql);
 
         exit;
     }
