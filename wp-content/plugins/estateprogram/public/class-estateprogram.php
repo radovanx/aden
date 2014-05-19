@@ -743,7 +743,7 @@ class EstateProgram {
         return $wpdb->get_results($sql);
     }
 
-    static function get_flats_props_by_program($program_id, $lang) {
+    static function get_flats_props_by_program($program_id, $lang, $exclude_apartment_id = null) {
 
         global $wpdb;
         $sql = "
@@ -779,6 +779,14 @@ class EstateProgram {
             AND
                 p.post_status = 'publish'
         ";
+        
+        if(!is_null($exclude_apartment_id)){
+            $sql .= "
+                AND
+                    p.ID != '" . $exclude_apartment_id . "'
+            ";
+        }
+        
         return $wpdb->get_results($sql);
     }
 
