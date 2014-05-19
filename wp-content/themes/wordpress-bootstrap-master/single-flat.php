@@ -299,7 +299,7 @@
                                 <tbody>
                                     <?php
                                     $lang = qtrans_getLanguage();
-                                    $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang);
+                                    $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang, $post->ID);
                                     ?>
                                     <?php
                                     $i = 0;
