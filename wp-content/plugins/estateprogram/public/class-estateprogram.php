@@ -362,6 +362,24 @@ class EstateProgram {
         );
 
         register_taxonomy('show', array('program'), $args);
+        
+        ###################################################
+        # Show
+        $args = array(
+            'hierarchical' => true,
+            'labels' => array(
+                'name' => _x('Location', $this->plugin_slug),
+                'menu_name' => __('Location', $this->plugin_slug)
+            ),
+            'public' => false,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            //'query_var' => true,
+            //'rewrite' => array('slug' => 'location'),
+                //'show_in_menu' => 'program_overview'
+        );
+
+        register_taxonomy('location', array('flat'), $args);        
 
         /*
           $args = array(

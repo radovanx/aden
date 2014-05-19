@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,38 +12,66 @@ class EstateProgramAjax {
     public function __construct() {
         add_action('wp_ajax_add_to_preference', array(&$this, 'add_to_preference'));
         add_action('wp_ajax_nopriv_add_to_preference', array(&$this, 'add_to_preference'));
-        
+
+        add_action('wp_ajax_get_distrtict', array(&$this, 'get_distrtict'));
+        add_action('wp_ajax_nopriv_get_distrtict', array(&$this, 'get_distrtict'));
+
         add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml'));
-        //add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
+//add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
     }
 
-    
-    public function backend_parse_xml(){
-        
-        require_once 'class-sourceparser.php';
-        
-        $dir = $_GET['dir'];
-        $filename = $_GET['file'];
-        
-        
-        $source_dir = ABSPATH . $dir . DIRECTORY_SEPARATOR;
-        $source_file = $source_dir . $filename;
-        $temp_dir = $source_dir . 'temp';
-        
-        $file = $source_dir . $filename;
-        
-        try{
-            SourceParser::read_zip($file, $dir, $source_dir);
-            echo 'ok';
-        } Catch (Exception $e){
-            header("HTTP/1.0 404 Not Found");
-            echo $e->getMessage();
-            die();            
-        }
-        
+    public function get_distrtict() {
+        $parent_id = $_POST['id'];
+
+        $args = array(
+            'taxonomy' => 'location',
+            'hide_empty' => true,
+            'parent' => $parent_id
+        );
+
+        $regions = get_categories($args);
+        ?>
+        <div id="district-wrap-<?php echo (int) $parent_id ?>">
+        <?php
+        foreach ($regions as $key => $value):
+            ?>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="district-<?php echo $value->term_id ?>"  value="<?php echo $value->term_id ?>"><?php _e($value->name) ?>
+            </label>
+            <?php
+        endforeach;
+        ?>
+        </div>
+        <?php
         exit;
     }
-    
+
+    public function backend_parse_xml() {
+
+        require_once 'class-sourceparser.php';
+
+        $dir = $_GET['dir'];
+        $filename = $_GET['file'];
+
+
+        $source_dir = ABSPATH . $dir . DIRECTORY_SEPARATOR;
+        $source_file = $source_dir . $filename;
+//$temp_dir = $source_dir . 'temp';
+
+        $file = $source_dir . $filename;
+
+        try {
+            SourceParser::read_zip($file, $dir, $source_dir);
+            echo 'ok';
+        } Catch (Exception $e) {
+            header("HTTP/1.0 404 Not Found");
+            echo $e->getMessage();
+            die();
+        }
+
+        exit;
+    }
+
     /**
      *
      * @global type $wpdb
@@ -63,31 +90,31 @@ class EstateProgramAjax {
         $user_id = get_current_user_id();
 
         $sql = "
-            SELECT
-                flat_id
-            FROM
-                user_preference
-            WHERE
-                flat_id = '" . (int) $flat_id . "'
-            AND
-                user_id = '" . (int) $user_id . "'
-        ";
+SELECT
+flat_id
+FROM
+user_preference
+WHERE
+flat_id = '" . (int) $flat_id . "'
+AND
+user_id = '" . (int) $user_id . "'
+";
 
         $exists = $wpdb->get_var($sql);
 
         if ($exists) {
-            // current preference - remove preference
-            
+// current preference - remove preference
+
             $operation = 0;
-            
+
             $sql = "
-            DELETE FROM
-                user_preference
-            WHERE
-                flat_id = '" . (int) $flat_id . "'
-            AND        
-                user_id = '" . (int) $user_id . "'
-            ";
+DELETE FROM
+user_preference
+WHERE
+flat_id = '" . (int) $flat_id . "'
+AND
+user_id = '" . (int) $user_id . "'
+";
 
             if (false === $wpdb->query($sql)) {
                 header("HTTP/1.0 404 Not Found");
@@ -95,18 +122,18 @@ class EstateProgramAjax {
                 die();
             }
         } else {
-            // current preference - add preference
-            
+// current preference - add preference
+
             $operation = 1;
-            
+
             $sql = "
-            REPLACE INTO
-                user_preference (flat_id, user_id, date_add)
-            VALUES(
-                '" . (int) $flat_id . "',
-                '" . (int) $user_id . "',
-                NOW()
-            )";
+REPLACE INTO
+user_preference (flat_id, user_id, date_add)
+VALUES(
+'" . (int) $flat_id . "',
+'" . (int) $user_id . "',
+NOW()
+)";
 
             if (false === $wpdb->query($sql)) {
                 header("HTTP/1.0 404 Not Found");
@@ -114,22 +141,22 @@ class EstateProgramAjax {
                 die();
             }
         }
-        
-        // update history
+
+// update history
         $sql = "
-            INSERT INTO
-                user_preference_history (user_id, flat_id, date_change, operation)
-            VALUES(
-                '" . (int) $user_id . "',
-                '" . (int) $flat_id . "',
-                NOW(),
-                '" . $operation . "'
-            )";
+INSERT INTO
+user_preference_history (user_id, flat_id, date_change, operation)
+VALUES(
+'" . (int) $user_id . "',
+'" . (int) $flat_id . "',
+NOW(),
+'" . $operation . "'
+)";
 
         $wpdb->query($sql);
 
         echo $operation;
-        
+
         exit;
     }
 
