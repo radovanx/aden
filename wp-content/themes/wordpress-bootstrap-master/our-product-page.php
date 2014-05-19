@@ -288,7 +288,6 @@ get_header(); ?>
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                             $url_image = $thumb['0'];
                             $url = get_permalink($val->ID);
-
                             $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
                             $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
                             $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
@@ -308,7 +307,7 @@ get_header(); ?>
                             <div class="row">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
                                     <div class="col-md-3">  
-                                        <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>" class="img-responsive" alt="<?php echo $name; ?>" /></a>    
+                                        <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>" class="img-responsive" alt="<?php echo $name; ?>"/></a>    
                                     </div>    
                                     <div class="col-md-9"> 
                                         <h4 class="blue"><a href="<?php echo $url; ?>"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
@@ -356,12 +355,11 @@ get_header(); ?>
                                                     <?php echo $pricem; ?>
                                                 </span>
                                                 <span class="data_item clearfix">
-                                                    <strong><?php _e("Yield:", "wpbootstrap"); ?></strong> 
-
+                                                    <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>  
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
-                                                <a class="add-to-preference pull-right" href="#myModal" data-flat_id="3316" data-toggle="modal">
+                                                <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
 
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
                                                     <strong class="blue clearfix pull-right">
