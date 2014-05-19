@@ -270,7 +270,6 @@
                                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
                                                     $url_image = $thumb['0'];
                                                     $url = get_permalink($val->ID);
-
                                                     $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
                                                     $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
                                                     $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
@@ -286,11 +285,8 @@
 
                                                     <div class="row">
                                                         <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box">
-
                                                             <div class="col-md-3">
-
                                                                 <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>"/></a>
-
                                                             </div>
                                                             <div class="col-md-9">
                                                                 <h4 class="blue"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>
@@ -326,22 +322,18 @@
                                                                             <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong>
                                                                             <?php echo $area; ?>
                                                                         </span>
-
                                                                     </div>
-
                                                                     <div class="col-md-3">
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Price:", "wpbootstrap"); ?></strong>
                                                                             <?php echo $price; ?>
                                                                         </span>
-
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong>
                                                                             <?php echo $pricem; ?>
                                                                         </span>
                                                                         <span class="data_item clearfix">
                                                                             <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>
-
                                                                         </span>
                                                                     </div>
                                                                     <div class="col-md-3">
@@ -420,8 +412,7 @@
                 });
 
                 map.setCenter(new google.maps.LatLng(<?php echo $LangLong; ?>));
-                var myLatlng = new google.maps.LatLng(<?php echo $LangLong; ?>);
-
+                var myLatlng = new google.maps.LatLng(<?php echo $LangLong; ?>); 
                 var marker = new google.maps.Marker({
                     position: myLatlng,
                     map: map,
@@ -429,27 +420,20 @@
                 });
                 // Trigger resize to correctly display the map
                 google.maps.event.trigger(map, "resize");
-
-
+ 
                 google.maps.event.trigger(map, 'resize');
                 map.setZoom(map.getZoom());
                 // Map loaded trigger
                 google.maps.event.addListenerOnce(map, 'idle', function() {
-                    // Fire when map tiles are completly loaded
-
-                });
-
+                    // Fire when map tiles are completly loaded 
+                }); 
                 google.maps.event.addListener(map, "idle", function() {
                     marker.setMap(map);
-                });
-
-            }
-
-            //STREET//
-
+                }); 
+            } 
+            //STREET// 
             jQuery(document).ready(function($) {
-                $('.create_street').click(function() {
-
+                $('.create_street').click(function() { 
                     $.ajax({
                         url: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=StreetApiLoaded",
                         dataType: "script",
@@ -458,9 +442,7 @@
                             // Handle error here
                         }})
                 })
-            });
-
-
+            }); 
             function StreetApiLoaded() {
                 var fenway = new google.maps.LatLng(<?php echo $LangLong; ?>);
 
