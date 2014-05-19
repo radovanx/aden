@@ -32,6 +32,8 @@ class EstateProgram_Admin {
      * @var      object
      */
     protected static $instance = null;
+    
+    public $plugin_url;
 
     /**
      * Slug of the plugin screen.
@@ -68,7 +70,7 @@ class EstateProgram_Admin {
          *
          */
 
-
+        $this->plugin_url = plugin_dir_url(__FILE__);
 
         $plugin = EstateProgram::get_instance();
         $this->plugin_slug = $plugin->get_plugin_slug();
@@ -163,11 +165,11 @@ class EstateProgram_Admin {
             switch ($post_type) {
                 case 'flat':
                     $sql = "DELETE FROM apartment2program WHERE apartment_id = " . (int) $post_id;
-                    $wpdb->query($post_id);
+                    $wpdb->query($sql);
                     break;
                 case 'program':
                     $sql = "DELETE FROM apartment2program WHERE program_id = " . (int) $post_id;
-                    $wpdb->query($post_id);
+                    $wpdb->query($sql);
                     break;
             }
         }

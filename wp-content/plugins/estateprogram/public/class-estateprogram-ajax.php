@@ -49,16 +49,12 @@ class EstateProgramAjax {
     public function backend_parse_xml() {
 
         require_once 'class-sourceparser.php';
-
-        $parser = new SourceParser();
         
         $dir = $_GET['dir'];
         $filename = $_GET['file'];
 
-
         $source_dir = ABSPATH . $dir . DIRECTORY_SEPARATOR;
         $source_file = $source_dir . $filename;
-//$temp_dir = $source_dir . 'temp';
 
         $file = $source_dir . $filename;
 

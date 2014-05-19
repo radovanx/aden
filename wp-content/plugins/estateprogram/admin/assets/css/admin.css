@@ -39,3 +39,10 @@
 #parse-state {
     float: left;
 }
+#parse-state p {
+    margin: 0 0 4px 0;
+    font-size: 12px;
+}
+#parse-state #processing {
+    margin-left: 15px;
+}

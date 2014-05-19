@@ -23,6 +23,7 @@
  * @author  Your Name <email@example.com>
  */
 class pdfgenerator {
+
     /**
      * Plugin version, used for cache-busting of style and script file references.
      *
@@ -30,7 +31,6 @@ class pdfgenerator {
      *
      * @var     string
      */
-
     const VERSION = '1.0.0';
 
     /**
@@ -87,6 +87,10 @@ class pdfgenerator {
         add_action('parse_request', array(&$this, 'parse_request'));
         add_action('init', array(&$this, 'do_rewrite'));
         add_filter('query_vars', array(&$this, 'query_vars'));
+
+        //
+        add_action('wp_ajax_recommend_product', array(&$this, 'recommend_product'));
+        add_action('wp_ajax_nopriv_recommend_product', array(&$this, 'recommend_product'));
     }
 
     public function query_vars($public_query_vars) {
@@ -109,10 +113,6 @@ class pdfgenerator {
 
             $lang = qtrans_getLanguage();
 
-            require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
-
-            $mpdf = new mPDF();
-
             /*
               $mpdf = new mPDF(
               '', //mode
@@ -133,17 +133,10 @@ class pdfgenerator {
 
                         if (isset($q['product_id'])) {
                             $product = get_post($q['product_id']);
-
                             $lang = qtrans_getLanguage();
                             $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
 
-                            //require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
-                            //exit;
-
-                            ob_start();
-                            require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
-                            $html = ob_get_contents();
-                            ob_end_clean();
+                            $mpdf = $this->create_html2pdf($product, $props);
 
                             if (empty($props['verwaltung_techn|objektnr_extern'])) {
                                 $filename = get_the_title($product_id);
@@ -151,28 +144,11 @@ class pdfgenerator {
                                 $filename = $props['verwaltung_techn|objektnr_extern'];
                             }
 
-                            $mpdf->WriteHTML($html);
                             $mpdf->Output($filename, 'D');
                         }
 
-
-
-
-
-                        //$mpdf->WriteHTML($html);
-
                         if (isset($q['product-id'])) {
-                            /*
-                              $product_id = $q['product-id'];
-                              $product = get_post($product_id);
-                              $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
-
-                              //$props = unserialize($props_data);
-
-                              $template = plugin_dir_path(__FILE__) . 'pdf/apartment.php';
-
-                              $filename = get_the_title($product_id);
-                             */
+                            
                         }
                         break;
                     case '':
@@ -180,19 +156,29 @@ class pdfgenerator {
                 }
             }
 
-
-
-
-
-
             if (isset($q['program-id'])) {
                 
             }
 
-            $mpdf->Output($filename, 'D');
+            //$mpdf->Output($filename, 'D');
             //$mpdf->Output('filename.pdf', 'F');
             exit;
         }
+    }
+
+    public function create_html2pdf($product, $props) {
+
+        require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
+
+        $mpdf = new mPDF();
+
+        ob_start();
+        require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        $mpdf->WriteHTML($html);
+        return $mpdf;
     }
 
     static function apartment($apartment_id, $lang) {
@@ -203,9 +189,102 @@ class pdfgenerator {
         $apartment_props = get_post_meta($apartment_id, 'flat_props_' . $lang, true);
 
         $path = plugin_dir_path(__FILE__);
+    }
 
-        $x = 1;
-        $y = $x;
+    function recommend_product() {
+
+        $id = $_POST['id'];
+        $to = $_POST['receiver_email'];
+        $message = $_POST['receiver_message'];
+
+        $product = get_post($id);
+
+        if (empty($product)) {
+            header("HTTP/1.0 404 Not Found");
+            _e('Error: could not find presentatiion', $this->plugin_slug);
+            die();
+        }
+
+        if (empty($to)) {
+            header("HTTP/1.0 404 Not Found");
+            _e('Please, enter an email address', $this->plugin_slug);
+            die();
+        } else if (!filter_var($to, FILTER_VALIDATE_EMAIL)) {
+            header("HTTP/1.0 404 Not Found");
+            _e('Please enter a valid email address', $this->plugin_slug);
+            die();
+        }
+
+        if (empty($message)) {
+            header("HTTP/1.0 404 Not Found");
+            _e('Please enter a message', $this->plugin_slug);
+            die();
+        }
+
+        $lang = qtrans_getLanguage();
+        $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
+
+        $mpdf = $this->create_html2pdf($product, $props);
+
+        $presentation_string = $mpdf->Output('', 'S');
+        $attachment = chunk_split(base64_encode($presentation_string));
+
+        //$user_data = get_userdata(get_current_user_id());
+        //$mailto = $user_data->user_email;
+        //$mailto = 'root@localhost';
+
+        global $current_user;
+        get_currentuserinfo();
+
+        $from_name = $current_user->user_firstname . ' ' . $current_user->user_lastname;
+        $from_mail = $current_user->user_email;
+        $reply_to = $current_user->user_email;
+
+        if(!empty($props['freitexte|objekttitel'])){
+            $subject = $props['freitexte|objekttitel'];
+        } else {
+            $subject = get_the_title($product->ID);
+        }        
+        
+        if (empty($props['verwaltung_techn|objektnr_extern'])) {
+            $filename = $subject;
+        } else {
+            $filename = $props['verwaltung_techn|objektnr_extern'];
+        }
+        
+        $filename = $filename . '.pdf';
+        
+        $message = esc_attr($message);
+        
+// a random hash will be necessary to send mixed content
+        $separator = md5(time());
+// carriage return type (we use a PHP end of line constant)
+        $eol = PHP_EOL;
+// main header
+        $headers = "From: " . $from_name . " <" . $from_mail . "> " . $eol;
+        $headers .= "Reply-To: $replyto\r\n";
+
+        $headers .= "MIME-Version: 1.0" . $eol;
+        $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"";
+// no more headers after this, we start the body! //
+        $body = "" . $separator . $eol;
+        $body .= "Content-Transfer-Encoding: 7bit" . $eol . $eol;
+// message
+        $body .= "--" . $separator . $eol;
+        $body .= "Content-Type: text/html; charset=utf-8" . $eol;
+        $body .= "Content-Transfer-Encoding: 8bit" . $eol . $eol;
+        $body .= $message . $eol;
+// attachment
+        $body .= "--" . $separator . $eol;
+        $body .= "Content-Type: application/octet-stream; name=\"" . $filename . "\"" . $eol;
+        $body .= "Content-Transfer-Encoding: base64" . $eol;
+        $body .= "Content-Disposition: attachment" . $eol . $eol;
+        $body .= $attachment . $eol;
+        $body .= "--" . $separator . "--";
+// send message
+        mail($to, $subject, $body, $headers);
+
+        exit;
     }
 
     /**
