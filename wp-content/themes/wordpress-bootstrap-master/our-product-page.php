@@ -50,7 +50,7 @@ get_header(); ?>
                             foreach ($cities as $key => $value):
                                 ?>  
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="cities" class="city-checkbox" value="<?php _e($value->name); ?>"><?php _e($value->name); ?>
+                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="cities" attr-id="<?php _e($value->id); ?>" class="city-checkbox" value="<?php _e($value->name); ?>"><?php _e($value->name); ?>
                                 </label>
                             <?php endforeach; ?>
                             <!-- /cities from taxonomy -->
@@ -90,8 +90,7 @@ get_header(); ?>
                         <div id="district-list"></div>
                         <!--<label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input name="Disctrict" class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>-->
 
-                        <!-- district from ajax -->
-
+                        <!-- district from ajax --> 
                         <!-- /district from ajax -->
                     </div>
                     <div class="row">
@@ -419,28 +418,7 @@ get_header(); ?>
         }
         });
         });
-        
-        
-        
-        
-        
- 
-    var availableCity;
-    availableCity = <?php echo $autocomplete; ?>;
-    GetUnique(availableCity)
-    function GetUnique(inputArray)
-    {
-        var outputArray = [];
-        for (var i = 0; i < inputArray.length; i++)
-        {
-            if ((jQuery.inArray(inputArray[i], outputArray)) == -1)
-            {
-                outputArray.push(inputArray[i]);
-            }
-        }
-        return outputArray;
-    }
-    availableCity = GetUnique(availableCity)
+         
 </script>
  
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
@@ -451,22 +429,33 @@ get_header(); ?>
     var collection = new PourOver.Collection(datatable);
     //make Range filter  
     //CITY FILTER  
-  
-      
-  
+   
         jQuery("form").on("submit", function(event) { 
         event.preventDefault();  
         var values = {};
+        
         jQuery.each(jQuery('form').serializeArray(), function(i, field) { 
             values[field.name] = field.value; 
         });
+      
+        var checkedcities='';     
+        jQuery('.city-checkbox:checked').each(function(){
+                checkedcities=checkedcities+','+jQuery(this).val();    
+        }); 
+        var checkeddistricts=''; 
+        jQuery('.district-checkbox:checked').each(function(){
+               checkeddistricts=''+checkeddistricts+'",'+jQuery(this).val();    
+        });
+        
+        checkedcities = checkedcities.substring(1);
+        checkeddistricts = checkeddistricts.substring(1);
        
- 
-        jQuery( ":checkbox" ).click( showValues );
-   
-   
-        var fcity = SerializedObject[0].value;
-        var fdistrict = SerializedObject[5].value;
+       
+     
+       
+      
+        var fcity = checkedcities; 
+        var fdistrict = checkeddistricts;
         
         var ftype = values.type;      
         var freferences = values.References;     
@@ -482,7 +471,10 @@ get_header(); ?>
         var finalfilter = false;
         if (fcity != '')
         {
-            var city_filter = PourOver.makeExactFilter("city", [fcity]);
+            var city_filter = PourOver.makeInclusionFilter("city", [fcity]);
+            
+           console.log(city_filter);
+            
             collection.addFilters([city_filter]);
             finalfilter = collection.filters.city.getFn(fcity); 
         }
@@ -518,7 +510,7 @@ get_header(); ?>
         }
         if (fdistrict != '')
         { 
-            var district_filter = PourOver.makeExactFilter("district", [fdistrict]);
+            var district_filter = PourOver.makeInclusionFilter("district", [fdistrict]);
             collection.addFilters([district_filter]);
 
             if (finalfilter != false)
