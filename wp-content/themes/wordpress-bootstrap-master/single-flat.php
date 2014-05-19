@@ -9,6 +9,7 @@
     <div id="content" class="clearfix row"> 
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>         
          <?php
+         
             $lang = qtrans_getLanguage();
             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
             $url = $thumb['0']; 
@@ -17,20 +18,18 @@
             $title = get_the_title($post->ID); 
             $video =  $props['youtube'];   
             
-            
-            
             ?>
         <div class="col-md-12 column">
             <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?> 
-            <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
+            <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?><?php echo get_the_title($program_id); ?></small></a>
             
             <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
-            <strong class="blue pull-right doublesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
+            <strong class="blue pull-right doublesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?><i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
             </a>    
                 </h1>
             </div>
         </div>
-        <div id="main" class="col-md-8 column clearfix" role="main">
+        <div id="main" class="col-md-7 column clearfix" role="main">
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
                         <div class="tab-content">
@@ -85,9 +84,7 @@
                                     <?php            
                                       if (!empty($video)):
                                     ?> 
-        
                                     <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i>Video</a></li>
-                                   
 
                                  <?php endif; ?>    
                                 </ul> 
@@ -97,7 +94,7 @@
                                 </footer> <!-- end article footer -->
                                 </article> <!-- end article -->
                             </div>
-                            <div class="col-md-4 column">
+                            <div class="col-md-5 column">
                                 <div class="border col-md-12 column">
                                     <div class="row clearfix">
                                         <div class="col-md-12 column product-key-info">
