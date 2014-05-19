@@ -6,30 +6,28 @@
 ?>
 <?php get_header(); ?>
 <div class="container">
-    <div id="content" class="clearfix row"> 
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>         
-         <?php
-         
-            $lang = qtrans_getLanguage();
-            $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
-            $url = $thumb['0']; 
-            $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);  
-            $program_id = EstateProgram::flat_program_id($post->ID);  
-            $title = get_the_title($post->ID); 
-            $video =  $props['youtube'];   
-            
-            ?>
-        <div class="col-md-12 column">
-            <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?> 
-            <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?><?php echo get_the_title($program_id); ?></small></a>
-            
-            <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
-            <strong class="blue doublesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?><i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
-            </a>    
-                </h1>
-            </div>
-        </div>
-        <div id="main" class="col-md-7 column clearfix" role="main">
+    <div id="content" class="clearfix row">
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                <?php
+                $lang = qtrans_getLanguage();
+                $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
+                $url = $thumb['0'];
+                $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
+                $program_id = EstateProgram::flat_program_id($post->ID);
+                $title = get_the_title($post->ID);
+                $video = $props['youtube'];
+                ?>
+                <div class="col-md-12 column">
+                    <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?>
+                            <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
+
+                            <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
+                                <strong class="blue pull-right doublesmall"> <?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
+                            </a>
+                        </h1>
+                    </div>
+                </div>
+                <div id="main" class="col-md-8 column clearfix" role="main">
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
                         <div class="tab-content">
@@ -74,60 +72,17 @@
                                         echo $post_embed;
                                         ?>
                                     </div>
-                                    <?php endif; ?> 
-                                    </div>
-                                </div>
-                                <!--/TAB CONTENT END-->                                 
-                                <ul class="nav nav-pills margin-top">
-                                    <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
-                                    <?php            
-                                      if (!empty($video)):
-                                    ?> 
-                                    <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i>Video</a></li>
-
-                                 <?php endif; ?>    
-                                </ul> 
-                                <section class="post_content clearfix" itemprop="articleBody">
-                                </section> <!-- end article section -->
-                                <footer>
-                                </footer> <!-- end article footer -->
-                                </article> <!-- end article -->
+                                <?php endif; ?>
                             </div>
-                            <div class="col-md-5 column">
-                                
-                                
-                                <div class="border col-md-12 column">
-                                    <div class="row clearfix">
-                                        <div class="col-md-12 column product-key-info">
-                                            <address>
-                                                <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br>
-                                                <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
-                                                <br><?php echo esc_attr($props['kontaktperson|hausnummer']) ?> <?php echo esc_attr($props['kontaktperson|strasse']) ?>
-                                                <br><?php echo esc_attr($props['kontaktperson|ort']) ?> <?php echo esc_attr($props['kontaktperson|plz']) ?><br>
-                                                <abbr title="Phone">Phone:</abbr> <?php echo esc_attr($props['kontaktperson|tel_durchw']) ?><br>
-                                                <abbr title="Email">Email:</abbr> <?php echo esc_attr($props['kontaktperson|email_direkt']) ?>
-                                            </address> 
-                                            <span class="propertyListBoxDataItemName">
-                                                <i class="fa fa-money"></i>
-                                                <strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
-                                                <strong class="red">
-                                                    <?php echo esc_attr($props['preise|kaufpreis']) ?>
-                                                    &euro;
-                                                </strong>
-                                            </span>
-                                            <span class="propertyListBoxDataItemName">
-                                                <i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong>
-                                                <strong class="red">
-                                                    <?php echo esc_attr($props['flaechen|wohnflaeche']) ?>
-                                                </strong>
-                                            </span>
-                                            <span class="propertyListBoxDataItemName">
-                                                <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
-                                                <strong class="red">
-                                                    <?php echo (int) $props['flaechen|anzahl_zimmer'] ?>
-                                                </strong>
-                                            </span>
-                                            <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
+                        </div>
+                        <!--/TAB CONTENT END-->
+                        <ul class="nav nav-pills margin-top">
+                            <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
+                            <?php
+                            if (!empty($video)):
+                                ?>
+
+                                <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i>Video</a></li>
 
 
                             <?php endif; ?>
@@ -522,7 +477,7 @@
                 'id': <?php echo $post->ID ?>,
                 'receiver_email': jQuery('#receiver_email').val(),
                 'receiver_message': jQuery('#receiver_message').val(),
-                'action':'recommend_product'
+                'action': 'recommend_product'
             };
 
             jQuery.ajax({
@@ -531,14 +486,21 @@
                 url: '<?php echo admin_url('admin-ajax.php'); ?>',
                 data: data,
                 beforeSend: function() {
-                    jQuery('#recomend-form .form-response').html('').hide();                    
-                },                
+                    jQuery('#form-response').html('').hide();
+                    jQuery('#send_recommendation').attr('disabled','disabled');
+                    jQuery('#loading-recommand').hide();
+                },
                 success: function(response) {
-                    jQuery('#recomend-form .form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
+                    jQuery('#form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
+                    jQuery('.erase-after-sent').val('');
                 },
                 error: function(response) {
-                    jQuery('#recomend-form .form-response').show().html('<div class="alert alert-danger">' + response.responseText + '</div>');
-                }
+                    jQuery('#form-response').show().html('<div class="alert alert-danger">' + response.responseText + '</div>');
+                },
+                complete: function(response){
+                    jQuery('#send_recommendation').removeAttr('disabled');
+                    jQuery('#loading-recommand').hide();
+                }                        
             });
 
             event.preventDefault();
@@ -549,28 +511,31 @@
 <div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="recomend-form" method="post">
-                <input type="hidden" name="action" value="recommend_product">
-                <input type="hidden" name="id" value="<?php echo $post->ID ?>">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"><?php _e('Recommend this product', '') ?></h4>
-                </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?php _e('Recommend this product', '') ?></h4>
+            </div>
+            <form id="recomend-form" method="post">                
                 <div class="modal-body">
-                    <div class="form-response display-none"></div>
+                    <div id="form-response" class="display-none"></div>
+                    <input type="hidden" name="action" value="recommend_product">
+                    <input type="hidden" name="id" value="<?php echo $post->ID ?>">
+
                     <div class="form-group">
                         <label for="receiver_email"><?php _e('Receiver email:', 'wpbootstrap') ?></label>
-                        <input type="text" class="form-control" value="" id="receiver_email" name="receiver_email">
+                        <input type="text" class="form-control erase-after-sent" value="" id="receiver_email" name="receiver_email">
                     </div>
                     <div class="form-group">
                         <label for="receiver_message"><?php _e('Message:', 'wpbootstrap') ?></label>
-                        <textarea class="form-control" id="receiver_message" name="receiver_message"></textarea>
+                        <textarea class="form-control erase-after-sent" id="receiver_message" name="receiver_message"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" id="send_recommendation" value="<?php _e('Send recommendation', 'wpbootstrap') ?>">
+                    <div id="loading-recommand" class="pull-left display-none"><i class="fa fa-spinner fa-spin"></i> <?php _e('sending... ') ?></div>
+                    <input type="submit" class="btn btn-primary pull-right" id="send_recommendation" value="<?php _e('Send recommendation', 'wpbootstrap') ?>">                    
                 </div>
             </form>
+
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
