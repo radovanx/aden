@@ -145,7 +145,7 @@
             }
 
             .background-gray {
-                background: #cdcdcd;
+                background: #f3f3f3;
             }
         </style>
     </head>
