@@ -148,7 +148,7 @@ class pdfgenerator {
                         }
 
                         if (isset($q['product-id'])) {
-                            
+
                         }
                         break;
                     case '':
@@ -157,7 +157,7 @@ class pdfgenerator {
             }
 
             if (isset($q['program-id'])) {
-                
+
             }
 
             //$mpdf->Output($filename, 'D');
@@ -192,10 +192,14 @@ class pdfgenerator {
     }
 
     function recommend_product() {
+        
+        if (empty($_POST['id'])) {
+            header("HTTP/1.0 404 Not Found");
+            _e('Error: could not find presentatiion', $this->plugin_slug);
+            die();
+        }        
 
         $id = $_POST['id'];
-        $to = $_POST['receiver_email'];
-        $message = $_POST['receiver_message'];
 
         $product = get_post($id);
 
@@ -205,21 +209,26 @@ class pdfgenerator {
             die();
         }
 
-        if (empty($to)) {
+        if (empty($_POST['receiver_email'])) {
             header("HTTP/1.0 404 Not Found");
             _e('Please, enter an email address', $this->plugin_slug);
             die();
-        } else if (!filter_var($to, FILTER_VALIDATE_EMAIL)) {
+        } else if (!filter_var($_POST['receiver_email'], FILTER_VALIDATE_EMAIL)) {
             header("HTTP/1.0 404 Not Found");
             _e('Please enter a valid email address', $this->plugin_slug);
             die();
         }
 
-        if (empty($message)) {
+        $to = $_POST['receiver_email'];
+
+        if (empty($_POST['receiver_message'])) {
             header("HTTP/1.0 404 Not Found");
             _e('Please enter a message', $this->plugin_slug);
             die();
         }
+
+        $message = strip_tags($_POST['receiver_message']);        
+        $message = str_replace("\n", "\r\n", $message);        
 
         $lang = qtrans_getLanguage();
         $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
@@ -240,22 +249,22 @@ class pdfgenerator {
         $from_mail = $current_user->user_email;
         $reply_to = $current_user->user_email;
 
-        if(!empty($props['freitexte|objekttitel'])){
+        if (!empty($props['freitexte|objekttitel'])) {
             $subject = $props['freitexte|objekttitel'];
         } else {
             $subject = get_the_title($product->ID);
-        }        
-        
+        }
+
         if (empty($props['verwaltung_techn|objektnr_extern'])) {
             $filename = $subject;
         } else {
             $filename = $props['verwaltung_techn|objektnr_extern'];
         }
-        
+
         $filename = $filename . '.pdf';
-        
-        $message = esc_attr($message);
-        
+
+       // $message = esc_attr($message);
+
 // a random hash will be necessary to send mixed content
         $separator = md5(time());
 // carriage return type (we use a PHP end of line constant)
@@ -271,7 +280,7 @@ class pdfgenerator {
         $body .= "Content-Transfer-Encoding: 7bit" . $eol . $eol;
 // message
         $body .= "--" . $separator . $eol;
-        $body .= "Content-Type: text/html; charset=utf-8" . $eol;
+        $body .= "Content-Type: text/plain; charset=utf-8" . $eol;
         $body .= "Content-Transfer-Encoding: 8bit" . $eol . $eol;
         $body .= $message . $eol;
 // attachment
