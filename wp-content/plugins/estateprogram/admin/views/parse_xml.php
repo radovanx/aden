@@ -23,20 +23,17 @@
             }).fail(function() {
                 //alert( "error" );
             }).always(function() {
+                jQuery.delay(10000);
                 load_xml(++index);
             })
         }
     }
 
     jQuery(document).ready(function() {
-
         jQuery('#parse-xml').click(function() {
-
-
             jQuery('.source-xml').each(function(i) {
                 element_array.push(jQuery(this));
             });
-
             load_xml(0);
         });
 

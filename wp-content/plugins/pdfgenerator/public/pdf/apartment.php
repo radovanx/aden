@@ -147,16 +147,6 @@
             .background-gray {
                 background: #cdcdcd;
             }
-
-            /*
-            .img {
-                page-break-inside: avoid;
-                -fs-fit-images-to-width: 6in;
-            }*/
-
-
-
-
         </style>
     </head>
     <body>
@@ -176,7 +166,7 @@
                             $atts = array(
                                 'class' => 'fleft'
                             );
-                            echo wp_get_attachment_image($attachment_id, 'pdf_thumb', $atts);
+                            echo wp_get_attachment_image($attachment_id, 'pdf_logo', $atts);
                         }
                         ?>
                     </td>
