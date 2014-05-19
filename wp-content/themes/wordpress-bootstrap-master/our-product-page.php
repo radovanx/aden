@@ -422,6 +422,7 @@ get_header(); ?>
         
         
         
+        
  
     var availableCity;
     availableCity = <?php echo $autocomplete; ?>;
