@@ -487,8 +487,8 @@
                 data: data,
                 beforeSend: function() {
                     jQuery('#form-response').html('').hide();
-                    jQuery('#send_recommendation').attr('disabled','disabled');
-                    jQuery('#loading-recommand').hide();
+                    jQuery('#send_recommendation').attr('disabled', 'disabled');
+                    jQuery('#loading-recommand').show();
                 },
                 success: function(response) {
                     jQuery('#form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
@@ -497,13 +497,20 @@
                 error: function(response) {
                     jQuery('#form-response').show().html('<div class="alert alert-danger">' + response.responseText + '</div>');
                 },
-                complete: function(response){
+                complete: function(response) {
                     jQuery('#send_recommendation').removeAttr('disabled');
-                    jQuery('#loading-recommand').hide();
-                }                        
+                    jQuery('#loading-recommand').hide();                    
+                }
             });
 
             event.preventDefault();
+        });
+
+
+        jQuery('#recomendModal').on('hidden.bs.modal', function(e) {
+            jQuery('#loading-recommand').hide();
+            jQuery('.erase-after-sent').val('');
+            jQuery('#form-response').html('').hide();
         });
     });
 </script>
