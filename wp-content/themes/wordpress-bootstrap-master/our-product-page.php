@@ -65,12 +65,13 @@ get_header(); ?>
                                 'parent' => 0
                             );
 
+                            
                             $cities = get_categories($args);
 
                             foreach ($cities as $key => $value):
                                 ?>  
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->term_id ?>"  class="city-checkbox" value="<?php echo $value->term_id ?>"><?php _e($value->name) ?>
+                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->term_id ?>" name="city[]" class="city-checkbox" value="<?php echo $value->term_id ?>"><?php _e($value->name) ?>
                                 </label>
                             <?php endforeach; ?>
                             <!-- /cities from taxonomy -->
@@ -236,9 +237,10 @@ get_header(); ?>
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . "   },";
-
+                                    
+                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
+               
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . "   },";
                                     $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
                                     if ($i < 10):
@@ -300,10 +302,8 @@ get_header(); ?>
                     $lang = qtrans_getLanguage();
                     $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                     $i = 0;
-
                     if (!empty($flat_props)):
-                        foreach ($flat_props as $key => $val):
-
+                        foreach ($flat_props as $key => $val): 
                             $prop = unserialize($val->prop);
                             $key = unserialize($key);
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
@@ -382,15 +382,15 @@ get_header(); ?>
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
-                                                <a class="add-to-preference" href="#myModal" data-flat_id="3316" data-toggle="modal">
+                                                <a class="add-to-preference pull-right" href="#myModal" data-flat_id="3316" data-toggle="modal">
 
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
-                                                    <strong class="blue clearfix">
+                                                    <strong class="blue clearfix pull-right">
                                                         <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
                                                     </strong>    
                                                 </a>   
 
-                                                <a href="<?php echo $url; ?>" class=" "><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
+                                                <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
                                             </div>  
                                         </div>  
                                     </div>    
@@ -415,9 +415,7 @@ get_header(); ?>
                 <h4 class="modal-title"><?php echo the_title(); ?></h4>
             </div>
             <div class="modal-body">
-
-                <?php _e("You modified", "wpbootstrap"); ?>
-
+                <?php _e("You modified", "wpbootstrap"); ?> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
@@ -464,6 +462,14 @@ get_header(); ?>
         event.preventDefault();
         var SerializedObject = (jQuery("form").serializeArray());
         //value from form
+      
+      
+      
+        console.log(SerializedObject);
+      
+      
+       
+         
         var fcity = SerializedObject[0].value;
         var ftype = SerializedObject[1].value;
         var freferences = SerializedObject[4].value;
@@ -611,9 +617,7 @@ get_header(); ?>
             {
                 finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
             }
-        } 
-        
- 
+        }  
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
         // console.log(myfilterfinal);
@@ -670,9 +674,7 @@ get_header(); ?>
                  
                  zip*/
 
-                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td>\n\
-        
-<td></td></tr>";
+                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td><td></td></tr>";
                 jQuery("tbody").append(table_data);
  
             });

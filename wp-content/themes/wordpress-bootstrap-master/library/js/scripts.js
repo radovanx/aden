@@ -957,6 +957,10 @@ $('.bxslider').bxSlider({
   slideWidth: 150,
   slideMargin: 0,
   pager:false, 
+  prevText:'', 
+  nextText:'',
+  
+  
  
 }); 
 });
