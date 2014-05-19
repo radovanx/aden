@@ -294,7 +294,7 @@
             ));
             ?>
 
-            <div class="red-label text-center" style="page-break-before:always;"><?php _e('Galerie des images', $this->plugin_slug) ?></div>
+            <div class="red-label text-center" style="page-break-before:always;"><?php _e('Galerie', $this->plugin_slug) ?></div>
 
 
             <?php $i = 1; ?>
