@@ -5,10 +5,9 @@
         <div class="col-md-12 column">
             <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?></h1></div>
         </div>
-        <div id="main" class="col-md-8 column clearfix" role="main">
+        <div id="main" class="col-md-7 column clearfix" role="main">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-
+                    <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting"> 
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="gallery_tab">
@@ -77,22 +76,18 @@
                                 <?php endif; ?>
                                     </div>
                                 </div>
-                                <!--/TAB CONTENT END-->
-
+                                <!--/TAB CONTENT END--> 
                                 <ul class="nav nav-pills margin-top">
                                     <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
                                     <li><a href="#map_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_map"><i class="fa fa-map-marker"></i>Map View</a></li>
                                     <li><a href="#street_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-globe"></i>Street View</a> </li>
-                                   
-                                    
-                                    
+       
                                      <?php $video = get_post_meta($post->ID, '_program_video', true);   
                                      if (!empty($video)):
                                     ?> 
                                     <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper create_street"><i class="fa fa-video-camera"></i>Video</a></li>
                                     <?php endif; ?>
-                                </ul>
-
+                                </ul> 
                                 <section class="post_content clearfix" itemprop="articleBody">
                                 </section> <!-- end article section -->
                                 <footer>
@@ -121,7 +116,7 @@
                                     </div>
                                 <?php endif; ?>
                             </div>
-                            <div class="col-md-4 column">
+                            <div class="col-md-5 column">
                                 <div class="border col-md-12 column border background contact_form_block">
                                     <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
                                     <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>

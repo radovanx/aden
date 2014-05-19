@@ -39,38 +39,18 @@ get_header(); ?>
                     <div class="form-group"> 
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
                         <div class="row"> 
-                            <!-- cities from taxonomy -->
-                            <script>
-                                jQuery(function() {
-                                    jQuery('.city-checkbox').click(function() {
-                                        if(jQuery(this).is(':checked')){
-                                            var data = {
-                                                'action':'get_district',
-                                                'id':+jQuery(this).val()
-                                            }; 
-                                            jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
-                                                console.log(response);
-                                                jQuery('#district-list').append(response);                                                
-                                            });                                            
-                                        } else {
-                                            jQuery('#district-wrap-'+jQuery(this).val()).remove();
-                                        }
-                                    });
-                                });
-                            </script>                              
+                            <!-- cities from taxonomy -->                    
                             <?php
                             $args = array(
                                 'taxonomy' => 'location',
                                 'hide_empty' => true,
                                 'parent' => 0
                             );
-
                             $cities = get_categories($args);
-
                             foreach ($cities as $key => $value):
                                 ?>  
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->term_id ?>"  class="city-checkbox" value="<?php echo $value->term_id ?>"><?php _e($value->name) ?>
+                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="city[]" class="city-checkbox" value="<?php echo $value->term_id; ?>"><?php _e($value->name); ?>
                                 </label>
                             <?php endforeach; ?>
                             <!-- /cities from taxonomy -->
@@ -88,7 +68,7 @@ get_header(); ?>
                         <select class="form-control input-lg" name="type" >
                             <option value="">---</option>
                             <?php foreach ($accomodion_types as $type): ?>
-                                <option class="city-checkbox" value="<?php echo $type->term_id ?>"><?php _e($type->name) ?></option>
+                                <option class="city-checkbox" value="<?php echo $type->term_id; ?>"><?php _e($type->name) ?></option>
                             <?php endforeach; ?>
                         </select> 
                     </div>
@@ -236,9 +216,10 @@ get_header(); ?>
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:" . esc_attr($prop['anbieternr']) . ",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . "   },";
-
+                                    
+                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
+               
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . "   },";
                                     $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
                                     if ($i < 10):
@@ -300,10 +281,8 @@ get_header(); ?>
                     $lang = qtrans_getLanguage();
                     $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                     $i = 0;
-
                     if (!empty($flat_props)):
-                        foreach ($flat_props as $key => $val):
-
+                        foreach ($flat_props as $key => $val): 
                             $prop = unserialize($val->prop);
                             $key = unserialize($key);
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
@@ -382,15 +361,15 @@ get_header(); ?>
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
-                                                <a class="add-to-preference" href="#myModal" data-flat_id="3316" data-toggle="modal">
+                                                <a class="add-to-preference pull-right" href="#myModal" data-flat_id="3316" data-toggle="modal">
 
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
-                                                    <strong class="blue clearfix">
+                                                    <strong class="blue clearfix pull-right">
                                                         <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
                                                     </strong>    
                                                 </a>   
 
-                                                <a href="<?php echo $url; ?>" class=" "><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
+                                                <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
                                             </div>  
                                         </div>  
                                     </div>    
@@ -415,9 +394,7 @@ get_header(); ?>
                 <h4 class="modal-title"><?php echo the_title(); ?></h4>
             </div>
             <div class="modal-body">
-
-                <?php _e("You modified", "wpbootstrap"); ?>
-
+                <?php _e("You modified", "wpbootstrap"); ?> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
@@ -426,6 +403,28 @@ get_header(); ?>
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
 <script>
+    
+    
+    
+      jQuery(function() {
+        jQuery('.city-checkbox').click(function() {
+        if(jQuery(this).is(':checked')){
+        var data = {
+         'action':'get_district',
+         'id':+jQuery(this).val()
+        }; 
+        jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
+        jQuery('#district-list').append(response);                                                
+        });                                            
+        } else {
+        jQuery('#district-wrap-'+jQuery(this).val()).remove();
+        }
+        });
+        });
+    
+    
+    
+    
     var availableCity;
     availableCity = <?php echo $autocomplete; ?>;
     GetUnique(availableCity)
@@ -443,8 +442,7 @@ get_header(); ?>
     }
     availableCity = GetUnique(availableCity)
 </script>
-
-
+ 
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
 <script>
@@ -464,6 +462,14 @@ get_header(); ?>
         event.preventDefault();
         var SerializedObject = (jQuery("form").serializeArray());
         //value from form
+      
+      
+      
+        console.log(SerializedObject);
+      
+      
+       
+         
         var fcity = SerializedObject[0].value;
         var ftype = SerializedObject[1].value;
         var freferences = SerializedObject[4].value;
@@ -611,9 +617,7 @@ get_header(); ?>
             {
                 finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
             }
-        } 
-        
- 
+        }  
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
         // console.log(myfilterfinal);
@@ -670,9 +674,7 @@ get_header(); ?>
                  
                  zip*/
 
-                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td>\n\
-        
-<td></td></tr>";
+                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td><td></td></tr>";
                 jQuery("tbody").append(table_data);
  
             });
