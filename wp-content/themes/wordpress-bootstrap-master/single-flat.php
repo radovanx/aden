@@ -27,7 +27,7 @@
                         </h1>
                     </div>
                 </div>
-                <div id="main" class="col-md-8 column clearfix" role="main">
+                <div id="main" class="col-md-7 column clearfix" role="main">
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
                         <div class="tab-content">
@@ -93,7 +93,7 @@
                         </footer> <!-- end article footer -->
                     </article> <!-- end article -->
                 </div>
-                <div class="col-md-4 column">
+                <div class="col-md-5 column">
                     <div class="border col-md-12 column">
                         <div class="row clearfix">
                             <div class="col-md-12 column product-key-info">
@@ -299,7 +299,7 @@
                                 <tbody>
                                     <?php
                                     $lang = qtrans_getLanguage();
-                                    $flat_props = EstateProgram::get_flats_props_by_program($post->ID, $lang);
+                                    $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang);
                                     ?>
                                     <?php
                                     $i = 0;
