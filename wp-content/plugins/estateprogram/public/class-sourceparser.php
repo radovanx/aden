@@ -10,8 +10,8 @@ require_once(ABSPATH . "wp-admin/includes/file.php");
 require_once(ABSPATH . "wp-admin/includes/media.php");
 require_once(ABSPATH . "wp-admin/includes/image.php");
 
-class SourceParser {    
-    
+class SourceParser {
+
     /**
      *
      * @param type $node
@@ -59,7 +59,7 @@ class SourceParser {
         $realpath = realpath($file);
 
         if (!file_exists($file)) {
-            return;
+            return false;
         }
 
         $xml = simplexml_load_file($realpath);
@@ -195,7 +195,7 @@ class SourceParser {
                     if (empty($region_term)) {
                         $region_term = wp_insert_term($region, 'location', array(
                             'parent' => $city_term_id
-                                ));
+                        ));
                     }
                     // spraruju region s bytem
                     wp_set_post_terms($apartment_id, $region_term['term_id'], 'location', true);
@@ -282,7 +282,23 @@ class SourceParser {
                 //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
                 $image_path = $temp_dir . DIRECTORY_SEPARATOR . $image_file;
 
-                if (file_exists($image_path)) {
+                // ma uz byt obrazek se stejnym nazvem
+                $attach_id = $wpdb->get_var("
+                                            SELECT
+                                                ID
+                                            FROM
+                                                " . $wpdb->prefix . "posts AS p
+                                            JOIN
+                                                " . $wpdb->prefix . "postmeta AS pm
+                                            ON
+                                                pm.post_id = p.ID AND pm.meta_key = '_original_image_name'
+                                            WHERE
+                                                post_parent = " . (int) $apartment_id . "
+                                            AND
+                                                pm.meta_value = '" . $image_file . "'");
+
+
+                if (file_exists($image_path) && empty($attach_id)) {
 
                     $finfo = pathinfo($image_path);
                     $wp_upload_dir = wp_upload_dir();
@@ -304,36 +320,15 @@ class SourceParser {
                             'post_status' => 'inherit',
                             'post_excerpt' => $image_title,
                         );
+                        // Insert the attachment.
+                        $attach_id = wp_insert_attachment($attachment, $new_path, $apartment_id);
 
-
-                        // ma uz byt obrazek se stejnym nazvem
-                        $attach_id = $wpdb->get_var("
-                                            SELECT
-                                                ID
-                                            FROM
-                                                " . $wpdb->prefix . "posts AS p
-                                            JOIN
-                                                " . $wpdb->prefix . "postmeta AS pm
-                                            ON
-                                                pm.post_id = p.ID AND pm.meta_key = '_original_image_name'
-                                            WHERE
-                                                post_parent = " . (int) $apartment_id . "
-                                            AND
-                                                pm.meta_value = '" . $basename . "'");
-
-                        if (empty($attach_id)) {
-                            // Insert the attachment.
-                            $attach_id = wp_insert_attachment($attachment, $new_path, $apartment_id);
-                        } else {
-                            $attachment['ID'] = $attach_id;
-                            wp_update_post($attachment);
-                        }
 
                         // Generate the metadata for the attachment, and update the database record.
                         $attach_data = wp_generate_attachment_metadata($attach_id, $new_path);
                         wp_update_attachment_metadata($attach_id, $attach_data);
 
-                        update_post_meta($attach_id, '_wp_attachment_image_alt', $basename);
+                        update_post_meta($attach_id, '_wp_attachment_image_alt', $image_title);
                         update_post_meta($attach_id, '_original_image_name', $basename);
 
 
@@ -343,6 +338,19 @@ class SourceParser {
                             $set_apartment_thumb = false;
                         }
                     }
+                } else if (!empty($attach_id)) {
+
+                    $attachment = array(
+                        //'guid' => $wp_upload_dir['url'] . '/' . $basename,
+                        //'post_mime_type' => $filetype['type'],
+                        'post_title' => $image_title,
+                        //'post_content' => '',
+                        //'post_status' => 'inherit',
+                        'post_excerpt' => $image_title,
+                    );
+
+                    $attachment['ID'] = $attach_id;
+                    wp_update_post($attachment);
                 }
             }
 
