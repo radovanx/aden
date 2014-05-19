@@ -96,8 +96,8 @@
             .features td {
                 vertical-align: top;
                 border-bottom: 1px solid #D8D8D8;
-                margin-top: 3mm;
-                margin-bottom: 3mm;
+                padding-top: 2mm;
+                padding-bottom: 2mm;
             }
             .features .t2 {
                 padding-right: 2mm;
@@ -128,7 +128,7 @@
             }
 
             .gallery-table .t1,
-            .gallery-table .t2 {                
+            .gallery-table .t2 {
                 border-bottom: 6mm solid white;
             }
 
@@ -147,6 +147,11 @@
             .background-gray {
                 background: #f3f3f3;
             }
+
+            .right-head-box  {
+                font-size: 9px;
+            }
+
         </style>
     </head>
     <body>
@@ -198,12 +203,24 @@
 
             <table class="w100 base-info">
                 <tr>
-                    <td class="w50 vbottom">
-<?php _e('Ref:', $this->plugin_slug) ?> <span class="gray-color"><?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?></span>
+                    <td colspan="2" class="w50 right-head-box text-right">
+                        <h2> <?php _e('Purchase price:', $this->plugin_slug) ?> <span class="red-color"><?php esc_attr_e($props['preise|kaufpreis']) ?> <?php esc_attr_e($props['preise|waehrung|iso_waehrung']) ?></span></h2>
+
+                        <?php if (!empty($props['flaechen|wohnflaeche'])): ?>
+                            <h2> <?php _e('Living area:', $this->plugin_slug) ?> <span class="red-color"> <?php esc_attr_e($props['flaechen|wohnflaeche']) ?> </span></h2>
+                        <?php endif; ?>
+
+                        <?php if (!empty($props['flaechen|wohnflaeche'])): ?>
+                            <h2> <?php _e('Rooms:', $this->plugin_slug) ?> <span class="red-color"> <?php echo (int) $props['flaechen|anzahl_zimmer'] ?></span></h2>
+                        <?php endif; ?>
                     </td>
-                    <td class="w50 right-head-box text-right">
-                        <h2> <span class="red-color"><?php esc_attr_e($props['preise|kaufpreis']) ?> <?php esc_attr_e($props['preise|waehrung|iso_waehrung']) ?></span></h2>
-<?php esc_attr_e($props['geo|strasse']) ?> <?php esc_attr_e($props['geo|wohnungsnr']) ?>,
+                </tr>
+                <tr>
+                    <td class="w50">
+                        <?php _e('Ref:', $this->plugin_slug) ?> <span class="gray-color"><?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?></span>
+                    </td>
+                    <td class="w50 text-right">
+                        <?php esc_attr_e($props['geo|strasse']) ?> <?php esc_attr_e($props['geo|wohnungsnr']) ?>,
                         <?php esc_attr_e($props['geo|plz']) ?> <?php esc_attr_e($props['geo|ort']) ?> <?php echo empty($props['geo|regionaler_zusatz']) ? '' : ' - ' . $props['geo|regionaler_zusatz'] ?>
                     </td>
                 </tr>
@@ -254,63 +271,63 @@
                 </tr>
             </table>
 
-<?php if (!empty($props['freitexte|ausstatt_beschr'])): ?>
+            <?php if (!empty($props['freitexte|ausstatt_beschr'])): ?>
                 <h2 class="small-label border-left"><?php _e('Description', $this->plugin_slug) ?></h2>
                 <p class="text-block block"><?php echo $props['freitexte|ausstatt_beschr'] ?></p>
-<?php endif; ?>
+            <?php endif; ?>
 
             <?php if (!empty($props['freitexte|objektbeschreibung'])): ?>
                 <h2 class="small-label border-left"><?php _e('Description', $this->plugin_slug) ?></h2>
                 <p class="text-block block"><?php echo $props['freitexte|objektbeschreibung'] ?></p>
-<?php endif; ?>
+            <?php endif; ?>
 
             <?php if (!empty($props['freitexte|lage'])): ?>
                 <h2 class="small-label border-left"><?php _e('Description surroundings', $this->plugin_slug) ?></h2>
                 <p class="text-block block"><?php echo $props['freitexte|lage'] ?></p>
-<?php endif; ?>
+            <?php endif; ?>
 
             <?php
             $images = & get_children(array(
                         'post_parent' => $product->ID,
                         'post_type' => 'attachment',
                         'post_mime_type' => 'image'
-                    ));
+            ));
             ?>
 
             <div class="red-label text-center" style="page-break-before:always;"><?php _e('Galerie des images', $this->plugin_slug) ?></div>
 
 
-<?php $i = 1; ?>
+            <?php $i = 1; ?>
             <table class="gallery-table"  style="page-break-inside: avoid;">
                 <tbody>
                     <tr>
 
-<?php
-foreach ($images as $attachment_id => $attachment):
-    ?>
-                            <td style="width: 90mm;" class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>">    
+                        <?php
+                        foreach ($images as $attachment_id => $attachment):
+                            ?>
+                            <td style="width: 90mm;" class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>">
                                 <table class="img-table-in" style="width: 90mm;">
                                     <tr>
                                         <td class="background-gray" style="width: 100%; height: 258px; min-height: 258px !important;">
-    <?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?>
+                                            <?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="width: 90mm;" class="vbottom img-title">
-    <?php echo get_the_title($attachment_id) ?>
+                                            <?php echo get_the_title($attachment_id) ?>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
 
-    <?php
-    echo 0 == $i % 2 ? '</tr></tbody></table><table class="gallery-table"  style="page-break-inside: avoid;"><tbody><tr>' : '';
-    $i++;
-endforeach;
-?>
+                            <?php
+                            echo 0 == $i % 2 ? '</tr></tbody></table><table class="gallery-table"  style="page-break-inside: avoid;"><tbody><tr>' : '';
+                            $i++;
+                        endforeach;
+                        ?>
                         </td>
                     </tr>
-                </tbody>                                
+                </tbody>
             </table>
 
         </div>
