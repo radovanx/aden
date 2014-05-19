@@ -477,7 +477,7 @@
                 'id': <?php echo $post->ID ?>,
                 'receiver_email': jQuery('#receiver_email').val(),
                 'receiver_message': jQuery('#receiver_message').val(),
-                'action':'recommend_product'
+                'action': 'recommend_product'
             };
 
             jQuery.ajax({
@@ -486,14 +486,21 @@
                 url: '<?php echo admin_url('admin-ajax.php'); ?>',
                 data: data,
                 beforeSend: function() {
-                    jQuery('#recomend-form .form-response').html('').hide();                    
-                },                
+                    jQuery('#form-response').html('').hide();
+                    jQuery('#send_recommendation').attr('disabled','disabled');
+                    jQuery('#loading-recommand').hide();
+                },
                 success: function(response) {
-                    jQuery('#recomend-form .form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
+                    jQuery('#form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
+                    jQuery('.erase-after-sent').val('');
                 },
                 error: function(response) {
-                    jQuery('#recomend-form .form-response').show().html('<div class="alert alert-danger">' + response.responseText + '</div>');
-                }
+                    jQuery('#form-response').show().html('<div class="alert alert-danger">' + response.responseText + '</div>');
+                },
+                complete: function(response){
+                    jQuery('#send_recommendation').removeAttr('disabled');
+                    jQuery('#loading-recommand').hide();
+                }                        
             });
 
             event.preventDefault();
@@ -504,28 +511,31 @@
 <div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="recomend-form" method="post">
-                <input type="hidden" name="action" value="recommend_product">
-                <input type="hidden" name="id" value="<?php echo $post->ID ?>">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title"><?php _e('Recommend this product', '') ?></h4>
-                </div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?php _e('Recommend this product', '') ?></h4>
+            </div>
+            <form id="recomend-form" method="post">                
                 <div class="modal-body">
-                    <div class="form-response display-none"></div>
+                    <div id="form-response" class="display-none"></div>
+                    <input type="hidden" name="action" value="recommend_product">
+                    <input type="hidden" name="id" value="<?php echo $post->ID ?>">
+
                     <div class="form-group">
                         <label for="receiver_email"><?php _e('Receiver email:', 'wpbootstrap') ?></label>
-                        <input type="text" class="form-control" value="" id="receiver_email" name="receiver_email">
+                        <input type="text" class="form-control erase-after-sent" value="" id="receiver_email" name="receiver_email">
                     </div>
                     <div class="form-group">
                         <label for="receiver_message"><?php _e('Message:', 'wpbootstrap') ?></label>
-                        <textarea class="form-control" id="receiver_message" name="receiver_message"></textarea>
+                        <textarea class="form-control erase-after-sent" id="receiver_message" name="receiver_message"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" id="send_recommendation" value="<?php _e('Send recommendation', 'wpbootstrap') ?>">
+                    <div id="loading-recommand" class="pull-left display-none"><i class="fa fa-spinner fa-spin"></i> <?php _e('sending... ') ?></div>
+                    <input type="submit" class="btn btn-primary pull-right" id="send_recommendation" value="<?php _e('Send recommendation', 'wpbootstrap') ?>">                    
                 </div>
             </form>
+
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
