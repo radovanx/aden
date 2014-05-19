@@ -488,7 +488,7 @@
                 beforeSend: function() {
                     jQuery('#form-response').html('').hide();
                     jQuery('#send_recommendation').attr('disabled','disabled');
-                    jQuery('#loading-recommand').show();
+                    jQuery('#loading-recommand').hide();
                 },
                 success: function(response) {
                     jQuery('#form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
