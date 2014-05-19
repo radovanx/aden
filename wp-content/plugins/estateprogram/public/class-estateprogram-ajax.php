@@ -36,7 +36,7 @@ class EstateProgramAjax {
         foreach ($regions as $key => $value):
             ?>
             <label class="checkbox-inline">
-                <input type="checkbox" id="district-<?php echo $value->term_id ?>"  value="<?php echo $value->term_id ?>"><?php _e($value->name) ?>
+                <input type="checkbox" id="district-<?php echo $value->term_id ?>" class="district-checkbox" value="<?php echo $value->term_id ?>"><?php _e($value->name) ?>
             </label>
             <?php
         endforeach;
