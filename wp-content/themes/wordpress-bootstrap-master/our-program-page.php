@@ -3,7 +3,10 @@
   Template Name: Our program Page
  */
 ?>
-<?php get_header(); ?> 
+<?php 
+redirect_if_not_logged();
+get_header(); 
+?> 
 <div class="container">
     <div class="row clearfix"> 
           <div class="col-md-12 column"> 

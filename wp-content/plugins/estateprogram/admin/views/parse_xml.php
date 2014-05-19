@@ -7,36 +7,51 @@
         if (index >= element_array.length) {
             return;
         } else {
-            
+
             var element = element_array[index];
-            
+
             var filename = element.text();
             var dir = element.attr('data-dir');
             var url = ajaxurl + '?action=backend_parse_xml&file=' + filename + '&dir=' + dir;
 
-            jQuery.post(url, function(response) {
-                //jQuery()
-                console.log(response);
+            /*
+             jQuery.post(url, function(response) {
+             //jQuery()
+             console.log(response);
+             if ('ok' == response) {
+             element.remove();
+             }
+             })*/
+
+            jQuery.ajax({
+                type: 'POST',
+                url: url,
+                beforeSend: function(xhr) {
+                    jQuery('#parse-xml').attr('disabled', 'disabled');
+                    jQuery('#parse-state').append('<p><strong>Processing: </strong>'+filename+'</p><img src="<?php echo plugins_url(__FILE__) ?>assets/img/103.gif">');
+                }
+                //data: data,
+                //success: success
+                //dataType: dataType
+            }).done(function(response) {
                 if ('ok' == response) {
                     element.remove();
                 }
             }).fail(function() {
                 //alert( "error" );
             }).always(function() {
-                load_xml(++index);
-            })
+                jQuery('#parse-xml').removeAttr('disabled');
+                //console.log('always');                
+                //load_xml(++index);
+            });
         }
     }
 
     jQuery(document).ready(function() {
-
         jQuery('#parse-xml').click(function() {
-
-
             jQuery('.source-xml').each(function(i) {
                 element_array.push(jQuery(this));
             });
-
             load_xml(0);
         });
 
@@ -46,6 +61,9 @@
     <div id="poststuff">
 
         <button type="button" id="parse-xml" class="parse-button button button-primary "><?php _e('Parse XML') ?></button>
+
+        <div id="parse-state"></div>
+
         <div class="clearfix"></div>
 
         <?php

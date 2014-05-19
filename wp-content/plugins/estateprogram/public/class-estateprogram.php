@@ -25,13 +25,7 @@
 /**
  *
  */
-function define_image_sizes() {
-    add_image_size('program_thumb', 316, 236, true);
-    add_image_size('page_thumb', 1200, 260, true);
-    add_image_size('profile_logo', 160, 160, false);
-    add_image_size('pdf_logo', 260, 40, false);
-    add_image_size('pdf_thumb', 368, 494, false);
-}
+
 
 EstateProgram::$tags_apartment = array(
     'geo',
@@ -368,6 +362,24 @@ class EstateProgram {
         );
 
         register_taxonomy('show', array('program'), $args);
+        
+        ###################################################
+        # Show
+        $args = array(
+            'hierarchical' => true,
+            'labels' => array(
+                'name' => _x('Location', $this->plugin_slug),
+                'menu_name' => __('Location', $this->plugin_slug)
+            ),
+            'public' => false,
+            'show_ui' => true,
+            'show_admin_column' => true,
+            //'query_var' => true,
+            //'rewrite' => array('slug' => 'location'),
+                //'show_in_menu' => 'program_overview'
+        );
+
+        register_taxonomy('location', array('flat'), $args);        
 
         /*
           $args = array(
