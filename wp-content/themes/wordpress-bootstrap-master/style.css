@@ -15,6 +15,11 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html http://www.apache.org/lice
 .display-none {
     display: none;
 }
+
+.bx-wrapper .bx-controls-direction a {
+    z-index: 800 !important;
+}
+
 /*
 #form-response {
     margin-top: 15px;
