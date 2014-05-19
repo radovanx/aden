@@ -372,8 +372,8 @@ class EstateProgram {
                 'menu_name' => __('Location', $this->plugin_slug)
             ),
             'public' => false,
-            'show_ui' => true,
-            'show_admin_column' => true,
+            'show_ui' => false,
+            'show_admin_column' => false,
             //'query_var' => true,
             //'rewrite' => array('slug' => 'location'),
                 //'show_in_menu' => 'program_overview'

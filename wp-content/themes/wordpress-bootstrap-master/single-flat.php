@@ -612,6 +612,7 @@
     }
 </script>
 <script>
+    /*
     jQuery(document).ready(function($) {
 
         $(".test-popup-link").click(function(event) {
@@ -624,5 +625,6 @@
             });
         });
     });
+    */
 </script>
 <?php get_footer(); ?>
