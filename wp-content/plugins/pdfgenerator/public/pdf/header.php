@@ -1,4 +1,4 @@
-<?php 
+<?php
 $current_user = wp_get_current_user();
 ?>
 <table style="width: 168mm; margin: 0 0 0 3mm; font-family: arial; font-size: 13px;">

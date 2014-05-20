@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SimplePie
  *
@@ -42,7 +43,6 @@
  * @license http://www.opensource.org/licenses/bsd-license.php BSD License
  */
 
-
 /**
  * Handles `<media:text>` captions as defined in Media RSS.
  *
@@ -53,158 +53,136 @@
  * @package SimplePie
  * @subpackage API
  */
-class SimplePie_Caption
-{
-	/**
-	 * Content type
-	 *
-	 * @var string
-	 * @see get_type()
-	 */
-	var $type;
+class SimplePie_Caption {
 
-	/**
-	 * Language
-	 *
-	 * @var string
-	 * @see get_language()
-	 */
-	var $lang;
+    /**
+     * Content type
+     *
+     * @var string
+     * @see get_type()
+     */
+    var $type;
 
-	/**
-	 * Start time
-	 *
-	 * @var string
-	 * @see get_starttime()
-	 */
-	var $startTime;
+    /**
+     * Language
+     *
+     * @var string
+     * @see get_language()
+     */
+    var $lang;
 
-	/**
-	 * End time
-	 *
-	 * @var string
-	 * @see get_endtime()
-	 */
-	var $endTime;
+    /**
+     * Start time
+     *
+     * @var string
+     * @see get_starttime()
+     */
+    var $startTime;
 
-	/**
-	 * Caption text
-	 *
-	 * @var string
-	 * @see get_text()
-	 */
-	var $text;
+    /**
+     * End time
+     *
+     * @var string
+     * @see get_endtime()
+     */
+    var $endTime;
 
-	/**
-	 * Constructor, used to input the data
-	 *
-	 * For documentation on all the parameters, see the corresponding
-	 * properties and their accessors
-	 */
-	public function __construct($type = null, $lang = null, $startTime = null, $endTime = null, $text = null)
-	{
-		$this->type = $type;
-		$this->lang = $lang;
-		$this->startTime = $startTime;
-		$this->endTime = $endTime;
-		$this->text = $text;
-	}
+    /**
+     * Caption text
+     *
+     * @var string
+     * @see get_text()
+     */
+    var $text;
 
-	/**
-	 * String-ified version
-	 *
-	 * @return string
-	 */
-	public function __toString()
-	{
-		// There is no $this->data here
-		return md5(serialize($this));
-	}
+    /**
+     * Constructor, used to input the data
+     *
+     * For documentation on all the parameters, see the corresponding
+     * properties and their accessors
+     */
+    public function __construct($type = null, $lang = null, $startTime = null, $endTime = null, $text = null) {
+        $this->type = $type;
+        $this->lang = $lang;
+        $this->startTime = $startTime;
+        $this->endTime = $endTime;
+        $this->text = $text;
+    }
 
-	/**
-	 * Get the end time
-	 *
-	 * @return string|null Time in the format 'hh:mm:ss.SSS'
-	 */
-	public function get_endtime()
-	{
-		if ($this->endTime !== null)
-		{
-			return $this->endTime;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * String-ified version
+     *
+     * @return string
+     */
+    public function __toString() {
+        // There is no $this->data here
+        return md5(serialize($this));
+    }
 
-	/**
-	 * Get the language
-	 *
-	 * @link http://tools.ietf.org/html/rfc3066
-	 * @return string|null Language code as per RFC 3066
-	 */
-	public function get_language()
-	{
-		if ($this->lang !== null)
-		{
-			return $this->lang;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * Get the end time
+     *
+     * @return string|null Time in the format 'hh:mm:ss.SSS'
+     */
+    public function get_endtime() {
+        if ($this->endTime !== null) {
+            return $this->endTime;
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * Get the start time
-	 *
-	 * @return string|null Time in the format 'hh:mm:ss.SSS'
-	 */
-	public function get_starttime()
-	{
-		if ($this->startTime !== null)
-		{
-			return $this->startTime;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * Get the language
+     *
+     * @link http://tools.ietf.org/html/rfc3066
+     * @return string|null Language code as per RFC 3066
+     */
+    public function get_language() {
+        if ($this->lang !== null) {
+            return $this->lang;
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * Get the text of the caption
-	 *
-	 * @return string|null
-	 */
-	public function get_text()
-	{
-		if ($this->text !== null)
-		{
-			return $this->text;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * Get the start time
+     *
+     * @return string|null Time in the format 'hh:mm:ss.SSS'
+     */
+    public function get_starttime() {
+        if ($this->startTime !== null) {
+            return $this->startTime;
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * Get the content type (not MIME type)
-	 *
-	 * @return string|null Either 'text' or 'html'
-	 */
-	public function get_type()
-	{
-		if ($this->type !== null)
-		{
-			return $this->type;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * Get the text of the caption
+     *
+     * @return string|null
+     */
+    public function get_text() {
+        if ($this->text !== null) {
+            return $this->text;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Get the content type (not MIME type)
+     *
+     * @return string|null Either 'text' or 'html'
+     */
+    public function get_type() {
+        if ($this->type !== null) {
+            return $this->type;
+        } else {
+            return null;
+        }
+    }
+
 }
-

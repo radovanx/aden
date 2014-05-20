@@ -160,7 +160,7 @@
                                     $lang = qtrans_getLanguage();
                                     $flat_props = EstateProgram::get_flats_props_by_program($post->ID, $lang);
                                     ?>
-                                    <?php  include TEMPLATEPATH . '/table_row.php'; ?> 
+                                    <?php include TEMPLATEPATH . '/table_row.php'; ?> 
                                 </table>
                             </div>
                             <div class="col-md-12 column border tab-pane" id="list">
@@ -184,7 +184,6 @@
                                         $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
                                         $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                         $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
- 
                                         ?>
 
                                         <div class="row">

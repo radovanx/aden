@@ -31,11 +31,11 @@
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            
+
                             <!-- img slide -->
                             <?php get_template_part('partial', 'slide') ?>
                             <!-- /img slide -->
-                            
+
                             <div class="tab-pane fade" id="video_tab">
                                 <?php
                                 if (!empty($video)):
@@ -265,11 +265,11 @@
                                         <th><?php _e("Status", "wpbootstrap"); ?></th>
                                     </tr>
                                 </thead>
-                                    <?php
-                                    $lang = qtrans_getLanguage();
-                                    $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang, $post->ID);
-                                    ?>
-                                    <?php  include TEMPLATEPATH . '/table_row.php'; ?> 
+                                <?php
+                                $lang = qtrans_getLanguage();
+                                $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang, $post->ID);
+                                ?>
+                                <?php include TEMPLATEPATH . '/table_row.php'; ?> 
                             </table>
                         </div>
                         <div class="col-md-12 column border tab-pane" id="list">
@@ -416,7 +416,7 @@
                 },
                 complete: function(response) {
                     jQuery('#send_recommendation').removeAttr('disabled');
-                    jQuery('#loading-recommand').hide();                    
+                    jQuery('#loading-recommand').hide();
                 }
             });
 
@@ -530,18 +530,18 @@
 </script>
 <script>
     /*
-    jQuery(document).ready(function($) {
-
-        $(".test-popup-link").click(function(event) {
-
-            $('.parent-container').magnificPopup({
-                delegate: 'a', // child items selector, by clicking on it popup will open
-                type: 'image',
-                gallery: {enabled: true}
-                // other options
-            });
-        });
-    });
-    */
+     jQuery(document).ready(function($) {
+     
+     $(".test-popup-link").click(function(event) {
+     
+     $('.parent-container').magnificPopup({
+     delegate: 'a', // child items selector, by clicking on it popup will open
+     type: 'image',
+     gallery: {enabled: true}
+     // other options
+     });
+     });
+     });
+     */
 </script>
 <?php get_footer(); ?>

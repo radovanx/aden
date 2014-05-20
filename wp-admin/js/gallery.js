@@ -1,237 +1,233 @@
 /* global unescape, getUserSetting, setUserSetting */
 
 jQuery(document).ready(function($) {
-	var gallerySortable, gallerySortableInit, sortIt, clearAll, w, desc = false;
+    var gallerySortable, gallerySortableInit, sortIt, clearAll, w, desc = false;
 
-	gallerySortableInit = function() {
-		gallerySortable = $('#media-items').sortable( {
-			items: 'div.media-item',
-			placeholder: 'sorthelper',
-			axis: 'y',
-			distance: 2,
-			handle: 'div.filename',
-			stop: function() {
-				// When an update has occurred, adjust the order for each item
-				var all = $('#media-items').sortable('toArray'), len = all.length;
-				$.each(all, function(i, id) {
-					var order = desc ? (len - i) : (1 + i);
-					$('#' + id + ' .menu_order input').val(order);
-				});
-			}
-		} );
-	};
+    gallerySortableInit = function() {
+        gallerySortable = $('#media-items').sortable({
+            items: 'div.media-item',
+            placeholder: 'sorthelper',
+            axis: 'y',
+            distance: 2,
+            handle: 'div.filename',
+            stop: function() {
+                // When an update has occurred, adjust the order for each item
+                var all = $('#media-items').sortable('toArray'), len = all.length;
+                $.each(all, function(i, id) {
+                    var order = desc ? (len - i) : (1 + i);
+                    $('#' + id + ' .menu_order input').val(order);
+                });
+            }
+        });
+    };
 
-	sortIt = function() {
-		var all = $('.menu_order_input'), len = all.length;
-		all.each(function(i){
-			var order = desc ? (len - i) : (1 + i);
-			$(this).val(order);
-		});
-	};
+    sortIt = function() {
+        var all = $('.menu_order_input'), len = all.length;
+        all.each(function(i) {
+            var order = desc ? (len - i) : (1 + i);
+            $(this).val(order);
+        });
+    };
 
-	clearAll = function(c) {
-		c = c || 0;
-		$('.menu_order_input').each( function() {
-			if ( this.value === '0' || c ) {
-				this.value = '';
-			}
-		});
-	};
+    clearAll = function(c) {
+        c = c || 0;
+        $('.menu_order_input').each(function() {
+            if (this.value === '0' || c) {
+                this.value = '';
+            }
+        });
+    };
 
-	$('#asc').click( function() {
-		desc = false;
-		sortIt();
-		return false;
-	});
-	$('#desc').click( function() {
-		desc = true;
-		sortIt();
-		return false;
-	});
-	$('#clear').click( function() {
-		clearAll(1);
-		return false;
-	});
-	$('#showall').click( function() {
-		$('#sort-buttons span a').toggle();
-		$('a.describe-toggle-on').hide();
-		$('a.describe-toggle-off, table.slidetoggle').show();
-		$('img.pinkynail').toggle(false);
-		return false;
-	});
-	$('#hideall').click( function() {
-		$('#sort-buttons span a').toggle();
-		$('a.describe-toggle-on').show();
-		$('a.describe-toggle-off, table.slidetoggle').hide();
-		$('img.pinkynail').toggle(true);
-		return false;
-	});
+    $('#asc').click(function() {
+        desc = false;
+        sortIt();
+        return false;
+    });
+    $('#desc').click(function() {
+        desc = true;
+        sortIt();
+        return false;
+    });
+    $('#clear').click(function() {
+        clearAll(1);
+        return false;
+    });
+    $('#showall').click(function() {
+        $('#sort-buttons span a').toggle();
+        $('a.describe-toggle-on').hide();
+        $('a.describe-toggle-off, table.slidetoggle').show();
+        $('img.pinkynail').toggle(false);
+        return false;
+    });
+    $('#hideall').click(function() {
+        $('#sort-buttons span a').toggle();
+        $('a.describe-toggle-on').show();
+        $('a.describe-toggle-off, table.slidetoggle').hide();
+        $('img.pinkynail').toggle(true);
+        return false;
+    });
 
-	// initialize sortable
-	gallerySortableInit();
-	clearAll();
+    // initialize sortable
+    gallerySortableInit();
+    clearAll();
 
-	if ( $('#media-items>*').length > 1 ) {
-		w = wpgallery.getWin();
+    if ($('#media-items>*').length > 1) {
+        w = wpgallery.getWin();
 
-		$('#save-all, #gallery-settings').show();
-		if ( typeof w.tinyMCE !== 'undefined' && w.tinyMCE.activeEditor && ! w.tinyMCE.activeEditor.isHidden() ) {
-			wpgallery.mcemode = true;
-			wpgallery.init();
-		} else {
-			$('#insert-gallery').show();
-		}
-	}
+        $('#save-all, #gallery-settings').show();
+        if (typeof w.tinyMCE !== 'undefined' && w.tinyMCE.activeEditor && !w.tinyMCE.activeEditor.isHidden()) {
+            wpgallery.mcemode = true;
+            wpgallery.init();
+        } else {
+            $('#insert-gallery').show();
+        }
+    }
 });
 
-jQuery(window).unload( function () { tinymce = tinyMCE = wpgallery = null; } ); // Cleanup
+jQuery(window).unload(function() {
+    tinymce = tinyMCE = wpgallery = null;
+}); // Cleanup
 
 /* gallery settings */
 var tinymce = null, tinyMCE, wpgallery;
 
 wpgallery = {
-	mcemode : false,
-	editor : {},
-	dom : {},
-	is_update : false,
-	el : {},
+    mcemode: false,
+    editor: {},
+    dom: {},
+    is_update: false,
+    el: {},
+    I: function(e) {
+        return document.getElementById(e);
+    },
+    init: function() {
+        var t = this, li, q, i, it, w = t.getWin();
 
-	I : function(e) {
-		return document.getElementById(e);
-	},
+        if (!t.mcemode) {
+            return;
+        }
 
-	init: function() {
-		var t = this, li, q, i, it, w = t.getWin();
+        li = ('' + document.location.search).replace(/^\?/, '').split('&');
+        q = {};
+        for (i = 0; i < li.length; i++) {
+            it = li[i].split('=');
+            q[unescape(it[0])] = unescape(it[1]);
+        }
 
-		if ( ! t.mcemode ) {
-			return;
-		}
+        if (q.mce_rdomain) {
+            document.domain = q.mce_rdomain;
+        }
 
-		li = ('' + document.location.search).replace(/^\?/, '').split('&');
-		q = {};
-		for (i=0; i<li.length; i++) {
-			it = li[i].split('=');
-			q[unescape(it[0])] = unescape(it[1]);
-		}
+        // Find window & API
+        tinymce = w.tinymce;
+        tinyMCE = w.tinyMCE;
+        t.editor = tinymce.EditorManager.activeEditor;
 
-		if ( q.mce_rdomain ) {
-			document.domain = q.mce_rdomain;
-		}
+        t.setup();
+    },
+    getWin: function() {
+        return window.dialogArguments || opener || parent || top;
+    },
+    setup: function() {
+        var t = this, a, ed = t.editor, g, columns, link, order, orderby;
+        if (!t.mcemode) {
+            return;
+        }
 
-		// Find window & API
-		tinymce = w.tinymce;
-		tinyMCE = w.tinyMCE;
-		t.editor = tinymce.EditorManager.activeEditor;
+        t.el = ed.selection.getNode();
 
-		t.setup();
-	},
+        if (t.el.nodeName !== 'IMG' || !ed.dom.hasClass(t.el, 'wpGallery')) {
+            if ((g = ed.dom.select('img.wpGallery')) && g[0]) {
+                t.el = g[0];
+            } else {
+                if (getUserSetting('galfile') === '1') {
+                    t.I('linkto-file').checked = 'checked';
+                }
+                if (getUserSetting('galdesc') === '1') {
+                    t.I('order-desc').checked = 'checked';
+                }
+                if (getUserSetting('galcols')) {
+                    t.I('columns').value = getUserSetting('galcols');
+                }
+                if (getUserSetting('galord')) {
+                    t.I('orderby').value = getUserSetting('galord');
+                }
+                jQuery('#insert-gallery').show();
+                return;
+            }
+        }
 
-	getWin : function() {
-		return window.dialogArguments || opener || parent || top;
-	},
+        a = ed.dom.getAttrib(t.el, 'title');
+        a = ed.dom.decode(a);
 
-	setup : function() {
-		var t = this, a, ed = t.editor, g, columns, link, order, orderby;
-		if ( ! t.mcemode ) {
-			return;
-		}
+        if (a) {
+            jQuery('#update-gallery').show();
+            t.is_update = true;
 
-		t.el = ed.selection.getNode();
+            columns = a.match(/columns=['"]([0-9]+)['"]/);
+            link = a.match(/link=['"]([^'"]+)['"]/i);
+            order = a.match(/order=['"]([^'"]+)['"]/i);
+            orderby = a.match(/orderby=['"]([^'"]+)['"]/i);
 
-		if ( t.el.nodeName !== 'IMG' || ! ed.dom.hasClass(t.el, 'wpGallery') ) {
-			if ( ( g = ed.dom.select('img.wpGallery') ) && g[0] ) {
-				t.el = g[0];
-			} else {
-				if ( getUserSetting('galfile') === '1' ) {
-					t.I('linkto-file').checked = 'checked';
-				}
-				if ( getUserSetting('galdesc') === '1' ) {
-					t.I('order-desc').checked = 'checked';
-				}
-				if ( getUserSetting('galcols') ) {
-					t.I('columns').value = getUserSetting('galcols');
-				}
-				if ( getUserSetting('galord') ) {
-					t.I('orderby').value = getUserSetting('galord');
-				}
-				jQuery('#insert-gallery').show();
-				return;
-			}
-		}
+            if (link && link[1]) {
+                t.I('linkto-file').checked = 'checked';
+            }
+            if (order && order[1]) {
+                t.I('order-desc').checked = 'checked';
+            }
+            if (columns && columns[1]) {
+                t.I('columns').value = '' + columns[1];
+            }
+            if (orderby && orderby[1]) {
+                t.I('orderby').value = orderby[1];
+            }
+        } else {
+            jQuery('#insert-gallery').show();
+        }
+    },
+    update: function() {
+        var t = this, ed = t.editor, all = '', s;
 
-		a = ed.dom.getAttrib(t.el, 'title');
-		a = ed.dom.decode(a);
+        if (!t.mcemode || !t.is_update) {
+            s = '[gallery' + t.getSettings() + ']';
+            t.getWin().send_to_editor(s);
+            return;
+        }
 
-		if ( a ) {
-			jQuery('#update-gallery').show();
-			t.is_update = true;
+        if (t.el.nodeName !== 'IMG') {
+            return;
+        }
 
-			columns = a.match(/columns=['"]([0-9]+)['"]/);
-			link = a.match(/link=['"]([^'"]+)['"]/i);
-			order = a.match(/order=['"]([^'"]+)['"]/i);
-			orderby = a.match(/orderby=['"]([^'"]+)['"]/i);
+        all = ed.dom.decode(ed.dom.getAttrib(t.el, 'title'));
+        all = all.replace(/\s*(order|link|columns|orderby)=['"]([^'"]+)['"]/gi, '');
+        all += t.getSettings();
 
-			if ( link && link[1] ) {
-				t.I('linkto-file').checked = 'checked';
-			}
-			if ( order && order[1] ) {
-				t.I('order-desc').checked = 'checked';
-			}
-			if ( columns && columns[1] ) {
-				t.I('columns').value = '' + columns[1];
-			}
-			if ( orderby && orderby[1] ) {
-				t.I('orderby').value = orderby[1];
-			}
-		} else {
-			jQuery('#insert-gallery').show();
-		}
-	},
+        ed.dom.setAttrib(t.el, 'title', all);
+        t.getWin().tb_remove();
+    },
+    getSettings: function() {
+        var I = this.I, s = '';
 
-	update : function() {
-		var t = this, ed = t.editor, all = '', s;
+        if (I('linkto-file').checked) {
+            s += ' link="file"';
+            setUserSetting('galfile', '1');
+        }
 
-		if ( ! t.mcemode || ! t.is_update ) {
-			s = '[gallery' + t.getSettings() + ']';
-			t.getWin().send_to_editor(s);
-			return;
-		}
+        if (I('order-desc').checked) {
+            s += ' order="DESC"';
+            setUserSetting('galdesc', '1');
+        }
 
-		if ( t.el.nodeName !== 'IMG' ) {
-			return;
-		}
+        if (I('columns').value !== 3) {
+            s += ' columns="' + I('columns').value + '"';
+            setUserSetting('galcols', I('columns').value);
+        }
 
-		all = ed.dom.decode( ed.dom.getAttrib( t.el, 'title' ) );
-		all = all.replace(/\s*(order|link|columns|orderby)=['"]([^'"]+)['"]/gi, '');
-		all += t.getSettings();
+        if (I('orderby').value !== 'menu_order') {
+            s += ' orderby="' + I('orderby').value + '"';
+            setUserSetting('galord', I('orderby').value);
+        }
 
-		ed.dom.setAttrib(t.el, 'title', all);
-		t.getWin().tb_remove();
-	},
-
-	getSettings : function() {
-		var I = this.I, s = '';
-
-		if ( I('linkto-file').checked ) {
-			s += ' link="file"';
-			setUserSetting('galfile', '1');
-		}
-
-		if ( I('order-desc').checked ) {
-			s += ' order="DESC"';
-			setUserSetting('galdesc', '1');
-		}
-
-		if ( I('columns').value !== 3 ) {
-			s += ' columns="' + I('columns').value + '"';
-			setUserSetting('galcols', I('columns').value);
-		}
-
-		if ( I('orderby').value !== 'menu_order' ) {
-			s += ' orderby="' + I('orderby').value + '"';
-			setUserSetting('galord', I('orderby').value);
-		}
-
-		return s;
-	}
+        return s;
+    }
 };

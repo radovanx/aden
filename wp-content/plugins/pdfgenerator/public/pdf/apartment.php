@@ -82,7 +82,7 @@
             .vbottom {
                 vertical-align: bottom;
             }
-            
+
             .vtop {
                 vertical-align: top;
             }            
@@ -199,7 +199,7 @@
                         }
                         ?>
                         <?php _e('tel:', $this->plugin_slug) ?>  <?php echo get_user_meta(get_current_user_id(), 'phone', true) ?><br>
-<a class="red-color decoration-none" href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a>                        
+                        <a class="red-color decoration-none" href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a>                        
                     </td>
                 </tr>
             </table>

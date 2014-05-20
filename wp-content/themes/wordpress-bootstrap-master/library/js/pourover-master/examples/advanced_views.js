@@ -4,26 +4,26 @@
 
 // First, let's use our set up from the [basic example](/pourover/examples/examples_build/basic_pourover_ing.html)
 
-var monsters = [{name: "sphinx", mythology: "greek", eyes: 2, sex: "f", hobbies: ["riddles","sitting","being a wonder"]},
-                {name: "hydra", mythology: "greek", eyes: 18, sex: "m", hobbies: ["coiling","terrorizing","growing"]},
-                {name: "huldra", mythology: "norse", eyes: 2, sex: "f", hobbies: ["luring","terrorizing"]},
-                {name: "cyclops", mythology: "greek", eyes: 1, sex: "m", hobbies: ["staring","terrorizing"]},
-                {name: "fenrir", mythology: "norse", eyes: 2, sex: "m", hobbies: ["growing","god-killing"]},
-                {name: "medusa",  mythology: "greek", eyes: 2, sex: "f", hobbies: ["coiling","staring"]}];
+var monsters = [{name: "sphinx", mythology: "greek", eyes: 2, sex: "f", hobbies: ["riddles", "sitting", "being a wonder"]},
+    {name: "hydra", mythology: "greek", eyes: 18, sex: "m", hobbies: ["coiling", "terrorizing", "growing"]},
+    {name: "huldra", mythology: "norse", eyes: 2, sex: "f", hobbies: ["luring", "terrorizing"]},
+    {name: "cyclops", mythology: "greek", eyes: 1, sex: "m", hobbies: ["staring", "terrorizing"]},
+    {name: "fenrir", mythology: "norse", eyes: 2, sex: "m", hobbies: ["growing", "god-killing"]},
+    {name: "medusa", mythology: "greek", eyes: 2, sex: "f", hobbies: ["coiling", "staring"]}];
 
 var collection = new PourOver.Collection(monsters);
 
-var mythology_filter = PourOver.makeExactFilter("mythology", ["greek","norse"]);
-var gender_filter = PourOver.makeExactFilter("sex", ["m","f"]);
-var hobbies_filter = PourOver.makeInclusionFilter("hobbies",["riddles",
-                                                             "sitting",
-                                                             "being a wonder",
-                                                             "coiling",
-                                                             "terrorizing",
-                                                             "growing",
-                                                             "luring",
-                                                             "staring",
-                                                             "god-killing"]);
+var mythology_filter = PourOver.makeExactFilter("mythology", ["greek", "norse"]);
+var gender_filter = PourOver.makeExactFilter("sex", ["m", "f"]);
+var hobbies_filter = PourOver.makeInclusionFilter("hobbies", ["riddles",
+    "sitting",
+    "being a wonder",
+    "coiling",
+    "terrorizing",
+    "growing",
+    "luring",
+    "staring",
+    "god-killing"]);
 
 collection.addFilters([mythology_filter, gender_filter, hobbies_filter]);
 
@@ -36,13 +36,13 @@ var view = new PourOver.View("default_view", collection);
 // Then, we instantiate our new sort.
 var RevNameSort = PourOver.Sort.extend({
     attr: "name",
-    fn: function(a,b){
-        if (b < a){
-          return -1;
-        } else if (b > a){
-          return 1;
+    fn: function(a, b) {
+        if (b < a) {
+            return -1;
+        } else if (b > a) {
+            return 1;
         } else {
-          return 0;
+            return 0;
         }
     }
 });
@@ -72,12 +72,12 @@ view.getCurrentItems();
 // Here, we define an explicit sort by passing in the order of the items, identified by their name attribute. 
 // Generally, the attribute that you store an `explicitSort` on will be a GUID.
 
-var my_slideshow_sort = PourOver.makeExplicitSort("my_slideshow_order",collection,"name",["hydra","huldra","medusa","cyclops","fenrir","sphinx"])
+var my_slideshow_sort = PourOver.makeExplicitSort("my_slideshow_order", collection, "name", ["hydra", "huldra", "medusa", "cyclops", "fenrir", "sphinx"])
 
 // `reverseCidSort` is the reverse of the default sort. It sorts your items in the reverse of the order in which they were put into the collection
 
-var rev_cid_sort = PourOver.makeReverseCidSort("rev_sort",collection)
-collection.addSorts([my_slideshow_sort,rev_cid_sort])
+var rev_cid_sort = PourOver.makeReverseCidSort("rev_sort", collection)
+collection.addSorts([my_slideshow_sort, rev_cid_sort])
 view.setSort("my_slideshow_order")
 
 // ### Custom View types
@@ -88,18 +88,18 @@ view.setSort("my_slideshow_order")
 // Here, we create a custom view that takes the current query on "mythology" subtracts the current query on sex and ignores hobbies entirely. 
 // This could model a UI in which the user selects a mythology facet to view, a sex to hide and is unable to filter on hobby.
 var CustomView = PourOver.View.extend({
-    selectionFn: function(){
+    selectionFn: function() {
         var mythology_query = collection.filters.mythology.current_query,
-           sex_query  = collection.filters.sex.current_query;
+                sex_query = collection.filters.sex.current_query;
         return mythology_query.not(sex_query);
     },
-    render: function(){
+    render: function() {
         current_items = this.getCurrentItems();
         console.log(current_items);
     }
 })
-var custom_view = new CustomView("custom_view",collection);
-custom_view.on("update",custom_view.render);
+var custom_view = new CustomView("custom_view", collection);
+custom_view.on("update", custom_view.render);
 
 // Now, `custom_view.getCurrentItems()` will ignore the hobby query and return the result of the mythology query - that of sex.
 // Whenever any query changes or the collection changes, the custom view will "render" this result
@@ -125,27 +125,27 @@ var favorites_filter = PourOver.makeManualFilter("favorites");
 collection_two.addFilters([mythology_filter, gender_filter, hobbies_filter, favorites_filter]);
 
 // When a user favorites an item, say the 2nd and 4th items in our collection, the hydra and the cyclops (this would happen in a callback)
-var user_selection_cids = [1,3];
+var user_selection_cids = [1, 3];
 collection_two.filters.favorites.addItems(user_selection_cids);
 
 // Now, we make a grid view that ignores the favorites filter
 var GridView = PourOver.View.extend({
-    selectionFn: function(){
+    selectionFn: function() {
         var mythology_query = collection_two.filters.mythology.current_query,
-            sex_query  = collection_two.filters.sex.current_query,
-            hobbies_query = collection_two.filters.hobbies.current_query;
+                sex_query = collection_two.filters.sex.current_query,
+                hobbies_query = collection_two.filters.hobbies.current_query;
         return mythology_query.and(sex_query).and(hobbies_query);
     }
 });
-var grid_view = new GridView("grid_view",collection_two)
+var grid_view = new GridView("grid_view", collection_two)
 
 // Finally, we make a favorite view that only considers the favorites filter
 var FavView = PourOver.View.extend({
-    selectionFn: function(){
+    selectionFn: function() {
         return collection_two.filters.favorites.current_query;
     }
 });
-var fav_view = new FavView("fav_view",collection_two)
+var fav_view = new FavView("fav_view", collection_two)
 
 // Now, `grid_view.getCurrentItems()` will only be affected by queries on mythology, sex, or hobbies.
 // `fav_view.getCurrentItems()` will only be affected by queries (`addItems` and `removeItems`) on the favorites filter

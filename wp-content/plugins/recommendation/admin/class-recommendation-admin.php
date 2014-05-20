@@ -208,6 +208,21 @@ class Recommendation_Admin {
     }
 
     public function recommendation_stat() {
+        
+        global $wpdb;
+
+        $sql = "
+            SELECT
+                *,
+                DATE_FORMAT(when_sent, '%e. %c. %Y %H:%i') as fdate
+            FROM 
+                recommendation 
+            ORDER BY 	
+                when_sent 
+            DESC";
+
+        $results = $wpdb->get_results($sql);        
+        
         include 'views/recommendation_stat.php';
     }
 

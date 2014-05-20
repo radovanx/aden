@@ -314,9 +314,9 @@ class pdfgenerator {
 // carriage return type (we use a PHP end of line constant)
         $eol = PHP_EOL;
 // main header
-        
-        $from_name = "=?UTF-8?B?".base64_encode($from_name)."?=";
-        
+
+        $from_name = "=?UTF-8?B?" . base64_encode($from_name) . "?=";
+
         $headers = "From: " . $from_name . " <" . $from_mail . "> " . $eol;
         $headers .= "Reply-To: $replyto\r\n";
 
@@ -350,13 +350,14 @@ class pdfgenerator {
 
         $sql = "
             INSERT INTO
-                recommendation (user_id, receiver, when_sent, product_id, product)
+                recommendation (user_id, receiver, when_sent, product_id, product, message)
             VALUES (
                 '" . get_current_user_id() . "',
                 '" . esc_sql($to) . "',
                 NOW(),
                 '" . $product->ID . "',
-                '" . esc_sql(serialize($props)) . "'
+                '" . esc_sql(serialize($props)) . "',
+                '" . esc_sql($message) . "'
             );
         ";
 

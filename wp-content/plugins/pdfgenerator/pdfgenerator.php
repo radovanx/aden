@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The WordPress Plugin Boilerplate.
  *
@@ -24,15 +25,14 @@
  * Domain Path:       /languages
  * GitHub Plugin URI: https://github.com/<owner>/<repo>
  */
-
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('WPINC')) {
+    die;
 }
 
-/*----------------------------------------------------------------------------*
+/* ----------------------------------------------------------------------------*
  * Public-Facing Functionality
- *----------------------------------------------------------------------------*/
+ * ---------------------------------------------------------------------------- */
 
 /*
  * @TODO:
@@ -40,7 +40,7 @@ if ( ! defined( 'WPINC' ) ) {
  * - replace `class-pdfgenerator.php` with the name of the plugin's class file
  *
  */
-require_once( plugin_dir_path( __FILE__ ) . 'public/class-pdfgenerator.php' );
+require_once( plugin_dir_path(__FILE__) . 'public/class-pdfgenerator.php' );
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.
@@ -51,8 +51,8 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/class-pdfgenerator.php' );
  * - replace pdfgenerator with the name of the class defined in
  *   `class-pdfgenerator.php`
  */
-register_activation_hook( __FILE__, array( 'pdfgenerator', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'pdfgenerator', 'deactivate' ) );
+register_activation_hook(__FILE__, array('pdfgenerator', 'activate'));
+register_deactivation_hook(__FILE__, array('pdfgenerator', 'deactivate'));
 
 /*
  * @TODO:
@@ -60,11 +60,11 @@ register_deactivation_hook( __FILE__, array( 'pdfgenerator', 'deactivate' ) );
  * - replace pdfgenerator with the name of the class defined in
  *   `class-pdfgenerator.php`
  */
-add_action( 'plugins_loaded', array( 'pdfgenerator', 'get_instance' ) );
+add_action('plugins_loaded', array('pdfgenerator', 'get_instance'));
 
-/*----------------------------------------------------------------------------*
+/* ----------------------------------------------------------------------------*
  * Dashboard and Administrative Functionality
- *----------------------------------------------------------------------------*/
+ * ---------------------------------------------------------------------------- */
 
 /*
  * @TODO:
@@ -82,9 +82,8 @@ add_action( 'plugins_loaded', array( 'pdfgenerator', 'get_instance' ) );
  *
  * The code below is intended to to give the lightest footprint possible.
  */
-if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+if (is_admin() && (!defined('DOING_AJAX') || !DOING_AJAX )) {
 
-	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-pdfgenerator-admin.php' );
-	add_action( 'plugins_loaded', array( 'pdfgenerator_Admin', 'get_instance' ) );
-
+    require_once( plugin_dir_path(__FILE__) . 'admin/class-pdfgenerator-admin.php' );
+    add_action('plugins_loaded', array('pdfgenerator_Admin', 'get_instance'));
 }

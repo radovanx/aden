@@ -24,27 +24,27 @@ global $q_config;
 $el = qtrans_getSortedLanguages();
 
 /*
-?>
-<script type="text/javascript">
-<?php
-echo $q_config['js']['qtrans_is_array'];
-echo $q_config['js']['qtrans_split'];
-echo $q_config['js']['qtrans_integrate'];
-echo $q_config['js']['qtrans_switch_postbox'];
-echo $q_config['js']['qtrans_use'];
+  ?>
+  <script type="text/javascript">
+  <?php
+  echo $q_config['js']['qtrans_is_array'];
+  echo $q_config['js']['qtrans_split'];
+  echo $q_config['js']['qtrans_integrate'];
+  echo $q_config['js']['qtrans_switch_postbox'];
+  echo $q_config['js']['qtrans_use'];
 
-foreach ($el as $language) {
-    echo qtrans_createInfoTitlebarButton('flat_properties', $language, 'listproperties', 'qtrans_switcher_fl_' . $language);
-    //echo qtrans_createTextArea('flat_properties', $language, 'listproperties', 'qtrans_switcher_postexcerpt_' . $language);
-}
-?>
+  foreach ($el as $language) {
+  echo qtrans_createInfoTitlebarButton('flat_properties', $language, 'listproperties', 'qtrans_switcher_fl_' . $language);
+  //echo qtrans_createTextArea('flat_properties', $language, 'listproperties', 'qtrans_switcher_postexcerpt_' . $language);
+  }
+  ?>
 
-    jQuery(document).ready(function() {
-        //jQuery('.listproperties').hide();
-        qtrans_switch_listpostbox('flat_properties', 'listproperties', '<?php echo $q_config['default_language'] ?>');
-    });
-</script>
-*/
+  jQuery(document).ready(function() {
+  //jQuery('.listproperties').hide();
+  qtrans_switch_listpostbox('flat_properties', 'listproperties', '<?php echo $q_config['default_language'] ?>');
+  });
+  </script>
+ */
 ?>
 <div id="flat-properties">
     <?php foreach ($el as $lang): ?>
@@ -52,9 +52,9 @@ foreach ($el as $language) {
         <div id="listproperties_<?php echo $lang ?>" class="listproperties">
             <?php
             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
-            
-            
-            
+
+
+
 
             if (!empty($props)) {
                 //$props = unserialize($props);

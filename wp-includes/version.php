@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The WordPress version string
  *

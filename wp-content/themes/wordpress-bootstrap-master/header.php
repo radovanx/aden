@@ -43,22 +43,22 @@
                 </div> 
             </div> <!-- end .container -->
         </div> <!-- end .navbar -->
-        <?php 
-        
-      /*  $pages = array(
-            3305, // My preferences 
-            1755, // Profile
-            1791, // Search 
-            3314, // Webinars
-            3310, // Programs
-        );*/
- 
-        if (current_user_can('see_detail')): ?>
+        <?php
+        /*  $pages = array(
+          3305, // My preferences
+          1755, // Profile
+          1791, // Search
+          3314, // Webinars
+          3310, // Programs
+          ); */
+
+        if (current_user_can('see_detail')):
+            ?>
             <div class="container">
                 <div class="content">
                     <div class="row">
                         <div class="col-sm-12 clearfix">
- 
+
                             <?php
                             wp_nav_menu(
                                     array(

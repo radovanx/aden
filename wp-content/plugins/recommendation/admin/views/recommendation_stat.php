@@ -1,19 +1,7 @@
 <div class="wrap">
     <div id="poststuff">
         <?php
-        global $wpdb;
 
-        $sql = "
-    SELECT
-        *,
-        DATE_FORMAT(when_sent, '%e. %c. %Y %H:%i') as fdate
-    FROM 
-        recommendation 
-    ORDER BY 	
-        when_sent 
-    DESC";
-
-        $results = $wpdb->get_results($sql);
         ?>
 
         <?php if (!empty($results)): ?>

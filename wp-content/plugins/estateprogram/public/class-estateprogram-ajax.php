@@ -32,15 +32,15 @@ class EstateProgramAjax {
         $regions = get_categories($args);
         ?>
         <div id="district-wrap-<?php echo (int) $parent_id ?>">
-        <?php
-        foreach ($regions as $key => $value):
-            ?>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="district-<?php echo $value->term_id ?>" class="district-checkbox" value="<?php _e($value->name) ?>"><?php _e($value->name) ?>
-            </label>
             <?php
-        endforeach;
-        ?>
+            foreach ($regions as $key => $value):
+                ?>
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="district-<?php echo $value->term_id ?>" class="district-checkbox" value="<?php _e($value->name) ?>"><?php _e($value->name) ?>
+                </label>
+                <?php
+            endforeach;
+            ?>
         </div>
         <?php
         exit;
@@ -49,7 +49,7 @@ class EstateProgramAjax {
     public function backend_parse_xml() {
 
         require_once 'class-sourceparser.php';
-        
+
         $dir = $_GET['dir'];
         $filename = $_GET['file'];
 

@@ -32,7 +32,6 @@ class EstateProgram_Admin {
      * @var      object
      */
     protected static $instance = null;
-    
     public $plugin_url;
 
     /**
@@ -106,8 +105,6 @@ class EstateProgram_Admin {
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
     }
-
-
 
     public function parse_xml() {
         include 'views/parse_xml.php';

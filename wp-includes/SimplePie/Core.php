@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SimplePie
  *
@@ -51,7 +52,6 @@
  * @package SimplePie
  * @subpackage API
  */
-class SimplePie_Core extends SimplePie
-{
-
+class SimplePie_Core extends SimplePie {
+    
 }

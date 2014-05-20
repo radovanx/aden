@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SimplePie
  *
@@ -52,105 +53,91 @@
  * @package SimplePie
  * @subpackage API
  */
-class SimplePie_Credit
-{
-	/**
-	 * Credited role
-	 *
-	 * @var string
-	 * @see get_role()
-	 */
-	var $role;
+class SimplePie_Credit {
 
-	/**
-	 * Organizational scheme
-	 *
-	 * @var string
-	 * @see get_scheme()
-	 */
-	var $scheme;
+    /**
+     * Credited role
+     *
+     * @var string
+     * @see get_role()
+     */
+    var $role;
 
-	/**
-	 * Credited name
-	 *
-	 * @var string
-	 * @see get_name()
-	 */
-	var $name;
+    /**
+     * Organizational scheme
+     *
+     * @var string
+     * @see get_scheme()
+     */
+    var $scheme;
 
-	/**
-	 * Constructor, used to input the data
-	 *
-	 * For documentation on all the parameters, see the corresponding
-	 * properties and their accessors
-	 */
-	public function __construct($role = null, $scheme = null, $name = null)
-	{
-		$this->role = $role;
-		$this->scheme = $scheme;
-		$this->name = $name;
-	}
+    /**
+     * Credited name
+     *
+     * @var string
+     * @see get_name()
+     */
+    var $name;
 
-	/**
-	 * String-ified version
-	 *
-	 * @return string
-	 */
-	public function __toString()
-	{
-		// There is no $this->data here
-		return md5(serialize($this));
-	}
+    /**
+     * Constructor, used to input the data
+     *
+     * For documentation on all the parameters, see the corresponding
+     * properties and their accessors
+     */
+    public function __construct($role = null, $scheme = null, $name = null) {
+        $this->role = $role;
+        $this->scheme = $scheme;
+        $this->name = $name;
+    }
 
-	/**
-	 * Get the role of the person receiving credit
-	 *
-	 * @return string|null
-	 */
-	public function get_role()
-	{
-		if ($this->role !== null)
-		{
-			return $this->role;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * String-ified version
+     *
+     * @return string
+     */
+    public function __toString() {
+        // There is no $this->data here
+        return md5(serialize($this));
+    }
 
-	/**
-	 * Get the organizational scheme
-	 *
-	 * @return string|null
-	 */
-	public function get_scheme()
-	{
-		if ($this->scheme !== null)
-		{
-			return $this->scheme;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * Get the role of the person receiving credit
+     *
+     * @return string|null
+     */
+    public function get_role() {
+        if ($this->role !== null) {
+            return $this->role;
+        } else {
+            return null;
+        }
+    }
 
-	/**
-	 * Get the credited person/entity's name
-	 *
-	 * @return string|null
-	 */
-	public function get_name()
-	{
-		if ($this->name !== null)
-		{
-			return $this->name;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * Get the organizational scheme
+     *
+     * @return string|null
+     */
+    public function get_scheme() {
+        if ($this->scheme !== null) {
+            return $this->scheme;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Get the credited person/entity's name
+     *
+     * @return string|null
+     */
+    public function get_name() {
+        if ($this->name !== null) {
+            return $this->name;
+        } else {
+            return null;
+        }
+    }
+
 }
-

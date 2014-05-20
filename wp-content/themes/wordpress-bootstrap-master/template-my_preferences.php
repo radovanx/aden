@@ -5,7 +5,7 @@
 ?>
 <?php
 redirect_if_not_logged();
-get_header(); 
+get_header();
 ?>
 <div class="container">
     <div id="content" class="clearfix row">
@@ -44,11 +44,11 @@ get_header();
                                     <th><?php _e("Status", "wpbootstrap"); ?></th>
                                 </tr>
                             </thead>
-                             <?php
-                                $lang = qtrans_getLanguage();
-                                $flat_props = EstateProgram::user_preferences($lang)
-                                ?>
-                              <?php  include TEMPLATEPATH . '/table_row.php'; ?> 
+                            <?php
+                            $lang = qtrans_getLanguage();
+                            $flat_props = EstateProgram::user_preferences($lang)
+                            ?>
+                            <?php include TEMPLATEPATH . '/table_row.php'; ?> 
                         </table>
 
                         <!-- /reference list -->
@@ -90,8 +90,8 @@ get_header();
             </div>
             <div class="modal-footer">
                 <!--<button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>-->
-                    <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete"><?php _e('Yes', 'wpbootstrap') ?></button>
-                    <button type="button" data-dismiss="modal" class="btn"><?php _e('No', 'wpbootstrap') ?></button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete"><?php _e('Yes', 'wpbootstrap') ?></button>
+                <button type="button" data-dismiss="modal" class="btn"><?php _e('No', 'wpbootstrap') ?></button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

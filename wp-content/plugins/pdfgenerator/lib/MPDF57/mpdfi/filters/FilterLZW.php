@@ -1,4 +1,5 @@
 <?php
+
 //
 //  FPDI - Version 1.3.1
 //
@@ -18,7 +19,7 @@
 //
 
 class FilterLZW {
-    
+
     var $sTable = array();
     var $data = null;
     var $dataLength = 0;
@@ -33,7 +34,7 @@ class FilterLZW {
     function error($msg) {
         die($msg);
     }
-    
+
     /**
      * Method to decode LZW compressed data.
      *
@@ -41,7 +42,7 @@ class FilterLZW {
      */
     function decode($data) {
 
-        if($data[0] == 0x00 && $data[1] == 0x01) {
+        if ($data[0] == 0x00 && $data[1] == 0x01) {
             $this->error('LZW flavour not supported.');
         }
 
@@ -73,7 +74,6 @@ class FilterLZW {
 
                 $uncompData .= $this->sTable[$code];
                 $oldCode = $code;
-
             } else {
 
                 if ($code < $this->tIdx) {
@@ -84,7 +84,7 @@ class FilterLZW {
                     $oldCode = $code;
                 } else {
                     $string = $this->sTable[$oldCode];
-                    $string = $string.$string[0];
+                    $string = $string . $string[0];
                     $uncompData .= $string;
 
                     $this->addStringToTable($string);
@@ -92,10 +92,9 @@ class FilterLZW {
                 }
             }
         }
-        
+
         return $uncompData;
     }
-
 
     /**
      * Initialize the string table.
@@ -113,8 +112,8 @@ class FilterLZW {
     /**
      * Add a new string to the string table.
      */
-    function addStringToTable ($oldString, $newString='') {
-        $string = $oldString.$newString;
+    function addStringToTable($oldString, $newString = '') {
+        $string = $oldString . $newString;
 
         // Add this new String to the table
         $this->sTable[$this->tIdx++] = $string;
@@ -142,13 +141,14 @@ class FilterLZW {
             $this->nextBits += 8;
         }
 
-        $code = ($this->nextData >> ($this->nextBits - $this->bitsToGet)) & $this->andTable[$this->bitsToGet-9];
+        $code = ($this->nextData >> ($this->nextBits - $this->bitsToGet)) & $this->andTable[$this->bitsToGet - 9];
         $this->nextBits -= $this->bitsToGet;
 
         return $code;
     }
-    
+
     function encode($in) {
         $this->error("LZW encoding not implemented.");
     }
+
 }
