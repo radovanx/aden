@@ -509,7 +509,7 @@ get_header();
                  
                 var i =0; 
                 var output_set;  
-                var city_filter = PourOver.makeExactFilter("city", ["Berlin","Prague"]); 
+                var city_filter = PourOver.makeExactFilter("city", [checkedcities]); 
                 
                 collection.addFilters([city_filter]); 
                
@@ -518,19 +518,14 @@ get_header();
                 var cityfilter = jQuery(this).val();   
  
                 var citys = collection.filters.city.getFn(cityfilter);  
-         
-     
+          
                 if (i == 0)
-                {
-                    
-                output_set = citys;
- 
+                {  
+                output_set = citys; 
                 }
                 else
-                {
-                
-                output_set = output_set.or(citys);
-                
+                {       
+                output_set = output_set.or(citys); 
                 } 
                 i++;
                 });
