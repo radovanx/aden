@@ -20,6 +20,15 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html http://www.apache.org/lice
     z-index: 800 !important;
 }
 
+#qtranslate-chooser {
+    float: right;
+}
+#qtranslate-chooser li {
+    list-style-type: none;
+    float: left;
+    margin: 1px 4px;
+}
+
 /*
 #form-response {
     margin-top: 15px;
