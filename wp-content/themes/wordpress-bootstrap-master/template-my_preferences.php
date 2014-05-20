@@ -9,24 +9,31 @@ get_header();
 ?>
 <div class="container">
     <div id="content" class="clearfix row">
-
-        <div id="main" class="col-sm-12 clearfix" role="main">
-
-            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-
-                        <header>
-                            <div class="page-header"><h1 class="page-title border-left" itemprop="headline"><?php the_title(); ?></h1></div>
-                        </header> <!-- end article header -->
-
-                        <section class="post_content clearfix" itemprop="articleBody">
-                            <?php the_content(); ?>
-
-                        </section> <!-- end article section -->
-
+ 
+         <div class="col-md-6">
+          <h1 class="border-left inline uppercase">
+                <?php _e("My preferences", "wpbootstrap"); ?>
+          </h1> 
+        </div>
+        <div class="col-md-3 hidden">
+            <select name="sort_by_list" class="form-control input-lg">
+                <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
+                <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
+                <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
+                <option value="#"><?php _e("Sort by", "wpbootstrap"); ?></option>
+            </select>
+        </div>
+        <div class="col-md-3 pull-right big_icons margin-top">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs"> 
+                <a href="#table" data-toggle="tab" class="active red"><i class="fa fa-th"></i></a>
+                <a href="#list"  data-toggle="tab" class="blue"><i class="fa fa-list"></i></a> 
+            </ul> 
+        </div> 
+        <div id="main" class="col-sm-12 clearfix margin-top" role="main"> 
+                         <div class="tab-content">      
+                         <div class="tab-pane active" id="table">  
                         <!-- reference list -->
-
                         <table id="favorite-table" class="table table-bordered remove-favorite-row confirm-remove">
                             <thead>
                                 <tr>
@@ -50,31 +57,15 @@ get_header();
                             ?>
                             <?php include TEMPLATEPATH . '/table_row.php'; ?> 
                         </table>
-
-                        <!-- /reference list -->
-
-                        <footer>
-                            <?php the_tags('<p class="tags"><span class="tags-title">' . __("Tags", "wpbootstrap") . ':</span> ', ', ', '</p>'); ?>
-                        </footer> <!-- end article footer -->
-
-                    </article> <!-- end article -->
-
-                <?php endwhile; ?>
-
-            <?php else : ?>
-
-                <article id="post-not-found">
-                    <header>
-                        <h1><?php _e("Not Found", "wpbootstrap"); ?></h1>
-                    </header>
-                    <section class="post_content">
-                        <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p>
-                    </section>
-                    <footer>
-                    </footer>
-                </article>
-
-            <?php endif; ?>
+                        </div>
+                        <div class="col-md-12 column border tab-pane" id="list">     
+                    <?php
+                            $lang = qtrans_getLanguage();
+                            $flat_props = EstateProgram::user_preferences($lang); 
+                            include TEMPLATEPATH . '/row_row.php'; 
+                    ?>  
+                </div>   
+            </div>    
         </div> <!-- end #main -->
     </div> <!-- end #content -->
 </div> 

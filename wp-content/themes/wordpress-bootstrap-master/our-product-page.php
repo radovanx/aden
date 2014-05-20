@@ -235,15 +235,12 @@ get_header();
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free"; 
                                     if($rental_status == 1)
-                                    { $rental_status = 'rented'; }
-                                   
+                                    { $rental_status = 'rented'; } 
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-                                    
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";  
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                                     $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
-             
-                                    
+
                                     if ($i < 10):
                                         ?> 
 
@@ -295,7 +292,7 @@ get_header();
                             $data_object = substr("$data_object", 0, -1);
                             $data_object = "[" . $data_object . "]";
                             ?>   
-                        </tbody>                 
+                        </tbody>                  
                     </table>  
                 </div>    
                 <div class="col-md-12 column border tab-pane" id="list">     
@@ -305,6 +302,7 @@ get_header();
                     $i = 0;
                     if (!empty($flat_props)):
                         foreach ($flat_props as $key => $val): 
+ 
                             $prop = unserialize($val->prop);
                             $key = unserialize($key);
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
@@ -323,10 +321,7 @@ get_header();
                             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
                             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
-                            
-                          
-                            
-
+      
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
                             <div class="row">
@@ -734,13 +729,14 @@ get_header();
                 jQuery("table").tablesorter(); 
             
             
+            
+            
+                var row_data = 
+            
                 //doplnit druhou tabulku
             
             
-            
-            
-            
-            
+  
             
             });
         } 
@@ -750,7 +746,7 @@ get_header();
          </td>
          </tr> 
          */
-             });
+        });
 </script>    
 <script>   
     jQuery(document).ready(function($) { 
