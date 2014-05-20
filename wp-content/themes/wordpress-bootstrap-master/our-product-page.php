@@ -5,7 +5,9 @@
 ?> 
 <?php 
 redirect_if_not_logged();
-get_header(); ?>
+get_header(); 
+?>
+ 
 <div class="container">
     <div id="content" class="clearfix row">
         <div class="col-sm-12 clearfix" role="main">
@@ -13,7 +15,7 @@ get_header(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <header> 
                             <div class="page-header"><h1 class="page-title border-left uppercase" itemprop="headline"><?php the_title(); ?></h1>
-                                <h2><small>Select a property type and start your search</small></h2>
+                                <h2><small><?php _e("Select a property type and start your search.", "wpbootstrap"); ?></small></h2>
                             </div>
                         </header> <!-- end article header --> 
                     </article> <!-- end article --> 
@@ -39,6 +41,7 @@ get_header(); ?>
                     <div class="form-group"> 
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
                         <div class="row"> 
+                            <div class="col-md-12">
                             <!-- cities from taxonomy -->                    
                             <?php
                             $args = array(
@@ -47,16 +50,38 @@ get_header(); ?>
                                 'parent' => 0
                             );
                             $cities = get_categories($args);
-                            foreach ($cities as $key => $value):
+                            foreach ($cities as $key => $value):                                  
                                 ?>  
                                 <label class="checkbox-inline">
-                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="cities" attr-id="<?php _e($value->id); ?>" class="city-checkbox" value="<?php _e($value->name); ?>"><?php _e($value->name); ?>
+                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="cities" data-myAttri="<?php _e($value->term_id); ?>" class="city-checkbox" value="<?php _e($value->name); ?>"><?php _e($value->name); ?>
                                 </label>
                             <?php endforeach; ?>
                             <!-- /cities from taxonomy -->
+                        </div>
                         </div>                
                     </div>
-                    <div class="form-group">  
+                     <div class="form-group"> 
+                        <label><?php _e("Disctrict:", "wpbootstrap"); ?></label>
+                        <div id="district-list"></div>
+                        <!--<label for="Disctrict"></label><input name="Disctrict" class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>-->
+                        <!-- district from ajax --> 
+                        <!-- /district from ajax -->
+                    </div>
+   
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input  name="Pricet" class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
+                    </div>
+                </div>
+                <div class="col-md-6 column">
+                       <div class="form-group">  
                         <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label>
                         <?php
                         $args = array(
@@ -71,28 +96,7 @@ get_header(); ?>
                                 <option class="city-checkbox" value="<?php echo $type->name; ?>"><?php _e($type->name) ?></option>
                             <?php endforeach; ?>
                         </select> 
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
-                        </div>
-
-                        <div class="form-group col-md-6">
-                            <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input  name="Pricet" class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
-                    </div>
-                </div>
-                <div class="col-md-6 column">
-                    <div class="form-group">
-                        <div id="district-list"></div>
-                        <!--<label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input name="Disctrict" class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>-->
-
-                        <!-- district from ajax --> 
-                        <!-- /district from ajax -->
-                    </div>
+                    </div> 
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="Areaf"><?php _e("Area from (m2):", "wpbootstrap"); ?></label><input name="Areaf" class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />
@@ -137,7 +141,7 @@ get_header(); ?>
                             </select>    
                         </div> 
                         <div class="form-group col-md-6 col-md-offset-6">  
-                            <button type="submit" class="btn btn-primary btn-lg btn-block searchbutton margin-button"><i class="fa fa-search"></i>Search</button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block searchbutton margin-button"><i class="fa fa-search"></i><?php _e("Search", "wpbootstrap"); ?></button>
                         </div>   
                     </div>       
                 </div>
@@ -215,22 +219,19 @@ get_header(); ?>
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-                                    
-                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
-               
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . "   },";
+                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-"; 
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\"},";
                                     $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
                                     if ($i < 10):
                                         ?> 
-                                       
-                            
-                                            <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
+
+                                        <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
                                             <td>   
                                                 <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><?php echo $val->is_favorite; ?></a>
                                             </td>
                                             <td>
-                                                <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
+                                                <?php echo $reference; ?>
                                             </td>
                                             <td>
                                                 <a href="<?php echo $url; ?>" class="blue"><?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?> </a>
@@ -251,19 +252,19 @@ get_header(); ?>
                                                 <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
                                             </td>
                                             <td>
-                                                <?php echo $price; ?>
+                                                <?php echo $price; ?>&euro;
                                             </td>
                                             <td>
-                                                <?php echo $pricem; ?>
+                                                <?php echo $pricem; ?>&euro;
                                             </td>
                                             <td>   
+                                                    
                                             </td>
                                             <td>
                                                 <?php echo $status; ?>
                                             </td>
                                         </tr>
-                                        
-                                            
+                                         
                                         <?php
                                     endif;
                                     $i++;
@@ -300,9 +301,7 @@ get_header(); ?>
                             $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
                             $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-
-                            $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";
-
+                            $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
                             <div class="row">
@@ -348,12 +347,11 @@ get_header(); ?>
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $price; ?>
+                                                    <?php echo $price; ?> &euro;
                                                 </span>
-
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $pricem; ?>
+                                                    <?php echo $pricem; ?> &euro;
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>  
@@ -361,13 +359,11 @@ get_header(); ?>
                                             </div> 
                                             <div class="col-md-3"> 
                                                 <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
-
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
                                                     <strong class="blue clearfix pull-right">
                                                         <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
                                                     </strong>    
                                                 </a>   
-
                                                 <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
                                             </div>  
                                         </div>  
@@ -404,58 +400,71 @@ get_header(); ?>
 <script>
   
       jQuery(function() {
-        jQuery('.city-checkbox').click(function() {
-        if(jQuery(this).is(':checked')){
-        var data = {
-         'action':'get_district',
-         'id':+jQuery(this).val()
+        jQuery('.city-checkbox').click(function() { 
+            
+        var id = jQuery(this).attr("data-myAttri");      
+        if(jQuery(this).is(':checked')){   
+             
+        var data = {       
+         'action':'get_district', 
+         'id':+id 
         }; 
-        jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
-        jQuery('#district-list').append(response);                                                
-        });                                            
-        } else {
-        jQuery('#district-wrap-'+jQuery(this).val()).remove();
+        
+        jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) { 
+        jQuery('#district-list').append(response);       
+        });                
+        }   
+        else { 
+        jQuery('#district-wrap-'+id).remove();
         }
         });
         });
-         
-</script>
  
+</script> 
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
 <script>
 
     var datatable = <?php echo $data_object; ?>;
     var collection = new PourOver.Collection(datatable);
-    //make Range filter  
-    //CITY FILTER  
-   
+  
         jQuery("form").on("submit", function(event) { 
         event.preventDefault();  
-        var values = {};
-        
+
+        var values = {}; 
         jQuery.each(jQuery('form').serializeArray(), function(i, field) { 
             values[field.name] = field.value; 
-        });
-      
-        var checkedcities='';     
-        jQuery('.city-checkbox:checked').each(function(){
-                checkedcities=checkedcities+','+jQuery(this).val();    
         }); 
-        var checkeddistricts=''; 
-        jQuery('.district-checkbox:checked').each(function(){
-               checkeddistricts=''+checkeddistricts+'",'+jQuery(this).val();    
-        });
+
+        var checkedcities='';     
+        var helper = []
+       
+        jQuery('.city-checkbox:checked').each(function(){ 
+                helper.push(jQuery(this).val()); 
+               // checkedcities=checkedcities+','+jQuery(this).val();    
+        });    
         
-        checkedcities = checkedcities.substring(1);
-        checkeddistricts = checkeddistricts.substring(1);
+        //magic - refactoring needed !!!
+        
+        checkedcities = '"'+helper.join('","')+'"';         
+        
+        var checkedcitiesf = checkedcities.substring(1, checkedcities.length-1);
+        
+   
+        var checkeddistrict='';     
+        var helperd = []
        
-       
-     
-       
-      
-        var fcity = checkedcities; 
-        var fdistrict = checkeddistricts;
+        jQuery('.district-checkbox:checked').each(function(){ 
+                helperd.push(jQuery(this).val()); 
+               // checkedcities=checkedcities+','+jQuery(this).val();    
+        });           
+        //magic - refactoring needed !!!     
+        checkeddistrict = '"'+helperd.join('","')+'"';            
+        checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length-1);
+  
+    
+        var fcity = checkedcitiesf; 
+        var fdistrict = checkeddistrict;
         
         var ftype = values.type;      
         var freferences = values.References;     
@@ -467,17 +476,22 @@ get_header(); ?>
         var fpricet = values.Pricet; 
             
         //make a filter 
-         
+    
+  
         var finalfilter = false;
+        
         if (fcity != '')
         {
-            var city_filter = PourOver.makeInclusionFilter("city", [fcity]);
             
-           console.log(city_filter);
+   
+            var city_filter = PourOver.makeExactFilter("city", [fcity]);           
             
-            collection.addFilters([city_filter]);
-            finalfilter = collection.filters.city.getFn(fcity); 
-        }
+            collection.addFilters([city_filter]);  
+            finalfilter = collection.filters.city.getFn(fcity);  
+            console.log(finalfilter);
+            
+    
+        } 
         if (ftype != '')
         {
             var type_filter = PourOver.makeExactFilter("type", [ftype]);
@@ -510,7 +524,7 @@ get_header(); ?>
         }
         if (fdistrict != '')
         { 
-            var district_filter = PourOver.makeInclusionFilter("district", [fdistrict]);
+            var district_filter = PourOver.makeExactFilter("district", [fdistrict]);
             collection.addFilters([district_filter]);
 
             if (finalfilter != false)
@@ -593,24 +607,40 @@ get_header(); ?>
                 finalfilter = collection.filters.area_range.getFn([0, fareat]);
             }
         }
-        //ROOMS     
-        if (froomsf != '' || froomst != '')
+        else if (fareaf != '' && fareat == '')
         {
-            var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"});
-            collection.addFilters([rooms_range_filter]);
-            // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]);  
+            var area_range_filter = PourOver.makeRangeFilter("area_range", [[fareaf, 999]], {attr: "area"});
+            collection.addFilters([area_range_filter]);
+            // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]); 
             if (finalfilter != false)
             {
-                finalfilter = finalfilter.and(collection.filters.rooms_range.getFn([froomsf, froomst]));
+                finalfilter = finalfilter.and(collection.filters.area_range.getFn([fareaf, 999]));
             }
             else
             {
-                finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
+                finalfilter = collection.filters.area_range.getFn([fareaf, 999]);
             }
+        }
+        //ROOMS     
+        if (froomsf != '' || froomst != '')
+        {
+             
+            var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"}); 
+            collection.addFilters([rooms_range_filter]); 
+        if (finalfilter != false)
+            {
+                finalfilter = finalfilter.and(collection.filters.rooms_range.getFn([froomsf, froomst]));
+            } 
+        else
+            {
+                finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
+            } 
         }  
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
-        // console.log(myfilterfinal); 
+       
+        console.log(myfilterfinal); 
+ 
         if (jQuery.isEmptyObject(myfilterfinal))
         {
             jQuery("#table_data_filter").empty(); 
@@ -647,22 +677,25 @@ get_header(); ?>
                  "http://www.adenimmo.loc.../2014/05/Foto_18294.jpg"
                  
                  price
-                 234000
-                 
+                 234000 
                  references
-                 5382
-                 
+                 5382 
                  rooms
                  2
-                 
+                 rstatus 
+                 pricem 
                  url
                  "http://www.adenimmo.loc...eart-of-berlin-mitte-4/"
                  
                  zip*/
 
-                var table_data = "<tr><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td><td></td></tr>";
+                var table_data = "<tr><td> </td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td><td>"+val.hnumber+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.price+" &euro;</td><td>"+val.pricem+" &euro;</td><td></td><td>"+val.rstatus+"</td></tr>";
                 jQuery("tbody").append(table_data);
- 
+              
+                jQuery("table").trigger("update");     
+                jQuery("table").tablesorter();
+              
+                
             });
         } 
         /*<tr> 
