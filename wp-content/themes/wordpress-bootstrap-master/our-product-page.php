@@ -60,7 +60,28 @@ get_header();
                         </div>
                         </div>                
                     </div>
-                    <div class="form-group">  
+                     <div class="form-group"> 
+                        <label><?php _e("Disctrict:", "wpbootstrap"); ?></label>
+                        <div id="district-list"></div>
+                        <!--<label for="Disctrict"></label><input name="Disctrict" class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>-->
+                        <!-- district from ajax --> 
+                        <!-- /district from ajax -->
+                    </div>
+   
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input  name="Pricet" class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
+                    </div>
+                </div>
+                <div class="col-md-6 column">
+                       <div class="form-group">  
                         <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label>
                         <?php
                         $args = array(
@@ -75,26 +96,7 @@ get_header();
                                 <option class="city-checkbox" value="<?php echo $type->name; ?>"><?php _e($type->name) ?></option>
                             <?php endforeach; ?>
                         </select> 
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input  name="Pricet" class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
-                    </div>
-                </div>
-                <div class="col-md-6 column">
-                    <div class="form-group">
-                        <div id="district-list"></div>
-                        <!--<label for="Disctrict"><?php _e("Disctrict:", "wpbootstrap"); ?></label><input name="Disctrict" class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>-->
-                        <!-- district from ajax --> 
-                        <!-- /district from ajax -->
-                    </div>
+                    </div> 
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="Areaf"><?php _e("Area from (m2):", "wpbootstrap"); ?></label><input name="Areaf" class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />
@@ -219,7 +221,7 @@ get_header();
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-"; 
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\"},";
-                                  
+                                    $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
                                     if ($i < 10):
                                         ?> 
@@ -268,6 +270,10 @@ get_header();
                                     $i++;
                                 endforeach;
                             endif;
+                            $autocomplete = substr("$autocomplete", 0, -1);
+                            $autocomplete = "[" . $autocomplete . "]";
+                            $data_object = substr("$data_object", 0, -1);
+                            $data_object = "[" . $data_object . "]";
                             ?>   
                         </tbody>                 
                     </table>  
@@ -424,15 +430,12 @@ get_header();
   
         jQuery("form").on("submit", function(event) { 
         event.preventDefault();  
-        
-        
-        
+
         var values = {}; 
         jQuery.each(jQuery('form').serializeArray(), function(i, field) { 
             values[field.name] = field.value; 
         }); 
-        
-        
+
         var checkedcities='';     
         var helper = []
        
@@ -459,9 +462,7 @@ get_header();
         checkeddistrict = '"'+helperd.join('","')+'"';            
         checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length-1);
   
-   
-        
-        
+    
         var fcity = checkedcitiesf; 
         var fdistrict = checkeddistrict;
         
@@ -620,15 +621,12 @@ get_header();
                 finalfilter = collection.filters.area_range.getFn([fareaf, 999]);
             }
         }
- 
         //ROOMS     
         if (froomsf != '' || froomst != '')
         {
              
             var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"}); 
-            collection.addFilters([rooms_range_filter]);
-             
-        
+            collection.addFilters([rooms_range_filter]); 
         if (finalfilter != false)
             {
                 finalfilter = finalfilter.and(collection.filters.rooms_range.getFn([froomsf, froomst]));
@@ -638,7 +636,6 @@ get_header();
                 finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
             } 
         }  
-         
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
        
@@ -680,28 +677,25 @@ get_header();
                  "http://www.adenimmo.loc.../2014/05/Foto_18294.jpg"
                  
                  price
-                 234000
-                 
+                 234000 
                  references
-                 5382
-                 
+                 5382 
                  rooms
                  2
-        
-        
-                rstatus
-        
-                pricem
-                 
+                 rstatus 
+                 pricem 
                  url
                  "http://www.adenimmo.loc...eart-of-berlin-mitte-4/"
                  
                  zip*/
 
-                var table_data = "<tr><td>favorite</td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td><td>"+val.hnumber+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.price+" &euro;</td><td>"+val.pricem+" &euro;</td><td></td></tr>";
-    
+                var table_data = "<tr><td> </td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td><td>"+val.hnumber+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.price+" &euro;</td><td>"+val.pricem+" &euro;</td><td></td><td>"+val.rstatus+"</td></tr>";
                 jQuery("tbody").append(table_data);
- 
+              
+                jQuery("table").trigger("update");     
+                jQuery("table").tablesorter();
+              
+                
             });
         } 
         /*<tr> 
