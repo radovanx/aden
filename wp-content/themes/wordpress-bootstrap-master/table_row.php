@@ -64,7 +64,7 @@
                     <?php echo (int) $rooms; ?>
                 </td>
                 <td>
-                    <?php echo $area; ?>
+                    <?php echo $area; ?> m²
                 </td>
                 <td>
                     <?php echo $price; ?>&euro;

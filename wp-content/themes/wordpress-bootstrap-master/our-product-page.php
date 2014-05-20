@@ -238,7 +238,7 @@ get_header();
                                     { $rental_status = 'rented'; } 
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";  
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:" . $flat_num . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                                     $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
 
                                     if ($i < 10):
@@ -542,8 +542,7 @@ get_header();
                 {
                 finalfilter = finaloutput;
                 }
-            }
- 
+            } 
         if (ftype != '')
         {
             var type_filter = PourOver.makeExactFilter("type", [ftype]);
@@ -573,8 +572,7 @@ get_header();
                 finalfilter = collection.filters.references.getFn(freferences);
             } 
             // var references_f = collection.filters.references.getFn(freferences);  
-        }
-       
+        } 
         if (fpricef != '' && fpricet == '')
         {
             var price_range_filter = PourOver.makeRangeFilter("price_range", [[fpricef, 100000000]], {attr: "price"});
@@ -663,7 +661,6 @@ get_header();
         //ROOMS     
         if (froomsf != '' || froomst != '')
         {
-             
             var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"}); 
             collection.addFilters([rooms_range_filter]); 
         if (finalfilter != false)
@@ -676,11 +673,8 @@ get_header();
             } 
         }   
         // var group_filter = city_f.and(price_range_f);  
-        var myfilterfinal = collection.get(finalfilter.cids);
-       
-        console.log(myfilterfinal); 
- 
- 
+        var myfilterfinal = collection.get(finalfilter.cids); 
+        console.log(myfilterfinal);  
         if (jQuery.isEmptyObject(myfilterfinal))
         {
             jQuery("#table_data_filter").empty(); 
@@ -723,7 +717,7 @@ get_header();
                  "http://www.adenimmo.loc...eart-of-berlin-mitte-4/"
                  
                  zip*/
-                var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.hnumber+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.price+" &euro;</td><td>"+val.pricem+" &euro;</td><td></td><td>"+val.rstatus+"</td></tr>";
+                var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.price+"&euro;</td><td>"+val.pricem+"&euro;</td><td></td><td>"+val.status+"</td></tr>";
                 jQuery("tbody").append(table_data);
                 jQuery("table").trigger("update");     
                 jQuery("table").tablesorter(); 
@@ -731,9 +725,10 @@ get_header();
             
             
             
-                var row_data = 
+                var row_data;
             
                 //doplnit druhou tabulku
+            
             
             
   
