@@ -93,7 +93,7 @@ get_header();
                         <select class="form-control input-lg" name="type" >
                             <option value="">---</option>
                             <?php foreach ($accomodion_types as $type): ?>
-                                <option class="city-checkbox" value="<?php echo $type->name; ?>"><?php _e($type->name) ?></option>
+                                <option class="" value="<?php echo $type->name; ?>"><?php _e($type->name) ?></option>
                             <?php endforeach; ?>
                         </select> 
                     </div> 
@@ -220,9 +220,10 @@ get_header();
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-"; 
+         
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\"},";
                                     $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
-
+            
                                     if ($i < 10):
                                         ?> 
 
@@ -270,8 +271,7 @@ get_header();
                                     $i++;
                                 endforeach;
                             endif;
-                            $autocomplete = substr("$autocomplete", 0, -1);
-                            $autocomplete = "[" . $autocomplete . "]";
+                         
                             $data_object = substr("$data_object", 0, -1);
                             $data_object = "[" . $data_object . "]";
                             ?>   
@@ -302,6 +302,8 @@ get_header();
                             $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
+                            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
+                            
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
                             <div class="row">
@@ -321,7 +323,7 @@ get_header();
                                                 </span>                         
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                    <?php echo $flat_num; ?>
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong> 
@@ -636,6 +638,7 @@ get_header();
                 finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
             } 
         }  
+         
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
        

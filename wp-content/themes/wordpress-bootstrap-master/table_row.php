@@ -11,13 +11,13 @@
 ?></a>
 </td>
 <td>
-    <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
+ <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
 </td>
 <td>
-    <a href="<?php echo $url; ?>" class="blue"><?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?> </a>
+ <a href="<?php echo $url; ?>" class="blue"><?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?> </a>
 </td>
 <td>
-    <?php echo $flat_num; ?>       
+    <?php echo $flat_number; ?>       
 </td>
 <td>
     <?php echo $rental_status; ?> 

@@ -83,22 +83,16 @@
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-money"></i>
                                     <strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
-                                    <strong class="red">
-                                        <?php echo esc_attr($props['preise|kaufpreis']) ?>
-                                        &euro;
+                                    <strong class="red pull-right"><?php echo esc_attr($props['preise|kaufpreis']) ?> &euro;
                                     </strong>
                                 </span>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong>
-                                    <strong class="red">
-                                        <?php echo esc_attr($props['flaechen|wohnflaeche']) ?>
-                                    </strong>
+                                    <strong class="red pull-right"><?php echo esc_attr($props['flaechen|wohnflaeche']) ?></strong>
                                 </span>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
-                                    <strong class="red">
-                                        <?php echo (int) $props['flaechen|anzahl_zimmer'] ?>
-                                    </strong>
+                                    <strong class="red pull-right"><?php echo (int) $props['flaechen|anzahl_zimmer'] ?></strong>
                                 </span>
                                 <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
 
