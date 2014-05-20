@@ -454,29 +454,16 @@ get_header();
         }); 
 
         var checkedcities='';     
-        var helper = []
-
+        var helper = []; 
         var i =0; 
-        var city=""; 
-         
-        jQuery('.city-checkbox:checked').each(function() {
-              
-        cityfilter = jQuery(this).val();  
-              
-        helper.push(jQuery(this).val());
-       
-         i++;
+        var city="";  
+        jQuery('.city-checkbox:checked').each(function() { 
+        cityfilter = jQuery(this).val();   
+        helper.push(jQuery(this).val()); 
         });
-        
-        
-
-        //magic - refactoring needed !!!
-        
-        checkedcities = '"'+helper.join('","')+'"';         
-        
-        var checkedcitiesf = checkedcities.substring(1, checkedcities.length-1);
-        
-   
+      
+        checkedcities = '"'+helper.join('","')+'"';          
+        var checkedcitiesf = checkedcities.substring(1, checkedcities.length-1); 
         var checkeddistrict='';     
         var helperd = []
        
@@ -488,10 +475,8 @@ get_header();
         checkeddistrict = '"' + helperd.join('","') + '"';
         checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length - 1);
 
-        var fcity = checkedcitiesf;
-        
-        var fdistrict = checkeddistrict;
-        
+        var fcity = checkedcitiesf; 
+        var fdistrict = checkeddistrict; 
         var ftype = values.type;      
         var freferences = values.References;     
         var fareaf = values.Areaf;   
@@ -505,15 +490,11 @@ get_header();
        
         
         if (fcity != '')
-        {
- 
-                console.log(checkedcities);
+        { 
                 var i =0; 
                 var output_set;  
-                var city_filter = PourOver.makeExactFilter("city", helper); 
-                
-                collection.addFilters([city_filter]); 
-               
+                var city_filter = PourOver.makeExactFilter("city", helper);        
+                collection.addFilters([city_filter]);  
                 jQuery('.city-checkbox:checked').each(function() {
                 var cityfilter = jQuery(this).val();   
                 var citys = collection.filters.city.getFn(cityfilter);  
@@ -527,8 +508,42 @@ get_header();
                 } 
                 i++;
                 });
-                 finalfilter = output_set;
-        }
+                finalfilter = output_set;
+        } 
+         if (fdistrict != '')
+        { 
+            
+                var i =0; 
+                var output_set;  
+                var district_filter = PourOver.makeExactFilter("district", [helperd]);        
+                
+                collection.addFilters([district_filter]);  
+                
+                jQuery('.district-checkbox:checked').each(function() {
+                var districtfilter = jQuery(this).val();   
+                var districtss = collection.filters.city.getFn(districtfilter);  
+                if (i == 0)
+                {  
+                output_set = districtss; 
+                }
+                else
+                {       
+                output_set = output_set.or(districtss); 
+                } 
+                i++;
+                });
+                finaloutput = output_set;
+      
+                 if (finalfilter != false)
+                {
+                finalfilter = finalfilter.and(finaloutput);
+                }
+                else
+                {
+                finalfilter = finaloutput;
+                }
+            }
+ 
         if (ftype != '')
         {
             var type_filter = PourOver.makeExactFilter("type", [ftype]);
@@ -559,20 +574,7 @@ get_header();
             } 
             // var references_f = collection.filters.references.getFn(freferences);  
         }
-        if (fdistrict != '')
-        { 
-            var district_filter = PourOver.makeExactFilter("district", [fdistrict]);
-            collection.addFilters([district_filter]);
-
-            if (finalfilter != false)
-            {
-                finalfilter = finalfilter.and(collection.filters.district.getFn(fdistrict));
-            }
-            else
-            {
-                finalfilter = collection.filters.district.getFn(fdistrict);
-            }
-        }
+       
         if (fpricef != '' && fpricet == '')
         {
             var price_range_filter = PourOver.makeRangeFilter("price_range", [[fpricef, 100000000]], {attr: "price"});
