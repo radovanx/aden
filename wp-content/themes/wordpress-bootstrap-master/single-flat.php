@@ -486,47 +486,47 @@
 
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
 <script>
-    // MAP //
-    var params;
-    var lang = <?php echo $langt; ?>;
-    var long = <?php echo $longt; ?>;
-    // dom ready
-    jQuery(function() {
-        //if (typeof google !== "undefined"){
-        if (window.google && google.maps) {
-            // Map script is already loaded
-            initializeMap();
-        } else {
+// MAP //
+var params;
+var lang = <?php echo $langt; ?>;
+var long = <?php echo $longt; ?>;
+// dom ready
+jQuery(function() {
+//if (typeof google !== "undefined"){
+if (window.google && google.maps) {
+// Map script is already loaded
+initializeMap();
+} else {
 
-            lazyLoadGoogleMap();
-        }
-    });
-    function initialize(params) {
-        var myLatlng = new google.maps.LatLng(lang, long);
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 8,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: "<?php echo $title; ?>"
-        });
-    }
-    function lazyLoadGoogleMap() {
-        jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
-                .done(function(script, textStatus) {
-                    //alert("Google map script loaded successfully");
-                })
-                .fail(function(jqxhr, settings, ex) {
-                    //alert("Could not load Google Map script: " + jqxhr);
-                });
-    }
-    function initializeMap() {
-        initialize(params);
-    }
+lazyLoadGoogleMap();
+}
+});
+function initialize(params) {
+var myLatlng = new google.maps.LatLng(lang, long);
+var mapOptions = {
+center: myLatlng,
+zoom: 8,
+mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+var marker = new google.maps.Marker({
+position: myLatlng,
+map: map,
+title: "<?php echo $title; ?>"
+});
+}
+function lazyLoadGoogleMap() {
+jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
+.done(function(script, textStatus) {
+//alert("Google map script loaded successfully");
+})
+.fail(function(jqxhr, settings, ex) {
+//alert("Could not load Google Map script: " + jqxhr);
+});
+}
+function initializeMap() {
+initialize(params);
+}
 </script>
 <script>
     /*
