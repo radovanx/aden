@@ -10,12 +10,10 @@
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
                         <div class="tab-content">
-
                             <!-- img slide -->
                             <?php get_template_part('partial', 'slide') ?>
                             <!-- /img slide -->
-
-
+ 
                             <div class="tab-pane fade" id="map_tab">
                                 <div id="gmap" class="gmap">google map</div>
                             </div>
@@ -93,7 +91,6 @@
                             <div class="col-md-12 column">
                                 <div class="key_fact">
                                     <div class="panel-body">
-
                                         <?php
                                         $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation', $args);
 
@@ -103,7 +100,6 @@
                                             $type_of_accomodation[] = $t->name;
                                         }
                                         ?>
-
                                         <span class="propertyListBoxDataItemName"><i class="fa fa-home round-border"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong> <?php echo implode(', ', $type_of_accomodation) ?></span>
                                     </div>
                                     <div class="panel-body">
@@ -128,7 +124,6 @@
                             <?php _e("List of products available in this program", "wpbootstrap"); ?>
                         </h3>
                     </div>
-
                     <div class="col-md-3 pull-right big_icons margin-top">
                         <ul class="nav nav-tabs">
                             <a href="#table" data-toggle="tab" class="active red"><i class="fa fa-th"></i></a>
@@ -184,9 +179,7 @@
                                         $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
                                         $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                         $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
- 
-                                        ?>
-
+                                        ?> 
                                         <div class="row">
                                             <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box">
                                                 <div class="col-md-3">
@@ -215,13 +208,11 @@
                                                             <span class="data_item clearfix">
                                                                 <strong><?php _e("Floor:", "wpbootstrap"); ?></strong>
                                                                 <?php echo $floor; ?>
-                                                            </span>
-
+                                                            </span> 
                                                             <span class="data_item clearfix">
                                                                 <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong>
                                                                 <?php echo esc_attr($prop['anbieternr']) ?>
                                                             </span>
-
                                                             <span class="data_item clearfix">
                                                                 <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong>
                                                                 <?php echo $area; ?>
@@ -256,8 +247,7 @@
                                 endif;
                                 ?>
                             </div>
-                        </div>
-
+                        </div> 
                     </div>
                 </div>
             <?php endif; ?>
@@ -282,10 +272,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title"><?php echo the_title(); ?></h4>
             </div>
-            <div class="modal-body">
-
-                <?php _e("You modified", "wpbootstrap"); ?>
-
+            <div class="modal-body"> 
+                <?php _e("You modified", "wpbootstrap"); ?> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
@@ -293,102 +281,51 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
 <?php $lang = esc_attr(get_post_meta($post->ID, '_program_latitude', true)); ?>
 <?php $long = esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
+ 
 
-
-
-
-<script>
-    // MAP //
-
-    var params;
-
-    var lang = <?php echo $lang; ?>;
-    var long = <?php echo $long; ?>;
-    // dom ready
-
-    jQuery(document).ready(function($) {
-        //if (typeof google !== "undefined"){
-        if (window.google && google.maps) {
-            // Map script is already loaded
-            initializeMap();
-        } else {
-
-            lazyLoadGoogleMap();
-        }
-    });
-    function initialize(params) {
-        var myLatlng = new google.maps.LatLng(lang, long);
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 8,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: "<?php echo $title; ?>"
-        });
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>     
+// MAP // 
+var lang = <?php echo $lang; ?>  
+var long = <?php echo $long; ?>   
+ 
+var myCenter = new google.maps.LatLng(lang, long); 
+var map = null, marker = null;  
+function initialize() { 
+ 
+  var mapProp = {
+      center: myCenter,
+      zoom: 14,
+      panControl: true, //enable pan Control
+      zoomControl: true, //enable zoom control
+      scaleControl: true, // enable scale control 
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+  };  
+  
+    map = new google.maps.Map(document.getElementById("gmap"), mapProp);         
+    marker = new google.maps.Marker({ 
+        position: myCenter, 
+        draggable: false, 
+        animation: google.maps.Animation.DROP, 
+    });  
+    marker.setMap(map);   
     }
+ 
+jQuery(".create_map").on('shown.bs.tab', function() {
+       
+  	/* Trigger map resize event */
+	google.maps.event.trigger(map, 'resize');
+        
+        map.setCenter(marker.getPosition());       
+});
+ 
+initialize(); 
 
-    function lazyLoadGoogleMap() {
-        jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
-                .done(function(script, textStatus) {
-                    //alert("Google map script loaded successfully");
-                })
-                .fail(function(jqxhr, settings, ex) {
-                    //alert("Could not load Google Map script: " + jqxhr);
-                });
-    }
-    function initializeMap() {
-        initialize(params);
-    }
-
-
-
-
-
-    //STREET//
-    jQuery(document).ready(function($) {
-        $('.create_street').click(function() {
-            $.ajax({
-                url: "https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=StreetApiLoaded",
-                dataType: "script",
-                timeout: 8000,
-                error: function() {
-                    // Handle error here
-                }})
-        })
-    });
-    function StreetApiLoaded() {
-        var fenway = new google.maps.LatLng(<?php echo $LangLong; ?>);
-
-        // Note: constructed panorama objects have visible: true
-        // set by default.
-        var panoOptions = {
-            position: fenway,
-            addressControlOptions: {
-                position: google.maps.ControlPosition.BOTTOM_CENTER
-            },
-            linksControl: false,
-            panControl: false,
-            zoomControlOptions: {
-                style: google.maps.ZoomControlStyle.SMALL
-            },
-            enableCloseButton: false
-        };
-
-        var panorama = new google.maps.StreetViewPanorama(
-                document.getElementById('gmapstreet'), panoOptions);
-        google.maps.event.trigger(panorama, "resize");
-        google.maps.event.trigger(panorama, 'resize');
-        panorama.setZoom(panorama.getZoom());
-        google.maps.event.addListenerOnce(panorama, 'idle', function() {
-            // Fire when map tiles are completly loaded
-
-        });
-    }
+ 
 </script>
+
 <?php get_footer(); ?>
+ 
