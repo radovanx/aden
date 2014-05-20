@@ -265,63 +265,11 @@
                                         <th><?php _e("Status", "wpbootstrap"); ?></th>
                                     </tr>
                                 </thead>
-                                <tbody>
                                     <?php
                                     $lang = qtrans_getLanguage();
                                     $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang, $post->ID);
                                     ?>
-                                    <?php
-                                    $i = 0;
-                                    if (!empty($flat_props)):
-                                        foreach ($flat_props as $key => $val):
-                                            $prop = unserialize($val->prop);
-                                            ?>
-                                            <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
-                                                <td>
-                                                    <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i></a>
-                                                </td>
-                                                <td>
-                                                    <?php echo esc_attr($prop['anbieternr']) ?>
-                                                </td>
-                                                <td>
-                                                    <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
-                                                </td>
-                                                <td>
-                                                    <?php echo esc_attr($prop['geo|wohnungsnr']) ?>
-                                                </td>
-                                                <td>
-                                                    <?php
-                                                    if (isset(EstateProgram::$rental_status[$prop['verwaltung_objekt|vermietet']])) {
-                                                        _e(EstateProgram::$rental_status[$prop['verwaltung_objekt|vermietet']]);
-                                                    }
-                                                    ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo esc_attr($prop['geo|etage']) ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo esc_attr($prop['preise|kaufpreis']) ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
-                                                </td>
-                                                <td>
-                                                </td>
-                                                <td>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                            $i++;
-                                        endforeach;
-                                    endif;
-                                    ?>
-                                </tbody>
+                                    <?php  include TEMPLATEPATH . '/table_row.php'; ?> 
                             </table>
                         </div>
                         <div class="col-md-12 column border tab-pane" id="list">

@@ -250,7 +250,7 @@ get_header();
                                                 <?php echo (int) $rooms; ?>
                                             </td>
                                             <td>
-                                                <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
+                                                <?php echo $area; ?>
                                             </td>
                                             <td>
                                                 <?php echo $price; ?>&euro;
