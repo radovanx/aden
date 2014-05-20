@@ -506,19 +506,17 @@ get_header();
         
         if (fcity != '')
         {
-                 
+ 
+                console.log(checkedcities);
                 var i =0; 
                 var output_set;  
-                var city_filter = PourOver.makeExactFilter("city", [checkedcities]); 
+                var city_filter = PourOver.makeExactFilter("city", helper); 
                 
                 collection.addFilters([city_filter]); 
                
                 jQuery('.city-checkbox:checked').each(function() {
-               
                 var cityfilter = jQuery(this).val();   
- 
                 var citys = collection.filters.city.getFn(cityfilter);  
-          
                 if (i == 0)
                 {  
                 output_set = citys; 
@@ -529,12 +527,7 @@ get_header();
                 } 
                 i++;
                 });
- 
                  finalfilter = output_set;
-     
-                console.log(finalfilter);
-     
-     
         }
         if (ftype != '')
         {
