@@ -455,12 +455,21 @@ get_header();
 
         var checkedcities='';     
         var helper = []
+
+        var i =0; 
+        var city=""; 
+         
+        jQuery('.city-checkbox:checked').each(function() {
+              
+        cityfilter = jQuery(this).val();  
+              
+        helper.push(jQuery(this).val());
        
-        jQuery('.city-checkbox:checked').each(function(){ 
-                helper.push(jQuery(this).val()); 
-               // checkedcities=checkedcities+','+jQuery(this).val();    
-        });    
+         i++;
+        });
         
+        
+
         //magic - refactoring needed !!!
         
         checkedcities = '"'+helper.join('","')+'"';         
@@ -476,10 +485,11 @@ get_header();
                // checkedcities=checkedcities+','+jQuery(this).val();    
         });           
         //magic - refactoring needed !!!     
-        checkeddistrict = '"'+helperd.join('","')+'"';            
-        checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length-1);
-   
-        var fcity = checkedcitiesf; 
+        checkeddistrict = '"' + helperd.join('","') + '"';
+        checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length - 1);
+
+        var fcity = checkedcitiesf;
+        
         var fdistrict = checkeddistrict;
         
         var ftype = values.type;      
@@ -492,14 +502,45 @@ get_header();
         var fpricet = values.Pricet;              
         //make a filter  
         var finalfilter = false;
+       
+        
         if (fcity != '')
         {
-            var city_filter = PourOver.makeExactFilter("city", [fcity]);           
-            
-            collection.addFilters([city_filter]);  
-            finalfilter = collection.filters.city.getFn(fcity);  
-            console.log(finalfilter);
-        } 
+                 
+                var i =0; 
+                var output_set;  
+                var city_filter = PourOver.makeExactFilter("city", ["Berlin","Prague"]); 
+                
+                collection.addFilters([city_filter]); 
+               
+                jQuery('.city-checkbox:checked').each(function() {
+               
+                var cityfilter = jQuery(this).val();   
+ 
+                var citys = collection.filters.city.getFn(cityfilter);  
+         
+     
+                if (i == 0)
+                {
+                    
+                output_set = citys;
+ 
+                }
+                else
+                {
+                
+                output_set = output_set.or(citys);
+                
+                } 
+                i++;
+                });
+ 
+                 finalfilter = output_set;
+     
+                console.log(finalfilter);
+     
+     
+        }
         if (ftype != '')
         {
             var type_filter = PourOver.makeExactFilter("type", [ftype]);
@@ -662,20 +703,15 @@ get_header();
             jQuery.each(myfilterfinal, function(i, val) {
 
                 /*    area
-                 54.6
-                 
+                 54.6 
                  cid
-                 3
-                 
+                 3 
                  city
-                 "Berlin"
-                 
+                 "Berlin"                 
                  street  
-                 
-                 
+
                  district
                  "Mitte"
-                 
                  floor
                  1
                  

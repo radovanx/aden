@@ -12,16 +12,17 @@
                         <div class="tab-content">
                             <!-- img slide -->
                             <?php get_template_part('partial', 'slide') ?>
-                            <!-- /img slide -->
- 
+                            <!-- /img slide --> 
                             <div class="tab-pane fade" id="map_tab">
                                 <div id="gmap" class="gmap">google map</div>
                             </div>
-                            <div class="tab-pane fade" id="street_tab">
+                            <div class="tab-pane" id="street_tab">
+                                
                                 <div id="gmapstreet" class="gmapstreet">street</div>
+                            
+                            
                             </div>
-                            <div class="tab-pane fade" id="video_tab">
-
+                            <div class="tab-pane fade" id="video_tab"> 
                                 <?php
                                 $video = get_post_meta($post->ID, '_program_video', true);
                                 if (!empty($video)):
@@ -310,6 +311,7 @@ function initialize() {
         position: myCenter, 
         draggable: false, 
         animation: google.maps.Animation.DROP, 
+         
     });  
     marker.setMap(map);   
     }
@@ -317,15 +319,47 @@ function initialize() {
 jQuery(".create_map").on('shown.bs.tab', function() {
        
   	/* Trigger map resize event */
-	google.maps.event.trigger(map, 'resize');
-        
+	google.maps.event.trigger(map, 'resize'); 
         map.setCenter(marker.getPosition());       
 });
  
 initialize(); 
 
  
-</script>
 
+function showStreetview() {
+  var myPano;
+  var latlng = new google.maps.LatLng(lang,long);
+  var panoramaOptions = {
+    position: latlng,
+    pov: {
+      heading: 165,
+      pitch: 0
+    },
+    zoom: 1
+  };
+  myPano = new google.maps.StreetViewPanorama(
+      document.getElementById('street_tab'),
+      panoramaOptions);
+  myPano.setVisible(true);
+  window.setInterval(function() {
+    var pov = myPano.getPov();
+    pov.heading += 0.2;
+    myPano.setPov(pov);
+}, 10);
+  myPano.setVisible(true);
+
+} 
+google.maps.event.addDomListener(window, 'load', showStreetview); 
+    jQuery(".create_street").on('shown.bs.tab', function() { 
+        var center = map.getCenter(); 
+        
+         myPano.setVisible(true);  
+        google.maps.event.trigger(map, "resize"); 
+       
+        
+    }); 
+ showStreetview();     
+</script>  
 <?php get_footer(); ?>
  
