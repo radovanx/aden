@@ -31,36 +31,11 @@
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="gallery_tab">
-                                <!--slider here -->
-                                <span class="test-popup-link">
-                                    <?php the_post_thumbnail('project-detail-big'); ?>
-                                </span>
-                                <ul class="bxslider parent-container">
-                                    <?php
-                                    $images = & get_children(array(
-                                                'post_parent' => $post->ID,
-                                                'post_type' => 'attachment',
-                                                'post_mime_type' => 'image'
-                                    ));
-                                    if (empty($images)) {
-                                        // no attachments here
-                                    } else {
-                                        $i = 1;
-                                        ?>
-                                        <?php
-                                        foreach ($images as $attachment_id => $attachment) {
-                                            $full_size = wp_get_attachment_image_src($attachment_id, 'full');
-                                            $full_size = $full_size[0];
-
-                                            echo '<li><a href="' . $full_size . '">' . wp_get_attachment_image($attachment_id, 'project-detail-small') . '</a></li>';
-
-                                            $i++;
-                                        }
-                                    }
-                                    ?>
-                                </ul>
-                            </div>
+                            
+                            <!-- img slide -->
+                            <?php get_template_part('partial', 'slide') ?>
+                            <!-- /img slide -->
+                            
                             <div class="tab-pane fade" id="video_tab">
                                 <?php
                                 if (!empty($video)):
