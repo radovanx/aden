@@ -2,7 +2,9 @@
     "use strict";
 
     $(function() {
-        $('.add-to-preference').on("click", function() {
+        $('.add-to-preference').live("click", function() {
+
+            console.log('click');
 
             var element = $(this).find('i');
 
