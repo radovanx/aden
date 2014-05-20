@@ -131,8 +131,7 @@
                                 <span class="pull-right">
                                     <?php
                                     if (isset($props['preise|kaufpreis_pro_qm'])):
-                                        echo esc_attr($props['preise|kaufpreis_pro_qm']) . ' ';
-                                        echo esc_attr($props['preise|waehrung|iso_waehrung']);
+                                        echo esc_attr($props['preise|kaufpreis_pro_qm']) . ' €';                                        
                                     endif;
                                     ?>
                                 </span>
