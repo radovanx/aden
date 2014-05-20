@@ -28,7 +28,7 @@
                 url: url,
                 beforeSend: function(xhr) {
                     jQuery('#parse-xml').attr('disabled', 'disabled');
-                    jQuery('#parse-state').append('<div id="processing"><p><strong>Processing: </strong>'+filename+'</p><img src="<?php echo $this->plugin_url ?>assets/img/712.gif"></div>');
+                    jQuery('#parse-state').append('<div id="processing"><p><strong>Processing: </strong>' + filename + '</p><img src="<?php echo $this->plugin_url ?>assets/img/712.gif"></div>');
                 }
                 //data: data,
                 //success: success
@@ -44,7 +44,7 @@
                 //console.log('always');                
                 jQuery('#parse-state').html('');
                 load_xml(++index);
-                
+
             });
         }
     }

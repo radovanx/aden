@@ -5,12 +5,12 @@
 
 // Let's start with a nice array of data. All PourOver collections *must* be instantiated on
 // arrays of hashes like the following, each item a hash of attributes.
-var monsters = [{name: "sphinx", mythology: "greek", eyes: 2, sex: "f", hobbies: ["riddles","sitting","being a wonder"]},
-                {name: "hydra", mythology: "greek", eyes: 18, sex: "m", hobbies: ["coiling","terrorizing","growing"]},
-                {name: "huldra", mythology: "norse", eyes: 2, sex: "f", hobbies: ["luring","terrorizing"]},
-                {name: "cyclops", mythology: "greek", eyes: 1, sex: "m", hobbies: ["staring","terrorizing"]},
-                {name: "fenrir", mythology: "norse", eyes: 2, sex: "m", hobbies: ["growing","god-killing"]},
-                {name: "medusa",  mythology: "greek", eyes: 2, sex: "f", hobbies: ["coiling","staring"]}];
+var monsters = [{name: "sphinx", mythology: "greek", eyes: 2, sex: "f", hobbies: ["riddles", "sitting", "being a wonder"]},
+    {name: "hydra", mythology: "greek", eyes: 18, sex: "m", hobbies: ["coiling", "terrorizing", "growing"]},
+    {name: "huldra", mythology: "norse", eyes: 2, sex: "f", hobbies: ["luring", "terrorizing"]},
+    {name: "cyclops", mythology: "greek", eyes: 1, sex: "m", hobbies: ["staring", "terrorizing"]},
+    {name: "fenrir", mythology: "norse", eyes: 2, sex: "m", hobbies: ["growing", "god-killing"]},
+    {name: "medusa", mythology: "greek", eyes: 2, sex: "f", hobbies: ["coiling", "staring"]}];
 
 // ###Collection creation
 
@@ -28,21 +28,21 @@ var collection = new PourOver.Collection(monsters);
 // For the most common filter types, such as "exactFilter", PourOver ships with convenience constructors.
 // *NOTE: Constructors for preset filters and sorts -- like the ones below -- are not initialized with "new".
 // They are simply passed a name and the set of possibilities.*
-var mythology_filter = PourOver.makeExactFilter("mythology", ["greek","norse"]);
-var gender_filter = PourOver.makeExactFilter("sex", ["m","f"]);
+var mythology_filter = PourOver.makeExactFilter("mythology", ["greek", "norse"]);
+var gender_filter = PourOver.makeExactFilter("sex", ["m", "f"]);
 
 // Now, we will construct the other most-common filter, the `inclusionFilter`. The `inclusionFilter` is similar to the `exactFilter`.
 // However, rather than items have a single choice, `inclusionFilter`s describe attributes that can have multiple choices per item.
 // *NOTE: `inclusionFilter`s' names must be identical to the item attribute that they index*
-var hobbies_filter = PourOver.makeInclusionFilter("hobbies",["riddles",
-                                                             "sitting",
-                                                             "being a wonder",
-                                                             "coiling",
-                                                             "terrorizing",
-                                                             "growing",
-                                                             "luring",
-                                                             "staring",
-                                                             "god-killing"]);
+var hobbies_filter = PourOver.makeInclusionFilter("hobbies", ["riddles",
+    "sitting",
+    "being a wonder",
+    "coiling",
+    "terrorizing",
+    "growing",
+    "luring",
+    "staring",
+    "god-killing"]);
 
 // ###Adding filters
 
@@ -87,10 +87,10 @@ var my_monsters = collection.get(greek_terrors.cids);
 // This will store the result of the query  on the `current_query` attribute of the filter.
 collection.filters.mythology.query("greek");
 collection.filters.hobbies.query("terrorizing");
-var getCurrentMonsters = function(){
+var getCurrentMonsters = function() {
     var myth_set = collection.filters.mythology.current_query,
-        hobby_set = collection.filters.hobbies.current_query,
-        output_set = myth_set.and(hobby_set);
+            hobby_set = collection.filters.hobbies.current_query,
+            output_set = myth_set.and(hobby_set);
 
     return collection.get(output_set.cids);
 }
@@ -153,8 +153,8 @@ paged_view_1.pageTo(2);
 // This gets fired whenever something happens that would require a re-render (queries, addition, removals, etc.)
 // *NOTE: "render" is nothing special in PourOver. A common pattern is just to define render function for your view.*
 
-paged_view_1.on("update",function(){
-   paged_view_1.render(); 
+paged_view_1.on("update", function() {
+    paged_view_1.render();
 })
 
 // ### Conclusion

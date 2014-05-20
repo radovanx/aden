@@ -21,12 +21,9 @@
  * @package EstateProgram
  * @author  Your Name <email@example.com>
  */
-
 /**
  *
  */
-
-
 EstateProgram::$tags_apartment = array(
     'geo',
     'objektkategorie',
@@ -362,7 +359,7 @@ class EstateProgram {
         );
 
         register_taxonomy('show', array('program'), $args);
-        
+
         ###################################################
         # Show
         $args = array(
@@ -374,12 +371,12 @@ class EstateProgram {
             'public' => false,
             'show_ui' => false,
             'show_admin_column' => false,
-            //'query_var' => true,
-            //'rewrite' => array('slug' => 'location'),
+                //'query_var' => true,
+                //'rewrite' => array('slug' => 'location'),
                 //'show_in_menu' => 'program_overview'
         );
 
-        register_taxonomy('location', array('flat'), $args);        
+        register_taxonomy('location', array('flat'), $args);
 
         /*
           $args = array(
@@ -779,14 +776,14 @@ class EstateProgram {
             AND
                 p.post_status = 'publish'
         ";
-        
-        if(!is_null($exclude_apartment_id)){
+
+        if (!is_null($exclude_apartment_id)) {
             $sql .= "
                 AND
                     p.ID != '" . $exclude_apartment_id . "'
             ";
         }
-        
+
         return $wpdb->get_results($sql);
     }
 
@@ -1029,16 +1026,14 @@ class EstateProgram {
 
         return implode(', ', $arr);
     }
-    
-    
-    static function flat_program_id($apartment_id){
-        
+
+    static function flat_program_id($apartment_id) {
+
         global $wpdb;
-        
+
         $sql = "SELECT program_id FROM apartment2program WHERE apartment_id = " . (int) $apartment_id;
-        
+
         return $wpdb->get_var($sql);
-        
     }
 
 }

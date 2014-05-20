@@ -11,6 +11,18 @@ $vals = array(
 <table class="form-table">
     <tr>
         <th>
+            Register date
+        </th>
+        <td>
+            <?php
+            $user_data = get_userdata($user->ID);
+            $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user_data->user_registered);
+            ?>
+            <?php echo false != $register_date ? $register_date->format('j. n. Y H:i') : '' ?>
+        </td>
+    </tr>    
+    <tr>
+        <th>
             <label for="user_title"><?php _e('User title', $this->plugin_slug) ?></label>
         </th>
         <td>

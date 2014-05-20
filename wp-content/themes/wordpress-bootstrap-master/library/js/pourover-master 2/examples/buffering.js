@@ -14,17 +14,17 @@
 // for the specified guids
 
 // Say you had a server at example.com/data?guids=[guids]
-var monsters = [{name: "sphinx", mythology: "greek", eyes: 2, sex: "f", hobbies: ["riddles","sitting","being a wonder"],guid:1},
-                {name: "hydra", mythology: "greek", eyes: 18, sex: "m", hobbies: ["coiling","terrorizing","growing"],guid:2},
-                {name: "huldra", mythology: "norse", eyes: 2, sex: "f", hobbies: ["luring","terrorizing"],guid:3},
-                {name: "cyclops", mythology: "greek", eyes: 1, sex: "m", hobbies: ["staring","terrorizing"],guid:4},
-                {name: "fenrir", mythology: "norse", eyes: 2, sex: "m", hobbies: ["growing","god-killing"],guid:5},
-                {name: "medusa",  mythology: "greek", eyes: 2, sex: "f", hobbies: ["coiling","staring"],guid:6}];
+var monsters = [{name: "sphinx", mythology: "greek", eyes: 2, sex: "f", hobbies: ["riddles", "sitting", "being a wonder"], guid: 1},
+    {name: "hydra", mythology: "greek", eyes: 18, sex: "m", hobbies: ["coiling", "terrorizing", "growing"], guid: 2},
+    {name: "huldra", mythology: "norse", eyes: 2, sex: "f", hobbies: ["luring", "terrorizing"], guid: 3},
+    {name: "cyclops", mythology: "greek", eyes: 1, sex: "m", hobbies: ["staring", "terrorizing"], guid: 4},
+    {name: "fenrir", mythology: "norse", eyes: 2, sex: "m", hobbies: ["growing", "god-killing"], guid: 5},
+    {name: "medusa", mythology: "greek", eyes: 2, sex: "f", hobbies: ["coiling", "staring"], guid: 6}];
 
 var MyBufferedCollection = PourOver.BufferedCollection.extend({
-    getBufferUrl: function(guids){
+    getBufferUrl: function(guids) {
         var query = encodeURIComponent(guids.join(","));
-        return "http://example.com/data?guids="+query;
+        return "http://example.com/data?guids=" + query;
     }
 });
 var collection = new MyBufferedCollection(monsters);
@@ -34,12 +34,12 @@ var collection = new MyBufferedCollection(monsters);
 // those which are returned from `getCurrentItems()`, (using the collection's `bufferGuids` function) 
 // and then delegate back to the default `render` function of the view
 var MyBufferedView = PourOver.BufferedView.extend({
-    render: function(){
-       var items = this.getCurrentItems();
-       console.log(items);
+    render: function() {
+        var items = this.getCurrentItems();
+        console.log(items);
     }
 });
-var my_buffered_view = new MyBufferedView("buffered_view",collection);
+var my_buffered_view = new MyBufferedView("buffered_view", collection);
 
 // We call `bufferRender` instead of render, so that the collection buffers the data before
 // relinquishing control back to the vanilla `render`.

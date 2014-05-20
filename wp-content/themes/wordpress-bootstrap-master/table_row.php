@@ -30,9 +30,8 @@
             $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
             $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
-            $price = (int)$price;
-            $pricem = (int)$pricem;
-            
+            $price = (int) $price;
+            $pricem = (int) $pricem;
             ?>
             <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
                 <td>   

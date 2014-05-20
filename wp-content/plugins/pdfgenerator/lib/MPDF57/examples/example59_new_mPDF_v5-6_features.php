@@ -1,10 +1,10 @@
 <?php
 
-ini_set("memory_limit","64M");
+ini_set("memory_limit", "64M");
 
 include("../mpdf.php");
 
-$mpdf=new mPDF(''); 
+$mpdf = new mPDF('');
 
 
 //==============================================================
@@ -317,35 +317,35 @@ $html .='
 ';
 
 
-$ranges = array(0=>array(0x0621, 0x063a), 1=>array(0x0640, 0x064a), 2=>array(0x0671, 0x0672), 3=>array(0x0674, 0x06d3));
+$ranges = array(0 => array(0x0621, 0x063a), 1 => array(0x0640, 0x064a), 2 => array(0x0671, 0x0672), 3 => array(0x0674, 0x06d3));
 
-foreach($ranges AS $r) {
-	$html .= '<table border="1" style="border-collapse: collapse">';
-	$html .= '<thead><tr>';
-	$html .= '<td></td>';
-	$html .= '<td style="text-align:center; padding: 0 0.5em;">Isolated</td>';
-	$html .= '<td></td>';
-	$html .= '<td style="text-align:center; padding: 0 0.5em;">Final</td>';
-	$html .= '<td style="text-align:center; padding: 0 0.5em;">Medial</td>';
-	$html .= '<td style="text-align:center; padding: 0 0.5em;">Initial</td>';
-	$html .= '<td></td>';
-	$html .= '</tr></thead><tbody>';
-	for($n=$r[0];$n<=$r[1];$n++) {
+foreach ($ranges AS $r) {
+    $html .= '<table border="1" style="border-collapse: collapse">';
+    $html .= '<thead><tr>';
+    $html .= '<td></td>';
+    $html .= '<td style="text-align:center; padding: 0 0.5em;">Isolated</td>';
+    $html .= '<td></td>';
+    $html .= '<td style="text-align:center; padding: 0 0.5em;">Final</td>';
+    $html .= '<td style="text-align:center; padding: 0 0.5em;">Medial</td>';
+    $html .= '<td style="text-align:center; padding: 0 0.5em;">Initial</td>';
+    $html .= '<td></td>';
+    $html .= '</tr></thead><tbody>';
+    for ($n = $r[0]; $n <= $r[1]; $n++) {
 
-		$html .= '<tr>';
-		$html .= '<td>U+0'.strtoupper(dechex($n)) .'</td>';
+        $html .= '<tr>';
+        $html .= '<td>U+0' . strtoupper(dechex($n)) . '</td>';
 
-		$html .= '<td class="script-arabic">&#x0'.dechex($n) .';</td>';
-		$html .= '<td class="script-arabic joined">&#x626;&#x0'.dechex($n) .';</td>';
-		$html .= '<td class="script-arabic">&#x640;&#x0'.dechex($n) .';</td>';
-		$html .= '<td class="script-arabic">&#x640;&#x0'.dechex($n) .';&#x640;</td>';
-		$html .= '<td class="script-arabic">&#x0'.dechex($n) .';&#x640;</td>';
-		$html .= '<td class="script-arabic joined">&#x0'.dechex($n) .';&#x647;</td>';
+        $html .= '<td class="script-arabic">&#x0' . dechex($n) . ';</td>';
+        $html .= '<td class="script-arabic joined">&#x626;&#x0' . dechex($n) . ';</td>';
+        $html .= '<td class="script-arabic">&#x640;&#x0' . dechex($n) . ';</td>';
+        $html .= '<td class="script-arabic">&#x640;&#x0' . dechex($n) . ';&#x640;</td>';
+        $html .= '<td class="script-arabic">&#x0' . dechex($n) . ';&#x640;</td>';
+        $html .= '<td class="script-arabic joined">&#x0' . dechex($n) . ';&#x647;</td>';
 
-		$html .= '</tr>';
-	}
-	$html .='</tbody></table>';
-$html .='<br />';
+        $html .= '</tr>';
+    }
+    $html .='</tbody></table>';
+    $html .='<br />';
 }
 
 
@@ -360,14 +360,17 @@ $html .='
 ';
 
 //==============================================================
-if ($_REQUEST['html']) { echo $html; exit; }
-if ($_REQUEST['source']) { 
-	$file = __FILE__;
-	header("Content-Type: text/plain");
-	header("Content-Length: ". filesize($file));
-	header("Content-Disposition: attachment; filename='".$file."'");
-	readfile($file);
-	exit; 
+if ($_REQUEST['html']) {
+    echo $html;
+    exit;
+}
+if ($_REQUEST['source']) {
+    $file = __FILE__;
+    header("Content-Type: text/plain");
+    header("Content-Length: " . filesize($file));
+    header("Content-Disposition: attachment; filename='" . $file . "'");
+    readfile($file);
+    exit;
 }
 
 //==============================================================
@@ -375,13 +378,12 @@ if ($_REQUEST['source']) {
 $mpdf->WriteHTML($html);
 
 // OUTPUT
-$mpdf->Output(); exit;
+$mpdf->Output();
+exit;
 
 
 //==============================================================
 //==============================================================
 //==============================================================
 //==============================================================
-
-
 ?>

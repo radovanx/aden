@@ -1,17 +1,17 @@
-function qtrans_switch_listpostbox(parent, target, language){
+function qtrans_switch_listpostbox(parent, target, language) {
     //console.log(parent + ' : ' + target + ' : ' +language);
-    
-    jQuery('.'+target).hide();
-    jQuery('#'+target+'_'+language).show();
+
+    jQuery('.' + target).hide();
+    jQuery('#' + target + '_' + language).show();
 }
 
-(function ( $ ) {
-	"use strict";
+(function($) {
+    "use strict";
 
-	$(function () {
+    $(function() {
 
-		// Place your administration-specific JavaScript here
+        // Place your administration-specific JavaScript here
 
-	});
+    });
 
 }(jQuery));

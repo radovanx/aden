@@ -31,11 +31,11 @@
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            
+
                             <!-- img slide -->
                             <?php get_template_part('partial', 'slide') ?>
                             <!-- /img slide -->
-                            
+
                             <div class="tab-pane fade" id="video_tab">
                                 <?php
                                 if (!empty($video)):
@@ -97,7 +97,7 @@
                                 <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
 
                                 <a href="/generate-pdf/product/<?php echo $post->ID ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
-                                <a href="#" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
+                                <a href="/reservation-document/<?php echo $post->ID ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
 
                                 <?php if (!empty($props['dropbox|building'])): ?>
                                     <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
@@ -265,11 +265,11 @@
                                         <th><?php _e("Status", "wpbootstrap"); ?></th>
                                     </tr>
                                 </thead>
-                                    <?php
-                                    $lang = qtrans_getLanguage();
-                                    $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang, $post->ID);
-                                    ?>
-                                    <?php  include TEMPLATEPATH . '/table_row.php'; ?> 
+                                <?php
+                                $lang = qtrans_getLanguage();
+                                $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang, $post->ID);
+                                ?>
+                                <?php include TEMPLATEPATH . '/table_row.php'; ?> 
                             </table>
                         </div>
                         <div class="col-md-12 column border tab-pane" id="list">
@@ -416,7 +416,7 @@
                 },
                 complete: function(response) {
                     jQuery('#send_recommendation').removeAttr('disabled');
-                    jQuery('#loading-recommand').hide();                    
+                    jQuery('#loading-recommand').hide();
                 }
             });
 
@@ -486,62 +486,62 @@
 
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
 <script>
-    // MAP //
-    var params;
-    var lang = <?php echo $langt; ?>;
-    var long = <?php echo $longt; ?>;
-    // dom ready
-    jQuery(function() {
-        //if (typeof google !== "undefined"){
-        if (window.google && google.maps) {
-            // Map script is already loaded
-            initializeMap();
-        } else {
+// MAP //
+var params;
+var lang = <?php echo $langt; ?>;
+var long = <?php echo $longt; ?>;
+// dom ready
+jQuery(function() {
+//if (typeof google !== "undefined"){
+if (window.google && google.maps) {
+// Map script is already loaded
+initializeMap();
+} else {
 
-            lazyLoadGoogleMap();
-        }
-    });
-    function initialize(params) {
-        var myLatlng = new google.maps.LatLng(lang, long);
-        var mapOptions = {
-            center: myLatlng,
-            zoom: 8,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-        var marker = new google.maps.Marker({
-            position: myLatlng,
-            map: map,
-            title: "<?php echo $title; ?>"
-        });
-    }
-    function lazyLoadGoogleMap() {
-        jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
-                .done(function(script, textStatus) {
-                    //alert("Google map script loaded successfully");
-                })
-                .fail(function(jqxhr, settings, ex) {
-                    //alert("Could not load Google Map script: " + jqxhr);
-                });
-    }
-    function initializeMap() {
-        initialize(params);
-    }
+lazyLoadGoogleMap();
+}
+});
+function initialize(params) {
+var myLatlng = new google.maps.LatLng(lang, long);
+var mapOptions = {
+center: myLatlng,
+zoom: 8,
+mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+var marker = new google.maps.Marker({
+position: myLatlng,
+map: map,
+title: "<?php echo $title; ?>"
+});
+}
+function lazyLoadGoogleMap() {
+jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
+.done(function(script, textStatus) {
+//alert("Google map script loaded successfully");
+})
+.fail(function(jqxhr, settings, ex) {
+//alert("Could not load Google Map script: " + jqxhr);
+});
+}
+function initializeMap() {
+initialize(params);
+}
 </script>
 <script>
     /*
-    jQuery(document).ready(function($) {
-
-        $(".test-popup-link").click(function(event) {
-
-            $('.parent-container').magnificPopup({
-                delegate: 'a', // child items selector, by clicking on it popup will open
-                type: 'image',
-                gallery: {enabled: true}
-                // other options
-            });
-        });
-    });
-    */
+     jQuery(document).ready(function($) {
+     
+     $(".test-popup-link").click(function(event) {
+     
+     $('.parent-container').magnificPopup({
+     delegate: 'a', // child items selector, by clicking on it popup will open
+     type: 'image',
+     gallery: {enabled: true}
+     // other options
+     });
+     });
+     });
+     */
 </script>
 <?php get_footer(); ?>

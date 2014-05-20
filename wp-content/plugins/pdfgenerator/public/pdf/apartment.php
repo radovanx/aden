@@ -77,11 +77,15 @@
 
             .base-info {
                 margin-bottom: 5mm;
-                margin-top: 5mm;
+                margin-top: 3mm;
             }
             .vbottom {
                 vertical-align: bottom;
             }
+
+            .vtop {
+                vertical-align: top;
+            }            
 
             .border-left {
                 border-left: 3px solid #990033;
@@ -161,9 +165,9 @@
         $current_user = wp_get_current_user();
         ?>
         <div id="wrapper">
-            <table class="w100 big-border-bottom">
+            <table class="w100">
                 <tr>
-                    <td class="w50">
+                    <td class="w50 vtop">
                         <?php
                         $attachment_id = get_user_meta(get_current_user_id(), 'logo', true);
 
@@ -175,7 +179,7 @@
                         }
                         ?>
                     </td>
-                    <td class="w50 text-right text-block vbottom">
+                    <td class="w50 text-right text-block vtop">
                         <h3><?php echo get_user_meta(get_current_user_id(), 'company', true) ?></h3>
                         <?php
                         $location = array();
@@ -194,12 +198,13 @@
                             echo implode(' | ', $location) . '<br>';
                         }
                         ?>
-                        <?php _e('tel:', $this->plugin_slug) ?>  <?php echo get_user_meta(get_current_user_id(), 'phone', true) ?>
+                        <?php _e('tel:', $this->plugin_slug) ?>  <?php echo get_user_meta(get_current_user_id(), 'phone', true) ?><br>
+                        <a class="red-color decoration-none" href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a>                        
                     </td>
                 </tr>
             </table>
 
-            <div class="text-right text-block"><a class="red-color decoration-none" href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a></div>
+
 
             <table class="w100 base-info">
                 <tr>

@@ -1,17 +1,18 @@
 <?php
-ini_set("memory_limit","384M");
+
+ini_set("memory_limit", "384M");
 
 // This is because changelog.txt contains over 100000 characters, and preg_* functions in mPDF won't work.
-ini_set("pcre.backtrack_limit","200000");
+ini_set("pcre.backtrack_limit", "200000");
 
 include("../mpdf.php");
 
-$mpdf=new mPDF(); 
+$mpdf = new mPDF();
 
 $mpdf->tabSpaces = 6;
 
-$mpdf->allow_charset_conversion=true;
-$mpdf->charset_in='windows-1252';
+$mpdf->allow_charset_conversion = true;
+$mpdf->charset_in = 'windows-1252';
 
 
 //==============================================================
@@ -24,8 +25,8 @@ $html = '
 $lines = file('../CHANGELOG.txt');
 
 $html .= '<pre>';
-foreach($lines AS $line) {
-	$html .= htmlspecialchars($line);
+foreach ($lines AS $line) {
+    $html .= htmlspecialchars($line);
 }
 $html .= '</pre>';
 $html .= '</div>';
@@ -36,6 +37,4 @@ $mpdf->WriteHTML($html);
 
 $mpdf->Output();
 exit;
-
-
 ?>

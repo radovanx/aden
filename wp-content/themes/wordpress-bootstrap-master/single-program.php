@@ -155,7 +155,7 @@
                                     $lang = qtrans_getLanguage();
                                     $flat_props = EstateProgram::get_flats_props_by_program($post->ID, $lang);
                                     ?>
-                                    <?php  include TEMPLATEPATH . '/table_row.php'; ?> 
+                                    <?php include TEMPLATEPATH . '/table_row.php'; ?> 
                                 </table>
                             </div>
                             <div class="col-md-12 column border tab-pane" id="list">

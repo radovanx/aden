@@ -4,51 +4,51 @@
 
 
 .jumbotron {
-  padding: @jumbotron-padding;
-  margin-bottom: @jumbotron-padding;
-  font-size: 15px;
-  font-weight: 200;
-  line-height: (@line-height-base * 1.5);
-  color: #4a4a4a;
-  background-color: @jumbotron-bg;
-
-  h1,
-  .h1 {
-    line-height: 1;
-    color: @jumbotron-heading-color;
-  }
-  
-  .lead 
-  {
-      font-size:15px;
-      
-  }
-  
-  
-  p {
-    line-height: 1.9;
-  }
-
-  .container & {
-    border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
-  }
-
-  .container {
-    max-width: 100%;
-  }
-
-  @media screen and (min-width: @screen-sm-min) {
-    padding-top:    (@jumbotron-padding * 1.2);
-    padding-bottom: (@jumbotron-padding * 1.2);
-
-    .container & {
-      padding-left:  (@jumbotron-padding * 0);
-      padding-right: (@jumbotron-padding * 0);
-    }
+    padding: @jumbotron-padding;
+    margin-bottom: @jumbotron-padding;
+    font-size: 15px;
+    font-weight: 200;
+    line-height: (@line-height-base * 1.5);
+    color: #4a4a4a;
+    background-color: @jumbotron-bg;
 
     h1,
     .h1 {
-      font-size: 48px;
+        line-height: 1;
+        color: @jumbotron-heading-color;
     }
-  }
+
+    .lead 
+    {
+        font-size:15px;
+
+    }
+
+
+    p {
+        line-height: 1.9;
+    }
+
+    .container & {
+        border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    @media screen and (min-width: @screen-sm-min) {
+        padding-top:    (@jumbotron-padding * 1.2);
+        padding-bottom: (@jumbotron-padding * 1.2);
+
+        .container & {
+            padding-left:  (@jumbotron-padding * 0);
+            padding-right: (@jumbotron-padding * 0);
+        }
+
+        h1,
+        .h1 {
+            font-size: 48px;
+        }
+    }
 }
