@@ -202,6 +202,16 @@ get_header();
                                     $prop = unserialize($val->prop);
                                     $key = unserialize($key);
                                     //$url_image = wp_get_attachment_url(get_post_thumbnail_id($val->ID, '')); 
+                                     
+                                    if ( $val->is_favorite == 0 )
+                                        {
+                                        $favor = "blue fa-star-o";
+                                        }
+                                        else {
+                                        $favor = "red fa-star"; 
+                                        }
+                                        
+                                  
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
@@ -214,14 +224,19 @@ get_header();
                                     $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
                                     $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
                                     $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
+                                    $pricem = (int)$pricem;
                                     $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
+                                    $price = (int)$price;
+                                    $idval = (int)$val->ID; 
+                                    
+                                    
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-"; 
          
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\"},";
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", favorite: \"" .$favor."\", idval: ".$idval." },";
                                     $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
             
                                     if ($i < 10):
@@ -229,7 +244,7 @@ get_header();
 
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
                                             <td>   
-                                                <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><?php echo $val->is_favorite; ?></a>
+                                                <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><span class="small-text hidden"><?php echo $val->is_favorite; ?></span></a>
                                             </td>
                                             <td>
                                                 <?php echo $reference; ?>
@@ -463,8 +478,7 @@ get_header();
         //magic - refactoring needed !!!     
         checkeddistrict = '"'+helperd.join('","')+'"';            
         checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length-1);
-  
-    
+   
         var fcity = checkedcitiesf; 
         var fdistrict = checkeddistrict;
         
@@ -475,24 +489,16 @@ get_header();
         var froomsf = values.Roomsf;
         var froomst = values.Roomst; 
         var fpricef = values.Pricef;
-        var fpricet = values.Pricet; 
-            
-        //make a filter 
-    
-  
+        var fpricet = values.Pricet;              
+        //make a filter  
         var finalfilter = false;
-        
         if (fcity != '')
         {
-            
-   
             var city_filter = PourOver.makeExactFilter("city", [fcity]);           
             
             collection.addFilters([city_filter]);  
             finalfilter = collection.filters.city.getFn(fcity);  
             console.log(finalfilter);
-            
-    
         } 
         if (ftype != '')
         {
@@ -691,14 +697,10 @@ get_header();
                  "http://www.adenimmo.loc...eart-of-berlin-mitte-4/"
                  
                  zip*/
-
-                var table_data = "<tr><td> </td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + val.hnumber + val.city + val.district + val.zip + "</a></td><td>"+val.hnumber+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.price+" &euro;</td><td>"+val.pricem+" &euro;</td><td></td><td>"+val.rstatus+"</td></tr>";
+                var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.hnumber+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.price+" &euro;</td><td>"+val.pricem+" &euro;</td><td></td><td>"+val.rstatus+"</td></tr>";
                 jQuery("tbody").append(table_data);
-              
                 jQuery("table").trigger("update");     
-                jQuery("table").tablesorter();
-              
-                
+                jQuery("table").tablesorter(); 
             });
         } 
         /*<tr> 
