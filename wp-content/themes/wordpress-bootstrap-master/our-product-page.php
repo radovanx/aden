@@ -3,11 +3,11 @@
   Template Name: Search Page
  */
 ?> 
-<?php
+<?php 
 redirect_if_not_logged();
-get_header();
+get_header(); 
 ?>
-
+ 
 <div class="container">
     <div id="content" class="clearfix row">
         <div class="col-sm-12 clearfix" role="main">
@@ -42,32 +42,32 @@ get_header();
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
                         <div class="row"> 
                             <div class="col-md-12">
-                                <!-- cities from taxonomy -->                    
-                                <?php
-                                $args = array(
-                                    'taxonomy' => 'location',
-                                    'hide_empty' => true,
-                                    'parent' => 0
-                                );
-                                $cities = get_categories($args);
-                                foreach ($cities as $key => $value):
-                                    ?>  
-                                    <label class="checkbox-inline">
-                                        <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="cities" data-myAttri="<?php _e($value->term_id); ?>" class="city-checkbox" value="<?php _e($value->name); ?>"><?php _e($value->name); ?>
-                                    </label>
-                                <?php endforeach; ?>
-                                <!-- /cities from taxonomy -->
-                            </div>
+                            <!-- cities from taxonomy -->                    
+                            <?php
+                            $args = array(
+                                'taxonomy' => 'location',
+                                'hide_empty' => true,
+                                'parent' => 0
+                            );
+                            $cities = get_categories($args);
+                            foreach ($cities as $key => $value):                                  
+                                ?>  
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" id="inlineCheckbox-<?php echo $value->name; ?>" name="cities" data-myAttri="<?php _e($value->term_id); ?>" class="city-checkbox" value="<?php _e($value->name); ?>"><?php _e($value->name); ?>
+                                </label>
+                            <?php endforeach; ?>
+                            <!-- /cities from taxonomy -->
+                        </div>
                         </div>                
                     </div>
-                    <div class="form-group"> 
+                     <div class="form-group"> 
                         <label><?php _e("Disctrict:", "wpbootstrap"); ?></label>
                         <div id="district-list"></div>
                         <!--<label for="Disctrict"></label><input name="Disctrict" class="form-control input-lg" id="Disctrict" type="text" placeholder="Disctrict:"/>-->
                         <!-- district from ajax --> 
                         <!-- /district from ajax -->
                     </div>
-
+   
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
@@ -81,7 +81,7 @@ get_header();
                     </div>
                 </div>
                 <div class="col-md-6 column">
-                    <div class="form-group">  
+                       <div class="form-group">  
                         <label for="accommodation"><?php _e("Type of accommodation::", "wpbootstrap"); ?></label>
                         <?php
                         $args = array(
@@ -202,14 +202,16 @@ get_header();
                                     $prop = unserialize($val->prop);
                                     $key = unserialize($key);
                                     //$url_image = wp_get_attachment_url(get_post_thumbnail_id($val->ID, '')); 
-
-                                    if ($val->is_favorite == 0) {
+                                     
+                                    if ( $val->is_favorite == 0 )
+                                        {
                                         $favor = "blue fa-star-o";
-                                    } else {
-                                        $favor = "red fa-star";
-                                    }
-
-
+                                        }
+                                        else {
+                                        $favor = "red fa-star"; 
+                                        }
+                                        
+                                  
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
@@ -222,21 +224,21 @@ get_header();
                                     $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
                                     $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
                                     $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
-                                    $pricem = (int) $pricem;
+                                    $pricem = (int)$pricem;
                                     $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
-                                    $price = (int) $price;
-                                    $idval = (int) $val->ID;
-
-
+                                    $price = (int)$price;
+                                    $idval = (int)$val->ID; 
+                                    
+                                    
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
-
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: " . $pricem . "  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", favorite: \"" . $favor . "\", idval: " . $idval . " },";
+                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-"; 
+         
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", favorite: \"" .$favor."\", idval: ".$idval." },";
                                     $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
-
+            
                                     if ($i < 10):
                                         ?> 
 
@@ -272,19 +274,19 @@ get_header();
                                                 <?php echo $pricem; ?>&euro;
                                             </td>
                                             <td>   
-
+                                                    
                                             </td>
                                             <td>
                                                 <?php echo $status; ?>
                                             </td>
                                         </tr>
-
+                                         
                                         <?php
                                     endif;
                                     $i++;
                                 endforeach;
                             endif;
-
+                         
                             $data_object = substr("$data_object", 0, -1);
                             $data_object = "[" . $data_object . "]";
                             ?>   
@@ -297,7 +299,7 @@ get_header();
                     $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                     $i = 0;
                     if (!empty($flat_props)):
-                        foreach ($flat_props as $key => $val):
+                        foreach ($flat_props as $key => $val): 
                             $prop = unserialize($val->prop);
                             $key = unserialize($key);
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
@@ -314,9 +316,9 @@ get_header();
                             $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
                             $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-                            $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";
+                            $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
                             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
-
+                            
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
                             <div class="row">
@@ -413,28 +415,28 @@ get_header();
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
 <script>
-
-    jQuery(function() {
-        jQuery('.city-checkbox').click(function() {
-
-            var id = jQuery(this).attr("data-myAttri");
-            if (jQuery(this).is(':checked')) {
-
-                var data = {
-                    'action': 'get_district',
-                    'id': +id
-                };
-
-                jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) {
-                    jQuery('#district-list').append(response);
-                });
-            }
-            else {
-                jQuery('#district-wrap-' + id).remove();
-            }
+  
+      jQuery(function() {
+        jQuery('.city-checkbox').click(function() { 
+            
+        var id = jQuery(this).attr("data-myAttri");      
+        if(jQuery(this).is(':checked')){   
+             
+        var data = {       
+         'action':'get_district', 
+         'id':+id 
+        }; 
+        
+        jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) { 
+        jQuery('#district-list').append(response);       
+        });                
+        }   
+        else { 
+        jQuery('#district-wrap-'+id).remove();
+        }
         });
-    });
-
+        });
+ 
 </script> 
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
@@ -442,62 +444,62 @@ get_header();
 
     var datatable = <?php echo $data_object; ?>;
     var collection = new PourOver.Collection(datatable);
+  
+        jQuery("form").on("submit", function(event) { 
+        event.preventDefault();  
 
-    jQuery("form").on("submit", function(event) {
-        event.preventDefault();
+        var values = {}; 
+        jQuery.each(jQuery('form').serializeArray(), function(i, field) { 
+            values[field.name] = field.value; 
+        }); 
 
-        var values = {};
-        jQuery.each(jQuery('form').serializeArray(), function(i, field) {
-            values[field.name] = field.value;
-        });
-
-        var checkedcities = '';
+        var checkedcities='';     
         var helper = []
-
-        jQuery('.city-checkbox:checked').each(function() {
-            helper.push(jQuery(this).val());
-            // checkedcities=checkedcities+','+jQuery(this).val();    
-        });
-
+       
+        jQuery('.city-checkbox:checked').each(function(){ 
+                helper.push(jQuery(this).val()); 
+               // checkedcities=checkedcities+','+jQuery(this).val();    
+        });    
+        
         //magic - refactoring needed !!!
-
-        checkedcities = '"' + helper.join('","') + '"';
-
-        var checkedcitiesf = checkedcities.substring(1, checkedcities.length - 1);
-
-
-        var checkeddistrict = '';
+        
+        checkedcities = '"'+helper.join('","')+'"';         
+        
+        var checkedcitiesf = checkedcities.substring(1, checkedcities.length-1);
+        
+   
+        var checkeddistrict='';     
         var helperd = []
-
-        jQuery('.district-checkbox:checked').each(function() {
-            helperd.push(jQuery(this).val());
-            // checkedcities=checkedcities+','+jQuery(this).val();    
-        });
+       
+        jQuery('.district-checkbox:checked').each(function(){ 
+                helperd.push(jQuery(this).val()); 
+               // checkedcities=checkedcities+','+jQuery(this).val();    
+        });           
         //magic - refactoring needed !!!     
-        checkeddistrict = '"' + helperd.join('","') + '"';
-        checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length - 1);
-
-        var fcity = checkedcitiesf;
+        checkeddistrict = '"'+helperd.join('","')+'"';            
+        checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length-1);
+   
+        var fcity = checkedcitiesf; 
         var fdistrict = checkeddistrict;
-
-        var ftype = values.type;
-        var freferences = values.References;
-        var fareaf = values.Areaf;
-        var fareat = values.Areat;
+        
+        var ftype = values.type;      
+        var freferences = values.References;     
+        var fareaf = values.Areaf;   
+        var fareat = values.Areat;  
         var froomsf = values.Roomsf;
-        var froomst = values.Roomst;
+        var froomst = values.Roomst; 
         var fpricef = values.Pricef;
-        var fpricet = values.Pricet;
+        var fpricet = values.Pricet;              
         //make a filter  
         var finalfilter = false;
         if (fcity != '')
         {
-            var city_filter = PourOver.makeExactFilter("city", [fcity]);
-
-            collection.addFilters([city_filter]);
-            finalfilter = collection.filters.city.getFn(fcity);
+            var city_filter = PourOver.makeExactFilter("city", [fcity]);           
+            
+            collection.addFilters([city_filter]);  
+            finalfilter = collection.filters.city.getFn(fcity);  
             console.log(finalfilter);
-        }
+        } 
         if (ftype != '')
         {
             var type_filter = PourOver.makeExactFilter("type", [ftype]);
@@ -525,11 +527,11 @@ get_header();
             else
             {
                 finalfilter = collection.filters.references.getFn(freferences);
-            }
+            } 
             // var references_f = collection.filters.references.getFn(freferences);  
         }
         if (fdistrict != '')
-        {
+        { 
             var district_filter = PourOver.makeExactFilter("district", [fdistrict]);
             collection.addFilters([district_filter]);
 
@@ -630,29 +632,29 @@ get_header();
         //ROOMS     
         if (froomsf != '' || froomst != '')
         {
-
-            var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"});
-            collection.addFilters([rooms_range_filter]);
-            if (finalfilter != false)
+             
+            var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"}); 
+            collection.addFilters([rooms_range_filter]); 
+        if (finalfilter != false)
             {
                 finalfilter = finalfilter.and(collection.filters.rooms_range.getFn([froomsf, froomst]));
-            }
-            else
+            } 
+        else
             {
                 finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
-            }
-        }
-
+            } 
+        }  
+         
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
-
-        console.log(myfilterfinal);
-
+       
+        console.log(myfilterfinal); 
+ 
         if (jQuery.isEmptyObject(myfilterfinal))
         {
-            jQuery("#table_data_filter").empty();
+            jQuery("#table_data_filter").empty(); 
             var table_data = "<tr><td><h1> NO RESULT FOUND </h1></td></tr>";
-            jQuery("tbody").append(table_data);
+            jQuery("tbody").append(table_data); 
         }
         else
         {
@@ -695,25 +697,25 @@ get_header();
                  "http://www.adenimmo.loc...eart-of-berlin-mitte-4/"
                  
                  zip*/
-                var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ", " + val.district + ", " + val.city + ", " + val.zip + "</a></td><td>" + val.hnumber + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.price + " &euro;</td><td>" + val.pricem + " &euro;</td><td></td><td>" + val.rstatus + "</td></tr>";
+                var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.hnumber+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.price+" &euro;</td><td>"+val.pricem+" &euro;</td><td></td><td>"+val.rstatus+"</td></tr>";
                 jQuery("tbody").append(table_data);
-                jQuery("table").trigger("update");
-                jQuery("table").tablesorter();
+                jQuery("table").trigger("update");     
+                jQuery("table").tablesorter(); 
             });
-        }
+        } 
         /*<tr> 
          <td>
          <a href=" " class="blue"> </a>
          </td>
          </tr> 
          */
-    });
+             });
 </script>    
-<script>
-    jQuery(document).ready(function($) {
-        $(".searchbutton").fadeIn("fast", function() {
+<script>   
+    jQuery(document).ready(function($) { 
+        $( ".searchbutton" ).fadeIn( "fast", function() { 
         });
-    });
+    });       
 </script> 
 <script type="text/javascript">
     //strankovani

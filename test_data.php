@@ -11,12 +11,13 @@ require_once(ABSPATH . "wp-admin/includes/image.php");
 
 global $wpdb;
 
-$vzor_id = 3334;
+$vzor_id = 4605;
 
 $original = get_post($vzor_id);
+$program_id = 4220;
 
 
-for ($i = 0; $i < 300; $i++) {
+for ($i = 0; $i < 80; $i++) {
 
     $new_flat_number = rand(100, 100000);
 
@@ -34,7 +35,7 @@ for ($i = 0; $i < 300; $i++) {
             apartment2program (apartment_id, program_id)
           VALUES(
             '" . (int) $new_flat_id . "',
-            '3303'
+            '" . $program_id . "'
           )";
 
     $wpdb->query($sql);
@@ -82,6 +83,3 @@ for ($i = 0; $i < 300; $i++) {
         }
     }
 }
-$x = 1;
-$y = $x;
-

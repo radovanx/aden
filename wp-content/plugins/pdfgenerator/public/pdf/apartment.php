@@ -237,7 +237,7 @@
             <table class="features w100 block">
                 <tr>
                     <td class="w25"><?php _e('Ref:', $this->plugin_slug) ?></td>
-                    <td class="w25 text-right t2"></td>
+                    <td class="w25 text-right t2"><?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?></td>
                     <td class="w25 t3"><?php _e('Year of construction:', $this->plugin_slug) ?></td>
                     <td class="w25 text-right"><?php echo esc_attr($props['zustand_angaben|baujahr']) ?></td>
                 </tr>
@@ -270,7 +270,7 @@
                 </tr>
                 <tr>
                     <td class="w25"><?php _e('Garage / parking spot:', $this->plugin_slug) ?></td>
-                    <td class="w25 text-right t2"></td>
+                    <td class="w25 text-right t2"><?php echo 0 == (int) ($props['preise|stp_sonstige|stellplatzmiete']) ? __('No', $this->plugin_slug) : __('Yes', $this->plugin_slug); ?></td>
                     <td class="w25 t3"><?php _e('Buyer commission (incl. VAT):', $this->plugin_slug) ?></td>
                     <td class="w25 text-right"><?php echo esc_attr($props['preise|aussen_courtage']) ?></td>
                 </tr>
