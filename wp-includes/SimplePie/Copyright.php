@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SimplePie
  *
@@ -52,79 +53,69 @@
  * @package SimplePie
  * @subpackage API
  */
-class SimplePie_Copyright
-{
-	/**
-	 * Copyright URL
-	 *
-	 * @var string
-	 * @see get_url()
-	 */
-	var $url;
+class SimplePie_Copyright {
 
-	/**
-	 * Attribution
-	 *
-	 * @var string
-	 * @see get_attribution()
-	 */
-	var $label;
+    /**
+     * Copyright URL
+     *
+     * @var string
+     * @see get_url()
+     */
+    var $url;
 
-	/**
-	 * Constructor, used to input the data
-	 *
-	 * For documentation on all the parameters, see the corresponding
-	 * properties and their accessors
-	 */
-	public function __construct($url = null, $label = null)
-	{
-		$this->url = $url;
-		$this->label = $label;
-	}
+    /**
+     * Attribution
+     *
+     * @var string
+     * @see get_attribution()
+     */
+    var $label;
 
-	/**
-	 * String-ified version
-	 *
-	 * @return string
-	 */
-	public function __toString()
-	{
-		// There is no $this->data here
-		return md5(serialize($this));
-	}
+    /**
+     * Constructor, used to input the data
+     *
+     * For documentation on all the parameters, see the corresponding
+     * properties and their accessors
+     */
+    public function __construct($url = null, $label = null) {
+        $this->url = $url;
+        $this->label = $label;
+    }
 
-	/**
-	 * Get the copyright URL
-	 *
-	 * @return string|null URL to copyright information
-	 */
-	public function get_url()
-	{
-		if ($this->url !== null)
-		{
-			return $this->url;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * String-ified version
+     *
+     * @return string
+     */
+    public function __toString() {
+        // There is no $this->data here
+        return md5(serialize($this));
+    }
 
-	/**
-	 * Get the attribution text
-	 *
-	 * @return string|null
-	 */
-	public function get_attribution()
-	{
-		if ($this->label !== null)
-		{
-			return $this->label;
-		}
-		else
-		{
-			return null;
-		}
-	}
+    /**
+     * Get the copyright URL
+     *
+     * @return string|null URL to copyright information
+     */
+    public function get_url() {
+        if ($this->url !== null) {
+            return $this->url;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Get the attribution text
+     *
+     * @return string|null
+     */
+    public function get_attribution() {
+        if ($this->label !== null) {
+            return $this->label;
+        } else {
+            return null;
+        }
+    }
+
 }
-

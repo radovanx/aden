@@ -1,246 +1,251 @@
 <?php
+
 /**
  * WP_Importer base class
  */
 class WP_Importer {
-	/**
-	 * Class Constructor
-	 *
-	 * @return void
-	 */
-	function __construct() {}
 
-	/**
-	 * Returns array with imported permalinks from WordPress database
-	 *
-	 * @param string $bid
-	 * @return array
-	 */
-	function get_imported_posts( $importer_name, $bid ) {
-		global $wpdb;
+    /**
+     * Class Constructor
+     *
+     * @return void
+     */
+    function __construct() {
+        
+    }
 
-		$hashtable = array();
+    /**
+     * Returns array with imported permalinks from WordPress database
+     *
+     * @param string $bid
+     * @return array
+     */
+    function get_imported_posts($importer_name, $bid) {
+        global $wpdb;
 
-		$limit = 100;
-		$offset = 0;
+        $hashtable = array();
 
-		// Grab all posts in chunks
-		do {
-			$meta_key = $importer_name . '_' . $bid . '_permalink';
-			$sql = $wpdb->prepare( "SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = '%s' LIMIT %d,%d", $meta_key, $offset, $limit );
-			$results = $wpdb->get_results( $sql );
+        $limit = 100;
+        $offset = 0;
 
-			// Increment offset
-			$offset = ( $limit + $offset );
+        // Grab all posts in chunks
+        do {
+            $meta_key = $importer_name . '_' . $bid . '_permalink';
+            $sql = $wpdb->prepare("SELECT post_id, meta_value FROM $wpdb->postmeta WHERE meta_key = '%s' LIMIT %d,%d", $meta_key, $offset, $limit);
+            $results = $wpdb->get_results($sql);
 
-			if ( !empty( $results ) ) {
-				foreach ( $results as $r ) {
-					// Set permalinks into array
-					$hashtable[$r->meta_value] = intval( $r->post_id );
-				}
-			}
-		} while ( count( $results ) == $limit );
+            // Increment offset
+            $offset = ( $limit + $offset );
 
-		// unset to save memory
-		unset( $results, $r );
+            if (!empty($results)) {
+                foreach ($results as $r) {
+                    // Set permalinks into array
+                    $hashtable[$r->meta_value] = intval($r->post_id);
+                }
+            }
+        } while (count($results) == $limit);
 
-		return $hashtable;
-	}
+        // unset to save memory
+        unset($results, $r);
 
-	/**
-	 * Return count of imported permalinks from WordPress database
-	 *
-	 * @param string $bid
-	 * @return int
-	 */
-	function count_imported_posts( $importer_name, $bid ) {
-		global $wpdb;
+        return $hashtable;
+    }
 
-		$count = 0;
+    /**
+     * Return count of imported permalinks from WordPress database
+     *
+     * @param string $bid
+     * @return int
+     */
+    function count_imported_posts($importer_name, $bid) {
+        global $wpdb;
 
-		// Get count of permalinks
-		$meta_key = $importer_name . '_' . $bid . '_permalink';
-		$sql = $wpdb->prepare( "SELECT COUNT( post_id ) AS cnt FROM $wpdb->postmeta WHERE meta_key = '%s'", $meta_key );
+        $count = 0;
 
-		$result = $wpdb->get_results( $sql );
+        // Get count of permalinks
+        $meta_key = $importer_name . '_' . $bid . '_permalink';
+        $sql = $wpdb->prepare("SELECT COUNT( post_id ) AS cnt FROM $wpdb->postmeta WHERE meta_key = '%s'", $meta_key);
 
-		if ( !empty( $result ) )
-			$count = intval( $result[0]->cnt );
+        $result = $wpdb->get_results($sql);
 
-		// unset to save memory
-		unset( $results );
+        if (!empty($result))
+            $count = intval($result[0]->cnt);
 
-		return $count;
-	}
+        // unset to save memory
+        unset($results);
 
-	/**
-	 * Set array with imported comments from WordPress database
-	 *
-	 * @param string $bid
-	 * @return array
-	 */
-	function get_imported_comments( $bid ) {
-		global $wpdb;
+        return $count;
+    }
 
-		$hashtable = array();
+    /**
+     * Set array with imported comments from WordPress database
+     *
+     * @param string $bid
+     * @return array
+     */
+    function get_imported_comments($bid) {
+        global $wpdb;
 
-		$limit = 100;
-		$offset = 0;
+        $hashtable = array();
 
-		// Grab all comments in chunks
-		do {
-			$sql = $wpdb->prepare( "SELECT comment_ID, comment_agent FROM $wpdb->comments LIMIT %d,%d", $offset, $limit );
-			$results = $wpdb->get_results( $sql );
+        $limit = 100;
+        $offset = 0;
 
-			// Increment offset
-			$offset = ( $limit + $offset );
+        // Grab all comments in chunks
+        do {
+            $sql = $wpdb->prepare("SELECT comment_ID, comment_agent FROM $wpdb->comments LIMIT %d,%d", $offset, $limit);
+            $results = $wpdb->get_results($sql);
 
-			if ( !empty( $results ) ) {
-				foreach ( $results as $r ) {
-					// Explode comment_agent key
-					list ( $ca_bid, $source_comment_id ) = explode( '-', $r->comment_agent );
-					$source_comment_id = intval( $source_comment_id );
+            // Increment offset
+            $offset = ( $limit + $offset );
 
-					// Check if this comment came from this blog
-					if ( $bid == $ca_bid ) {
-						$hashtable[$source_comment_id] = intval( $r->comment_ID );
-					}
-				}
-			}
-		} while ( count( $results ) == $limit );
+            if (!empty($results)) {
+                foreach ($results as $r) {
+                    // Explode comment_agent key
+                    list ( $ca_bid, $source_comment_id ) = explode('-', $r->comment_agent);
+                    $source_comment_id = intval($source_comment_id);
 
-		// unset to save memory
-		unset( $results, $r );
+                    // Check if this comment came from this blog
+                    if ($bid == $ca_bid) {
+                        $hashtable[$source_comment_id] = intval($r->comment_ID);
+                    }
+                }
+            }
+        } while (count($results) == $limit);
 
-		return $hashtable;
-	}
+        // unset to save memory
+        unset($results, $r);
 
-	function set_blog( $blog_id ) {
-		if ( is_numeric( $blog_id ) ) {
-			$blog_id = (int) $blog_id;
-		} else {
-			$blog = 'http://' . preg_replace( '#^https?://#', '', $blog_id );
-			if ( ( !$parsed = parse_url( $blog ) ) || empty( $parsed['host'] ) ) {
-				fwrite( STDERR, "Error: can not determine blog_id from $blog_id\n" );
-				exit();
-			}
-			if ( empty( $parsed['path'] ) )
-				$parsed['path'] = '/';
-			$blog = get_blog_details( array( 'domain' => $parsed['host'], 'path' => $parsed['path'] ) );
-			if ( !$blog ) {
-				fwrite( STDERR, "Error: Could not find blog\n" );
-				exit();
-			}
-			$blog_id = (int) $blog->blog_id;
-		}
+        return $hashtable;
+    }
 
-		if ( function_exists( 'is_multisite' ) ) {
-			if ( is_multisite() )
-				switch_to_blog( $blog_id );
-		}
+    function set_blog($blog_id) {
+        if (is_numeric($blog_id)) {
+            $blog_id = (int) $blog_id;
+        } else {
+            $blog = 'http://' . preg_replace('#^https?://#', '', $blog_id);
+            if ((!$parsed = parse_url($blog) ) || empty($parsed['host'])) {
+                fwrite(STDERR, "Error: can not determine blog_id from $blog_id\n");
+                exit();
+            }
+            if (empty($parsed['path']))
+                $parsed['path'] = '/';
+            $blog = get_blog_details(array('domain' => $parsed['host'], 'path' => $parsed['path']));
+            if (!$blog) {
+                fwrite(STDERR, "Error: Could not find blog\n");
+                exit();
+            }
+            $blog_id = (int) $blog->blog_id;
+        }
 
-		return $blog_id;
-	}
+        if (function_exists('is_multisite')) {
+            if (is_multisite())
+                switch_to_blog($blog_id);
+        }
 
-	function set_user( $user_id ) {
-		if ( is_numeric( $user_id ) ) {
-			$user_id = (int) $user_id;
-		} else {
-			$user_id = (int) username_exists( $user_id );
-		}
+        return $blog_id;
+    }
 
-		if ( !$user_id || !wp_set_current_user( $user_id ) ) {
-			fwrite( STDERR, "Error: can not find user\n" );
-			exit();
-		}
+    function set_user($user_id) {
+        if (is_numeric($user_id)) {
+            $user_id = (int) $user_id;
+        } else {
+            $user_id = (int) username_exists($user_id);
+        }
 
-		return $user_id;
-	}
+        if (!$user_id || !wp_set_current_user($user_id)) {
+            fwrite(STDERR, "Error: can not find user\n");
+            exit();
+        }
 
-	/**
-	 * Sort by strlen, longest string first
-	 *
-	 * @param string $a
-	 * @param string $b
-	 * @return int
-	 */
-	function cmpr_strlen( $a, $b ) {
-		return strlen( $b ) - strlen( $a );
-	}
+        return $user_id;
+    }
 
-	/**
-	 * GET URL
-	 *
-	 * @param string $url
-	 * @param string $username
-	 * @param string $password
-	 * @param bool $head
-	 * @return array
-	 */
-	function get_page( $url, $username = '', $password = '', $head = false ) {
-		// Increase the timeout
-		add_filter( 'http_request_timeout', array( $this, 'bump_request_timeout' ) );
+    /**
+     * Sort by strlen, longest string first
+     *
+     * @param string $a
+     * @param string $b
+     * @return int
+     */
+    function cmpr_strlen($a, $b) {
+        return strlen($b) - strlen($a);
+    }
 
-		$headers = array();
-		$args = array();
-		if ( true === $head )
-			$args['method'] = 'HEAD';
-		if ( !empty( $username ) && !empty( $password ) )
-			$headers['Authorization'] = 'Basic ' . base64_encode( "$username:$password" );
+    /**
+     * GET URL
+     *
+     * @param string $url
+     * @param string $username
+     * @param string $password
+     * @param bool $head
+     * @return array
+     */
+    function get_page($url, $username = '', $password = '', $head = false) {
+        // Increase the timeout
+        add_filter('http_request_timeout', array($this, 'bump_request_timeout'));
 
-		$args['headers'] = $headers;
+        $headers = array();
+        $args = array();
+        if (true === $head)
+            $args['method'] = 'HEAD';
+        if (!empty($username) && !empty($password))
+            $headers['Authorization'] = 'Basic ' . base64_encode("$username:$password");
 
-		return wp_safe_remote_request( $url, $args );
-	}
+        $args['headers'] = $headers;
 
-	/**
-	 * Bump up the request timeout for http requests
-	 *
-	 * @param int $val
-	 * @return int
-	 */
-	function bump_request_timeout( $val ) {
-		return 60;
-	}
+        return wp_safe_remote_request($url, $args);
+    }
 
-	/**
-	 * Check if user has exceeded disk quota
-	 *
-	 * @return bool
-	 */
-	function is_user_over_quota() {
-		if ( function_exists( 'upload_is_user_over_quota' ) ) {
-			if ( upload_is_user_over_quota( 1 ) ) {
-				echo "Sorry, you have used your upload quota.\n";
-				return true;
-			}
-		}
+    /**
+     * Bump up the request timeout for http requests
+     *
+     * @param int $val
+     * @return int
+     */
+    function bump_request_timeout($val) {
+        return 60;
+    }
 
-		return false;
-	}
+    /**
+     * Check if user has exceeded disk quota
+     *
+     * @return bool
+     */
+    function is_user_over_quota() {
+        if (function_exists('upload_is_user_over_quota')) {
+            if (upload_is_user_over_quota(1)) {
+                echo "Sorry, you have used your upload quota.\n";
+                return true;
+            }
+        }
 
-	/**
-	 * Replace newlines, tabs, and multiple spaces with a single space
-	 *
-	 * @param string $string
-	 * @return string
-	 */
-	function min_whitespace( $string ) {
-		return preg_replace( '|[\r\n\t ]+|', ' ', $string );
-	}
+        return false;
+    }
 
-	/**
-	 * Reset global variables that grow out of control during imports
-	 *
-	 * @return void
-	 */
-	function stop_the_insanity() {
-		global $wpdb, $wp_actions;
-		// Or define( 'WP_IMPORTING', true );
-		$wpdb->queries = array();
-		// Reset $wp_actions to keep it from growing out of control
-		$wp_actions = array();
-	}
+    /**
+     * Replace newlines, tabs, and multiple spaces with a single space
+     *
+     * @param string $string
+     * @return string
+     */
+    function min_whitespace($string) {
+        return preg_replace('|[\r\n\t ]+|', ' ', $string);
+    }
+
+    /**
+     * Reset global variables that grow out of control during imports
+     *
+     * @return void
+     */
+    function stop_the_insanity() {
+        global $wpdb, $wp_actions;
+        // Or define( 'WP_IMPORTING', true );
+        $wpdb->queries = array();
+        // Reset $wp_actions to keep it from growing out of control
+        $wp_actions = array();
+    }
+
 }
 
 /**
@@ -251,52 +256,52 @@ class WP_Importer {
  * @param bool $required
  * @return mixed
  */
-function get_cli_args( $param, $required = false ) {
-	$args = $_SERVER['argv'];
+function get_cli_args($param, $required = false) {
+    $args = $_SERVER['argv'];
 
-	$out = array();
+    $out = array();
 
-	$last_arg = null;
-	$return = null;
+    $last_arg = null;
+    $return = null;
 
-	$il = sizeof( $args );
+    $il = sizeof($args);
 
-	for ( $i = 1, $il; $i < $il; $i++ ) {
-		if ( (bool) preg_match( "/^--(.+)/", $args[$i], $match ) ) {
-			$parts = explode( "=", $match[1] );
-			$key = preg_replace( "/[^a-z0-9]+/", "", $parts[0] );
+    for ($i = 1, $il; $i < $il; $i++) {
+        if ((bool) preg_match("/^--(.+)/", $args[$i], $match)) {
+            $parts = explode("=", $match[1]);
+            $key = preg_replace("/[^a-z0-9]+/", "", $parts[0]);
 
-			if ( isset( $parts[1] ) ) {
-				$out[$key] = $parts[1];
-			} else {
-				$out[$key] = true;
-			}
+            if (isset($parts[1])) {
+                $out[$key] = $parts[1];
+            } else {
+                $out[$key] = true;
+            }
 
-			$last_arg = $key;
-		} else if ( (bool) preg_match( "/^-([a-zA-Z0-9]+)/", $args[$i], $match ) ) {
-			for ( $j = 0, $jl = strlen( $match[1] ); $j < $jl; $j++ ) {
-				$key = $match[1]{$j};
-				$out[$key] = true;
-			}
+            $last_arg = $key;
+        } else if ((bool) preg_match("/^-([a-zA-Z0-9]+)/", $args[$i], $match)) {
+            for ($j = 0, $jl = strlen($match[1]); $j < $jl; $j++) {
+                $key = $match[1]{$j};
+                $out[$key] = true;
+            }
 
-			$last_arg = $key;
-		} else if ( $last_arg !== null ) {
-			$out[$last_arg] = $args[$i];
-		}
-	}
+            $last_arg = $key;
+        } else if ($last_arg !== null) {
+            $out[$last_arg] = $args[$i];
+        }
+    }
 
-	// Check array for specified param
-	if ( isset( $out[$param] ) ) {
-		// Set return value
-		$return = $out[$param];
-	}
+    // Check array for specified param
+    if (isset($out[$param])) {
+        // Set return value
+        $return = $out[$param];
+    }
 
-	// Check for missing required param
-	if ( !isset( $out[$param] ) && $required ) {
-		// Display message and exit
-		echo "\"$param\" parameter is required but was not specified\n";
-		exit();
-	}
+    // Check for missing required param
+    if (!isset($out[$param]) && $required) {
+        // Display message and exit
+        echo "\"$param\" parameter is required but was not specified\n";
+        exit();
+    }
 
-	return $return;
+    return $return;
 }

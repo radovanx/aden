@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SimplePie
  *
@@ -47,6 +48,6 @@
  *
  * @package SimplePie
  */
-class SimplePie_Exception extends Exception
-{
+class SimplePie_Exception extends Exception {
+    
 }
