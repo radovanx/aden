@@ -427,33 +427,34 @@ get_header(); ?>
 
     var datatable = <?php echo $data_object; ?>;
     var collection = new PourOver.Collection(datatable);
-    //make Range filter  
-    //CITY FILTER  
-   
+  
         jQuery("form").on("submit", function(event) { 
         event.preventDefault();  
         var values = {};
         
         jQuery.each(jQuery('form').serializeArray(), function(i, field) { 
             values[field.name] = field.value; 
-        });
-      
-        var checkedcities='';     
-        jQuery('.city-checkbox:checked').each(function(){
-                checkedcities=checkedcities+','+jQuery(this).val();    
         }); 
+        var checkedcities='';     
+        var helper = []
+       
+        jQuery('.city-checkbox:checked').each(function(){ 
+                helper.push(jQuery(this).val()); 
+               // checkedcities=checkedcities+','+jQuery(this).val();    
+         
+        });    
+        checkedcities = '"'+helper.join('","')+'"';
+        
+        console.log(checkedcities);
+ 
+        
         var checkeddistricts=''; 
         jQuery('.district-checkbox:checked').each(function(){
                checkeddistricts=''+checkeddistricts+'",'+jQuery(this).val();    
         });
-        
-        checkedcities = checkedcities.substring(1);
-        checkeddistricts = checkeddistricts.substring(1);
-       
-       
+ 
      
-       
-      
+ 
         var fcity = checkedcities; 
         var fdistrict = checkeddistricts;
         
@@ -467,16 +468,14 @@ get_header(); ?>
         var fpricet = values.Pricet; 
             
         //make a filter 
+        
          
         var finalfilter = false;
         if (fcity != '')
         {
-            var city_filter = PourOver.makeInclusionFilter("city", [fcity]);
-            
-           console.log(city_filter);
-            
-            collection.addFilters([city_filter]);
-            finalfilter = collection.filters.city.getFn(fcity); 
+            var city_filter = PourOver.makeExactFilter("city", [fcity]);           
+            collection.addFilters([city_filter]); 
+            finalfilter = collection.filters.city.getFn(fcity);  
         }
         if (ftype != '')
         {
@@ -593,24 +592,46 @@ get_header(); ?>
                 finalfilter = collection.filters.area_range.getFn([0, fareat]);
             }
         }
-        //ROOMS     
-        if (froomsf != '' || froomst != '')
+        else if (fareaf != '' && fareat == '')
         {
-            var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"});
-            collection.addFilters([rooms_range_filter]);
-            // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]);  
+            var area_range_filter = PourOver.makeRangeFilter("area_range", [[fareaf, 999]], {attr: "area"});
+            collection.addFilters([area_range_filter]);
+            // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]); 
             if (finalfilter != false)
             {
-                finalfilter = finalfilter.and(collection.filters.rooms_range.getFn([froomsf, froomst]));
+                finalfilter = finalfilter.and(collection.filters.area_range.getFn([fareaf, 999]));
             }
             else
             {
-                finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
+                finalfilter = collection.filters.area_range.getFn([fareaf, 999]);
             }
+        }
+ 
+        //ROOMS     
+        if (froomsf != '' || froomst != '')
+        {
+             
+            var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"}); 
+            collection.addFilters([rooms_range_filter]);
+             
+        
+        if (finalfilter != false)
+            {
+                finalfilter = finalfilter.and(collection.filters.rooms_range.getFn([froomsf, froomst]));
+            } 
+        else
+            {
+                finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
+            } 
         }  
+         
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
-        // console.log(myfilterfinal); 
+       
+        console.log(myfilterfinal); 
+        
+         
+        
         if (jQuery.isEmptyObject(myfilterfinal))
         {
             jQuery("#table_data_filter").empty(); 
