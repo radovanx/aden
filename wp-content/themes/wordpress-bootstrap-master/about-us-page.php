@@ -8,7 +8,7 @@
 
 <div class="background">
     <div class="container">
-        <div id="content" class="clearfix row">		
+        <div id="content" class="clearfix row">
             <div id="main" class="col col-lg-12 clearfix" role="main">
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -21,26 +21,21 @@
                                 </header> <!-- end article header -->
 
                                 <section class="post_content col col-lg-6">
-
-
                                     <?php the_content(); ?>
-
                                 </section> <!-- end article section -->
-
-
 
                             </div>
                         </article> <!-- end article -->
 
-                    <?php endwhile; ?>	
-                <?php endif; ?>                
+                    <?php endwhile; ?>
+                <?php endif; ?>
             </div>
-        </div>    
+        </div>
     </div>
 </div>
-<div class="container"> 
+<div class="container">
     <div class="row clearfix testimonial">
-        <h1 class="border-left">TESTIMONIALS</h1> 
+        <h1 class="border-left">TESTIMONIALS</h1>
         <div class="col-md-4 column">
             <h4>
                 Testimonial 1
@@ -73,27 +68,21 @@
         </div>
     </div>
 
-    <div class="row clearfix">  
-
-
+    <div class="row clearfix">
         <div class="col-md-8 column">
-            <h2>Contact Form</h2>	 
 
-
-
+            <div class="border col-md-12 column border background contact_form_block">
+                <h2 class="border-left uppercase"><?php _e('Contact Form', 'wpbootstrap') ?></h2>
+                <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
+                <?php echo do_shortcode('[contact-form-7 id="4717" title=""]') ?>
+            </div>
 
         </div>
         <div class="col-md-4 column">
-            <h3 class="border-left">CONTACT INFORMATIONS</h3> 
+            <h3 class="border-left"><?php _e('CONTACT INFORMATIONS', 'wpbootstrap') ?></h3>
 
             <address> <strong>Twitter, Inc.</strong><br /> 795 Folsom Ave, Suite 600<br /> San Francisco, CA 94107<br /> <abbr title="Phone">P:</abbr> (123) 456-7890</address>
         </div>
     </div>
-
-
-
 </div>
-
-
-
 <?php get_footer(); ?>

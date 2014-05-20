@@ -11,8 +11,8 @@
                 flat_id: $(this).attr("data-flat_id")
             };
 
-            var confirm_remove = $(this).hasClass("confirm-remove");
-            var remove_row = $(this).hasClass("remove-row");
+            var confirm_remove = $('#favorite-table').hasClass("confirm-remove");
+            var remove_row = $('#favorite-table').hasClass("remove-favorite-row");
 
             if (confirm_remove) {
                 $('#removePreferenceModal').modal({backdrop: 'static', keyboard: false}).one('click', '#delete', function() {

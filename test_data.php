@@ -11,12 +11,16 @@ require_once(ABSPATH . "wp-admin/includes/image.php");
 
 global $wpdb;
 
-$vzor_id = 3334;
+$vzor_id = 4596;
 
 $original = get_post($vzor_id);
+$program_id = 4220;
+
+$city = 'Prague';
+$region = 'Letňany';
 
 
-for ($i = 0; $i < 300; $i++) {
+for ($i = 0; $i < 16; $i++) {
 
     $new_flat_number = rand(100, 100000);
 
@@ -34,7 +38,7 @@ for ($i = 0; $i < 300; $i++) {
             apartment2program (apartment_id, program_id)
           VALUES(
             '" . (int) $new_flat_id . "',
-            '3303'
+            '" . $program_id . "'
           )";
 
     $wpdb->query($sql);
@@ -55,6 +59,9 @@ for ($i = 0; $i < 300; $i++) {
 
                 $props = unserialize($meta->meta_value);
 
+                $props['geo|ort'] = $city;
+                $props['geo|regionaler_zusatz'] = $region;
+
                 $props['anbieternr'] = $new_flat_number;
                 $props['flaechen|wohnflaeche'] = rand(40, 700);
                 $props['flaechen|anzahl_zimmer'] = rand(1, 12);
@@ -66,6 +73,9 @@ for ($i = 0; $i < 300; $i++) {
             case "flat_props_en":
 
                 $props = unserialize($meta->meta_value);
+
+                $props['geo|ort'] = $city;
+                $props['geo|regionaler_zusatz'] = $region;
 
                 $props['anbieternr'] = $new_flat_number;
                 $props['flaechen|wohnflaeche'] = rand(40, 700);
@@ -80,8 +90,37 @@ for ($i = 0; $i < 300; $i++) {
                 update_post_meta($new_flat_id, $meta->meta_key, $meta->meta_value);
                 break;
         }
+
+        wp_set_object_terms($new_flat_id, null, 'location');
+
+        if (!empty($city)) {
+
+            $flat_location_terms = array();
+
+            $city_term = term_exists($city, 'location');
+
+            // uložim město
+            if (empty($city_term)) {
+                $city_term = wp_insert_term($city, 'location');
+            }
+
+            $city_term_id = $city_term['term_id'];
+            // spraruju mesto s bytem
+            wp_set_post_terms($new_flat_id, $city_term_id, 'location', true);
+
+            // ulozim region
+            if (!empty($region) && !empty($city_term_id)) {
+
+                $region_term = term_exists($region, 'location');
+
+                if (empty($region_term)) {
+                    $region_term = wp_insert_term($region, 'location', array(
+                        'parent' => $city_term_id
+                    ));
+                }
+                // spraruju region s bytem
+                wp_set_post_terms($new_flat_id, $region_term['term_id'], 'location', true);
+            }
+        }
     }
 }
-$x = 1;
-$y = $x;
-
