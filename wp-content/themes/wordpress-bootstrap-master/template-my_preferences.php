@@ -44,67 +44,11 @@ get_header();
                                     <th><?php _e("Status", "wpbootstrap"); ?></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php
+                             <?php
                                 $lang = qtrans_getLanguage();
                                 $flat_props = EstateProgram::user_preferences($lang)
                                 ?>
-                                <?php
-                                $i = 0;
-                                if (!empty($flat_props)):
-                                    foreach ($flat_props as $key => $val):
-                                        $prop = unserialize($val->prop);
-                                        ?>
-                                        <tr>
-                                            <td>
-                                                <!--<a class="add-to-preference remove-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#removePreferenceModal">-->
-                                                <a class="add-to-preference remove-row confirm-remove" data-flat_id="<?php echo $val->ID ?>" href="javascript:;">
-                                                    <i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star"' : 'fa-star-o' ?>"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <?php echo esc_attr($prop['anbieternr']) ?>
-                                            </td>
-                                            <td>
-                                                <a href="<?php echo get_permalink($val->ID); ?>" class="blue"><?php echo esc_attr($prop['geo|strasse']) ?>, <?php echo esc_attr($prop['geo|ort']) ?>,  <?php echo esc_attr($prop['geo|plz']) ?> </a>
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                            <td>
-
-                                            </td>
-
-                                            <td>
-                                                <?php echo esc_attr($prop['geo|etage']) ?>
-                                            </td>
-                                            <td>
-                                                <?php echo (int) $prop['flaechen|anzahl_zimmer'] ?>
-                                            </td>
-                                            <td>
-                                                <?php echo esc_attr($prop['flaechen|wohnflaeche']) ?>
-                                            </td>
-                                            <td>
-                                                <?php echo esc_attr($prop['preise|kaufpreis']) ?>
-                                            </td>
-
-                                            <td>
-                                                <?php echo esc_attr($prop['preise|kaufpreis_pro_qm']) ?>
-                                            </td>
-
-                                            <td>
-
-                                            </td>
-
-                                            <td>
-
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    endforeach;
-                                endif;
-                                ?>
-                            </tbody>
+                              <?php  include TEMPLATEPATH . '/table_row.php'; ?> 
                         </table>
 
                         <!-- /reference list -->
@@ -133,9 +77,7 @@ get_header();
             <?php endif; ?>
         </div> <!-- end #main -->
     </div> <!-- end #content -->
-</div>
-
-
+</div> 
 <div class="modal fade" id="removePreferenceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -143,17 +85,13 @@ get_header();
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <!--<h4 class="modal-title"><?php echo the_title(); ?></h4>-->
             </div>
-            <div class="modal-body">
-
-                <?php _e("Do you really want to remove this preference?", "wpbootstrap"); ?>
-
+            <div class="modal-body"> 
+                <?php _e("Do you really want to remove this preference?", "wpbootstrap"); ?> 
             </div>
             <div class="modal-footer">
                 <!--<button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>-->
-
                     <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete"><?php _e('Yes', 'wpbootstrap') ?></button>
                     <button type="button" data-dismiss="modal" class="btn"><?php _e('No', 'wpbootstrap') ?></button>
-
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
