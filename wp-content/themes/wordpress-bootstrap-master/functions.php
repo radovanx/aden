@@ -460,7 +460,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             wp_enqueue_style('bootstrap');
 
             // For child themes
-            wp_register_style('wpbs-style', get_stylesheet_directory_uri() . '/style.css', array(), '1.0', 'all');
+            wp_register_style('wpbs-style', get_stylesheet_directory_uri() . '/style.css?v=1', array(), '1.0', 'all');
             wp_enqueue_style('wpbs-style');
         }
 
