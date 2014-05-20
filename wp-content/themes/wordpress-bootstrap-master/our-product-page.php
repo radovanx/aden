@@ -202,16 +202,19 @@ get_header();
                                     $prop = unserialize($val->prop);
                                     $key = unserialize($key);
                                     //$url_image = wp_get_attachment_url(get_post_thumbnail_id($val->ID, '')); 
-                                     
-                                    if ( $val->is_favorite == 0 )
+                                        if ( $val->is_favorite == 0 )
                                         {
                                         $favor = "blue fa-star-o";
                                         }
                                         else {
                                         $favor = "red fa-star"; 
+                                        } 
+                                        $program_id = $val->program_id;
+                                        $terms = wp_get_post_terms($program_id, 'type_of_accommodation'); 
+                                        if(!empty($terms)){ 
+                                        $term = $terms[0]->name;
                                         }
-                                        
-                                  
+                     
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
@@ -227,18 +230,16 @@ get_header();
                                     $pricem = (int)$pricem;
                                     $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                     $price = (int)$price;
-                                    $idval = (int)$val->ID; 
-                                    
-                                    
+                                    $idval = (int)$val->ID;  
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-";
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-"; 
-         
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", favorite: \"" .$favor."\", idval: ".$idval." },";
+                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";  
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ",pricem: ".$pricem."  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                                     $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
-            
+             
+                                    
                                     if ($i < 10):
                                         ?> 
 
@@ -319,6 +320,9 @@ get_header();
                             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
                             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
                             
+                          
+                            
+
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
                             <div class="row">
@@ -487,7 +491,6 @@ get_header();
         var fpricet = values.Pricet;              
         //make a filter  
         var finalfilter = false;
-       
         
         if (fcity != '')
         { 
@@ -511,17 +514,16 @@ get_header();
                 finalfilter = output_set;
         } 
          if (fdistrict != '')
-        { 
-            
+        {  
                 var i =0; 
                 var output_set;  
-                var district_filter = PourOver.makeExactFilter("district", [helperd]);        
+                var district_filter = PourOver.makeExactFilter("district", helperd);        
                 
                 collection.addFilters([district_filter]);  
                 
                 jQuery('.district-checkbox:checked').each(function() {
                 var districtfilter = jQuery(this).val();   
-                var districtss = collection.filters.city.getFn(districtfilter);  
+                var districtss = collection.filters.district.getFn(districtfilter);  
                 if (i == 0)
                 {  
                 output_set = districtss; 
@@ -533,8 +535,7 @@ get_header();
                 i++;
                 });
                 finaloutput = output_set;
-      
-                 if (finalfilter != false)
+                if (finalfilter != false)
                 {
                 finalfilter = finalfilter.and(finaloutput);
                 }
@@ -674,12 +675,12 @@ get_header();
             {
                 finalfilter = collection.filters.rooms_range.getFn([froomsf, froomst]);
             } 
-        }  
-         
+        }   
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids);
        
         console.log(myfilterfinal); 
+ 
  
         if (jQuery.isEmptyObject(myfilterfinal))
         {
@@ -727,6 +728,16 @@ get_header();
                 jQuery("tbody").append(table_data);
                 jQuery("table").trigger("update");     
                 jQuery("table").tablesorter(); 
+            
+            
+                //doplnit druhou tabulku
+            
+            
+            
+            
+            
+            
+            
             });
         } 
         /*<tr> 
