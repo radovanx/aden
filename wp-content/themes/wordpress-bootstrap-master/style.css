@@ -29,6 +29,21 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html http://www.apache.org/lice
     margin: 1px 4px;
 }
 
+
+.newsletter-background {
+    background: url(images/newsletter-background.png) no-repeat #f3f3f3;
+}
+#mce-EMAIL {
+    width: 215px;
+    font-size: 14px;
+}
+#mc-embedded-subscribe {
+    width: 45px;
+    height: 45px;
+    border: none;
+    /*text-align: center;*/
+    /*font-size: 16px;*/
+}
 /*
 #form-response {
     margin-top: 15px;

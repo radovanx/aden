@@ -39,12 +39,13 @@
                     
                     <a class="" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
                         <img src="<?php bloginfo('template_url'); ?>/images/logo.png" /></a>
-                    
-                    <?php echo qtrans_generateLanguageSelectCode('image') ?>
                 </div>
+                
                 <div class="collapse navbar-collapse navbar-responsive-collapse navbar navbar-right">
                     <?php wp_bootstrap_main_nav(); // Adjust using Menus in Wordpress Admin ?>	 
                 </div> 
+                
+                
             </div> <!-- end .container -->
         </div> <!-- end .navbar -->
         <?php 
