@@ -77,7 +77,7 @@
 
             .base-info {
                 margin-bottom: 5mm;
-                margin-top: 2mm;
+                margin-top: 3mm;
             }
             .vbottom {
                 vertical-align: bottom;
