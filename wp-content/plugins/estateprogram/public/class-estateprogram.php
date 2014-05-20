@@ -954,6 +954,7 @@ class EstateProgram {
 
         global $wpdb;
 
+        /*
         $sql = "
             SELECT
                 flat.*,
@@ -974,8 +975,45 @@ class EstateProgram {
                 up.user_id = " . (int) get_current_user_id() . "
             AND
                 flat.post_status = 'publish'
-        ";
+        ";*/
 
+        $sql = "SELECT
+                p.ID,
+                m.meta_value as prop,
+                up.flat_id as is_favorite,
+                p.post_name as slug,
+                a2p.program_id as program_id
+            FROM
+                wp_posts AS p
+            JOIN
+                wp_postmeta as m
+            ON
+                m.post_id = p.ID
+            JOIN
+                apartment2program AS a2p
+            ON
+              a2p.apartment_id = p.ID
+            JOIN
+              wp_posts AS program
+            ON
+              a2p.program_id = program.ID
+            JOIN
+                user_preference	AS up
+            ON
+                up.flat_id = p.ID AND up.user_id = " . (int) get_current_user_id() . "
+            JOIN
+                wp_users AS u
+            ON
+                up.user_id = u.ID
+            WHERE
+                m.meta_key = 'flat_props_" . esc_sql($lang) . "'
+            AND
+                p.post_type = 'flat'
+            AND
+                p.post_status = 'publish'
+            GROUP BY
+                p.ID";        
+        
         if (!is_null($limit)) {
             $sql .= " LIMIT " . (int) $limit;
 

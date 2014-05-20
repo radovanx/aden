@@ -27,7 +27,7 @@ get_header();
 
                         <!-- reference list -->
 
-                        <table class="table table-bordered">
+                        <table id="favorite-table" class="table table-bordered remove-favorite-row confirm-remove">
                             <thead>
                                 <tr>
                                     <th><?php _e("Favorite", "wpbootstrap"); ?></th>
