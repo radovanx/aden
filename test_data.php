@@ -16,11 +16,11 @@ $vzor_id = 4596;
 $original = get_post($vzor_id);
 $program_id = 4220;
 
-$city = 'Prague';
-$region = 'Letňany';
+$city = 'New York';
+$region = 'Staten Island';
 
 
-for ($i = 0; $i < 16; $i++) {
+for ($i = 0; $i < 5; $i++) {
 
     $new_flat_number = rand(100, 100000);
 
