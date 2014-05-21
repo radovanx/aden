@@ -166,14 +166,14 @@ get_header();
         <div class="col-md-3 pull-right big_icons margin-top">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs"> 
-                <a href="#table" data-toggle="tab" class="active red"><i class="fa fa-th"></i></a>
-                <a href="#list"  data-toggle="tab" class="blue"><i class="fa fa-list"></i></a> 
+                <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a>
+                <a href="#list"  data-toggle="tab" class="active blue"><i class="fa fa-list"></i></a> 
             </ul> 
         </div>
         <div class="col-md-12 column margin-top">
             <!-- Tab panes -->
             <div class="tab-content">      
-                <div class="tab-pane active" id="table"> 
+                <div class="tab-pane" id="table"> 
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -200,7 +200,7 @@ get_header();
                             if (!empty($flat_props)):
                                 foreach ($flat_props as $key => $val):
                                     $prop = unserialize($val->prop);
-                                    $key = unserialize($key);
+                                  
                                     //$url_image = wp_get_attachment_url(get_post_thumbnail_id($val->ID, '')); 
                                         if ( $val->is_favorite == 0 )
                                         {
@@ -239,11 +239,10 @@ get_header();
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";  
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:" . $flat_num . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
-                                    $autocomplete.= "\"" . esc_attr($prop['geo|ort']) . "\",";
+               
 
                                     if ($i < 10):
-                                        ?> 
-
+                                        ?>  
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
                                             <td>   
                                                 <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal">
@@ -273,10 +272,10 @@ get_header();
                                                 <?php echo $area; ?>
                                             </td>
                                             <td>
-                                                <?php echo price_format($price) ?>&euro;
+                                                <?php echo price_format($price) ?> &euro;
                                             </td>
                                             <td>
-                                                <?php echo price_format($pricem) ?>&euro;
+                                                <?php echo price_format($pricem) ?> &euro;
                                             </td>
                                             <td>   
                                                     
@@ -285,20 +284,18 @@ get_header();
                                                 <?php echo $status; ?>
                                             </td>
                                         </tr>
-                                         
                                         <?php
                                     endif;
                                     $i++;
                                 endforeach;
                             endif;
-                         
                             $data_object = substr("$data_object", 0, -1);
                             $data_object = "[" . $data_object . "]";
                             ?>   
                         </tbody>                  
                     </table>  
                 </div>    
-                <div class="col-md-12 column border tab-pane" id="list">     
+                <div class="col-md-12 column border tab-pane active" id="list">     
                     <?php
                     $lang = qtrans_getLanguage();
                     $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
@@ -306,7 +303,7 @@ get_header();
                     if (!empty($flat_props)):
                         foreach ($flat_props as $key => $val):  
                             $prop = unserialize($val->prop);
-                            $key = unserialize($key);
+                      
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                             $url_image = $thumb['0'];
                             $url = get_permalink($val->ID);
@@ -322,9 +319,9 @@ get_header();
                             $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
-                            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
-      
+                            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;       
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
+                            if ($i < 10):
                             ?> 
                             <div class="row">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
@@ -369,32 +366,33 @@ get_header();
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $price; ?> &euro;
+                                                    <?php echo price_format($price); ?> &euro;
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $pricem; ?> &euro;
+                                                    <span class="pull">
+                                                    <?php echo price_format($pricem); ?> &euro;
+                                                    </span>
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>  
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
-                                                
                                                 <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
                                                         <span class="fav-label"><?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?></span>
                                                     </strong>    
                                                 </a>   
-                                                
                                                 <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
                                             </div>  
-                                        </div>  
+                                    </div>  
                                     </div>    
                                 </div>  
                             </div> 
                             <?php
                             $i++;
+                            endif; 
                         endforeach;
                     endif;
                     ?>  
@@ -481,10 +479,19 @@ get_header();
         checkeddistrict = '"' + helperd.join('","') + '"';
         checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length - 1);
 
+        
+        values.References = values.References.toUpperCase();  
+
+
         var fcity = checkedcitiesf; 
         var fdistrict = checkeddistrict; 
         var ftype = values.type;      
-        var freferences = values.References;     
+        
+        
+        var freferences = values.References;  
+        
+        
+        
         var fareaf = values.Areaf;   
         var fareat = values.Areat;  
         var froomsf = values.Roomsf;
@@ -724,23 +731,21 @@ get_header();
                 jQuery("tbody").append(table_data);
                 jQuery("table").trigger("update");     
                 jQuery("table").tablesorter(); 
-            
-            
-            
-            
-                var row_data;
-            
-                //doplnit druhou tabulku
-             
-            
+ 
+                /*var row_data = "<div class=\"row\"><div class=\"col-md-12\" ?> flats_box"> ;
+     
+                
+                
+                
+                
+                
+                
+                          
+          
+               */
+               //doplnit druhou tabulku 
             });
-        } 
-        /*<tr> 
-         <td>
-         <a href=" " class="blue"> </a>
-         </td>
-         </tr> 
-         */
+        }  
         });
 </script>    
 <script>   

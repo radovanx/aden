@@ -35,7 +35,7 @@
     <?php endif; ?>
     <ul class="bxslider parent-container">
         <?php
-        $images = & get_children(array(
+        $images =   get_children(array(
                     'post_parent' => $post->ID,
                     'post_type' => 'attachment',
                     'post_mime_type' => 'image'
