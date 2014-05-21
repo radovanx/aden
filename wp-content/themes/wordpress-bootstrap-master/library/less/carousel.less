@@ -110,10 +110,43 @@
     .icon-prev,
     .glyphicon-chevron-left {
         left: 50%;
+     
+    
+ 
+        &:after
+            {
+            font-size:3em;
+            content:"\f104";
+            font-family: 'FontAwesome';
+            text-align: center;
+            height: 50px;
+            width: 50px;
+            position: relative;
+            text-align: center;
+            top: -0.5em;            
+        }     
+ 
     }
     .icon-next,
     .glyphicon-chevron-right {
         right: 50%;
+      
+        
+        &:after
+            {
+            font-size:3em;
+            content:"\f105";
+            font-family: 'FontAwesome';
+            text-align: center;
+            height: 50px;
+            width: 50px;
+            position: relative;
+            text-align: center;
+            top: -0.5em;
+            
+           }  
+        
+        
     }
     .icon-prev,
     .icon-next {
@@ -121,12 +154,12 @@
         height: 20px;
         margin-top: -10px;
         margin-left: -10px;
-        font-family: serif;
+        
     }
 
     .icon-prev {
 
-        font-family: FontAwesome;
+        font-family: 'FontAwesome';
 
         &:before {
             content:"\f104";// SINGLE LEFT-POINTING ANGLE QUOTATION MARK (U+2039)
