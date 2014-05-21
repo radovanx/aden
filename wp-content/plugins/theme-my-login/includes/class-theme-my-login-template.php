@@ -327,8 +327,9 @@ if (!class_exists('Theme_My_Login_Template')) :
          * @param array $args Optionally specify which actions to include/exclude. By default, all are included.
          */
         public function the_action_links($args = '') {
+            
             if ($action_links = $this->get_action_links($args)) {
-                echo '<ul class="tml-action-links">' . "\n";
+                echo '<ul class="tml-action-links list-unstyled">' . "\n";
                 foreach ((array) $action_links as $link) {
                     echo '<li><a href="' . esc_url($link['url']) . '" rel="nofollow">' . esc_html($link['title']) . '</a></li>' . "\n";
                 }
@@ -582,11 +583,7 @@ if (!class_exists('Theme_My_Login_Template')) :
         }
 
     }
-
-    
-
-    
-
+                
     
 endif; // Class exists
 

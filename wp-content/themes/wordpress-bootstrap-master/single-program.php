@@ -17,7 +17,6 @@
                                 <div id="gmap" class="gmap">google map</div>
                             </div>
                             <div class="tab-pane" id="street_tab">
-                                
                                 <div id="gmapstreet" class="gmapstreet">street</div> 
                             </div>
                             <div class="tab-pane fade" id="video_tab"> 

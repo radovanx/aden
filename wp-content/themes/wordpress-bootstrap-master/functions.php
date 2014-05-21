@@ -486,12 +486,16 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     }
     add_action('wp_enqueue_scripts', 'theme_js');
 
-    add_image_size('property-list-thumb', 395, 180, true);
+    add_image_size('property-list-thumb', 395, 280, true);
     add_image_size('project-detail-thumb', 395, 180, true);
     add_image_size('project-detail-big', 750, 500, true);
     add_image_size('project-detail-small', 150, 100, true);
 
     add_image_size('flat-small', 265, 200, true);
+                
+    add_image_size('lightbox', 900, 900, false);
+    
+    
 
 //autocomplete
 
