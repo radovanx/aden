@@ -246,7 +246,10 @@ get_header();
 
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
                                             <td>   
-                                                <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><span class="small-text hidden"><?php echo $val->is_favorite; ?></span></a>
+                                                <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal">
+                                                    <i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i>
+                                                    <span class="small-text hidden"><?php echo $val->is_favorite; ?></span>
+                                                </a>
                                             </td>
                                             <td>
                                                 <?php echo $reference; ?>
@@ -380,7 +383,7 @@ get_header();
                                                 
                                                 <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-                                                        <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
+                                                        <span class="fav-label"><?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?></span>
                                                     </strong>    
                                                 </a>   
                                                 
