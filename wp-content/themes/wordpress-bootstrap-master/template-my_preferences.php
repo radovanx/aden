@@ -9,11 +9,11 @@ get_header();
 ?>
 <div class="container">
     <div id="content" class="clearfix row">
- 
-         <div class="col-md-6">
-          <h1 class="border-left inline uppercase">
+
+        <div class="col-md-6">
+            <h1 class="border-left inline uppercase">
                 <?php _e("My preferences", "wpbootstrap"); ?>
-          </h1> 
+            </h1> 
         </div>
         <div class="col-md-3 hidden">
             <select name="sort_by_list" class="form-control input-lg">
@@ -31,38 +31,38 @@ get_header();
             </ul> 
         </div> 
         <div id="main" class="col-sm-12 clearfix margin-top" role="main"> 
-                         <div class="tab-content">      
-                         <div class="tab-pane active" id="table">  
-                        <!-- reference list -->
-                        <table id="favorite-table" class="table table-bordered remove-favorite-row confirm-remove">
-                            <thead>
-                                <tr>
-                                    <th><?php _e("Favorite", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Prg ref", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Address", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Flat n°", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Rental status", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Floor", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Rooms", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Surface", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Price", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Price/m²", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Yield", "wpbootstrap"); ?></th>
-                                    <th><?php _e("Status", "wpbootstrap"); ?></th>
-                                </tr>
-                            </thead>
-                            <?php
-                            $lang = qtrans_getLanguage();
-                            $flat_props = EstateProgram::user_preferences($lang)
-                            ?>
-                            <?php include TEMPLATEPATH . '/table_row.php'; ?> 
-                        </table>
-                        </div>
-                        <div class="col-md-12 column border tab-pane" id="list">     
+            <div class="tab-content">      
+                <div class="tab-pane active" id="table">  
+                    <!-- reference list -->
+                    <table id="favorite-table" class="apartment-list table table-bordered remove-favorite-row confirm-remove">
+                        <thead>
+                            <tr>
+                                <th><?php _e("Favorite", "wpbootstrap"); ?></th>
+                                <th><?php _e("Prg ref", "wpbootstrap"); ?></th>
+                                <th><?php _e("Address", "wpbootstrap"); ?></th>
+                                <th><?php _e("Flat n°", "wpbootstrap"); ?></th>
+                                <th><?php _e("Rental status", "wpbootstrap"); ?></th>
+                                <th><?php _e("Floor", "wpbootstrap"); ?></th>
+                                <th><?php _e("Rooms", "wpbootstrap"); ?></th>
+                                <th><?php _e("Surface", "wpbootstrap"); ?></th>
+                                <th><?php _e("Price", "wpbootstrap"); ?></th>
+                                <th><?php _e("Price/m²", "wpbootstrap"); ?></th>
+                                <th><?php _e("Yield", "wpbootstrap"); ?></th>
+                                <th><?php _e("Status", "wpbootstrap"); ?></th>
+                            </tr>
+                        </thead>
+                        <?php
+                        $lang = qtrans_getLanguage();
+                        $flat_props = EstateProgram::user_preferences($lang)
+                        ?>
+                        <?php include TEMPLATEPATH . '/table_row.php'; ?> 
+                    </table>
+                </div>
+                <div class="apartment-list col-md-12 column border tab-pane remove-favorite-row confirm-remove" id="list">     
                     <?php
-                            $lang = qtrans_getLanguage();
-                            $flat_props = EstateProgram::user_preferences($lang); 
-                            include TEMPLATEPATH . '/row_row.php'; 
+                    $lang = qtrans_getLanguage();
+                    $flat_props = EstateProgram::user_preferences($lang);
+                    include TEMPLATEPATH . '/row_row.php';
                     ?>  
                 </div>   
             </div>    
