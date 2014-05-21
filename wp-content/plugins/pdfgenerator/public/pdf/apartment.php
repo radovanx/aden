@@ -209,7 +209,7 @@
             <table class="w100 base-info">
                 <tr>
                     <td colspan="2" class="w50 right-head-box text-right">
-                        <h2> <?php _e('Purchase price:', $this->plugin_slug) ?> <span class="red-color"><?php esc_attr_e($props['preise|kaufpreis']) ?> <?php esc_attr_e($props['preise|waehrung|iso_waehrung']) ?></span></h2>
+                        <h2> <?php _e('Purchase price:', $this->plugin_slug) ?> <span class="red-color"><?php esc_attr_e($props['preise|kaufpreis']) ?> €</span></h2>
 
                         <?php if (!empty($props['flaechen|wohnflaeche'])): ?>
                             <h2> <?php _e('Living area:', $this->plugin_slug) ?> <span class="red-color"> <?php esc_attr_e($props['flaechen|wohnflaeche']) ?> </span></h2>
@@ -244,8 +244,7 @@
                 <tr>
                     <td class="w25"><?php _e('Purchase price /sm:', $this->plugin_slug) ?></td>
                     <td class="w25 text-right t2"><?php
-                        echo esc_attr($props['preise|kaufpreis_pro_qm']) . ' ';
-                        echo esc_attr($props['preise|waehrung|iso_waehrung'])
+                        echo esc_attr($props['preise|kaufpreis_pro_qm']) . ' €';                        
                         ?></td>
                     <td class="w25 t3"><?php _e('Apartment type:', $this->plugin_slug) ?></td>
                     <td class="w25 text-right"><?php echo EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']] ?></td>
