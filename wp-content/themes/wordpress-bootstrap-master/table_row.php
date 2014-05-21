@@ -63,10 +63,10 @@
                     <?php echo $area; ?> m²
                 </td>
                 <td>
-                    <?php echo $price; ?>&euro;
+                    <?php echo price_format($price); ?>&euro;
                 </td>
                 <td>
-                    <?php echo $pricem; ?>&euro;
+                    <?php echo price_format($pricem); ?>&euro;
                 </td>
                 <td>   
 
