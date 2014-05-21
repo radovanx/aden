@@ -486,7 +486,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     }
     add_action('wp_enqueue_scripts', 'theme_js');
 
-    add_image_size('property-list-thumb', 395, 280, true);
+    add_image_size('property-list-thumb', 395, 295, true);
     add_image_size('project-detail-thumb', 395, 180, true);
     add_image_size('project-detail-big', 750, 500, true);
     add_image_size('project-detail-small', 150, 100, true);
@@ -570,8 +570,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         }
     }
 
-    //
-
+    // 
     function redirect_if_not_logged() {
         if (!is_user_logged_in()) {
             if (!is_user_logged_in()) {
@@ -579,8 +578,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
                 exit;
             }
         }
-    }
-
+    } 
     function redirect_if_cannot_see_detail() {
         if (!current_user_can('see_detail')) {
             wp_redirect(get_page_link(15));
