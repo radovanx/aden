@@ -9,7 +9,7 @@
     <div class="login" id="theme-my-login<?php $template->the_instance(); ?>">
         <div class="col-md-6 column">	
             <div class="bg-danger text-danger"><?php $template->the_errors(); ?></div>
-            <form name="loginform" class="border background clearfix col-md-12" id="loginform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('login'); ?>" method="post">
+            <form name="loginform" class="contact_form_block border background clearfix col-md-12" id="loginform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('login'); ?>" method="post">
 
                 <h2 class="border-left uppercase "><?php _e('Log in', 'wpbootstrap') ?></h2>
 
@@ -43,7 +43,11 @@
                     </div>
                 </div> 
             </form>
-            <?php $template->the_action_links(array('login' => false)); ?>
+            <?php //$template->the_action_links(array('login' => false)); ?>
+            <div class="theme-login-links">
+                <a href="<?php echo get_page_link(19) ?>"><?php _e('Forgot password', 'wpbootstrap') ?></a> <span class="delimiter">|</span> <a href="<?php echo get_page_link(17) ?>"><?php _e('Register', 'wpbootstrap') ?></a>
+            </div>            
         </div>    
+
     </div>
 </div>
