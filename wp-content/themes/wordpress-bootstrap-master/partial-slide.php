@@ -23,7 +23,7 @@
         </script>                                
         <span id="thumb-view" class="test-popup-link view-in-box">
             <?php
-            $full_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
+            $full_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'lightbox');
             $full_url = $full_url[0];
             ?>
             <a id="full-view" href="<?php echo $full_url ?>">
