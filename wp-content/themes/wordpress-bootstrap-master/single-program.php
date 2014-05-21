@@ -1,4 +1,6 @@
-<?php get_header();
+<?php 
+
+get_header();
 ?>
 <div class="container">
     <div id="content" class="clearfix row">
@@ -355,4 +357,3 @@ jQuery(".create_street").on('shown.bs.tab', function() {
  
 </script>  
 <?php get_footer(); ?>
- 

@@ -93,5 +93,5 @@
 </div>
 
 <div class="theme-login-links">
-    <a href=""><?php _e('Forgot password', 'wpbootstrap') ?> <span class="delimiter">|</span></a> <a href=""><?php _e('Log in', 'wpbootstrap') ?></a>
+    <a href="<?php echo get_page_link(19) ?>"><?php _e('Forgot password', 'wpbootstrap') ?></a> <span class="delimiter">|</span> <a href="<?php echo get_page_link(15) ?>"><?php _e('Log in', 'wpbootstrap') ?></a>
 </div>

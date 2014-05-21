@@ -10,7 +10,7 @@
     <div class="col-md-7 column">	  
         <?php $template->the_action_template_message('lostpassword'); ?>
         <div class="bg-danger text-danger"><?php $template->the_errors(); ?></div>
-        <form name="lostpasswordform" class="border background clearfix col-md-12" id="lostpasswordform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('lostpassword'); ?>" method="post">
+        <form name="lostpasswordform" class="contact_form_block border background clearfix col-md-12" id="lostpasswordform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('lostpassword'); ?>" method="post">
             <h2 class="border-left uppercase "><?php _e('Lost Password', 'wpbootstrap') ?></h2>
             <div class="col-md-12 column">
 
@@ -28,11 +28,13 @@
                         <input type="hidden" name="instance" value="<?php $template->the_instance(); ?>" />
                         <input type="hidden" name="action" value="lostpassword" />
                     </p>
+                    <div class="clearfix"></div>
                 </div>
             </div>   
         </form>
-        <?php $template->the_action_links(array('lostpassword' => false)); ?>
+        <?php //$template->the_action_links(array('lostpassword' => false)); ?>
+        <div class="theme-login-links">
+            <a href="<?php echo get_page_link(15) ?>"><?php _e('Log in', 'wpbootstrap') ?></a> <span class="delimiter">|</span> <a href="<?php echo get_page_link(17) ?>"><?php _e('Register', 'wpbootstrap') ?></a>
+        </div>        
     </div>
 </div>
-
-

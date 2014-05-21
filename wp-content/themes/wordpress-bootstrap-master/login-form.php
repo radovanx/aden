@@ -8,8 +8,10 @@
     <div class="login" id="theme-my-login<?php $template->the_instance(); ?>">
         <div class="col-md-6 column">	
             <div class="bg-danger text-danger"><?php $template->the_errors(); ?></div>
-            <form name="loginform" class="border background clearfix col-md-12" id="loginform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('login'); ?>" method="post"> 
-                <h2 class="border-left uppercase "><?php _e('Log in', 'wpbootstrap') ?></h2> 
+            <form name="loginform" class="contact_form_block border background clearfix col-md-12" id="loginform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('login'); ?>" method="post">
+
+                <h2 class="border-left uppercase "><?php _e('Log in', 'wpbootstrap') ?></h2>
+
                 <h2><?php $template->the_action_template_message('login'); ?></h2>
                 <div class="col-md-12 column">	
 
@@ -40,5 +42,6 @@
                 </div> 
             </form>
         </div>    
+
     </div>
 </div>
