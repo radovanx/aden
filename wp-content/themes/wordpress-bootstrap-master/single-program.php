@@ -17,10 +17,8 @@
                                 <div id="gmap" class="gmap">google map</div>
                             </div>
                             <div class="tab-pane" id="street_tab">
-
-                                <div id="gmapstreet" class="gmapstreet">street</div>
-
-
+                                
+                                <div id="gmapstreet" class="gmapstreet">street</div> 
                             </div>
                             <div class="tab-pane fade" id="video_tab"> 
                                 <?php
@@ -78,12 +76,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="col-md-5 column">
-                    <div class="border col-md-12 column border background contact_form_block">
-                        <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
-                        <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
-                        <?php echo do_shortcode('[contact-form-7 id="4080" title=""]') ?>
-                    </div>
-                    <div class="border col-md-12 column">
+                     <div class="border col-md-12 column">
                         <h3 class="border-left uppercase">
                             <?php _e("Key Facts", "wpbootstrap"); ?>
                         </h3>
@@ -117,6 +110,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="border col-md-12 column border background contact_form_block margin-top">
+                        <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
+                        <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
+                        <?php echo do_shortcode('[contact-form-7 id="4080" title=""]') ?>
+                    </div> 
                 </div>
                 <?php if (is_user_logged_in()): ?>
                     <div class="col-md-6 ">
@@ -313,8 +311,16 @@
         });
         marker.setMap(map);
     }
-
-    jQuery(".create_map").on('shown.bs.tab', function() {
+ 
+jQuery(".create_map").on('shown.bs.tab', function() {
+       
+  	/* Trigger map resize event */
+	google.maps.event.trigger(map, 'resize'); 
+        map.setCenter(marker.getPosition());       
+});
+ 
+initialize(); 
+ 
 
         /* Trigger map resize event */
         google.maps.event.trigger(map, 'resize');

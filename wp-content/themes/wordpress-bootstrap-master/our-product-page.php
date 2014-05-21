@@ -301,8 +301,7 @@ get_header();
                     $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                     $i = 0;
                     if (!empty($flat_props)):
-                        foreach ($flat_props as $key => $val): 
- 
+                        foreach ($flat_props as $key => $val):  
                             $prop = unserialize($val->prop);
                             $key = unserialize($key);
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
@@ -378,12 +377,14 @@ get_header();
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
+                                                
                                                 <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
                                                     <strong class="blue clearfix pull-right fav-label">
                                                         <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
                                                     </strong>    
                                                 </a>   
+                                                
                                                 <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
                                             </div>  
                                         </div>  
@@ -728,10 +729,7 @@ get_header();
                 var row_data;
             
                 //doplnit druhou tabulku
-            
-            
-            
-  
+             
             
             });
         } 
