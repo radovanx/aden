@@ -81,8 +81,7 @@
                                     <abbr title="Email">Email:</abbr> <?php echo esc_attr($props['kontaktperson|email_direkt']) ?>
                                 </address>
                                 <span class="propertyListBoxDataItemName">
-                                    <i class="fa fa-money"></i>
-                                    <strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
+                                    <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
                                     <strong class="red pull-right"><?php echo esc_attr($props['preise|kaufpreis']) ?> &euro;
                                     </strong>
                                 </span>
