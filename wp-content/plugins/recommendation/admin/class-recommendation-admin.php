@@ -33,6 +33,13 @@ class Recommendation_Admin {
      */
     protected static $instance = null;
 
+    
+    public $pages = array(          
+            'toplevel_page_recommendation_stat',
+            'admin_page_recommentation_user_detail',
+            "admin_page_recommendation_stat_by_product"
+    );
+    
     /**
      * Slug of the plugin screen.
      *
@@ -136,11 +143,9 @@ class Recommendation_Admin {
           } */
         $screen = get_current_screen();
 
-        $pages = array(
-            'toplevel_page_recommendation_stat'
-        );
 
-        if (!in_array($screen->id, $pages)) {
+
+        if (!in_array($screen->id, $this->pages)) {
             return;
         }
 
@@ -167,11 +172,7 @@ class Recommendation_Admin {
 
         $screen = get_current_screen();
 
-        $pages = array(
-            'toplevel_page_recommendation_stat'
-        );
-
-        if (!in_array($screen->id, $pages)) {
+        if (!in_array($screen->id, $this->pages)) {
             return;
         }
 
@@ -186,39 +187,122 @@ class Recommendation_Admin {
      */
     public function add_plugin_admin_menu() {
 
-        add_menu_page('Recommendation stats', 'Recommendation stats', 'manage_options', 'recommendation_stat', array(&$this, 'recommendation_stat'));
+        add_menu_page('Recommendation stats', 'Recommendation stats', 'manage_options', 'recommendation_stat', array(&$this, 'by_user'));
+        add_submenu_page('', 'Recommendation user detail', 'Recommendation user detail', 'manage_options', 'recommentation_user_detail', array(&$this, 'user_detail'));
 
-        /*
-         * Add a settings page for this plugin to the Settings menu.
-         *
-         * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
-         *
-         *        Administration Menus: http://codex.wordpress.org/Administration_Menus
-         *
-         * @TODO:
-         *
-         * - Change 'Page Title' to the title of your plugin admin page
-         * - Change 'Menu Text' to the text for menu item for the plugin settings page
-         * - Change 'manage_options' to the capability you see fit
-         *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
-         */
+        add_submenu_page('', 'Recommendation stats by product', 'Recommendation stats by product', 'manage_options', 'recommendation_stat_by_product', array(&$this, 'by_product'));
+        add_submenu_page('', 'Recommendation product detail', 'Recommendation product detail', 'manage_options', 'recommentation_product_detail', array(&$this, 'product_detail'));
+        
+        
         $this->plugin_screen_hook_suffix = add_options_page(
                 __('Page Title', $this->plugin_slug), __('Menu Text', $this->plugin_slug), 'manage_options', $this->plugin_slug, array($this, 'display_plugin_admin_page')
         );
     }
 
+    
+    public function product_detail(){
+        
+        $product_id = $_GET['product_id'];
+        
+        global $wpdb;
+        
+        $sql = "
+            SELECT
+                product_id,
+                product,
+                count(recommendation_id) as emails
+            FROM
+                recommendation
+            GROUP
+                BY product_id
+        ";
+        
+        $results = $wpdb->get_results($sql);
+        
+        include 'views/product_detail.php';        
+        
+    }
+    
+    public function by_product(){
+        global $wpdb;
+        
+        $sql = "
+            SELECT
+                product_id,
+                product,
+                count(recommendation_id) as emails
+            FROM
+                recommendation
+            GROUP
+                BY product_id
+        ";
+        
+        $results = $wpdb->get_results($sql);
+        
+        include 'views/by_product.php';
+    }
+    
+    public function user_detail(){
+        $user_id = $_GET['user_id'];
+        
+        global $wpdb;
+        
+        $sql = "            
+            SELECT
+                *
+            FROM
+                recommendation
+            WHERE
+                user_id = '" . (int) $user_id . "'
+            ";        
+        $results = $wpdb->get_results($sql);
+        
+        $user_info = get_userdata((int) $user_id);
+        
+        include 'views/user_detail.php';
+    }
+    
+    public function by_user(){
+        global $wpdb;
+        
+        $sql = "
+            SELECT
+                count(recommendation_id) AS emails,
+                r.user_id
+            FROM
+                recommendation AS r
+            LEFT JOIN
+                wp_users AS u
+            ON
+                u.ID = r.user_id
+            GROUP BY 
+                r.user_id
+            ";
+        
+        $results = $wpdb->get_results($sql);        
+        
+        include 'views/by_user.php';
+    }
+
     public function recommendation_stat() {
         
         global $wpdb;
+        
+        $lang = qtrans_getLanguage();
 
         $sql = "
             SELECT
-                *,
-                DATE_FORMAT(when_sent, '%e. %c. %Y %H:%i') as fdate
+                r.user_id,
+                DATE_FORMAT(record_date, '%e. %c. %Y %H:%i') as fdate,
+                mp.meta_value AS props
             FROM 
-                recommendation 
+                recommendation AS r 
+            LEFT JOIN
+                wp_postmeta AS pm
+            ON
+                pm.post_id = r.product_id AND meta_key = 'flat_props_" . esc_sql($lang) . "                 
             ORDER BY 	
-                when_sent 
+                record_date
             DESC";
 
         $results = $wpdb->get_results($sql);        

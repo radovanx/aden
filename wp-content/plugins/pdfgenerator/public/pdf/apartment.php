@@ -220,9 +220,9 @@
                             <h2 class="headline-label"> <?php _e('Living area:', $this->plugin_slug) ?> <span class="red-color"> <?php esc_attr_e($props['flaechen|wohnflaeche']) ?> </span></h2>
                         <?php endif; ?>
 
-                        <?php if (!empty($props['flaechen|wohnflaeche'])): ?>
+                        <?php /* if (!empty($props['flaechen|wohnflaeche'])): ?>
                             <h2 class="headline-label"> <?php _e('Rooms:', $this->plugin_slug) ?> <span class="red-color"> <?php echo (int) $props['flaechen|anzahl_zimmer'] ?></span></h2>
-                        <?php endif; ?>
+                        <?php endif; */ ?>
                     </td>
                 </tr>
                 <tr>
@@ -347,28 +347,22 @@
             <?php endif; ?>
             <!-- /feature image + first from gallery -->
 
-
-            <?php if (!empty($props['freitexte|ausstatt_beschr'])): ?>
-                <div style="page-break-inside: avoid;">
+            <div style="page-break-inside: avoid; page-break-before: always;">
+                <?php if (!empty($props['freitexte|ausstatt_beschr'])): ?>
                     <h2 class="small-label border-left"><?php _e('Description', $this->plugin_slug) ?></h2>
                     <p class="text-block small-block"><?php echo $props['freitexte|ausstatt_beschr'] ?></p>
-                </div>
-            <?php endif; ?>
+                <?php endif; ?>
 
-            <?php if (!empty($props['freitexte|objektbeschreibung'])): ?>
-                <div style="page-break-inside: avoid;">
+                <?php if (!empty($props['freitexte|objektbeschreibung'])): ?>
                     <h2 class="small-label border-left"><?php _e('Description of the building', $this->plugin_slug) ?></h2>
                     <p class="text-block small-block"><?php echo $props['freitexte|objektbeschreibung'] ?></p>
-                </div>
-            <?php endif; ?>
+                <?php endif; ?>
 
-            <?php if (!empty($props['freitexte|lage'])): ?>
-                <div style="page-break-inside: avoid;">
+                <?php if (!empty($props['freitexte|lage'])): ?>                
                     <h2 class="small-label border-left"><?php _e('Description surroundings', $this->plugin_slug) ?></h2>
-                    <p class="text-block small-block"><?php echo $props['freitexte|lage'] ?></p>
-                </div>
-            <?php endif; ?>
-
+                    <p class="text-block small-block"><?php echo $props['freitexte|lage'] ?></p>                
+                <?php endif; ?>
+            </div>
 
             <?php if (!empty($images)): ?>
                 <div class="red-label text-center"><?php _e('Galerie', $this->plugin_slug) ?></div>

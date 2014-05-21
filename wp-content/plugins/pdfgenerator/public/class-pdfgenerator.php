@@ -172,6 +172,7 @@ class pdfgenerator {
               '' // margin footer
               ); */
 
+            // download pdf
             if (isset($q['product_type'])) {
                 switch ($q['product_type']) {
                     case 'product':
@@ -190,20 +191,57 @@ class pdfgenerator {
                             }
 
                             global $wpdb;
-                            
+
+                            $program_id = EstateProgram::flat_program_id($product->ID);
+
+                            /*
+                              $sql = "
+                              INSERT INTO
+                              download_stat (user_id, when_downloaded, product_id, product, program_id)
+                              VALUES(
+                              '" . get_current_user_id() . "',
+                              NOW(),
+                              '" . $product->ID . "',
+                              '" . esc_sql(serialize($props)). "',
+                              '" . (int) $program_id . "'
+                              )
+                              "; */
+
+                            $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
+
                             $sql = "
-                                INSERT INTO
-                                    download_stat (user_id, when_downloaded, product_id, product)
-                                VALUES(
+                            INSERT INTO
+                                stat (user_id, program_id, type, record_date, product_id, download, ref_no)
+                            VALUES (
                                 '" . get_current_user_id() . "',
+                                '" . (int) $program_id . "',
+                                2,
                                 NOW(),
-                                '" . $product->ID . "',
-                                '" . esc_sql(serialize($props)). "'    
-                                )    
-                            ";
-                            
-                            $wpdb->query($sql);                            
-                            
+                                '" . (int) $product->ID . "',
+                                1,                               
+                                '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
+                            )";
+
+                            $wpdb->query($sql);
+
+                            $last_id = $wpdb->insert_id;
+
+                            $langs = qtrans_getSortedLanguages();
+
+                            foreach ($langs as $lang) {
+                                $sql = "
+                                    REPLACE INTO 
+                                        stat_lang (product_id, lang, title)
+                                    VALUES (
+                                        '" . $product->ID . "',
+                                        '" . $lang . "',
+                                        '" . esc_sql(qtrans_use($lang, $title, false)) . "'    
+                                        )
+                                    ";
+
+                                $wpdb->query($sql);
+                            }
+
                             $mpdf->Output($filename, 'D');
                         }
 
@@ -363,21 +401,61 @@ class pdfgenerator {
 
         global $wpdb;
 
+        $program_id = EstateProgram::flat_program_id($product->ID);
+
+        /*
+          $sql = "
+          INSERT INTO
+          recommendation (user_id, receiver, when_sent, product_id, product, message, program_id)
+          VALUES (
+          '" . get_current_user_id() . "',
+          '" . esc_sql($to) . "',
+          NOW(),
+          '" . $product->ID . "',
+          '" . esc_sql(serialize($props)) . "',
+          '" . esc_sql($message) . "',
+          '" . (int) $program_id . "'
+          );
+          "; */
+
+
+        $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
+
         $sql = "
             INSERT INTO
-                recommendation (user_id, receiver, when_sent, product_id, product, message)
+                stat (user_id, program_id, type, record_date, product_id, receiver, recommend, ref_no)
             VALUES (
                 '" . get_current_user_id() . "',
-                '" . esc_sql($to) . "',
+                '" . (int) $program_id . "',
+                1,
                 NOW(),
-                '" . $product->ID . "',
-                '" . esc_sql(serialize($props)) . "',
-                '" . esc_sql($message) . "'
-            );
-        ";
-
+                '" . (int) $product->ID . "',
+                '" . esc_sql($to) . "',
+                1,                
+                '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
+            )";
+        
         $wpdb->query($sql);
 
+        $last_id = $wpdb->insert_id;
+
+        $langs = qtrans_getSortedLanguages();
+
+        foreach ($langs as $lang) {
+            $sql = "
+                                    REPLACE INTO 
+                                        stat_lang (product_id, lang, title)
+                                    VALUES (
+                                        '" . $product->ID . "',
+                                        '" . $lang . "',
+                                        '" . esc_sql(qtrans_use($lang, $title, false)) . "'    
+                                        )
+                                    ";
+
+            $wpdb->query($sql);
+        }
+
+        
         exit;
     }
 
