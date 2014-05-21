@@ -36,8 +36,7 @@ get_header();
                 <div id="main" class="col-md-7 column clearfix" role="main">
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
-                        <div class="tab-content">
-
+                        <div class="tab-content"> 
                             <!-- img slide -->
                             <?php get_template_part('partial', 'slide') ?>
                             <!-- /img slide -->

@@ -50,10 +50,8 @@
                 $view_size = wp_get_attachment_image_src($attachment_id, 'project-detail-big');
                 $view_size = $view_size[0];
                 $full_size = wp_get_attachment_image_src($attachment_id, 'lightbox');
-                $full_size = $full_size[0];
-
-                echo '<li><a href="' . $full_size . '" data-view="' . $view_size . '">' . wp_get_attachment_image($attachment_id, 'project-detail-small') . '</a></li>';
-
+                $full_size = $full_size[0]; 
+                echo '<li><a href="' . $full_size . '" data-view="' . $view_size . '">' . wp_get_attachment_image($attachment_id, 'project-detail-small') . '</a></li>'; 
                 $i++;
             }
         }
