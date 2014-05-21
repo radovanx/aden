@@ -5,7 +5,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
                             $i = 0;
                             if (!empty($flat_props)): 
                             foreach ($flat_props as $key => $val): 
@@ -38,37 +37,48 @@
                                     <div class="col-md-9"> 
                                         <h4 class="blue"><a href="<?php echo $url; ?>"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
                                                     <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></a></h4>
-
                                         <div class="row">
                                             <div class="col-md-3">  
                                                 <span class="data_item clearfix">
-                                                    <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong> 
+                                                    <strong><?php _e("Ref.:", "wpbootstrap"); ?></strong> 
+                                                    <span class="pull-right">
                                                     <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
+                                                    </span>    
                                                 </span>                         
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $flat_num; ?>
+                                                    <span class="pull-right">
+                                                        <?php echo $flat_num; ?>
+                                                    </span>        
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $rental_status; ?>
-                                                </span> 
+                                                    <span class="pull-right">
+                                                        <?php echo $rental_status; ?>
+                                                    </span>    
+                                                    </span> 
                                             </div>
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Floor:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $floor; ?>
+                                                     <span class="pull-right">
+                                                        <?php echo $floor; ?>
+                                                     </span>    
                                                 </span>
 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong> 
-                                                      <?php echo (int)$rooms; ?>      
+                                                      <span class="pull-right">
+                                                        <?php echo (int)$rooms; ?>
+                                                      </span>    
                                                 </span>
 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $area; ?>
-                                                </span>
+                                                       <span class="pull-right"> 
+                                                        <?php echo $area; ?>
+                                                      </span>     
+                                                       </span>
                                             </div>
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
@@ -102,5 +112,4 @@
                             $i++;
                         endforeach;
                     endif;
-                    ?>  
-
+                    ?>

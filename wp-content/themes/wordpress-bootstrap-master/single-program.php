@@ -105,7 +105,7 @@ get_header();
                                     </div>
                                     <div class="panel-body">
                                         <span class="propertyListBoxDataItemName">
-                                            <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?>  - &euro; <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?></strong></span>
+                                            <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red pull-right"> &euro; <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?>  - &euro; <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?></strong></span>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@ get_header();
                     </div>
                     <div class="col-md-3 pull-right big_icons margin-top">
                         <ul class="nav nav-tabs">
-                            <a href="#table" data-toggle="tab" class="active red"><i class="fa fa-th"></i></a>
+                            <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a>
                             <a href="#list"  data-toggle="tab" class="blue"><i class="fa fa-list"></i></a>
                         </ul>
                     </div>
@@ -159,91 +159,7 @@ get_header();
                             </div>
                             <div class="col-md-12 column border tab-pane" id="list">
                                 <?php
-                                $i = 0;
-                                if (!empty($flat_props)):
-                                    foreach ($flat_props as $key => $val):
-                                        $prop = unserialize($val->prop);
-                                        $key = unserialize($key);
-                                        $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
-                                        $url_image = $thumb['0'];
-                                        $url = get_permalink($val->ID);
-                                        $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
-                                        $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
-                                        $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
-                                        $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
-                                        $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
-                                        $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
-                                        $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
-                                        $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
-                                        $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
-                                        $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
-                                        $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-                                        ?> 
-                                        <div class="row">
-                                            <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box">
-                                                <div class="col-md-3">
-                                                    <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>"/></a>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <h4 class="blue"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>
-                                                            <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h4>
-
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <span class="data_item clearfix">
-                                                                <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong>
-                                                                <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
-                                                            </span>
-                                                            <span class="data_item clearfix">
-                                                                <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong>
-                                                                <?php echo esc_attr($prop['anbieternr']) ?>
-                                                            </span>
-                                                            <span class="data_item clearfix">
-                                                                <strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong>
-                                                                <?php echo esc_attr($prop['anbieternr']) ?>
-                                                            </span>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <span class="data_item clearfix">
-                                                                <strong><?php _e("Floor:", "wpbootstrap"); ?></strong>
-                                                                <?php echo $floor; ?>
-                                                            </span> 
-                                                            <span class="data_item clearfix">
-                                                                <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong>
-                                                                <?php echo esc_attr($prop['anbieternr']) ?>
-                                                            </span>
-                                                            <span class="data_item clearfix">
-                                                                <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong>
-                                                                <?php echo $area; ?>
-                                                            </span>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <span class="data_item clearfix">
-                                                                <strong><?php _e("Price:", "wpbootstrap"); ?></strong>
-                                                                <?php echo $price; ?>
-                                                            </span>
-                                                            <span class="data_item clearfix">
-                                                                <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong>
-                                                                <?php echo $pricem; ?>
-                                                            </span>
-                                                            <span class="data_item clearfix">
-                                                                <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>
-                                                            </span>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-                                                                <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
-                                                            </strong>
-                                                            <a href="<?php echo $url; ?>" class=" "><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <?php
-                                        $i++;
-                                    endforeach;
-                                endif;
+                                include TEMPLATEPATH . '/row_row.php';  
                                 ?>
                             </div>
                         </div> 

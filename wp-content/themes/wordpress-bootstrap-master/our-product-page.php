@@ -273,10 +273,10 @@ get_header();
                                                 <?php echo $area; ?>
                                             </td>
                                             <td>
-                                                <?php echo price_format($price) ?>&euro;
+                                                <?php echo price_format($price) ?> &euro;
                                             </td>
                                             <td>
-                                                <?php echo price_format($pricem) ?>&euro;
+                                                <?php echo price_format($pricem) ?> &euro;
                                             </td>
                                             <td>   
                                                     
@@ -322,9 +322,9 @@ get_header();
                             $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
-                            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
-      
+                            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;       
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
+                            if ($i < 10):
                             ?> 
                             <div class="row">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
@@ -380,13 +380,11 @@ get_header();
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
-                                                
                                                 <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
                                                         <span class="fav-label"><?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?></span>
                                                     </strong>    
                                                 </a>   
-                                                
                                                 <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
                                             </div>  
                                         </div>  
@@ -395,6 +393,7 @@ get_header();
                             </div> 
                             <?php
                             $i++;
+                            endif; 
                         endforeach;
                     endif;
                     ?>  
