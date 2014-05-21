@@ -11,7 +11,7 @@
     if (!empty($flat_props)):
         foreach ($flat_props as $key => $val):
             $prop = unserialize($val->prop);
-            $key = unserialize($key);
+             
             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
             $url_image = $thumb['0'];
             $url = get_permalink($val->ID);

@@ -67,14 +67,11 @@ get_header();
                         </div>
                         <!--/TAB CONTENT END-->
                         <ul class="nav nav-pills margin-top">
-                            <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i>Gallery</a></li>
+                            <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i><?php _e("Gallery", "wpbootstrap"); ?></a></li>
                             <?php
                             if (!empty($video)):
                                 ?>
-
-                                <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i>Video</a></li>
-
-
+                                <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i><?php _e("Video", "wpbootstrap"); ?></a></li>
                             <?php endif; ?>
                         </ul>
                         <section class="post_content clearfix" itemprop="articleBody">
@@ -86,21 +83,13 @@ get_header();
                     <div class="border col-md-12 column">
                         <div class="row clearfix">
                            
-                             <span class="propertyListBoxDataItemName">
-                            
-                                 
-                                 
-                              
+                             <span class="propertyListBoxDataItemName"> 
                                 <div class="col-md-12 column "> 
                                  <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>  
                              <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h3>
-                                </div>
-                            
-                            
-                            
+                                </div> 
                              </span>
-                            
-                            
+    
                             <div class="col-md-12 column product-key-info">
                                 <address>
                                     <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br>
