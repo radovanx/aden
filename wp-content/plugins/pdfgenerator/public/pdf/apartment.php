@@ -45,7 +45,7 @@
             }
 
             .text-block {
-                font-size: 13px;
+                font-size: 12px;
             }
             .text-center {
                 text-align: center;
@@ -53,6 +53,9 @@
             .block {
                 margin-bottom: 10mm;
             }
+            .small-block {
+                margin-bottom: 5mm;
+            }            
 
             h3 {
                 font-size: 14px;
@@ -92,7 +95,7 @@
                 padding-left: 15px;
             }
             .small-label {
-                font-size: 18px;
+                font-size: 17px;
             }
             table {
                 border-collapse: collapse;
@@ -155,7 +158,9 @@
             .right-head-box  {
                 font-size: 9px;
             }
-
+            .headline-label {
+                font-size: 20px;
+            }
         </style>
     </head>
     <body>
@@ -209,14 +214,14 @@
             <table class="w100 base-info">
                 <tr>
                     <td colspan="2" class="w50 right-head-box text-right">
-                        <h2> <?php _e('Purchase price:', $this->plugin_slug) ?> <span class="red-color"><?php esc_attr_e(price_format($props['preise|kaufpreis'])) ?> €</span></h2>
+                        <h2 class="headline-label"> <?php _e('Purchase price:', $this->plugin_slug) ?> <span class="red-color"><?php esc_attr_e(price_format($props['preise|kaufpreis'])) ?> €</span></h2>
 
                         <?php if (!empty($props['flaechen|wohnflaeche'])): ?>
-                            <h2> <?php _e('Living area:', $this->plugin_slug) ?> <span class="red-color"> <?php esc_attr_e($props['flaechen|wohnflaeche']) ?> </span></h2>
+                            <h2 class="headline-label"> <?php _e('Living area:', $this->plugin_slug) ?> <span class="red-color"> <?php esc_attr_e($props['flaechen|wohnflaeche']) ?> </span></h2>
                         <?php endif; ?>
 
                         <?php if (!empty($props['flaechen|wohnflaeche'])): ?>
-                            <h2> <?php _e('Rooms:', $this->plugin_slug) ?> <span class="red-color"> <?php echo (int) $props['flaechen|anzahl_zimmer'] ?></span></h2>
+                            <h2 class="headline-label"> <?php _e('Rooms:', $this->plugin_slug) ?> <span class="red-color"> <?php echo (int) $props['flaechen|anzahl_zimmer'] ?></span></h2>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -231,10 +236,11 @@
                 </tr>
             </table>
 
-            <div class="red-label text-center"><?php echo get_the_title($product->ID) ?></div>
-
+            <div class="red-label text-center small-block"><?php echo get_the_title($product->ID) ?></div>
+            
+            <!-- featrues -->
             <h2 class="small-label border-left"><?php _e('Features', $this->plugin_slug) ?></h2>
-            <table class="features w100 block">
+            <table class="features w100 small-block text-block">
                 <tr>
                     <td class="w25"><?php _e('Ref:', $this->plugin_slug) ?></td>
                     <td class="w25 text-right t2"><?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?></td>
@@ -274,29 +280,24 @@
                     <td class="w25 text-right"><?php echo esc_attr($props['preise|aussen_courtage']) ?></td>
                 </tr>
             </table>
-
+            <!-- /featrues -->
+            
             <?php if (!empty($props['freitexte|ausstatt_beschr'])): ?>
                 <h2 class="small-label border-left"><?php _e('Description', $this->plugin_slug) ?></h2>
-                <p class="text-block block"><?php echo $props['freitexte|ausstatt_beschr'] ?></p>
+                <p class="text-block small-block"><?php echo $props['freitexte|ausstatt_beschr'] ?></p>
             <?php endif; ?>
 
             <?php if (!empty($props['freitexte|objektbeschreibung'])): ?>
-                <h2 class="small-label border-left"><?php _e('Description', $this->plugin_slug) ?></h2>
-                <p class="text-block block"><?php echo $props['freitexte|objektbeschreibung'] ?></p>
+                <h2 class="small-label border-left"><?php _e('Description of the building', $this->plugin_slug) ?></h2>
+                <p class="text-block small-block"><?php echo $props['freitexte|objektbeschreibung'] ?></p>
             <?php endif; ?>
 
             <?php if (!empty($props['freitexte|lage'])): ?>
                 <h2 class="small-label border-left"><?php _e('Description surroundings', $this->plugin_slug) ?></h2>
-                <p class="text-block block"><?php echo $props['freitexte|lage'] ?></p>
+                <p class="text-block small-block"><?php echo $props['freitexte|lage'] ?></p>
             <?php endif; ?>
 
-            <?php
-            $images = & get_children(array(
-                        'post_parent' => $product->ID,
-                        'post_type' => 'attachment',
-                        'post_mime_type' => 'image'
-            ));
-            ?>
+
 
             <div class="red-label text-center" style="page-break-before:always;"><?php _e('Galerie', $this->plugin_slug) ?></div>
 
