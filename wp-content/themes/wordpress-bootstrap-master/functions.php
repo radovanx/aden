@@ -604,4 +604,20 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             exit;
         }
     }
+    
+    
+    function price_format($price){
+        
+        if(empty($price)){
+            return '';
+        }
+        
+        // dont do that.. 158.000 -> 158000 , 158.50 ->15850
+        //$price = str_replace('.', '', $price);
+        
+        $c_decimals = 0;
+        $ret = number_format($price, $c_decimals, ',', ' ');
+        return $ret;
+    }
+    
     ?>

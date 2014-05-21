@@ -86,7 +86,7 @@ get_header();
                                 </address>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
-                                    <strong class="red pull-right"><?php echo (int)$props['preise|kaufpreis'] ?> &euro;
+                                    <strong class="red pull-right"><?php echo esc_attr(price_format($props['preise|kaufpreis'])) ?> &euro;
                                     </strong>
                                 </span>
                                 <span class="propertyListBoxDataItemName">
@@ -132,7 +132,7 @@ get_header();
                                 <span class="pull-right">
                                     <?php
                                     if (isset($props['preise|kaufpreis_pro_qm'])):
-                                        echo esc_attr($props['preise|kaufpreis_pro_qm']) . ' €';                                        
+                                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';                                        
                                     endif;
                                     ?>
                                 </span>
@@ -337,11 +337,11 @@ get_header();
                                                     <div class="col-md-3">
                                                         <span class="data_item clearfix">
                                                             <strong><?php _e("Price:", "wpbootstrap"); ?></strong>
-                                                            <?php echo $price; ?>
+                                                            <?php echo price_format($price) ?>
                                                         </span>
                                                         <span class="data_item clearfix">
                                                             <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong>
-                                                            <?php echo $pricem; ?>
+                                                            <?php echo ($pricem) ?>
                                                         </span>
                                                         <span class="data_item clearfix">
                                                             <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>

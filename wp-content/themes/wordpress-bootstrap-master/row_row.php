@@ -73,11 +73,11 @@
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $price; ?> &euro;
+                                                    <?php echo price_format($price) ?> &euro;
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $pricem; ?> &euro;
+                                                    <?php echo price_format($pricem) ?> &euro;
                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>  
