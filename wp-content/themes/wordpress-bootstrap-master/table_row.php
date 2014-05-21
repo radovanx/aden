@@ -42,17 +42,13 @@
  
             ?>
             <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
-                <td>   
-                    <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><span class="small-text hidden"><?php echo $val->is_favorite; ?></span></a>
+                <td><a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><span class="small-text hidden"><?php echo $val->is_favorite; ?></span></a>
                 </td>
-                <td>
-                    <?php echo $reference; ?>
+                <td> <?php echo $reference; ?>
                 </td>
-                <td>
-                    <a href="<?php echo $url; ?>" class="blue"><?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?> </a>
+                <td><a href="<?php echo $url; ?>" class="blue"><?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?> </a>
                 </td>
-                <td>
-                    <?php echo $flat_num; ?>       
+                <td><?php echo $flat_num; ?>       
                 </td>
                 <td>
                     <?php echo $rental_status; ?> 
