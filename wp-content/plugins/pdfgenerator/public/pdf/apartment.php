@@ -237,7 +237,7 @@
             </table>
 
             <div class="red-label text-center small-block"><?php echo get_the_title($product->ID) ?></div>
-            
+
             <!-- featrues -->
             <h2 class="small-label border-left"><?php _e('Features', $this->plugin_slug) ?></h2>
             <table class="features w100 small-block text-block">
@@ -250,7 +250,7 @@
                 <tr>
                     <td class="w25"><?php _e('Purchase price /sm:', $this->plugin_slug) ?></td>
                     <td class="w25 text-right t2"><?php
-                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';                        
+                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';
                         ?></td>
                     <td class="w25 t3"><?php _e('Apartment type:', $this->plugin_slug) ?></td>
                     <td class="w25 text-right"><?php echo EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']] ?></td>
@@ -281,63 +281,130 @@
                 </tr>
             </table>
             <!-- /featrues -->
-            
+
+            <?php
+            $images = & get_children(array(
+                        'post_parent' => $product->ID,
+                        'post_type' => 'attachment',
+                        'post_mime_type' => 'image'
+            ));
+            ?>            
+
+            <!-- feature image + first from gallery -->
+            <?php
+            $first_images = array();
+
+            $post_thumbnail_id = get_post_thumbnail_id($product->ID);
+
+            if (!empty($post_thumbnail_id)) {
+                $first_images[$post_thumbnail_id] = $post_thumbnail_id;
+            }
+
+            if (!empty($images)) {
+                $img = array_pop($images);
+                $first_images[$img->ID] = $img->ID;
+            }
+
+            if (count($first_images) < 3) {
+                $img = array_pop($images);
+                $first_images[$img->ID] = $img->ID;
+            }
+
+            if (!empty($first_images)):
+                ?>
+                <table class="gallery-table">
+                    <tbody>
+                        <tr>
+                            <?php
+                            $i = 1;
+                            foreach ($first_images as $attachment_id => $attachment):
+                                ?>
+                                <td style="width: 90mm;" class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>">
+                                    <table class="img-table-in" style="width: 90mm;">
+                                        <tr>
+                                            <td class="background-gray" style="width: 100%; height: 258px; min-height: 258px !important;">
+                                                <?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 90mm;" class="vbottom img-title">
+                                                <?php echo get_the_title($attachment_id) ?>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                                <?php
+                                //echo 0 == $i % 2 ? '</tr></tbody></table><table class="gallery-table"  style="page-break-inside: avoid;"><tbody><tr>' : '';
+                                $i++;
+                            endforeach;
+                            ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>  
+                <div style="clear:both"></div>
+            <?php endif; ?>
+            <!-- /feature image + first from gallery -->
+
+
             <?php if (!empty($props['freitexte|ausstatt_beschr'])): ?>
-                <h2 class="small-label border-left"><?php _e('Description', $this->plugin_slug) ?></h2>
-                <p class="text-block small-block"><?php echo $props['freitexte|ausstatt_beschr'] ?></p>
+                <div style="page-break-inside: avoid;">
+                    <h2 class="small-label border-left"><?php _e('Description', $this->plugin_slug) ?></h2>
+                    <p class="text-block small-block"><?php echo $props['freitexte|ausstatt_beschr'] ?></p>
+                </div>
             <?php endif; ?>
 
             <?php if (!empty($props['freitexte|objektbeschreibung'])): ?>
-                <h2 class="small-label border-left"><?php _e('Description of the building', $this->plugin_slug) ?></h2>
-                <p class="text-block small-block"><?php echo $props['freitexte|objektbeschreibung'] ?></p>
+                <div style="page-break-inside: avoid;">
+                    <h2 class="small-label border-left"><?php _e('Description of the building', $this->plugin_slug) ?></h2>
+                    <p class="text-block small-block"><?php echo $props['freitexte|objektbeschreibung'] ?></p>
+                </div>
             <?php endif; ?>
 
             <?php if (!empty($props['freitexte|lage'])): ?>
-                <h2 class="small-label border-left"><?php _e('Description surroundings', $this->plugin_slug) ?></h2>
-                <p class="text-block small-block"><?php echo $props['freitexte|lage'] ?></p>
+                <div style="page-break-inside: avoid;">
+                    <h2 class="small-label border-left"><?php _e('Description surroundings', $this->plugin_slug) ?></h2>
+                    <p class="text-block small-block"><?php echo $props['freitexte|lage'] ?></p>
+                </div>
             <?php endif; ?>
 
 
-
-            <div class="red-label text-center" style="page-break-before:always;"><?php _e('Galerie', $this->plugin_slug) ?></div>
-
-
-            <?php $i = 1; ?>
-            <table class="gallery-table"  style="page-break-inside: avoid;">
-                <tbody>
-                    <tr>
-
-                        <?php
-                        foreach ($images as $attachment_id => $attachment):
-                            ?>
-                            <td style="width: 90mm;" class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>">
-                                <table class="img-table-in" style="width: 90mm;">
-                                    <tr>
-                                        <td class="background-gray" style="width: 100%; height: 258px; min-height: 258px !important;">
-                                            <?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 90mm;" class="vbottom img-title">
-                                            <?php echo get_the_title($attachment_id) ?>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-
+            <?php if (!empty($images)): ?>
+                <div class="red-label text-center"><?php _e('Galerie', $this->plugin_slug) ?></div>
+                <table class="gallery-table"  style="page-break-inside: avoid;">
+                    <tbody>
+                        <tr>
                             <?php
-                            echo 0 == $i % 2 ? '</tr></tbody></table><table class="gallery-table"  style="page-break-inside: avoid;"><tbody><tr>' : '';
-                            $i++;
-                        endforeach;
-                        ?>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            $i = 1;
+                            foreach ($images as $attachment_id => $attachment):
+                                ?>
+                                <td style="width: 90mm;" class="<?php echo 0 == $i % 2 ? 't2' : 't1'; ?>">
+                                    <table class="img-table-in" style="width: 90mm;">
+                                        <tr>
+                                            <td class="background-gray" style="width: 100%; height: 258px; min-height: 258px !important;">
+                                                <?php echo wp_get_attachment_image($attachment_id, 'pdf_thumb') ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width: 90mm;" class="vbottom img-title">
+                                                <?php echo get_the_title($attachment_id) ?>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
 
+                                <?php
+                                echo 0 == $i % 2 ? '</tr></tbody></table><table class="gallery-table"  style="page-break-inside: avoid;"><tbody><tr>' : '';
+                                $i++;
+                            endforeach;
+                            ?>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            <?php endif; ?>
         </div>
-
-
 
     </body>
 </html>
