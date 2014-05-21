@@ -86,10 +86,8 @@ get_header();
                                 <div class="key_fact">
                                     <div class="panel-body">
                                         <?php
-                                        $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation', $args);
-
-                                        $type_of_accomodation = array();
-
+                                        $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation', $args); 
+                                        $type_of_accomodation = array(); 
                                         foreach ($terms as $t) {
                                             $type_of_accomodation[] = $t->name;
                                         }
@@ -105,7 +103,7 @@ get_header();
                                     </div>
                                     <div class="panel-body">
                                         <span class="propertyListBoxDataItemName">
-                                            <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red pull-right"> &euro; <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?>  - &euro; <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?></strong></span>
+                                            <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red pull-right"><?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?> &euro; - <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?> &euro;</strong></span>
                                     </div>
                                 </div>
                             </div>
@@ -239,8 +237,6 @@ jQuery(".create_map").on('shown.bs.tab', function() {
  
 initialize(); 
  
-
- 
 function showStreetview() {
   var myPano;
   var latlng = new google.maps.LatLng(lang, long);
@@ -262,14 +258,11 @@ function showStreetview() {
     pov.heading += 0.2;
     myPano.setPov(pov);
 }, 10);
-}
- 
+} 
 jQuery(".create_street").on('shown.bs.tab', function() { 
   	/* Trigger map resize event */ 
         showStreetview(); 
 	google.maps.event.trigger(map, 'resize');  
-});
- 
- 
+}); 
 </script>  
 <?php get_footer(); ?>

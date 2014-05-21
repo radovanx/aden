@@ -19,6 +19,17 @@ get_header();
                 $program_id = EstateProgram::flat_program_id($post->ID);
                 $title = get_the_title($post->ID);
                 $video = $props['youtube'];
+                
+                
+                $city = !empty($props['geo|ort']) ? esc_attr($props['geo|ort']) : "-";
+                $district = !empty($props['geo|regionaler_zusatz']) ? esc_attr($props['geo|regionaler_zusatz']) : "-";
+                $hnumber = !empty($props['geo|hausnummer']) ? esc_attr($props['geo|hausnummer']) : 0;
+                $street = !empty($props['geo|strasse']) ? esc_attr($props['geo|strasse']) : "-";
+                $zip = !empty($props['geo|plz']) ? esc_attr($props['geo|plz']) : 0;
+                $name = !empty($props['freitexte|objekttitel']) ? esc_attr($props['freitexte|objekttitel']) : "-";
+                $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-"; 
+                $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
+                 
                 ?>
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?>
@@ -74,6 +85,22 @@ get_header();
                 <div class="col-md-5 column">
                     <div class="border col-md-12 column">
                         <div class="row clearfix">
+                           
+                             <span class="propertyListBoxDataItemName">
+                            
+                                 
+                                 
+                              
+                                <div class="col-md-12 column "> 
+                                 <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>  
+                             <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h3>
+                                </div>
+                            
+                            
+                            
+                             </span>
+                            
+                            
                             <div class="col-md-12 column product-key-info">
                                 <address>
                                     <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br>
