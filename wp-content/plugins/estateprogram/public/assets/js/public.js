@@ -4,9 +4,9 @@
     $(function() {
         $('.add-to-preference').live("click", function() {
 
-            console.log('click');
-
             var element = $(this).find('i');
+            
+            var this_element = $(this);
 
             var data = {
                 action: 'add_to_preference',
@@ -36,11 +36,13 @@
                 $.post(estateprogram.ajaxurl, data, function(response) {
                     if (1 == response) {
                         element.removeClass('fa-star-o blue').addClass('fa-star red');
+                        this_element.find('.fav-label').html(estateprogram.added);
                     } else {
                         if (remove_row) {
                             element.closest('tr').remove();
                         } else {
                             element.removeClass('fa-star red').addClass('fa-star-o blue');
+                            this_element.find('.fav-label').html(estateprogram.removed);
                         }
                     }
                 }).fail(function() {

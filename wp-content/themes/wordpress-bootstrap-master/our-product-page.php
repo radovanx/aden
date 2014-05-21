@@ -380,7 +380,7 @@ get_header();
                                             <div class="col-md-3"> 
                                                 <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
                                                     <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
-                                                    <strong class="blue clearfix pull-right">
+                                                    <strong class="blue clearfix pull-right fav-label">
                                                         <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
                                                     </strong>    
                                                 </a>   

@@ -17,10 +17,10 @@
                                 <div id="gmap" class="gmap">google map</div>
                             </div>
                             <div class="tab-pane" id="street_tab">
-                                
+
                                 <div id="gmapstreet" class="gmapstreet">street</div>
-                            
-                            
+
+
                             </div>
                             <div class="tab-pane fade" id="video_tab"> 
                                 <?php
@@ -233,7 +233,7 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-                                                                <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
+                                                                <span class="fav-label"><?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?></span>
                                                             </strong>
                                                             <a href="<?php echo $url; ?>" class=" "><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>
                                                         </div>
@@ -284,79 +284,78 @@
 
 <?php $lang = esc_attr(get_post_meta($post->ID, '_program_latitude', true)); ?>
 <?php $long = esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
- 
+
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script>     
+<script>
 // MAP // 
-var lang = <?php echo $lang; ?>  
-var long = <?php echo $long; ?>   
- 
-var myCenter = new google.maps.LatLng(lang, long); 
-var map = null, marker = null;  
-function initialize() { 
- 
-  var mapProp = {
-      center: myCenter,
-      zoom: 14,
-      panControl: true, //enable pan Control
-      zoomControl: true, //enable zoom control
-      scaleControl: true, // enable scale control 
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-  };  
-  
-    map = new google.maps.Map(document.getElementById("gmap"), mapProp);         
-    marker = new google.maps.Marker({ 
-        position: myCenter, 
-        draggable: false, 
-        animation: google.maps.Animation.DROP, 
-         
-    });  
-    marker.setMap(map);   
+    var lang = <?php echo $lang; ?>
+    var long = <?php echo $long; ?>
+
+    var myCenter = new google.maps.LatLng(lang, long);
+    var map = null, marker = null;
+    function initialize() {
+
+        var mapProp = {
+            center: myCenter,
+            zoom: 14,
+            panControl: true, //enable pan Control
+            zoomControl: true, //enable zoom control
+            scaleControl: true, // enable scale control 
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        map = new google.maps.Map(document.getElementById("gmap"), mapProp);
+        marker = new google.maps.Marker({
+            position: myCenter,
+            draggable: false,
+            animation: google.maps.Animation.DROP,
+        });
+        marker.setMap(map);
     }
- 
-jQuery(".create_map").on('shown.bs.tab', function() {
-       
-  	/* Trigger map resize event */
-	google.maps.event.trigger(map, 'resize'); 
-        map.setCenter(marker.getPosition());       
-});
- 
-initialize(); 
 
- 
+    jQuery(".create_map").on('shown.bs.tab', function() {
 
- 
-function showStreetview() {
-  var myPano;
-  var latlng = new google.maps.LatLng(lang, long);
-  
-  var panoramaOptions = {
-    position: latlng,
-    pov: {
-      heading: 165,
-      pitch: 0
-         },
-    zoom: 1
-  };  
-  myPano = new google.maps.StreetViewPanorama(
-      document.getElementById('gmapstreet'),
-      panoramaOptions);
-  myPano.setVisible(true);
-  window.setInterval(function() {
-    var pov = myPano.getPov();
-    pov.heading += 0.2;
-    myPano.setPov(pov);
-}, 10);
-}
- 
-jQuery(".create_street").on('shown.bs.tab', function() { 
-  	/* Trigger map resize event */ 
-        showStreetview(); 
-	google.maps.event.trigger(map, 'resize');  
-});
- 
- 
+        /* Trigger map resize event */
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(marker.getPosition());
+    });
+
+    initialize();
+
+
+
+
+    function showStreetview() {
+        var myPano;
+        var latlng = new google.maps.LatLng(lang, long);
+
+        var panoramaOptions = {
+            position: latlng,
+            pov: {
+                heading: 165,
+                pitch: 0
+            },
+            zoom: 1
+        };
+        myPano = new google.maps.StreetViewPanorama(
+                document.getElementById('gmapstreet'),
+                panoramaOptions);
+        myPano.setVisible(true);
+        window.setInterval(function() {
+            var pov = myPano.getPov();
+            pov.heading += 0.2;
+            myPano.setPov(pov);
+        }, 10);
+    }
+
+    jQuery(".create_street").on('shown.bs.tab', function() {
+        /* Trigger map resize event */
+        showStreetview();
+        google.maps.event.trigger(map, 'resize');
+    });
+
+
 </script>  
 <?php get_footer(); ?>
  

@@ -644,7 +644,9 @@ class EstateProgram {
     public function enqueue_scripts() {
         wp_enqueue_script($this->plugin_slug . '-plugin-script', plugins_url('assets/js/public.js', __FILE__), array('jquery'), self::VERSION);
         wp_localize_script($this->plugin_slug . '-plugin-script', $this->plugin_slug, array(
-            'ajaxurl' => admin_url('admin-ajax.php')
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'added' => __('Added to favorites', $this->plugin_slug),
+            'removed' => __('Add to favorite', $this->plugin_slug),
         ));
     }
 
