@@ -62,9 +62,9 @@ get_header();
                             <div class="col-md-12 column border">
                                 <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
 
-                                <ul class="list-unstyled bigger-text line-big">
-                                    <li><i class="fa fa-check red"></i>
-                                        <?php echo str_replace(';', '</li><li><i class="fa fa-check red"></i>', $summary) ?>
+                                <ul class="list-unstyled bigger-text line-big summary-program">
+                                    <li> 
+                                        <?php echo str_replace(';', '</li><li>', $summary) ?>
                                     </li>
                                     <!--
                                     <li><i class="fa fa-check"></i>
@@ -94,14 +94,14 @@ get_header();
                                             $type_of_accomodation[] = $t->name;
                                         }
                                         ?>
-                                        <span class="propertyListBoxDataItemName"><i class="fa fa-home round-border"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong> <?php echo implode(', ', $type_of_accomodation) ?></span>
+                                        <span class="propertyListBoxDataItemName"><i class="fa fa-home round-border"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong><span class="pull-right"><?php echo implode(', ', $type_of_accomodation) ?></span></span>
                                     </div>
                                     <div class="panel-body">
-                                        <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong> <?php esc_attr_e(get_post_meta($post->ID, '_program_address', true)) ?></span>
+                                        <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><span class="pull-right"><?php esc_attr_e(get_post_meta($post->ID, '_program_address', true)) ?></span></span>
                                     </div>
                                     <div class="panel-body">
-                                        <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong> <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²
-                                        </span>
+                                        <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><span class="pull-right"><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²
+                                        </span></span>
                                     </div>
                                     <div class="panel-body">
                                         <span class="propertyListBoxDataItemName">

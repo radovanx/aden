@@ -62,7 +62,7 @@
 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong> 
-                                                    <?php echo esc_attr($prop['anbieternr']) ?>
+                                                      <?php echo (int)$rooms; ?>      
                                                 </span>
 
                                                 <span class="data_item clearfix">
@@ -73,21 +73,23 @@
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo price_format($price) ?> &euro;
-                                                </span>
+                                                    <span class="pull-right"> 
+                                                        <?php echo price_format($price) ?> &euro;
+                                                    </span>    
+                                                    </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo price_format($pricem) ?> &euro;
-                                                </span>
+                                                    <span class="pull-right"> 
+                                                        <?php echo price_format($pricem) ?> &euro;
+                                                    </span>
+                                                 </span>
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>  
                                                 </span>
                                             </div> 
                                             <div class="col-md-3"> 
                                                 <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
-                                                    <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i></strong>
-                                                    <strong class="blue clearfix pull-right bigger-text">
-                                                    <?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
+                                                <strong class="blue clearfix  bigger-text"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i><?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
                                                     </strong>    
                                                 </a>   
                                                 <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
