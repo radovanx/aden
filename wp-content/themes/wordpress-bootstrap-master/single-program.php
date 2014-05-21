@@ -55,7 +55,6 @@
                         <footer>
                         </footer> <!-- end article footer -->
                     </article> <!-- end article -->
-
                     <?php
                     $summary = __(get_post_meta(get_the_ID(), '_program_hightlight', true));
                     if (!empty($summary)):
@@ -327,19 +326,21 @@ initialize();
 
  
 
+ 
 function showStreetview() {
   var myPano;
-  var latlng = new google.maps.LatLng(lang,long);
+  var latlng = new google.maps.LatLng(lang, long);
+  
   var panoramaOptions = {
     position: latlng,
     pov: {
       heading: 165,
       pitch: 0
-    },
+         },
     zoom: 1
-  };
+  };  
   myPano = new google.maps.StreetViewPanorama(
-      document.getElementById('street_tab'),
+      document.getElementById('gmapstreet'),
       panoramaOptions);
   myPano.setVisible(true);
   window.setInterval(function() {
@@ -347,19 +348,18 @@ function showStreetview() {
     pov.heading += 0.2;
     myPano.setPov(pov);
 }, 10);
-  myPano.setVisible(true);
-
-} 
-google.maps.event.addDomListener(window, 'load', showStreetview); 
-    jQuery(".create_street").on('shown.bs.tab', function() { 
-        var center = map.getCenter(); 
-        
-         myPano.setVisible(true);  
-        google.maps.event.trigger(map, "resize"); 
-       
-        
-    }); 
- showStreetview();     
+}
+ 
+jQuery(".create_street").on('shown.bs.tab', function() { 
+  	/* Trigger map resize event */ 
+        showStreetview(); 
+	google.maps.event.trigger(map, 'resize');  
+});
+ 
+ 
+ 
+ 
+ 
 </script>  
 <?php get_footer(); ?>
  
