@@ -357,9 +357,6 @@ jQuery(".create_street").on('shown.bs.tab', function() {
 });
  
  
- 
- 
- 
 </script>  
 <?php get_footer(); ?>
  
