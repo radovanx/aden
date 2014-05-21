@@ -4,7 +4,7 @@
  */
 ?>
 <?php
-redirect_if_not_logged();
+redirect_if_cannot_see_detail();
 get_header();
 ?>
 <div class="container">

@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 ?>
-<?php get_header(); ?>
+<?php 
+redirect_if_cannot_see_detail();
+get_header(); 
+?>
 <div class="container">
     <div id="content" class="clearfix row">
         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>

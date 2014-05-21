@@ -1,4 +1,6 @@
-<?php get_header();
+<?php 
+
+get_header();
 ?>
 <div class="container">
     <div id="content" class="clearfix row">

@@ -576,4 +576,11 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             }
         }
     }
+
+    function redirect_if_cannot_see_detail() {
+        if (!current_user_can('see_detail')) {
+            wp_redirect(get_page_link(15));
+            exit;
+        }
+    }
     ?>
