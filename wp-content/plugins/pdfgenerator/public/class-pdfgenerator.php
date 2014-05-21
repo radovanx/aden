@@ -189,6 +189,21 @@ class pdfgenerator {
                                 $filename = $props['verwaltung_techn|objektnr_extern'];
                             }
 
+                            global $wpdb;
+                            
+                            $sql = "
+                                INSERT INTO
+                                    download_stat (user_id, when_downloaded, product_id, product)
+                                VALUES(
+                                '" . get_current_user_id() . "',
+                                NOW(),
+                                '" . $product->ID . "',
+                                '" . esc_sql(serialize($props)). "'    
+                                )    
+                            ";
+                            
+                            $wpdb->query($sql);                            
+                            
                             $mpdf->Output($filename, 'D');
                         }
 
