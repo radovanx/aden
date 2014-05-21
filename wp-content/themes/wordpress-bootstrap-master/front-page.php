@@ -43,7 +43,7 @@
                                     <span class="propertyListBoxDataItemName">
                                         <i class="fa fa-arrows-alt"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><span class="pull-right"><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²</span></span> 
                                     <span class="propertyListBoxDataItemName">
-                                        <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><span class="pull-right"><strong class="red"><?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?> &euro; -  <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?> &euro;</strong></span></span>                
+                                        <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><span class="pull-right"><strong class="red"><?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?> &euro; -  <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?> &euro;</strong></span></span>                
                                 </div>
                                 <div class="panel-body excerpt"> 
                                     <?php the_excerpt() ?>

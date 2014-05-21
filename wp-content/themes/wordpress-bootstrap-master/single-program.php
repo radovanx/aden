@@ -105,7 +105,7 @@ get_header();
                                     </div>
                                     <div class="panel-body">
                                         <span class="propertyListBoxDataItemName">
-                                            <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_from', true)); ?>  - &euro; <?php echo esc_attr(get_post_meta($post->ID, '_program_price_to', true)); ?></strong></span>
+                                            <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red"> &euro; <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?>  - &euro; <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?></strong></span>
                                     </div>
                                 </div>
                             </div>

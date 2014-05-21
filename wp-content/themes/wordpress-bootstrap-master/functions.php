@@ -612,6 +612,8 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             return '';
         }
         
+        $price = str_replace('.', '', $price);
+        
         $c_decimals = 0;
         $ret = number_format($price, $c_decimals, ',', ' ');
         return $ret;
