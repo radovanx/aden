@@ -377,6 +377,11 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
         function start_el(&$output, $object, $depth = 0, $args = Array(), $current_object_id = 0) {
 
+            if('4734' == $object->ID && !is_user_logged_in()){
+                return;
+            }
+            
+            
             global $wp_query;
             $indent = ( $depth ) ? str_repeat("\t", $depth) : '';
 
@@ -406,7 +411,21 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
             $item_output = $args->before;
             $item_output .= '<a' . $attributes . '>';
-            $item_output .= $args->link_before . apply_filters('the_title', $object->title, $object->ID);
+            
+            
+            if(4734 == $object->ID && is_user_logged_in()){
+                global $current_user;
+                get_currentuserinfo(); 
+                
+                $user_full_name = $current_user->user_firstname . ' ' . $current_user->user_lastname;
+                
+                if(!empty($user_full_name)){
+                    $item_output .= $args->link_before . '<span class="menu-user-name">' . $user_full_name . '</span>';
+                }                
+            } else {
+                $item_output .= $args->link_before . apply_filters('the_title', $object->title, $object->ID);
+            }            
+            
             $item_output .= $args->link_after;
 
             // if the item has children add the caret just before closing the anchor tag
