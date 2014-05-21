@@ -104,18 +104,16 @@
     .glyphicon-chevron-right {
         position: absolute;
         top: 50%;
-        z-index: 5;
+         z-index: 99;
         display: inline-block;
     }
     .icon-prev,
     .glyphicon-chevron-left {
         left: 50%;
-     
-    
  
         &:after
             {
-            font-size:3em;
+            font-size:3.5em;
             content:"\f104";
             font-family: 'FontAwesome';
             text-align: center;
@@ -123,7 +121,8 @@
             width: 50px;
             position: relative;
             text-align: center;
-            top: -0.5em;            
+            top: -0.5em;    
+           
         }     
  
     }
@@ -134,7 +133,7 @@
         
         &:after
             {
-            font-size:3em;
+            font-size:3.5em;
             content:"\f105";
             font-family: 'FontAwesome';
             text-align: center;
@@ -143,6 +142,7 @@
             position: relative;
             text-align: center;
             top: -0.5em;
+            z-index: 999
             
            }  
         

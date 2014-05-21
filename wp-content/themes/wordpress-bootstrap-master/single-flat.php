@@ -41,7 +41,6 @@ get_header();
                             <!-- img slide -->
                             <?php get_template_part('partial', 'slide') ?>
                             <!-- /img slide -->
-
                             <div class="tab-pane fade" id="video_tab">
                                 <?php
                                 if (!empty($video)):
@@ -70,8 +69,7 @@ get_header();
                         </ul>
                         <section class="post_content clearfix" itemprop="articleBody">
                         </section> <!-- end article section -->
-                        <footer>
-                        </footer> <!-- end article footer -->
+                        <!-- end article footer -->
                     </article> <!-- end article -->
                 </div>
                 <div class="col-md-5 column">
@@ -88,7 +86,7 @@ get_header();
                                 </address>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
-                                    <strong class="red pull-right"><?php echo esc_attr($props['preise|kaufpreis']) ?> &euro;
+                                    <strong class="red pull-right"><?php echo (int)$props['preise|kaufpreis'] ?> &euro;
                                     </strong>
                                 </span>
                                 <span class="propertyListBoxDataItemName">
@@ -99,11 +97,9 @@ get_header();
                                     <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
                                     <strong class="red pull-right"><?php echo (int) $props['flaechen|anzahl_zimmer'] ?></strong>
                                 </span>
-                                <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
-
+                                <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a> 
                                 <a href="/generate-pdf/product/<?php echo $post->ID ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
-                                <a href="/reservation-document/<?php echo $post->ID ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
-
+                                <a href="/reservation-document/<?php echo $post->ID ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a> 
                                 <?php if (!empty($props['dropbox|building'])): ?>
                                     <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
                                 <?php endif; ?>
@@ -249,6 +245,8 @@ get_header();
                     </div>
                 </div>
                 <div class="col-md-12 column margin-top">
+                    <h3 class="border-left uppercase"><?php _e(" Other products that might interest you", "wpbootstrap"); ?></h3>
+ 
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="table">
@@ -327,12 +325,10 @@ get_header();
                                                             <strong><?php _e("Floor:", "wpbootstrap"); ?></strong>
                                                             <?php echo $floor; ?>
                                                         </span>
-
                                                         <span class="data_item clearfix">
                                                             <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong>
                                                             <?php echo esc_attr($prop['anbieternr']) ?>
                                                         </span>
-
                                                         <span class="data_item clearfix">
                                                             <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong>
                                                             <?php echo $area; ?>
@@ -343,14 +339,12 @@ get_header();
                                                             <strong><?php _e("Price:", "wpbootstrap"); ?></strong>
                                                             <?php echo $price; ?>
                                                         </span>
-
                                                         <span class="data_item clearfix">
                                                             <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong>
                                                             <?php echo $pricem; ?>
                                                         </span>
                                                         <span class="data_item clearfix">
                                                             <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>
-
                                                         </span>
                                                     </div>
                                                     <div class="col-md-3">
@@ -381,61 +375,12 @@ get_header();
                 <section class="post_content">
                     <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p>
                 </section>
-                <footer>
-                </footer>
             </article>
         <?php endif; ?>
         <!-- end #main -->
     </div> <!-- end #content -->
 </div>
 
-<script>
-    jQuery(function() {
-        jQuery('#recomend-form').submit(function(event) {
-
-            jQuery('#recomend-form .form-response').html('').hide();
-
-            var data = {
-                'id': <?php echo $post->ID ?>,
-                'receiver_email': jQuery('#receiver_email').val(),
-                'receiver_message': jQuery('#receiver_message').val(),
-                'action': 'recommend_product'
-            };
-
-            jQuery.ajax({
-                type: 'POST',
-                cache: false,
-                url: '<?php echo admin_url('admin-ajax.php'); ?>',
-                data: data,
-                beforeSend: function() {
-                    jQuery('#form-response').html('').hide();
-                    jQuery('#send_recommendation').attr('disabled', 'disabled');
-                    jQuery('#loading-recommand').show();
-                },
-                success: function(response) {
-                    jQuery('#form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
-                    jQuery('.erase-after-sent').val('');
-                },
-                error: function(response) {
-                    jQuery('#form-response').show().html('<div class="alert alert-danger">' + response.responseText + '</div>');
-                },
-                complete: function(response) {
-                    jQuery('#send_recommendation').removeAttr('disabled');
-                    jQuery('#loading-recommand').hide();
-                }
-            });
-
-            event.preventDefault();
-        });
-
-
-        jQuery('#recomendModal').on('hidden.bs.modal', function(e) {
-            jQuery('#loading-recommand').hide();
-            jQuery('.erase-after-sent').val('');
-            jQuery('#form-response').html('').hide();
-        });
-    });
-</script>
 
 <div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -468,7 +413,7 @@ get_header();
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
+ 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -510,7 +455,7 @@ function initialize(params) {
 var myLatlng = new google.maps.LatLng(lang, long);
 var mapOptions = {
 center: myLatlng,
-zoom: 8,
+zoom: 14,
 mapTypeId: google.maps.MapTypeId.ROADMAP
 };
 var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -532,21 +477,46 @@ jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initia
 function initializeMap() {
 initialize(params);
 }
-</script>
+</script>  
 <script>
-    /*
-     jQuery(document).ready(function($) {
-     
-     $(".test-popup-link").click(function(event) {
-     
-     $('.parent-container').magnificPopup({
-     delegate: 'a', // child items selector, by clicking on it popup will open
-     type: 'image',
-     gallery: {enabled: true}
-     // other options
-     });
-     });
-     });
-     */
-</script>
+    jQuery(function() {
+        jQuery('#recomend-form').submit(function(event) {
+            jQuery('#recomend-form .form-response').html('').hide();
+            var data = {
+                'id': <?php echo $post->ID ?>,
+                'receiver_email': jQuery('#receiver_email').val(),
+                'receiver_message': jQuery('#receiver_message').val(),
+                'action': 'recommend_product'
+            }; 
+            jQuery.ajax({
+                type: 'POST',
+                cache: false,
+                url: '<?php echo admin_url('admin-ajax.php'); ?>',
+                data: data,
+                beforeSend: function() {
+                    jQuery('#form-response').html('').hide();
+                    jQuery('#send_recommendation').attr('disabled', 'disabled');
+                    jQuery('#loading-recommand').show();
+                },
+                success: function(response) {
+                    jQuery('#form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
+                    jQuery('.erase-after-sent').val('');
+                },
+                error: function(response) {
+                    jQuery('#form-response').show().html('<div class="alert alert-danger">' + response.responseText + '</div>');
+                },
+                complete: function(response) {
+                    jQuery('#send_recommendation').removeAttr('disabled');
+                    jQuery('#loading-recommand').hide();
+                }
+            }); 
+            event.preventDefault();
+        }); 
+            jQuery('#recomendModal').on('hidden.bs.modal', function(e) {
+            jQuery('#loading-recommand').hide();
+            jQuery('.erase-after-sent').val('');
+            jQuery('#form-response').html('').hide();
+        });
+    });
+</script> 
 <?php get_footer(); ?>
