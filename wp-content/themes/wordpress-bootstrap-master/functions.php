@@ -620,4 +620,30 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         return $ret;
     }
     
-    ?>
+                
+    
+    function add_extra_user_column($columns) { 
+        return array_merge( $columns, 
+              array('foo' => __('City and State')) );
+                
+    }             
+    add_filter('manage_users_columns' , 'add_extra_user_column');      
+    add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
+    
+    function manage_status_column($empty='', $column_name, $id) { 
+        if( $column_name == 'foo' ) {     
+            $all_meta_for_user = get_user_meta($id);
+            $city = $all_meta_for_user["city"][0];
+            $state = $all_meta_for_user["country"][0];
+                
+            return  $city.' - '.$state;    
+                
+        }
+    }
+                
+    add_action('manage_users_columns','remove_user_posts_column');          
+    function remove_user_posts_column($column_headers) { 
+        unset($column_headers['posts']); 
+    return $column_headers;           
+    } 
+    ?> 

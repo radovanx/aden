@@ -1,0 +1,5 @@
+.qtrans_flag span { display:none }
+.qtrans_flag { height:12px; width:18px; display:block }
+.qtrans_flag_and_text { padding-left:20px }
+.qtrans_flag_en { background:url(http://www.adenimmo.localhost/wp-content/plugins/qtranslate/flags/gb.png) no-repeat }
+.qtrans_flag_fr { background:url(http://www.adenimmo.localhost/wp-content/plugins/qtranslate/flags/fr.png) no-repeat }
