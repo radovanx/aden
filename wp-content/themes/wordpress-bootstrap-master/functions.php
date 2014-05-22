@@ -621,21 +621,33 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
     function add_extra_user_column($columns) { 
         return array_merge( $columns, 
-              array('foo' => __('City and State')) );
+              array('foo' => __('City')) );
                 
     }             
-    add_filter('manage_users_columns' , 'add_extra_user_column');      
+    add_filter('manage_users_columns' , 'add_extra_user_column');    
+    
+    
+    function add_extra_user_columnstate($columns) { 
+        return array_merge( $columns, 
+              array('foo2' => __('State')) );
+                
+    }             
+    add_filter('manage_users_columns' , 'add_extra_user_columnstate');    
+                
     add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
     
     function manage_status_column($empty='', $column_name, $id) { 
         if( $column_name == 'foo' ) {     
             $all_meta_for_user = get_user_meta($id);
             $city = $all_meta_for_user["city"][0];
-            $state = $all_meta_for_user["country"][0];
-                
-            return  $city.' - '.$state;    
-                
+            return  $city;         
         }
+        else if($column_name == 'foo2')
+        {  
+            $all_meta_for_user = get_user_meta($id);
+            $state = $all_meta_for_user["country"][0];   
+            return $state;          
+        }     
     }       
     add_action('manage_users_columns','remove_user_posts_column');          
     function remove_user_posts_column($column_headers) { 

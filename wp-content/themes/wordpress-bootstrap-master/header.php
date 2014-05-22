@@ -1,5 +1,4 @@
 <!doctype html>
-
 <!--[if IEMobile 7 ]> <html <?php language_attributes(); ?>class="no-js iem7"> <![endif]-->
 <!--[if lt IE 7 ]> <html <?php language_attributes(); ?> class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html <?php language_attributes(); ?> class="no-js ie7"> <![endif]-->
@@ -30,7 +29,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <?php echo qtrans_generateLanguageSelectCode('text') ?>
+                        <?php echo qtrans_generateLanguageSelectCode('image') ?>
                     </div>
                 </div>
             </div>
@@ -41,9 +40,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-
-
+ 
                     <a class="" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
                         <img src="<?php bloginfo('template_url'); ?>/images/logo.png" /></a>
                 </div>
