@@ -604,8 +604,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             exit;
         }
     }
-    
-    
+                
     function price_format($price){
         
         if(empty($price)){
@@ -619,9 +618,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         $ret = number_format($price, $c_decimals, ',', ' ');
         return $ret;
     }
-    
-                
-    
+
     function add_extra_user_column($columns) { 
         return array_merge( $columns, 
               array('foo' => __('City and State')) );
