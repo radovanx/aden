@@ -39,7 +39,8 @@ class aden_stats_Admin {
         "admin_page_stat_user_detail_download",
         "admin_page_recommendation_stat_by_product",
         "admin_page_product_detail_download",
-        "admin_page_product_detail_recommendation"
+        "admin_page_product_detail_recommendation",
+        "admin_page_stat_by_product"
     );
 
     /**
