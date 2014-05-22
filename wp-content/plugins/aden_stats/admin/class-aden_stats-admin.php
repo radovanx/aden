@@ -37,7 +37,9 @@ class aden_stats_Admin {
         "admin_page_stat_user_detail",
         "admin_page_stat_user_detail_recommendation",
         "admin_page_stat_user_detail_download",
-        "admin_page_recommendation_stat_by_product"
+        "admin_page_recommendation_stat_by_product",
+        "admin_page_product_detail_download",
+        "admin_page_product_detail_recommendation"
     );
 
     /**
@@ -209,17 +211,21 @@ class aden_stats_Admin {
 
         $sql = "
             SELECT
-                *
+                *,
+                DATE_FORMAT(record_date, '%e. %c. %Y %H:%i') as fdate
             FROM
                 stat
             WHERE
                 product_id = '" . (int) $product_id . "'
             AND
                 type = 2
+            ORDER BY
+                stat_id DESC                
         ";
 
         $lang = qtrans_getLanguage();
-        $props = get_post_meta($product_id, 'flat_prop_' . $lang);
+        
+        $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
         
         $results = $wpdb->get_results($sql);        
         include 'views/product_detail_download.php';
@@ -230,7 +236,26 @@ class aden_stats_Admin {
 
         $product_id = $_GET['product_id'];
 
-        include 'views/by_product.php';
+        $sql = "
+        SELECT
+            *,
+            DATE_FORMAT(record_date, '%e. %c. %Y %H:%i') as fdate
+        FROM
+            stat
+        WHERE
+            product_id = '" . (int) $product_id . "'
+        AND
+            type = 1
+        ORDER BY
+            stat_id DESC
+        ";
+        
+        $results = $wpdb->get_results($sql);
+        
+        $lang = qtrans_getLanguage();        
+        $props = get_post_meta($product_id, 'flat_props_' . $lang, true);        
+        
+        include 'views/product_detail_recommendation.php';
     }
 
     public function by_product() {
@@ -254,6 +279,8 @@ class aden_stats_Admin {
                 l.product_id = s.product_id AND l.lang = '" . esc_sql($lang) . "'
             GROUP BY
                 s.product_id
+            ORDER BY
+                l.title
             ";
 
         $results = $wpdb->get_results($sql);
@@ -270,6 +297,7 @@ class aden_stats_Admin {
         global $wpdb;
         $sql = "
             SELECT
+                s.product_id,
                 s.stat_id,
                 s.ref_no,
                 l.title,
@@ -280,7 +308,7 @@ class aden_stats_Admin {
             LEFT JOIN
                 stat_lang AS l
             ON
-                l.stat_id = s.stat_id AND l.lang = '" . esc_sql($lang) . "'
+                l.product_id = s.product_id AND l.lang = '" . esc_sql($lang) . "'
             WHERE
                 s.type = 2
             AND
@@ -303,6 +331,7 @@ class aden_stats_Admin {
 
         $sql = "
             SELECT
+                s.product_id,
                 s.stat_id,
                 s.receiver,
                 s.ref_no,

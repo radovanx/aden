@@ -1,9 +1,9 @@
 <div class="wrap">
     <div id="poststuff">
 
-        <h2><?php _e('Stats', $this->plugin_slug) ?>
-            <a class="add-new-h2" href="/wp-admin/admin.php?page=recommendation_stat_by_product"><?php _e('By product', $this->plugin_slug) ?></a>
-        </h2>
+        <?php include 'stat-top_nav.php'; ?>
+        
+        <h2><?php _e('Stats by user', $this->plugin_slug) ?></h2>
 
         <?php if (!empty($results)): ?>
             <table class="rec-list stat-table">
@@ -51,6 +51,8 @@
                     ?>
                 </tbody>
             </table>
+        <?php else: ?>
+            <p><?php _e('No entry', $this->plugin_slug) ?></p>
         <?php endif; ?>
     </div>
 </div>

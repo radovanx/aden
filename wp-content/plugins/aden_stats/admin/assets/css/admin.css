@@ -33,3 +33,19 @@
 .odd th {
     background: white;
 }
+.headline-tab {
+    /*
+    background: white;
+    border: 1px solid silver;*/
+    margin-bottom: 15px;
+}
+.headline-tab {
+    border-collapse: collapse;
+}
+.headline-tab td,
+.headline-tab th {
+    border-bottom: 1px solid silver;
+    text-align: left;
+    font-size: 15px;
+    padding: 4px 4px;
+}
