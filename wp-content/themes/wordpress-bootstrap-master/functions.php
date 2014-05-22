@@ -377,11 +377,11 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
         function start_el(&$output, $object, $depth = 0, $args = Array(), $current_object_id = 0) {
 
-            if('4734' == $object->ID && !is_user_logged_in()){
+            if ('4734' == $object->ID && !is_user_logged_in()) {
                 return;
             }
-            
-            
+
+
             global $wp_query;
             $indent = ( $depth ) ? str_repeat("\t", $depth) : '';
 
@@ -411,21 +411,21 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
             $item_output = $args->before;
             $item_output .= '<a' . $attributes . '>';
-            
-            
-            if(4734 == $object->ID && is_user_logged_in()){
+
+
+            if (4734 == $object->ID && is_user_logged_in()) {
                 global $current_user;
-                get_currentuserinfo(); 
-                
+                get_currentuserinfo();
+
                 $user_full_name = $current_user->user_firstname . ' ' . $current_user->user_lastname;
-                
-                if(!empty($user_full_name)){
+
+                if (!empty($user_full_name)) {
                     $item_output .= $args->link_before . '<span class="menu-user-name">' . $user_full_name . '</span>';
-                }                
+                }
             } else {
                 $item_output .= $args->link_before . apply_filters('the_title', $object->title, $object->ID);
-            }            
-            
+            }
+
             $item_output .= $args->link_after;
 
             // if the item has children add the caret just before closing the anchor tag
@@ -511,10 +511,8 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     add_image_size('project-detail-small', 150, 100, true);
 
     add_image_size('flat-small', 265, 200, true);
-                
+
     add_image_size('lightbox', 900, 900, false);
-    
-    
 
 //autocomplete
 
@@ -597,27 +595,76 @@ function wp_bootstrap_comments($comment, $args, $depth) {
                 exit;
             }
         }
-    } 
+    }
+
     function redirect_if_cannot_see_detail() {
         if (!current_user_can('see_detail')) {
             wp_redirect(get_page_link(15));
             exit;
         }
     }
-    
-    
-    function price_format($price){
-        
-        if(empty($price)){
+
+    function price_format($price) {
+
+        if (empty($price)) {
             return '';
         }
-        
+
         // dont do that.. 158.000 -> 158000 , 158.50 ->15850
         //$price = str_replace('.', '', $price);
-        
+
         $c_decimals = 0;
         $ret = number_format($price, $c_decimals, ',', ' ');
         return $ret;
     }
-    
+
+    /*     * ************* */
+
+    function item_pagination() {
+
+        $offset = (int) $_POST['offset'];
+
+        $args = array(
+            'post_type' => 'program',
+            'post_status' => 'publish',
+            'posts_per_page' => 2,
+            'offset' => $offset
+        );
+
+
+        $query = new WP_Query($args);
+
+        ob_start();
+        ?>
+        <div class="col-md-12 column">
+            <div class="row">        
+                <?php
+                $i = 0;
+                if ($query->have_posts()) {
+                    $i++;
+                    while ($query->have_posts()) : $query->the_post();
+                        get_template_part('partial', 'project');
+                        
+                        echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                    endwhile;
+                }
+                ?>
+            </div>
+        </div>
+        <?php
+        $output = ob_get_clean();
+        wp_reset_query();
+
+        $ret = array(
+            'content' => $output,
+            'last_item' => 5,
+                //'next' => $next
+        );
+
+        echo json_encode($ret);
+        exit;
+    }
+
+    add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
+    add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in    
     ?>
