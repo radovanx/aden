@@ -639,8 +639,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             return  $city.' - '.$state;    
                 
         }
-    }
-                
+    }       
     add_action('manage_users_columns','remove_user_posts_column');          
     function remove_user_posts_column($column_headers) { 
         unset($column_headers['posts']); 
