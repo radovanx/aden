@@ -444,19 +444,16 @@ get_header();
 </script> 
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
-<script>
-
-    var datatable = <?php echo $data_object; ?>;
-    var collection = new PourOver.Collection(datatable);
+<script> 
+        var datatable = <?php echo $data_object; ?>;
+        var collection = new PourOver.Collection(datatable);
   
         jQuery("form").on("submit", function(event) { 
-        event.preventDefault();  
-
+        event.preventDefault();   
         var values = {}; 
         jQuery.each(jQuery('form').serializeArray(), function(i, field) { 
             values[field.name] = field.value; 
-        }); 
-
+        });  
         var checkedcities='';     
         var helper = []; 
         var i =0; 
@@ -464,34 +461,24 @@ get_header();
         jQuery('.city-checkbox:checked').each(function() { 
         cityfilter = jQuery(this).val();   
         helper.push(jQuery(this).val()); 
-        });
-      
+        }); 
         checkedcities = '"'+helper.join('","')+'"';          
         var checkedcitiesf = checkedcities.substring(1, checkedcities.length-1); 
         var checkeddistrict='';     
-        var helperd = []
-       
+        var helperd = [];
         jQuery('.district-checkbox:checked').each(function(){ 
                 helperd.push(jQuery(this).val()); 
                // checkedcities=checkedcities+','+jQuery(this).val();    
         });           
         //magic - refactoring needed !!!     
         checkeddistrict = '"' + helperd.join('","') + '"';
-        checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length - 1);
-
-        
-        values.References = values.References.toUpperCase();  
-
-
+        checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length - 1); 
+        //uppercase sensitive
+        values.References = values.References.toUpperCase();   
         var fcity = checkedcitiesf; 
         var fdistrict = checkeddistrict; 
-        var ftype = values.type;      
-        
-        
-        var freferences = values.References;  
-        
-        
-        
+        var ftype = values.type;              
+        var freferences = values.References;   
         var fareaf = values.Areaf;   
         var fareat = values.Areat;  
         var froomsf = values.Roomsf;
@@ -742,8 +729,8 @@ get_header();
                 
                           
           
-               */
-               //doplnit druhou tabulku 
+                */
+                //doplnit druhou tabulku 
             });
         }  
         });
