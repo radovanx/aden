@@ -4,7 +4,7 @@
         <?php include 'stat-top_nav.php'; ?>
         
         <h2><?php _e('Product recommendation', $this->plugin_slug) ?>
-            <a class="add-new-h2" href="/wp-admin/admin.php?page=recommendation_stat_by_product"><?php _e('Back', $this->plugin_slug) ?></a>
+            <a class="add-new-h2" href="/wp-admin/admin.php?page=stat_by_product"><?php _e('Back', $this->plugin_slug) ?></a>
         </h2>
 
         <table class="headline-tab">
@@ -19,13 +19,12 @@
         </table>
 
         <?php if (!empty($results)): ?>
-            <table class="rec-list stat-table">
+            <table class="rec-list stat-table wp-list-table widefat fixed posts">
                 <colgroup>
                     <col>
                     <col>
                     <col>
-                    <col>
-                    <col>
+                    <col>                    
                 </colgroup>
                 <thead>
                     <tr>

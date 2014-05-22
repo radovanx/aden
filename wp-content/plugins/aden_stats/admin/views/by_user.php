@@ -2,13 +2,12 @@
     <div id="poststuff">
 
         <?php include 'stat-top_nav.php'; ?>
-        
+
         <h2><?php _e('Stats by user', $this->plugin_slug) ?></h2>
 
         <?php if (!empty($results)): ?>
-            <table class="rec-list stat-table">
+            <table class="rec-list stat-table wp-list-table widefat fixed posts">
                 <colgroup>
-                    <col>
                     <col>
                     <col>
                     <col>
@@ -16,10 +15,27 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th><?php _e('User', $this->plugin_slug) ?></th>
-                        <th><?php _e('User email', $this->plugin_slug) ?></th>
-                        <th><?php _e('Recommendations', $this->plugin_slug) ?></th>
-                        <th><?php _e('Downloads', $this->plugin_slug) ?></th>
+
+                        <th id="user-name" class="manage-column column-title sortable <?php echo $this->order_class('um.meta_value') ?>">
+                            <a href="<?php echo $this->order_link('aden_stat', 'um.meta_value') ?>">
+                                <span><?php _e('User', $this->plugin_slug) ?></span><span class="sorting-indicator"></span>
+                            </a>
+                        </th>
+                        <th id="user-email" class="manage-column column-title sortable <?php echo $this->order_class('u.user_email') ?>">
+                            <a href="<?php echo $this->order_link('aden_stat', 'u.user_email') ?>">
+                                <span><?php _e('User email', $this->plugin_slug) ?></span><span class="sorting-indicator"></span>
+                            </a>
+                        </th>
+                        <th id="user-recommendations" class="manage-column column-title sortable <?php echo $this->order_class('emails') ?>">
+                            <a href="<?php echo $this->order_link('aden_stat', 'emails') ?>">
+                                <span><?php _e('Recommendations', $this->plugin_slug) ?></span><span class="sorting-indicator"></span>
+                            </a>
+                        </th>
+                        <th id="user-downloads" class="manage-column column-title sortable <?php echo $this->order_class('download') ?>">
+                            <a href="<?php echo $this->order_link('aden_stat', 'download') ?>">
+                                <span><?php _e('Downloads', $this->plugin_slug) ?></span><span class="sorting-indicator"></span>
+                            </a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

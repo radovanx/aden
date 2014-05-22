@@ -33,9 +33,8 @@
         </table>
 
         <?php if (!empty($results)): ?>
-            <table class="rec-list stat-table">
+            <table class="rec-list stat-table wp-list-table widefat fixed posts">
                 <colgroup>
-                    <col>
                     <col>
                     <col>
                     <col>

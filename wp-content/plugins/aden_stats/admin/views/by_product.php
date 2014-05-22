@@ -7,9 +7,8 @@
         </h2>
 
         <?php if (!empty($results)): ?>
-            <table class="rec-list stat-table">
+            <table class="rec-list stat-table wp-list-table widefat fixed posts">
                 <colgroup>
-                    <col>
                     <col>
                     <col>
                     <col>
@@ -17,10 +16,30 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th><?php _e('Product', $this->plugin_slug) ?></th>
-                        <th><?php _e('Ref. no', $this->plugin_slug) ?></th>
-                        <th><?php _e('Recommendations', $this->plugin_slug) ?></th>
-                        <th><?php _e('Downloads', $this->plugin_slug) ?></th>
+                        <th class="manage-column column-title sortable <?php echo $this->order_class('l.title') ?>">
+                            <a href="<?php echo $this->order_link('stat_by_product', 'l.title') ?>">
+                                <span><?php _e('Product', $this->plugin_slug) ?></span>
+                                <span class="sorting-indicator"></span>
+                            </a>
+                        </th>
+                        <th class="manage-column column-title sortable <?php echo $this->order_class('s.ref_no') ?>">
+                            <a href="<?php echo $this->order_link('stat_by_product', 's.ref_no') ?>">
+                                <span><?php _e('Ref. no', $this->plugin_slug) ?></span>
+                                <span class="sorting-indicator"></span>
+                            </a>                                                        
+                        </th>
+                        <th class="manage-column column-title sortable <?php echo $this->order_class('emails') ?>">
+                            <a href="<?php echo $this->order_link('stat_by_product', 'emails') ?>">
+                                <span><?php _e('Recommendations', $this->plugin_slug) ?></span>
+                                <span class="sorting-indicator"></span>
+                            </a>                                                        
+                        </th>
+                        <th class="manage-column column-title sortable <?php echo $this->order_class('download') ?>">
+                            <a href="<?php echo $this->order_link('stat_by_product', 'download') ?>">
+                                <span><?php _e('Downloads', $this->plugin_slug) ?></span>
+                                <span class="sorting-indicator"></span>
+                            </a>                                                        
+                        </th>
                     </tr>
                 </thead>
                 <tbody>

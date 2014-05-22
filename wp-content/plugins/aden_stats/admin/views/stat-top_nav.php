@@ -1,2 +1,2 @@
 <a class="add-new-h2" href="/wp-admin/admin.php?page=aden_stat"><?php _e('By user', $this->plugin_slug) ?></a>
-<a class="add-new-h2" href="/wp-admin/admin.php?page=recommendation_stat_by_product"><?php _e('By product', $this->plugin_slug) ?></a>
+<a class="add-new-h2" href="/wp-admin/admin.php?page=stat_by_product"><?php _e('By product', $this->plugin_slug) ?></a>
