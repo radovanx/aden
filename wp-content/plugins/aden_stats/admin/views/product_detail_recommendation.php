@@ -3,8 +3,8 @@
 
         <?php include 'stat-top_nav.php'; ?>
         
-        <h2><?php _e('Product downloads', $this->plugin_slug) ?>
-            <a class="add-new-h2" href="/wp-admin/admin.php?page=aden_stat"><?php _e('Back', $this->plugin_slug) ?></a>
+        <h2><?php _e('Product recommendation', $this->plugin_slug) ?>
+            <a class="add-new-h2" href="/wp-admin/admin.php?page=stat_by_product"><?php _e('Back', $this->plugin_slug) ?></a>
         </h2>
 
         <table class="headline-tab">
@@ -24,9 +24,11 @@
                     <col>
                     <col>
                     <col>
+                    <col>                    
                 </colgroup>
                 <thead>
                     <tr>
+                        <th><?php _e('Receiver', $this->plugin_slug) ?></th>
                         <th><?php _e('Partner name', $this->plugin_slug) ?></th>
                         <th><?php _e('Email', $this->plugin_slug) ?></th>                        
                         <th><?php _e('Date', $this->plugin_slug) ?></th>
@@ -41,6 +43,9 @@
                         
                         ?>
                         <tr id="row-<?php echo $row->stat_id ?>" class="<?php echo 0 == $i % 2 ? 'even' : 'odd' ?>">
+                            <td>
+                                <?php echo esc_attr($row->receiver) ?>
+                            </td>                            
                             <td>
                                 <a href="/wp-admin/user-edit.php?user_id=<?php echo (int) $row->user_id ?>" style="text-decoration: none;">
                                     <span class="wp-menu-image dashicons-before dashicons-admin-users"></span>

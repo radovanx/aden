@@ -37,7 +37,10 @@ class aden_stats_Admin {
         "admin_page_stat_user_detail",
         "admin_page_stat_user_detail_recommendation",
         "admin_page_stat_user_detail_download",
-        "admin_page_recommendation_stat_by_product"
+        "admin_page_recommendation_stat_by_product",
+        "admin_page_product_detail_download",
+        "admin_page_product_detail_recommendation",
+        "admin_page_stat_by_product"
     );
 
     /**
@@ -143,6 +146,7 @@ class aden_stats_Admin {
             return;
         }
         wp_enqueue_style($this->plugin_slug . '-admin-styles', plugins_url('assets/css/admin.css', __FILE__), array(), aden_stats::VERSION);
+        //wp_enqueue_style($this->plugin_slug . '-admin-', plugins_url('assets/css/admin.css', __FILE__), array(), aden_stats::VERSION);
     }
 
     /**
@@ -196,7 +200,7 @@ class aden_stats_Admin {
         add_submenu_page('', 'Stat user detail download', 'Stat user detail download', 'manage_options', 'stat_user_detail_download', array(&$this, 'user_detail_download'));
         add_submenu_page('', 'Stat user detail recommendation', 'Stat user detail recommendation', 'manage_options', 'stat_user_detail_recommendation', array(&$this, 'user_detail_recommendation'));
 
-        add_submenu_page('', 'Stat by product', 'Stat by product', 'manage_options', 'recommendation_stat_by_product', array(&$this, 'by_product'));
+        add_submenu_page('', 'Stat by product', 'Stat by product', 'manage_options', 'stat_by_product', array(&$this, 'by_product'));
 
         add_submenu_page('', 'Stat product recommendation', 'Stat product recommendation', 'manage_options', 'product_detail_recommendation', array(&$this, 'product_detail_recommendation'));
         add_submenu_page('', 'Stat product download', 'Stat product download', 'manage_options', 'product_detail_download', array(&$this, 'product_detail_download'));
@@ -209,19 +213,23 @@ class aden_stats_Admin {
 
         $sql = "
             SELECT
-                *
+                *,
+                DATE_FORMAT(record_date, '%e. %c. %Y %H:%i') as fdate
             FROM
                 stat
             WHERE
                 product_id = '" . (int) $product_id . "'
             AND
                 type = 2
+            ORDER BY
+                stat_id DESC                
         ";
 
         $lang = qtrans_getLanguage();
-        $props = get_post_meta($product_id, 'flat_prop_' . $lang);
-        
-        $results = $wpdb->get_results($sql);        
+
+        $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
+
+        $results = $wpdb->get_results($sql);
         include 'views/product_detail_download.php';
     }
 
@@ -230,7 +238,26 @@ class aden_stats_Admin {
 
         $product_id = $_GET['product_id'];
 
-        include 'views/by_product.php';
+        $sql = "
+        SELECT
+            *,
+            DATE_FORMAT(record_date, '%e. %c. %Y %H:%i') as fdate
+        FROM
+            stat
+        WHERE
+            product_id = '" . (int) $product_id . "'
+        AND
+            type = 1
+        ORDER BY
+            stat_id DESC
+        ";
+
+        $results = $wpdb->get_results($sql);
+
+        $lang = qtrans_getLanguage();
+        $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
+
+        include 'views/product_detail_recommendation.php';
     }
 
     public function by_product() {
@@ -255,6 +282,13 @@ class aden_stats_Admin {
             GROUP BY
                 s.product_id
             ";
+        
+        if (!empty($_GET['orderby']) && !empty($_GET['order'])) {
+            $sql .= "
+                    ORDER BY 
+                        " . esc_sql($_GET['orderby']) . " " . esc_sql($_GET['order'])
+                ;
+        }        
 
         $results = $wpdb->get_results($sql);
 
@@ -270,6 +304,7 @@ class aden_stats_Admin {
         global $wpdb;
         $sql = "
             SELECT
+                s.product_id,
                 s.stat_id,
                 s.ref_no,
                 l.title,
@@ -280,7 +315,7 @@ class aden_stats_Admin {
             LEFT JOIN
                 stat_lang AS l
             ON
-                l.stat_id = s.stat_id AND l.lang = '" . esc_sql($lang) . "'
+                l.product_id = s.product_id AND l.lang = '" . esc_sql($lang) . "'
             WHERE
                 s.type = 2
             AND
@@ -303,6 +338,7 @@ class aden_stats_Admin {
 
         $sql = "
             SELECT
+                s.product_id,
                 s.stat_id,
                 s.receiver,
                 s.ref_no,
@@ -346,6 +382,16 @@ class aden_stats_Admin {
         $results = $wpdb->get_results($sql);
         include 'views/user_detail.php';
     }
+    
+    public function order_link($page, $order_by){
+        $return = '/wp-admin/admin.php?page=' . $page . '&orderby=' . $order_by . '&order=';
+        $return .= !empty($_GET['order']) && 'desc' == $_GET['order'] && $order_by == $_GET['orderby'] ? 'asc' : 'desc';
+        return esc_attr($return);
+    }
+    
+    public function order_class($order_by){
+        return !empty($_GET['order']) && $order_by == $_GET['orderby'] ? esc_attr($_GET['order']) : 'asc';
+    }
 
     public function by_user() {
         global $wpdb;
@@ -364,12 +410,24 @@ class aden_stats_Admin {
             ON
                 u.ID = s.user_id
             LEFT JOIN
+                wp_usermeta AS um
+            ON
+                um.user_id = u.ID AND um.meta_key = 'first_name'
+            LEFT JOIN
                 wp_posts AS p
             ON
                 p.ID = s.product_id AND p.post_type = 'flat'
             GROUP BY
-                s.user_id
+                s.user_id             
             ";
+
+
+        if (!empty($_GET['orderby']) && !empty($_GET['order'])) {
+            $sql .= "
+                    ORDER BY 
+                        " . esc_sql($_GET['orderby']) . " " . esc_sql($_GET['order'])
+                ;
+        }
 
         $results = $wpdb->get_results($sql);
 

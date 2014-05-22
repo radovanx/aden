@@ -1,16 +1,24 @@
 <div class="wrap">
     <div id="poststuff">
+
+        <?php include 'stat-top_nav.php'; ?>
+
         <h2>
             <?php _e('Stats', $this->plugin_slug) ?>            
             <a class="add-new-h2" href="/wp-admin/admin.php?page=aden_stat"><?php _e('Back', $this->plugin_slug) ?></a>
         </h2>
-        
-        
 
-        <table>
+
+
+        <table  class="headline-tab">
             <tr>
                 <th><?php _e('User name', $this->plugin_slug) ?></th>
-                <td><?php echo esc_attr($user_info->first_name) ?> <?php echo esc_attr($user_info->last_name) ?></td>
+                <td>                    
+                    <?php echo esc_attr($user_info->first_name) ?> <?php echo esc_attr($user_info->last_name) ?>
+                    <a href="/wp-admin/user-edit.php?user_id=<?php echo (int) $user_id ?>" style="text-decoration: none;">
+                        <span class="wp-menu-image dashicons-before dashicons-admin-users"></span>
+                    </a>                    
+                </td>
             </tr>    
             <tr>
                 <th><?php _e('User email', $this->plugin_slug) ?></th>
@@ -39,7 +47,7 @@
                     <tr>
                         <th><?php _e('To', $this->plugin_slug) ?></th>
                         <th><?php _e('Date', $this->plugin_slug) ?></th>
-                        <th><?php _e('Product title', $this->plugin_slug) ?></th>
+                        <th><?php _e('Product', $this->plugin_slug) ?></th>
                         <th><?php _e('ref. no', $this->plugin_slug) ?></th>
                     </tr>
                 </thead>
@@ -63,6 +71,8 @@
                     ?>
                 </tbody>
             </table>
+        <?php else: ?>
+            <p><?php _e('No entry', $this->plugin_slug) ?></p>
         <?php endif; ?>
     </div>
 </div>
