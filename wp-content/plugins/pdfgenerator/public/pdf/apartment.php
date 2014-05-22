@@ -365,7 +365,7 @@
             </div>
 
             <?php if (!empty($images)): ?>
-                <div class="red-label text-center"><?php _e('Galerie', $this->plugin_slug) ?></div>
+                <div class="red-label text-center"><?php _e('Gallery', $this->plugin_slug) ?></div>
                 <table class="gallery-table"  style="page-break-inside: avoid;">
                     <tbody>
                         <tr>
