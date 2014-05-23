@@ -52,7 +52,7 @@ class SourceParser {
     /**
      *
      */
-    function grab_it($file, $lang, $source_dir) {
+    public static function grab_it($file, $lang, $source_dir) {
 
         $temp_dir = realpath($source_dir . DIRECTORY_SEPARATOR . 'temp');
 
@@ -88,7 +88,7 @@ class SourceParser {
             $ret = SourceParser::parse_nodes($anbieter);
 
 
-            // zjistim jestli existuje apartment na stejne adrese
+            // zjistim teento by jiz ma zaznam
             $sql = "
             SELECT
                 p.ID
@@ -137,10 +137,12 @@ class SourceParser {
                 } else {
                     $post_information['post_title'] = '';
                 }
+                
+                // vložim unikátní identifikátor inzerátu bytu
+                add_post_meta((int) $apartment_id, 'unique_identificator', $unique_identificator);                
             }
 
-            // id inzeratu
-            update_post_meta((int) $apartment_id, 'unique_identificator', $unique_identificator);
+
 
             $props = array();
             // nechci obrazky do vlastností
@@ -403,7 +405,7 @@ class SourceParser {
      */
     public static function read_zip($file, $dir, $source_dir) {
 
-        $temp_dir = $source_dir . 'temp';
+        $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
 
         if (!is_dir($temp_dir)) {
             if (!mkdir($temp_dir, 0775, true)) {
@@ -452,7 +454,6 @@ class SourceParser {
 
                 // přesunu zdrovy zip do archivu
                 $archiv_dir = $source_dir . DIRECTORY_SEPARATOR . 'archiv';
-
 
                 if (!is_dir($archiv_dir)) {
                     if (!mkdir($archiv_dir, 0775)) {
