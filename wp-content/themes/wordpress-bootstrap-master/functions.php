@@ -618,52 +618,51 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         return $ret;
     }
 
-    function add_extra_user_column($columns) { 
-        return array_merge( $columns, 
-              array('foo' => __('City')) );
-                
-    }             
-    add_filter('manage_users_columns' , 'add_extra_user_column');    
-    
-    
-    function add_extra_user_columnstate($columns) { 
-        return array_merge( $columns, 
-              array('foo2' => __('State')) );
-                
-    }             
-    add_filter('manage_users_columns' , 'add_extra_user_columnstate');    
-                
+    function add_extra_user_column($columns) {
+        return array_merge($columns, array('foo' => __('City')));
+    }
+
+    add_filter('manage_users_columns', 'add_extra_user_column');
+
+    function add_extra_user_columnstate($columns) {
+        return array_merge($columns, array('foo2' => __('State')));
+    }
+
+    add_filter('manage_users_columns', 'add_extra_user_columnstate');
+
     add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
-    
-    function manage_status_column($empty='', $column_name, $id) { 
-        if( $column_name == 'foo' ) {     
+
+    function manage_status_column($empty = '', $column_name, $id) {
+        if ($column_name == 'foo') {
             $all_meta_for_user = get_user_meta($id);
             $city = $all_meta_for_user["city"][0];
-            return  $city;         
-        }
-        else if($column_name == 'foo2')
-        {  
+            return $city;
+        } else if ($column_name == 'foo2') {
             $all_meta_for_user = get_user_meta($id);
-            $state = $all_meta_for_user["country"][0];   
-            return $state;          
-        }     
-    }       
-    add_action('manage_users_columns','remove_user_posts_column');          
-    function remove_user_posts_column($column_headers) { 
-        unset($column_headers['posts']); 
-    return $column_headers;           
-    } 
-  
-    
+            $state = $all_meta_for_user["country"][0];
+            return $state;
+        }
+    }
+
+    add_action('manage_users_columns', 'remove_user_posts_column');
+
+    function remove_user_posts_column($column_headers) {
+        unset($column_headers['posts']);
+        return $column_headers;
+    }
+
     /*     * ************* */
+
     function item_pagination() {
 
         $offset = (int) $_POST['offset'];
+        $part = esc_attr($_POST['part']);
+        $post_per_page = (int) $_POST['ppp'];
 
         $args = array(
             'post_type' => 'program',
             'post_status' => 'publish',
-            'posts_per_page' => 2,
+            'posts_per_page' => $post_per_page,
             'offset' => $offset
         );
 
@@ -676,12 +675,13 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             <div class="row">        
                 <?php
                 $i = 0;
-                if ($query->have_posts()) {
-                    $i++;
+                if ($query->have_posts()) {                    
                     while ($query->have_posts()) : $query->the_post();
-                        get_template_part('partial', 'project');
-                        
-                        echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                        $i++;
+                        global $post;
+                        //get_template_part('partial', $part);
+                        include get_template_directory() . '/partial-' . $part . '.php';
+                        //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
                     endwhile;
                 }
                 ?>
@@ -692,9 +692,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         wp_reset_query();
 
         $ret = array(
-            'content' => $output,
-            'last_item' => 5,
-                //'next' => $next
+            'content' => $output              
         );
 
         echo json_encode($ret);
@@ -702,5 +700,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     }
 
     add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
-    add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in    
+    add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in 
+
+
     ?>

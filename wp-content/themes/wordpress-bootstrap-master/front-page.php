@@ -1,10 +1,12 @@
 <?php
 get_header();
 
+$post_per_page = 4;
+
 $args = array(
     'post_type' => 'program',
     'post_status' => 'publish',
-    'posts_per_page' => 4
+    'posts_per_page' => $post_per_page
 );
 $query = new WP_Query($args);
 ?>
@@ -13,9 +15,14 @@ $query = new WP_Query($args);
 
     var total_item = <?php echo $query->found_posts ?>;
 
-    var count = 4;
+    // pocatecni offset
+    var count = <?php echo (int) $post_per_page ?>;
+    //
     var active_load = 0;
-    var load_next_campaign = true;
+    //
+    var load_next_item = true;
+    // pocet polozek, ktere vrati ajax
+    var ajax_ppp = 2;
 
     jQuery(document).ready(function() {
 
@@ -25,9 +32,9 @@ $query = new WP_Query($args);
                 return;
             }
 
-            if (load_next_campaign && (jQuery(window).scrollTop() >= jQuery(document).height() - (jQuery(window).height() + 200))) {
+            if (load_next_item && (jQuery(window).scrollTop() >= jQuery(document).height() - (jQuery(window).height() + 200))) {
                 loadArticle(count);
-                count++;
+                count += ajax_ppp;
             }
         });
     });
@@ -37,17 +44,17 @@ $query = new WP_Query($args);
             url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
             type: 'POST',
             dataType: 'json',
-            data: "action=item_pagination&offset=" + offset,
+            data: "action=item_pagination&offset=" + offset + "&part=project_frontpage&ppp=" + ajax_ppp,
             beforeSend: function() {
                 active_load++;
                 jQuery('#next-ajax-loading').removeClass('no-visible');
-                load_next_campaign = false;
+                load_next_item = false;
             },
             success: function(ret) {
                 jQuery("#project-list").append(ret.content);
             },
             complete: function(ret) {
-                load_next_campaign = true;
+                load_next_item = true;
                 active_load--;
                 if (active_load < 1) {
                     jQuery("#next-ajax-loading").addClass('no-visible');
@@ -75,9 +82,8 @@ $query = new WP_Query($args);
                         if ($query->have_posts()) {
                             $i++;
                             while ($query->have_posts()) : $query->the_post();
-                                get_template_part('partial', 'project');
-                                
-                                echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                                //get_template_part('partial', 'project_frontpage');
+                                include get_template_directory() . '/partial-project_frontpage.php';
                             endwhile;
                         }
                         wp_reset_query();

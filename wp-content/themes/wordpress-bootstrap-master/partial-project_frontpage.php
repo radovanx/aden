@@ -1,5 +1,5 @@
                         <?php
-                        $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation', $args);
+                        $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation');
                         $type_of_accomodation = array();
                         foreach ($terms as $t) {
                             $type_of_accomodation[] = $t->name;
@@ -15,7 +15,9 @@
                                 </div>
                                 <div class="panel-body">
                                     <span class="propertyListBoxDataItemName">
-                                        <i class="fa fa-home"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong><span class="pull-right"><?php echo implode(', ', $type_of_accomodation) ?></span></span>
+                                        <i class="fa fa-home"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong>
+                                        <span class="pull-right"><?php echo implode(', ', $type_of_accomodation) ?></span>
+                                    </span>
                                     <span class="propertyListBoxDataItemName">
                                         <i class="fa fa-map-marker"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong>
                                         <span class="pull-right">
@@ -35,3 +37,7 @@
                                 </div>
                             </div>
                         </div>
+
+<?php 
+echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+?>
