@@ -30,12 +30,15 @@
                     </div>
                     <div class="form-group col-md-6 nopadding">
                             
-                                <input type="submit" name="wp-submit" class="pull-right btn btn-primary btn-block btn-lg" id="wp-submit<?php $template->the_instance(); ?>" value="<?php esc_attr_e('Log In'); ?>" />
+                    <input type="submit" name="wp-submit" class="btn btn-primary btn-block btn-lg" id="wp-submit<?php $template->the_instance(); ?>" value="<?php esc_attr_e('Log In'); ?>" />
+                    
+                    </div>
+         
                                 <input type="hidden" name="redirect_to" value="<?php $template->the_redirect_url('login'); ?>" />
                                 <input type="hidden" name="instance" value="<?php $template->the_instance(); ?>" />
                                 <input type="hidden" name="action" value="login" />
                           
-                    </div>
+                 
                      <div class="form-group col-md-12">
                        <?php $template->the_action_links(array('login' => false)); ?>
                     </div>
