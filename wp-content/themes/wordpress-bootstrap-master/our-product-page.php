@@ -7,7 +7,6 @@
 redirect_if_cannot_see_detail();
 get_header(); 
 ?>
- 
 <div class="container">
     <div id="content" class="clearfix row">
         <div class="col-sm-12 clearfix" role="main">
