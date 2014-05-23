@@ -653,9 +653,9 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         unset($column_headers['posts']); 
     return $column_headers;           
     } 
-    ?> 
+  
+    
     /*     * ************* */
-
     function item_pagination() {
 
         $offset = (int) $_POST['offset'];

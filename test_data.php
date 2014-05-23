@@ -17,8 +17,7 @@ $original = get_post($vzor_id);
 $program_id = 4220;
 
 $city = 'New York';
-$region = 'Staten Island';
-
+$region = 'Upper West Side';
 
 for ($i = 0; $i < 5; $i++) {
 
