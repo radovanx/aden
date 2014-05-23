@@ -26,8 +26,8 @@ get_header();
         <div class="col-md-3 pull-right big_icons margin-top">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs"> 
-                <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a>
                 <a href="#list"  data-toggle="tab" class="active blue"><i class="fa fa-list"></i></a> 
+                <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a>
             </ul> 
         </div> 
         <div id="main" class="col-sm-12 clearfix margin-top" role="main"> 

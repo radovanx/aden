@@ -47,33 +47,24 @@ $query = new WP_Query($args);
     </div>
 </div>
 <script type="text/javascript">
-
     var total_item = <?php echo $query->found_posts ?>;
-
     // pocatecni offset
-    var count = <?php echo (int) $post_per_page ?>;
-    //
-    var active_load = 0;
-    //
+    var count = <?php echo (int) $post_per_page ?>; 
+    var active_load = 0; 
     var load_next_item = true;
     // pocet polozek, ktere vrati ajax
-    var ajax_ppp = 3;
-
+    var ajax_ppp = 3; 
     jQuery(document).ready(function() {
-
         jQuery(window).scroll(function() {
-
             if (count >= (total_item)) {
                 return;
             }
-
             if (load_next_item && (jQuery(window).scrollTop() >= jQuery(document).height() - (jQuery(window).height() + 200))) {
                 loadArticle(count);
                 count += ajax_ppp;
             }
         });
     });
-
     function loadArticle(offset) {
         jQuery.ajax({
             url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
