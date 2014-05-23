@@ -215,7 +215,7 @@ get_header();
                                         $term = $terms[0]->name;
                                         }
                      
-                                    $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'thumbnail');
+                                    $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
                                     $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
@@ -240,7 +240,6 @@ get_header();
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";  
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:" . $flat_num . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                
-
                                     if ($i < 10):
                                         ?>  
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
@@ -299,103 +298,10 @@ get_header();
                     <?php
                     $lang = qtrans_getLanguage();
                     $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
-                    $i = 0;
-                    if (!empty($flat_props)):
-                        foreach ($flat_props as $key => $val):  
-                            $prop = unserialize($val->prop);
-                      
-                            $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
-                            $url_image = $thumb['0'];
-                            $url = get_permalink($val->ID);
-                            $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
-                            $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
-                            $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
-                            $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
-                            $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
-                            $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
-                            $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
-                            $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
-                            $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
-                            $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
-                            $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-                            $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
-                            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;       
-                            //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
-                            if ($i < 10):
-                            ?> 
-                            <div class="row">
-                                <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
-                                    <div class="col-md-3">  
-                                        <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>" class="img-responsive" alt="<?php echo $name; ?>"/></a>    
-                                    </div>    
-                                    <div class="col-md-9"> 
-                                        <h4 class="blue"><a href="<?php echo $url; ?>"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
-                                                    <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></a></h4>
-
-                                        <div class="row">
-                                            <div class="col-md-3">  
-                                                <span class="data_item clearfix">
-                                                    <strong><?php _e("Prg. ref.:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo esc_attr($prop['verwaltung_techn|objektnr_extern']) ?>
-                                                </span>                         
-                                                <span class="data_item clearfix">
-                                                    <strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $flat_num; ?>
-                                                </span>
-                                                <span class="data_item clearfix">
-                                                    <strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $rental_status; ?>
-                                                </span> 
-                                            </div>
-                                            <div class="col-md-3"> 
-                                                <span class="data_item clearfix">
-                                                    <strong><?php _e("Floor:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $floor; ?>
-                                                </span>
-
-                                                <span class="data_item clearfix">
-                                                    <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong> 
-                                                    <?php echo esc_attr($prop['anbieternr']) ?>
-                                                </span>
-
-                                                <span class="data_item clearfix">
-                                                    <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong> 
-                                                    <?php echo $area; ?>
-                                                </span>
-                                            </div>
-                                            <div class="col-md-3"> 
-                                                <span class="data_item clearfix">
-                                                    <strong><?php _e("Price:", "wpbootstrap"); ?></strong> 
-                                                    <?php echo price_format($price); ?> &euro;
-                                                </span>
-                                                <span class="data_item clearfix">
-                                                    <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong> 
-                                                    <span class="pull">
-                                                    <?php echo price_format($pricem); ?> &euro;
-                                                    </span>
-                                                </span>
-                                                <span class="data_item clearfix">
-                                                    <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>  
-                                                </span>
-                                            </div> 
-                                            <div class="col-md-3"> 
-                                                <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
-                                                    <strong class="blue clearfix"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-                                                        <span class="fav-label"><?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?></span>
-                                                    </strong>    
-                                                </a>   
-                                                <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
-                                            </div>  
-                                    </div>  
-                                    </div>    
-                                </div>  
-                            </div> 
-                            <?php
-                            $i++;
-                            endif; 
-                        endforeach;
-                    endif;
-                    ?>  
+                    ?>
+                    
+                    <?php include TEMPLATEPATH . '/row_row.php'; ?> 
+                     
                 </div>   
             </div>
         </div>
@@ -514,9 +420,7 @@ get_header();
                 var i =0; 
                 var output_set;  
                 var district_filter = PourOver.makeExactFilter("district", helperd);        
-                
-                collection.addFilters([district_filter]);  
-                
+                collection.addFilters([district_filter]);   
                 jQuery('.district-checkbox:checked').each(function() {
                 var districtfilter = jQuery(this).val();   
                 var districtss = collection.filters.district.getFn(districtfilter);  
@@ -681,56 +585,19 @@ get_header();
         else
         {
             jQuery("#table_data_filter").empty();
+             
+            jQuery("#list").empty();
             jQuery.each(myfilterfinal, function(i, val) {
-
-                /*    area
-                 54.6 
-                 cid
-                 3 
-                 city
-                 "Berlin"                 
-                 street  
-
-                 district
-                 "Mitte"
-                 floor
-                 1
-                 
-                 hnumber
-                 26
-                 
-                 image_url
-                 "http://www.adenimmo.loc.../2014/05/Foto_18294.jpg"
-                 
-                 price
-                 234000 
-                 references
-                 5382 
-                 rooms
-                 2
-                 rstatus 
-                 pricem 
-                 url
-                 "http://www.adenimmo.loc...eart-of-berlin-mitte-4/"
-                 
-                 zip*/
-                var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+"&euro;</td><td>"+val.fpricem+"&euro;</td><td></td><td>"+val.status+"</td></tr>";
-                jQuery("tbody").append(table_data);
-                jQuery("table").trigger("update");     
-                jQuery("table").tablesorter(); 
  
-                /*var row_data = "<div class=\"row\"><div class=\"col-md-12\" ?> flats_box"> ;
-     
+            var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+"&euro;</td><td>"+val.fpricem+"&euro;</td><td></td><td>"+val.status+"</td></tr>";
+            jQuery("tbody").append(table_data);
+            jQuery("table").trigger("update");     
+            jQuery("table").tablesorter();  
+            var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"> <div class=\"col-md-3\"><a href=\"" + val.url + "\"><img src=\""+val.image_url+"\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">"+val.name+"<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i>"+ val.street +" "+ val.hnumber +", "+ val.district +", "+ val.city +", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong>"+val.references+"</span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong>"+val.flatnum+"</span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong>"+val.rstatus+"</span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong>"+val.floor+"</span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong>"+val.rooms+"</span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong>"+val.area+"</span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong>"+val.price+" &euro; </span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull\"> "+val.price+" &euro </span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\" "+val.idval+"\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa "+val.favorite+"\"></i><span class=\"fav-label\">Add to favorite</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>"; 
+ 
+            jQuery("#list").append(row_data); 
                 
-                
-                
-                
-                
-                
-                          
-          
-                */
-                //doplnit druhou tabulku 
+                 
             });
         }  
         });

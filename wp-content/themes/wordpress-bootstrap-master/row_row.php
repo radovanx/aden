@@ -26,7 +26,6 @@
                             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
                             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
-          
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
                             <div class="row apartment-row">
@@ -65,20 +64,18 @@
                                                         <?php echo $floor; ?>
                                                      </span>    
                                                 </span>
-
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong> 
                                                       <span class="pull-right">
                                                         <?php echo (int)$rooms; ?>
                                                       </span>    
                                                 </span>
-
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong> 
                                                        <span class="pull-right"> 
                                                         <?php echo $area; ?>
                                                       </span>     
-                                                       </span>
+                                                 </span>
                                             </div>
                                             <div class="col-md-3"> 
                                                 <span class="data_item clearfix">
