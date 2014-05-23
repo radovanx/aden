@@ -179,13 +179,14 @@ class SourceImport {
 
                 wp_insert_post($post_information);
             } else {
-                $apartment_id = wp_insert_post($post_information);
-
+                
                 if (!empty($ret['freitexte|objekttitel'])) {
                     $post_information['post_title'] = '<!--:' . $lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
                 } else {
                     $post_information['post_title'] = '';
-                }
+                }                
+                
+                $apartment_id = wp_insert_post($post_information);
 
                 // vložim unikátní identifikátor inzerátu bytu
                 add_post_meta((int) $apartment_id, 'unique_identificator', $unique_identificator);
