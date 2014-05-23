@@ -377,11 +377,11 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
         function start_el(&$output, $object, $depth = 0, $args = Array(), $current_object_id = 0) {
 
-            if('4734' == $object->ID && !is_user_logged_in()){
+            if ('4734' == $object->ID && !is_user_logged_in()) {
                 return;
             }
-            
-            
+
+
             global $wp_query;
             $indent = ( $depth ) ? str_repeat("\t", $depth) : '';
 
@@ -411,21 +411,21 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
             $item_output = $args->before;
             $item_output .= '<a' . $attributes . '>';
-            
-            
-            if(4734 == $object->ID && is_user_logged_in()){
+
+
+            if (4734 == $object->ID && is_user_logged_in()) {
                 global $current_user;
-                get_currentuserinfo(); 
-                
+                get_currentuserinfo();
+
                 $user_full_name = $current_user->user_firstname . ' ' . $current_user->user_lastname;
-                
-                if(!empty($user_full_name)){
+
+                if (!empty($user_full_name)) {
                     $item_output .= $args->link_before . '<span class="menu-user-name">' . $user_full_name . '</span>';
-                }                
+                }
             } else {
                 $item_output .= $args->link_before . apply_filters('the_title', $object->title, $object->ID);
-            }            
-            
+            }
+
             $item_output .= $args->link_after;
 
             // if the item has children add the caret just before closing the anchor tag
@@ -511,10 +511,8 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     add_image_size('project-detail-small', 150, 100, true);
 
     add_image_size('flat-small', 265, 200, true);
-                
+
     add_image_size('lightbox', 900, 900, false);
-    
-    
 
 //autocomplete
 
@@ -597,61 +595,112 @@ function wp_bootstrap_comments($comment, $args, $depth) {
                 exit;
             }
         }
-    } 
+    }
+
     function redirect_if_cannot_see_detail() {
         if (!current_user_can('see_detail')) {
             wp_redirect(get_page_link(15));
             exit;
         }
     }
-                
-    function price_format($price){
-        
-        if(empty($price)){
+
+    function price_format($price) {
+
+        if (empty($price)) {
             return '';
         }
-        
+
         // dont do that.. 158.000 -> 158000 , 158.50 ->15850
         //$price = str_replace('.', '', $price);
-        
+
         $c_decimals = 0;
         $ret = number_format($price, $c_decimals, ',', ' ');
         return $ret;
     }
 
-    function add_extra_user_column($columns) { 
-        return array_merge( $columns, 
-              array('foo' => __('City')) );
-                
-    }             
-    add_filter('manage_users_columns' , 'add_extra_user_column');    
-    
-    
-    function add_extra_user_columnstate($columns) { 
-        return array_merge( $columns, 
-              array('foo2' => __('State')) );
-                
-    }             
-    add_filter('manage_users_columns' , 'add_extra_user_columnstate');    
-                
+    function add_extra_user_column($columns) {
+        return array_merge($columns, array('foo' => __('City')));
+    }
+
+    add_filter('manage_users_columns', 'add_extra_user_column');
+
+    function add_extra_user_columnstate($columns) {
+        return array_merge($columns, array('foo2' => __('State')));
+    }
+
+    add_filter('manage_users_columns', 'add_extra_user_columnstate');
+
     add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
-    
-    function manage_status_column($empty='', $column_name, $id) { 
-        if( $column_name == 'foo' ) {     
+
+    function manage_status_column($empty = '', $column_name, $id) {
+        if ($column_name == 'foo') {
             $all_meta_for_user = get_user_meta($id);
             $city = $all_meta_for_user["city"][0];
-            return  $city;         
-        }
-        else if($column_name == 'foo2')
-        {  
+            return $city;
+        } else if ($column_name == 'foo2') {
             $all_meta_for_user = get_user_meta($id);
-            $state = $all_meta_for_user["country"][0];   
-            return $state;          
-        }     
-    }       
-    add_action('manage_users_columns','remove_user_posts_column');          
-    function remove_user_posts_column($column_headers) { 
-        unset($column_headers['posts']); 
-    return $column_headers;           
-    } 
-    ?> 
+            $state = $all_meta_for_user["country"][0];
+            return $state;
+        }
+    }
+
+    add_action('manage_users_columns', 'remove_user_posts_column');
+
+    function remove_user_posts_column($column_headers) {
+        unset($column_headers['posts']);
+        return $column_headers;
+    }
+
+    /*     * ************* */
+
+    function item_pagination() {
+
+        $offset = (int) $_POST['offset'];
+        $part = esc_attr($_POST['part']);
+        $post_per_page = (int) $_POST['ppp'];
+
+        $args = array(
+            'post_type' => 'program',
+            'post_status' => 'publish',
+            'posts_per_page' => $post_per_page,
+            'offset' => $offset
+        );
+
+
+        $query = new WP_Query($args);
+
+        ob_start();
+        ?>
+        <div class="col-md-12 column">
+            <div class="row">        
+                <?php
+                $i = 0;
+                if ($query->have_posts()) {                    
+                    while ($query->have_posts()) : $query->the_post();
+                        $i++;
+                        global $post;
+                        //get_template_part('partial', $part);
+                        include get_template_directory() . '/partial-' . $part . '.php';
+                        //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                    endwhile;
+                }
+                ?>
+            </div>
+        </div>
+        <?php
+        $output = ob_get_clean();
+        wp_reset_query();
+
+        $ret = array(
+            'content' => $output              
+        );
+
+        echo json_encode($ret);
+        exit;
+    }
+
+    add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
+    add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in 
+
+
+    ?>
