@@ -95,7 +95,7 @@
                         $attr = array(
                                 //'class' => 'img-responsive'
                         );
-                        echo wp_get_attachment_image($attachment_id, 'profile_logo');
+                        echo wp_get_attachment_image($attachment_id, 'pdf_logo');
                     }
                     ?>
                 </div>

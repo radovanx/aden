@@ -36,9 +36,6 @@ if (!defined('WPINC')) {
 
 
 
-add_image_size('program_thumb', 316, 236, true);
-add_image_size('page_thumb', 1200, 260, true);
-add_image_size('profile_logo', 160, 160, false);
 add_image_size('pdf_logo', 260, 80, false);
 add_image_size('pdf_thumb', 324, 238, false);
 
