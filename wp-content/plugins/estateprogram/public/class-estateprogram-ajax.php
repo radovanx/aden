@@ -15,11 +15,36 @@ class EstateProgramAjax {
 
         add_action('wp_ajax_get_district', array(&$this, 'get_district'));
         add_action('wp_ajax_nopriv_get_district', array(&$this, 'get_district'));
-
+        
         add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml'));
+
+        
 //add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
     }
 
+    
+    /**
+     * 
+     */
+    public function backend_parse_xml() {
+
+        require_once 'class-sourceimport.php';
+
+        $dir = $_GET['dir'];
+        $filename = $_GET['file'];
+
+        try {
+            SourceImport::processBackendParseXml($filename, $dir);
+            echo 'ok';
+        } Catch (Exception $e) {
+            header("HTTP/1.0 404 Not Found");
+            echo $e->getMessage();
+            die();
+        }
+
+        exit;
+    }     
+    
     public function get_district() {
         $parent_id = $_POST['id'];
 
@@ -46,29 +71,6 @@ class EstateProgramAjax {
         exit;
     }
 
-    public function backend_parse_xml() {
-
-        require_once 'class-sourceparser.php';
-
-        $dir = $_GET['dir'];
-        $filename = $_GET['file'];
-
-        $source_dir = ABSPATH . $dir . DIRECTORY_SEPARATOR;
-        $source_file = $source_dir . $filename;
-
-        $file = $source_dir . $filename;
-
-        try {
-            SourceParser::read_zip($file, $dir, $source_dir);
-            echo 'ok';
-        } Catch (Exception $e) {
-            header("HTTP/1.0 404 Not Found");
-            echo $e->getMessage();
-            die();
-        }
-
-        exit;
-    }
 
     /**
      *

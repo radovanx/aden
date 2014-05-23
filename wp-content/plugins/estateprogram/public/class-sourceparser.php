@@ -2,6 +2,26 @@
 
 $time = microtime(true); // time in Microseconds
 
+if (isset($_POST['action']) && 'backend_parse_xml' == $_POST['action']) {
+
+    function shutdown() {
+
+        //global $time;
+
+        $now = microtime(true);
+
+        header("HTTP/1.0 404 Not Found");
+        echo 'Error parse file. Time execution ';
+        die();
+    }
+
+    register_shutdown_function('shutdown');
+    ini_set('memory_limit', '1000');
+}
+
+
+
+
 
 require( ABSPATH . 'wp-load.php' );
 
@@ -11,6 +31,11 @@ require_once(ABSPATH . "wp-admin/includes/media.php");
 require_once(ABSPATH . "wp-admin/includes/image.php");
 
 class SourceParser {
+
+    const DONE = 1;
+    const RUNNING = 0;
+
+    public $done = RUNNING;
 
     /**
      *
@@ -52,7 +77,7 @@ class SourceParser {
     /**
      *
      */
-    function grab_it($file, $lang, $source_dir) {
+    public static function grab_it($file, $lang, $source_dir) {
 
         $temp_dir = realpath($source_dir . DIRECTORY_SEPARATOR . 'temp');
 
@@ -88,7 +113,7 @@ class SourceParser {
             $ret = SourceParser::parse_nodes($anbieter);
 
 
-            // zjistim jestli existuje apartment na stejne adrese
+            // zjistim teento by jiz ma zaznam
             $sql = "
             SELECT
                 p.ID
@@ -137,10 +162,12 @@ class SourceParser {
                 } else {
                     $post_information['post_title'] = '';
                 }
+
+                // vložim unikátní identifikátor inzerátu bytu
+                add_post_meta((int) $apartment_id, 'unique_identificator', $unique_identificator);
             }
 
-            // id inzeratu
-            update_post_meta((int) $apartment_id, 'unique_identificator', $unique_identificator);
+
 
             $props = array();
             // nechci obrazky do vlastností
@@ -384,6 +411,8 @@ class SourceParser {
 
                     $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
                     $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
+                    
+                    
 
                     SourceParser::read_zip($file, $key, $source_dir);
                 }
@@ -403,7 +432,12 @@ class SourceParser {
      */
     public static function read_zip($file, $dir, $source_dir) {
 
-        $temp_dir = $source_dir . 'temp';
+        if (!is_file($file)) {
+            throw new Exception("Cannot find file " . $file);
+        }
+
+
+        $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
 
         if (!is_dir($temp_dir)) {
             if (!mkdir($temp_dir, 0775, true)) {
@@ -452,7 +486,6 @@ class SourceParser {
 
                 // přesunu zdrovy zip do archivu
                 $archiv_dir = $source_dir . DIRECTORY_SEPARATOR . 'archiv';
-
 
                 if (!is_dir($archiv_dir)) {
                     if (!mkdir($archiv_dir, 0775)) {

@@ -51,24 +51,6 @@ class EstateProgram_Admin {
      */
     private function __construct() {
 
-        /*
-         * @TODO :
-         *
-         * - Uncomment following lines if the admin class should only be available for super admins
-         */
-        /* if( ! is_super_admin() ) {
-          return;
-          } */
-
-        /*
-         * Call $plugin_slug from public plugin class.
-         *
-         * @TODO:
-         *
-         * - Rename "EstateProgram" to the name of your initial plugin class
-         *
-         */
-
         $this->plugin_url = plugin_dir_url(__FILE__);
 
         $plugin = EstateProgram::get_instance();
@@ -104,7 +86,13 @@ class EstateProgram_Admin {
          */
         add_action('@TODO', array($this, 'action_method_name'));
         add_filter('@TODO', array($this, 'filter_method_name'));
+        
+        //add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml'));
+        //add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
     }
+    
+   
+    
 
     public function parse_xml() {
         include 'views/parse_xml.php';
