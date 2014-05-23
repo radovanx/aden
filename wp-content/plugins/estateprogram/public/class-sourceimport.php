@@ -52,6 +52,8 @@ class SourceImport {
     }
 
     public static function processBackendParseXml($zip_file, $lang_dir) {
+        
+        $lang = EstateProgram::$langs[$lang_dir];
 
         $source_dir = ABSPATH . $lang_dir;
         $temp_dir = ABSPATH . $lang_dir . DIRECTORY_SEPARATOR . 'temp';
