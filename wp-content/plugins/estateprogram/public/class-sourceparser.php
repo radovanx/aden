@@ -2,6 +2,26 @@
 
 $time = microtime(true); // time in Microseconds
 
+if (isset($_POST['action']) && 'backend_parse_xml' == $_POST['action']) {
+
+    function shutdown() {
+
+        //global $time;
+
+        $now = microtime(true);
+
+        header("HTTP/1.0 404 Not Found");
+        echo 'Error parse file. Time execution ';
+        die();
+    }
+
+    register_shutdown_function('shutdown');
+    ini_set('memory_limit', '1000');
+}
+
+
+
+
 
 require( ABSPATH . 'wp-load.php' );
 
@@ -11,6 +31,11 @@ require_once(ABSPATH . "wp-admin/includes/media.php");
 require_once(ABSPATH . "wp-admin/includes/image.php");
 
 class SourceParser {
+
+    const DONE = 1;
+    const RUNNING = 0;
+
+    public $done = RUNNING;
 
     /**
      *
@@ -137,9 +162,9 @@ class SourceParser {
                 } else {
                     $post_information['post_title'] = '';
                 }
-                
+
                 // vložim unikátní identifikátor inzerátu bytu
-                add_post_meta((int) $apartment_id, 'unique_identificator', $unique_identificator);                
+                add_post_meta((int) $apartment_id, 'unique_identificator', $unique_identificator);
             }
 
 
@@ -386,6 +411,8 @@ class SourceParser {
 
                     $file = $source_dir . DIRECTORY_SEPARATOR . $entry;
                     $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
+                    
+                    
 
                     SourceParser::read_zip($file, $key, $source_dir);
                 }
@@ -404,6 +431,11 @@ class SourceParser {
      * @throws Exception
      */
     public static function read_zip($file, $dir, $source_dir) {
+
+        if (!is_file($file)) {
+            throw new Exception("Cannot find file " . $file);
+        }
+
 
         $temp_dir = $source_dir . DIRECTORY_SEPARATOR . 'temp';
 

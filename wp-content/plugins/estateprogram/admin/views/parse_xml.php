@@ -36,14 +36,20 @@
             }).done(function(response) {
                 if ('ok' == response) {
                     element.remove();
+                } else {
+                    jQuery('#error-list').append('<div class="error below-h2"><p>Error: import <strong>'+filename+'</strong></p></div>');
                 }
-            }).fail(function() {
-                //alert( "error" );
+            }).fail(function(response) {
+                console.log(response);
+                jQuery('#error-list').append('<div class="error below-h2"><p>Error: import <strong>'+filename+'</strong></p></div>');
             }).always(function() {
                 jQuery('#parse-xml').removeAttr('disabled');
                 //console.log('always');                
                 jQuery('#parse-state').html('');
-                load_xml(++index);
+                
+                setTimeout(load_xml(++index), 3000);
+                
+                //load_xml(++index);
 
             });
         }
@@ -67,6 +73,9 @@
         <div id="parse-state"></div>
 
         <div class="clearfix"></div>
+        
+        <div id="error-list"></div>
+        
 
         <?php
         $langs = EstateProgram::$langs;

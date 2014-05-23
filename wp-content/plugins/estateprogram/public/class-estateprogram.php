@@ -168,17 +168,19 @@ class EstateProgram {
 
         if (isset($q['action']) && 'grab-source-xml' == $q['action']) {
 
-            require_once 'class-sourceparser.php';
+            require_once 'class-sourceimport.php';
 
             $file = $q['source-file'];
 
             if ('all' == $file) {
-                SourceParser::all();
+                //$time_start = microtime(true);
+                SourceImport::run();
+                //$time_end = microtime(true);                
+                //$time = $time_end - $time_start;                
+                //echo "running in $time seconds\n";
             }
 
             exit;
-            //require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
-            //$mpdf = new mPDF();
         }
     }
 
