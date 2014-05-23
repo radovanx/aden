@@ -5,18 +5,47 @@
 ?>
 <?php
 redirect_if_cannot_see_detail();
-get_header();
-
+get_header(); 
 $post_per_page = 6;
-
 $args = array(
     'post_type' => 'program',
     'post_status' => 'publish',
     'posts_per_page' => $post_per_page
 );
 $query = new WP_Query($args);
-?>
-
+?>  
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <header>
+                <div class="page-header"><h1 class="page-title border-left" itemprop="headline"><?php the_title(); ?></h1></div>
+            </header> <!-- end article header -->
+        </div>
+        <div id="project-list">
+            <div class="col-md-12 column">
+                <div class="row">
+                    <?php
+                    $i = 0;
+                    if ($query->have_posts()) {
+                        while ($query->have_posts()) : $query->the_post();
+                            $i++;
+                            //get_template_part('partial', 'project_projects');
+                            include get_template_directory() . '/partial-project_projects.php';
+                        //echo 0 == $i % 3 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                        endwhile;
+                    }
+                    wp_reset_query();
+                    ?>
+                </div>
+            </div>
+        </div>
+        <!-- ajax loader -->
+        <div id="next-ajax-loading" class="text-center no-visible row">
+            <img src="<?php echo get_template_directory_uri() ?>/images/ajax-loader.gif">
+        </div>
+        <!-- /ajax loader -->        
+    </div>
+</div>
 <script type="text/javascript">
 
     var total_item = <?php echo $query->found_posts ?>;
@@ -70,39 +99,4 @@ $query = new WP_Query($args);
         return false;
     }
 </script>
-
-<div class="container">
-    <div class="row clearfix">
-        <div class="col-md-12 column">
-            <header>
-                <div class="page-header"><h1 class="page-title border-left" itemprop="headline"><?php the_title(); ?></h1></div>
-            </header> <!-- end article header -->
-        </div>
-
-
-        <div id="project-list">
-            <div class="col-md-12 column">
-                <div class="row">
-                    <?php
-                    $i = 0;
-                    if ($query->have_posts()) {
-                        while ($query->have_posts()) : $query->the_post();
-                            $i++;
-                            //get_template_part('partial', 'project_projects');
-                            include get_template_directory() . '/partial-project_projects.php';
-                        //echo 0 == $i % 3 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
-                        endwhile;
-                    }
-                    wp_reset_query();
-                    ?>
-                </div>
-            </div>
-        </div>
-        <!-- ajax loader -->
-        <div id="next-ajax-loading" class="text-center no-visible row">
-            <img src="<?php echo get_template_directory_uri() ?>/images/ajax-loader.gif">
-        </div>
-        <!-- /ajax loader -->        
-    </div>
-</div>
 <?php get_footer(); ?>

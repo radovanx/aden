@@ -40,29 +40,18 @@ get_header();
 
                         <section class="post_content clearfix" itemprop="articleBody">
                             <?php the_content(); ?>
-
                         </section> <!-- end article section -->
-
                         <footer>
-
                             <?php the_tags('<p class="tags"><span class="tags-title">' . __("Tags", "wpbootstrap") . ':</span> ', ', ', '</p>'); ?>
-
                         </footer> <!-- end article footer -->
-
                     </article> <!-- end article -->
-
-
                     <div class="border col-md-6 column border background contact_form_block">
                         <h2 class="border-left uppercase"><?php _e('Contact Form', 'wpbootstrap') ?></h2>
                         <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
                         <?php echo do_shortcode('[contact-form-7 id="4082" title="Buy page form - en"]') ?>
                     </div>
-
-
                 <?php endwhile; ?>
-
             <?php else : ?>
-
                 <article id="post-not-found">
                     <header>
                         <h1><?php _e("Not Found", "wpbootstrap"); ?></h1>
