@@ -123,14 +123,14 @@ get_header();
                     </div>
                     <div class="col-md-3 pull-right big_icons margin-top">
                         <ul class="nav nav-tabs">
+                            <a href="#list"  data-toggle="tab" class="blue active"><i class="fa fa-list"></i></a>
                             <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a>
-                            <a href="#list"  data-toggle="tab" class="blue"><i class="fa fa-list"></i></a>
                         </ul>
                     </div>
                     <div class="col-md-12 column margin-top">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane active" id="table">
+                            <div class="tab-pane " id="table">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -155,7 +155,7 @@ get_header();
                                     <?php include TEMPLATEPATH . '/table_row.php'; ?> 
                                 </table>
                             </div>
-                            <div class="col-md-12 column border tab-pane" id="list">
+                            <div class="col-md-12 column active border tab-pane" id="list">
                                 <?php
                                 include TEMPLATEPATH . '/row_row.php';  
                                 ?>

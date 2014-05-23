@@ -420,7 +420,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
                 $user_full_name = $current_user->user_firstname . ' ' . $current_user->user_lastname;
 
                 if (!empty($user_full_name)) {
-                    $item_output .= $args->link_before . '<span class="menu-user-name">' . $user_full_name . '</span>';
+                    $item_output .= $args->link_before . $user_full_name;
                 }
             } else {
                 $item_output .= $args->link_before . apply_filters('the_title', $object->title, $object->ID);

@@ -26,13 +26,13 @@ get_header();
         <div class="col-md-3 pull-right big_icons margin-top">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs"> 
-                <a href="#table" data-toggle="tab" class="active red"><i class="fa fa-th"></i></a>
-                <a href="#list"  data-toggle="tab" class="blue"><i class="fa fa-list"></i></a> 
+                <a href="#list"  data-toggle="tab" class="active blue"><i class="fa fa-list"></i></a> 
+                <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a>
             </ul> 
         </div> 
         <div id="main" class="col-sm-12 clearfix margin-top" role="main"> 
             <div class="tab-content">      
-                <div class="tab-pane active" id="table">  
+                <div class="tab-pane" id="table">  
                     <!-- reference list -->
                     <table id="favorite-table" class="apartment-list table table-bordered remove-favorite-row confirm-remove">
                         <thead>
@@ -58,7 +58,7 @@ get_header();
                         <?php include TEMPLATEPATH . '/table_row.php'; ?> 
                     </table>
                 </div>
-                <div class="apartment-list col-md-12 column border tab-pane remove-favorite-row confirm-remove" id="list">     
+                <div class="apartment-list col-md-12 column border tab-pane active remove-favorite-row confirm-remove" id="list">     
                     <?php
                     $lang = qtrans_getLanguage();
                     $flat_props = EstateProgram::user_preferences($lang);
