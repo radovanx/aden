@@ -663,6 +663,10 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         );
 
 
+        if(!empty($_POST['show'])){
+            $args['show'] = esc_attr($_POST['show']);    
+        }
+        
         $query = new WP_Query($args);
 
         ob_start();

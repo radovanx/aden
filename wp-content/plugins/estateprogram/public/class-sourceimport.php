@@ -127,7 +127,7 @@ class SourceImport {
 
                 $string = (string) $child;
                 
-                echo $string . "\n";
+                //echo $string . "\n";
                 
                 $return[$prefix . $child->getName()] = $string;
 
