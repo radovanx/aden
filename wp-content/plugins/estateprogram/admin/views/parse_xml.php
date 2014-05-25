@@ -48,7 +48,7 @@
                 jQuery('#parse-xml').removeAttr('disabled');
                 jQuery('#parse-state').html('');
 
-                setTimeout(load_xml(++index), 1000);
+                setTimeout(load_xml(++index), 30000);
                 
             });
             

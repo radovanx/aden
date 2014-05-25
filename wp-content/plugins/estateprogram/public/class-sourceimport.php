@@ -87,9 +87,10 @@ class SourceImport {
             // presunout zip do archivu
             $target = $archiv_dir . DIRECTORY_SEPARATOR . basename($zip_file);
 
+            /*
             if (file_exists($zip_file)) {
                 rename($zip_file, $target);
-            }
+            }*/
         }
     }
 
@@ -101,6 +102,8 @@ class SourceImport {
      */
     public static function parse_nodes($node, $prefix = '') {
 
+        //return array();
+        
         //echo "1\n";
 
         if ($node->getName() == 'anhaenge') {
