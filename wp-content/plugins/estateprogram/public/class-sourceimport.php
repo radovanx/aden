@@ -76,25 +76,20 @@ class SourceImport {
 
         $zip_file = $source_dir . DIRECTORY_SEPARATOR . $zip_file;
 
-        SourceImport::extract_zip($zip_file, $temp_dir, $archiv_dir);
-        SourceImport::process_temp_files($temp_dir, $lang);
+        if (file_exists($zip_file)) {
 
-        // delete temp files
-        array_map('unlink', glob($temp_dir . "/*"));
+            SourceImport::extract_zip($zip_file, $temp_dir, $archiv_dir);
+            SourceImport::process_temp_files($temp_dir, $lang);
 
-        // presunout zip do archivu
-        $target = $archiv_dir . DIRECTORY_SEPARATOR . basename($zip_file);
+            // delete temp files
+            array_map('unlink', glob($temp_dir . "/*"));
 
-        /*
-          if(file_exists($target)){
-          unlink($target);
-          } */
+            // presunout zip do archivu
+            $target = $archiv_dir . DIRECTORY_SEPARATOR . basename($zip_file);
 
-        //$zip_file = realpath($zip_file);
-        //$target = realpath($target);
-        
-        if(file_exists($zip_file)){
-            rename($zip_file, $target);
+            if (file_exists($zip_file)) {
+                rename($zip_file, $target);
+            }
         }
     }
 
@@ -489,8 +484,8 @@ class SourceImport {
 
         return $temp_dir;
     }
-    
-    public function __destruct(){
+
+    public function __destruct() {
         echo 'destruct';
     }
 
