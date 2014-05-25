@@ -38,7 +38,7 @@ class EstateProgramAjax {
             echo 'ok';
         } Catch (Exception $e) {
             header("HTTP/1.0 404 Not Found");
-            echo $e->getMessage();
+            echo $e->getMessage() . ' ' . $e->getFile() . ' ' .$e->getLine();
             die();
         }
 
