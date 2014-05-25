@@ -32,7 +32,7 @@ if (!isset($content_width))
 /* * *********** THUMBNAIL SIZE OPTIONS ************ */
 
 // Thumbnail sizes
-                
+
 
 /*
   to add more sizes, simply copy a line from above
@@ -502,12 +502,12 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
     }
     add_action('wp_enqueue_scripts', 'theme_js');
-                
-    add_image_size('property-list-thumb', 395, 295, true); 
-    add_image_size('project-detail-thumb', 395, 180, true); 
-    add_image_size('project-detail-big', 750, 500, true); 
-    add_image_size('project-detail-small', 150, 100, true);  
-    add_image_size('flat-small', 265, 200, true);  
+
+    add_image_size('property-list-thumb', 395, 295, true);
+    add_image_size('project-detail-thumb', 395, 180, true);
+    add_image_size('project-detail-big', 750, 500, true);
+    add_image_size('project-detail-small', 150, 100, true);
+    add_image_size('flat-small', 265, 200, true);
     add_image_size('lightbox', 900, 900, false);
 
 //autocomplete
@@ -671,13 +671,13 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             <div class="row">        
                 <?php
                 $i = 0;
-                if ($query->have_posts()) {                    
+                if ($query->have_posts()) {
                     while ($query->have_posts()) : $query->the_post();
                         $i++;
                         global $post;
                         //get_template_part('partial', $part);
                         include get_template_directory() . '/partial-' . $part . '.php';
-                        //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                    //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
                     endwhile;
                 }
                 ?>
@@ -688,7 +688,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         wp_reset_query();
 
         $ret = array(
-            'content' => $output              
+            'content' => $output
         );
 
         echo json_encode($ret);
@@ -699,4 +699,16 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in 
 
 
+
+    /*
+      add_action('shutdown', 'sql_logger');
+      function sql_logger() {
+      global $wpdb;
+      $log_file = fopen(ABSPATH.'/sql_log.txt', 'a');
+      fwrite($log_file, "//////////////////////////////////////////\n\n" . date("F j, Y, g:i:s a")."\n");
+      foreach($wpdb->queries as $q) {
+      fwrite($log_file, $q[0] . " - ($q[1] s)" . "\n\n");
+      }
+      fclose($log_file);
+      } */
     ?>

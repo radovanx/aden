@@ -87,10 +87,10 @@ class SourceImport {
             // presunout zip do archivu
             $target = $archiv_dir . DIRECTORY_SEPARATOR . basename($zip_file);
 
-            /*
+            
             if (file_exists($zip_file)) {
-                rename($zip_file, $target);
-            }*/
+                //rename($zip_file, $target);
+            }
         }
     }
 
