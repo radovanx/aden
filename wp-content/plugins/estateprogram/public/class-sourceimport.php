@@ -89,7 +89,7 @@ class SourceImport {
 
             
             if (file_exists($zip_file)) {
-                //rename($zip_file, $target);
+                rename($zip_file, $target);
             }
         }
     }
@@ -114,6 +114,8 @@ class SourceImport {
             $prefix .= '|';
         }
 
+        $return = array();
+        
         if (0 != count($node->children())) {
             foreach ($node->children() as $child) {
 
@@ -124,23 +126,19 @@ class SourceImport {
                 }
 
                 $string = (string) $child;
+                
+                echo $string . "\n";
+                
                 $return[$prefix . $child->getName()] = $string;
 
                 $children = SourceImport::parse_nodes($child, $child->getName());
 
                 $return = array_merge($return, (array) $children);
             }
-        } else {
-
-            $string = (string) $node;
-
-            if (!empty($string)) {
-                return;
-            }
-
-            $return[$prefix . $node->getName()] = $string;
-        }
-
+        } 
+        
+        //print_r($return);
+        
         return $return;
     }
 
