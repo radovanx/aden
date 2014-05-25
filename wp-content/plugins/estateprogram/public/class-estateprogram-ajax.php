@@ -30,19 +30,19 @@ class EstateProgramAjax {
 
         require_once 'class-sourceimport.php';
 
-        $dir = $_GET['dir'];
-        $filename = $_GET['file'];
+        $dir = trim($_POST['dir']);
+        $filename = trim($_POST['file']);
 
         try {
             SourceImport::processBackendParseXml($filename, $dir);
-            echo 'ok';
+            die('ok');
         } Catch (Exception $e) {
             header("HTTP/1.0 404 Not Found");
             echo $e->getMessage() . ' ' . $e->getFile() . ' ' .$e->getLine();
             die();
         }
 
-        exit;
+        die();
     }     
     
     public function get_district() {

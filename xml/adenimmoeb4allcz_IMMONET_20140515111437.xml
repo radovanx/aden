@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openimmo >
+    <uebertragung xmlns="" art="OFFLINE" umfang="TEIL" modus="CHANGE" version="1.2.4" sendersoftware="OOF" senderversion="$Rev: 41634 $" techn_email="berlin@aden-immo.com" timestamp="2014-05-15T09:14:42.0+00:00"/>
+    <anbieter xmlns="">
+        <anbieternr>adenimmoeb4allcz</anbieternr>
+        <firma>ADEN Immo GmbH</firma>
+        <openimmo_anid>adenimmoeb4allcz</openimmo_anid>
+        <immobilie>
+            <objektkategorie>
+                <nutzungsart WOHNEN="1" GEWERBE="0"/>
+                <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                <objektart>
+                    <wohnung wohnungtyp="ERDGESCHOSS"/>
+                </objektart>
+            </objektkategorie>
+            <geo>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <geokoordinaten breitengrad="52.51183" laengengrad="13.47557"/>
+                <strasse>Gürtelstraße</strasse>
+                <hausnummer>28</hausnummer>
+                <land iso_land="DEU"/>
+                <etage>0</etage>
+                <regionaler_zusatz>Friedrichshain</regionaler_zusatz>
+            </geo>
+            <kontaktperson>
+                <email_zentrale>berlin@aden-immo.com</email_zentrale>
+                <email_direkt>olivier.montero@aden-immo.com</email_direkt>
+                <tel_zentrale>+49 30 61675115</tel_zentrale>
+                <tel_durchw>+49 30 61675115</tel_durchw>
+                <tel_fax>+49 30 61675114</tel_fax>
+                <name>Montero</name>
+                <vorname>Olivier</vorname>
+                <anrede>Herr</anrede>
+                <anrede_brief>Cher Monsieur Montero,</anrede_brief>
+                <firma>ADEN Immo GmbH</firma>
+                <zusatzfeld/>
+                <strasse>Günberger Straße</strasse>
+                <hausnummer>50</hausnummer>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <land iso_land="DEU"/>
+                <url>www.aden-immo.com</url>
+            </kontaktperson>
+            <preise>
+                <kaufpreis>94000.00</kaufpreis>
+                <hausgeld>160.00</hausgeld>
+                <kaufpreis_pro_qm>2501.33</kaufpreis_pro_qm>
+                <aussen_courtage>8,33% incl. TVA</aussen_courtage>
+                <waehrung iso_waehrung="EUR"/>
+                <stp_sonstige platzart="SONSTIGES" stellplatzmiete="0.00" stellplatzkaufpreis="0.00" anzahl="0"/>
+            </preise>
+            <versteigerung/>
+            <flaechen>
+                <wohnflaeche>37.58</wohnflaeche>
+                <anzahl_zimmer>1.00</anzahl_zimmer>
+                <anzahl_schlafzimmer>1.00</anzahl_schlafzimmer>
+                <anzahl_badezimmer>1.00</anzahl_badezimmer>
+            </flaechen>
+            <ausstattung>
+                <boden/>
+                <heizungsart ZENTRAL="1"/>
+                <befeuerung FERN="1"/>
+                <fahrstuhl PERSONEN="1"/>
+                <unterkellert keller="JA"/>
+            </ausstattung>
+            <zustand_angaben>
+                <baujahr>1900</baujahr>
+                <zustand zustand_art="TEIL_VOLLSANIERT"/>
+                <verkaufstatus stand="OFFEN"/>
+            </zustand_angaben>
+            <bewertung/>
+            <infrastruktur/>
+            <freitexte>
+                <objekttitel>Studio entièrement rénové avec terrasse à Friedrichshain</objekttitel>
+                <dreizeiler/>
+                <lage>L'immeuble est situé dans le quartier très demandé de Friedrichshain, à proximité d'Ostkreuz. Les transports en commun, comme les restaurants, les cafés et bars, sont à quelques minutes à pied (S-Bahn, Tram, Bus).</lage>
+                <ausstatt_beschr>Ce studio, placé au rez-de-jardin, comprend 1 grande pièce avec cuisine ouverte, une salle de bain et une terrasse. Les rénovations prévues, outre la remise en état de l’immeuble et des travaux de fond comme l´électricité et le chauffage refait à neuf, comprennent la pose d’un parquet massif en chêne et d’une belle salle de bain. </ausstatt_beschr>
+                <objektbeschreibung>Cet immeuble de 1900, typique du début du XXème siècle, sera entièrement rénové entre 2012 et 2013.Il se trouve en retrait par rapport à la rue. Un ascenseur est prévu dans les rénovations.D'autres appartements de différentes tailles et prix sont disponibles à l'achat dans le même immeuble. N´hésitez pas à nous contacter!</objektbeschreibung>
+                <sonstige_angaben/>
+            </freitexte>
+            <anhaenge>
+                <anhang location="EXTERN" gruppe="TITELBILD">
+                    <anhangtitel>Terrasse</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_25898.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Terrasse 1</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_21522.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="GRUNDRISS">
+                    <anhangtitel>Plan</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_19460.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Wohnzimmer</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_21520.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Wohnzimmer</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_25900.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Alentours</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_15284.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Façade</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_13687.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Salle de bains</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_15288.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="LINKS">
+                    <anhangtitel>Link Video</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.youtube.com/watch?v=MwNPkG1BZgs</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="LINKS">
+                    <anhangtitel>Link Building</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="LINKS">
+                    <anhangtitel>Link flat</anhangtitel>
+                    <format/>
+                    <daten>
+                        <pfad>https://www.dropbox.com/sh/p8fnvfc2ftachm7/AABmr7Juchrx1vLzjBsrGPRca</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+            <verwaltung_objekt>
+                <objektadresse_freigeben>0</objektadresse_freigeben>
+                <verfuegbar_ab>Novembre 2013</verfuegbar_ab>
+            </verwaltung_objekt>
+            <verwaltung_techn>
+                <objektnr_intern>2973</objektnr_intern>
+                <objektnr_extern>BO-GU-28-3</objektnr_extern>
+                <aktion aktionart="CHANGE"/>
+                <openimmo_obid>adenimmoeb4allcz_2973_BO-GU-28-3</openimmo_obid>
+                <kennung_ursprung>onOffice Software</kennung_ursprung>
+                <stand_vom>2014-05-15</stand_vom>
+                <weitergabe_generell>1</weitergabe_generell>
+            </verwaltung_techn>
+        </immobilie>
+    </anbieter>
+</openimmo>
