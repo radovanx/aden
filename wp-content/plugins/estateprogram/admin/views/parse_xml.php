@@ -23,11 +23,11 @@
               'dir' : dir  
             }
 
-            jQuery.ajax({
+            var xhr = jQuery.ajax({
                 type: 'POST',
                 url: url,
                 data: data,
-                timeout: 310000, 
+                timeout: 120000, 
                 beforeSend: function(xhr) {
                     jQuery('#parse-xml').attr('disabled', 'disabled');
                     jQuery('#parse-state').append('<div id="processing"><p><strong>Processing: </strong>' + dir + '/' + filename + '</p><img src="<?php echo $this->plugin_url ?>assets/img/712.gif"></div>');
@@ -41,13 +41,19 @@
             }).fail(function(response, status, error) {            
                 console.log(response);
                 console.log(status);
-                console.log(error);
+                //console.log(error);
                 jQuery('#error-list').append('<div class="error below-h2"><p>Error: import <strong>' + filename + '</strong></p></div>');
             }).always(function() {
                 jQuery('#parse-xml').removeAttr('disabled');
                 jQuery('#parse-state').html('');
 
                 //setTimeout(load_xml(++index), 1000);
+                
+            });
+            
+            
+            jQuery.when(xhr).always(function(xhr){
+                //console.log('xhr done');
                 load_xml(++index);
             });
         }

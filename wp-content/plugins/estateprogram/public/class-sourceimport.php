@@ -479,7 +479,7 @@ class SourceImport {
             if ($zip->extractTo($temp_dir)) {
                 $zip->close();
             } else {
-                throw new Exception('Extract zip file to temp dir failed');
+                throw new Exception('Extract zip file to temp dir failed. temp dir ' . $temp_dir);
             }
         } else {
             throw new Exception('Cannot open zip file');
