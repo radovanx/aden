@@ -4,6 +4,7 @@ get_header();
 $post_per_page = 4;
 
 $args = array(
+    'show' => 'homepage',
     'post_type' => 'program',
     'post_status' => 'publish',
     'posts_per_page' => $post_per_page
@@ -44,7 +45,7 @@ $query = new WP_Query($args);
             url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
             type: 'POST',
             dataType: 'json',
-            data: "action=item_pagination&offset=" + offset + "&part=project_frontpage&ppp=" + ajax_ppp,
+            data: "action=item_pagination&offset=" + offset + "&part=project_frontpage&ppp=" + ajax_ppp+'&show=homepage',
             beforeSend: function() {
                 active_load++;
                 jQuery('#next-ajax-loading').removeClass('no-visible');

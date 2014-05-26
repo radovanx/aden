@@ -1,18 +1,14 @@
 <?php
 
-
-
 class SourceImport {
 
     /**
-     * 
+     *
      * @throws Exception
      */
     public static function run() {
 
         require ( ABSPATH . 'wp-admin/includes/image.php' );
-        //$lang_dir = 'eng';
-        //$lang = 'en';
 
         foreach (EstateProgram::$langs as $lang_dir => $lang) {
 
@@ -44,32 +40,58 @@ class SourceImport {
                 // delete temp files
                 array_map('unlink', glob($temp_dir . "/*"));
 
-                // presunout zip do archivu                
+                // presunout zip do archivu
                 $target = $archiv_dir . DIRECTORY_SEPARATOR . basename($zip_file);
                 rename($zip_file, $target);
             }
         }
     }
 
+    /**
+     * called from backoffice ajaxem
+     *
+     * @param string $zip_file
+     * @param type $lang_dir
+     * @throws Exception
+     */
     public static function processBackendParseXml($zip_file, $lang_dir) {
-        
+
         $lang = EstateProgram::$langs[$lang_dir];
 
         $source_dir = ABSPATH . $lang_dir;
         $temp_dir = ABSPATH . $lang_dir . DIRECTORY_SEPARATOR . 'temp';
         $archiv_dir = ABSPATH . $lang_dir . DIRECTORY_SEPARATOR . 'archiv';
 
+        if (!is_dir($temp_dir)) {
+            if (mkdir($temp_dir, 0775)) {
+                throw new Exception('Could not create temp dir ');
+            }
+        }
+
+        if (!is_dir($archiv_dir)) {
+            if (mkdir($archiv_dir, 0775)) {
+                throw new Exception('Could not create archiv dir ');
+            }
+        }
+
         $zip_file = $source_dir . DIRECTORY_SEPARATOR . $zip_file;
-        
-        $temp_dir = SourceImport::extract_zip($zip_file, $temp_dir, $archiv_dir);
-        SourceImport::process_temp_files($temp_dir, $lang);
 
-        // delete temp files
-        array_map('unlink', glob($temp_dir . "/*"));
+        if (file_exists($zip_file)) {
 
-        // presunout zip do archivu                
-        $target = $archiv_dir . DIRECTORY_SEPARATOR . basename($zip_file);
-        rename($zip_file, $target);
+            SourceImport::extract_zip($zip_file, $temp_dir, $archiv_dir);
+            SourceImport::process_temp_files($temp_dir, $lang);
+
+            // delete temp files
+            array_map('unlink', glob($temp_dir . "/*"));
+
+            // presunout zip do archivu
+            $target = $archiv_dir . DIRECTORY_SEPARATOR . basename($zip_file);
+
+            
+            if (file_exists($zip_file)) {
+                rename($zip_file, $target);
+            }
+        }
     }
 
     /**
@@ -78,8 +100,10 @@ class SourceImport {
      * @param string $prefix
      * @return type
      */
-    function parse_nodes($node, $prefix = '') {
+    public static function parse_nodes($node, $prefix = '') {
 
+        //return array();
+        
         //echo "1\n";
 
         if ($node->getName() == 'anhaenge') {
@@ -90,22 +114,31 @@ class SourceImport {
             $prefix .= '|';
         }
 
-        foreach ($node->children() as $child) {
+        $return = array();
+        
+        if (0 != count($node->children())) {
+            foreach ($node->children() as $child) {
 
-            $attr = $child->attributes();
+                $attr = $child->attributes();
 
-            foreach ($attr as $att) {
-                $return[$prefix . $child->getName() . '|' . $att->getName()] = (string) $att;
+                foreach ($attr as $att) {
+                    $return[$prefix . $child->getName() . '|' . $att->getName()] = (string) $att;
+                }
+
+                $string = (string) $child;
+                
+                //echo $string . "\n";
+                
+                $return[$prefix . $child->getName()] = $string;
+
+                $children = SourceImport::parse_nodes($child, $child->getName());
+
+                $return = array_merge($return, (array) $children);
             }
-
-            $string = (string) $child;
-            $return[$prefix . $child->getName()] = $string;
-
-            $children = SourceImport::parse_nodes($child, $child->getName());
-
-            $return = array_merge($return, (array) $children);
-        }
-
+        } 
+        
+        //print_r($return);
+        
         return $return;
     }
 
@@ -179,13 +212,13 @@ class SourceImport {
 
                 wp_insert_post($post_information);
             } else {
-                
+
                 if (!empty($ret['freitexte|objekttitel'])) {
                     $post_information['post_title'] = '<!--:' . $lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
                 } else {
                     $post_information['post_title'] = '';
-                }                
-                
+                }
+
                 $apartment_id = wp_insert_post($post_information);
 
                 // vložim unikátní identifikátor inzerátu bytu
@@ -442,13 +475,19 @@ class SourceImport {
             if ($zip->extractTo($temp_dir)) {
                 $zip->close();
             } else {
-                throw new Exception('Extract zip file to temp dir failed');
+                throw new Exception('Extract zip file to temp dir failed. temp dir ' . $temp_dir);
             }
         } else {
-            throw new Exception('Zip file resource failed');
+            throw new Exception('Cannot open zip file');
         }
 
+
+
         return $temp_dir;
+    }
+
+    public function __destruct() {
+        echo 'destruct';
     }
 
 }
