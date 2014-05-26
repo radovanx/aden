@@ -12,7 +12,7 @@
 
             //var row_class = '.apartment-row-' + flat_id;
 
-            console.log(rows);
+            //console.log(rows);
 
             var data = {
                 action: 'add_to_preference',
