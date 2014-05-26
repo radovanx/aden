@@ -576,17 +576,20 @@ get_header();
         if (jQuery.isEmptyObject(myfilterfinal))
         {
             jQuery("#table_data_filter").empty(); 
+            jQuery("#list").empty(); 
             var table_data = "<tr><td><h1> NO RESULT FOUND </h1></td></tr>";
+            var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"><h1>NO RESULT FOUND</h1></div></div>";            
             jQuery("tbody").append(table_data); 
+            jQuery("#list").append(row_data); 
+
         }
         else
         {
-            jQuery("#table_data_filter").empty();
-             
+            jQuery("#table_data_filter").empty(); 
             jQuery("#list").empty();
-            jQuery.each(myfilterfinal, function(i, val) {
- 
+            jQuery.each(myfilterfinal, function(i, val) { 
             var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+"&euro;</td><td>"+val.fpricem+"&euro;</td><td></td><td>"+val.status+"</td></tr>";
+        
             jQuery("tbody").append(table_data);
             jQuery("table").trigger("update");     
             jQuery("table").tablesorter();  
@@ -594,16 +597,10 @@ get_header();
  
             jQuery("#list").append(row_data); 
                  
-           });
-           }
-           
-           });
-           
-           
-           
-     
-        
-        
+        });
+        }
+        });
+            
 </script>    
 <script>   
     jQuery(document).ready(function($) { 
