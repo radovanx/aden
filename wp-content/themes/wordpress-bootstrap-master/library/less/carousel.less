@@ -200,12 +200,13 @@
         // set alpha transparency for the best results possible.
         background-color: #000 \9; // IE8
         background-color: rgba(0,0,0,0); // IE9
+        background: #1C4A7E; 
     }
     .active {
         margin: 0;
         width:  12px;
         height: 12px;
-        background-color: @carousel-indicator-active-bg;
+        background-color:#C83939;
     }
 }
 
@@ -213,14 +214,12 @@
 // -----------------------------
 // Hidden by default for smaller viewports
 .carousel-caption {
-    position: absolute;
-
+    position: absolute; 
     bottom: 20px;
     z-index: 10;
     padding-top: 20px;
     padding-bottom: 20px;
-    color: @carousel-caption-color;
-
+    color: @carousel-caption-color; 
     text-shadow: @carousel-text-shadow;
     & .btn {
         text-shadow: none; // No shadow for button elements in carousel-caption
