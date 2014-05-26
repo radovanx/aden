@@ -1709,7 +1709,7 @@ jQuery(document).ready(function($) {
         minSlides: 4,
         maxSlides: 5,
         slideWidth: 150,
-        slideMargin: 0,
+        slideMargin: 18,
         pager: false,
         prevText: '',
         nextText: '',

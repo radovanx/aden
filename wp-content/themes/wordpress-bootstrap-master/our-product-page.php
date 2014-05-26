@@ -37,6 +37,7 @@ get_header();
         <div class="col-md-12 column">         
             <form role="form" class="border background clearfix searchform col-md-12">
                 <div class="col-md-6 column">
+                    
                     <div class="form-group"> 
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
                         <div class="row"> 
@@ -59,6 +60,7 @@ get_header();
                         </div>
                         </div>                
                     </div>
+                    
                      <div class="form-group"> 
                         <label><?php _e("Disctrict:", "wpbootstrap"); ?></label>
                         <div id="district-list"></div>
@@ -585,9 +587,11 @@ get_header();
         }
         else
         {
-            jQuery("#table_data_filter").empty(); 
+            jQuery("#table_data_filter").empty();
+             
             jQuery("#list").empty();
-            jQuery.each(myfilterfinal, function(i, val) { 
+            jQuery.each(myfilterfinal, function(i, val) {
+ 
             var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+"&euro;</td><td>"+val.fpricem+"&euro;</td><td></td><td>"+val.status+"</td></tr>";
         
             jQuery("tbody").append(table_data);
