@@ -18,9 +18,8 @@ get_header();
                 $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
                 $program_id = EstateProgram::flat_program_id($post->ID);
                 $title = get_the_title($post->ID);
-                $video = $props['youtube'];
-                
-                
+                $video = $props['youtube']; 
+                $progra_reference = $props['verwaltung_techn|objektnr_extern'];  
                 $city = !empty($props['geo|ort']) ? esc_attr($props['geo|ort']) : "-";
                 $district = !empty($props['geo|regionaler_zusatz']) ? esc_attr($props['geo|regionaler_zusatz']) : "-";
                 $hnumber = !empty($props['geo|hausnummer']) ? esc_attr($props['geo|hausnummer']) : 0;
@@ -34,12 +33,12 @@ get_header();
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?>
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
-
+                         
                             <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
-                                <strong class="blue triplesmall"> 
+                            <strong class="blue triplesmall"> 
                                     <span class="fav-label"><?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> </span>
                                     <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-                                </strong>
+                            </strong>
                             </a>
                         </h1>
                     </div>
@@ -85,17 +84,22 @@ get_header();
                              <span class="propertyListBoxDataItemName"> 
                                 <div class="col-md-12 column "> 
                                  <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>  
-                             <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h3>
+                             <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small>
+                         
+                                    <small class="blue clearfix"><?php _e("reference:", "wpbootstrap"); ?> <?php echo $progra_reference; ?></small> 
+                                 
+                                 </h3>
+           
                                 </div> 
                              </span> 
                             <div class="col-md-12 column product-key-info">
-                                <address>
-                                    <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br>
+                                <address> 
+                                    <strong><?php // echo esc_attr($props['kontaktperson|firma']) ?></strong>
                                     <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
-                                    <br><?php echo esc_attr($props['kontaktperson|hausnummer']) ?> <?php echo esc_attr($props['kontaktperson|strasse']) ?>
-                                    <br><?php echo esc_attr($props['kontaktperson|ort']) ?> <?php echo esc_attr($props['kontaktperson|plz']) ?><br>
-                                    <abbr title="Phone">Phone:</abbr> <?php echo esc_attr($props['kontaktperson|tel_durchw']) ?><br>
-                                    <abbr title="Email">Email:</abbr> <?php echo esc_attr($props['kontaktperson|email_direkt']) ?> 
+                                    <?php //echo esc_attr($props['kontaktperson|hausnummer']) ?> <?php //echo esc_attr($props['kontaktperson|strasse']) ?> 
+                                    <?php // echo esc_attr($props['kontaktperson|ort']) ?> <?php //echo esc_attr($props['kontaktperson|plz']) ?><br> 
+                                    <abbr title="Phone">Phone:</abbr> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>   
+                                    <abbr title="Email">Email:</abbr> <?php echo strtolower($props['kontaktperson|vorname']) ?><?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com 
                                 </address>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
@@ -439,8 +443,7 @@ get_header();
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
-
+ 
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
 <script>
 // MAP //
