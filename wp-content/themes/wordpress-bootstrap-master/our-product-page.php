@@ -594,8 +594,16 @@ get_header();
  
             jQuery("#list").append(row_data); 
                  
-            }); 
-        });
+           });
+           }
+           
+           });
+           
+           
+           
+     
+        
+        
 </script>    
 <script>   
     jQuery(document).ready(function($) { 
