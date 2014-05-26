@@ -91,8 +91,7 @@ get_header();
                          
                                     <small class="blue clearfix"><?php _e("reference:", "wpbootstrap"); ?> <?php echo $progra_reference; ?></small> 
                                  
-                                 </h3>
-           
+                                 </h3> 
                                 </div> 
                              </span> 
                             <div class="col-md-12 column product-key-info">
