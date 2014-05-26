@@ -241,7 +241,7 @@ get_header();
                
                                     if ($i < 10):
                                         ?>  
-                                        <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?>">
+                                        <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?> apartment-row-<?php echo $val->ID ?>">
                                             <td>   
                                             <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal">
                                             <i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i>
