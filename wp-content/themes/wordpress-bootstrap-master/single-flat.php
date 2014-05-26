@@ -48,7 +48,10 @@ get_header();
                         <!-- Tab panes -->
                         <div class="tab-content"> 
                             <!-- img slide -->
-                            <?php get_template_part('partial', 'slide') ?>
+                            
+                                <?php get_template_part('partial', 'slide') ?>
+                            
+                            
                             <!-- /img slide -->
                             <div class="tab-pane fade" id="video_tab">
                                 <?php
