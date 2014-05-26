@@ -81,15 +81,13 @@ get_header();
                 </div>
                 <div class="col-md-5 column">
                     <div class="border col-md-12 column">
-                        <div class="row clearfix">
-                           
+                        <div class="row clearfix"> 
                              <span class="propertyListBoxDataItemName"> 
                                 <div class="col-md-12 column "> 
                                  <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>  
                              <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h3>
                                 </div> 
-                             </span>
-    
+                             </span> 
                             <div class="col-md-12 column product-key-info">
                                 <address>
                                     <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br>
@@ -97,7 +95,7 @@ get_header();
                                     <br><?php echo esc_attr($props['kontaktperson|hausnummer']) ?> <?php echo esc_attr($props['kontaktperson|strasse']) ?>
                                     <br><?php echo esc_attr($props['kontaktperson|ort']) ?> <?php echo esc_attr($props['kontaktperson|plz']) ?><br>
                                     <abbr title="Phone">Phone:</abbr> <?php echo esc_attr($props['kontaktperson|tel_durchw']) ?><br>
-                                    <abbr title="Email">Email:</abbr> <?php echo esc_attr($props['kontaktperson|email_direkt']) ?>
+                                    <abbr title="Email">Email:</abbr> <?php echo esc_attr($props['kontaktperson|email_direkt']) ?> 
                                 </address>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
@@ -260,8 +258,7 @@ get_header();
                     </div>
                 </div>
                 <div class="col-md-12 column margin-top">
-                    <h3 class="border-left uppercase"><?php _e(" Other products that might interest you", "wpbootstrap"); ?></h3>
- 
+                    <h3 class="border-left uppercase"><?php _e("Other products that might interest you", "wpbootstrap"); ?></h3> 
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="table">
@@ -395,8 +392,6 @@ get_header();
         <!-- end #main -->
     </div> <!-- end #content -->
 </div>
-
-
 <div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -406,29 +401,26 @@ get_header();
             </div>
             <form id="recomend-form" method="post">                
                 <div class="modal-body">
-                    <div id="form-response" class="display-none"></div>
+                <div id="form-response" class="display-none"></div>
                     <input type="hidden" name="action" value="recommend_product">
                     <input type="hidden" name="id" value="<?php echo $post->ID ?>">
-
-                    <div class="form-group">
+                <div class="form-group">
                         <label for="receiver_email"><?php _e('Receiver email:', 'wpbootstrap') ?></label>
                         <input type="text" class="form-control erase-after-sent" value="" id="receiver_email" name="receiver_email">
-                    </div>
-                    <div class="form-group">
+                </div>
+                <div class="form-group">
                         <label for="receiver_message"><?php _e('Message:', 'wpbootstrap') ?></label>
                         <textarea class="form-control erase-after-sent" id="receiver_message" name="receiver_message"></textarea>
-                    </div>
+                </div>
                 </div>
                 <div class="modal-footer">
-                    <div id="loading-recommand" class="pull-left display-none"><i class="fa fa-spinner fa-spin"></i> <?php _e('sending... ') ?></div>
+                    <div id="loading-recommand" class="pull-left display-none"><i class="fa fa-spinner fa-spin"></i> <?php _e('Sending... ') ?></div>
                     <input type="submit" class="btn btn-primary pull-right" id="send_recommendation" value="<?php _e('Send recommendation', 'wpbootstrap') ?>">                    
                 </div>
-            </form>
-
+            </form> 
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
- 
+</div><!-- /.modal --> 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
