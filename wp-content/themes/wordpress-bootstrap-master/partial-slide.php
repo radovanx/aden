@@ -63,12 +63,30 @@
                     var full_link = jQuery(this).attr("href");
                     jQuery('#full-view').attr('href', full_link);
                 });
+        
+                 jQuery('.view-in-box').on('click', function (event) { 
+                
+                 event.preventDefault();
                  
-                jQuery('.view-in-box').magnificPopup({
-                    delegate: 'a', // child items selector, by clicking on it popup will open
-                    type: 'image',
-                    gallery: {enabled: true}
-                    // other options
+                 jQuery('.bxslider').magnificPopup('open');
+       
+                 
                 });
+                  
+                  
+                  jQuery('.bxslider').each(function () {
+                  jQuery(this).magnificPopup({
+                  delegate: 'a',
+                  type: 'image',
+                    gallery: {
+                    enabled: true,
+                    navigateByImgClick: false
+                    },
+                    fixedContentPos: false
+                    });
+                });
+                 
+                 
+              
             });
         </script>       
