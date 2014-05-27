@@ -134,7 +134,7 @@ class pdfgenerator {
 
                 $dir = plugin_dir_path(__FILE__);
 
-                $pdf_file = $dir . 'pdf' . DIRECTORY_SEPARATOR . 'reservation-' . $lang . '.pdf';
+                $pdf_file = $dir . 'pdf' . DIRECTORY_SEPARATOR . 'reservation-form-' . $lang . '.pdf';
 
                 $pagecount = $mpdf->SetSourceFile($pdf_file);
 
