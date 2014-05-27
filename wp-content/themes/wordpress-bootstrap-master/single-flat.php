@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 ?>
-<?php 
+<?php
 redirect_if_cannot_see_detail();
-get_header(); 
+get_header();
 ?>
 <div class="container">
     <div id="content" class="clearfix row">
@@ -19,28 +19,28 @@ get_header();
                 $program_id = EstateProgram::flat_program_id($post->ID);
                 $title = get_the_title($post->ID);
                 $video = $props['youtube'];
-                
-                
+
+
                 $city = !empty($props['geo|ort']) ? esc_attr($props['geo|ort']) : "-";
                 $district = !empty($props['geo|regionaler_zusatz']) ? esc_attr($props['geo|regionaler_zusatz']) : "-";
                 $hnumber = !empty($props['geo|hausnummer']) ? esc_attr($props['geo|hausnummer']) : 0;
                 $street = !empty($props['geo|strasse']) ? esc_attr($props['geo|strasse']) : "-";
                 $zip = !empty($props['geo|plz']) ? esc_attr($props['geo|plz']) : 0;
                 $name = !empty($props['freitexte|objekttitel']) ? esc_attr($props['freitexte|objekttitel']) : "-";
-                $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-"; 
+                $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-";
                 $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
-                 
                 ?>
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?>
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
-
-                            <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
-                                <strong class="blue triplesmall"> 
-                                    <span class="fav-label"><?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> </span>
-                                    <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-                                </strong>
-                            </a>
+                            <span class="apartment-row-<?php echo $post->ID ?>">
+                                <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
+                                    <strong class="blue triplesmall"> 
+                                        <span class="fav-label"><?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> </span>
+                                        <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
+                                    </strong>
+                                </a>
+                            </span>
                         </h1>
                     </div>
                 </div>
@@ -82,14 +82,14 @@ get_header();
                 <div class="col-md-5 column">
                     <div class="border col-md-12 column">
                         <div class="row clearfix">
-                           
-                             <span class="propertyListBoxDataItemName"> 
+
+                            <span class="propertyListBoxDataItemName"> 
                                 <div class="col-md-12 column "> 
-                                 <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>  
-                             <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h3>
+                                    <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>  
+                                            <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></h3>
                                 </div> 
-                             </span>
-    
+                            </span>
+
                             <div class="col-md-12 column product-key-info">
                                 <address>
                                     <strong><?php echo esc_attr($props['kontaktperson|firma']) ?></strong><br>
@@ -136,10 +136,10 @@ get_header();
                             <li class="col-md-6 border-bottom">
                                 <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
                                 <span class="pull-right"><?php
-                                    if (isset($props['zustand_angaben|baujahr'])):
-                                        echo esc_attr($props['zustand_angaben|baujahr']);
-                                    endif;
-                                    ?>
+                                if (isset($props['zustand_angaben|baujahr'])):
+                                    echo esc_attr($props['zustand_angaben|baujahr']);
+                                endif;
+                                ?>
                                 </span>
                             </li>
                             <li class="col-md-6 border-bottom">
@@ -147,7 +147,7 @@ get_header();
                                 <span class="pull-right">
                                     <?php
                                     if (isset($props['preise|kaufpreis_pro_qm'])):
-                                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';                                        
+                                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';
                                     endif;
                                     ?>
                                 </span>
@@ -261,7 +261,7 @@ get_header();
                 </div>
                 <div class="col-md-12 column margin-top">
                     <h3 class="border-left uppercase"><?php _e(" Other products that might interest you", "wpbootstrap"); ?></h3>
- 
+
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="table">
@@ -428,7 +428,7 @@ get_header();
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
- 
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -452,46 +452,46 @@ get_header();
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
 <script>
 // MAP //
-var params;
-var lang = <?php echo $langt; ?>;
-var long = <?php echo $longt; ?>;
+    var params;
+    var lang = <?php echo $langt; ?>;
+    var long = <?php echo $longt; ?>;
 // dom ready
-jQuery(function() {
+    jQuery(function() {
 //if (typeof google !== "undefined"){
-if (window.google && google.maps) {
+        if (window.google && google.maps) {
 // Map script is already loaded
-initializeMap();
-} else {
+            initializeMap();
+        } else {
 
-lazyLoadGoogleMap();
-}
-});
-function initialize(params) {
-var myLatlng = new google.maps.LatLng(lang, long);
-var mapOptions = {
-center: myLatlng,
-zoom: 14,
-mapTypeId: google.maps.MapTypeId.ROADMAP
-};
-var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-var marker = new google.maps.Marker({
-position: myLatlng,
-map: map,
-title: "<?php echo $title; ?>"
-});
-}
-function lazyLoadGoogleMap() {
-jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
-.done(function(script, textStatus) {
+            lazyLoadGoogleMap();
+        }
+    });
+    function initialize(params) {
+        var myLatlng = new google.maps.LatLng(lang, long);
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "<?php echo $title; ?>"
+        });
+    }
+    function lazyLoadGoogleMap() {
+        jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
+                .done(function(script, textStatus) {
 //alert("Google map script loaded successfully");
-})
-.fail(function(jqxhr, settings, ex) {
+                })
+                .fail(function(jqxhr, settings, ex) {
 //alert("Could not load Google Map script: " + jqxhr);
-});
-}
-function initializeMap() {
-initialize(params);
-}
+                });
+    }
+    function initializeMap() {
+        initialize(params);
+    }
 </script>  
 <script>
     jQuery(function() {
@@ -502,7 +502,7 @@ initialize(params);
                 'receiver_email': jQuery('#receiver_email').val(),
                 'receiver_message': jQuery('#receiver_message').val(),
                 'action': 'recommend_product'
-            }; 
+            };
             jQuery.ajax({
                 type: 'POST',
                 cache: false,
@@ -524,10 +524,10 @@ initialize(params);
                     jQuery('#send_recommendation').removeAttr('disabled');
                     jQuery('#loading-recommand').hide();
                 }
-            }); 
+            });
             event.preventDefault();
-        }); 
-            jQuery('#recomendModal').on('hidden.bs.modal', function(e) {
+        });
+        jQuery('#recomendModal').on('hidden.bs.modal', function(e) {
             jQuery('#loading-recommand').hide();
             jQuery('.erase-after-sent').val('');
             jQuery('#form-response').html('').hide();
