@@ -1689,9 +1689,7 @@ jQuery(document).ready(function($) {
             void 0 != t && (n = t), r.destroySlider(), d()
         }, d(), this
     }
-}(jQuery);
-
-
+}(jQuery); 
 /*
  jQuery(document).ready(function($) {
  $('.parent-container').magnificPopup({
@@ -1701,15 +1699,13 @@ jQuery(document).ready(function($) {
  // other options
  });
  });
- */
-
-jQuery(document).ready(function($) {
-
+ */ 
+jQuery(document).ready(function($) { 
     $('.bxslider').bxSlider({
         minSlides: 4,
         maxSlides: 5,
         slideWidth: 150,
-        slideMargin: 0,
+        slideMargin: 18,
         pager: false,
         prevText: '',
         nextText: '',

@@ -310,8 +310,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
             echo '</td></tr>';
         } // end foreach
         echo '</table>'; // end table
-    }
-
+    } 
 // Save the Data
     function save_homepage_meta($post_id) {
 

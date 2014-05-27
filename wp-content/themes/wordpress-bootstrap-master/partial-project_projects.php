@@ -37,8 +37,7 @@ foreach ($terms as $t) {
             </span> 
         </div>
     </div>	
-</div>
-
+</div> 
 <?php
 echo 0 == $i % 3 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
 ?>

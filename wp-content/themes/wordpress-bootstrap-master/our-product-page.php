@@ -37,7 +37,25 @@ get_header();
         <div class="col-md-12 column">         
             <form role="form" class="border background clearfix searchform col-md-12">
                 <div class="col-md-6 column">
-                    <div class="form-group"> 
+                    
+                   
+   
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input  name="Pricet" class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
+                    </div>
+               
+                
+                
+                
+                 <div class="form-group"> 
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
                         <div class="row"> 
                             <div class="col-md-12">
@@ -59,6 +77,7 @@ get_header();
                         </div>
                         </div>                
                     </div>
+                    
                      <div class="form-group"> 
                         <label><?php _e("Disctrict:", "wpbootstrap"); ?></label>
                         <div id="district-list"></div>
@@ -66,18 +85,9 @@ get_header();
                         <!-- district from ajax --> 
                         <!-- /district from ajax -->
                     </div>
-   
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="Pricet"><?php _e("Price to:", "wpbootstrap"); ?></label><input  name="Pricet" class="form-control input-lg" id="Pricet" type="text" placeholder="Price to:" />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
-                    </div>
+                
+                
+                
                 </div>
                 <div class="col-md-6 column">
                        <div class="form-group">  
@@ -212,8 +222,7 @@ get_header();
                                         $terms = wp_get_post_terms($program_id, 'type_of_accommodation'); 
                                         if(!empty($terms)){ 
                                         $term = $terms[0]->name;
-                                        }
-                     
+                                        } 
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
@@ -323,7 +332,7 @@ get_header();
 </div><!-- /.modal --> 
 <script>
   
-      jQuery(function() {
+        jQuery(function() {
         jQuery('.city-checkbox').click(function() { 
             
         var id = jQuery(this).attr("data-myAttri");      
@@ -370,8 +379,8 @@ get_header();
         var checkeddistrict='';     
         var helperd = [];
         jQuery('.district-checkbox:checked').each(function(){ 
-                helperd.push(jQuery(this).val()); 
-               // checkedcities=checkedcities+','+jQuery(this).val();    
+        helperd.push(jQuery(this).val()); 
+        // checkedcities=checkedcities+','+jQuery(this).val();    
         });           
         //magic - refactoring needed !!!     
         checkeddistrict = '"' + helperd.join('","') + '"';
@@ -576,34 +585,27 @@ get_header();
         if (jQuery.isEmptyObject(myfilterfinal))
         {
             jQuery("#table_data_filter").empty(); 
+            jQuery("#list").empty(); 
             var table_data = "<tr><td><h1> NO RESULT FOUND </h1></td></tr>";
+            var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"><h1>NO RESULT FOUND</h1></div></div>";            
             jQuery("tbody").append(table_data); 
+            jQuery("#list").append(row_data);  
         }
         else
         {
-            jQuery("#table_data_filter").empty();
-             
+            jQuery("#table_data_filter").empty(); 
             jQuery("#list").empty();
-            jQuery.each(myfilterfinal, function(i, val) {
- 
-            var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+"&euro;</td><td>"+val.fpricem+"&euro;</td><td></td><td>"+val.status+"</td></tr>";
+            jQuery.each(myfilterfinal, function(i, val) { 
+            var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+"&euro;</td><td>"+val.fpricem+"&euro;</td><td></td><td>"+val.status+"</td></tr>"; 
             jQuery("tbody").append(table_data);
             jQuery("table").trigger("update");     
             jQuery("table").tablesorter();  
             var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"> <div class=\"col-md-3\"><a href=\"" + val.url + "\"><img src=\""+val.image_url+"\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">"+val.name+"<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i>"+ val.street +" "+ val.hnumber +", "+ val.district +", "+ val.city +", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.references+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.flatnum+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rstatus+"</span></span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.floor+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rooms+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.area+"</span></span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.price+" &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> "+val.fpricem+" &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\" "+val.idval+"\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa "+val.favorite+"\"></i><span class=\"fav-label\">Add to favorite</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>"; 
  
-            jQuery("#list").append(row_data); 
-                 
-           });
-           }
-           
-           });
-           
-           
-           
-     
-        
-        
+            jQuery("#list").append(row_data);      
+        });
+        }
+        });   
 </script>    
 <script>   
     jQuery(document).ready(function($) { 
@@ -632,7 +634,7 @@ get_header();
                     $("#content").append(html);    // This will be the div where our content will be loaded
                 }
             });
-            return false;
+        return false;
         }
     });
 </script>
