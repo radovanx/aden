@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 ?>
-<?php 
+<?php
 redirect_if_cannot_see_detail();
-get_header(); 
+get_header();
 ?>
 <div class="container">
     <div id="content" class="clearfix row">
@@ -26,9 +26,8 @@ get_header();
                 $street = !empty($props['geo|strasse']) ? esc_attr($props['geo|strasse']) : "-";
                 $zip = !empty($props['geo|plz']) ? esc_attr($props['geo|plz']) : 0;
                 $name = !empty($props['freitexte|objekttitel']) ? esc_attr($props['freitexte|objekttitel']) : "-";
-                $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-"; 
+                $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-";
                 $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
-                 
                 ?>
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?>
@@ -140,10 +139,10 @@ get_header();
                             <li class="col-md-6 border-bottom">
                                 <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
                                 <span class="pull-right"><?php
-                                    if (isset($props['zustand_angaben|baujahr'])):
-                                        echo esc_attr($props['zustand_angaben|baujahr']);
-                                    endif;
-                                    ?>
+                                if (isset($props['zustand_angaben|baujahr'])):
+                                    echo esc_attr($props['zustand_angaben|baujahr']);
+                                endif;
+                                ?>
                                 </span>
                             </li>
                             <li class="col-md-6 border-bottom">
@@ -151,7 +150,7 @@ get_header();
                                 <span class="pull-right">
                                     <?php
                                     if (isset($props['preise|kaufpreis_pro_qm'])):
-                                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';                                        
+                                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';
                                     endif;
                                     ?>
                                 </span>
@@ -449,46 +448,46 @@ get_header();
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
 <script>
 // MAP //
-var params;
-var lang = <?php echo $langt; ?>;
-var long = <?php echo $longt; ?>;
+    var params;
+    var lang = <?php echo $langt; ?>;
+    var long = <?php echo $longt; ?>;
 // dom ready
-jQuery(function() {
+    jQuery(function() {
 //if (typeof google !== "undefined"){
-if (window.google && google.maps) {
+        if (window.google && google.maps) {
 // Map script is already loaded
-initializeMap();
-} else {
+            initializeMap();
+        } else {
 
-lazyLoadGoogleMap();
-}
-});
-function initialize(params) {
-var myLatlng = new google.maps.LatLng(lang, long);
-var mapOptions = {
-center: myLatlng,
-zoom: 14,
-mapTypeId: google.maps.MapTypeId.ROADMAP
-};
-var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-var marker = new google.maps.Marker({
-position: myLatlng,
-map: map,
-title: "<?php echo $title; ?>"
-});
-}
-function lazyLoadGoogleMap() {
-jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
-.done(function(script, textStatus) {
+            lazyLoadGoogleMap();
+        }
+    });
+    function initialize(params) {
+        var myLatlng = new google.maps.LatLng(lang, long);
+        var mapOptions = {
+            center: myLatlng,
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "<?php echo $title; ?>"
+        });
+    }
+    function lazyLoadGoogleMap() {
+        jQuery.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
+                .done(function(script, textStatus) {
 //alert("Google map script loaded successfully");
-})
-.fail(function(jqxhr, settings, ex) {
+                })
+                .fail(function(jqxhr, settings, ex) {
 //alert("Could not load Google Map script: " + jqxhr);
-});
-}
-function initializeMap() {
-initialize(params);
-}
+                });
+    }
+    function initializeMap() {
+        initialize(params);
+    }
 </script>  
 <script>
     jQuery(function() {
@@ -499,7 +498,7 @@ initialize(params);
                 'receiver_email': jQuery('#receiver_email').val(),
                 'receiver_message': jQuery('#receiver_message').val(),
                 'action': 'recommend_product'
-            }; 
+            };
             jQuery.ajax({
                 type: 'POST',
                 cache: false,
@@ -521,10 +520,10 @@ initialize(params);
                     jQuery('#send_recommendation').removeAttr('disabled');
                     jQuery('#loading-recommand').hide();
                 }
-            }); 
+            });
             event.preventDefault();
-        }); 
-            jQuery('#recomendModal').on('hidden.bs.modal', function(e) {
+        });
+        jQuery('#recomendModal').on('hidden.bs.modal', function(e) {
             jQuery('#loading-recommand').hide();
             jQuery('.erase-after-sent').val('');
             jQuery('#form-response').html('').hide();
