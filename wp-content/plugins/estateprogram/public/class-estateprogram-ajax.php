@@ -47,8 +47,7 @@ class EstateProgramAjax {
         // Name 
         $city = $term->name;  
         ?>
-        <div id="district-wrap-<?php echo (int) $parent_id ?>">
-   
+        <div id="district-wrap-<?php echo (int) $parent_id ?>"> 
             <strong><?php echo $city; ?></strong></br>  
              <?php
             foreach ($regions as $key => $value):
