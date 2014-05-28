@@ -159,6 +159,15 @@ class SourceImport {
         if (false == $result) {
             throw new Exception('Could not load xml file');
         }
+        
+        
+        $modus = $xml->xpath('/openimmo/uebertragung[1]/@modus');
+        
+        var_dump($modus); 
+        
+        var_dump((string) $modus);
+        exit;
+        
 
         foreach ($result as $anbieter) {
             // id inzeratu
