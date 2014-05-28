@@ -100,11 +100,14 @@ $query = new WP_Query($args);
         </div>
         <div class="save col-md-3 column border background contact_form_block">
             <h3> 
-                <a href=""> 
-                <?php _e("Guide", "wpbootstrap"); ?>  </br>
-                <?php _e("investissement", "wpbootstrap"); ?>  </br>
-                <?php _e("Berlin", "wpbootstrap"); ?>  </br>
-                </a>
+                <?php $currentLang = qtrans_getLanguage(); ?>
+                   
+                <a href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf"> 
+                      
+                <?php _e("Guide", "wpbootstrap"); ?></br>
+                <?php _e("investissement", "wpbootstrap"); ?></br>
+                <?php _e("Berlin", "wpbootstrap"); ?></br>  
+                </a> 
             </h3>
             <div class="form-group">
                 <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?> ">
