@@ -127,7 +127,7 @@ $query = new WP_Query($args);
 
                     <!-- Begin MailChimp Signup Form -->
                     <div id="mc_embed_signup">
-                        <form action="http://jakozpraku.us8.list-manage.com/subscribe/post?u=9655df9ff8e0d1e833d58fd7f&amp;id=68a8fdf539" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                        <form action="http://aden-immo.us3.list-manage.com/subscribe/post?u=17d843b86bdd3339c6dbc1da5&amp;id=49b2f803a7" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 
                             <div class="form-group">
                                 <input type="email" value="" name="EMAIL" class="pull-left required email form-control input-lg" id="mce-EMAIL" placeholder="<?php _e('Insert your email', 'wpbootstrap') ?>">
