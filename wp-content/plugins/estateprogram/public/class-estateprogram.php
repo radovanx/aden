@@ -123,8 +123,10 @@ class EstateProgram {
         add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
         add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 
-        add_action('init', array(&$this, 'register_custom_post'));
-        add_action('init', array(&$this, 'create_taxonomies'));
+        //add_action('init', array(&$this, 'register_custom_post'));
+        //add_action('init', array(&$this, 'create_taxonomies'));
+
+        add_action('init', array(&$this, 'init'));
 
         add_action('edit_user_profile_update', array($this, 'update_profile'));
         add_action('personal_options_update', array($this, 'update_profile'));
@@ -250,6 +252,21 @@ class EstateProgram {
                 
             }
         }
+    }
+
+    public function init() {
+        $this->register_custom_post();
+        $this->create_taxonomies();
+
+        /*
+        register_post_status('deleted', array(
+            'label' => _x('Deleted', 'estateprogram'),
+            'public' => false,
+            'exclude_from_search' => true,
+            'show_in_admin_all_list' => true,
+            'show_in_admin_status_list' => true,
+            'label_count' => _n_noop('Deleted <span class="count">(%s)</span>', 'Deleted <span class="count">(%s)</span>'),
+        ));*/
     }
 
     /**
@@ -959,27 +976,27 @@ class EstateProgram {
         global $wpdb;
 
         /*
-        $sql = "
-            SELECT
-                flat.*,
-                m.meta_value AS prop
-            FROM
-                user_preference AS up
-            JOIN
-                wp_posts AS flat
-            ON
-                flat.ID = up.flat_id
-            LEFT JOIN
-                wp_postmeta as m
-            ON
-                m.post_id = flat.ID
-            AND
-                m.meta_key = 'flat_props_$lang'
-            WHERE
-                up.user_id = " . (int) get_current_user_id() . "
-            AND
-                flat.post_status = 'publish'
-        ";*/
+          $sql = "
+          SELECT
+          flat.*,
+          m.meta_value AS prop
+          FROM
+          user_preference AS up
+          JOIN
+          wp_posts AS flat
+          ON
+          flat.ID = up.flat_id
+          LEFT JOIN
+          wp_postmeta as m
+          ON
+          m.post_id = flat.ID
+          AND
+          m.meta_key = 'flat_props_$lang'
+          WHERE
+          up.user_id = " . (int) get_current_user_id() . "
+          AND
+          flat.post_status = 'publish'
+          "; */
 
         $sql = "SELECT
                 p.ID,
@@ -1016,8 +1033,8 @@ class EstateProgram {
             AND
                 p.post_status = 'publish'
             GROUP BY
-                p.ID";        
-        
+                p.ID";
+
         if (!is_null($limit)) {
             $sql .= " LIMIT " . (int) $limit;
 
