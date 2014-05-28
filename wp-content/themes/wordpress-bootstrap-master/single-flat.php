@@ -18,8 +18,8 @@ get_header();
                 $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
                 $program_id = EstateProgram::flat_program_id($post->ID);
                 $title = get_the_title($post->ID);
-                $video = $props['youtube']; 
-                $progra_reference = $props['verwaltung_techn|objektnr_extern'];  
+                $video = $props['youtube'];
+                $progra_reference = $props['verwaltung_techn|objektnr_extern'];
                 $city = !empty($props['geo|ort']) ? esc_attr($props['geo|ort']) : "-";
                 $district = !empty($props['geo|regionaler_zusatz']) ? esc_attr($props['geo|regionaler_zusatz']) : "-";
                 $hnumber = !empty($props['geo|hausnummer']) ? esc_attr($props['geo|hausnummer']) : 0;
@@ -32,13 +32,14 @@ get_header();
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?>
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
-                         
-                            <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
-                            <strong class="blue triplesmall"> 
-                                    <span class="fav-label"><?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> </span>
-                                    <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-                            </strong>
-                            </a>
+                            <span class="apartment-row-<?php echo $post->ID ?>">
+                                <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
+                                    <strong class="blue triplesmall"> 
+                                        <span class="fav-label"><?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> </span>
+                                        <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
+                                    </strong>                                                            
+                                </a>
+                            </span>
                         </h1>
                     </div>
                 </div>
@@ -47,10 +48,10 @@ get_header();
                         <!-- Tab panes -->
                         <div class="tab-content"> 
                             <!-- img slide -->
-                            
-                                <?php get_template_part('partial', 'slide') ?>
-                            
-                            
+
+                            <?php get_template_part('partial', 'slide') ?>
+
+
                             <!-- /img slide -->
                             <div class="tab-pane fade" id="video_tab">
                                 <?php
@@ -83,19 +84,19 @@ get_header();
                 <div class="col-md-5 column">
                     <div class="border col-md-12 column">
                         <div class="row clearfix"> 
-                             <span class="propertyListBoxDataItemName"> 
+                            <span class="propertyListBoxDataItemName"> 
                                 <div class="col-md-12 column "> 
-                                 <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>  
-                             <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small>
-                         
-                                    <small class="blue clearfix"><?php _e("reference:", "wpbootstrap"); ?> <?php echo $progra_reference; ?></small> 
-                                 
-                                 </h3> 
+                                    <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>  
+                                            <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small>
+
+                                        <small class="blue clearfix"><?php _e("reference:", "wpbootstrap"); ?> <?php echo $progra_reference; ?></small> 
+
+                                    </h3> 
                                 </div> 
-                             </span> 
+                            </span> 
                             <div class="col-md-12 column product-key-info">
                                 <address> 
-                                    <strong><?php // echo esc_attr($props['kontaktperson|firma']) ?></strong>
+                                    <strong><?php // echo esc_attr($props['kontaktperson|firma'])    ?></strong>
                                     <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer']) ?> <?php //echo esc_attr($props['kontaktperson|strasse']) ?> 
                                     <?php // echo esc_attr($props['kontaktperson|ort']) ?> <?php //echo esc_attr($props['kontaktperson|plz']) ?><br> 
@@ -139,10 +140,10 @@ get_header();
                             <li class="col-md-6 border-bottom">
                                 <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
                                 <span class="pull-right"><?php
-                                if (isset($props['zustand_angaben|baujahr'])):
-                                    echo esc_attr($props['zustand_angaben|baujahr']);
-                                endif;
-                                ?>
+                                    if (isset($props['zustand_angaben|baujahr'])):
+                                        echo esc_attr($props['zustand_angaben|baujahr']);
+                                    endif;
+                                    ?>
                                 </span>
                             </li>
                             <li class="col-md-6 border-bottom">
@@ -406,17 +407,17 @@ get_header();
             </div>
             <form id="recomend-form" method="post">                
                 <div class="modal-body">
-                <div id="form-response" class="display-none"></div>
+                    <div id="form-response" class="display-none"></div>
                     <input type="hidden" name="action" value="recommend_product">
                     <input type="hidden" name="id" value="<?php echo $post->ID ?>">
-                <div class="form-group">
+                    <div class="form-group">
                         <label for="receiver_email"><?php _e('Receiver email:', 'wpbootstrap') ?></label>
                         <input type="text" class="form-control erase-after-sent" value="" id="receiver_email" name="receiver_email">
-                </div>
-                <div class="form-group">
+                    </div>
+                    <div class="form-group">
                         <label for="receiver_message"><?php _e('Message:', 'wpbootstrap') ?></label>
                         <textarea class="form-control erase-after-sent" id="receiver_message" name="receiver_message"></textarea>
-                </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <div id="loading-recommand" class="pull-left display-none"><i class="fa fa-spinner fa-spin"></i> <?php _e('Sending... ') ?></div>
@@ -444,7 +445,7 @@ get_header();
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
- 
+
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
 <script>
 // MAP //
