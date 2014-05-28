@@ -139,7 +139,6 @@ $query = new WP_Query($args);
                                 <div class="response" id="mce-success-response" style="display:none"></div>
                             </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                             <div style="position: absolute; left: -5000px;"><input type="text" name="b_17d843b86bdd3339c6dbc1da5_49b2f803a7" tabindex="-1" value=""></div>
-                            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
                         </form>
                     </div>
                     <!--End mc_embed_signup-->                        
