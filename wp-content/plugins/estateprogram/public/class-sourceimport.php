@@ -182,7 +182,9 @@ class SourceImport {
         $apartment_id = $wpdb->get_var($sql);
 
         if ('DELETE' == $action) {
-            
+            if(!empty($apartment_id)){
+                wp_trash_post($apartment_id);
+            }
         } else {
 
 
