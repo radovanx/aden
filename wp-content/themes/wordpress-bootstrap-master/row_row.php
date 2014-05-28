@@ -24,8 +24,16 @@
                             $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
                             $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-                            $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "-"; 
+                            $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free"; 
+                            
+                            if($rental_status == 1)
+                            { $rental_status = 'rented'; } 
+                              $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
+                             
                             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
+                            
+                            
+                            
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
                             <div class="row apartment-row apartment-row-<?php echo $val->ID ?>">
@@ -35,7 +43,7 @@
                                     </div>    
                                     <div class="col-md-9"> 
                                         <h4 class="blue"><a href="<?php echo $url; ?>"><?php echo $name; ?><small class="clearfix"><i class="red fa fa-map-marker"></i>  
-                                                    <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small></a></h4>
+                                                    <?php echo $street; ?> <?php echo $hnumber; ?>, <?php echo $city; ?>, <?php echo $district; ?>, <?php echo $zip; ?></small></a></h4>
                                         <div class="row">
                                             <div class="col-md-3">  
                                                 <span class="data_item clearfix">
