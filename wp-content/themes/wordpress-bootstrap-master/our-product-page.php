@@ -331,10 +331,8 @@ get_header();
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
 <script>
-  
         jQuery(function() {
-        jQuery('.city-checkbox').click(function() { 
-            
+        jQuery('.city-checkbox').click(function() {    
         var id = jQuery(this).attr("data-myAttri");      
         if(jQuery(this).is(':checked')){   
              
@@ -342,7 +340,6 @@ get_header();
          'action':'get_district', 
          'id':+id 
         }; 
-        
         jQuery.get('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) { 
         jQuery('#district-list').append(response);       
         });                
@@ -352,7 +349,34 @@ get_header();
         }
         });
         });
- 
+        
+        
+        
+        function format(comma, period) {
+  comma = comma || ',';
+  period = period || '.';
+  var split = this.toString().split('.');
+  var numeric = split[0];
+  var decimal = split.length > 1 ? period + split[1] : '';
+  var reg = /(\d+)(\d{3})/;
+  while (reg.test(numeric)) {
+    numeric = numeric.replace(reg, '$1' + comma + '$2');
+  }
+  return numeric + decimal;
+}
+
+    jQuery('#Pricef').live('keyup', function(){
+    jQuery(this).val(format.call(jQuery(this).val().split(' ').join(''),' ','.'));
+    });
+    
+    
+    jQuery('#Pricet').live('keyup', function(){
+    jQuery(this).val(format.call(jQuery(this).val().split(' ').join(''),' ','.'));
+    });
+    
+    
+        
+        
 </script> 
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
@@ -394,9 +418,12 @@ get_header();
         var fareaf = values.Areaf;   
         var fareat = values.Areat;  
         var froomsf = values.Roomsf;
-        var froomst = values.Roomst; 
+        var froomst = values.Roomst;  
         var fpricef = values.Pricef;
-        var fpricet = values.Pricet;              
+        var fpricet = values.Pricet;               
+        var fpricef = fpricef.replace(/\s+/g, '');
+        var fpricet = fpricet.replace(/\s+/g, '');
+         
         //make a filter  
         var finalfilter = false;
         

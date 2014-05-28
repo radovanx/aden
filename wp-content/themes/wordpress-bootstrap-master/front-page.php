@@ -1,8 +1,6 @@
 <?php
-get_header();
-
-$post_per_page = 4;
-
+get_header(); 
+$post_per_page = 4; 
 $args = array(
     'show' => 'homepage',
     'post_type' => 'program',
@@ -11,11 +9,8 @@ $args = array(
 );
 $query = new WP_Query($args);
 ?>
-
-<script type="text/javascript">
-
-    var total_item = <?php echo $query->found_posts ?>;
-
+<script type="text/javascript"> 
+    var total_item = <?php echo $query->found_posts ?>; 
     // pocatecni offset
     var count = <?php echo (int) $post_per_page ?>;
     //
@@ -23,23 +18,18 @@ $query = new WP_Query($args);
     //
     var load_next_item = true;
     // pocet polozek, ktere vrati ajax
-    var ajax_ppp = 2;
-
-    jQuery(document).ready(function() {
-
-        jQuery(window).scroll(function() {
-
+    var ajax_ppp = 2; 
+    jQuery(document).ready(function() { 
+        jQuery(window).scroll(function() { 
             if (count >= (total_item)) {
                 return;
-            }
-
+            } 
             if (load_next_item && (jQuery(window).scrollTop() >= jQuery(document).height() - (jQuery(window).height() + 200))) {
                 loadArticle(count);
                 count += ajax_ppp;
             }
         });
-    });
-
+    }); 
     function loadArticle(offset) {
         jQuery.ajax({
             url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
@@ -64,8 +54,7 @@ $query = new WP_Query($args);
         });
         return false;
     }
-</script>
-
+</script> 
 <div class="visible-lg">
     <?php echo do_shortcode('[image-carousel interval="12000"]') ?>
 </div>
@@ -100,17 +89,15 @@ $query = new WP_Query($args);
         </div>
         <div class="save col-md-3 column border background contact_form_block">
             <h3> 
-                <?php $currentLang = qtrans_getLanguage(); ?>
-                   
-                <a href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf"> 
-                      
+                <?php $currentLang = qtrans_getLanguage(); ?> 
+                <a href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf">     
                 <?php _e("Guide", "wpbootstrap"); ?></br>
                 <?php _e("investissement", "wpbootstrap"); ?></br>
                 <?php _e("Berlin", "wpbootstrap"); ?></br>  
                 </a> 
             </h3>
             <div class="form-group">
-                <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?> ">
+                <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf">
                     <?php _e("download for free", "wpbootstrap"); ?>
                 </a>
             </div>
@@ -123,29 +110,23 @@ $query = new WP_Query($args);
                     <?php echo do_shortcode('[contact-form-7 id="1728" title="contact-home-en"]') ?>
                 </div>
                 <div class="col-md-12 column border newsletter-background contact_form_block">
-                    <h2 class="border-left"><?php _e("NEWSLETTER", "wpbootstrap"); ?></h2>
-
+                    <h2 class="border-left"><?php _e("NEWSLETTER", "wpbootstrap"); ?></h2> 
                     <!-- Begin MailChimp Signup Form -->
                     <div id="mc_embed_signup">
-                        <form action="http://jakozpraku.us8.list-manage.com/subscribe/post?u=9655df9ff8e0d1e833d58fd7f&amp;id=68a8fdf539" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-
+                        <form action="http://jakozpraku.us8.list-manage.com/subscribe/post?u=9655df9ff8e0d1e833d58fd7f&amp;id=68a8fdf539" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate> 
                             <div class="form-group">
                                 <input type="email" value="" name="EMAIL" class="pull-left required email form-control input-lg" id="mce-EMAIL" placeholder="<?php _e('Insert your email', 'wpbootstrap') ?>">
                                 <input type="submit" value="<?php _e('OK', 'wpbootstrap') ?>" name="subscribe" id="mc-embedded-subscribe" class="button pull-left btn-primary">
                                 <div class="clearfix"></div>
-                            </div>
-
+                            </div> 
                             <div id="mce-responses" class="clear">
                                 <div class="response" id="mce-error-response" style="display:none"></div>
                                 <div class="response" id="mce-success-response" style="display:none"></div>
                             </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                            <div style="position: absolute; left: -5000px;"><input type="text" name="b_9655df9ff8e0d1e833d58fd7f_68a8fdf539" tabindex="-1" value=""></div>
-
+                            <div style="position: absolute; left: -50000px;"><input type="text" name="b_9655df9ff8e0d1e833d58fd7f_68a8fdf539" tabindex="-1" value=""></div> 
                         </form>
-                    </div>
-
-                    <!--End mc_embed_signup-->
-
+                    </div> 
+                    <!--End mc_embed_signup--> 
                 </div>
             </div>
         </div>
