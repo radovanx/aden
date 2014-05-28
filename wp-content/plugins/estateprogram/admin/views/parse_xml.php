@@ -28,7 +28,7 @@
                 type: 'POST',
                 url: url,
                 data: data,
-                timeout: 300000, 
+                //timeout: 300000, 
                 beforeSend: function(xhr) {
                     jQuery('#parse-xml').attr('disabled', 'disabled');
                     jQuery('#parse-state').append('<div id="processing"><p><strong>Processing: </strong>' + dir + '/' + filename + '</p><img src="<?php echo $this->plugin_url ?>assets/img/712.gif"></div>');
@@ -48,7 +48,9 @@
                 jQuery('#parse-xml').removeAttr('disabled');
                 jQuery('#parse-state').html('');
 
-                setTimeout(load_xml(++index), 1000);
+                load_xml(++index);
+
+                //setTimeout(load_xml(++index), 1000);
                 
             });
             

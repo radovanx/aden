@@ -170,7 +170,7 @@ class SourceImport {
         $unique_identificator_node = $xml->xpath('/openimmo/anbieter/immobilie/verwaltung_techn/objektnr_extern');
         $unique_identificator = (string) $unique_identificator_node[0];
 
-        //var_dump($unique_identificator);  
+        //var_dump($unique_identificator);
         // zjistim zdali tento byt je již importován
         $sql = "
             SELECT p.ID FROM wp_posts AS p
@@ -182,7 +182,7 @@ class SourceImport {
         $apartment_id = $wpdb->get_var($sql);
 
         if ('DELETE' == $action) {
-            if(!empty($apartment_id)){
+            if (!empty($apartment_id)) {
                 wp_trash_post($apartment_id);
             }
         } else {
@@ -282,16 +282,16 @@ class SourceImport {
                 }
 
                 // zjistim jestli existuje program na stejne adrese
-                $sql = "
-                SELECT p.ID, p.post_title FROM " . $wpdb->prefix . "postmeta as pm2 
-                JOIN " . $wpdb->prefix . "postmeta as pm4 ON pm2.post_id = pm4.post_id
-                JOIN " . $wpdb->prefix . "posts as p ON p.ID = pm2.post_id
-                WHERE pm2.meta_key = '_program_street'
-                AND pm4.meta_key = '_program_house_number'
-                AND pm2.meta_value = '" . esc_sql(rtrim($street)) . "'
-                AND pm4.meta_value = '" . esc_sql(rtrim($houseNumber)) . "'
-                AND p.post_type = 'program'
-            ";
+                $sql = $wpdb->prepare("
+                    SELECT p.ID, p.post_title FROM " . $wpdb->prefix . "postmeta as pm2
+                    JOIN " . $wpdb->prefix . "postmeta as pm4 ON pm2.post_id = pm4.post_id
+                    JOIN " . $wpdb->prefix . "posts as p ON p.ID = pm2.post_id
+                    WHERE pm2.meta_key = '_program_street'
+                    AND pm4.meta_key = '_program_house_number'
+                    AND pm2.meta_value = %s
+                    AND pm4.meta_value = %s
+                    AND p.post_type = 'program'
+                ", $street, houseNumber);
 
                 $program_id = $wpdb->get_var($sql);
                 //
@@ -319,6 +319,9 @@ class SourceImport {
                     $image_title = (string) $image->anhangtitel;
                     $image_file = (string) $file[0];
 
+                    $image_title = trim($image_title);
+                    $image_file = trim($image_file);
+
                     if (false !== strpos($image_file, 'http')) {
                         if (false !== strpos($image_file, 'dropbox')) {
 
@@ -343,11 +346,20 @@ class SourceImport {
                     $image_path = $temp_dir . DIRECTORY_SEPARATOR . $image_file;
 
                     // ma uz byt obrazek se stejnym nazvem
-                    $attach_id = $wpdb->get_var("
-                                            SELECT ID FROM " . $wpdb->prefix . "posts AS p
-                                            JOIN " . $wpdb->prefix . "postmeta AS pm ON pm.post_id = p.ID AND pm.meta_key = '_original_image_name'
-                                            WHERE post_parent = " . (int) $apartment_id . "
-                                            AND pm.meta_value = '" . $image_file . "'");
+
+                    /*
+                      $attach_id = $wpdb->get_var("
+                      SELECT ID FROM " . $wpdb->prefix . "posts AS p
+                      JOIN " . $wpdb->prefix . "postmeta AS pm ON pm.post_id = p.ID AND pm.meta_key = '_original_image_name'
+                      WHERE post_parent = " . (int) $apartment_id . "
+                      AND pm.meta_value = '" . $image_file . "'");
+                     */
+
+
+                    $attach_id = $wpdb->get_var(
+                            $wpdb->prepare("SELECT attach_id FROM images2post WHERE apartment_id = %d AND filename = %s", $apartment_id, $image_file)
+                    );
+                    //images2post
 
                     if (file_exists($image_path) && empty($attach_id)) {
 
@@ -362,22 +374,33 @@ class SourceImport {
                             // Check the type of tile. We'll use this as the 'post_mime_type'.
                             $filetype = wp_check_filetype(basename($new_path), null);
 
+                            //
                             $attachment = array(
                                 'guid' => $wp_upload_dir['url'] . '/' . $basename,
                                 'post_mime_type' => $filetype['type'],
-                                'post_title' => $image_title,
+                                'post_title' => '<!--:' . $lang . '-->' . $image_title . '<!--:-->',
                                 'post_content' => '',
                                 'post_status' => 'inherit',
                                 'post_excerpt' => $image_title,
                             );
+
                             // Insert the attachment.
                             $attach_id = wp_insert_attachment($attachment, $new_path, $apartment_id);
                             // Generate the metadata for the attachment, and update the database record.
                             $attach_data = wp_generate_attachment_metadata($attach_id, $new_path);
                             wp_update_attachment_metadata($attach_id, $attach_data);
 
-                            update_post_meta($attach_id, '_wp_attachment_image_alt', $image_title);
-                            update_post_meta($attach_id, '_original_image_name', $basename);
+                            //update_post_meta($attach_id, '_wp_attachment_image_alt', $image_title);
+                            //update_post_meta($attach_id, '_original_image_name', $basename);
+                            $sql = "
+                                INSERT INTO images2post (apartment_id, filename, attach_id) VALUES (
+                                    '" . $apartment_id . "',
+                                    '" . $image_file . "',
+                                    '" . $attach_id . "'    
+                                    )
+                            ";
+
+                            $wpdb->query($sql);
 
                             if ($set_apartment_thumb && !has_post_thumbnail($apartment_id)) {
                                 set_post_thumbnail($apartment_id, $attach_id);
@@ -387,12 +410,12 @@ class SourceImport {
                         }
                     } else if (!empty($attach_id)) {
 
+                        $existing_image_title = $wpdb->get_var($wpdb->prepare("SELECT post_title FROM wp_posts WHERE ID = %d", $attach_id));
+                        $pattern = "~<!--:$lang-->(.*)<!--:-->~U";
+                        $existing_image_title = preg_replace($pattern, '', $existing_image_title);
+
                         $attachment = array(
-                            //'guid' => $wp_upload_dir['url'] . '/' . $basename,
-                            //'post_mime_type' => $filetype['type'],
-                            'post_title' => $image_title,
-                            //'post_content' => '',
-                            //'post_status' => 'inherit',
+                            'post_title' => $existing_image_title . '<!--:' . $lang . '-->' . $image_title . '<!--:-->',
                             'post_excerpt' => $image_title,
                         );
 
