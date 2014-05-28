@@ -37,9 +37,7 @@ get_header();
         <div class="col-md-12 column">         
             <form role="form" class="border background clearfix searchform col-md-12">
                 <div class="col-md-6 column">
-                    
-                   
-   
+ 
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
@@ -51,10 +49,7 @@ get_header();
                     <div class="form-group">
                         <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
                     </div>
-               
-                
-                
-                
+ 
                  <div class="form-group"> 
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
                         <div class="row"> 
@@ -228,16 +223,23 @@ get_header();
                                     $url = get_permalink($val->ID);
                                     $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
                                     $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
+                                    
+                                    
                                     $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
+                                    
+                                    
                                     $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
                                     $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
                                     $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
                                     $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
                                     $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
-                                    $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
+                                    
+                                    $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;                                    
                                     $pricem = (int)$pricem;
+                                    
                                     $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                     $price = (int)$price;
+        
                                     $idval = (int)$val->ID;  
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
@@ -246,6 +248,7 @@ get_header();
                                     { $rental_status = 'rented'; } 
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";  
+                 
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:" . $flat_num . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                
                                     if ($i < 10):
@@ -331,10 +334,8 @@ get_header();
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal --> 
 <script>
-  
         jQuery(function() {
-        jQuery('.city-checkbox').click(function() { 
-            
+        jQuery('.city-checkbox').click(function() {    
         var id = jQuery(this).attr("data-myAttri");      
         if(jQuery(this).is(':checked')){   
              
@@ -342,7 +343,6 @@ get_header();
          'action':'get_district', 
          'id':+id 
         }; 
-        
         jQuery.get('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) { 
         jQuery('#district-list').append(response);       
         });                
@@ -352,7 +352,33 @@ get_header();
         }
         });
         });
- 
+        
+        
+        
+  function format(comma, period) {
+  comma = comma || ',';
+  period = period || '.';
+  var split = this.toString().split('.');
+  var numeric = split[0];
+  var decimal = split.length > 1 ? period + split[1] : '';
+  var reg = /(\d+)(\d{3})/;
+  while (reg.test(numeric)) {
+    numeric = numeric.replace(reg, '$1' + comma + '$2');
+  }
+  return numeric + decimal;
+  }
+  
+    jQuery('#Pricef').live('keyup', function(){
+    jQuery(this).val(format.call(jQuery(this).val().split(' ').join(''),' ','.'));
+    });
+   
+    jQuery('#Pricet').live('keyup', function(){
+    jQuery(this).val(format.call(jQuery(this).val().split(' ').join(''),' ','.'));
+    });
+    
+    
+        
+        
 </script> 
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
@@ -394,9 +420,12 @@ get_header();
         var fareaf = values.Areaf;   
         var fareat = values.Areat;  
         var froomsf = values.Roomsf;
-        var froomst = values.Roomst; 
+        var froomst = values.Roomst;  
         var fpricef = values.Pricef;
-        var fpricet = values.Pricet;              
+        var fpricet = values.Pricet;               
+        var fpricef = fpricef.replace(/\s+/g, '');
+        var fpricet = fpricet.replace(/\s+/g, '');
+         
         //make a filter  
         var finalfilter = false;
         
@@ -593,14 +622,16 @@ get_header();
         }
         else
         {
+ 
+    
             jQuery("#table_data_filter").empty(); 
             jQuery("#list").empty();
             jQuery.each(myfilterfinal, function(i, val) { 
-            var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+"&euro;</td><td>"+val.fpricem+"&euro;</td><td></td><td>"+val.status+"</td></tr>"; 
+            var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +", "+ val.district +", "+ val.city +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+" &euro;</td><td>"+val.fpricem+" &euro;</td><td></td><td>"+val.status+"</td></tr>"; 
             jQuery("tbody").append(table_data);
             jQuery("table").trigger("update");     
             jQuery("table").tablesorter();  
-            var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"> <div class=\"col-md-3\"><a href=\"" + val.url + "\"><img src=\""+val.image_url+"\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">"+val.name+"<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i>"+ val.street +" "+ val.hnumber +", "+ val.district +", "+ val.city +", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.references+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.flatnum+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rstatus+"</span></span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.floor+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rooms+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.area+"</span></span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.price+" &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> "+val.fpricem+" &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\" "+val.idval+"\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa "+val.favorite+"\"></i><span class=\"fav-label\">Add to favorite</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>"; 
+            var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"><div class=\"col-md-3\"><a href=\"" + val.url + "\"><img src=\""+val.image_url+"\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">"+val.name+"<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i> " + val.street +" "+ val.hnumber +", "+ val.city +", "+ val.district +", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.references+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.flatnum+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rstatus+"</span></span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.floor+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rooms+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.area+"</span></span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.fprice+" &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> "+val.fpricem+" &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\" "+val.idval+"\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa "+val.favorite+"\"></i><span class=\"fav-label\">Add to favorite</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>"; 
  
             jQuery("#list").append(row_data);      
         });

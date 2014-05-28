@@ -1,8 +1,6 @@
 <?php
-get_header();
-
-$post_per_page = 4;
-
+get_header(); 
+$post_per_page = 4; 
 $args = array(
     'show' => 'homepage',
     'post_type' => 'program',
@@ -11,11 +9,8 @@ $args = array(
 );
 $query = new WP_Query($args);
 ?>
-
-<script type="text/javascript">
-
-    var total_item = <?php echo $query->found_posts ?>;
-
+<script type="text/javascript"> 
+    var total_item = <?php echo $query->found_posts ?>; 
     // pocatecni offset
     var count = <?php echo (int) $post_per_page ?>;
     //
@@ -23,23 +18,18 @@ $query = new WP_Query($args);
     //
     var load_next_item = true;
     // pocet polozek, ktere vrati ajax
-    var ajax_ppp = 2;
-
-    jQuery(document).ready(function() {
-
-        jQuery(window).scroll(function() {
-
+    var ajax_ppp = 2; 
+    jQuery(document).ready(function() { 
+        jQuery(window).scroll(function() { 
             if (count >= (total_item)) {
                 return;
-            }
-
+            } 
             if (load_next_item && (jQuery(window).scrollTop() >= jQuery(document).height() - (jQuery(window).height() + 200))) {
                 loadArticle(count);
                 count += ajax_ppp;
             }
         });
-    });
-
+    }); 
     function loadArticle(offset) {
         jQuery.ajax({
             url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
@@ -64,8 +54,7 @@ $query = new WP_Query($args);
         });
         return false;
     }
-</script>
-
+</script> 
 <div class="visible-lg">
     <?php echo do_shortcode('[image-carousel interval="12000"]') ?>
 </div>
@@ -110,7 +99,7 @@ $query = new WP_Query($args);
                 </a> 
             </h3>
             <div class="form-group">
-                <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?> ">
+                <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf">
                     <?php _e("download for free", "wpbootstrap"); ?>
                 </a>
             </div>
