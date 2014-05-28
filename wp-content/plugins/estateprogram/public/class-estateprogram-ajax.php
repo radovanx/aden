@@ -11,28 +11,19 @@ class EstateProgramAjax {
 
     public function __construct() {
         add_action('wp_ajax_add_to_preference', array(&$this, 'add_to_preference'));
-        add_action('wp_ajax_nopriv_add_to_preference', array(&$this, 'add_to_preference'));
-
+        add_action('wp_ajax_nopriv_add_to_preference', array(&$this, 'add_to_preference')); 
         add_action('wp_ajax_get_district', array(&$this, 'get_district'));
-        add_action('wp_ajax_nopriv_get_district', array(&$this, 'get_district'));
-        
-        add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml'));
-
-        
+        add_action('wp_ajax_nopriv_get_district', array(&$this, 'get_district')); 
+        add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml')); 
 //add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
-    }
-
-    
+    } 
     /**
      * 
      */
-    public function backend_parse_xml() {
-
-        require_once 'class-sourceimport.php';
-
+    public function backend_parse_xml() { 
+        require_once 'class-sourceimport.php'; 
         $dir = trim($_POST['dir']);
-        $filename = trim($_POST['file']);
-
+        $filename = trim($_POST['file']); 
         try {
             SourceImport::processBackendParseXml($filename, $dir);
             die('ok');
@@ -40,38 +31,38 @@ class EstateProgramAjax {
             header("HTTP/1.0 404 Not Found");
             echo $e->getMessage() . ' ' . $e->getFile() . ' ' .$e->getLine();
             die();
-        }
-
+        } 
         die();
     }     
-    
+    //GET !
     public function get_district() {
-        $parent_id = $_POST['id'];
-
+        $parent_id = $_GET['id']; 
         $args = array(
             'taxonomy' => 'location',
             'hide_empty' => true,
             'parent' => $parent_id
-        );
-
-        $regions = get_categories($args);
+        );  
+        $regions = get_categories($args);   
+        $term = get_term( $parent_id, 'location' );
+        // Name 
+        $city = $term->name;  
         ?>
         <div id="district-wrap-<?php echo (int) $parent_id ?>">
-            <?php
+   
+            <strong><?php echo $city; ?></strong></br>  
+             <?php
             foreach ($regions as $key => $value):
-                ?>
-                <label class="checkbox-inline">
+                ?> 
+            <label class="checkbox-inline">
                     <input type="checkbox" id="district-<?php echo $value->term_id ?>" class="district-checkbox" value="<?php _e($value->name) ?>"><?php _e($value->name) ?>
-                </label>
-                <?php
+            </label>
+            <?php
             endforeach;
             ?>
         </div>
         <?php
         exit;
-    }
-
-
+    } 
     /**
      *
      * @global type $wpdb
@@ -133,15 +124,13 @@ VALUES(
 '" . (int) $flat_id . "',
 '" . (int) $user_id . "',
 NOW()
-)";
-
+)"; 
             if (false === $wpdb->query($sql)) {
                 header("HTTP/1.0 404 Not Found");
                 _e('Saving preference failed', $this->plugin_slug);
                 die();
             }
-        }
-
+        } 
 // update history
         $sql = "
 INSERT INTO
@@ -152,12 +141,8 @@ VALUES(
 NOW(),
 '" . $operation . "'
 )";
-
-        $wpdb->query($sql);
-
-        echo $operation;
-
+        $wpdb->query($sql); 
+        echo $operation; 
         exit;
-    }
-
+    } 
 }

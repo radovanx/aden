@@ -343,7 +343,7 @@ get_header();
          'id':+id 
         }; 
         
-        jQuery.post('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) { 
+        jQuery.get('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) { 
         jQuery('#district-list').append(response);       
         });                
         }   

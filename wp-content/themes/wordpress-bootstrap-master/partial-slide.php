@@ -72,8 +72,7 @@
        
                  
                 });
-                  
-                  
+ 
                   jQuery('.bxslider').each(function () {
                   jQuery(this).magnificPopup({
                   delegate: 'a',
@@ -85,8 +84,6 @@
                     fixedContentPos: false
                     });
                 });
-                 
-                 
-              
+ 
             });
         </script>       
