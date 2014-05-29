@@ -123,7 +123,8 @@ class pdfgenerator {
                 }
 
                 $product = get_post($q['product_id']);
-                $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
+                //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
+                $props = get_props($product->ID, $lang);
 
                 require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
 
@@ -208,7 +209,8 @@ class pdfgenerator {
                         if (isset($q['product_id'])) {
                             $product = get_post($q['product_id']);
 
-                            $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
+                            //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
+                            $props = get_props($product->ID, $lang);
 
                             $mpdf = $this->create_html2pdf($product, $props, $lang);
 
@@ -312,7 +314,9 @@ class pdfgenerator {
         global $wpdb;
 
         $apartment = get_post($apartment_id);
-        $apartment_props = get_post_meta($apartment_id, 'flat_props_' . $lang, true);
+        //$apartment_props = get_post_meta($apartment_id, 'flat_props_' . $lang, true);
+        
+        $apartment_props = get_props($apartment_id, $lang);
 
         $path = plugin_dir_path(__FILE__);
     }
@@ -357,7 +361,8 @@ class pdfgenerator {
         $message = str_replace("\n", "\r\n", $message);
 
         $lang = qtrans_getLanguage();
-        $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
+        //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);        
+        $props = get_props($product->ID, $lang);
 
         $mpdf = $this->create_html2pdf($product, $props);
 

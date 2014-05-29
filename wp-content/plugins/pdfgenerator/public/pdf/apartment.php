@@ -237,7 +237,7 @@
                 </tr>
             </table>
 
-            <div class="red-label text-center small-block"><?php echo qtrans_use($lang, $product->post_title); ?></div>
+            <div class="red-label text-center small-block"><?php echo $props['freitexte|objekttitel'] ?></div>
 
             <!-- featrues -->
             <h2 class="small-label border-left"><?php _e('Features', $this->plugin_slug) ?></h2>

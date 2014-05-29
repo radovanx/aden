@@ -15,9 +15,14 @@ get_header();
                 $lang = qtrans_getLanguage();
                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
                 $url = $thumb['0'];
-                $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
+                //$props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
+                
+                $props = get_props($post->ID, $lang);
+                
                 $program_id = EstateProgram::flat_program_id($post->ID);
-                $title = get_the_title($post->ID);
+                //$title = get_the_title($post->ID);                
+                $title = $props['freitexte|objekttitel'];
+                
                 $video = $props['youtube'];
                 $progra_reference = $props['verwaltung_techn|objektnr_extern'];
                 $city = !empty($props['geo|ort']) ? esc_attr($props['geo|ort']) : "-";
@@ -30,7 +35,7 @@ get_header();
                 $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
                 ?>
                 <div class="col-md-12 column">
-                    <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?>
+                    <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php echo $title ?>
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
                             <span class="apartment-row-<?php echo $post->ID ?>">
                                 <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">

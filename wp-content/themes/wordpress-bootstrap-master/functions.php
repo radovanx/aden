@@ -704,4 +704,15 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     add_filter('post_type_link', 'qtrans_convertURL');
     
     
+    
+    function get_props($post_id, $lang){
+        $props = get_post_meta($post_id, 'flat_props_' . $lang, true);
+        
+        if(empty($props)){
+            $props = get_post_meta($post_id, 'flat_props_en', true);    
+        }
+        
+        return $props;
+    }
+    
     ?>
