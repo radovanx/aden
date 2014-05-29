@@ -990,7 +990,58 @@ class EstateProgram {
             }
         }
 
-        return $wpdb->get_results($sql);
+        $result = $wpdb->get_results($sql);
+
+        if (empty($result)) {
+            $sql = "SELECT
+                p.ID,
+                m.meta_value as prop,
+                IFNULL(up.flat_id, 0) as is_favorite,
+                p.post_name as slug,
+                a2p.program_id as program_id
+            FROM
+                wp_posts AS p
+            JOIN
+                wp_postmeta as m
+            ON
+                m.post_id = p.ID
+            JOIN
+                apartment2program AS a2p
+            ON
+              a2p.apartment_id = p.ID
+            JOIN
+              wp_posts AS program
+            ON
+              a2p.program_id = program.ID
+            LEFT JOIN
+                user_preference	AS up
+            ON
+                up.flat_id = p.ID AND up.user_id = " . (int) get_current_user_id() . "
+            LEFT JOIN
+                wp_users AS u
+            ON
+                up.user_id = u.ID
+            WHERE
+                m.meta_key = 'flat_props_en'
+            AND
+                p.post_type = 'flat'
+            AND
+                p.post_status = 'publish'
+            GROUP BY
+                p.ID";
+
+            if (!is_null($limit)) {
+                $sql .= " LIMIT " . (int) $limit;
+
+                if (!is_null($offset)) {
+                    $sql .= ", " . (int) $offset;
+                }
+            }
+
+            $result = $wpdb->get_results($sql);
+        }
+
+        return $result;
     }
 
     /**
