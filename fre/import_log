@@ -1,0 +1,1024 @@
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:02:49|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111726.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111726.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111726.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140515111726.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-SO-12-21
+processing image:Foto_16408.jpg| Image title: Façade
+image:Foto_16408.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16408.jpg'|id:
+processing image:Foto_16400.jpg| Image title: Exemple chambre
+image:Foto_16400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16400.jpg'|id:
+processing image:Foto_16410.jpg| Image title: Plan
+image:Foto_16410.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16410.jpg'|id:
+processing image:Foto_28106.jpg| Image title: Energieausweis ein Seite Sonntag
+image:Foto_28106.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_28106.jpg'|id:
+processing image:Foto_16394.jpg| Image title: Detail ancien
+image:Foto_16394.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16394.jpg'|id:
+processing image:Foto_16398.jpg| Image title: Rue
+image:Foto_16398.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16398.jpg'|id:
+processing image:Foto_16378.jpg| Image title: Porte d'entrée
+image:Foto_16378.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16378.jpg'|id:
+processing image:Foto_16404.jpg| Image title: Cage d'escalier
+image:Foto_16404.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16404.jpg'|id:
+processing image:Foto_16402.jpg| Image title: Cage d'escalier
+image:Foto_16402.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16402.jpg'|id:
+processing image:Foto_16392.jpg| Image title: Vur depuis le balcon
+image:Foto_16392.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16392.jpg'|id:
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:02:59|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111726.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111726.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111726.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140515111726.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-SO-12-21
+processing image:Foto_16408.jpg| Image title: Façade
+image:Foto_16408.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16408.jpg'|id:9758
+processing image:Foto_16400.jpg| Image title: Exemple chambre
+image:Foto_16400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16400.jpg'|id:9759
+processing image:Foto_16410.jpg| Image title: Plan
+image:Foto_16410.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16410.jpg'|id:9760
+processing image:Foto_28106.jpg| Image title: Energieausweis ein Seite Sonntag
+image:Foto_28106.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_28106.jpg'|id:9761
+processing image:Foto_16394.jpg| Image title: Detail ancien
+image:Foto_16394.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16394.jpg'|id:9762
+processing image:Foto_16398.jpg| Image title: Rue
+image:Foto_16398.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16398.jpg'|id:9763
+processing image:Foto_16378.jpg| Image title: Porte d'entrée
+image:Foto_16378.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16378.jpg'|id:9764
+processing image:Foto_16404.jpg| Image title: Cage d'escalier
+image:Foto_16404.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16404.jpg'|id:9765
+processing image:Foto_16402.jpg| Image title: Cage d'escalier
+image:Foto_16402.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16402.jpg'|id:9766
+processing image:Foto_16392.jpg| Image title: Vur depuis le balcon
+image:Foto_16392.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9757 AND filename = 'Foto_16392.jpg'|id:
+processing image:https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+adenimmoeb4allcz_IMMONET_20140515111726.zip|ok|11
+end|29. 05. 2014 13:03:00
+processing image:https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+adenimmoeb4allcz_IMMONET_20140515111726.zip|ok|1
+end|29. 05. 2014 13:03:00
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:03:09|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111520.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111520.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111520.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140515111520.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-GU-28-5
+processing image:Foto_23760.jpg| Image title: Cuisine
+image:Foto_23760.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_23760.jpg'|id:
+processing image:Foto_13593.jpg| Image title: Façade
+image:Foto_13593.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_13593.jpg'|id:
+processing image:Foto_19070.jpg| Image title: Plan
+image:Foto_19070.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_19070.jpg'|id:
+processing image:Foto_23762.jpg| Image title: Pièce de vie et cuisine
+image:Foto_23762.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_23762.jpg'|id:
+processing image:Foto_19072.jpg| Image title: Pièce de vie
+image:Foto_19072.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_19072.jpg'|id:
+processing image:Foto_19074.jpg| Image title: Pièce de vie
+image:Foto_19074.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_19074.jpg'|id:
+processing image:Foto_13581.jpg| Image title: Salle de bains
+image:Foto_13581.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_13581.jpg'|id:
+processing image:Foto_19078.jpg| Image title: Façade
+image:Foto_19078.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_19078.jpg'|id:
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:03:20|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111520.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111520.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111520.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140515111520.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-GU-28-5
+processing image:Foto_23760.jpg| Image title: Cuisine
+image:Foto_23760.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_23760.jpg'|id:9779
+processing image:Foto_13593.jpg| Image title: Façade
+image:Foto_13593.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_13593.jpg'|id:9780
+processing image:Foto_19070.jpg| Image title: Plan
+image:Foto_19070.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_19070.jpg'|id:9781
+processing image:Foto_23762.jpg| Image title: Pièce de vie et cuisine
+image:Foto_23762.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_23762.jpg'|id:9782
+processing image:Foto_19072.jpg| Image title: Pièce de vie
+image:Foto_19072.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_19072.jpg'|id:9783
+processing image:Foto_19074.jpg| Image title: Pièce de vie
+image:Foto_19074.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_19074.jpg'|id:9784
+processing image:Foto_13581.jpg| Image title: Salle de bains
+image:Foto_13581.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_13581.jpg'|id:9785
+processing image:Foto_19078.jpg| Image title: Façade
+image:Foto_19078.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_19078.jpg'|id:
+processing image:Foto_16188.jpg| Image title: Cage d'escalier
+image:Foto_16188.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_16188.jpg'|id:
+processing image:https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+adenimmoeb4allcz_IMMONET_20140515111520.zip|ok|13
+end|29. 05. 2014 13:03:22
+processing image:Foto_16188.jpg| Image title: Cage d'escalier
+image:Foto_16188.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9778 AND filename = 'Foto_16188.jpg'|id:9788
+processing image:https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+adenimmoeb4allcz_IMMONET_20140515111520.zip|ok|3
+end|29. 05. 2014 13:03:23
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:03:24|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111437.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111437.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111437.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140515111437.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-GU-28-3
+processing image:Foto_25898.jpg| Image title: Terrasse
+image:Foto_25898.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_25898.jpg'|id:
+processing image:Foto_21522.jpg| Image title: Terrasse 1
+image:Foto_21522.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_21522.jpg'|id:
+processing image:Foto_19460.jpg| Image title: Plan
+image:Foto_19460.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_19460.jpg'|id:
+processing image:Foto_21520.jpg| Image title: Wohnzimmer
+image:Foto_21520.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_21520.jpg'|id:
+processing image:Foto_25900.jpg| Image title: Wohnzimmer
+image:Foto_25900.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_25900.jpg'|id:
+processing image:Foto_15284.jpg| Image title: Alentours
+image:Foto_15284.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_15284.jpg'|id:
+processing image:Foto_13687.jpg| Image title: Façade
+image:Foto_13687.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_13687.jpg'|id:
+processing image:Foto_15288.jpg| Image title: Salle de bains
+image:Foto_15288.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_15288.jpg'|id:
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:03:35|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111437.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111437.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111437.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140515111437.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-GU-28-3
+processing image:Foto_25898.jpg| Image title: Terrasse
+image:Foto_25898.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_25898.jpg'|id:9790
+processing image:Foto_21522.jpg| Image title: Terrasse 1
+image:Foto_21522.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_21522.jpg'|id:9791
+processing image:Foto_19460.jpg| Image title: Plan
+image:Foto_19460.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_19460.jpg'|id:9792
+processing image:Foto_21520.jpg| Image title: Wohnzimmer
+image:Foto_21520.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_21520.jpg'|id:9793
+processing image:Foto_25900.jpg| Image title: Wohnzimmer
+image:Foto_25900.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_25900.jpg'|id:9794
+processing image:Foto_15284.jpg| Image title: Alentours
+image:Foto_15284.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_15284.jpg'|id:9795
+processing image:Foto_13687.jpg| Image title: Façade
+image:Foto_13687.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_13687.jpg'|id:9796
+processing image:Foto_15288.jpg| Image title: Salle de bains
+image:Foto_15288.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9789 AND filename = 'Foto_15288.jpg'|id:
+processing image:https://www.youtube.com/watch?v=MwNPkG1BZgs| Image title: Link Video
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+processing image:https://www.dropbox.com/sh/p8fnvfc2ftachm7/AABmr7Juchrx1vLzjBsrGPRca| Image title: Link flat
+adenimmoeb4allcz_IMMONET_20140515111437.zip|ok|11
+end|29. 05. 2014 13:03:35
+processing image:https://www.youtube.com/watch?v=MwNPkG1BZgs| Image title: Link Video
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+processing image:https://www.dropbox.com/sh/p8fnvfc2ftachm7/AABmr7Juchrx1vLzjBsrGPRca| Image title: Link flat
+adenimmoeb4allcz_IMMONET_20140515111437.zip|ok|1
+end|29. 05. 2014 13:03:36
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:03:45|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111557.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111557.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111557.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140515111557.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-GU-28-6
+processing image:Foto_16486.jpg| Image title: Salon avec balcon
+image:Foto_16486.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9799 AND filename = 'Foto_16486.jpg'|id:9800
+processing image:Foto_13595.jpg| Image title: Façade
+image:Foto_13595.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9799 AND filename = 'Foto_13595.jpg'|id:9801
+processing image:Foto_19060.jpg| Image title: Plan
+image:Foto_19060.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9799 AND filename = 'Foto_19060.jpg'|id:9802
+processing image:Foto_16484.jpg| Image title: Salon
+image:Foto_16484.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9799 AND filename = 'Foto_16484.jpg'|id:9803
+processing image:Foto_13599.jpg| Image title: Salle de bain
+image:Foto_13599.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9799 AND filename = 'Foto_13599.jpg'|id:9804
+processing image:Foto_16488.jpg| Image title: Chambre
+image:Foto_16488.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9799 AND filename = 'Foto_16488.jpg'|id:9805
+processing image:Foto_16494.jpg| Image title: Entrée et cage d'escalier
+image:Foto_16494.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9799 AND filename = 'Foto_16494.jpg'|id:9806
+processing image:Foto_16496.jpg| Image title: Balcon
+image:Foto_16496.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9799 AND filename = 'Foto_16496.jpg'|id:9807
+processing image:Foto_16492.jpg| Image title: Environs
+image:Foto_16492.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9799 AND filename = 'Foto_16492.jpg'|id:9808
+processing image:https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+adenimmoeb4allcz_IMMONET_20140515111557.zip|ok|0
+end|29. 05. 2014 13:03:45
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:03:46|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111640.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111640.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111640.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140515111640.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-SO-12-16
+processing image:Foto_20882.jpg| Image title: facade
+image:Foto_20882.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9809 AND filename = 'Foto_20882.jpg'|id:
+processing image:Foto_20880.jpg| Image title: rue
+image:Foto_20880.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9809 AND filename = 'Foto_20880.jpg'|id:
+processing image:Foto_20878.jpg| Image title: cage escalier
+image:Foto_20878.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9809 AND filename = 'Foto_20878.jpg'|id:
+processing image:Foto_20876.jpg| Image title: rue
+image:Foto_20876.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9809 AND filename = 'Foto_20876.jpg'|id:
+processing image:Foto_20908.jpg| Image title: parc à coté
+image:Foto_20908.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9809 AND filename = 'Foto_20908.jpg'|id:
+processing image:Foto_20910.jpg| Image title: facade
+image:Foto_20910.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9809 AND filename = 'Foto_20910.jpg'|id:
+processing image:Foto_28128.jpg| Image title: passport energetique
+image:Foto_28128.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9809 AND filename = 'Foto_28128.jpg'|id:
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+processing image:https://www.dropbox.com/sh/friecjldkurohpk/AABCeeMyCisrYbSpV08rsFVNa| Image title: Link Flat
+adenimmoeb4allcz_IMMONET_20140515111640.zip|ok|10
+end|29. 05. 2014 13:03:56
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:03:57|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111758.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111758.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111758.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140515111758.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-SO-12-24
+processing image:Foto_20552.jpg| Image title: Façade
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9817 AND filename = 'Foto_20552.jpg'|id:
+processing image:Foto_20386.jpg| Image title: Cage d'escalier
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9817 AND filename = 'Foto_20386.jpg'|id:
+processing image:Foto_22240.jpg| Image title: Plan
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9817 AND filename = 'Foto_22240.jpg'|id:
+processing image:Foto_20400.jpg| Image title: Porte appartement
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9817 AND filename = 'Foto_20400.jpg'|id:
+processing image:Foto_20542.jpg| Image title: Envrions
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9817 AND filename = 'Foto_20542.jpg'|id:
+processing image:Foto_22250.jpg| Image title: Système électrique récent
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9817 AND filename = 'Foto_22250.jpg'|id:
+processing image:Foto_22242.jpg| Image title: Chauffage 2012
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9817 AND filename = 'Foto_22242.jpg'|id:
+processing image:Foto_20544.jpg| Image title: Passeport énergétique
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9817 AND filename = 'Foto_20544.jpg'|id:
+processing image:http://youtu.be/8vVjqG9hgio| Image title: 
+processing image:https://www.dropbox.com/sh/50jmj22f2p3zbbm/AADnuP89JLkCkdtIg4y5Xr7Ea| Image title: Link flat
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+adenimmoeb4allcz_IMMONET_20140515111758.zip|ok|8
+end|29. 05. 2014 13:04:05
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:04:06|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140513170817.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140513170817.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140513170817.zip | lang_dir: fre
+call process_temp_files: temp_dir: /homez.343/immoneda/www/fre/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/fre/temp/adenimmoeb4allcz_IMMONET_20140513170817.xml | temp_dir: /homez.343/immoneda/www/fre/temp | lang: fr
+uid:BO-BO-06-24
+processing image:Foto_20552.jpg| Image title: Façade
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9769 AND filename = 'Foto_20552.jpg'|id:9770
+processing image:Foto_20386.jpg| Image title: Cage d'escalier
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9769 AND filename = 'Foto_20386.jpg'|id:9771
+processing image:Foto_22240.jpg| Image title: Plan
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9769 AND filename = 'Foto_22240.jpg'|id:9772
+processing image:Foto_20400.jpg| Image title: Porte appartement
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9769 AND filename = 'Foto_20400.jpg'|id:9773
+processing image:Foto_20542.jpg| Image title: Envrions
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9769 AND filename = 'Foto_20542.jpg'|id:9774
+processing image:Foto_22250.jpg| Image title: Système électrique récent
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9769 AND filename = 'Foto_22250.jpg'|id:9775
+processing image:Foto_22242.jpg| Image title: Chauffage 2012
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9769 AND filename = 'Foto_22242.jpg'|id:9776
+processing image:Foto_20544.jpg| Image title: Passeport énergétique
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 9769 AND filename = 'Foto_20544.jpg'|id:9777
+processing image:http://youtu.be/8vVjqG9hgio| Image title: 
+processing image:https://www.dropbox.com/sh/50jmj22f2p3zbbm/AADnuP89JLkCkdtIg4y5Xr7Ea| Image title: Link flat
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+adenimmoeb4allcz_IMMONET_20140513170817.zip|ok|0
+end|29. 05. 2014 13:04:06
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:56:48|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140513170817.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140513170817.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140513170817.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140513170817.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-BO-06-24
+adenimmoeb4allcz_IMMONET_20140513170817.zip|ok|57
+end|29. 05. 2014 13:57:50
+------------------------------------------------------------------------------
+begin|29. 05. 2014 13:59:53|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111437.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111437.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111437.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111437.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-GU-28-3
+processing image:Foto_25898.jpg| Image title: Terrasse
+image:Foto_25898.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6344 AND filename = 'Foto_25898.jpg'|id:6345
+processing image:Foto_21522.jpg| Image title: Terrasse 1
+image:Foto_21522.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6344 AND filename = 'Foto_21522.jpg'|id:6346
+processing image:Foto_19460.jpg| Image title: Plan
+image:Foto_19460.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6344 AND filename = 'Foto_19460.jpg'|id:6347
+processing image:Foto_21520.jpg| Image title: Wohnzimmer
+image:Foto_21520.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6344 AND filename = 'Foto_21520.jpg'|id:6348
+processing image:Foto_25900.jpg| Image title: Wohnzimmer
+image:Foto_25900.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6344 AND filename = 'Foto_25900.jpg'|id:6349
+processing image:Foto_15284.jpg| Image title: Alentours
+image:Foto_15284.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6344 AND filename = 'Foto_15284.jpg'|id:6350
+processing image:Foto_13687.jpg| Image title: Façade
+image:Foto_13687.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6344 AND filename = 'Foto_13687.jpg'|id:6351
+processing image:Foto_15288.jpg| Image title: Salle de bains
+image:Foto_15288.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6344 AND filename = 'Foto_15288.jpg'|id:6352
+processing image:https://www.youtube.com/watch?v=MwNPkG1BZgs| Image title: Link Video
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+processing image:https://www.dropbox.com/sh/p8fnvfc2ftachm7/AABmr7Juchrx1vLzjBsrGPRca| Image title: Link flat
+adenimmoeb4allcz_IMMONET_20140515111437.zip|ok|74
+end|29. 05. 2014 14:01:07
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:01:17|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111520.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111520.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111520.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111520.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-GU-28-5
+processing image:Foto_23760.jpg| Image title: Cuisine
+image:Foto_23760.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6353 AND filename = 'Foto_23760.jpg'|id:6354
+processing image:Foto_13593.jpg| Image title: Façade
+image:Foto_13593.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6353 AND filename = 'Foto_13593.jpg'|id:6355
+processing image:Foto_19070.jpg| Image title: Plan
+image:Foto_19070.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6353 AND filename = 'Foto_19070.jpg'|id:6356
+processing image:Foto_23762.jpg| Image title: Pièce de vie et cuisine
+image:Foto_23762.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6353 AND filename = 'Foto_23762.jpg'|id:6357
+processing image:Foto_19072.jpg| Image title: Pièce de vie
+image:Foto_19072.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6353 AND filename = 'Foto_19072.jpg'|id:6358
+processing image:Foto_19074.jpg| Image title: Pièce de vie
+image:Foto_19074.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6353 AND filename = 'Foto_19074.jpg'|id:6359
+processing image:Foto_13581.jpg| Image title: Salle de bains
+image:Foto_13581.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6353 AND filename = 'Foto_13581.jpg'|id:6360
+processing image:Foto_19078.jpg| Image title: Façade
+image:Foto_19078.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6353 AND filename = 'Foto_19078.jpg'|id:6361
+processing image:Foto_16188.jpg| Image title: Cage d'escalier
+image:Foto_16188.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6353 AND filename = 'Foto_16188.jpg'|id:6362
+processing image:https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+adenimmoeb4allcz_IMMONET_20140515111520.zip|ok|2
+end|29. 05. 2014 14:01:19
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:03:00|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140513170817.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140513170817.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140513170817.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140513170817.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-BO-06-24
+adenimmoeb4allcz_IMMONET_20140513170817.zip|ok|0
+end|29. 05. 2014 14:03:00
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:03:13|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111437.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111437.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111437.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111437.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-GU-28-3
+processing image:Foto_25898.jpg| Image title: Terrasse
+image:Foto_25898.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_25898.jpg'|id:
+processing image:Foto_21522.jpg| Image title: Terrasse 1
+image:Foto_21522.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_21522.jpg'|id:
+processing image:Foto_19460.jpg| Image title: Plan
+image:Foto_19460.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_19460.jpg'|id:
+processing image:Foto_21520.jpg| Image title: Wohnzimmer
+image:Foto_21520.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_21520.jpg'|id:
+processing image:Foto_25900.jpg| Image title: Wohnzimmer
+image:Foto_25900.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_25900.jpg'|id:
+processing image:Foto_15284.jpg| Image title: Alentours
+image:Foto_15284.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_15284.jpg'|id:
+processing image:Foto_13687.jpg| Image title: Façade
+image:Foto_13687.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_13687.jpg'|id:
+processing image:Foto_15288.jpg| Image title: Salle de bains
+image:Foto_15288.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_15288.jpg'|id:
+processing image:https://www.youtube.com/watch?v=MwNPkG1BZgs| Image title: Link Video
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+processing image:https://www.dropbox.com/sh/p8fnvfc2ftachm7/AABmr7Juchrx1vLzjBsrGPRca| Image title: Link flat
+adenimmoeb4allcz_IMMONET_20140515111437.zip|ok|14
+end|29. 05. 2014 14:03:27
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:03:35|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111520.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111520.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111520.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111520.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-GU-28-5
+processing image:Foto_23760.jpg| Image title: Cuisine
+image:Foto_23760.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_23760.jpg'|id:
+processing image:Foto_13593.jpg| Image title: Façade
+image:Foto_13593.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_13593.jpg'|id:
+processing image:Foto_19070.jpg| Image title: Plan
+image:Foto_19070.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_19070.jpg'|id:
+processing image:Foto_23762.jpg| Image title: Pièce de vie et cuisine
+image:Foto_23762.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_23762.jpg'|id:
+processing image:Foto_19072.jpg| Image title: Pièce de vie
+image:Foto_19072.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_19072.jpg'|id:
+processing image:Foto_19074.jpg| Image title: Pièce de vie
+image:Foto_19074.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_19074.jpg'|id:
+processing image:Foto_13581.jpg| Image title: Salle de bains
+image:Foto_13581.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_13581.jpg'|id:
+processing image:Foto_19078.jpg| Image title: Façade
+image:Foto_19078.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_19078.jpg'|id:
+processing image:Foto_16188.jpg| Image title: Cage d'escalier
+image:Foto_16188.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_16188.jpg'|id:
+processing image:https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+adenimmoeb4allcz_IMMONET_20140515111520.zip|ok|13
+end|29. 05. 2014 14:03:48
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:03:55|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111557.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111557.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111557.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111557.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-GU-28-6
+processing image:Foto_16486.jpg| Image title: Salon avec balcon
+image:Foto_16486.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16486.jpg'|id:
+processing image:Foto_13595.jpg| Image title: Façade
+image:Foto_13595.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_13595.jpg'|id:
+processing image:Foto_19060.jpg| Image title: Plan
+image:Foto_19060.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_19060.jpg'|id:
+processing image:Foto_16484.jpg| Image title: Salon
+image:Foto_16484.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16484.jpg'|id:
+processing image:Foto_13599.jpg| Image title: Salle de bain
+image:Foto_13599.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_13599.jpg'|id:
+processing image:Foto_16488.jpg| Image title: Chambre
+image:Foto_16488.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16488.jpg'|id:
+processing image:Foto_16494.jpg| Image title: Entrée et cage d'escalier
+image:Foto_16494.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16494.jpg'|id:
+processing image:Foto_16496.jpg| Image title: Balcon
+image:Foto_16496.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16496.jpg'|id:
+processing image:Foto_16492.jpg| Image title: Environs
+image:Foto_16492.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16492.jpg'|id:
+processing image:https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+adenimmoeb4allcz_IMMONET_20140515111557.zip|ok|10
+end|29. 05. 2014 14:04:05
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:04:10|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111640.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111640.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111640.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111640.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-SO-12-16
+processing image:Foto_20882.jpg| Image title: facade
+image:Foto_20882.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20882.jpg'|id:
+processing image:Foto_20880.jpg| Image title: rue
+image:Foto_20880.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20880.jpg'|id:
+processing image:Foto_20878.jpg| Image title: cage escalier
+image:Foto_20878.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20878.jpg'|id:
+processing image:Foto_20876.jpg| Image title: rue
+image:Foto_20876.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20876.jpg'|id:
+processing image:Foto_20908.jpg| Image title: parc à coté
+image:Foto_20908.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20908.jpg'|id:
+processing image:Foto_20910.jpg| Image title: facade
+image:Foto_20910.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20910.jpg'|id:
+processing image:Foto_28128.jpg| Image title: passport energetique
+image:Foto_28128.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_28128.jpg'|id:
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+processing image:https://www.dropbox.com/sh/friecjldkurohpk/AABCeeMyCisrYbSpV08rsFVNa| Image title: Link Flat
+adenimmoeb4allcz_IMMONET_20140515111640.zip|ok|11
+end|29. 05. 2014 14:04:21
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:04:27|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111726.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111726.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111726.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111726.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-SO-12-21
+processing image:Foto_16408.jpg| Image title: Façade
+image:Foto_16408.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16408.jpg'|id:
+processing image:Foto_16400.jpg| Image title: Exemple chambre
+image:Foto_16400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16400.jpg'|id:
+processing image:Foto_16410.jpg| Image title: Plan
+image:Foto_16410.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16410.jpg'|id:
+processing image:Foto_28106.jpg| Image title: Energieausweis ein Seite Sonntag
+image:Foto_28106.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_28106.jpg'|id:
+processing image:Foto_16394.jpg| Image title: Detail ancien
+image:Foto_16394.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16394.jpg'|id:
+processing image:Foto_16398.jpg| Image title: Rue
+image:Foto_16398.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16398.jpg'|id:
+processing image:Foto_16378.jpg| Image title: Porte d'entrée
+image:Foto_16378.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16378.jpg'|id:
+processing image:Foto_16404.jpg| Image title: Cage d'escalier
+image:Foto_16404.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16404.jpg'|id:
+processing image:Foto_16402.jpg| Image title: Cage d'escalier
+image:Foto_16402.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16402.jpg'|id:
+processing image:Foto_16392.jpg| Image title: Vur depuis le balcon
+image:Foto_16392.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16392.jpg'|id:
+processing image:https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+adenimmoeb4allcz_IMMONET_20140515111726.zip|ok|12
+end|29. 05. 2014 14:04:39
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:04:45|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111758.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111758.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111758.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111758.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-SO-12-24
+processing image:Foto_20552.jpg| Image title: Façade
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20552.jpg'|id:
+processing image:Foto_20386.jpg| Image title: Cage d'escalier
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20386.jpg'|id:
+processing image:Foto_22240.jpg| Image title: Plan
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_22240.jpg'|id:
+processing image:Foto_20400.jpg| Image title: Porte appartement
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20400.jpg'|id:
+processing image:Foto_20542.jpg| Image title: Envrions
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20542.jpg'|id:
+processing image:Foto_22250.jpg| Image title: Système électrique récent
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_22250.jpg'|id:
+processing image:Foto_22242.jpg| Image title: Chauffage 2012
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_22242.jpg'|id:
+processing image:Foto_20544.jpg| Image title: Passeport énergétique
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20544.jpg'|id:
+processing image:http://youtu.be/8vVjqG9hgio| Image title: 
+processing image:https://www.dropbox.com/sh/50jmj22f2p3zbbm/AADnuP89JLkCkdtIg4y5Xr7Ea| Image title: Link flat
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+adenimmoeb4allcz_IMMONET_20140515111758.zip|ok|11
+end|29. 05. 2014 14:04:56
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:08:54|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140513170817.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140513170817.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140513170817.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140513170817.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-BO-06-24
+adenimmoeb4allcz_IMMONET_20140513170817.zip|ok|0
+end|29. 05. 2014 14:08:54
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:09:00|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111437.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111437.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111437.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111437.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-GU-28-3
+processing image:Foto_25898.jpg| Image title: Terrasse
+image:Foto_25898.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_25898.jpg'|id:6411
+processing image:Foto_21522.jpg| Image title: Terrasse 1
+image:Foto_21522.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_21522.jpg'|id:6412
+processing image:Foto_19460.jpg| Image title: Plan
+image:Foto_19460.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_19460.jpg'|id:6413
+processing image:Foto_21520.jpg| Image title: Wohnzimmer
+image:Foto_21520.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_21520.jpg'|id:6414
+processing image:Foto_25900.jpg| Image title: Wohnzimmer
+image:Foto_25900.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_25900.jpg'|id:6415
+processing image:Foto_15284.jpg| Image title: Alentours
+image:Foto_15284.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_15284.jpg'|id:6416
+processing image:Foto_13687.jpg| Image title: Façade
+image:Foto_13687.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_13687.jpg'|id:6417
+processing image:Foto_15288.jpg| Image title: Salle de bains
+image:Foto_15288.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6410 AND filename = 'Foto_15288.jpg'|id:6418
+processing image:https://www.youtube.com/watch?v=MwNPkG1BZgs| Image title: Link Video
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+processing image:https://www.dropbox.com/sh/p8fnvfc2ftachm7/AABmr7Juchrx1vLzjBsrGPRca| Image title: Link flat
+adenimmoeb4allcz_IMMONET_20140515111437.zip|ok|2
+end|29. 05. 2014 14:09:02
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:09:07|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111520.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111520.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111520.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111520.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-GU-28-5
+processing image:Foto_23760.jpg| Image title: Cuisine
+image:Foto_23760.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_23760.jpg'|id:6420
+processing image:Foto_13593.jpg| Image title: Façade
+image:Foto_13593.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_13593.jpg'|id:6421
+processing image:Foto_19070.jpg| Image title: Plan
+image:Foto_19070.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_19070.jpg'|id:6422
+processing image:Foto_23762.jpg| Image title: Pièce de vie et cuisine
+image:Foto_23762.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_23762.jpg'|id:6423
+processing image:Foto_19072.jpg| Image title: Pièce de vie
+image:Foto_19072.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_19072.jpg'|id:6424
+processing image:Foto_19074.jpg| Image title: Pièce de vie
+image:Foto_19074.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_19074.jpg'|id:6425
+processing image:Foto_13581.jpg| Image title: Salle de bains
+image:Foto_13581.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_13581.jpg'|id:6426
+processing image:Foto_19078.jpg| Image title: Façade
+image:Foto_19078.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_19078.jpg'|id:6427
+processing image:Foto_16188.jpg| Image title: Cage d'escalier
+image:Foto_16188.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6419 AND filename = 'Foto_16188.jpg'|id:6428
+processing image:https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+adenimmoeb4allcz_IMMONET_20140515111520.zip|ok|2
+end|29. 05. 2014 14:09:09
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:09:14|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111557.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111557.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111557.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111557.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-GU-28-6
+processing image:Foto_16486.jpg| Image title: Salon avec balcon
+image:Foto_16486.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16486.jpg'|id:6430
+processing image:Foto_13595.jpg| Image title: Façade
+image:Foto_13595.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_13595.jpg'|id:6431
+processing image:Foto_19060.jpg| Image title: Plan
+image:Foto_19060.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_19060.jpg'|id:6432
+processing image:Foto_16484.jpg| Image title: Salon
+image:Foto_16484.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16484.jpg'|id:6433
+processing image:Foto_13599.jpg| Image title: Salle de bain
+image:Foto_13599.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_13599.jpg'|id:6434
+processing image:Foto_16488.jpg| Image title: Chambre
+image:Foto_16488.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16488.jpg'|id:6435
+processing image:Foto_16494.jpg| Image title: Entrée et cage d'escalier
+image:Foto_16494.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16494.jpg'|id:6436
+processing image:Foto_16496.jpg| Image title: Balcon
+image:Foto_16496.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16496.jpg'|id:6437
+processing image:Foto_16492.jpg| Image title: Environs
+image:Foto_16492.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6429 AND filename = 'Foto_16492.jpg'|id:6438
+processing image:https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa| Image title: Link Building
+adenimmoeb4allcz_IMMONET_20140515111557.zip|ok|2
+end|29. 05. 2014 14:09:16
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:09:20|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111640.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111640.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111640.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111640.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-SO-12-16
+processing image:Foto_20882.jpg| Image title: facade
+image:Foto_20882.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20882.jpg'|id:6440
+processing image:Foto_20880.jpg| Image title: rue
+image:Foto_20880.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20880.jpg'|id:6441
+processing image:Foto_20878.jpg| Image title: cage escalier
+image:Foto_20878.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20878.jpg'|id:6442
+processing image:Foto_20876.jpg| Image title: rue
+image:Foto_20876.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20876.jpg'|id:6443
+processing image:Foto_20908.jpg| Image title: parc à coté
+image:Foto_20908.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20908.jpg'|id:6444
+processing image:Foto_20910.jpg| Image title: facade
+image:Foto_20910.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_20910.jpg'|id:6445
+processing image:Foto_28128.jpg| Image title: passport energetique
+image:Foto_28128.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6439 AND filename = 'Foto_28128.jpg'|id:6446
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+processing image:https://www.dropbox.com/sh/friecjldkurohpk/AABCeeMyCisrYbSpV08rsFVNa| Image title: Link Flat
+adenimmoeb4allcz_IMMONET_20140515111640.zip|ok|2
+end|29. 05. 2014 14:09:22
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:09:29|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111726.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111726.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111726.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111726.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-SO-12-21
+processing image:Foto_16408.jpg| Image title: Façade
+image:Foto_16408.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16408.jpg'|id:6448
+processing image:Foto_16400.jpg| Image title: Exemple chambre
+image:Foto_16400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16400.jpg'|id:6449
+processing image:Foto_16410.jpg| Image title: Plan
+image:Foto_16410.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16410.jpg'|id:6450
+processing image:Foto_28106.jpg| Image title: Energieausweis ein Seite Sonntag
+image:Foto_28106.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_28106.jpg'|id:6451
+processing image:Foto_16394.jpg| Image title: Detail ancien
+image:Foto_16394.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16394.jpg'|id:6452
+processing image:Foto_16398.jpg| Image title: Rue
+image:Foto_16398.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16398.jpg'|id:6453
+processing image:Foto_16378.jpg| Image title: Porte d'entrée
+image:Foto_16378.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16378.jpg'|id:6454
+processing image:Foto_16404.jpg| Image title: Cage d'escalier
+image:Foto_16404.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16404.jpg'|id:6455
+processing image:Foto_16402.jpg| Image title: Cage d'escalier
+image:Foto_16402.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16402.jpg'|id:6456
+processing image:Foto_16392.jpg| Image title: Vur depuis le balcon
+image:Foto_16392.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6447 AND filename = 'Foto_16392.jpg'|id:6457
+processing image:https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa| Image title: Link Flat
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+adenimmoeb4allcz_IMMONET_20140515111726.zip|ok|2
+end|29. 05. 2014 14:09:31
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:09:36|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111758.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111758.zip
+    [dir] => fre
+)
+
+======================================================================
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111758.zip | lang_dir: fre
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/fre\temp/adenimmoeb4allcz_IMMONET_20140515111758.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/fre\temp | lang: fr
+uid:BO-SO-12-24
+processing image:Foto_20552.jpg| Image title: Façade
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20552.jpg'|id:6459
+processing image:Foto_20386.jpg| Image title: Cage d'escalier
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20386.jpg'|id:6460
+processing image:Foto_22240.jpg| Image title: Plan
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_22240.jpg'|id:6461
+processing image:Foto_20400.jpg| Image title: Porte appartement
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20400.jpg'|id:6462
+processing image:Foto_20542.jpg| Image title: Envrions
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20542.jpg'|id:6463
+processing image:Foto_22250.jpg| Image title: Système électrique récent
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_22250.jpg'|id:6464
+processing image:Foto_22242.jpg| Image title: Chauffage 2012
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_22242.jpg'|id:6465
+processing image:Foto_20544.jpg| Image title: Passeport énergétique
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6458 AND filename = 'Foto_20544.jpg'|id:6466
+processing image:http://youtu.be/8vVjqG9hgio| Image title: 
+processing image:https://www.dropbox.com/sh/50jmj22f2p3zbbm/AADnuP89JLkCkdtIg4y5Xr7Ea| Image title: Link flat
+processing image:https://www.dropbox.com/sh/vrmcccyjyltauhp/AACFrSgZW6a2DEV_rZNnDIXJa| Image title: Link building
+adenimmoeb4allcz_IMMONET_20140515111758.zip|ok|2
+end|29. 05. 2014 14:09:38
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:40:13|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140513170817.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140513170817.zip
+    [dir] => fre
+)
+
+======================================================================
+uid:BO-BO-06-24
+adenimmoeb4allcz_IMMONET_20140513170817.zip|ok|0
+end|29. 05. 2014 14:40:13
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:40:24|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111437.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111437.zip
+    [dir] => fre
+)
+
+======================================================================
+uid:BO-GU-28-3
+adenimmoeb4allcz_IMMONET_20140515111437.zip|ok|14
+end|29. 05. 2014 14:40:38
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:40:43|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111520.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111520.zip
+    [dir] => fre
+)
+
+======================================================================
+uid:BO-GU-28-5
+adenimmoeb4allcz_IMMONET_20140515111520.zip|ok|14
+end|29. 05. 2014 14:40:57
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:41:02|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111557.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111557.zip
+    [dir] => fre
+)
+
+======================================================================
+uid:BO-GU-28-6
+adenimmoeb4allcz_IMMONET_20140515111557.zip|ok|12
+end|29. 05. 2014 14:41:14
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:41:20|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111640.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111640.zip
+    [dir] => fre
+)
+
+======================================================================
+uid:BO-SO-12-16
+adenimmoeb4allcz_IMMONET_20140515111640.zip|ok|8
+end|29. 05. 2014 14:41:28
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:41:33|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111726.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111726.zip
+    [dir] => fre
+)
+
+======================================================================
+uid:BO-SO-12-21
+adenimmoeb4allcz_IMMONET_20140515111726.zip|ok|13
+end|29. 05. 2014 14:41:46
+------------------------------------------------------------------------------
+begin|29. 05. 2014 14:41:52|Processing POST| dir:fre | filename: adenimmoeb4allcz_IMMONET_20140515111758.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111758.zip
+    [dir] => fre
+)
+
+======================================================================
+uid:BO-SO-12-24
+adenimmoeb4allcz_IMMONET_20140515111758.zip|ok|9
+end|29. 05. 2014 14:42:01

@@ -15,7 +15,7 @@
 
             var filename = element.text();
             var dir = element.attr('data-dir');
-            //var url = ajaxurl + '?action=backend_parse_xml&file=' + filename + '&dir=' + dir;
+            
             var url = ajaxurl;
             
             var data = {
@@ -28,7 +28,7 @@
                 type: 'POST',
                 url: url,
                 data: data,
-                timeout: 300000, 
+                //timeout: 300000, 
                 beforeSend: function(xhr) {
                     jQuery('#parse-xml').attr('disabled', 'disabled');
                     jQuery('#parse-state').append('<div id="processing"><p><strong>Processing: </strong>' + dir + '/' + filename + '</p><img src="<?php echo $this->plugin_url ?>assets/img/712.gif"></div>');
@@ -36,6 +36,9 @@
             }).done(function(response) {
                 if ('ok' == response) {
                     element.closest('tr').remove();
+                } if('double'){
+                    element.closest('tr').remove();
+                    //element.css('color', 'orange');
                 } else {
                     jQuery('#error-list').append('<div class="error below-h2"><p>Error: import <strong>' + filename + '</strong></p></div>');
                 }
@@ -48,7 +51,9 @@
                 jQuery('#parse-xml').removeAttr('disabled');
                 jQuery('#parse-state').html('');
 
-                //setTimeout(load_xml(++index), 1000);
+                load_xml(++index);
+
+                //setTimeout(load_xml(++index), 3000);
                 
             });
             
@@ -65,12 +70,17 @@
 
             /*
             jQuery('.source-xml').each(function(i) {
-                element_array.push(jQuery(this));
+                sorted_elements.push(jQuery(this));
             });*/
 
+
             // zjistim kolik je nejvic souboru v nekterym z adresaru
-            var max_files = 0; 
-            var directories = []; 
+            var max_files = 0;
+
+            var directories = [];
+            
+            sorted_elements = [];
+
             jQuery('.directory-table').each(function(i) {
 
                 var rows = jQuery(this).find('.source-xml'); 
@@ -84,8 +94,12 @@
                 jQuery(directories).each(function(j) {
                     sorted_elements.push(directories[j][i]);
                 });
-            }             
-            sorted_elements = jQuery.grep(sorted_elements,function(n){ return(n) }); 
+            }            
+            
+            sorted_elements = jQuery.grep(sorted_elements,function(n){ return(n) });
+           
+           //console.log(sorted_elements);
+           
             //console.log(sorted_elements);            
             load_xml(0); 
             return false;

@@ -85,10 +85,8 @@ class EstateProgram_Admin {
          * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
          */
         add_action('@TODO', array($this, 'action_method_name'));
-        add_filter('@TODO', array($this, 'filter_method_name'));
-        
-        //add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml'));
-        //add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
+        add_filter('@TODO', array($this, 'filter_method_name'));       
+
     }
     
    
@@ -151,6 +149,9 @@ class EstateProgram_Admin {
                 case 'flat':
                     $sql = "DELETE FROM apartment2program WHERE apartment_id = " . (int) $post_id;
                     $wpdb->query($sql);
+                    
+                    $sql = "DELETE FROM images2post WHERE apartment_id = " . (int) $post_id;
+                    $wpdb->query($sql);                    
                     break;
                 case 'program':
                     $sql = "DELETE FROM apartment2program WHERE program_id = " . (int) $post_id;

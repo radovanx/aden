@@ -97,13 +97,14 @@ class pdfgenerator {
         $public_query_vars[] = 'action';
         $public_query_vars[] = 'product_id';
         $public_query_vars[] = 'product_type';
+        $public_query_vars[] = 'language';
         return $public_query_vars;
     }
 
     function do_rewrite() {
-        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]', 'top');
-        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]', 'top');
-        add_rewrite_rule("reservation-document/([^/]+)/?$", 'index.php?action=reservation-pdf&product_id=$matches[1]', 'top');
+        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
+        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
+        add_rewrite_rule("reservation-document/([^/]+)/([^/]+)/?$", 'index.php?action=reservation-pdf&product_id=$matches[1]&language=$matches[2]', 'top');
     }
 
     public function parse_request(&$wp) {
@@ -111,69 +112,79 @@ class pdfgenerator {
         $q = $wp->query_vars;
         $lang = qtrans_getLanguage();
 
+
+
         // rezervacni form
         if (isset($q['action']) && 'reservation-pdf' == $q['action']) {
             if (!empty($q['product_id'])) {
+
+                if (!empty($q['language'])) {
+                    $lang = $q['language'];
+                }
 
                 $product = get_post($q['product_id']);
                 $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
 
                 require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
 
-                
-                  $mpdf = new mPDF();
 
-                  $header_file = plugin_dir_path(__FILE__) . 'pdf' . DIRECTORY_SEPARATOR . 'header.php';
-                  ob_start();
-                  include $header_file;
-                  $header = ob_get_contents();
-                  ob_end_clean();
-
-
-
-                  $mpdf->SetHTMLHeader($header);
-
-                  $mpdf->SetImportUse();
-
-                  $dir = plugin_dir_path(__FILE__);
-
-                  $pdf_file = $dir . 'pdf' . DIRECTORY_SEPARATOR . 'reservation-form-' . $lang . '.pdf';
-
-                  $pagecount = $mpdf->SetSourceFile($pdf_file);
-
-                  for ($i = 1; $i <= $pagecount; $i++) {
-                  $mpdf->AddPage();
-                  $tpl = $mpdf->ImportPage($i);
-                  //$mpdf->SetHTMLHeader('');
-                  $mpdf->UseTemplate($tpl, '', '', 210, 297);
-                  }
-                 
-/*
                 $mpdf = new mPDF();
 
-                $mpdf->useActiveForms = true;
-                $mpdf->formUseZapD = false;
-                $mpdf->formSubmitNoValueFields = true;
-
+                $header_file = plugin_dir_path(__FILE__) . 'pdf' . DIRECTORY_SEPARATOR . 'header.php';
                 ob_start();
-                require_once plugin_dir_path(__FILE__) . "pdf/reservation-form-" . $lang . ".php";
-                $html = ob_get_contents();
+                include $header_file;
+                $header = ob_get_contents();
                 ob_end_clean();
 
-                $mpdf->WriteHTML($html);*/
+
+
+                $mpdf->SetHTMLHeader($header);
+
+                $mpdf->SetImportUse();
+
+                $dir = plugin_dir_path(__FILE__);
+
+                $pdf_file = $dir . 'pdf' . DIRECTORY_SEPARATOR . 'reservation-form-' . $lang . '.pdf';
+
+                $pagecount = $mpdf->SetSourceFile($pdf_file);
+
+                for ($i = 1; $i <= $pagecount; $i++) {
+                    $mpdf->AddPage();
+                    $tpl = $mpdf->ImportPage($i);
+                    //$mpdf->SetHTMLHeader('');
+                    $mpdf->UseTemplate($tpl, '', '', 210, 297);
+                }
+
+                /*
+                  $mpdf = new mPDF();
+
+                  $mpdf->useActiveForms = true;
+                  $mpdf->formUseZapD = false;
+                  $mpdf->formSubmitNoValueFields = true;
+
+                  ob_start();
+                  require_once plugin_dir_path(__FILE__) . "pdf/reservation-form-" . $lang . ".php";
+                  $html = ob_get_contents();
+                  ob_end_clean();
+
+                  $mpdf->WriteHTML($html); */
 
                 if (empty($props['verwaltung_techn|objektnr_extern'])) {
                     $filename = 'reservation-' . get_the_title($product_id);
                 } else {
                     $filename = 'reservation-' . $props['verwaltung_techn|objektnr_extern'];
                 }
-                
+
                 $mpdf->Output($filename, 'D');
             }
         }
 
         // pdf prezentace produktu
         if (isset($q['action']) && 'generate-pdf' == $q['action']) {
+
+            if (!empty($q['language'])) {
+                $lang = $q['language'];
+            }
 
             /*
               $mpdf = new mPDF(
@@ -199,7 +210,7 @@ class pdfgenerator {
 
                             $props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
 
-                            $mpdf = $this->create_html2pdf($product, $props);
+                            $mpdf = $this->create_html2pdf($product, $props, $lang);
 
                             if (empty($props['verwaltung_techn|objektnr_extern'])) {
                                 $filename = get_the_title($product_id);
@@ -281,7 +292,7 @@ class pdfgenerator {
         }
     }
 
-    public function create_html2pdf($product, $props) {
+    public function create_html2pdf($product, $props, $lang) {
 
         require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
 
