@@ -11,19 +11,25 @@ class EstateProgramAjax {
 
     public function __construct() {
         add_action('wp_ajax_add_to_preference', array(&$this, 'add_to_preference'));
+        
         add_action('wp_ajax_nopriv_add_to_preference', array(&$this, 'add_to_preference')); 
+        
         add_action('wp_ajax_get_district', array(&$this, 'get_district'));
+        
         add_action('wp_ajax_nopriv_get_district', array(&$this, 'get_district')); 
+         
         add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml')); 
-//add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
+ 
     } 
     /**
      * 
      */
-    public function backend_parse_xml() { 
+    public function backend_parse_xml() {  
         require_once 'class-sourceimport.php'; 
+         
         $dir = trim($_POST['dir']);
         $filename = trim($_POST['file']); 
+         
         try {
             SourceImport::processBackendParseXml($filename, $dir);
             die('ok');

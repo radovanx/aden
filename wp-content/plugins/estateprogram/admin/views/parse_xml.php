@@ -48,7 +48,7 @@
                 jQuery('#parse-xml').removeAttr('disabled');
                 jQuery('#parse-state').html('');
 
-                setTimeout(load_xml(++index), 1000);
+                //setTimeout(load_xml(++index), 1000);
                 
             });
             
@@ -69,49 +69,38 @@
             });*/
 
             // zjistim kolik je nejvic souboru v nekterym z adresaru
-            var max_files = 0;
-
-            var directories = [];
-
+            var max_files = 0; 
+            var directories = []; 
             jQuery('.directory-table').each(function(i) {
 
-                var rows = jQuery(this).find('.source-xml');
-
+                var rows = jQuery(this).find('.source-xml'); 
                 if (max_files < rows.length) {
                     max_files = rows.length;
                 }
                 directories.push(rows);
             });
-
-
-
+ 
             for (i = 0; i < max_files; i++) {
                 jQuery(directories).each(function(j) {
                     sorted_elements.push(directories[j][i]);
                 });
             }            
             
-            sorted_elements = jQuery.grep(sorted_elements,function(n){ return(n) });
-            
+            sorted_elements = jQuery.grep(sorted_elements,function(n){ return(n) }); 
             //console.log(sorted_elements);            
             load_xml(0);
+            
             return false;
         });
 
     });
 </script>
 <div class="wrap">
-    <div id="poststuff">
-
-        <button type="button" id="parse-xml" class="parse-button button button-primary "><?php _e('Parse XML') ?></button>
-
-        <div id="parse-state"></div>
-
-        <div class="clearfix"></div>
-
-        <div id="error-list"></div>
-
-
+    <div id="poststuff"> 
+        <button type="button" id="parse-xml" class="parse-button button button-primary "><?php _e('Parse XML') ?></button> 
+        <div id="parse-state"></div> 
+        <div class="clearfix"></div> 
+        <div id="error-list"></div> 
         <?php
         $langs = EstateProgram::$langs;
 
