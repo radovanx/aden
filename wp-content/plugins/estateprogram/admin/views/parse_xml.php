@@ -15,7 +15,7 @@
 
             var filename = element.text();
             var dir = element.attr('data-dir');
-            //var url = ajaxurl + '?action=backend_parse_xml&file=' + filename + '&dir=' + dir;
+            
             var url = ajaxurl;
             
             var data = {
@@ -36,6 +36,9 @@
             }).done(function(response) {
                 if ('ok' == response) {
                     element.closest('tr').remove();
+                } if('double'){
+                    element.closest('tr').remove();
+                    //element.css('color', 'orange');
                 } else {
                     jQuery('#error-list').append('<div class="error below-h2"><p>Error: import <strong>' + filename + '</strong></p></div>');
                 }
@@ -48,9 +51,9 @@
                 jQuery('#parse-xml').removeAttr('disabled');
                 jQuery('#parse-state').html('');
 
-                //load_xml(++index);
+                load_xml(++index);
 
-                setTimeout(load_xml(++index), 3000);
+                //setTimeout(load_xml(++index), 3000);
                 
             });
             
@@ -75,6 +78,8 @@
             var max_files = 0;
 
             var directories = [];
+            
+            sorted_elements = [];
 
             jQuery('.directory-table').each(function(i) {
 
@@ -95,6 +100,8 @@
             }            
             
             sorted_elements = jQuery.grep(sorted_elements,function(n){ return(n) });
+           
+           //console.log(sorted_elements);
            
             //console.log(sorted_elements);            
             load_xml(0);

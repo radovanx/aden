@@ -85,10 +85,8 @@ class EstateProgram_Admin {
          * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
          */
         add_action('@TODO', array($this, 'action_method_name'));
-        add_filter('@TODO', array($this, 'filter_method_name'));
-        
-        //add_action('wp_ajax_backend_parse_xml', array(&$this, 'backend_parse_xml'));
-        //add_action('wp_ajax_nopriv_backend_parse_xml', array(&$this, 'backend_parse_xml'));
+        add_filter('@TODO', array($this, 'filter_method_name'));       
+
     }
     
    
