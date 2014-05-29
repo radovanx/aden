@@ -84,15 +84,12 @@
                 jQuery(directories).each(function(j) {
                     sorted_elements.push(directories[j][i]);
                 });
-            }            
-            
+            }             
             sorted_elements = jQuery.grep(sorted_elements,function(n){ return(n) }); 
             //console.log(sorted_elements);            
-            load_xml(0);
-            
+            load_xml(0); 
             return false;
-        });
-
+        }); 
     });
 </script>
 <div class="wrap">
