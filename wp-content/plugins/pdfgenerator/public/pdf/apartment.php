@@ -167,6 +167,7 @@
 
 
         <?php
+        //$lang = qtrans_getLanguage();
         $current_user = wp_get_current_user();
         ?>
         <div id="wrapper">
@@ -236,7 +237,7 @@
                 </tr>
             </table>
 
-            <div class="red-label text-center small-block"><?php echo get_the_title($product->ID) ?></div>
+            <div class="red-label text-center small-block"><?php echo qtrans_use($lang, $product->post_title); ?></div>
 
             <!-- featrues -->
             <h2 class="small-label border-left"><?php _e('Features', $this->plugin_slug) ?></h2>
@@ -297,17 +298,17 @@
             $post_thumbnail_id = get_post_thumbnail_id($product->ID);
 
             if (!empty($post_thumbnail_id)) {
-                $first_images[$post_thumbnail_id] = $post_thumbnail_id;
+                $first_images[$post_thumbnail_id] = get_post($post_thumbnail_id);
             }
 
             if (!empty($images)) {
                 $img = array_pop($images);
-                $first_images[$img->ID] = $img->ID;
+                $first_images[$img->ID] = $img;
             }
 
             if (count($first_images) < 3) {
                 $img = array_pop($images);
-                $first_images[$img->ID] = $img->ID;
+                $first_images[$img->ID] = $img;
             }
 
             if (!empty($first_images)):
@@ -327,8 +328,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 90mm;" class="vbottom img-title">
-                                                <?php echo get_the_title($attachment_id) ?>
+                                            <td style="width: 90mm;" class="vbottom img-title">                                                
+                                                <?php echo qtrans_use($lang, $attachment->post_title); ?>
                                             </td>
                                         </tr>
                                     </table>
@@ -382,7 +383,9 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 90mm;" class="vbottom img-title">
-                                                <?php echo get_the_title($attachment_id) ?>
+                                                <?php 
+                                                echo qtrans_use($lang, $attachment->post_title); 
+                                                ?>
                                             </td>
                                         </tr>
                                     </table>

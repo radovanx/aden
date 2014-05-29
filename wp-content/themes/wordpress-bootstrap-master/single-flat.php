@@ -117,8 +117,8 @@ get_header();
                                     <strong class="red pull-right"><?php echo (int) $props['flaechen|anzahl_zimmer'] ?></strong>
                                 </span>
                                 <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a> 
-                                <a href="/generate-pdf/product/<?php echo $post->ID ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
-                                <a href="/reservation-document/<?php echo $post->ID ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a> 
+                                <a href="/generate-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
+                                <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a> 
                                 <?php if (!empty($props['dropbox|building'])): ?>
                                     <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
                                 <?php endif; ?>
@@ -498,7 +498,8 @@ get_header();
                 'id': <?php echo $post->ID ?>,
                 'receiver_email': jQuery('#receiver_email').val(),
                 'receiver_message': jQuery('#receiver_message').val(),
-                'action': 'recommend_product'
+                'action': 'recommend_product',                
+                'lang': '<?php echo $lang ?>',
             };
             jQuery.ajax({
                 type: 'POST',
