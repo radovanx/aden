@@ -36,8 +36,7 @@ get_header();
     <div class="row clearfix">
         <div class="col-md-12 column">         
             <form role="form" class="border background clearfix searchform col-md-12">
-                <div class="col-md-6 column">
- 
+                <div class="col-md-6 column"> 
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
@@ -48,8 +47,7 @@ get_header();
                     </div>
                     <div class="form-group">
                         <label for="References"><?php _e("References:", "wpbootstrap"); ?></label><input name="References" class="form-control input-lg" id="References" type="text" placeholder="References:" />
-                    </div>
- 
+                    </div> 
                  <div class="form-group"> 
                         <label for="City"><?php _e("City:", "wpbootstrap"); ?></label>
                         <div class="row"> 
@@ -236,8 +234,7 @@ get_header();
                                     if($rental_status == 1)
                                     { $rental_status = 'rented'; } 
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";                   
-                                    
+                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";                                                    
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:" . $flat_num . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                                      
                                     if ($i < 10):
@@ -276,8 +273,7 @@ get_header();
                                             <td>
                                                 <?php echo price_format($pricem) ?> &euro;
                                             </td>
-                                            <td>   
-                                                    
+                                            <td>           
                                             </td>
                                             <td>
                                                 <?php echo $status; ?>
@@ -405,11 +401,9 @@ get_header();
         var fpricef = values.Pricef;
         var fpricet = values.Pricet;               
         var fpricef = fpricef.replace(/\s+/g, '');
-        var fpricet = fpricet.replace(/\s+/g, '');
-         
+        var fpricet = fpricet.replace(/\s+/g, ''); 
         //make a filter  
-        var finalfilter = false;
-        
+        var finalfilter = false;         
         if (fcity != '')
         { 
                 var i =0; 
@@ -520,8 +514,7 @@ get_header();
         }
         else if (fpricef != '' || fpricet != '')
         {
-            var price_range_filter = PourOver.makeRangeFilter("price_range", [[fpricef, fpricet]], {attr: "price"});
-
+            var price_range_filter = PourOver.makeRangeFilter("price_range", [[fpricef, fpricet]], {attr: "price"}); 
             collection.addFilters([price_range_filter]);
             // var price_range_f = collection.filters.price_range.getFn([fpricef,fpricet]); 
             if (finalfilter != false)
@@ -624,4 +617,4 @@ jQuery(document).ready(function(n){n(".searchbutton").fadeIn("fast",function(){}
 <script type="text/javascript">
 jQuery(document).ready(function(n){function i(i){return n("a#inifiniteLoader").show("fast"),n.ajax({url:"<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",type:"POST",data:"action=infinite_scroll&page_no="+i+"&loop_file=loop",success:function(i){n("a#inifiniteLoader").hide("1000"),n("#content").append(i)}}),!1}var o=2;n(window).scroll(function(){n(window).scrollTop()==n(document).height()-n(window).height()&&(i(o),o++)})});
 </script>
-<?php get_footer(); ?>
+<?php get_footer(); ?> 
