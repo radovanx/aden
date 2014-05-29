@@ -71,8 +71,7 @@ get_header();
                             <!-- /cities from taxonomy -->
                         </div>
                         </div>                
-                    </div>
-                    
+                    </div>                     
                      <div class="form-group"> 
                         <label><?php _e("Disctrict:", "wpbootstrap"); ?></label>
                         <div id="district-list"></div>
@@ -80,9 +79,6 @@ get_header();
                         <!-- district from ajax --> 
                         <!-- /district from ajax -->
                     </div>
-                
-                
-                
                 </div>
                 <div class="col-md-6 column">
                        <div class="form-group">  
@@ -223,23 +219,16 @@ get_header();
                                     $url = get_permalink($val->ID);
                                     $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
                                     $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
-                                    
-                                    
                                     $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
-                                    
-                                    
                                     $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
                                     $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
                                     $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
                                     $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
                                     $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
-                                    
                                     $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;                                    
                                     $pricem = (int)$pricem;
-                                    
                                     $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                     $price = (int)$price;
-        
                                     $idval = (int)$val->ID;  
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : 0;
@@ -247,10 +236,10 @@ get_header();
                                     if($rental_status == 1)
                                     { $rental_status = 'rented'; } 
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";  
-                 
+                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";                   
+                                    
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:" . $flat_num . ", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
-               
+                                     
                                     if ($i < 10):
                                         ?>  
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?> apartment-row-<?php echo $val->ID ?>">
@@ -352,9 +341,7 @@ get_header();
         }
         });
         });
-        
-        
-        
+       
   function format(comma, period) {
   comma = comma || ',';
   period = period || '.';
@@ -366,19 +353,13 @@ get_header();
     numeric = numeric.replace(reg, '$1' + comma + '$2');
   }
   return numeric + decimal;
-  }
-  
+  } 
     jQuery('#Pricef').live('keyup', function(){
     jQuery(this).val(format.call(jQuery(this).val().split(' ').join(''),' ','.'));
-    });
-   
+    }); 
     jQuery('#Pricet').live('keyup', function(){
     jQuery(this).val(format.call(jQuery(this).val().split(' ').join(''),' ','.'));
-    });
-    
-    
-        
-        
+    }); 
 </script> 
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
@@ -623,7 +604,6 @@ get_header();
         else
         {
  
-    
             jQuery("#table_data_filter").empty(); 
             jQuery("#list").empty();
             jQuery.each(myfilterfinal, function(i, val) { 
@@ -639,34 +619,9 @@ get_header();
         });   
 </script>    
 <script>   
-    jQuery(document).ready(function($) { 
-        $( ".searchbutton" ).fadeIn( "fast", function() { 
-        });
-    });       
+jQuery(document).ready(function(n){n(".searchbutton").fadeIn("fast",function(){})});      
 </script> 
 <script type="text/javascript">
-    //strankovani
-    jQuery(document).ready(function($) {
-        var count = 2;
-        $(window).scroll(function() {
-            if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                loadArticle(count);
-                count++;
-            }
-        });
-        function loadArticle(pageNumber) {
-            $('a#inifiniteLoader').show('fast');
-            $.ajax({
-                url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
-                type: 'POST',
-                data: "action=infinite_scroll&page_no=" + pageNumber + '&loop_file=loop',
-                success: function(html) {
-                    $('a#inifiniteLoader').hide('1000');
-                    $("#content").append(html);    // This will be the div where our content will be loaded
-                }
-            });
-        return false;
-        }
-    });
+jQuery(document).ready(function(n){function i(i){return n("a#inifiniteLoader").show("fast"),n.ajax({url:"<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",type:"POST",data:"action=infinite_scroll&page_no="+i+"&loop_file=loop",success:function(i){n("a#inifiniteLoader").hide("1000"),n("#content").append(i)}}),!1}var o=2;n(window).scroll(function(){n(window).scrollTop()==n(document).height()-n(window).height()&&(i(o),o++)})});
 </script>
 <?php get_footer(); ?>
