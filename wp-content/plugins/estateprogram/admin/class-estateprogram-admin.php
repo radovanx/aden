@@ -151,6 +151,9 @@ class EstateProgram_Admin {
                 case 'flat':
                     $sql = "DELETE FROM apartment2program WHERE apartment_id = " . (int) $post_id;
                     $wpdb->query($sql);
+                    
+                    $sql = "DELETE FROM images2post WHERE apartment_id = " . (int) $post_id;
+                    $wpdb->query($sql);                    
                     break;
                 case 'program':
                     $sql = "DELETE FROM apartment2program WHERE program_id = " . (int) $post_id;

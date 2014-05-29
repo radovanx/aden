@@ -1,6 +1,28 @@
 <?php
 
 class SourceImport {
+    
+    protected  $file;
+    protected $fp;
+
+
+    public function __construct() {    
+        $file = ABSPATH . 'lock.txt';
+        
+        $this->fp = fopen( $file,"w"); // open it for WRITING ("w")
+        
+        if (flock($this->fp, LOCK_EX)) {
+            
+        } else {
+            die('already running');            
+        }       
+    }
+    
+    public function __destruct(){        
+        flock($this->fp, LOCK_UN);
+        //echo 'hello';
+        fclose($this->fp);
+    }
 
     /**
      *
@@ -54,7 +76,13 @@ class SourceImport {
      * @param type $lang_dir
      * @throws Exception
      */
-    public static function processBackendParseXml($zip_file, $lang_dir) {
+    public function processBackendParseXml($zip_file, $lang_dir) {
+
+        
+        $str = 'call processBackendParseXml: zip_file: ' . $zip_file  . ' | lang_dir: ' . $lang_dir . "\n";        
+        file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);
+        
+        //sleep(10);
 
         $lang = EstateProgram::$langs[$lang_dir];
 
@@ -151,6 +179,11 @@ class SourceImport {
     public static function parse_xml($xml_file, $temp_dir, $lang) {
         global $wpdb;
 
+        //EstateProgramAjax::$log_file = ABSPATH . $dir . DIRECTORY_SEPARATOR . 'import_log';
+        $str = 'call parse_xml: xml_file: ' . $xml_file  . ' | temp_dir: ' . $temp_dir . ' | lang: ' . $lang . "\n";        
+        file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);  
+        
+        
         $xml = simplexml_load_file($xml_file);
 
         $result = $xml->xpath('/openimmo/anbieter');
@@ -169,6 +202,9 @@ class SourceImport {
         // id inzeratu
         $unique_identificator_node = $xml->xpath('/openimmo/anbieter/immobilie/verwaltung_techn/objektnr_extern');
         $unique_identificator = (string) $unique_identificator_node[0];
+        
+        $str = "uid:" . $unique_identificator . "\n";
+        file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);
 
         //var_dump($unique_identificator);
         // zjistim zdali tento byt je již importován
@@ -291,7 +327,7 @@ class SourceImport {
                     AND pm2.meta_value = %s
                     AND pm4.meta_value = %s
                     AND p.post_type = 'program'
-                ", $street, houseNumber);
+                ", $street, $houseNumber);
 
                 $program_id = $wpdb->get_var($sql);
                 //
@@ -312,7 +348,16 @@ class SourceImport {
                 // zgrabovani obrazků
                 $images = $anbieter->xpath('immobilie/anhaenge/anhang');
 
-                $set_apartment_thumb = true;
+                //$set_apartment_thumb = true;
+
+
+                //$has_apartment_thumbnail = has_post_thumbnail($apartment_id);
+
+                
+                //$images = array_reverse($images);
+                
+                $thumb_id = false;
+                $wp_upload_dir = wp_upload_dir();
                 //
                 foreach ($images as $image) {
                     $file = $image->xpath('daten/pfad');
@@ -355,62 +400,29 @@ class SourceImport {
                       AND pm.meta_value = '" . $image_file . "'");
                      */
 
+                    /*
 
-                    $attach_id = $wpdb->get_var(
-                            $wpdb->prepare("SELECT attach_id FROM images2post WHERE apartment_id = %d AND filename = %s", $apartment_id, $image_file)
-                    );
+                     * 
+                     */
+
+                    $sql = $wpdb->prepare("SELECT attach_id FROM images2post WHERE apartment_id = %d AND filename = %s", $apartment_id, $image_file);
+                    $existing_attach_id = $wpdb->get_var($sql);
+                   // $wpdb->flush();
+
+                    /*
+                      $existing_attach_id = $wpdb->get_var(
+                      "SELECT attach_id FROM images2post WHERE apartment_id = " . (int) $apartment_id . "  AND filename = '" . esc_sql($image_file) . "'"
+                      ); */
+
                     //images2post
 
-                    if (file_exists($image_path) && empty($attach_id)) {
+                    $str = "image:" . esc_attr($image_file) . '|sql:' . $sql . '|id:' . $existing_attach_id . "\n"; 
+                    
+                    file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);
+                    
+                    if (!empty($existing_attach_id)) {
 
-                        $finfo = pathinfo($image_path);
-                        $wp_upload_dir = wp_upload_dir();
-
-                        $new_path = $wp_upload_dir['path'] . '/' . $image_file;
-
-                        if (copy($image_path, $new_path)) {
-
-                            $basename = basename($new_path);
-                            // Check the type of tile. We'll use this as the 'post_mime_type'.
-                            $filetype = wp_check_filetype(basename($new_path), null);
-
-                            //
-                            $attachment = array(
-                                'guid' => $wp_upload_dir['url'] . '/' . $basename,
-                                'post_mime_type' => $filetype['type'],
-                                'post_title' => '<!--:' . $lang . '-->' . $image_title . '<!--:-->',
-                                'post_content' => '',
-                                'post_status' => 'inherit',
-                                'post_excerpt' => $image_title,
-                            );
-
-                            // Insert the attachment.
-                            $attach_id = wp_insert_attachment($attachment, $new_path, $apartment_id);
-                            // Generate the metadata for the attachment, and update the database record.
-                            $attach_data = wp_generate_attachment_metadata($attach_id, $new_path);
-                            wp_update_attachment_metadata($attach_id, $attach_data);
-
-                            //update_post_meta($attach_id, '_wp_attachment_image_alt', $image_title);
-                            //update_post_meta($attach_id, '_original_image_name', $basename);
-                            $sql = "
-                                INSERT INTO images2post (apartment_id, filename, attach_id) VALUES (
-                                    '" . $apartment_id . "',
-                                    '" . $image_file . "',
-                                    '" . $attach_id . "'    
-                                    )
-                            ";
-
-                            $wpdb->query($sql);
-
-                            if ($set_apartment_thumb && !has_post_thumbnail($apartment_id)) {
-                                set_post_thumbnail($apartment_id, $attach_id);
-                            } else {
-                                $set_apartment_thumb = false;
-                            }
-                        }
-                    } else if (!empty($attach_id)) {
-
-                        $existing_image_title = $wpdb->get_var($wpdb->prepare("SELECT post_title FROM wp_posts WHERE ID = %d", $attach_id));
+                        $existing_image_title = $wpdb->get_var($wpdb->prepare("SELECT post_title FROM wp_posts WHERE ID = %d", $existing_attach_id));
                         $pattern = "~<!--:$lang-->(.*)<!--:-->~U";
                         $existing_image_title = preg_replace($pattern, '', $existing_image_title);
 
@@ -419,9 +431,62 @@ class SourceImport {
                             'post_excerpt' => $image_title,
                         );
 
-                        $attachment['ID'] = $attach_id;
+                        $attachment['ID'] = $existing_attach_id;
                         wp_update_post($attachment);
+                    } else {
+
+                        if (file_exists($image_path)) {
+
+                            $finfo = pathinfo($image_path);                            
+
+                            $new_path = $wp_upload_dir['path'] . '/' . $image_file;
+
+                            if (copy($image_path, $new_path)) {
+
+                                //unlink($image_path);
+
+                                $basename = basename($new_path);
+                                // Check the type of tile. We'll use this as the 'post_mime_type'.
+                                $filetype = wp_check_filetype(basename($new_path), null);
+
+                                //
+                                $attachment = array(
+                                    'guid' => $wp_upload_dir['url'] . '/' . $basename,
+                                    'post_mime_type' => $filetype['type'],
+                                    'post_title' => '<!--:' . $lang . '-->' . $image_title . '<!--:-->',
+                                    'post_content' => '',
+                                    'post_status' => 'inherit',
+                                    'post_excerpt' => $image_title,
+                                );
+
+                                // Insert the attachment.
+                                $attach_id = wp_insert_attachment($attachment, $new_path, $apartment_id);
+                                // Generate the metadata for the attachment, and update the database record.
+                                $attach_data = wp_generate_attachment_metadata($attach_id, $new_path);
+                                wp_update_attachment_metadata($attach_id, $attach_data);
+
+                                //update_post_meta($attach_id, '_wp_attachment_image_alt', $image_title);
+                                //update_post_meta($attach_id, '_original_image_name', $basename);
+                                $sql = "
+                                INSERT INTO images2post (apartment_id, filename, attach_id) VALUES (
+                                    " . (int) $apartment_id . ",
+                                    '" . esc_sql($image_file) . "',
+                                    " . (int) $attach_id . "    
+                                    )
+                            ";
+
+                                $wpdb->query($sql);
+
+                                if (false == $thumb_id) {
+                                    $thumb_id = $attach_id;
+                                } 
+                            }
+                        }
                     }
+                }
+                
+                if(false !== $thumb_id){
+                    set_post_thumbnail($apartment_id, $thumb_id);
                 }
 
                 update_post_meta($apartment_id, 'flat_props_' . $lang, $props);
@@ -435,6 +500,9 @@ class SourceImport {
      * @throws Exception
      */
     public static function process_temp_files($temp_dir, $lang) {
+        
+        $str = 'call process_temp_files: temp_dir: ' . $temp_dir  . ' | lang: ' . $dir . "\n";        
+        file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);        
 
         $xml_found = false;
 
@@ -476,10 +544,8 @@ class SourceImport {
         return $temp_dir;
     }
 
-    public function __destruct() {
-        echo 'destruct';
-    }
-
 }
+
+
 
 ?>

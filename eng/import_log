@@ -1,0 +1,403 @@
+begin|29. 05. 2014 00:13:15Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140513170823.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140513170823.zip | lang_dir: eng
+call process_temp_files: temp_dir: /homez.343/immoneda/www/eng/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/eng/temp/adenimmoeb4allcz_IMMONET_20140513170823.xml | temp_dir: /homez.343/immoneda/www/eng/temp | lang: en
+uid:BO-BO-06-24
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20552.jpg'|id:
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20386.jpg'|id:
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_22240.jpg'|id:
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20400.jpg'|id:
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20542.jpg'|id:
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_22250.jpg'|id:
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_22242.jpg'|id:
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20544.jpg'|id:
+adenimmoeb4allcz_IMMONET_20140513170823.zip|ok|8
+end|29. 05. 2014 00:13:23
+begin|29. 05. 2014 00:13:36Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111525.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111525.zip | lang_dir: eng
+call process_temp_files: temp_dir: /homez.343/immoneda/www/eng/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/eng/temp/adenimmoeb4allcz_IMMONET_20140515111525.xml | temp_dir: /homez.343/immoneda/www/eng/temp | lang: en
+uid:BO-GU-28-5
+image:Foto_23760.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'Foto_23760.jpg'|id:8946
+image:Foto_13593.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'Foto_13593.jpg'|id:8947
+image:Foto_19070.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'Foto_19070.jpg'|id:8948
+image:Foto_23762.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'Foto_23762.jpg'|id:8949
+image:Foto_19072.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'Foto_19072.jpg'|id:8950
+image:Foto_19074.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'Foto_19074.jpg'|id:8951
+image:Foto_13581.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'Foto_13581.jpg'|id:8952
+image:Foto_19078.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'Foto_19078.jpg'|id:8953
+image:Foto_16188.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'Foto_16188.jpg'|id:8955
+image:https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa'|id:
+image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8945 AND filename = 'https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa'|id:
+adenimmoeb4allcz_IMMONET_20140515111525.zip|ok|0
+end|29. 05. 2014 00:13:36
+begin|29. 05. 2014 00:13:50Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111603.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111603.zip | lang_dir: eng
+call process_temp_files: temp_dir: /homez.343/immoneda/www/eng/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/eng/temp/adenimmoeb4allcz_IMMONET_20140515111603.xml | temp_dir: /homez.343/immoneda/www/eng/temp | lang: en
+uid:BO-GU-28-6
+image:Foto_16486.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'Foto_16486.jpg'|id:
+image:Foto_13595.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'Foto_13595.jpg'|id:
+image:Foto_19060.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'Foto_19060.jpg'|id:
+image:Foto_16484.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'Foto_16484.jpg'|id:
+image:Foto_13599.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'Foto_13599.jpg'|id:
+image:Foto_16488.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'Foto_16488.jpg'|id:
+image:Foto_16494.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'Foto_16494.jpg'|id:
+image:Foto_16496.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'Foto_16496.jpg'|id:
+image:Foto_16492.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'Foto_16492.jpg'|id:
+image:https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca'|id:
+image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8967 AND filename = 'https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa'|id:
+adenimmoeb4allcz_IMMONET_20140515111603.zip|ok|8
+end|29. 05. 2014 00:13:58
+begin|29. 05. 2014 00:13:59Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140514174726.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140514174726.zip | lang_dir: eng
+call process_temp_files: temp_dir: /homez.343/immoneda/www/eng/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/eng/temp/adenimmoeb4allcz_IMMONET_20140514174726.xml | temp_dir: /homez.343/immoneda/www/eng/temp | lang: en
+uid:BO-BO-06-24
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20552.jpg'|id:8937
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20386.jpg'|id:8938
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_22240.jpg'|id:8939
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20400.jpg'|id:8940
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20542.jpg'|id:8941
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_22250.jpg'|id:8942
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_22242.jpg'|id:8943
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8936 AND filename = 'Foto_20544.jpg'|id:8944
+adenimmoeb4allcz_IMMONET_20140514174726.zip|ok|1
+end|29. 05. 2014 00:14:00
+begin|29. 05. 2014 00:14:08Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111731.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111731.zip | lang_dir: eng
+call process_temp_files: temp_dir: /homez.343/immoneda/www/eng/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/eng/temp/adenimmoeb4allcz_IMMONET_20140515111731.xml | temp_dir: /homez.343/immoneda/www/eng/temp | lang: en
+uid:BO-SO-12-21
+image:Foto_16408.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_16408.jpg'|id:8926
+image:Foto_16400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_16400.jpg'|id:8927
+image:Foto_16410.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_16410.jpg'|id:8928
+image:Foto_28106.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_28106.jpg'|id:8929
+image:Foto_16394.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_16394.jpg'|id:8930
+image:Foto_16398.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_16398.jpg'|id:8931
+image:Foto_16378.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_16378.jpg'|id:8932
+image:Foto_16404.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_16404.jpg'|id:8933
+image:Foto_16402.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_16402.jpg'|id:8934
+image:Foto_16392.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'Foto_16392.jpg'|id:8935
+image:https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8925 AND filename = 'https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa'|id:
+adenimmoeb4allcz_IMMONET_20140515111731.zip|ok|5
+end|29. 05. 2014 00:14:13
+begin|29. 05. 2014 00:14:22Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111804.zip | lang_dir: eng
+call process_temp_files: temp_dir: /homez.343/immoneda/www/eng/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/eng/temp/adenimmoeb4allcz_IMMONET_20140515111804.xml | temp_dir: /homez.343/immoneda/www/eng/temp | lang: en
+uid:BO-SO-12-24
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8985 AND filename = 'Foto_20552.jpg'|id:8986
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8985 AND filename = 'Foto_20386.jpg'|id:8987
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8985 AND filename = 'Foto_22240.jpg'|id:8988
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8985 AND filename = 'Foto_20400.jpg'|id:8989
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8985 AND filename = 'Foto_20542.jpg'|id:8990
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8985 AND filename = 'Foto_22250.jpg'|id:8991
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8985 AND filename = 'Foto_22242.jpg'|id:8992
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8985 AND filename = 'Foto_20544.jpg'|id:8993
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|0
+end|29. 05. 2014 00:14:22
+begin|29. 05. 2014 00:14:23Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111444.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111444.zip | lang_dir: eng
+call process_temp_files: temp_dir: /homez.343/immoneda/www/eng/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/eng/temp/adenimmoeb4allcz_IMMONET_20140515111444.xml | temp_dir: /homez.343/immoneda/www/eng/temp | lang: en
+uid:BO-GU-28-3
+image:Foto_25898.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8956 AND filename = 'Foto_25898.jpg'|id:8957
+image:Foto_21522.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8956 AND filename = 'Foto_21522.jpg'|id:8958
+image:Foto_19460.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8956 AND filename = 'Foto_19460.jpg'|id:8959
+image:Foto_21520.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8956 AND filename = 'Foto_21520.jpg'|id:8960
+image:Foto_25900.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8956 AND filename = 'Foto_25900.jpg'|id:8961
+image:Foto_15284.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8956 AND filename = 'Foto_15284.jpg'|id:8962
+image:Foto_13687.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8956 AND filename = 'Foto_13687.jpg'|id:8963
+image:Foto_15288.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8956 AND filename = 'Foto_15288.jpg'|id:8965
+image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8956 AND filename = 'https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa'|id:
+adenimmoeb4allcz_IMMONET_20140515111444.zip|ok|1
+end|29. 05. 2014 00:14:24
+begin|29. 05. 2014 00:14:24Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111653.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111653.zip | lang_dir: eng
+call process_temp_files: temp_dir: /homez.343/immoneda/www/eng/temp | lang: 
+call parse_xml: xml_file: /homez.343/immoneda/www/eng/temp/adenimmoeb4allcz_IMMONET_20140515111653.xml | temp_dir: /homez.343/immoneda/www/eng/temp | lang: en
+uid:BO-SO-12-16
+image:Foto_20882.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8977 AND filename = 'Foto_20882.jpg'|id:8978
+image:Foto_20880.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8977 AND filename = 'Foto_20880.jpg'|id:8979
+image:Foto_20878.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8977 AND filename = 'Foto_20878.jpg'|id:8980
+image:Foto_20876.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8977 AND filename = 'Foto_20876.jpg'|id:8981
+image:Foto_20908.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8977 AND filename = 'Foto_20908.jpg'|id:8982
+image:Foto_20910.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8977 AND filename = 'Foto_20910.jpg'|id:8983
+image:Foto_28128.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8977 AND filename = 'Foto_28128.jpg'|id:8984
+image:https://www.dropbox.com/sh/friecjldkurohpk/AABCeeMyCisrYbSpV08rsFVNa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 8977 AND filename = 'https://www.dropbox.com/sh/friecjldkurohpk/AABCeeMyCisrYbSpV08rsFVNa'|id:
+adenimmoeb4allcz_IMMONET_20140515111653.zip|ok|0
+end|29. 05. 2014 00:14:24
+begin|29. 05. 2014 00:54:00Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140513170823.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140513170823.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140513170823.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-BO-06-24
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20552.jpg'|id:6270
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20386.jpg'|id:6271
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22240.jpg'|id:6272
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20400.jpg'|id:6273
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20542.jpg'|id:6274
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22250.jpg'|id:6275
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22242.jpg'|id:6276
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20544.jpg'|id:6277
+adenimmoeb4allcz_IMMONET_20140513170823.zip|ok|3
+end|29. 05. 2014 00:54:03
+begin|29. 05. 2014 00:54:18Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140514174726.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140514174726.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140514174726.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-BO-06-24
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20552.jpg'|id:6270
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20386.jpg'|id:6271
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22240.jpg'|id:6272
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20400.jpg'|id:6273
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20542.jpg'|id:6274
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22250.jpg'|id:6275
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22242.jpg'|id:6276
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20544.jpg'|id:6277
+adenimmoeb4allcz_IMMONET_20140514174726.zip|ok|2
+end|29. 05. 2014 00:54:20
+begin|29. 05. 2014 00:54:25Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111444.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111444.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111444.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-GU-28-3
+image:Foto_25898.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_25898.jpg'|id:6279
+image:Foto_21522.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_21522.jpg'|id:6280
+image:Foto_19460.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_19460.jpg'|id:6281
+image:Foto_21520.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_21520.jpg'|id:6282
+image:Foto_25900.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_25900.jpg'|id:6283
+image:Foto_15284.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_15284.jpg'|id:6284
+image:Foto_13687.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_13687.jpg'|id:6285
+image:Foto_15288.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_15288.jpg'|id:6286
+image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa'|id:
+adenimmoeb4allcz_IMMONET_20140515111444.zip|ok|1
+end|29. 05. 2014 00:54:26
+begin|29. 05. 2014 00:54:31Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111525.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111525.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111525.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-GU-28-5
+image:Foto_23760.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_23760.jpg'|id:6288
+image:Foto_13593.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_13593.jpg'|id:6289
+image:Foto_19070.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_19070.jpg'|id:6290
+image:Foto_23762.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_23762.jpg'|id:6291
+image:Foto_19072.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_19072.jpg'|id:6292
+image:Foto_19074.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_19074.jpg'|id:6293
+image:Foto_13581.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_13581.jpg'|id:6294
+image:Foto_19078.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_19078.jpg'|id:6295
+image:Foto_16188.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_16188.jpg'|id:6296
+image:https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa'|id:
+image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa'|id:
+adenimmoeb4allcz_IMMONET_20140515111525.zip|ok|1
+end|29. 05. 2014 00:54:32
+begin|29. 05. 2014 00:54:37Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111603.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111603.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111603.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-GU-28-6
+image:Foto_16486.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16486.jpg'|id:6298
+image:Foto_13595.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_13595.jpg'|id:6299
+image:Foto_19060.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_19060.jpg'|id:6300
+image:Foto_16484.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16484.jpg'|id:6301
+image:Foto_13599.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_13599.jpg'|id:6302
+image:Foto_16488.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16488.jpg'|id:6303
+image:Foto_16494.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16494.jpg'|id:6304
+image:Foto_16496.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16496.jpg'|id:6305
+image:Foto_16492.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16492.jpg'|id:6306
+image:https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca'|id:
+image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa'|id:
+adenimmoeb4allcz_IMMONET_20140515111603.zip|ok|2
+end|29. 05. 2014 00:54:39
+begin|29. 05. 2014 00:54:44Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111653.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111653.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111653.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-SO-12-16
+image:Foto_20882.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20882.jpg'|id:6308
+image:Foto_20880.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20880.jpg'|id:6309
+image:Foto_20878.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20878.jpg'|id:6310
+image:Foto_20876.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20876.jpg'|id:6311
+image:Foto_20908.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20908.jpg'|id:6312
+image:Foto_20910.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20910.jpg'|id:6313
+image:Foto_28128.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_28128.jpg'|id:6314
+image:https://www.dropbox.com/sh/friecjldkurohpk/AABCeeMyCisrYbSpV08rsFVNa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'https://www.dropbox.com/sh/friecjldkurohpk/AABCeeMyCisrYbSpV08rsFVNa'|id:
+adenimmoeb4allcz_IMMONET_20140515111653.zip|ok|1
+end|29. 05. 2014 00:54:45
+begin|29. 05. 2014 00:54:50Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111731.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111731.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111731.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-SO-12-21
+image:Foto_16408.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16408.jpg'|id:6316
+image:Foto_16400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16400.jpg'|id:6317
+image:Foto_16410.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16410.jpg'|id:6318
+image:Foto_28106.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_28106.jpg'|id:6319
+image:Foto_16394.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16394.jpg'|id:6320
+image:Foto_16398.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16398.jpg'|id:6321
+image:Foto_16378.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16378.jpg'|id:6322
+image:Foto_16404.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16404.jpg'|id:6323
+image:Foto_16402.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16402.jpg'|id:6324
+image:Foto_16392.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16392.jpg'|id:6325
+image:https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa'|id:
+adenimmoeb4allcz_IMMONET_20140515111731.zip|ok|2
+end|29. 05. 2014 00:54:52
+begin|29. 05. 2014 00:54:53Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111804.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111804.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-SO-12-24
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20552.jpg'|id:6327
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20386.jpg'|id:6328
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_22240.jpg'|id:6329
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20400.jpg'|id:6330
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20542.jpg'|id:6331
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_22250.jpg'|id:6332
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_22242.jpg'|id:6333
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20544.jpg'|id:6334
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|3
+end|29. 05. 2014 00:54:56
+begin|29. 05. 2014 00:56:27Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140513170823.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140513170823.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140513170823.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-BO-06-24
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20552.jpg'|id:6270
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20386.jpg'|id:6271
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22240.jpg'|id:6272
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20400.jpg'|id:6273
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20542.jpg'|id:6274
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22250.jpg'|id:6275
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22242.jpg'|id:6276
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20544.jpg'|id:6277
+adenimmoeb4allcz_IMMONET_20140513170823.zip|ok|13
+end|29. 05. 2014 00:56:40
+begin|29. 05. 2014 00:56:42Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140514174726.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140514174726.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140514174726.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-BO-06-24
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20552.jpg'|id:6270
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20386.jpg'|id:6271
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22240.jpg'|id:6272
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20400.jpg'|id:6273
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20542.jpg'|id:6274
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22250.jpg'|id:6275
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_22242.jpg'|id:6276
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6269 AND filename = 'Foto_20544.jpg'|id:6277
+adenimmoeb4allcz_IMMONET_20140514174726.zip|ok|53
+end|29. 05. 2014 00:57:35
+begin|29. 05. 2014 00:58:07Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111444.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111444.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111444.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-GU-28-3
+image:Foto_25898.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_25898.jpg'|id:6279
+image:Foto_21522.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_21522.jpg'|id:6280
+image:Foto_19460.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_19460.jpg'|id:6281
+image:Foto_21520.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_21520.jpg'|id:6282
+image:Foto_25900.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_25900.jpg'|id:6283
+image:Foto_15284.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_15284.jpg'|id:6284
+image:Foto_13687.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_13687.jpg'|id:6285
+image:Foto_15288.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'Foto_15288.jpg'|id:6286
+image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6278 AND filename = 'https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa'|id:
+adenimmoeb4allcz_IMMONET_20140515111444.zip|ok|8
+end|29. 05. 2014 00:58:15
+begin|29. 05. 2014 00:58:29Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111525.zip
+begin|29. 05. 2014 00:58:37Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111525.zip
+begin|29. 05. 2014 00:58:50Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111525.zip
+begin|29. 05. 2014 00:59:21Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111525.zip
+begin|29. 05. 2014 00:59:22Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111603.zip
+begin|29. 05. 2014 00:59:23Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111653.zip
+begin|29. 05. 2014 00:59:24Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111731.zip
+begin|29. 05. 2014 00:59:25Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+begin|29. 05. 2014 01:00:19Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111525.zip
+begin|29. 05. 2014 01:00:20Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111603.zip
+begin|29. 05. 2014 01:00:21Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111653.zip
+begin|29. 05. 2014 01:00:22Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111731.zip
+begin|29. 05. 2014 01:00:23Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+begin|29. 05. 2014 01:05:00Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111525.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111525.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111525.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-GU-28-5
+image:Foto_23760.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_23760.jpg'|id:6288
+image:Foto_13593.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_13593.jpg'|id:6289
+image:Foto_19070.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_19070.jpg'|id:6290
+image:Foto_23762.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_23762.jpg'|id:6291
+image:Foto_19072.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_19072.jpg'|id:6292
+image:Foto_19074.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_19074.jpg'|id:6293
+image:Foto_13581.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_13581.jpg'|id:6294
+image:Foto_19078.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_19078.jpg'|id:6295
+image:Foto_16188.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'Foto_16188.jpg'|id:6296
+image:https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'https://www.dropbox.com/sh/v3oi1tzrir2um7i/AADrCamu1af8qAGin9qLV9lSa'|id:
+image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6287 AND filename = 'https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa'|id:
+adenimmoeb4allcz_IMMONET_20140515111525.zip|ok|2
+end|29. 05. 2014 01:05:02
+begin|29. 05. 2014 01:05:03Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111603.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111603.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111603.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-GU-28-6
+image:Foto_16486.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16486.jpg'|id:6298
+image:Foto_13595.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_13595.jpg'|id:6299
+image:Foto_19060.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_19060.jpg'|id:6300
+image:Foto_16484.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16484.jpg'|id:6301
+image:Foto_13599.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_13599.jpg'|id:6302
+image:Foto_16488.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16488.jpg'|id:6303
+image:Foto_16494.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16494.jpg'|id:6304
+image:Foto_16496.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16496.jpg'|id:6305
+image:Foto_16492.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'Foto_16492.jpg'|id:6306
+image:https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'https://www.dropbox.com/sh/6w4xfdch0tr4gk2/AABSCrI9mwJKtXfSvlCxGiIca'|id:
+image:https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6297 AND filename = 'https://www.dropbox.com/sh/q04z6dej97j1jgj/AABAKkaxlD_BDLwumYtXksLSa'|id:
+adenimmoeb4allcz_IMMONET_20140515111603.zip|ok|2
+end|29. 05. 2014 01:05:05
+begin|29. 05. 2014 01:05:06Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111653.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111653.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111653.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-SO-12-16
+image:Foto_20882.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20882.jpg'|id:6308
+image:Foto_20880.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20880.jpg'|id:6309
+image:Foto_20878.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20878.jpg'|id:6310
+image:Foto_20876.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20876.jpg'|id:6311
+image:Foto_20908.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20908.jpg'|id:6312
+image:Foto_20910.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_20910.jpg'|id:6313
+image:Foto_28128.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'Foto_28128.jpg'|id:6314
+image:https://www.dropbox.com/sh/friecjldkurohpk/AABCeeMyCisrYbSpV08rsFVNa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6307 AND filename = 'https://www.dropbox.com/sh/friecjldkurohpk/AABCeeMyCisrYbSpV08rsFVNa'|id:
+adenimmoeb4allcz_IMMONET_20140515111653.zip|ok|2
+end|29. 05. 2014 01:05:08
+begin|29. 05. 2014 01:05:09Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111731.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111731.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111731.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-SO-12-21
+image:Foto_16408.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16408.jpg'|id:6316
+image:Foto_16400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16400.jpg'|id:6317
+image:Foto_16410.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16410.jpg'|id:6318
+image:Foto_28106.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_28106.jpg'|id:6319
+image:Foto_16394.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16394.jpg'|id:6320
+image:Foto_16398.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16398.jpg'|id:6321
+image:Foto_16378.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16378.jpg'|id:6322
+image:Foto_16404.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16404.jpg'|id:6323
+image:Foto_16402.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16402.jpg'|id:6324
+image:Foto_16392.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'Foto_16392.jpg'|id:6325
+image:https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6315 AND filename = 'https://www.dropbox.com/sh/h0tp0qz09d4eo2a/AAAL-KJ2H5U7OioiTc6bdszZa'|id:
+adenimmoeb4allcz_IMMONET_20140515111731.zip|ok|2
+end|29. 05. 2014 01:05:11
+begin|29. 05. 2014 01:05:12Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+call processBackendParseXml: zip_file: adenimmoeb4allcz_IMMONET_20140515111804.zip | lang_dir: eng
+call process_temp_files: temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: 
+call parse_xml: xml_file: C:\xampp\htdocs\web\aden.localhost/eng\temp/adenimmoeb4allcz_IMMONET_20140515111804.xml | temp_dir: C:\xampp\htdocs\web\aden.localhost/eng\temp | lang: en
+uid:BO-SO-12-24
+image:Foto_20552.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20552.jpg'|id:6327
+image:Foto_20386.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20386.jpg'|id:6328
+image:Foto_22240.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_22240.jpg'|id:6329
+image:Foto_20400.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20400.jpg'|id:6330
+image:Foto_20542.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20542.jpg'|id:6331
+image:Foto_22250.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_22250.jpg'|id:6332
+image:Foto_22242.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_22242.jpg'|id:6333
+image:Foto_20544.jpg|sql:SELECT attach_id FROM images2post WHERE apartment_id = 6326 AND filename = 'Foto_20544.jpg'|id:6334
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|1
+end|29. 05. 2014 01:05:13

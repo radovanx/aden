@@ -48,9 +48,9 @@
                 jQuery('#parse-xml').removeAttr('disabled');
                 jQuery('#parse-state').html('');
 
-                load_xml(++index);
+                //load_xml(++index);
 
-                //setTimeout(load_xml(++index), 1000);
+                setTimeout(load_xml(++index), 3000);
                 
             });
             
@@ -67,8 +67,9 @@
 
             /*
             jQuery('.source-xml').each(function(i) {
-                element_array.push(jQuery(this));
+                sorted_elements.push(jQuery(this));
             });*/
+
 
             // zjistim kolik je nejvic souboru v nekterym z adresaru
             var max_files = 0;
@@ -94,7 +95,7 @@
             }            
             
             sorted_elements = jQuery.grep(sorted_elements,function(n){ return(n) });
-            
+           
             //console.log(sorted_elements);            
             load_xml(0);
             return false;
