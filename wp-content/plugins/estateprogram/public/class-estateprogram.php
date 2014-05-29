@@ -259,14 +259,14 @@ class EstateProgram {
         $this->create_taxonomies();
 
         /*
-        register_post_status('deleted', array(
-            'label' => _x('Deleted', 'estateprogram'),
-            'public' => false,
-            'exclude_from_search' => true,
-            'show_in_admin_all_list' => true,
-            'show_in_admin_status_list' => true,
-            'label_count' => _n_noop('Deleted <span class="count">(%s)</span>', 'Deleted <span class="count">(%s)</span>'),
-        ));*/
+          register_post_status('deleted', array(
+          'label' => _x('Deleted', 'estateprogram'),
+          'public' => false,
+          'exclude_from_search' => true,
+          'show_in_admin_all_list' => true,
+          'show_in_admin_status_list' => true,
+          'label_count' => _n_noop('Deleted <span class="count">(%s)</span>', 'Deleted <span class="count">(%s)</span>'),
+          )); */
     }
 
     /**
@@ -805,7 +805,55 @@ class EstateProgram {
             ";
         }
 
-        return $wpdb->get_results($sql);
+        $result = $wpdb->get_results($sql);
+
+        if (empty($result)) {
+
+            $sql = "
+            SELECT
+                p.ID,
+                m.meta_value as prop,
+                IFNULL(up.flat_id, 0) as is_favorite,
+                p.post_name as slug
+            FROM
+                wp_posts AS p
+            JOIN
+                wp_postmeta as m
+            ON
+                m.post_id = p.ID
+            JOIN
+                apartment2program AS a2p
+            ON
+                a2p.apartment_id = p.ID
+            LEFT JOIN
+                user_preference	AS up
+            ON
+                up.flat_id = p.ID AND up.user_id = " . (int) get_current_user_id() . "
+            LEFT JOIN
+                wp_users AS u
+            ON
+                up.user_id = u.ID
+            WHERE
+                m.meta_key = 'flat_props_en'
+            AND
+                a2p.program_id = '" . (int) $program_id . "'
+            AND
+                p.post_type = 'flat'
+            AND
+                p.post_status = 'publish'
+        ";
+
+            if (!is_null($exclude_apartment_id)) {
+                $sql .= "
+                AND
+                    p.ID != '" . $exclude_apartment_id . "'
+            ";
+            }
+
+            $result = $wpdb->get_results($sql);
+        }
+
+        return $result;
     }
 
     /**

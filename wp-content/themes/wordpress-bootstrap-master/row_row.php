@@ -12,7 +12,9 @@
                             $key = unserialize($key);
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                             $url_image = $thumb['0'];
+                            
                             $url = get_permalink($val->ID);
+                            
                             $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
                             $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
                             $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
