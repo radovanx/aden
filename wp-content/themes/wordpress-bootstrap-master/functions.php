@@ -701,7 +701,5 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
     add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in 
                 
-    add_filter('post_type_link', 'qtrans_convertURL');
-    
-    
+    add_filter('post_type_link', 'qtrans_convertURL'); 
     ?>
