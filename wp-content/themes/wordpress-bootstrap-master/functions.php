@@ -701,10 +701,6 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
     add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in 
                 
-    add_filter('post_type_link', 'qtrans_convertURL');
-    
-    
-    
     function get_props($post_id, $lang){
         $props = get_post_meta($post_id, 'flat_props_' . $lang, true);
         
@@ -715,4 +711,12 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         return $props;
     }
     
+    add_filter('post_type_link', 'qtrans_convertURL');
+                
+    function qtrans_convertHomeURL($url, $what) {
+    if($what=='/') return qtrans_convertURL($url);
+    return $url;
+    } 
+    
+    add_filter('home_url', 'qtrans_convertHomeURL', 10, 2);
     ?>

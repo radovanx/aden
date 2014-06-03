@@ -471,8 +471,9 @@ get_header();
     function initialize(params) {
         var myLatlng = new google.maps.LatLng(lang, long);
         var mapOptions = {
-            center: myLatlng,
+            center: myLatlng, 
             zoom: 14,
+            scrollwheel: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
