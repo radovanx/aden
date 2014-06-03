@@ -47,11 +47,13 @@ EstateProgram::$tags_program = array(
 EstateProgram::$langs = array(
     'fre' => 'fr',
     'eng' => 'en',
+    'ger' => 'de'
 );
 
 EstateProgram::$rental_status = array(
     'fre' => 'fr',
     'eng' => 'en',
+    'ger' => 'de'
 );
 
 EstateProgram::$apartment_type = array(
@@ -1176,7 +1178,7 @@ class EstateProgram {
             ON
                 up.user_id = u.ID
             WHERE
-                m.meta_key = 'flat_props_" . esc_sql($lang) . "'
+                m.meta_key = 'flat_props_en'
             AND
                 p.post_type = 'flat'
             AND
