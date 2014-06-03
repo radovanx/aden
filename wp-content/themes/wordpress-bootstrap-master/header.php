@@ -26,7 +26,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <?php echo qtrans_generateLanguageSelectCode('image') ?>
+                        <span class="pull-right">
+                        <?php echo qtrans_generateLanguageSelectCode('image') ?></span>
+                        <strong class="blue pull-right phone_top"><i class="fa fa-phone red bigger-text"></i> +49 (0) 30 616 75 115 </strong>                        
                     </div>
                 </div>
             </div>
