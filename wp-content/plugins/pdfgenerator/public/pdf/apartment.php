@@ -222,8 +222,8 @@
                         <?php endif; ?>
 
                         <?php /* if (!empty($props['flaechen|wohnflaeche'])): ?>
-                            <h2 class="headline-label"> <?php _e('Rooms:', $this->plugin_slug) ?> <span class="red-color"> <?php echo (int) $props['flaechen|anzahl_zimmer'] ?></span></h2>
-                        <?php endif; */ ?>
+                          <h2 class="headline-label"> <?php _e('Rooms:', $this->plugin_slug) ?> <span class="red-color"> <?php echo (int) $props['flaechen|anzahl_zimmer'] ?></span></h2>
+                          <?php endif; */ ?>
                     </td>
                 </tr>
                 <tr>
@@ -260,13 +260,23 @@
                     <td class="w25"><?php _e('Floor:', $this->plugin_slug) ?></td>
                     <td class="w25 text-right t2"><?php echo esc_attr($props['geo|etage']) ?></td>
                     <td class="w25 t3"><?php _e('Number of floors:', $this->plugin_slug) ?></td>
-                    <td class="w25 text-right"></td>
+                    <td class="w25 text-right">
+                        <?php
+                        if ($props['geo|anzahl_etagen']):
+                            echo (int) $props['geo|anzahl_etagen'];
+                        endif;
+                        ?>
+                    </td>
                 </tr>
                 <tr>
                     <td class="w25"><?php _e('Rooms:', $this->plugin_slug) ?></td>
                     <td class="w25 text-right t2"><?php echo (int) $props['flaechen|anzahl_zimmer']; ?></td>
                     <td class="w25 t3"><?php _e('Bathroom(s):', $this->plugin_slug) ?></td>
-                    <td class="w25 text-right"><?php echo (int) $props['flaechen|anzahl_badezimmer'] ?></td>
+                    <td class="w25 text-right">
+                        <?php if (!empty($props['flaechen|anzahl_badezimmer'])): ?>
+                            <?php echo (int) $props['flaechen|anzahl_badezimmer'] ?>
+                        <?php endif; ?>
+                    </td>
                 </tr>
                 <tr>
                     <td class="w25"><?php _e('Elevator:', $this->plugin_slug) ?></td>
@@ -383,8 +393,8 @@
                                         </tr>
                                         <tr>
                                             <td style="width: 90mm;" class="vbottom img-title">
-                                                <?php 
-                                                echo qtrans_use($lang, $attachment->post_title); 
+                                                <?php
+                                                echo qtrans_use($lang, $attachment->post_title);
                                                 ?>
                                             </td>
                                         </tr>
