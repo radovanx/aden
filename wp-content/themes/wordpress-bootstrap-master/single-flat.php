@@ -92,10 +92,8 @@ get_header();
                             <span class="propertyListBoxDataItemName"> 
                                 <div class="col-md-12 column "> 
                                     <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>  
-                                            <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small>
-
-                                        <small class="blue clearfix"><?php _e("reference:", "wpbootstrap"); ?> <?php echo $progra_reference; ?></small> 
-
+                                            <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small> 
+                                        <small class="blue clearfix"><?php _e("reference:", "wpbootstrap"); ?> <?php echo $progra_reference; ?></small>  
                                     </h3> 
                                 </div> 
                             </span> 
@@ -106,16 +104,16 @@ get_header();
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer']) ?> <?php //echo esc_attr($props['kontaktperson|strasse']) ?> 
                                     <?php // echo esc_attr($props['kontaktperson|ort']) ?> <?php //echo esc_attr($props['kontaktperson|plz']) ?><br> 
                                     <strong>Phone:</strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>   
-                                    <strong>Email:</strong> <?php echo strtolower($props['kontaktperson|vorname']) ?><?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com 
+                                    <strong>Email:</strong> <?php echo strtolower($props['kontaktperson|vorname']) ?>.<?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com 
                                 </address>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
-                                    <strong class="red pull-right"><?php echo esc_attr(price_format($props['preise|kaufpreis'])) ?> &euro;
+                                    <strong class="red pull-right"><?php echo esc_attr(price_format($props['preise|kaufpreis'])) ?> €/m² (sm)
                                     </strong>
                                 </span>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong>
-                                    <strong class="red pull-right"><?php echo esc_attr($props['flaechen|wohnflaeche']) ?></strong>
+                                    <strong class="red pull-right"><?php echo esc_attr($props['flaechen|wohnflaeche']) ?> m² </strong>
                                 </span>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
@@ -156,7 +154,7 @@ get_header();
                                 <span class="pull-right">
                                     <?php
                                     if (isset($props['preise|kaufpreis_pro_qm'])):
-                                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';
+                                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €/m² (sm)';
                                     endif;
                                     ?>
                                 </span>
