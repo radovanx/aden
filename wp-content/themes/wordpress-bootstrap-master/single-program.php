@@ -202,8 +202,8 @@ get_header();
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>     
 // MAP // 
-var lang = <?php echo $lang; ?>  
-var long = <?php echo $long; ?>   
+var lang = <?php echo $lang; ?>; 
+var long = <?php echo $long; ?>;  
  
 var myCenter = new google.maps.LatLng(lang, long); 
 var map = null, marker = null;  

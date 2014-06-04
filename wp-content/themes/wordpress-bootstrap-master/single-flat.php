@@ -30,6 +30,13 @@ get_header();
                 $name = !empty($props['freitexte|objekttitel']) ? esc_attr($props['freitexte|objekttitel']) : "-";
                 $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-";
                 $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
+                
+                
+                
+                
+                
+                
+                
                 ?>
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php echo $title ?>
@@ -131,7 +138,6 @@ get_header();
                         <!-- apartment properties -->
                         <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
                         <ul class="list-unstyled featured-single-flat bigger-text">
-                         
                             <li class="col-md-6 border-bottom">
                                 <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
                                 <span class="pull-right"><?php
