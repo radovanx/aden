@@ -79,7 +79,7 @@
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong> 
                                                        <span class="pull-right"> 
-                                                        <?php echo $area; ?>
+                                                        <?php echo $area; ?> m²
                                                       </span>     
                                                  </span>
                                             </div>
@@ -93,7 +93,7 @@
                                                 <span class="data_item clearfix">
                                                     <strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong> 
                                                     <span class="pull-right"> 
-                                                        <?php echo price_format($pricem) ?> &euro;
+                                                        <?php echo price_format($pricem) ?> €/m²
                                                     </span>
                                                  </span>
                                                 <span class="data_item clearfix">
