@@ -7,15 +7,12 @@
 
 <div class="bg-danger text-danger"><?php $template->the_errors(); ?></div> 
 <div class="login border col-md-12 column border background contact_form_block" id="theme-my-login<?php $template->the_instance(); ?>">
-    <?php //$template->the_action_template_message('register'); ?>
-
+    <?php //$template->the_action_template_message('register'); ?> 
     <form name="registerform" id="registerform<?php $template->the_instance(); ?>" action="<?php $template->the_action_url('register'); ?>" method="post"> 
         <h2 class="border-left uppercase"><?php _e('Registration', 'wpbootstrap') ?></h2>
-        <div class="row">
-
+        <div class="row"> 
             <div class="col-md-12 column">	
-                <div class="col-md-6">
-
+                <div class="col-md-6"> 
                     <!--
                     <div class="form-group">
                         <label for="user_login<?php $template->the_instance(); ?>"><?php _e('Login', 'wpbootstrap'); ?></label>
@@ -40,8 +37,7 @@
                         <label for="user_email<?php $template->the_instance(); ?>"><?php _e('E-mail:', 'wpbootstrap'); ?></label>
                         <input type="text" name="user_email" id="user_email<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('user_email'); ?>" size="20">
                     </div>
-                </div>
-
+                </div> 
                 <div class="col-md-6">
                     <!--<h2><?php _e('Company', 'wpbootstrap') ?></h2>-->
                     <div class="form-group">
@@ -88,8 +84,7 @@
         </div>
     </form>
     <?php //$template->the_action_links(array('register' => false)); ?>
-</div>
-
+</div> 
 <div class="theme-login-links">
     <a href="<?php echo get_page_link(19) ?>"><?php _e('Forgot password', 'wpbootstrap') ?></a> <span class="delimiter">|</span> <a href="<?php echo get_page_link(15) ?>"><?php _e('Log in', 'wpbootstrap') ?></a>
-</div>
+</div> 
