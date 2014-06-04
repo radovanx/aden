@@ -11,10 +11,8 @@
                             $prop = unserialize($val->prop);
                             $key = unserialize($key);
                             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
-                            $url_image = $thumb['0'];
-                            
-                            $url = get_permalink($val->ID);
-                            
+                            $url_image = $thumb['0']; 
+                            $url = get_permalink($val->ID); 
                             $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
                             $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
                             $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
@@ -29,24 +27,16 @@
                             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";  
                             if($rental_status == 1)
                             { $rental_status = 'rented'; } 
-                            $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-"; 
-                            
-                            
-                             
-                            
-                            
+                            $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
                             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
                             <div class="row apartment-row apartment-row-<?php echo $val->ID ?>">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
                                     <div class="col-md-3">   
-                                        
                                         <?php if( $status != 'OFFEN' ): ?>
                                         <span class="green"><?php echo $status; ?></span>  
                                         <?php endif; ?>
-                                        
-                                        
                                         <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>" class="img-responsive" alt="<?php echo $name; ?>"/></a>    
                                     </div>    
                                     <div class="col-md-9"> 

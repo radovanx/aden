@@ -46,7 +46,7 @@ $query = new WP_Query($args);
         <!-- /ajax loader -->        
     </div>
 </div>
-<script type="text/javascript">
+<script>
     var total_item = <?php echo $query->found_posts ?>;
     // pocatecni offset
     var count = <?php echo (int) $post_per_page ?>; 

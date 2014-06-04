@@ -280,7 +280,7 @@ class aden_stats_Admin {
             ON
                 l.product_id = s.product_id AND l.lang = '" . esc_sql($lang) . "'
             GROUP BY
-                s.product_id
+                s.ref_no
             ";
         
         if (!empty($_GET['orderby']) && !empty($_GET['order'])) {

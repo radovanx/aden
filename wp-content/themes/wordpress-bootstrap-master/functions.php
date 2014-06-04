@@ -528,8 +528,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
         # Load the posts
         query_posts(array('paged' => $paged));
-
-
+                
         get_template_part($loopFile);
         exit;
     }

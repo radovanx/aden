@@ -234,6 +234,8 @@ get_header();
                                     if($rental_status == 1)
                                     { $rental_status = 'rented'; } 
                                     $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
+        
+                                    
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";                                                    
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                                      
@@ -356,7 +358,44 @@ get_header();
     jQuery('#Pricet').live('keyup', function(){
     jQuery(this).val(format.call(jQuery(this).val().split(' ').join(''),' ','.'));
     }); 
-</script> 
+</script>  
+<script>  
+     var datatable = <?php echo $data_object; ?>;    
+     console.log(datatable);
+     var total_item = 0; 
+     var total_item = 0; 
+     jQuery.each(datatable, function(i, val) {       
+     total_item ++;  
+     }); 
+     
+     console.log(total_item); 
+     var count = 1;
+     var load_next_item = true;
+      
+     jQuery(document).ready(function() {
+        
+        function loadArticle(count)
+                 {      
+                 count = count+1; 
+                 console.log(count); 
+                 }     
+        jQuery(window).scroll(function() {
+        
+            if (count >= (total_item)) {
+                return;
+            }
+            if (load_next_item && (jQuery(window).scrollTop() >= jQuery(document).height() - (jQuery(window).height() + 100))) {
+              
+              
+              
+                loadArticle(count);
+              
+            }
+        });  
+         
+    }); 
+</script>
+
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
 <script> 
@@ -595,8 +634,7 @@ get_header();
             jQuery("#list").append(row_data);  
         }
         else
-        {
- 
+        { 
             jQuery("#table_data_filter").empty(); 
             jQuery("#list").empty();
             jQuery.each(myfilterfinal, function(i, val) { 
@@ -604,7 +642,7 @@ get_header();
             jQuery("tbody").append(table_data);
             jQuery("table").trigger("update");     
             jQuery("table").tablesorter();  
-            var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"><div class=\"col-md-3\"><span class=\"green\">"+ val.status +"</span> <a href=\"" + val.url + "\"><img src=\""+val.image_url+"\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">"+val.name+"<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i> " + val.street +" "+ val.hnumber +", "+ val.city +", "+ val.district +", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.references+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.flatnum+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rstatus+"</span></span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.floor+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rooms+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.area+" m²</span></span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.fprice+" &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> "+val.fpricem+" €/m²</span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\" "+val.idval+"\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa "+val.favorite+"\"></i><span class=\"fav-label\">Add to favorite</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>"; 
+            var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"><div class=\"col-md-3\"> <span class=\"green\">"+ val.status +"</span> <a href=\"" + val.url + "\"><img src=\""+val.image_url+"\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">"+val.name+"<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i> " + val.street +" "+ val.hnumber +", "+ val.city +", "+ val.district +", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.references+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.flatnum+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rstatus+"</span></span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.floor+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rooms+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.area+" m²</span></span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.fprice+" &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> "+val.fpricem+" €/m²</span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\" "+val.idval+"\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa "+val.favorite+"\"></i><span class=\"fav-label\">Add to favorite</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>"; 
  
             jQuery("#list").append(row_data);      
         });
@@ -614,7 +652,5 @@ get_header();
 <script>   
 jQuery(document).ready(function(n){n(".searchbutton").fadeIn("fast",function(){})});      
 </script> 
-<script type="text/javascript">
-jQuery(document).ready(function(n){function i(i){return n("a#inifiniteLoader").show("fast"),n.ajax({url:"<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",type:"POST",data:"action=infinite_scroll&page_no="+i+"&loop_file=loop",success:function(i){n("a#inifiniteLoader").hide("1000"),n("#content").append(i)}}),!1}var o=2;n(window).scroll(function(){n(window).scrollTop()==n(document).height()-n(window).height()&&(i(o),o++)})});
-</script>
+ 
 <?php get_footer(); ?> 
