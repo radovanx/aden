@@ -95,7 +95,7 @@ get_header();
                                         <span class="propertyListBoxDataItemName"><i class="fa fa-home round-border"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong><span class="pull-right"><?php echo implode(', ', $type_of_accomodation) ?></span></span>
                                     </div>
                                     <div class="panel-body">
-                                        <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><span class="pull-right"><?php esc_attr_e(get_post_meta($post->ID, '_program_address', true)) ?></span></span>
+                                        <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><span class="pull-right"><?php esc_attr_e(get_post_meta($post->ID, '_program_street', true)) ?> <?php esc_attr_e(get_post_meta($post->ID, '_program_house_number', true)) ?>,   <?php esc_attr_e(get_post_meta($post->ID, '_program_city', true)) ?></span></span>
                                     </div>
                                     <div class="panel-body">
                                         <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><span class="pull-right"><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²
