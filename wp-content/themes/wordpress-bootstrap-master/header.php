@@ -28,7 +28,13 @@
                     <div class="col-sm-12">
                         <span class="pull-right">
                         <?php echo qtrans_generateLanguageSelectCode('image') ?></span>
-                        <strong class="blue pull-right phone_top"><i class="fa fa-phone red bigger-text"></i> +49 (0) 30 616 75 115 </strong>                        
+                        <strong class="blue pull-right phone_top"><i class="fa fa-phone red bigger-text"></i>    
+                          <?php if(qtrans_getLanguage()=='fr') { ?>
+                            + 33 (0) 1 56 33 70 70
+                           <?php } else { ?>
+                            +49 (0) 30 616 75 115 
+                          <?php }?> ?>
+                        </strong>                        
                     </div>
                 </div>
             </div>
