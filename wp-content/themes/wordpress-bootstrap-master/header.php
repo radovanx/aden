@@ -79,19 +79,10 @@
                         );
                     }
                     ?>
-                </div>
-
+                </div> 
             </div> <!-- end .container -->
         </div> <!-- end .navbar -->
-        <?php
-        /*  $pages = array(
-          3305, // My preferences
-          1755, // Profile
-          1791, // Search
-          3314, // Webinars
-          3310, // Programs
-          ); */
-
+        <?php 
         if (current_user_can('see_detail')):
             ?>
             <div class="container">
