@@ -192,8 +192,8 @@ class SourceImport {
         $unique_identificator_node = $xml->xpath('/openimmo/anbieter/immobilie/verwaltung_techn/objektnr_extern');
         $unique_identificator = (string) $unique_identificator_node[0];
 
-        $str = "uid:" . $unique_identificator . "\n";
-        file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);
+        //$str = "uid:" . $unique_identificator . "\n";
+        //file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);
 
         //var_dump($unique_identificator);
         // zjistim zdali tento byt je již importován

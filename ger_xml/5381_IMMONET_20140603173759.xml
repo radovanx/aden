@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openimmo >
+    <uebertragung xmlns="" art="OFFLINE" umfang="TEIL" modus="CHANGE" version="1.2.4" sendersoftware="OOF" senderversion="$Rev: 41634 $" techn_email="berlin@aden-immo.com" timestamp="2014-06-03T15:38:05.0+00:00"/>
+    <anbieter xmlns="">
+        <anbieternr>5381</anbieternr>
+        <firma>ADEN Immo GmbH</firma>
+        <openimmo_anid>5381</openimmo_anid>
+        <immobilie>
+            <objektkategorie>
+                <nutzungsart WOHNEN="0" GEWERBE="0" ANLAGE="1"/>
+                <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                <objektart>
+                    <wohnung wohnungtyp="ETAGE"/>
+                </objektart>
+            </objektkategorie>
+            <geo>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <geokoordinaten breitengrad="52.50624" laengengrad="13.46584"/>
+                <strasse>Sonntagstraße</strasse>
+                <hausnummer>12</hausnummer>
+                <land iso_land="DEU"/>
+                <etage>2</etage>
+                <anzahl_etagen>5</anzahl_etagen>
+                <wohnungsnr>21</wohnungsnr>
+                <regionaler_zusatz>Friedrichshain</regionaler_zusatz>
+            </geo>
+            <kontaktperson>
+                <email_zentrale>berlin@aden-immo.com</email_zentrale>
+                <email_direkt>lars.drewes@aden-immo.com</email_direkt>
+                <tel_zentrale>+49 30 61675115</tel_zentrale>
+                <tel_durchw>+49 151 41908862</tel_durchw>
+                <tel_fax>+49 30 61675114</tel_fax>
+                <tel_handy>+49 151 41908862</tel_handy>
+                <name>Drewes</name>
+                <vorname>Lars</vorname>
+                <anrede>Herr</anrede>
+                <anrede_brief>Sehr geehrter Herr Drewes,</anrede_brief>
+                <firma>ADEN Immo GmbH</firma>
+                <zusatzfeld/>
+                <strasse>Grünberger Str.</strasse>
+                <hausnummer>50</hausnummer>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <land iso_land="DEU"/>
+                <url>www.aden-immo.com</url>
+            </kontaktperson>
+            <preise>
+                <kaufpreis>147155.00</kaufpreis>
+                <hausgeld>213.25</hausgeld>
+                <kaufpreis_pro_qm>2385.01</kaufpreis_pro_qm>
+                <provisionspflichtig>0</provisionspflichtig>
+                <aussen_courtage>!!PROVISIONSFREI!!</aussen_courtage>
+                <waehrung iso_waehrung="EUR"/>
+                <mieteinnahmen_ist periode="JAHR">3867.24</mieteinnahmen_ist>
+                <stp_sonstige platzart="SONSTIGES" stellplatzmiete="0.00" stellplatzkaufpreis="0.00" anzahl="0"/>
+            </preise>
+            <versteigerung/>
+            <flaechen>
+                <wohnflaeche>61.70</wohnflaeche>
+                <anzahl_zimmer>2.00</anzahl_zimmer>
+                <anzahl_schlafzimmer>1.00</anzahl_schlafzimmer>
+                <anzahl_badezimmer>1.00</anzahl_badezimmer>
+                <vermietbare_flaeche>61.70</vermietbare_flaeche>
+            </flaechen>
+            <ausstattung>
+                <boden DIELEN="1"/>
+                <heizungsart ZENTRAL="1"/>
+                <befeuerung GAS="1"/>
+                <unterkellert keller="JA"/>
+                <bauweise MASSIV="1"/>
+            </ausstattung>
+            <zustand_angaben>
+                <baujahr>1900</baujahr>
+                <zustand zustand_art="MODERNISIERT"/>
+                <energiepass>
+                    <mitwarmwasser>1</mitwarmwasser>
+                    <epart>VERBRAUCH</epart>
+                    <gueltig_bis>2018-05-28</gueltig_bis>
+                    <energieverbrauchkennwert>123.00</energieverbrauchkennwert>
+                </energiepass>
+                <verkaufstatus stand="OFFEN"/>
+                <user_defined_simplefield feldname="epass_baujahr">1900</user_defined_simplefield>
+            </zustand_angaben>
+            <bewertung/>
+            <infrastruktur/>
+            <freitexte>
+                <objekttitel>!!PROVISIONSFREI!! Vermietete 2-Zimmerwohnung in sehr guter Lage</objekttitel>
+                <dreizeiler/>
+                <lage>Die Wohnung befindet sich in der Nähe des S-Bahnhofes Ostkreuz, der sehr gute Verkehrsanbindung in die gesamte Stadt bietet. Zahlreiche Einkaufs-möglichkeiten für den Alltag sowie Bars und Restaurants sorgen für eine gute Atmosphäre im charmanten Kiez rund um die Sonntagstraße.</lage>
+                <ausstatt_beschr>Der attraktive Grundriss bietet ein Wannenbad, ein charmantes Schlafzimmer mit Balkonzugang, einen Flur mit Abstellkammer und ein großzügiges Wohnzimmer mit offenem Küchenbereich, sowie einen Balkon in West-Ausrichtung.</ausstatt_beschr>
+                <objektbeschreibung>Das schöne Altbauhaus aus 1900 ist dieses Jahr mit verscheidenen Maßnahmen instand gesetzt worden nachdem das Haus 1991 bereits modernisiert wurde. 
+
+                    Die Wohnung ist vermietet. Die monatliche Mieteinnahme beträgt aktuell 322,27 EUR kalt.</objektbeschreibung>
+                <sonstige_angaben>ADEN Immo - eine der ersten deutsch-französischen Immobilienagenturen in Berlin! Wir sind zugleich Immobilienberater und Immobilienmakler. Wir gestalten privaten und professionellen Kunden den Zugang zum Berliner und Pariser Immobilienmarkt einfach und entspannt.
+
+
+                    Adresse:
+                    Grünberger Straße 50, 10245 Berlin
+
+                    Kontakt: 0 30 616 75 115 
+                    www.aden-immo.deVermietet kaufen, die sichere</sonstige_angaben>
+            </freitexte>
+            <anhaenge>
+                <anhang location="EXTERN" gruppe="TITELBILD">
+                    <anhangtitel>Fassade</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16408.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Zimmerbeispiel</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16400.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="GRUNDRISS">
+                    <anhangtitel>Grundriss</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16410.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Energieausweis ein Seite Sonntag</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_28106.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Detail Altbau</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16394.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Straße</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16398.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Eingansgtür</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16378.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Treppenhaus</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16404.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Treppenhaus</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16402.jpg</pfad>
+                    </daten>
+                </anhang>
+                <anhang location="EXTERN" gruppe="BILD">
+                    <anhangtitel>Ausblick Balkon</anhangtitel>
+                    <format>jpg</format>
+                    <daten>
+                        <pfad>Foto_16392.jpg</pfad>
+                    </daten>
+                </anhang>
+            </anhaenge>
+            <verwaltung_objekt>
+                <objektadresse_freigeben>1</objektadresse_freigeben>
+                <vermietet>1</vermietet>
+            </verwaltung_objekt>
+            <verwaltung_techn>
+                <objektnr_intern>4242</objektnr_intern>
+                <objektnr_extern>BO-SO-12-21</objektnr_extern>
+                <aktion aktionart="CHANGE"/>
+                <openimmo_obid>5381_4242_BO-SO-12-21</openimmo_obid>
+                <kennung_ursprung>onOffice Software</kennung_ursprung>
+                <stand_vom>2014-06-03</stand_vom>
+                <weitergabe_generell>1</weitergabe_generell>
+            </verwaltung_techn>
+        </immobilie>
+    </anbieter>
+</openimmo>

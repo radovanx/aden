@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openimmo >
+    <uebertragung xmlns="" art="OFFLINE" umfang="TEIL" modus="DELETE" version="1.2.4" sendersoftware="OOF" senderversion="$Rev: 41634 $" techn_email="berlin@aden-immo.com" timestamp="2014-06-03T16:04:18.0+00:00"/>
+    <anbieter xmlns="">
+        <anbieternr>5381</anbieternr>
+        <firma>ADEN Immo GmbH</firma>
+        <openimmo_anid>5381</openimmo_anid>
+        <immobilie>
+            <objektkategorie>
+                <nutzungsart WOHNEN="0" GEWERBE="0" ANLAGE="1"/>
+                <vermarktungsart KAUF="1" MIETE_PACHT="0"/>
+                <objektart>
+                    <wohnung wohnungtyp="ETAGE"/>
+                </objektart>
+            </objektkategorie>
+            <geo>
+                <plz>10245</plz>
+                <ort>Berlin</ort>
+                <geokoordinaten breitengrad="52.50624" laengengrad="13.46584"/>
+            </geo>
+            <kontaktperson>
+                <email_zentrale>berlin@aden-immo.com</email_zentrale>
+                <email_direkt>lars.drewes@aden-immo.com</email_direkt>
+                <tel_zentrale>+49 30 61675115</tel_zentrale>
+                <tel_durchw>+49 151 41908862</tel_durchw>
+                <name/>
+            </kontaktperson>
+            <verwaltung_techn>
+                <objektnr_intern>4242</objektnr_intern>
+                <objektnr_extern>BO-SO-12-21</objektnr_extern>
+                <aktion aktionart="DELETE"/>
+                <openimmo_obid>5381_4242_BO-SO-12-21</openimmo_obid>
+                <kennung_ursprung>onOffice Software</kennung_ursprung>
+                <stand_vom>2014-06-03</stand_vom>
+                <weitergabe_generell>1</weitergabe_generell>
+            </verwaltung_techn>
+        </immobilie>
+    </anbieter>
+</openimmo>
