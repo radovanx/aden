@@ -131,9 +131,7 @@ get_header();
                         <!-- apartment properties -->
                         <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
                         <ul class="list-unstyled featured-single-flat bigger-text">
-                            <li class="col-md-6 border-bottom">
-                                <strong><?php _e("Type of property to search for:", "wpbootstrap"); ?></strong>
-                            </li>
+                         
                             <li class="col-md-6 border-bottom">
                                 <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
                                 <span class="pull-right"><?php
