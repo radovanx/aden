@@ -282,7 +282,7 @@
                     <td class="w25"><?php _e('Elevator:', $this->plugin_slug) ?></td>
                     <td class="w25 text-right t2"><?php echo isset($prop['ausstattung|fahrstuhl|PERSONEN']) ? __("YES", $this->plugin_slug) : __("NO", $this->plugin_slug); ?></td>
                     <td class="w25 t3"><?php _e('Type of heating system:', $this->plugin_slug) ?></td>
-                    <td class="w25 text-right"><?php echo EstateProgram::heatingSystem($props) ?></td>
+                    <td class="w25 text-right"><?php echo heatingSystemL($props) ?></td>
                 </tr>
                 <tr>
                     <td class="w25"><?php _e('Garage / parking spot:', $this->plugin_slug) ?></td>
