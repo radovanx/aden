@@ -213,9 +213,6 @@ function initialize() {
       center: myCenter,
       zoom: 14,
       scrollwheel: false,
-      panControl: true, //enable pan Control
-      zoomControl: true, //enable zoom control
-      scaleControl: true, // enable scale control 
       mapTypeId: google.maps.MapTypeId.ROADMAP
   };  
   
