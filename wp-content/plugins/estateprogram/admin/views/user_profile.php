@@ -32,7 +32,8 @@ $vals = array(
             echo $wpdb->get_var($sql);            
             ?>            
         </td>
-    </tr>     
+    </tr>   
+    <!--
     <tr>
         <th>
             <label for="user_title"><?php _e('User title', $this->plugin_slug) ?></label>
@@ -40,7 +41,7 @@ $vals = array(
         <td>
             <input type="text" id="user_title" name="title" value="<?php echo esc_attr(get_user_meta($user->ID, 'title', true)) ?>">
         </td>
-    </tr>
+    </tr>-->
 </table>
 
 <h3><?php _e('Company', $this->plugin_slug) ?></h3>
