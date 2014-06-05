@@ -80,16 +80,14 @@ get_header();
                 </div>
                 <div class="col-md-6 column">
                        <div class="form-group">  
-                        <label for="accommodation"><?php _e("Type of accommodation:", "wpbootstrap"); ?></label>
-                          
+                        <label for="accommodation"><?php _e("Type of accommodation:", "wpbootstrap"); ?></label>                           
                         <select class="form-control input-lg" name="type" >
                             <option value="">---</option>
-                        
                             
                             <option class="" value="<?php _e("Rented apartment", "wpbootstrap"); ?>"><?php _e("Rented apartment", "wpbootstrap"); ?></option>
                             <option class="" value="<?php _e("Apartment", "wpbootstrap"); ?>"><?php _e("Apartment", "wpbootstrap"); ?></option>
-                            <option class="" value="<?php _e("Apartment", "wpbootstrap"); ?>"><?php _e("Commercial Unit", "wpbootstrap"); ?></option>
-             
+                            <option class="" value="<?php _e("Apartment", "wpbootstrap"); ?>"><?php _e("Commercial Unit", "wpbootstrap"); ?></option> 
+                        
                         </select> 
                     </div> 
                     <div class="row">
@@ -205,10 +203,17 @@ get_header();
                                         $favor = "red fa-star"; 
                                         } 
                                         $program_id = $val->program_id;
+                                        
                                         $terms = accomodationTypeL($prop);
+                                       
                                         if(!empty($terms)){ 
-                                        $term = $terms[0]->name;
-                                        } 
+                                        $term = $terms;   
+                                        }
+                                        else
+                                        {
+                                        $term = '-';     
+                                        }    
+                        
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
