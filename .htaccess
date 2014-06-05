@@ -1,4 +1,9 @@
+
  
+
+# BEGIN WPSuperCache
+# END WPSuperCache
+
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On

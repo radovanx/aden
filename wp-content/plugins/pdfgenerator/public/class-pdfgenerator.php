@@ -191,20 +191,6 @@ class pdfgenerator {
                 $lang = $q['language'];
             }
 
-            /*
-              $mpdf = new mPDF(
-              '', //mode
-              'A4', // format
-              '', // font size
-              '', // default font
-              '', // margin left
-              '', // margin right
-              '', // margin top
-              '', // margin bottom
-              '', // margin header
-              '' // margin footer
-              ); */
-
             // download pdf
             if (isset($q['product_type'])) {
                 switch ($q['product_type']) {
@@ -212,8 +198,7 @@ class pdfgenerator {
 
                         if (isset($q['product_id'])) {
                             $product = get_post($q['product_id']);
-
-                            //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
+                            
                             $props = get_props($product->ID, $lang);
 
                             $mpdf = $this->create_html2pdf($product, $props, $lang);
@@ -227,7 +212,6 @@ class pdfgenerator {
                             global $wpdb;
 
                             $program_id = EstateProgram::flat_program_id($product->ID);
-
                             $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
 
                             $sql3 = "
@@ -246,7 +230,6 @@ class pdfgenerator {
                             $wpdb->query($sql3);
 
                             $last_id = $wpdb->insert_id;
-
                             $langs = qtrans_getSortedLanguages();
 
                             foreach ($langs as $lang) {
@@ -262,9 +245,7 @@ class pdfgenerator {
 
                                 $wpdb->query($sql2);
                             }
-
-                            $mpdf->Output($filename, 'D');
-                            
+                            $mpdf->Output($filename, 'D');                            
                             exit;
                         }
                         break;
