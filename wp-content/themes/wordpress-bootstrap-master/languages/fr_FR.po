@@ -1,347 +1,1186 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: WPBS (fr_FR)\n"
+"Project-Id-Version: wp-bootstrap v3.0\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-17 23:02-0300\n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2014-06-05 16:06:21+0000\n"
 "Last-Translator: Alexandre JULIEN <alex.julien13@gmail.com>\n"
-"Language-Team: Alexandre JULIEN <http://www.alexandre-julien.com> <alex."
-"julien13@gmail.com>\n"
+"Language-Team: Alexandre JULIEN <http://www.alexandre-julien.com> <alex.julien13@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-Generator: Poedit 1.5.5\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
 "X-Poedit-Basepath: /Users/kafran/Documents/wordpress-bootstrap\n"
-"Language: French\n"
+"X-Poedit-Bookmarks: \n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
 
 #: 404.php:13
+#@ wpbootstrap
 msgid "Epic 404 - Article Not Found"
 msgstr "Erreur 404 - Article non trouvé"
 
 #: 404.php:14
+#@ wpbootstrap
 msgid "This is embarassing. We can't find what you were looking for."
 msgstr "C'est embarrassant. Nous ne trouvons pas ce que vous cherchez."
 
 #: 404.php:22
-msgid ""
-"Whatever you were looking for was not found, but maybe try looking again or "
-"search using the form below."
-msgstr ""
-"Ce que vous chercher n'a pas été trouvé, mais essayer de chercher à nouveau "
-"ou effectuez une recherche avec le formulaire ci-dessous."
+#@ wpbootstrap
+msgid "Whatever you were looking for was not found, but maybe try looking again or search using the form below."
+msgstr "Ce que vous chercher n'a pas été trouvé, mais essayer de chercher à nouveau ou effectuez une recherche avec le formulaire ci-dessous."
 
 #: archive.php:10
+#@ wpbootstrap
 msgid "Posts Categorized:"
 msgstr "Articles catégorisés:"
 
 #: archive.php:14
+#@ wpbootstrap
 msgid "Posts Tagged:"
 msgstr "Articles taggés:"
 
-#: archive.php:18 author.php:8
+#: archive.php:18
+#: author.php:8
+#@ wpbootstrap
 msgid "Posts By:"
 msgstr "Ecrit par:"
 
 #: archive.php:22
+#@ wpbootstrap
 msgid "Daily Archives:"
 msgstr "Archives du jour:"
 
 #: archive.php:26
+#@ wpbootstrap
 msgid "Monthly Archives:"
 msgstr "Archives mensuelles:"
 
 #: archive.php:30
+#@ wpbootstrap
 msgid "Yearly Archives:"
 msgstr "Archives annuelles:"
 
-#: archive.php:43 attachment.php:15 author.php:31 image.php:23 index.php:34
-#: search.php:17 single.php:17
+#: archive.php:43
+#: attachment.php:15
+#: author.php:31
+#: image.php:23
+#: index.php:18
+#: search.php:17
+#: single.php:17
+#@ wpbootstrap
 msgid "Posted"
 msgstr "Ecrit"
 
-#: archive.php:43 attachment.php:15 author.php:31 image.php:23 index.php:34
-#: search.php:17 single.php:17
+#: archive.php:43
+#: attachment.php:15
+#: author.php:31
+#: image.php:23
+#: index.php:18
+#: search.php:17
+#: single.php:17
+#@ wpbootstrap
 msgid "by"
 msgstr "par"
 
-#: archive.php:43 attachment.php:15 author.php:31 index.php:34 search.php:17
+#: archive.php:43
+#: attachment.php:15
+#: author.php:31
+#: index.php:18
+#: search.php:17
 #: single.php:17
+#@ wpbootstrap
 msgid "filed under"
 msgstr "déposé en vertu de"
 
-#: archive.php:70 author.php:58 index.php:59 search.php:42
+#: archive.php:70
+#: author.php:58
+#: index.php:43
+#: search.php:42
+#@ wpbootstrap
 msgid "&laquo; Older Entries"
 msgstr "&laquo; Anciens articles"
 
-#: archive.php:71 author.php:59 index.php:60 search.php:43
+#: archive.php:71
+#: author.php:59
+#: index.php:44
+#: search.php:43
+#@ wpbootstrap
 msgid "Newer Entries &raquo;"
 msgstr "Articles récents &raquo;"
 
-#: archive.php:81 author.php:69
+#: archive.php:81
+#: author.php:69
+#@ wpbootstrap
 msgid "No Posts Yet"
 msgstr "Pas encore d'article"
 
-#: archive.php:84 author.php:72
+#: archive.php:84
+#: author.php:72
+#@ wpbootstrap
 msgid "Sorry, What you were looking for is not here."
 msgstr "Désolé, Qu'est-ce que vous recherchez n'est pas ici."
 
-#: attachment.php:27 image.php:53 index.php:44 page-full-width.php:30
-#: page-homepage.php:109 page-left-sidebar.php:32 page.php:24 single.php:30
+#: attachment.php:27
+#: image.php:54
+#: index.php:28
+#: page-full-width.php:30
+#: page-homepage.php:50
+#: page-left-sidebar.php:32
+#: page.php:36
+#: single.php:30
+#: template-buy_page.php:45
+#: template_restrict.php:43
+#@ wpbootstrap
 msgid "Tags"
 msgstr "Tags"
 
-#: attachment.php:41 image.php:67 index.php:69 page-full-width.php:44
-#: page-homepage.php:126 page-left-sidebar.php:46 page.php:38 search.php:54
+#: attachment.php:41
+#: image.php:68
+#: index.php:53
+#: our-product-page.php:25
+#: page-full-width.php:44
+#: page-homepage.php:67
+#: page-left-sidebar.php:46
+#: page.php:48
+#: search.php:54
+#: single-flat.php:1
+#: single-program.php:171
 #: single.php:51
+#: template-buy_page.php:57
+#: template_restrict.php:55
+#: venku/single-flat.php:308
+#@ wpbootstrap
 msgid "Not Found"
 msgstr "Non trouvé"
 
-#: attachment.php:44 image.php:70 index.php:72 page-full-width.php:47
-#: page-homepage.php:129 page-left-sidebar.php:49 page.php:41 search.php:57
+#: attachment.php:44
+#: image.php:71
+#: index.php:56
+#: our-product-page.php:28
+#: page-full-width.php:47
+#: page-homepage.php:70
+#: page-left-sidebar.php:49
+#: page.php:51
+#: search.php:57
+#: single-flat.php:1
+#: single-program.php:174
 #: single.php:54
+#: template-buy_page.php:60
+#: template_restrict.php:58
+#: venku/single-flat.php:311
+#@ wpbootstrap
 msgid "Sorry, but the requested resource was not found on this site."
 msgstr "Désolé, mais la ressource demandée n'a pas été trouvée sur ce site."
 
-#: comments.php:11
+#: comments.php:12
+#@ wpbootstrap
 msgid "This post is password protected. Enter the password to view comments."
-msgstr ""
-"Ce poste est protégé par mot. Entrez le mot de passe pour accéder aux "
-"commentaires."
+msgstr "Ce poste est protégé par mot. Entrez le mot de passe pour accéder aux commentaires."
 
-#: comments.php:21
+#: comments.php:22
+#: template-my_preferences.php:85
+#@ wpbootstrap
 msgid "No"
 msgstr "Non"
 
-#: comments.php:21
+#: comments.php:22
+#@ wpbootstrap
 msgid "Responses"
 msgstr "Réponses"
 
-#: comments.php:21
+#: comments.php:22
+#@ wpbootstrap
 msgid "One"
 msgstr "Un"
 
-#: comments.php:21
+#: comments.php:22
+#@ wpbootstrap
 msgid "Response"
 msgstr "Réponse"
 
-#: comments.php:21
+#: comments.php:22
+#@ wpbootstrap
 msgid "to"
 msgstr "à"
 
-#: comments.php:25 comments.php:46
+#: comments.php:26
+#: comments.php:47
+#@ wpbootstrap
 msgid "Older comments"
 msgstr "Anciens commentaires"
 
-#: comments.php:26 comments.php:47
+#: comments.php:27
+#: comments.php:48
+#@ wpbootstrap
 msgid "Newer comments"
 msgstr "Commentaires récents"
 
-#: comments.php:68
+#: comments.php:61
+#@ wpbootstrap
 msgid "Comments are closed"
 msgstr "Les commentaires sont fermés"
 
-#: comments.php:81
-msgid "Leave a Reply"
-msgstr "Laissez une réponse"
-
-#: comments.php:81
-msgid "Leave a Reply to"
-msgstr "Laissez une réponse à"
-
-#: comments.php:84
-msgid "Cancel"
-msgstr "Annuler"
-
-#: comments.php:89
-msgid "You must be"
-msgstr "Vous devez être"
-
-#: comments.php:89
-msgid "logged in"
-msgstr "se connecter"
-
-#: comments.php:89
-msgid "to post a comment"
-msgstr "pour mettre un commentaire"
-
-#: comments.php:97
-msgid "Logged in as"
-msgstr "Connecté en tant que"
-
-#: comments.php:97
-msgid "Log out of this account"
-msgstr "Se déconnecter de ce compte"
-
-#: comments.php:97
-msgid "Log out"
-msgstr "Déconnection"
-
-#: comments.php:105
-msgid "Name"
-msgstr "Nom"
-
-#: comments.php:107
-msgid "Your Name"
-msgstr "Votre nom"
-
-#: comments.php:114
-msgid "Mail"
-msgstr "E-mail"
-
-#: comments.php:116
-msgid "Your Email"
-msgstr "Votre e-mail"
-
-#: comments.php:117
-msgid "will not be published"
-msgstr "Se sera pas publier"
-
-#: comments.php:124
-msgid "Website"
-msgstr "Site Web"
-
-#: comments.php:126
-msgid "Your Website"
-msgstr "Votre Site Web"
-
-#: comments.php:137
-msgid "Your Comment Here…"
-msgstr "Laissez un commentaire ici"
-
-#: comments.php:142
-msgid "Submit Comment"
-msgstr "Soumettre le commentaire"
-
-#: functions.php:147
+#: functions.php:141
+#: venku/functions.php:141
+#@ wpbootstrap
 msgid "Edit"
 msgstr "Editer"
 
-#: functions.php:151
+#: functions.php:145
+#: venku/functions.php:145
+#@ wpbootstrap
 msgid "Your comment is awaiting moderation."
 msgstr "Votre commentaire est en attente de modération."
 
-#: functions.php:193
-msgid "Search for:"
-msgstr "Recherche pour:"
+#: functions.php:180
+#: venku/functions.php:180
+#@ wpbootstrap
+msgid "This post is password protected. To view it please enter your password below:"
+msgstr "Cet article est protégé par un mot de passe. Pour l'afficher, veuillez saisir le mot de passe :"
 
-#: functions.php:208
-msgid ""
-"This post is password protected. To view it please enter your password below:"
-msgstr ""
-"Cet article est protégé par un mot de passe. Pour l'afficher, veuillez "
-"saisir le mot de passe :"
-
-#: functions.php:209
+#: functions.php:181
+#: venku/functions.php:181
+#@ wpbootstrap
 msgid "Password:"
 msgstr "Mot de passe:"
 
-#: header.php:116 searchform.php:5
+#: our-product-page.php:142
+#: searchform.php:4
+#: searchform.php:6
+#@ wpbootstrap
 msgid "Search"
 msgstr "Recherche"
 
-#: image.php:89
+#: image.php:90
+#@ wpbootstrap
 msgid "Image metadata"
 msgstr "Information de l'image"
 
-#: image.php:113
+#: image.php:111
+#@ wpbootstrap
 msgid "Date Taken"
 msgstr "Date de prise"
 
-#: image.php:115
+#: image.php:114
+#@ wpbootstrap
 msgid "Copyright"
 msgstr "Tous droits réservés (copyright)"
 
 #: image.php:117
+#@ wpbootstrap
 msgid "Credit"
 msgstr "Sources"
 
-#: image.php:119
+#: image.php:120
+#: profile-form.php:34
+#@ wpbootstrap
 msgid "Title"
 msgstr "Titre"
 
-#: image.php:121
+#: image.php:123
+#@ wpbootstrap
 msgid "Caption"
 msgstr "Libellé"
 
-#: image.php:123
+#: image.php:126
+#@ wpbootstrap
 msgid "Camera"
 msgstr "Appareil photo"
 
-#: image.php:125
+#: image.php:129
+#@ wpbootstrap
 msgid "Focal Length"
 msgstr "Focale"
 
-#: image.php:127
+#: image.php:132
+#@ wpbootstrap
 msgid "Aperture"
 msgstr "Ouverture"
 
-#: image.php:129
+#: image.php:135
+#@ wpbootstrap
 msgid "ISO"
 msgstr "ISO"
 
-#: image.php:131
+#: image.php:138
+#@ wpbootstrap
 msgid "Shutter Speed"
 msgstr "Vitesse d'obturation"
 
-#: index.php:39
+#: index.php:23
+#@ wpbootstrap
 msgid "Read more &raquo;"
 msgstr "En savoir plus &raquo;"
 
 #: search.php:7
+#@ wpbootstrap
 msgid "Search Results for"
 msgstr "Résultats de recherche pour"
 
 #: search.php:22
+#@ wpbootstrap
 msgid "Read more on"
 msgstr "En savoir plus sur"
 
-#: sidebar-sidebar2.php:13 sidebar.php:13
+#: sidebar-sidebar2.php:13
+#: sidebar.php:13
+#@ wpbootstrap
 msgid "Please activate some Widgets"
 msgstr "Veuillez activer des Widgets"
 
 #: single.php:36
+#@ wpbootstrap
 msgid "Edit post"
 msgstr "Editer l'article"
 
-#: admin/options-framework.php:230
-msgid "Click OK to reset. Any theme settings will be lost!"
-msgstr ""
-"Cliquez sur OK pour réinitialiser. Tous les paramètres du thème seront "
-"perdus."
-
-#: admin/options-framework.php:263
-msgid "Default options restored."
-msgstr "Options par défaut restaurées."
-
-#: admin/options-framework.php:304
-msgid "Options saved."
-msgstr "Options sauvegardées."
-
-#: admin/options-framework.php:362
-msgid "Theme Options"
-msgstr "Paramètre du thême"
-
-#: admin/options-medialibrary-uploader.php:26
-msgid "Options Framework Internal Container"
-msgstr "Options internes du Framework Container"
-
-#: admin/options-medialibrary-uploader.php:128
-msgid "Upload"
-msgstr "Télécharger"
-
-#: admin/options-medialibrary-uploader.php:151
-msgid "View File"
-msgstr "Voir fichier"
-
-#: admin/options-medialibrary-uploader.php:288
+#: single-flat.php:1
+#: venku/single-flat.php:72
+#@ wpbootstrap
 msgid "Gallery"
 msgstr "Galerie"
 
-#: admin/options-medialibrary-uploader.php:288
-msgid "Previously Uploaded"
-msgstr "Précédemment téléchargé"
+#: about-us-page.php:20
+#: template-buy_page.php:49
+#@ wpbootstrap
+msgid "Contact Form"
+msgstr ""
 
-#~ msgid "<h4>%s</h4>"
-#~ msgstr "<h4>%s</h4>"
+#: about-us-page.php:27
+#@ wpbootstrap
+msgid "CONTACT INFORMATIONS"
+msgstr ""
+
+#: front-page.php:96
+#@ wpbootstrap
+msgid "Guide"
+msgstr ""
+
+#: front-page.php:97
+#@ wpbootstrap
+msgid "investissement"
+msgstr ""
+
+#: front-page.php:98
+#@ wpbootstrap
+msgid "Berlin"
+msgstr ""
+
+#: front-page.php:103
+#@ wpbootstrap
+msgid "download for free"
+msgstr ""
+
+#: front-page.php:110
+#@ wpbootstrap
+msgid "Contact us"
+msgstr ""
+
+#: front-page.php:115
+#@ wpbootstrap
+msgid "NEWSLETTER"
+msgstr ""
+
+#: front-page.php:121
+#@ wpbootstrap
+msgid "Insert your email"
+msgstr ""
+
+#: front-page.php:122
+#@ wpbootstrap
+msgid "OK"
+msgstr ""
+
+#: functions.php:181
+#: venku/functions.php:181
+#@ wpbootstrap
+msgid "Submit"
+msgstr ""
+
+#: functions.php:616
+#: profile-form.php:83
+#: venku/functions.php:616
+#@ default
+#@ wpbootstrap
+msgid "City"
+msgstr ""
+
+#: functions.php:622
+#: venku/functions.php:622
+#@ default
+msgid "State"
+msgstr ""
+
+#: functions.php:734
+#@ wpbootstrap
+msgid "Floor Apartment"
+msgstr "Appartement d’étage"
+
+#: functions.php:737
+#@ wpbootstrap
+msgid "Attic"
+msgstr "Combles"
+
+#: functions.php:740
+#@ wpbootstrap
+msgid "Ground Floor"
+msgstr "Rez de Chaussé"
+
+#: functions.php:743
+#@ wpbootstrap
+msgid "Duplex"
+msgstr "Duplex"
+
+#: functions.php:758
+#@ wpbootstrap
+msgid "Rented apartment"
+msgstr "Appartement loué"
+
+#: functions.php:762
+#@ wpbootstrap
+msgid "Commercial Unit"
+msgstr "Commerce / Bureau"
+
+#: functions.php:766
+#@ wpbootstrap
+msgid "Apartment"
+msgstr "Appartement"
+
+#: functions.php:777
+#@ wpbootstrap
+msgid "Floor heating"
+msgstr "Chauffage par le sol"
+
+#: functions.php:781
+#@ wpbootstrap
+msgid "District heating"
+msgstr "Chauffage urbain"
+
+#: functions.php:785
+#@ wpbootstrap
+msgid "Central heating"
+msgstr "Chauffage central"
+
+#: functions.php:789
+#@ wpbootstrap
+msgid "Chauffage individuel"
+msgstr "Chauffage individuel"
+
+#: functions.php:793
+#@ wpbootstrap
+msgid "Furnace heating"
+msgstr "Chauffage par poêle"
+
+#: login-form.php:13
+#: lostpassword-form.php:37
+#: register-form.php:86
+#@ wpbootstrap
+msgid "Log in"
+msgstr ""
+
+#: login-form.php:19
+#@ default
+msgid "Email"
+msgstr ""
+
+#: login-form.php:23
+#@ default
+msgid "Password"
+msgstr ""
+
+#: login-form.php:29
+#@ default
+msgid "Remember Me"
+msgstr ""
+
+#: login-form.php:33
+#@ default
+msgid "Log In"
+msgstr ""
+
+#: lostpassword-form.php:14
+#@ wpbootstrap
+msgid "Lost Password"
+msgstr ""
+
+#: lostpassword-form.php:19
+#@ default
+msgid "Username or E-mail:"
+msgstr ""
+
+#: lostpassword-form.php:26
+#@ default
+msgid "Get New Password"
+msgstr ""
+
+#: lostpassword-form.php:37
+#: register-form.php:73
+#@ wpbootstrap
+#@ default
+msgid "Register"
+msgstr ""
+
+#: our-product-page.php:17
+#@ wpbootstrap
+msgid "Select a property type and start your search."
+msgstr ""
+
+#: our-product-page.php:42
+#@ wpbootstrap
+msgid "Price from:"
+msgstr ""
+
+#: our-product-page.php:45
+#@ wpbootstrap
+msgid "Price to:"
+msgstr ""
+
+#: our-product-page.php:49
+#@ wpbootstrap
+msgid "References:"
+msgstr ""
+
+#: our-product-page.php:52
+#: register-form.php:58
+#@ wpbootstrap
+msgid "City:"
+msgstr ""
+
+#: our-product-page.php:74
+#@ wpbootstrap
+msgid "Disctrict:"
+msgstr ""
+
+#: our-product-page.php:83
+#@ wpbootstrap
+msgid "Type of accommodation::"
+msgstr ""
+
+#: our-product-page.php:100
+#@ wpbootstrap
+msgid "Area from (m2):"
+msgstr ""
+
+#: our-product-page.php:103
+#@ wpbootstrap
+msgid "Area to (m2):"
+msgstr ""
+
+#: our-product-page.php:108
+#@ wpbootstrap
+msgid "Rooms from:"
+msgstr ""
+
+#: our-product-page.php:125
+#@ wpbootstrap
+msgid "Rooms to:"
+msgstr ""
+
+#: our-product-page.php:153
+#@ wpbootstrap
+msgid "All products"
+msgstr ""
+
+#: our-product-page.php:158
+#: our-product-page.php:159
+#: our-product-page.php:160
+#: our-product-page.php:161
+#: template-my_preferences.php:20
+#: template-my_preferences.php:21
+#: template-my_preferences.php:22
+#: template-my_preferences.php:23
+#@ wpbootstrap
+msgid "Sort by"
+msgstr ""
+
+#: our-product-page.php:178
+#: single-flat.php:1
+#: single-program.php:137
+#: template-my_preferences.php:40
+#: venku/single-flat.php:276
+#@ wpbootstrap
+msgid "Favorite"
+msgstr ""
+
+#: our-product-page.php:179
+#: single-flat.php:1
+#: single-program.php:138
+#: template-my_preferences.php:41
+#: venku/single-flat.php:277
+#@ wpbootstrap
+msgid "Prg ref"
+msgstr ""
+
+#: our-product-page.php:180
+#: profile-form.php:79
+#: single-flat.php:1
+#: single-program.php:139
+#: template-my_preferences.php:42
+#: venku/single-flat.php:278
+#@ wpbootstrap
+msgid "Address"
+msgstr ""
+
+#: our-product-page.php:181
+#: single-flat.php:1
+#: single-program.php:140
+#: template-my_preferences.php:43
+#: venku/single-flat.php:279
+#@ wpbootstrap
+msgid "Flat n°"
+msgstr ""
+
+#: our-product-page.php:182
+#: single-flat.php:1
+#: single-program.php:141
+#: template-my_preferences.php:44
+#: venku/single-flat.php:280
+#@ wpbootstrap
+msgid "Rental status"
+msgstr ""
+
+#: our-product-page.php:183
+#: single-flat.php:1
+#: single-program.php:142
+#: template-my_preferences.php:45
+#: venku/single-flat.php:281
+#@ wpbootstrap
+msgid "Floor"
+msgstr ""
+
+#: our-product-page.php:184
+#: single-flat.php:1
+#: single-program.php:143
+#: template-my_preferences.php:46
+#: venku/single-flat.php:282
+#@ wpbootstrap
+msgid "Rooms"
+msgstr ""
+
+#: our-product-page.php:185
+#: single-flat.php:1
+#: single-program.php:144
+#: template-my_preferences.php:47
+#: venku/single-flat.php:283
+#@ wpbootstrap
+msgid "Surface"
+msgstr ""
+
+#: our-product-page.php:186
+#: single-flat.php:1
+#: single-program.php:145
+#: template-my_preferences.php:48
+#: venku/single-flat.php:284
+#@ wpbootstrap
+msgid "Price"
+msgstr ""
+
+#: our-product-page.php:187
+#: single-flat.php:1
+#: single-program.php:146
+#: template-my_preferences.php:49
+#: venku/single-flat.php:285
+#@ wpbootstrap
+msgid "Price/m²"
+msgstr ""
+
+#: our-product-page.php:188
+#: single-flat.php:1
+#: single-program.php:147
+#: template-my_preferences.php:50
+#: venku/single-flat.php:286
+#@ wpbootstrap
+msgid "Yield"
+msgstr ""
+
+#: our-product-page.php:189
+#: single-flat.php:1
+#: single-program.php:148
+#: template-my_preferences.php:51
+#: venku/single-flat.php:287
+#@ wpbootstrap
+msgid "Status"
+msgstr ""
+
+#: our-product-page.php:315
+#: single-flat.php:1
+#: single-program.php:189
+#: venku/single-flat.php:356
+#@ wpbootstrap
+msgid "You modified"
+msgstr ""
+
+#: our-product-page.php:318
+#: single-flat.php:1
+#: single-program.php:192
+#: template-my_preferences.php:83
+#: venku/single-flat.php:360
+#@ wpbootstrap
+msgid "Ok"
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:48
+#@ wpbootstrap
+msgid "Ref.:"
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:54
+#@ wpbootstrap
+msgid "Flat n°:"
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:60
+#@ wpbootstrap
+msgid "Rental status: "
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:68
+#: single-flat.php:1
+#: venku/single-flat.php:163
+#@ wpbootstrap
+msgid "Floor:"
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:74
+#@ wpbootstrap
+msgid "Rooms:  "
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:80
+#@ wpbootstrap
+msgid "Surface:  "
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:88
+#@ wpbootstrap
+msgid "Price:"
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:94
+#@ wpbootstrap
+msgid "Price/m2:"
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:100
+#@ wpbootstrap
+msgid "Yield:"
+msgstr ""
+
+#: our-product-page.php:400
+#: our-product-page.php:657
+#: row_row.php:108
+#@ wpbootstrap
+msgid "VIEW DETAILS:"
+msgstr ""
+
+#: partial-project_frontpage.php:18
+#: partial-project_projects.php:19
+#: single-program.php:95
+#@ wpbootstrap
+msgid "Type of property:"
+msgstr ""
+
+#: partial-project_frontpage.php:22
+#: partial-project_projects.php:23
+#: register-form.php:54
+#: single-program.php:98
+#@ wpbootstrap
+msgid "Address:"
+msgstr ""
+
+#: partial-project_frontpage.php:26
+#: partial-project_projects.php:27
+#: single-program.php:101
+#@ wpbootstrap
+msgid "Size range:"
+msgstr ""
+
+#: partial-project_frontpage.php:28
+#: partial-project_projects.php:29
+#: single-program.php:106
+#@ wpbootstrap
+msgid "Price range:"
+msgstr ""
+
+#: profile-form.php:39
+#@ wpbootstrap
+msgid "First Name"
+msgstr ""
+
+#: profile-form.php:43
+#@ wpbootstrap
+msgid "Last Name"
+msgstr ""
+
+#: profile-form.php:47
+#@ wpbootstrap
+msgid "E-mail"
+msgstr ""
+
+#: profile-form.php:47
+#@ default
+msgid "(required)"
+msgstr ""
+
+#: profile-form.php:50
+#@ wpbootstrap
+msgid "New password"
+msgstr ""
+
+#: profile-form.php:56
+#@ wpbootstrap
+msgid "New Password"
+msgstr ""
+
+#: profile-form.php:57
+#@ default
+msgid "If you would like to change the password type a new one. Otherwise leave this blank."
+msgstr ""
+
+#: profile-form.php:58
+#@ default
+msgid "Type your new password again."
+msgstr ""
+
+#: profile-form.php:59
+#@ wpbootstrap
+msgid "Strength indicator"
+msgstr ""
+
+#: profile-form.php:62
+#@ wpbootstrap
+msgid "Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! \" ? $ % ^ &amp; )."
+msgstr ""
+
+#: profile-form.php:69
+#: profile-form.php:71
+#: register-form.php:43
+#@ wpbootstrap
+msgid "Company"
+msgstr ""
+
+#: profile-form.php:75
+#@ wpbootstrap
+msgid "Phone"
+msgstr ""
+
+#: profile-form.php:87
+#@ wpbootstrap
+msgid "Country"
+msgstr ""
+
+#: profile-form.php:91
+#@ wpbootstrap
+msgid "Logo"
+msgstr ""
+
+#: profile-form.php:110
+#@ default
+msgid "Update Profile"
+msgstr ""
+
+#: register-form.php:12
+#@ wpbootstrap
+msgid "Registration"
+msgstr ""
+
+#: register-form.php:18
+#@ wpbootstrap
+msgid "Login"
+msgstr ""
+
+#: register-form.php:24
+#@ wpbootstrap
+msgid "Title:"
+msgstr ""
+
+#: register-form.php:30
+#@ wpbootstrap
+msgid "First name:"
+msgstr ""
+
+#: register-form.php:34
+#@ wpbootstrap
+msgid "Last name:"
+msgstr ""
+
+#: register-form.php:38
+#@ wpbootstrap
+msgid "E-mail:"
+msgstr ""
+
+#: register-form.php:45
+#@ wpbootstrap
+msgid "Company:"
+msgstr ""
+
+#: register-form.php:50
+#@ wpbootstrap
+msgid "Phone:"
+msgstr ""
+
+#: register-form.php:62
+#@ wpbootstrap
+msgid "Country:"
+msgstr ""
+
+#: register-form.php:71
+#@ default
+msgid "A password will be e-mailed to you."
+msgstr ""
+
+#: register-form.php:86
+#@ wpbootstrap
+msgid "Forgot password"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:37
+#@ wpbootstrap
+msgid "reference program:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:76
+#@ wpbootstrap
+msgid "Video"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:91
+#@ wpbootstrap
+msgid "reference:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:105
+#@ wpbootstrap
+msgid "Purchase price:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:110
+#@ wpbootstrap
+msgid "Living area:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:114
+#: venku/single-flat.php:183
+#@ wpbootstrap
+msgid "Rooms:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:117
+#@ wpbootstrap
+msgid "Recommend product"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:118
+#@ wpbootstrap
+msgid "Print presentation"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:119
+#@ wpbootstrap
+msgid "Print reservation documents"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:121
+#@ wpbootstrap
+msgid "Download building data"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:124
+#@ wpbootstrap
+msgid "Download product data"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:133
+#@ wpbootstrap
+msgid "Features"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:136
+#@ wpbootstrap
+msgid "Year of construction: "
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:145
+#@ wpbootstrap
+msgid "Purchase price /sm:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:156
+#@ wpbootstrap
+msgid "Apartment type:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:173
+#@ wpbootstrap
+msgid "Number of floors:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:193
+#@ wpbootstrap
+msgid "Bathroom(s):"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:203
+#@ wpbootstrap
+msgid "Elevator:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:209
+#@ wpbootstrap
+msgid "Type of heating system:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:217
+#@ wpbootstrap
+msgid "Garage / parking spot:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:224
+#@ wpbootstrap
+msgid "Buyer commission (incl. VAT):"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:238
+#@ wpbootstrap
+msgid "Description"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:244
+#@ wpbootstrap
+msgid "Description of the building"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:248
+#@ wpbootstrap
+msgid "Description SURROUNDINGs"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:253
+#@ wpbootstrap
+msgid "Area map"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:268
+#@ wpbootstrap
+msgid "Other products that might interest you"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:323
+msgid "Recommend this product"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:331
+#@ wpbootstrap
+msgid "Receiver email:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:335
+#@ wpbootstrap
+msgid "Message:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:340
+#@ default
+msgid "Sending... "
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:341
+#@ wpbootstrap
+msgid "Send recommendation"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:432
+#@ default
+msgid "Your recommendation has been successfully sent"
+msgstr ""
+
+#: single-program.php:63
+#@ wpbootstrap
+msgid "Summary"
+msgstr ""
+
+#: single-program.php:82
+#@ wpbootstrap
+msgid "Key Facts"
+msgstr ""
+
+#: single-program.php:113
+#@ wpbootstrap
+msgid "Ce programme vous intéresse ?"
+msgstr ""
+
+#: single-program.php:121
+#@ wpbootstrap
+msgid "List of products available in this program"
+msgstr ""
+
+#: template-my_preferences.php:15
+#@ wpbootstrap
+msgid "My preferences"
+msgstr ""
+
+#: template-my_preferences.php:80
+#@ wpbootstrap
+msgid "Do you really want to remove this preference?"
+msgstr ""
+
+#: template-my_preferences.php:84
+#@ wpbootstrap
+msgid "Yes"
+msgstr ""
+
