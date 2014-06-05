@@ -102,7 +102,7 @@ class pdfgenerator {
     }
 
     function do_rewrite() {
-        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
+        add_rewrite_rule("generate-product-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
         //add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
         add_rewrite_rule("reservation-document/([^/]+)/([^/]+)/?$", 'index.php?action=reservation-pdf&product_id=$matches[1]&language=$matches[2]', 'top');
     }
@@ -111,8 +111,6 @@ class pdfgenerator {
 
         $q = $wp->query_vars;
         $lang = qtrans_getLanguage();
-
-
 
         // rezervacni form
         if (isset($q['action']) && 'reservation-pdf' == $q['action']) {
