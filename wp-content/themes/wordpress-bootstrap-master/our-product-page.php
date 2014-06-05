@@ -83,11 +83,9 @@ get_header();
                         <label for="accommodation"><?php _e("Type of accommodation:", "wpbootstrap"); ?></label>                           
                         <select class="form-control input-lg" name="type" >
                             <option value="">---</option>
-                            
                             <option class="" value="<?php _e("Rented apartment", "wpbootstrap"); ?>"><?php _e("Rented apartment", "wpbootstrap"); ?></option>
                             <option class="" value="<?php _e("Apartment", "wpbootstrap"); ?>"><?php _e("Apartment", "wpbootstrap"); ?></option>
-                            <option class="" value="<?php _e("Apartment", "wpbootstrap"); ?>"><?php _e("Commercial Unit", "wpbootstrap"); ?></option> 
-                        
+                            <option class="" value="<?php _e("Commercial Unit", "wpbootstrap"); ?>"><?php _e("Commercial Unit", "wpbootstrap"); ?></option> 
                         </select> 
                     </div> 
                     <div class="row">
@@ -205,10 +203,11 @@ get_header();
                                         $program_id = $val->program_id;
                                         
                                         $term = accomodationTypeL($prop);
-                                        
-                                        if(empty($term)){
-                                            $term = '-';
+                                       
+                                        if($term==""){ 
+                                           $term = '-';   
                                         }
+                                        
                         
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
@@ -375,7 +374,7 @@ get_header();
             if (count >= (total_item)) {
                 return; 
             }  
-            if (load_next_item && (jQuery(window).scrollTop() >= jQuery(document).height() - (jQuery(window).height() + 100))) {         
+            if (load_next_item && (jQuery(window).scrollTop() >= jQuery(document).height() - (jQuery(window).height() + 10))) {         
                 var starter = count;
                 count = count+10;   
                 var ie = 0;   
