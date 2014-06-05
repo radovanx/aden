@@ -18,21 +18,20 @@
                         <label for="user_login<?php $template->the_instance(); ?>"><?php _e('Login', 'wpbootstrap'); ?></label>
                         <input type="text" name="user_login" id="user_login<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('user_login'); ?>" size="20">
                     </div>
+                     -->
                     <div class="form-group">
                         <label for="title<?php $template->the_instance(); ?>"><?php _e('Title:', 'wpbootstrap'); ?></label>
                         <input type="text" name="title" id="title<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('title'); ?>" size="20">
                     </div>
-                   -->
+                   
                     <div class="form-group">
                         <label for="first_name<?php $template->the_instance(); ?>"><?php _e('First name:', 'wpbootstrap'); ?></label>
                         <input type="text" name="first_name" id="first_name<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('first_name'); ?>" size="20">
                     </div>
-
                     <div class="form-group">
                         <label for="last_name<?php $template->the_instance(); ?>"><?php _e('Last name:', 'wpbootstrap'); ?></label>
                         <input type="text" name="last_name" id="last_name<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('last_name'); ?>" size="20">
                     </div>
-
                     <div class="form-group">
                         <label for="user_email<?php $template->the_instance(); ?>"><?php _e('E-mail:', 'wpbootstrap'); ?></label>
                         <input type="text" name="user_email" id="user_email<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('user_email'); ?>" size="20">
@@ -48,23 +47,19 @@
                     <div class="form-group">
                         <label for="phone<?php $template->the_instance(); ?>"><?php _e('Phone:', 'wpbootstrap'); ?></label>
                         <input type="text" name="phone" id="phone<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('phone'); ?>" size="20">
-                    </div>
-
+                    </div> 
                     <div class="form-group">
                         <label for="address<?php $template->the_instance(); ?>"><?php _e('Address:', 'wpbootstrap'); ?></label>
                         <input type="text" name="address" id="address<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('address'); ?>" size="20">
-                    </div>
-
+                    </div> 
                     <div class="form-group">
                         <label for="city<?php $template->the_instance(); ?>"><?php _e('City:', 'wpbootstrap'); ?></label>
                         <input type="text" name="city" id="city<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('city'); ?>" size="20">
                     </div>
-
                     <div class="form-group">
                         <label for="country<?php $template->the_instance(); ?>"><?php _e('Country:', 'wpbootstrap'); ?></label>
                         <input type="text" name="country" id="country<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('country'); ?>" size="20">
                     </div>
-
                     <?php do_action('register_form'); ?>
                 </div>
 

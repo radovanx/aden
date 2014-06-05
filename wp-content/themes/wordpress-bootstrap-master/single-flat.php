@@ -103,7 +103,7 @@ get_header();
                                 </address>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
-                                    <strong class="red pull-right"><?php echo esc_attr(price_format($props['preise|kaufpreis'])) ?> €/m² (sm)
+                                    <strong class="red pull-right"><?php echo esc_attr(price_format($props['preise|kaufpreis'])) ?> €
                                     </strong>
                                 </span>
                                 <span class="propertyListBoxDataItemName">
@@ -258,14 +258,12 @@ get_header();
                     <div id="map-canvas">
                     </div>
                 </div>
-                
                  <div class="col-md-3 pull-right big_icons margin-top">
                         <ul class="nav nav-tabs">
                             <a href="#list"  data-toggle="tab" class="blue active"><i class="fa fa-list"></i></a>
                             <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a>
                         </ul>
-                 </div>
-                
+                 </div> 
                 <div class="col-md-12 column margin-top">
                     <h3 class="border-left uppercase"><?php _e("Other products that might interest you", "wpbootstrap"); ?></h3> 
                     <!-- Tab panes -->
