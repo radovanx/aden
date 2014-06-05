@@ -1260,6 +1260,25 @@ class EstateProgram {
 
         return implode(', ', $arr);
     }
+    
+    
+    static public function apartmentType($props) {
+        $arr = array();
+
+        if (isset($props['objektkategorie|nutzungsart|ANLAGE']) && 1 == $props['objektkategorie|nutzungsart|ANLAGE']) {
+            $arr[] = __('Appartement loué', 'estateprogram');
+        }
+
+        if (isset($props['objektkategorie|nutzungsart|GEWERBE']) && 1 == $props['objektkategorie|nutzungsart|GEWERBE']) {
+            $arr[] = __('chauffage central', 'estateprogram');
+        }
+
+        if (isset($props['objektkategorie|nutzungsart|WOHNEN']) && 1 == $props['objektkategorie|nutzungsart|WOHNEN']) {
+            $arr[] = __('Commerce / Bureau', 'estateprogram');
+        }
+
+        return implode(', ', $arr);
+    }    
 
     static function flat_program_id($apartment_id) {
 
