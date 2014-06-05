@@ -104,38 +104,23 @@ get_header();
 
                                     </div>
 
-                                <?php endif; ?>
-
-                            </div>
-
-                        </div>
-
-                        <!--/TAB CONTENT END-->
-
-                        <ul class="nav nav-pills margin-top">
-
-                            <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i><?php _e("Gallery", "wpbootstrap"); ?></a></li>
-
+                                <?php endif; ?> 
+                            </div> 
+                        </div> 
+                        <!--/TAB CONTENT END--> 
+                        <ul class="nav nav-pills margin-top"> 
+                            <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i><?php _e("Gallery", "wpbootstrap"); ?></a></li> 
                             <?php
                             if (!empty($video)):
-                                ?>
-
-                                <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i><?php _e("Video", "wpbootstrap"); ?></a></li>
-
-                            <?php endif; ?>
-
-                        </ul>
-
-                        <section class="post_content clearfix" itemprop="articleBody">
-
-                        </section> <!-- end article section -->
-
-                        <!-- end article footer -->
-
-                    </article> <!-- end article -->
-
-                </div>
-
+                                ?> 
+                                <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i><?php _e("Video", "wpbootstrap"); ?></a></li> 
+                            <?php endif; ?> 
+                        </ul> 
+                        <section class="post_content clearfix" itemprop="articleBody"> 
+                        </section> <!-- end article section --> 
+                        <!-- end article footer --> 
+                    </article> <!-- end article --> 
+                </div> 
                 <div class="col-md-5 column">
 
                     <div class="border col-md-12 column">
@@ -157,7 +142,6 @@ get_header();
                                 </div>
 
                             </span>
-
                             <div class="col-md-12 column product-key-info">
 
                                 <address>
@@ -278,7 +262,7 @@ get_header();
                                 <span class="pull-right">
                                     <?php
                                     if (isset($props['objektart|wohnung|wohnungtyp'])):
-                                        echo esc_attr(price_format($props['objektart|wohnung|wohnungtyp']));
+                                        echo esc_attr($props['objektart|wohnung|wohnungtyp']);
                                     endif;
                                     ?>
                                 </span>
