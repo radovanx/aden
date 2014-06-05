@@ -70,7 +70,6 @@ class SourceImport {
 
         //$str = 'call processBackendParseXml: zip_file: ' . $zip_file . ' | lang_dir: ' . $lang_dir . "\n";
         //file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);
-
         //sleep(10);
 
         $lang = EstateProgram::$langs[$lang_dir];
@@ -194,7 +193,6 @@ class SourceImport {
 
         //$str = "uid:" . $unique_identificator . "\n";
         //file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);
-
         //var_dump($unique_identificator);
         // zjistim zdali tento byt je již importován
         $sql = "
@@ -347,6 +345,9 @@ class SourceImport {
                 $wp_upload_dir = wp_upload_dir();
                 //
                 foreach ($images as $image) {
+
+                    $gruppe = (string) $image->attributes()->gruppe;
+
                     $file = $image->xpath('daten/pfad');
                     $image_title = (string) $image->anhangtitel;
                     $image_file = (string) $file[0];
@@ -356,25 +357,41 @@ class SourceImport {
 
                     //$str = "processing image:" . esc_attr($image_file) . '| Image title: ' . $image_title . "\n";
                     //file_put_contents(EstateProgramAjax::$log_file, $str, FILE_APPEND);
+                    //if (false !== strpos($image_file, 'http')) {
 
-                    if (false !== strpos($image_file, 'http')) {
-                        if (false !== strpos($image_file, 'dropbox')) {
+                    if ('LINKS' == $gruppe) {
 
-                            if (false !== strpos($image_title, 'flat')) {
-                                $props['dropbox|flat'] = $image_file;
-                                //continue;
-                            }
-
-                            if (false !== strpos($image_title, 'building')) {
-                                $props['dropbox|building'] = $image_file;
-                                //continue;
-                            }
-                        }
-
-                        if (false !== strpos($image_file, 'youtu')) {
-                            $props['youtube'] = $image_file;
+                        if (false !== strpos($image_title, 'flat')) {
+                            $props['dropbox|flat'] = $image_file;
                             //continue;
                         }
+
+                        if (false !== strpos($image_title, 'building')) {
+                            $props['dropbox|building'] = $image_file;
+                            //continue;
+                        }
+
+                        /*
+                          if (false !== strpos($image_file, 'dropbox')) {
+
+                          if (false !== strpos($image_title, 'flat')) {
+                          $props['dropbox|flat'] = $image_file;
+                          //continue;
+                          }
+
+                          if (false !== strpos($image_title, 'building')) {
+                          $props['dropbox|building'] = $image_file;
+                          //continue;
+                          }
+                          }
+
+                          if (false !== strpos($image_file, 'youtu')) {
+                          $props['youtube'] = $image_file;
+                          //continue;
+                          }
+                         */
+                    } else if('FILMLINK' == $gruppe) {                        
+                        $props['youtube'] = $image_file;
                     } else {
 
                         $image_path = $temp_dir . DIRECTORY_SEPARATOR . $image_file;
@@ -436,18 +453,14 @@ class SourceImport {
 
                                     $wpdb->query($sql);
 
-                                    if (false == $thumb_id) {
-                                        $thumb_id = $attach_id;
+                                    if ('TITELBILD' == $gruppe) {
+                                        set_post_thumbnail($apartment_id, $thumb_id);
                                     }
                                 }
                             }
                         }
                         //
                     }
-                }
-
-                if (false !== $thumb_id) {
-                    set_post_thumbnail($apartment_id, $thumb_id);
                 }
 
                 update_post_meta($apartment_id, 'flat_props_' . $lang, $props);
@@ -506,4 +519,5 @@ class SourceImport {
     }
 
 }
+
 ?>

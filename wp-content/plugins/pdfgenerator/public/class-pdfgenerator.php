@@ -147,7 +147,7 @@ class pdfgenerator {
                                 3,
                                 NOW(),
                                 '" . (int) $product->ID . "',
-                                1,                               
+                                1,
                                 '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
                             )";
 
@@ -159,12 +159,12 @@ class pdfgenerator {
 
                 foreach ($langs as $lang) {
                     $sql = "
-                                    REPLACE INTO 
+                                    REPLACE INTO
                                         stat_lang (product_id, lang, title)
                                     VALUES (
                                         '" . $product->ID . "',
                                         '" . $lang . "',
-                                        '" . esc_sql(qtrans_use($lang, $title, false)) . "'    
+                                        '" . esc_sql(qtrans_use($lang, $title, false)) . "'
                                         )
                                     ";
 
@@ -191,82 +191,78 @@ class pdfgenerator {
                 $lang = $q['language'];
             }
 
-            /*
-              $mpdf = new mPDF(
-              '', //mode
-              'A4', // format
-              '', // font size
-              '', // default font
-              '', // margin left
-              '', // margin right
-              '', // margin top
-              '', // margin bottom
-              '', // margin header
-              '' // margin footer
-              ); */
-
             // download pdf
             if (isset($q['product_type'])) {
                 switch ($q['product_type']) {
                     case 'product':
 
                         if (isset($q['product_id'])) {
-                            $product = get_post($q['product_id']);
 
-                            //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
-                            $props = get_props($product->ID, $lang);
+                            if (isset($_GET['print']) && 'product-presentation' == $_GET['print']) {
 
-                            $mpdf = $this->create_html2pdf($product, $props, $lang);
 
-                            if (empty($props['verwaltung_techn|objektnr_extern'])) {
-                                $filename = get_the_title($product_id);
-                            } else {
-                                $filename = $props['verwaltung_techn|objektnr_extern'];
-                            }
+                                global $wpdb;
 
-                            global $wpdb;
+                                $product = get_post($q['product_id']);
+                                $props = get_props($product->ID, $lang);
+                                $program_id = EstateProgram::flat_program_id($product->ID);
 
-                            $program_id = EstateProgram::flat_program_id($product->ID);
 
-                            $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
-
-                            $sql3 = "
+                                $sql3 = "
                             INSERT INTO
-                                stat (user_id, program_id, type, record_date, product_id, download, ref_no)
+                                stat (
+                                    user_id, 
+                                    program_id, 
+                                    type, 
+                                    record_date, 
+                                    product_id, 
+                                    download, 
+                                    ref_no)
                             VALUES (
                                 '" . get_current_user_id() . "',
                                 '" . (int) $program_id . "',
                                 2,
                                 NOW(),
                                 '" . (int) $product->ID . "',
-                                1,                               
+                                1,
                                 '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
                             )";
 
-                            $wpdb->query($sql3);
+                                $wpdb->query($sql3);
+                                $last_id = $wpdb->insert_id;
 
-                            $last_id = $wpdb->insert_id;
 
-                            $langs = qtrans_getSortedLanguages();
 
-                            foreach ($langs as $lang) {
-                                $sql2 = "
-                                    REPLACE INTO 
+
+                                $mpdf = $this->create_html2pdf($product, $props, $lang);
+                                if (empty($props['verwaltung_techn|objektnr_extern'])) {
+                                    $filename = get_the_title($product_id);
+                                } else {
+                                    $filename = $props['verwaltung_techn|objektnr_extern'];
+                                }
+
+                                $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
+
+                                $langs = qtrans_getSortedLanguages();
+
+                                foreach ($langs as $lang) {
+                                    $sql2 = "
+                                    REPLACE INTO
                                         stat_lang (product_id, lang, title)
                                     VALUES (
                                         '" . $product->ID . "',
                                         '" . $lang . "',
-                                        '" . esc_sql(qtrans_use($lang, $title, false)) . "'    
+                                        '" . esc_sql(qtrans_use($lang, $title, false)) . "'
                                         )
                                     ";
 
-                                $wpdb->query($sql2);
+                                    $wpdb->query($sql2);
+                                }
+                                $mpdf->Output($filename, 'D');
+                                exit;
                             }
-
-                            $mpdf->Output($filename, 'D');
-                            
-                            exit;
                         }
+
                         break;
                     case '':
                         break;
@@ -343,7 +339,7 @@ class pdfgenerator {
         $message = str_replace("\n", "\r\n", $message);
 
         $lang = qtrans_getLanguage();
-        //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);        
+        //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
         $props = get_props($product->ID, $lang);
 
         $mpdf = $this->create_html2pdf($product, $props);
@@ -446,7 +442,7 @@ class pdfgenerator {
                 NOW(),
                 '" . (int) $product->ID . "',
                 '" . esc_sql($to) . "',
-                1,                
+                1,
                 '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
             )";
 
@@ -458,12 +454,12 @@ class pdfgenerator {
 
         foreach ($langs as $lang) {
             $sql5 = "
-                                    REPLACE INTO 
+                                    REPLACE INTO
                                         stat_lang (product_id, lang, title)
                                     VALUES (
                                         '" . $product->ID . "',
                                         '" . $lang . "',
-                                        '" . esc_sql(qtrans_use($lang, $title, false)) . "'    
+                                        '" . esc_sql(qtrans_use($lang, $title, false)) . "'
                                         )
                                     ";
 

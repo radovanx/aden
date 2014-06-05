@@ -1243,6 +1243,7 @@ class EstateProgram {
         return $wpdb->get_col($sql);
     }
 
+    /*
     static public function heatingSystem($props) {
         $arr = array();
 
@@ -1259,7 +1260,10 @@ class EstateProgram {
         }
 
         return implode(', ', $arr);
-    }
+    }*/
+    
+    
+    
 
     static function flat_program_id($apartment_id) {
 

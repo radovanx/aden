@@ -110,3 +110,120 @@ Array
 uid:BO-SO-12-24
 adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|3
 end|29. 05. 2014 16:19:33
+------------------------------------------------------------------------------
+begin|05. 06. 2014 13:01:45|Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111804.zip
+    [dir] => eng
+)
+
+======================================================================
+adenimmoeb4allcz_IMMONET_20140515111804.zip|0
+end|05. 06. 2014 13:01:45
+------------------------------------------------------------------------------
+begin|05. 06. 2014 13:02:03|Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111804.zip
+    [dir] => eng
+)
+
+======================================================================
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|96
+end|05. 06. 2014 13:03:39
+------------------------------------------------------------------------------
+begin|05. 06. 2014 13:04:07|Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111804.zip
+    [dir] => eng
+)
+
+======================================================================
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|65
+end|05. 06. 2014 13:05:12
+------------------------------------------------------------------------------
+begin|05. 06. 2014 13:06:45|Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111804.zip
+    [dir] => eng
+)
+
+======================================================================
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|12
+end|05. 06. 2014 13:06:57
+------------------------------------------------------------------------------
+begin|05. 06. 2014 13:07:23|Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111804.zip
+    [dir] => eng
+)
+
+======================================================================
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|6
+end|05. 06. 2014 13:07:29
+------------------------------------------------------------------------------
+begin|05. 06. 2014 13:09:16|Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111804.zip
+    [dir] => eng
+)
+
+======================================================================
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|18
+end|05. 06. 2014 13:09:34
+------------------------------------------------------------------------------
+begin|05. 06. 2014 13:09:49|Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111804.zip
+    [dir] => eng
+)
+
+======================================================================
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|131
+end|05. 06. 2014 13:12:00
+------------------------------------------------------------------------------
+begin|05. 06. 2014 13:39:40|Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111804.zip
+    [dir] => eng
+)
+
+======================================================================
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|9
+end|05. 06. 2014 13:39:49
+------------------------------------------------------------------------------
+begin|05. 06. 2014 13:40:48|Processing POST| dir:eng | filename: adenimmoeb4allcz_IMMONET_20140515111804.zip
+======================================================================
+Array
+(
+    [action] => backend_parse_xml
+    [file] => adenimmoeb4allcz_IMMONET_20140515111804.zip
+    [dir] => eng
+)
+
+======================================================================
+adenimmoeb4allcz_IMMONET_20140515111804.zip|ok|2
+end|05. 06. 2014 13:40:50

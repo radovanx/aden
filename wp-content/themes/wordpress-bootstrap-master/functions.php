@@ -718,4 +718,82 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     } 
     
     add_filter('home_url', 'qtrans_convertHomeURL', 10, 2);
+    
+    
+    /**
+     * 
+     * @param type $props
+     */
+    function apartmentTypeL($props) {
+        
+        $arr = array();
+         
+        if (isset($props['objektart|wohnung|wohnungtyp'])) {
+            switch($props['objektart|wohnung|wohnungtyp']){
+                case 'ETAGE';
+                    $arr[] = __('Floor Apartment', 'wpbootstrap');
+                    break;
+                case 'DACHGESCHOSS';
+                    $arr[] = __('Attic', 'wpbootstrap');
+                    break;
+                case 'ERDGESCHOSS';
+                    $arr[] = __('Ground Floor', 'wpbootstrap');
+                    break;  
+                case 'MAISONETTE':
+                    $arr[] = __('Duplex', 'wpbootstrap');
+                    break;
+            }
+        } 
+        
+        return implode(', ', $arr);
+        
+    }
+    
+    
+    /**/    
+    function accomodationTypeL($props) {
+        $arr = array();
+
+        if (isset($props['objektkategorie|nutzungsart|ANLAGE']) && 1 == $props['objektkategorie|nutzungsart|ANLAGE']) {
+            $arr[] = __('Rented apartment', 'wpbootstrap');
+        }
+
+        if (isset($props['objektkategorie|nutzungsart|GEWERBE']) && 1 == $props['objektkategorie|nutzungsart|GEWERBE']) {
+            $arr[] = __('Commercial Unit', 'wpbootstrap');
+        }
+
+        if (isset($props['objektkategorie|nutzungsart|WOHNEN']) && 1 == $props['objektkategorie|nutzungsart|WOHNEN']) {            
+            $arr[] = __('Apartment', 'wpbootstrap');
+        }
+
+        return implode(', ', $arr);
+    } 
+    
+    
+    function heatingSystemL($props) {
+        $arr = array();
+
+        if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
+            $arr[] = __('Floor heating', 'wpbootstrap');
+        }        
+
+        if (isset($props['ausstattung|heizungsart|FERN']) && 1 == $props['ausstattung|heizungsart|FERN']) {
+            $arr[] = __('District heating', 'wpbootstrap');
+        }        
+        
+        if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
+            $arr[] = __('Central heating', 'wpbootstrap');
+        }
+        
+        if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
+            $arr[] = __('Chauffage individuel', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|OFEN']) && 1 == $props['ausstattung|heizungsart|OFEN']) {
+            $arr[] = __('Furnace heating', 'wpbootstrap');
+        }        
+        
+        return implode(', ', $arr);
+    }
+    
     ?>

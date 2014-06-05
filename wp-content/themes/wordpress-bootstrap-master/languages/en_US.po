@@ -2,20 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wp-bootstrap v3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-17 23:02-0300\n"
-"PO-Revision-Date: 2014-06-05 14:34:43+0000\n"
-"Last-Translator: Martin Meyerhoff <mamhoff@googlemail.com>\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-06-05 14:40:27+0000\n"
+"Last-Translator: admin <radovanmail@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-Language: \n"
-"X-Poedit-Country: \n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
-"X-Poedit-Basepath: /Users/kafran/Documents/wordpress-bootstrap\n"
+"X-Poedit-Basepath: ../\n"
 "X-Poedit-Bookmarks: \n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Textdomain-Support: yes"
@@ -23,48 +23,59 @@ msgstr ""
 #: 404.php:13
 #@ wpbootstrap
 msgid "Epic 404 - Article Not Found"
-msgstr "Grandios. 404 - Artikel nicht gefunden."
+msgstr ""
 
 #: 404.php:14
 #@ wpbootstrap
 msgid "This is embarassing. We can't find what you were looking for."
-msgstr "Das ist peinlich. Wir können nicht finden, was du suchst. "
+msgstr ""
 
 #: 404.php:22
 #@ wpbootstrap
 msgid "Whatever you were looking for was not found, but maybe try looking again or search using the form below."
-msgstr "Was du suchst, konnten wir nicht finden. Versuche es noch einmal oder benutze das Suchformular unten."
+msgstr ""
+
+#: about-us-page.php:20
+#: template-buy_page.php:49
+#@ wpbootstrap
+msgid "Contact Form"
+msgstr ""
+
+#: about-us-page.php:27
+#@ wpbootstrap
+msgid "CONTACT INFORMATIONS"
+msgstr ""
 
 #: archive.php:10
 #@ wpbootstrap
 msgid "Posts Categorized:"
-msgstr "Posts nach Kategorien:"
+msgstr ""
 
 #: archive.php:14
 #@ wpbootstrap
 msgid "Posts Tagged:"
-msgstr "Posts nach Tags:"
+msgstr ""
 
 #: archive.php:18
 #: author.php:8
 #@ wpbootstrap
 msgid "Posts By:"
-msgstr "Posts nach:"
+msgstr ""
 
 #: archive.php:22
 #@ wpbootstrap
 msgid "Daily Archives:"
-msgstr "Archiv nach Tag:"
+msgstr ""
 
 #: archive.php:26
 #@ wpbootstrap
 msgid "Monthly Archives:"
-msgstr "Archiv nach Monat:"
+msgstr ""
 
 #: archive.php:30
 #@ wpbootstrap
 msgid "Yearly Archives:"
-msgstr "Archiv nach Jahr:"
+msgstr ""
 
 #: archive.php:43
 #: attachment.php:15
@@ -75,7 +86,7 @@ msgstr "Archiv nach Jahr:"
 #: single.php:17
 #@ wpbootstrap
 msgid "Posted"
-msgstr "Veröffentlicht:"
+msgstr ""
 
 #: archive.php:43
 #: attachment.php:15
@@ -86,7 +97,7 @@ msgstr "Veröffentlicht:"
 #: single.php:17
 #@ wpbootstrap
 msgid "by"
-msgstr "von"
+msgstr ""
 
 #: archive.php:43
 #: attachment.php:15
@@ -96,7 +107,7 @@ msgstr "von"
 #: single.php:17
 #@ wpbootstrap
 msgid "filed under"
-msgstr "gespeichert unter"
+msgstr ""
 
 #: archive.php:70
 #: author.php:58
@@ -104,7 +115,7 @@ msgstr "gespeichert unter"
 #: search.php:42
 #@ wpbootstrap
 msgid "&laquo; Older Entries"
-msgstr "&laquo; Ältere Posts"
+msgstr ""
 
 #: archive.php:71
 #: author.php:59
@@ -112,19 +123,19 @@ msgstr "&laquo; Ältere Posts"
 #: search.php:43
 #@ wpbootstrap
 msgid "Newer Entries &raquo;"
-msgstr "Neuere Posts &raquo;"
+msgstr ""
 
 #: archive.php:81
 #: author.php:69
 #@ wpbootstrap
 msgid "No Posts Yet"
-msgstr "Noch keine Posts"
+msgstr ""
 
 #: archive.php:84
 #: author.php:72
 #@ wpbootstrap
 msgid "Sorry, What you were looking for is not here."
-msgstr "Entschuldige, wir konnten das nicht finden."
+msgstr ""
 
 #: attachment.php:27
 #: image.php:54
@@ -138,7 +149,7 @@ msgstr "Entschuldige, wir konnten das nicht finden."
 #: template_restrict.php:43
 #@ wpbootstrap
 msgid "Tags"
-msgstr "Tags"
+msgstr ""
 
 #: attachment.php:41
 #: image.php:68
@@ -157,7 +168,7 @@ msgstr "Tags"
 #: venku/single-flat.php:308
 #@ wpbootstrap
 msgid "Not Found"
-msgstr "Nicht gefunden"
+msgstr ""
 
 #: attachment.php:44
 #: image.php:71
@@ -176,180 +187,54 @@ msgstr "Nicht gefunden"
 #: venku/single-flat.php:311
 #@ wpbootstrap
 msgid "Sorry, but the requested resource was not found on this site."
-msgstr "Entschuldigung, die angeforderte Ressource konnten wir nicht finden"
+msgstr ""
 
 #: comments.php:12
 #@ wpbootstrap
 msgid "This post is password protected. Enter the password to view comments."
-msgstr "Dieser Post ist passwortgeschützt. Gib dein Passwort ein, um die Kommentare zu sehen."
+msgstr ""
 
 #: comments.php:22
 #: template-my_preferences.php:85
 #@ wpbootstrap
 msgid "No"
-msgstr "Kein"
+msgstr ""
 
 #: comments.php:22
 #@ wpbootstrap
 msgid "Responses"
-msgstr "Kommentare"
+msgstr ""
 
 #: comments.php:22
 #@ wpbootstrap
 msgid "One"
-msgstr "Ein"
+msgstr ""
 
 #: comments.php:22
 #@ wpbootstrap
 msgid "Response"
-msgstr "Kommentar"
+msgstr ""
 
 #: comments.php:22
 #@ wpbootstrap
 msgid "to"
-msgstr "für"
+msgstr ""
 
 #: comments.php:26
 #: comments.php:47
 #@ wpbootstrap
 msgid "Older comments"
-msgstr "Ältere Kommentare"
+msgstr ""
 
 #: comments.php:27
 #: comments.php:48
 #@ wpbootstrap
 msgid "Newer comments"
-msgstr "Neuere Kommentare"
+msgstr ""
 
 #: comments.php:61
 #@ wpbootstrap
 msgid "Comments are closed"
-msgstr "Die Kommentarfunktion ist deaktiviert"
-
-#: functions.php:141
-#@ wpbootstrap
-msgid "Edit"
-msgstr "Bearbeiten"
-
-#: functions.php:145
-#@ wpbootstrap
-msgid "Your comment is awaiting moderation."
-msgstr "Dein Kommentar wird geprüft."
-
-#: functions.php:180
-#@ wpbootstrap
-msgid "This post is password protected. To view it please enter your password below:"
-msgstr "Dieser Post ist passwortgeschützt. Um ihn zu sehen, gib bitte dein Passwort ein:"
-
-#: functions.php:181
-#@ wpbootstrap
-msgid "Password:"
-msgstr "Passwort:"
-
-#: our-product-page.php:142
-#: searchform.php:4
-#: searchform.php:6
-#@ wpbootstrap
-msgid "Search"
-msgstr "Suche"
-
-#: image.php:90
-#@ wpbootstrap
-msgid "Image metadata"
-msgstr "Bild-Metadaten"
-
-#: image.php:111
-#@ wpbootstrap
-msgid "Date Taken"
-msgstr "Aufgenommen am"
-
-#: image.php:114
-#@ wpbootstrap
-msgid "Copyright"
-msgstr "Copyright"
-
-#: image.php:117
-#@ wpbootstrap
-msgid "Credit"
-msgstr "Autor"
-
-#: image.php:120
-#: profile-form.php:34
-#@ wpbootstrap
-msgid "Title"
-msgstr "Titel"
-
-#: image.php:123
-#@ wpbootstrap
-msgid "Caption"
-msgstr "Beschreibung"
-
-#: image.php:126
-#@ wpbootstrap
-msgid "Camera"
-msgstr "Kamera"
-
-#: image.php:129
-#@ wpbootstrap
-msgid "Focal Length"
-msgstr "Brennweite"
-
-#: image.php:132
-#@ wpbootstrap
-msgid "Aperture"
-msgstr "Blende"
-
-#: image.php:135
-#@ wpbootstrap
-msgid "ISO"
-msgstr "ISO"
-
-#: image.php:138
-#@ wpbootstrap
-msgid "Shutter Speed"
-msgstr "Verschlusszeit"
-
-#: index.php:23
-#@ wpbootstrap
-msgid "Read more &raquo;"
-msgstr "Weiterlesen &raquo;"
-
-#: search.php:7
-#@ wpbootstrap
-msgid "Search Results for"
-msgstr "Suchergebnisse für"
-
-#: search.php:22
-#@ wpbootstrap
-msgid "Read more on"
-msgstr "Weiterlesen auf"
-
-#: sidebar-sidebar2.php:13
-#: sidebar.php:13
-#@ wpbootstrap
-msgid "Please activate some Widgets"
-msgstr "Bitte aktiviere ein paar Widgets"
-
-#: single.php:36
-#@ wpbootstrap
-msgid "Edit post"
-msgstr "Post bearbeiten"
-
-#: single-flat.php:1
-#: venku/single-flat.php:72
-#@ wpbootstrap
-msgid "Gallery"
-msgstr "Galerie"
-
-#: about-us-page.php:20
-#: template-buy_page.php:49
-#@ wpbootstrap
-msgid "Contact Form"
-msgstr ""
-
-#: about-us-page.php:27
-#@ wpbootstrap
-msgid "CONTACT INFORMATIONS"
 msgstr ""
 
 #: front-page.php:96
@@ -392,6 +277,26 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
+#: functions.php:141
+#@ wpbootstrap
+msgid "Edit"
+msgstr ""
+
+#: functions.php:145
+#@ wpbootstrap
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: functions.php:180
+#@ wpbootstrap
+msgid "This post is password protected. To view it please enter your password below:"
+msgstr ""
+
+#: functions.php:181
+#@ wpbootstrap
+msgid "Password:"
+msgstr ""
+
 #: functions.php:181
 #@ wpbootstrap
 msgid "Submit"
@@ -420,8 +325,70 @@ msgid "Appartement"
 msgstr ""
 
 #: functions.php:739
+#: single-flat.php:1
 #@ wpbootstrap
 msgid "Commerce / Bureau"
+msgstr "Commercial Unit"
+
+#: image.php:90
+#@ wpbootstrap
+msgid "Image metadata"
+msgstr ""
+
+#: image.php:111
+#@ wpbootstrap
+msgid "Date Taken"
+msgstr ""
+
+#: image.php:114
+#@ wpbootstrap
+msgid "Copyright"
+msgstr ""
+
+#: image.php:117
+#@ wpbootstrap
+msgid "Credit"
+msgstr ""
+
+#: image.php:120
+#: profile-form.php:34
+#@ wpbootstrap
+msgid "Title"
+msgstr ""
+
+#: image.php:123
+#@ wpbootstrap
+msgid "Caption"
+msgstr ""
+
+#: image.php:126
+#@ wpbootstrap
+msgid "Camera"
+msgstr ""
+
+#: image.php:129
+#@ wpbootstrap
+msgid "Focal Length"
+msgstr ""
+
+#: image.php:132
+#@ wpbootstrap
+msgid "Aperture"
+msgstr ""
+
+#: image.php:135
+#@ wpbootstrap
+msgid "ISO"
+msgstr ""
+
+#: image.php:138
+#@ wpbootstrap
+msgid "Shutter Speed"
+msgstr ""
+
+#: index.php:23
+#@ wpbootstrap
+msgid "Read more &raquo;"
 msgstr ""
 
 #: login-form.php:13
@@ -527,6 +494,13 @@ msgstr ""
 #: our-product-page.php:125
 #@ wpbootstrap
 msgid "Rooms to:"
+msgstr ""
+
+#: our-product-page.php:142
+#: searchform.php:4
+#: searchform.php:6
+#@ wpbootstrap
+msgid "Search"
 msgstr ""
 
 #: our-product-page.php:153
@@ -905,10 +879,32 @@ msgstr ""
 msgid "Forgot password"
 msgstr ""
 
+#: search.php:7
+#@ wpbootstrap
+msgid "Search Results for"
+msgstr ""
+
+#: search.php:22
+#@ wpbootstrap
+msgid "Read more on"
+msgstr ""
+
+#: sidebar-sidebar2.php:13
+#: sidebar.php:13
+#@ wpbootstrap
+msgid "Please activate some Widgets"
+msgstr ""
+
 #: single-flat.php:1
 #: venku/single-flat.php:37
 #@ wpbootstrap
 msgid "reference program:"
+msgstr ""
+
+#: single-flat.php:1
+#: venku/single-flat.php:72
+#@ wpbootstrap
+msgid "Gallery"
 msgstr ""
 
 #: single-flat.php:1
@@ -1115,6 +1111,11 @@ msgstr ""
 #: single-program.php:121
 #@ wpbootstrap
 msgid "List of products available in this program"
+msgstr ""
+
+#: single.php:36
+#@ wpbootstrap
+msgid "Edit post"
 msgstr ""
 
 #: template-my_preferences.php:15
