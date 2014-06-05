@@ -225,10 +225,14 @@ function initialize() {
     });  
     marker.setMap(map);   
     } 
+    
+    
 jQuery(".create_map").on('shown.bs.tab', function() {     
   	/* Trigger map resize event */
 	google.maps.event.trigger(map, 'resize'); 
+    
         map.setCenter(marker.getPosition());       
+
 });
  
 initialize(); 
