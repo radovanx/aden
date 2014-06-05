@@ -1270,11 +1270,15 @@ class EstateProgram {
         }
 
         if (isset($props['objektkategorie|nutzungsart|GEWERBE']) && 1 == $props['objektkategorie|nutzungsart|GEWERBE']) {
-            $arr[] = __('chauffage central', 'estateprogram');
+            $arr[] = __('Appartement', 'estateprogram');
         }
 
         if (isset($props['objektkategorie|nutzungsart|WOHNEN']) && 1 == $props['objektkategorie|nutzungsart|WOHNEN']) {
             $arr[] = __('Commerce / Bureau', 'estateprogram');
+        }
+        
+        if(empty($arr)){
+            return "";
         }
 
         return implode(', ', $arr);
