@@ -205,7 +205,7 @@ get_header();
                                         $favor = "red fa-star"; 
                                         } 
                                         $program_id = $val->program_id;
-                                        $terms = accomodationTypeL($props);
+                                        $terms = accomodationTypeL($prop);
                                         if(!empty($terms)){ 
                                         $term = $terms[0]->name;
                                         } 
