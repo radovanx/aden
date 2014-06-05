@@ -212,6 +212,7 @@ function initialize() {
   var mapProp = {
       center: myCenter,
       zoom: 14,
+      scrollwheel: false,
       panControl: true, //enable pan Control
       zoomControl: true, //enable zoom control
       scaleControl: true, // enable scale control 
