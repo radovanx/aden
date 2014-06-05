@@ -103,7 +103,7 @@ class pdfgenerator {
 
     function do_rewrite() {
         add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
-        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
+        //add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
         add_rewrite_rule("reservation-document/([^/]+)/([^/]+)/?$", 'index.php?action=reservation-pdf&product_id=$matches[1]&language=$matches[2]', 'top');
     }
 
@@ -198,7 +198,7 @@ class pdfgenerator {
 
                         if (isset($q['product_id'])) {
 
-                            if (isset($_GET['print']) && 'product-presentation' == $_GET['print']) {
+                            //if (isset($_GET['print']) && 'product-presentation' == $_GET['print']) {
 
 
                                 global $wpdb;
@@ -260,7 +260,7 @@ class pdfgenerator {
                                 }
                                 $mpdf->Output($filename, 'D');
                                 exit;
-                            }
+                           // }
                         }
 
                         break;
