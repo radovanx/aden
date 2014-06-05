@@ -239,7 +239,7 @@ get_header();
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";                                                    
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                                      
-                                    if ($i < 2):
+                                    if ($i < 10):
                                         ?>  
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?> apartment-row-<?php echo $val->ID ?>">
                                             <td>   
@@ -295,7 +295,7 @@ get_header();
                 <div class="col-md-12 column border tab-pane active" id="list">     
                     <?php
                     $lang = qtrans_getLanguage();
-                    $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 2);
+                    $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                     ?>          
                     <?php include TEMPLATEPATH . '/row_row.php'; ?>  
                 </div>   
@@ -381,28 +381,27 @@ get_header();
                 
                  
                 var starter = count;
-                count = count+2;   
-                var ie = 2;  
+                count = count+10;   
+                var ie = 0;  
  
                 console.log(starter);
                 console.log(count);
                  
                 jQuery.each(datatable, function(i, val) {   
- 
+  
                 if(ie > starter && ie <= count)
                 {                     
                 var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +",  "+ val.city +", "+ val.district +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+" &euro;</td><td>"+val.fpricem+" &euro;</td><td></td><td>"+val.status+"</td></tr>"; 
                  
-                jQuery("tbody").append(table_data);
-                jQuery("table").trigger("update");     
-                jQuery("table").tablesorter();  
+                    jQuery("tbody").append(table_data);
+                    jQuery("table").trigger("update");     
+                    jQuery("table").tablesorter();  
                 
                 var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"><div class=\"col-md-3\"> <span class=\"green\">"+ val.status +"</span> <a href=\"" + val.url + "\"><img src=\""+val.image_url+"\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">"+val.name+"<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i> " + val.street +" "+ val.hnumber +", "+ val.city +", "+ val.district +", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.references+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.flatnum+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rstatus+"</span></span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.floor+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.rooms+"</span></span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.area+" m²</span></span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong><span class=\"pull-right\">"+val.fprice+" &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> "+val.fpricem+" €/m²</span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\" "+val.idval+"\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa "+val.favorite+"\"></i><span class=\"fav-label\">Add to favorite</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>"; 
                 
                 jQuery("#list").append(row_data);  
                 }
-                
-                ie++;
+                 ie++; 
             });     
             }
         });   
