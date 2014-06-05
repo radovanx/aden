@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wp-bootstrap v3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-17 23:02-0300\n"
-"PO-Revision-Date: 2014-06-05 14:34:43+0000\n"
+"PO-Revision-Date: 2014-06-05 16:14:45+0000\n"
 "Last-Translator: Martin Meyerhoff <mamhoff@googlemail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -227,26 +227,30 @@ msgid "Comments are closed"
 msgstr "Die Kommentarfunktion ist deaktiviert"
 
 #: functions.php:141
+#: venku/functions.php:141
 #@ wpbootstrap
 msgid "Edit"
 msgstr "Bearbeiten"
 
 #: functions.php:145
+#: venku/functions.php:145
 #@ wpbootstrap
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wird geprüft."
 
 #: functions.php:180
+#: venku/functions.php:180
 #@ wpbootstrap
 msgid "This post is password protected. To view it please enter your password below:"
 msgstr "Dieser Post ist passwortgeschützt. Um ihn zu sehen, gib bitte dein Passwort ein:"
 
 #: functions.php:181
+#: venku/functions.php:181
 #@ wpbootstrap
 msgid "Password:"
 msgstr "Passwort:"
 
-#: our-product-page.php:142
+#: our-product-page.php:139
 #: searchform.php:4
 #: searchform.php:6
 #@ wpbootstrap
@@ -393,35 +397,23 @@ msgid "OK"
 msgstr ""
 
 #: functions.php:181
+#: venku/functions.php:181
 #@ wpbootstrap
 msgid "Submit"
 msgstr ""
 
 #: functions.php:616
 #: profile-form.php:83
+#: venku/functions.php:616
 #@ default
 #@ wpbootstrap
 msgid "City"
 msgstr ""
 
 #: functions.php:622
+#: venku/functions.php:622
 #@ default
 msgid "State"
-msgstr ""
-
-#: functions.php:731
-#@ wpbootstrap
-msgid "Appartement loué"
-msgstr ""
-
-#: functions.php:735
-#@ wpbootstrap
-msgid "Appartement"
-msgstr ""
-
-#: functions.php:739
-#@ wpbootstrap
-msgid "Commerce / Bureau"
 msgstr ""
 
 #: login-form.php:13
@@ -504,40 +496,35 @@ msgstr ""
 msgid "Disctrict:"
 msgstr ""
 
-#: our-product-page.php:83
-#@ wpbootstrap
-msgid "Type of accommodation::"
-msgstr ""
-
-#: our-product-page.php:100
+#: our-product-page.php:97
 #@ wpbootstrap
 msgid "Area from (m2):"
 msgstr ""
 
-#: our-product-page.php:103
+#: our-product-page.php:100
 #@ wpbootstrap
 msgid "Area to (m2):"
 msgstr ""
 
-#: our-product-page.php:108
+#: our-product-page.php:105
 #@ wpbootstrap
 msgid "Rooms from:"
 msgstr ""
 
-#: our-product-page.php:125
+#: our-product-page.php:122
 #@ wpbootstrap
 msgid "Rooms to:"
 msgstr ""
 
-#: our-product-page.php:153
+#: our-product-page.php:150
 #@ wpbootstrap
 msgid "All products"
 msgstr ""
 
+#: our-product-page.php:155
+#: our-product-page.php:156
+#: our-product-page.php:157
 #: our-product-page.php:158
-#: our-product-page.php:159
-#: our-product-page.php:160
-#: our-product-page.php:161
 #: template-my_preferences.php:20
 #: template-my_preferences.php:21
 #: template-my_preferences.php:22
@@ -546,7 +533,7 @@ msgstr ""
 msgid "Sort by"
 msgstr ""
 
-#: our-product-page.php:178
+#: our-product-page.php:175
 #: single-flat.php:1
 #: single-program.php:137
 #: template-my_preferences.php:40
@@ -555,7 +542,7 @@ msgstr ""
 msgid "Favorite"
 msgstr ""
 
-#: our-product-page.php:179
+#: our-product-page.php:176
 #: single-flat.php:1
 #: single-program.php:138
 #: template-my_preferences.php:41
@@ -564,7 +551,7 @@ msgstr ""
 msgid "Prg ref"
 msgstr ""
 
-#: our-product-page.php:180
+#: our-product-page.php:177
 #: profile-form.php:79
 #: single-flat.php:1
 #: single-program.php:139
@@ -574,7 +561,7 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: our-product-page.php:181
+#: our-product-page.php:178
 #: single-flat.php:1
 #: single-program.php:140
 #: template-my_preferences.php:43
@@ -583,7 +570,7 @@ msgstr ""
 msgid "Flat n°"
 msgstr ""
 
-#: our-product-page.php:182
+#: our-product-page.php:179
 #: single-flat.php:1
 #: single-program.php:141
 #: template-my_preferences.php:44
@@ -592,7 +579,7 @@ msgstr ""
 msgid "Rental status"
 msgstr ""
 
-#: our-product-page.php:183
+#: our-product-page.php:180
 #: single-flat.php:1
 #: single-program.php:142
 #: template-my_preferences.php:45
@@ -601,7 +588,7 @@ msgstr ""
 msgid "Floor"
 msgstr ""
 
-#: our-product-page.php:184
+#: our-product-page.php:181
 #: single-flat.php:1
 #: single-program.php:143
 #: template-my_preferences.php:46
@@ -610,7 +597,7 @@ msgstr ""
 msgid "Rooms"
 msgstr ""
 
-#: our-product-page.php:185
+#: our-product-page.php:182
 #: single-flat.php:1
 #: single-program.php:144
 #: template-my_preferences.php:47
@@ -619,7 +606,7 @@ msgstr ""
 msgid "Surface"
 msgstr ""
 
-#: our-product-page.php:186
+#: our-product-page.php:183
 #: single-flat.php:1
 #: single-program.php:145
 #: template-my_preferences.php:48
@@ -628,7 +615,7 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: our-product-page.php:187
+#: our-product-page.php:184
 #: single-flat.php:1
 #: single-program.php:146
 #: template-my_preferences.php:49
@@ -637,7 +624,7 @@ msgstr ""
 msgid "Price/m²"
 msgstr ""
 
-#: our-product-page.php:188
+#: our-product-page.php:185
 #: single-flat.php:1
 #: single-program.php:147
 #: template-my_preferences.php:50
@@ -646,7 +633,7 @@ msgstr ""
 msgid "Yield"
 msgstr ""
 
-#: our-product-page.php:189
+#: our-product-page.php:186
 #: single-flat.php:1
 #: single-program.php:148
 #: template-my_preferences.php:51
@@ -655,7 +642,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: our-product-page.php:315
+#: our-product-page.php:312
 #: single-flat.php:1
 #: single-program.php:189
 #: venku/single-flat.php:356
@@ -663,7 +650,7 @@ msgstr ""
 msgid "You modified"
 msgstr ""
 
-#: our-product-page.php:318
+#: our-product-page.php:315
 #: single-flat.php:1
 #: single-program.php:192
 #: template-my_preferences.php:83
@@ -672,29 +659,29 @@ msgstr ""
 msgid "Ok"
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:48
 #@ wpbootstrap
 msgid "Ref.:"
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:54
 #@ wpbootstrap
 msgid "Flat n°:"
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:60
 #@ wpbootstrap
 msgid "Rental status: "
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:68
 #: single-flat.php:1
 #: venku/single-flat.php:163
@@ -702,43 +689,43 @@ msgstr ""
 msgid "Floor:"
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:74
 #@ wpbootstrap
 msgid "Rooms:  "
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:80
 #@ wpbootstrap
 msgid "Surface:  "
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:88
 #@ wpbootstrap
 msgid "Price:"
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:94
 #@ wpbootstrap
 msgid "Price/m2:"
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:100
 #@ wpbootstrap
 msgid "Yield:"
 msgstr ""
 
-#: our-product-page.php:400
-#: our-product-page.php:657
+#: our-product-page.php:399
+#: our-product-page.php:667
 #: row_row.php:108
 #@ wpbootstrap
 msgid "VIEW DETAILS:"
@@ -994,7 +981,7 @@ msgstr ""
 #: venku/single-flat.php:156
 #@ wpbootstrap
 msgid "Apartment type:"
-msgstr ""
+msgstr "Wohnung  et"
 
 #: single-flat.php:1
 #: venku/single-flat.php:173
@@ -1130,5 +1117,74 @@ msgstr ""
 #: template-my_preferences.php:84
 #@ wpbootstrap
 msgid "Yes"
+msgstr ""
+
+#: functions.php:734
+#@ wpbootstrap
+msgid "Floor Apartment"
+msgstr "Etagenwohnung"
+
+#: functions.php:737
+#@ wpbootstrap
+msgid "Attic"
+msgstr "Dachgeschoss"
+
+#: functions.php:740
+#@ wpbootstrap
+msgid "Ground Floor"
+msgstr "Erdgeschoss"
+
+#: functions.php:743
+#@ wpbootstrap
+msgid "Duplex"
+msgstr "Doppelhaus"
+
+#: functions.php:758
+#: our-product-page.php:89
+#@ wpbootstrap
+msgid "Rented apartment"
+msgstr "Vermietete Wohnung"
+
+#: functions.php:762
+#: our-product-page.php:91
+#@ wpbootstrap
+msgid "Commercial Unit"
+msgstr "Gewerbe / Büro"
+
+#: functions.php:766
+#: our-product-page.php:90
+#: our-product-page.php:91
+#@ wpbootstrap
+msgid "Apartment"
+msgstr ""
+
+#: functions.php:777
+#@ wpbootstrap
+msgid "Floor heating"
+msgstr "Fußbodenheizung"
+
+#: functions.php:781
+#@ wpbootstrap
+msgid "District heating"
+msgstr "Fernwärme"
+
+#: functions.php:785
+#@ wpbootstrap
+msgid "Central heating"
+msgstr "Zentralheizung"
+
+#: functions.php:789
+#@ wpbootstrap
+msgid "Chauffage individuel"
+msgstr "Etagenheizung"
+
+#: functions.php:793
+#@ wpbootstrap
+msgid "Furnace heating"
+msgstr "Ofenheizung"
+
+#: our-product-page.php:83
+#@ wpbootstrap
+msgid "Type of accommodation:"
 msgstr ""
 
