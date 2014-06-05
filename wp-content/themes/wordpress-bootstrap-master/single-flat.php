@@ -110,43 +110,30 @@ get_header();
                                     <strong><?php // echo esc_attr($props['kontaktperson|firma'])     ?></strong>
                                     <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer'])  ?> <?php //echo esc_attr($props['kontaktperson|strasse'])  ?>
-
                                     <?php // echo esc_attr($props['kontaktperson|ort'])  ?> <?php //echo esc_attr($props['kontaktperson|plz'])  ?><br>
-
                                     <strong>Phone:</strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
-
                                     <strong>Email:</strong> <?php echo strtolower($props['kontaktperson|vorname']) ?>.<?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com
 
                                 </address>
 
                                 <span class="propertyListBoxDataItemName">
-
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
-
                                     <strong class="red pull-right"><?php echo esc_attr(price_format($props['preise|kaufpreis'])) ?> €
-
                                     </strong>
-
                                 </span>
 
                                 <span class="propertyListBoxDataItemName">
-
                                     <i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong>
-
                                     <strong class="red pull-right"><?php echo esc_attr($props['flaechen|wohnflaeche']) ?> m² </strong>
-
                                 </span>
 
                                 <span class="propertyListBoxDataItemName">
-
                                     <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
-
                                     <strong class="red pull-right"><?php echo (int) $props['flaechen|anzahl_zimmer'] ?></strong>
-
                                 </span>
 
                                 <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
-                                <a href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
+                                <a target="_blank" href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
                                 <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
                                 <?php if (!empty($props['dropbox|building'])): ?>
                                     <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
