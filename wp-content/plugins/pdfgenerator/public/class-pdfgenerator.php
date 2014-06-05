@@ -197,24 +197,22 @@ class pdfgenerator {
                     case 'product':
 
                         if (isset($q['product_id'])) {
-                            $product = get_post($q['product_id']);
-                            
-                            $props = get_props($product->ID, $lang);
 
-                            $mpdf = $this->create_html2pdf($product, $props, $lang);
+                            if (isset($_GET['print']) && 'product-presentation' == $_GET['print']) {
+                                $product = get_post($q['product_id']);
+                                $props = get_props($product->ID, $lang);
+                                $mpdf = $this->create_html2pdf($product, $props, $lang);
+                                if (empty($props['verwaltung_techn|objektnr_extern'])) {
+                                    $filename = get_the_title($product_id);
+                                } else {
+                                    $filename = $props['verwaltung_techn|objektnr_extern'];
+                                }
 
-                            if (empty($props['verwaltung_techn|objektnr_extern'])) {
-                                $filename = get_the_title($product_id);
-                            } else {
-                                $filename = $props['verwaltung_techn|objektnr_extern'];
-                            }
+                                global $wpdb;
+                                $program_id = EstateProgram::flat_program_id($product->ID);
+                                $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
 
-                            global $wpdb;
-
-                            $program_id = EstateProgram::flat_program_id($product->ID);
-                            $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
-
-                            $sql3 = "
+                                $sql3 = "
                             INSERT INTO
                                 stat (user_id, program_id, type, record_date, product_id, download, ref_no)
                             VALUES (
@@ -227,13 +225,13 @@ class pdfgenerator {
                                 '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
                             )";
 
-                            $wpdb->query($sql3);
+                                $wpdb->query($sql3);
 
-                            $last_id = $wpdb->insert_id;
-                            $langs = qtrans_getSortedLanguages();
+                                $last_id = $wpdb->insert_id;
+                                $langs = qtrans_getSortedLanguages();
 
-                            foreach ($langs as $lang) {
-                                $sql2 = "
+                                foreach ($langs as $lang) {
+                                    $sql2 = "
                                     REPLACE INTO 
                                         stat_lang (product_id, lang, title)
                                     VALUES (
@@ -243,11 +241,13 @@ class pdfgenerator {
                                         )
                                     ";
 
-                                $wpdb->query($sql2);
+                                    $wpdb->query($sql2);
+                                }
+                                $mpdf->Output($filename, 'D');
+                                exit;
                             }
-                            $mpdf->Output($filename, 'D');                            
-                            exit;
                         }
+
                         break;
                     case '':
                         break;
