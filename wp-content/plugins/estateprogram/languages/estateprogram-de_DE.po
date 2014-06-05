@@ -1,0 +1,383 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: EstateProgram v1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2014-06-05 09:47:28+0000\n"
+"Last-Translator: admin <radovanmail@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: admin/class-estateprogram-admin.php:292
+#@ estateprogram
+msgid "Program properties"
+msgstr ""
+
+#: admin/class-estateprogram-admin.php:296
+#@ estateprogram
+msgid "Flat properties"
+msgstr ""
+
+#: admin/class-estateprogram-admin.php:300
+#@ estateprogram
+msgid "Assign to program"
+msgstr ""
+
+#: admin/class-estateprogram-admin.php:304
+#@ estateprogram
+msgid "Program hightlight"
+msgstr ""
+
+#: admin/class-estateprogram-admin.php:483
+#@ estateprogram
+msgid "Settings"
+msgstr ""
+
+#: admin/views/flat2program.php:2
+#@ estateprogram
+msgid "program:"
+msgstr ""
+
+#: admin/views/parse_xml.php:111
+#@ default
+msgid "Parse XML"
+msgstr ""
+
+#: admin/views/parse_xml.php:159
+#@ default
+msgid "No entry"
+msgstr ""
+
+#: admin/views/program_properties.php:9
+#@ estateprogram
+msgid "Apartments"
+msgstr ""
+
+#: admin/views/program_properties.php:21
+#: admin/views/program_properties.php:66
+#@ estateprogram
+msgid "Street"
+msgstr ""
+
+#: admin/views/program_properties.php:27
+#@ estateprogram
+msgid "Houser number"
+msgstr ""
+
+#: admin/views/program_properties.php:33
+#: admin/views/program_properties.php:78
+#@ estateprogram
+msgid "Region"
+msgstr ""
+
+#: admin/views/program_properties.php:39
+#: admin/views/program_properties.php:84
+#: admin/views/user_profile.php:6
+#@ estateprogram
+msgid "City"
+msgstr ""
+
+#: admin/views/program_properties.php:45
+#: admin/views/program_properties.php:90
+#@ estateprogram
+msgid "Postcode"
+msgstr ""
+
+#: admin/views/program_properties.php:53
+#: public/class-estateprogram.php:401
+#@ estateprogram
+msgid "Location"
+msgstr ""
+
+#: admin/views/program_properties.php:59
+#: admin/views/user_profile.php:5
+#@ estateprogram
+msgid "Address"
+msgstr ""
+
+#: admin/views/program_properties.php:72
+#@ estateprogram
+msgid "House number"
+msgstr ""
+
+#: admin/views/program_properties.php:101
+#@ estateprogram
+msgid "Video url"
+msgstr ""
+
+#: admin/views/program_properties.php:111
+#@ estateprogram
+msgid "Commission (incl. VAT)"
+msgstr ""
+
+#: admin/views/program_properties.php:117
+#@ estateprogram
+msgid "Program latitude"
+msgstr ""
+
+#: admin/views/program_properties.php:123
+#@ estateprogram
+msgid "Program longitude"
+msgstr ""
+
+#: admin/views/program_properties.php:132
+#@ estateprogram
+msgid "Price range (€)"
+msgstr ""
+
+#: admin/views/program_properties.php:137
+#: admin/views/program_properties.php:166
+#@ estateprogram
+msgid "from:"
+msgstr ""
+
+#: admin/views/program_properties.php:142
+#: admin/views/program_properties.php:153
+#: admin/views/program_properties.php:171
+#: admin/views/program_properties.php:182
+#@ estateprogram
+msgid "Please enter a number"
+msgstr ""
+
+#: admin/views/program_properties.php:148
+#: admin/views/program_properties.php:177
+#@ estateprogram
+msgid "to:"
+msgstr ""
+
+#: admin/views/program_properties.php:161
+#@ estateprogram
+msgid "Surface range (m²)"
+msgstr ""
+
+#: admin/views/program_properties.php:192
+#@ estateprogram
+msgid "Elevator"
+msgstr ""
+
+#: admin/views/user_profile.php:3
+#: admin/views/user_profile.php:46
+#@ estateprogram
+msgid "Company"
+msgstr ""
+
+#: admin/views/user_profile.php:4
+#@ estateprogram
+msgid "Phone"
+msgstr ""
+
+#: admin/views/user_profile.php:7
+#@ estateprogram
+msgid "Country"
+msgstr ""
+
+#: admin/views/user_profile.php:38
+#@ estateprogram
+msgid "User title"
+msgstr ""
+
+#. translators: plugin header field 'Name'
+#: estateprogram.php:0
+#@ estateprogram
+msgid "EstateProgram"
+msgstr ""
+
+#. translators: plugin header field 'Description'
+#: estateprogram.php:0
+#@ estateprogram
+msgid "Program manamegent"
+msgstr ""
+
+#. translators: plugin header field 'Author'
+#: estateprogram.php:0
+#@ estateprogram
+msgid "a."
+msgstr ""
+
+#. translators: plugin header field 'Version'
+#: estateprogram.php:0
+#@ estateprogram
+msgid "1.0.0"
+msgstr ""
+
+#: public/class-estateprogram-ajax.php:182
+#@ estateprogram
+msgid "Error"
+msgstr ""
+
+#: public/class-estateprogram-ajax.php:220
+#@ estateprogram
+msgid "Error update preference"
+msgstr ""
+
+#: public/class-estateprogram-ajax.php:238
+#@ estateprogram
+msgid "Saving preference failed"
+msgstr ""
+
+#: public/class-estateprogram.php:60
+#@ estateprogram
+msgid "appart d’etage"
+msgstr ""
+
+#: public/class-estateprogram.php:61
+#@ estateprogram
+msgid "Combles"
+msgstr ""
+
+#: public/class-estateprogram.php:62
+#@ estateprogram
+msgid "Rez de chaussée"
+msgstr ""
+
+#: public/class-estateprogram.php:63
+#@ estateprogram
+msgid "duplex"
+msgstr ""
+
+#: public/class-estateprogram.php:205
+#@ estateprogram
+msgid "<strong>ERROR</strong>: We are really sorry. Your account has been frozen. If you like to use our service, please contact us."
+msgstr ""
+
+#: public/class-estateprogram.php:292
+#: public/class-estateprogram.php:293
+#@ estateprogram
+msgid "Program"
+msgstr ""
+
+#: public/class-estateprogram.php:294
+#: public/class-estateprogram.php:297
+#@ estateprogram
+msgid "Create program"
+msgstr ""
+
+#: public/class-estateprogram.php:295
+#@ estateprogram
+msgid "New program"
+msgstr ""
+
+#: public/class-estateprogram.php:296
+#@ estateprogram
+msgid "Edit program"
+msgstr ""
+
+#: public/class-estateprogram.php:298
+#@ estateprogram
+msgid "All programs"
+msgstr ""
+
+#: public/class-estateprogram.php:299
+#@ estateprogram
+msgid "View program"
+msgstr ""
+
+#: public/class-estateprogram.php:300
+#@ estateprogram
+msgid "Find program"
+msgstr ""
+
+#: public/class-estateprogram.php:302
+#@ estateprogram
+msgid "Programs"
+msgstr ""
+
+#: public/class-estateprogram.php:324
+#: public/class-estateprogram.php:334
+#@ estateprogram
+msgid "Flats"
+msgstr ""
+
+#: public/class-estateprogram.php:325
+#@ estateprogram
+msgid "Flat"
+msgstr ""
+
+#: public/class-estateprogram.php:326
+#: public/class-estateprogram.php:329
+#@ estateprogram
+msgid "Create flat"
+msgstr ""
+
+#: public/class-estateprogram.php:327
+#@ estateprogram
+msgid "New flat"
+msgstr ""
+
+#: public/class-estateprogram.php:328
+#@ estateprogram
+msgid "Edit flat"
+msgstr ""
+
+#: public/class-estateprogram.php:330
+#@ estateprogram
+msgid "All flat"
+msgstr ""
+
+#: public/class-estateprogram.php:331
+#@ estateprogram
+msgid "View flat"
+msgstr ""
+
+#: public/class-estateprogram.php:332
+#@ estateprogram
+msgid "Find flat"
+msgstr ""
+
+#: public/class-estateprogram.php:366
+#@ estateprogram
+msgid "Type of property"
+msgstr ""
+
+#: public/class-estateprogram.php:383
+#@ estateprogram
+msgid "Show"
+msgstr ""
+
+#: public/class-estateprogram.php:508
+#@ default
+msgid "Waiting for approval"
+msgstr ""
+
+#: public/class-estateprogram.php:516
+#@ default
+msgid "Frozen"
+msgstr ""
+
+#: public/class-estateprogram.php:690
+#@ estateprogram
+msgid "Added to favorites"
+msgstr ""
+
+#: public/class-estateprogram.php:691
+#@ estateprogram
+msgid "Add to favorite"
+msgstr ""
+
+#: public/class-estateprogram.php:1250
+#@ estateprogram
+msgid "chauffage par le sol"
+msgstr ""
+
+#: public/class-estateprogram.php:1254
+#@ estateprogram
+msgid "chauffage central"
+msgstr ""
+
+#: public/class-estateprogram.php:1258
+#@ estateprogram
+msgid "chauffage individuel"
+msgstr ""
+

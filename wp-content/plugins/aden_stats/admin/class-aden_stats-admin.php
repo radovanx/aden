@@ -209,7 +209,7 @@ class aden_stats_Admin {
     public function product_detail_download() {
         global $wpdb;
 
-        $product_id = $_GET['product_id'];
+        $ref_no = $_GET['product_id'];
 
         $sql = "
             SELECT
@@ -218,7 +218,7 @@ class aden_stats_Admin {
             FROM
                 stat
             WHERE
-                product_id = '" . (int) $product_id . "'
+                ref_no = '" . esc_sql($ref_no) . "'
             AND
                 type = 2
             ORDER BY
@@ -226,17 +226,20 @@ class aden_stats_Admin {
         ";
 
         $lang = qtrans_getLanguage();
-
-        $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
-
+        
         $results = $wpdb->get_results($sql);
+        
+        $product_id = $wpdb->get_var("SELECT product_id FROM stat WHERE ref_no = '" . esc_sql($ref_no) . "' ORDER BY stat_id DESC  LIMIT 1");
+        
+        $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
+        
         include 'views/product_detail_download.php';
     }
 
     public function product_detail_recommendation() {
         global $wpdb;
 
-        $product_id = $_GET['product_id'];
+        $ref_no = $_GET['product_id'];
 
         $sql = "
         SELECT
@@ -245,7 +248,7 @@ class aden_stats_Admin {
         FROM
             stat
         WHERE
-            product_id = '" . (int) $product_id . "'
+            ref_no = '" . esc_sql($ref_no) . "'
         AND
             type = 1
         ORDER BY
@@ -253,6 +256,8 @@ class aden_stats_Admin {
         ";
 
         $results = $wpdb->get_results($sql);
+        
+        $product_id = $wpdb->get_var("SELECT product_id FROM stat WHERE ref_no = '" . esc_sql($ref_no) . "' ORDER BY stat_id DESC  LIMIT 1");
 
         $lang = qtrans_getLanguage();
         $props = get_post_meta($product_id, 'flat_props_' . $lang, true);
@@ -275,6 +280,7 @@ class aden_stats_Admin {
                 s.ref_no
             FROM
                 stat AS s
+
             LEFT JOIN
                 stat_lang AS l
             ON
