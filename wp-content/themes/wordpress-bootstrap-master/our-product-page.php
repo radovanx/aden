@@ -239,7 +239,7 @@ get_header();
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";                                                    
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                                      
-                                    if ($i < 2):
+                                    if ($i < 10):
                                         ?>  
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?> apartment-row-<?php echo $val->ID ?>">
                                             <td>   
@@ -295,7 +295,7 @@ get_header();
                 <div class="col-md-12 column border tab-pane active" id="list">     
                     <?php
                     $lang = qtrans_getLanguage();
-                    $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 2);
+                    $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                     ?>          
                     <?php include TEMPLATEPATH . '/row_row.php'; ?>  
                 </div>   
