@@ -45,28 +45,28 @@
             }
 
             .text-block {
-                font-size: 12px;
+                font-size: 11px;
             }
             .text-center {
                 text-align: center;
             }
             .block {
-                margin-bottom: 10mm;
+                margin-bottom: 6mm;
             }
             .small-block {
-                margin-bottom: 5mm;
+                margin-bottom: 2mm;
             }            
 
             h3 {
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .red-label {
                 background: #990033;
                 color: white;
-                font-size: 22px;
-                margin: 10px 0;
-                padding: 2mm 10mm;
+                font-size: 18px;
+                margin: 6px 0;
+                padding: 2mm 6mm;
             }
             .clearfix {
                 clear: both;
@@ -95,7 +95,7 @@
                 padding-left: 15px;
             }
             .small-label {
-                font-size: 17px;
+                font-size: 15px;
             }
             table {
                 border-collapse: collapse;
@@ -103,8 +103,8 @@
             .features td {
                 vertical-align: top;
                 border-bottom: 1px solid #D8D8D8;
-                padding-top: 2mm;
-                padding-bottom: 2mm;
+                padding-top: 1mm;
+                padding-bottom: 1mm;
             }
             .features .t2 {
                 padding-right: 2mm;
@@ -159,7 +159,7 @@
                 font-size: 9px;
             }
             .headline-label {
-                font-size: 20px;
+                font-size: 17px;
             }
         </style>
     </head>
@@ -218,7 +218,7 @@
                         <h2 class="headline-label"> <?php _e('Purchase price:', $this->plugin_slug) ?> <span class="red-color"><?php esc_attr_e(price_format($props['preise|kaufpreis'])) ?> €</span></h2>
 
                         <?php if (!empty($props['flaechen|wohnflaeche'])): ?>
-                            <h2 class="headline-label"> <?php _e('Living area:', $this->plugin_slug) ?> <span class="red-color"> <?php esc_attr_e($props['flaechen|wohnflaeche']) ?> </span></h2>
+                            <h2 class="headline-label"> <?php _e('Living area:', $this->plugin_slug) ?> <span class="red-color"> <?php esc_attr_e($props['flaechen|wohnflaeche']) ?> m²</span></h2>
                         <?php endif; ?>
 
                         <?php /* if (!empty($props['flaechen|wohnflaeche'])): ?>
@@ -338,7 +338,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 90mm;" class="vbottom img-title">                                                
+                                            <td style="width: 90mm; height:6mm;" class="vbottom img-title">                                                
                                                 <?php echo qtrans_use($lang, $attachment->post_title); ?>
                                             </td>
                                         </tr>
@@ -358,7 +358,7 @@
             <?php endif; ?>
             <!-- /feature image + first from gallery -->
 
-            <div style="page-break-inside: avoid; page-break-before: always;">
+            <div style="">
                 <?php if (!empty($props['freitexte|ausstatt_beschr'])): ?>
                     <h2 class="small-label border-left"><?php _e('Description', $this->plugin_slug) ?></h2>
                     <p class="text-block small-block"><?php echo $props['freitexte|ausstatt_beschr'] ?></p>
@@ -376,7 +376,7 @@
             </div>
 
             <?php if (!empty($images)): ?>
-                <div class="red-label text-center"><?php _e('Gallery', $this->plugin_slug) ?></div>
+                <div style="page-break-before:always;" class="red-label text-center"><?php _e('Gallery', $this->plugin_slug) ?></div>
                 <table class="gallery-table"  style="page-break-inside: avoid;">
                     <tbody>
                         <tr>
@@ -392,7 +392,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 90mm;" class="vbottom img-title">
+                                            <td style="width: 90mm; height:6mm;" class="vbottom img-title">
                                                 <?php
                                                 echo qtrans_use($lang, $attachment->post_title);
                                                 ?>

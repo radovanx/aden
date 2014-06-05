@@ -29,10 +29,12 @@
             <?php do_action('profile_personal_options', $profileuser); ?>
             <div class="col-md-12 column">
                 <div class="col-md-6 column">
+                    <!--
                     <div class="form-group">
                         <label for="title"><?php _e('Title', 'wpbootstrap'); ?></label>
                         <input type="text" name="title" id="title" value="<?php echo esc_attr(get_user_meta($profileuser->ID, 'title', true)) ?>" class="form-control input-lg">
                     </div>
+                    -->
                     <div class="form-group">
                         <label for="first_name"><?php _e('First Name', 'wpbootstrap'); ?></label>
                         <input type="text" name="first_name" id="first_name" value="<?php echo esc_attr($profileuser->first_name); ?>" class="form-control input-lg">

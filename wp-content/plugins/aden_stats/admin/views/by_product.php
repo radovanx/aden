@@ -56,10 +56,10 @@
                                 <span class="color-brown"><?php echo esc_sql($row->ref_no) ?></span>
                             </td>
                             <td>
-                                <a href="/wp-admin/admin.php?page=product_detail_recommendation&product_id=<?php echo $row->product_id ?>"><?php echo esc_sql($row->emails) ?></a>
+                                <a href="/wp-admin/admin.php?page=product_detail_recommendation&product_id=<?php echo $row->ref_no ?>"><?php echo esc_sql($row->emails) ?></a>
                             </td>
                             <td>
-                                <a href="/wp-admin/admin.php?page=product_detail_download&product_id=<?php echo $row->product_id ?>"><?php echo esc_sql($row->download) ?></a>
+                                <a href="/wp-admin/admin.php?page=product_detail_download&product_id=<?php echo $row->ref_no ?>"><?php echo esc_sql($row->download) ?></a>
                             </td>
                         </tr>
                         <?php

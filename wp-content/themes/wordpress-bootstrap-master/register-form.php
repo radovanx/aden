@@ -19,10 +19,12 @@
                         <input type="text" name="user_login" id="user_login<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('user_login'); ?>" size="20">
                     </div>
                      -->
+                     <!--
                     <div class="form-group">
                         <label for="title<?php $template->the_instance(); ?>"><?php _e('Title:', 'wpbootstrap'); ?></label>
                         <input type="text" name="title" id="title<?php $template->the_instance(); ?>" class="form-control input-lg" value="<?php $template->the_posted_value('title'); ?>" size="20">
                     </div>
+                     -->
                    
                     <div class="form-group">
                         <label for="first_name<?php $template->the_instance(); ?>"><?php _e('First name:', 'wpbootstrap'); ?></label>

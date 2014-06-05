@@ -23,12 +23,25 @@ $vals = array(
     </tr>    
     <tr>
         <th>
+            Last login
+        </th>
+        <td>
+            <?php
+            global $wpdb;
+            $sql = "SELECT DATE_FORMAT(login_date, '%e. %c. %Y %H:%i') FROM last_login WHERE user_id = ".  $user->ID;
+            echo $wpdb->get_var($sql);            
+            ?>            
+        </td>
+    </tr>   
+    <!--
+    <tr>
+        <th>
             <label for="user_title"><?php _e('User title', $this->plugin_slug) ?></label>
         </th>
         <td>
             <input type="text" id="user_title" name="title" value="<?php echo esc_attr(get_user_meta($user->ID, 'title', true)) ?>">
         </td>
-    </tr>
+    </tr>-->
 </table>
 
 <h3><?php _e('Company', $this->plugin_slug) ?></h3>

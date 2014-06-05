@@ -126,57 +126,61 @@ class pdfgenerator {
                 //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
                 $props = get_props($product->ID, $lang);
 
-                require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
+                global $wpdb;
 
-
-                $mpdf = new mPDF();
-
-                $header_file = plugin_dir_path(__FILE__) . 'pdf' . DIRECTORY_SEPARATOR . 'header.php';
-                ob_start();
-                include $header_file;
-                $header = ob_get_contents();
-                ob_end_clean();
-
-
-
-                $mpdf->SetHTMLHeader($header);
-
-                $mpdf->SetImportUse();
+                $program_id = EstateProgram::flat_program_id($product->ID);
 
                 $dir = plugin_dir_path(__FILE__);
 
-                $pdf_file = $dir . 'pdf' . DIRECTORY_SEPARATOR . 'reservation-form-' . $lang . '.pdf';
+                $url = plugin_dir_url(__FILE__);
 
-                $pagecount = $mpdf->SetSourceFile($pdf_file);
+                $pdf_file = $url . 'pdf/reservation-form-' . $lang . '.pdf';
 
-                for ($i = 1; $i <= $pagecount; $i++) {
-                    $mpdf->AddPage();
-                    $tpl = $mpdf->ImportPage($i);
-                    //$mpdf->SetHTMLHeader('');
-                    $mpdf->UseTemplate($tpl, '', '', 210, 297);
+                $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
+
+                $sql = "
+                            INSERT INTO
+                                stat (user_id, program_id, type, record_date, product_id, reservation, ref_no)
+                            VALUES (
+                                '" . get_current_user_id() . "',
+                                '" . (int) $program_id . "',
+                                3,
+                                NOW(),
+                                '" . (int) $product->ID . "',
+                                1,                               
+                                '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
+                            )";
+
+                $wpdb->query($sql);
+
+                $last_id = $wpdb->insert_id;
+
+                $langs = qtrans_getSortedLanguages();
+
+                foreach ($langs as $lang) {
+                    $sql = "
+                                    REPLACE INTO 
+                                        stat_lang (product_id, lang, title)
+                                    VALUES (
+                                        '" . $product->ID . "',
+                                        '" . $lang . "',
+                                        '" . esc_sql(qtrans_use($lang, $title, false)) . "'    
+                                        )
+                                    ";
+
+                    $wpdb->query($sql);
                 }
+
+                header('Location: ' . $pdf_file);
+                exit;
+                //$pdf_file
 
                 /*
-                  $mpdf = new mPDF();
-
-                  $mpdf->useActiveForms = true;
-                  $mpdf->formUseZapD = false;
-                  $mpdf->formSubmitNoValueFields = true;
-
-                  ob_start();
-                  require_once plugin_dir_path(__FILE__) . "pdf/reservation-form-" . $lang . ".php";
-                  $html = ob_get_contents();
-                  ob_end_clean();
-
-                  $mpdf->WriteHTML($html); */
-
-                if (empty($props['verwaltung_techn|objektnr_extern'])) {
-                    $filename = 'reservation-' . get_the_title($product_id);
-                } else {
-                    $filename = 'reservation-' . $props['verwaltung_techn|objektnr_extern'];
-                }
-
-                $mpdf->Output($filename, 'D');
+                  $file = $pdf_file; //file location
+                  header('Content-Type: application/pdf');
+                  header('Content-Disposition: attachment; filename="' . basename($file) . '"');
+                  header('Content-Length: ' . filesize($file));
+                  readfile($file); */
             }
         }
 
@@ -224,22 +228,9 @@ class pdfgenerator {
 
                             $program_id = EstateProgram::flat_program_id($product->ID);
 
-                            /*
-                              $sql = "
-                              INSERT INTO
-                              download_stat (user_id, when_downloaded, product_id, product, program_id)
-                              VALUES(
-                              '" . get_current_user_id() . "',
-                              NOW(),
-                              '" . $product->ID . "',
-                              '" . esc_sql(serialize($props)). "',
-                              '" . (int) $program_id . "'
-                              )
-                              "; */
-
                             $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
 
-                            $sql = "
+                            $sql3 = "
                             INSERT INTO
                                 stat (user_id, program_id, type, record_date, product_id, download, ref_no)
                             VALUES (
@@ -252,14 +243,14 @@ class pdfgenerator {
                                 '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
                             )";
 
-                            $wpdb->query($sql);
+                            $wpdb->query($sql3);
 
                             $last_id = $wpdb->insert_id;
 
                             $langs = qtrans_getSortedLanguages();
 
                             foreach ($langs as $lang) {
-                                $sql = "
+                                $sql2 = "
                                     REPLACE INTO 
                                         stat_lang (product_id, lang, title)
                                     VALUES (
@@ -269,27 +260,18 @@ class pdfgenerator {
                                         )
                                     ";
 
-                                $wpdb->query($sql);
+                                $wpdb->query($sql2);
                             }
 
                             $mpdf->Output($filename, 'D');
-                        }
-
-                        if (isset($q['product-id'])) {
                             
+                            exit;
                         }
                         break;
                     case '':
                         break;
                 }
             }
-
-            if (isset($q['program-id'])) {
-                
-            }
-
-            //$mpdf->Output($filename, 'D');
-            //$mpdf->Output('filename.pdf', 'F');
             exit;
         }
     }
@@ -315,7 +297,7 @@ class pdfgenerator {
 
         $apartment = get_post($apartment_id);
         //$apartment_props = get_post_meta($apartment_id, 'flat_props_' . $lang, true);
-        
+
         $apartment_props = get_props($apartment_id, $lang);
 
         $path = plugin_dir_path(__FILE__);
@@ -454,7 +436,7 @@ class pdfgenerator {
 
         $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
 
-        $sql = "
+        $sql4 = "
             INSERT INTO
                 stat (user_id, program_id, type, record_date, product_id, receiver, recommend, ref_no)
             VALUES (
@@ -468,14 +450,14 @@ class pdfgenerator {
                 '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
             )";
 
-        $wpdb->query($sql);
+        $wpdb->query($sql4);
 
         $last_id = $wpdb->insert_id;
 
         $langs = qtrans_getSortedLanguages();
 
         foreach ($langs as $lang) {
-            $sql = "
+            $sql5 = "
                                     REPLACE INTO 
                                         stat_lang (product_id, lang, title)
                                     VALUES (
@@ -485,7 +467,7 @@ class pdfgenerator {
                                         )
                                     ";
 
-            $wpdb->query($sql);
+            $wpdb->query($sql5);
         }
 
 

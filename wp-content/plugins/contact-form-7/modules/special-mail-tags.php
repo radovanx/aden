@@ -61,7 +61,7 @@ function wpcf7_special_mail_tag_for_post_data($output, $name) {
         $output = $post->post_name;
 
     elseif ('_post_title' == $name)
-        $output = $post->post_title;
+        $output = __($post->post_title);
 
     elseif ('_post_url' == $name)
         $output = get_permalink($post->ID);

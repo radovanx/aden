@@ -179,8 +179,8 @@ class EstateProgram {
             if ('all' == $file) {
                 //$time_start = microtime(true);
                 SourceImport::run();
-                //$time_end = microtime(true);                
-                //$time = $time_end - $time_start;                
+                //$time_end = microtime(true);
+                //$time = $time_end - $time_start;
                 //echo "running in $time seconds\n";
             }
 
@@ -201,10 +201,14 @@ class EstateProgram {
         // make sure we have a username before we move forward
         //if (!empty($username)) {
 
+        if ($user instanceof WP_User && user_can($user, 'freeze')) {
+            $user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: We are really sorry. Your account has been frozen. If you like to use our service, please contact us.', $plugin_slug));
+            return $user;
+        }
 
-
+        /*
         if ($user instanceof WP_User && user_can($user, 'only_demo')) {
-
+            
             $user_data = $user->data;
 
             $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user_data->user_registered);
@@ -215,11 +219,18 @@ class EstateProgram {
             $now = new DateTime();
 
             if ($now > $valid_to) {
-                $user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: We are really sorry, your account has not been approved.'));
+                $user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: We are really sorry, your account has not been approved.', $plugin_slug));
             } else {
                 return $user;
             }
-        }
+        }*/
+        
+        if($user instanceof WP_User){
+            global $wpdb;
+            $sql = $wpdb->prepare("REPLACE INTO last_login (user_id, login_date) VALUES(%d, NOW())", $user->ID);
+            $wpdb->query($sql);
+        }        
+        
         return $user;
     }
 
@@ -501,6 +512,16 @@ class EstateProgram {
                 )
         );
 
+        $result = add_role(
+                'frozen', __('Frozen'), array(
+                //'read' => true, // true allows this capability
+                //'edit_posts' => true,
+                //'delete_posts' => false, // Use false to explicitly deny
+                )
+        );
+
+        $frozen_role = get_role('frozen');
+        $frozen_role->add_cap('freeze');
 
         $role_names = array(
             'administrator',
@@ -1226,15 +1247,15 @@ class EstateProgram {
         $arr = array();
 
         if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
-            $arr[] = __('chauffage par le sol', 'wpbootstrap');
+            $arr[] = __('chauffage par le sol', 'estateprogram');
         }
 
         if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
-            $arr[] = __('chauffage central', 'wpbootstrap');
+            $arr[] = __('chauffage central', 'estateprogram');
         }
 
         if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
-            $arr[] = __('chauffage individuel', 'wpbootstrap');
+            $arr[] = __('chauffage individuel', 'estateprogram');
         }
 
         return implode(', ', $arr);

@@ -332,6 +332,8 @@ class SourceImport {
                 ";
 
                     $wpdb->query($sql);
+                } else {
+                    
                 }
 
                 // zgrabovani obrazků
