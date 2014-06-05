@@ -204,15 +204,11 @@ get_header();
                                         } 
                                         $program_id = $val->program_id;
                                         
-                                        $terms = accomodationTypeL($prop);
-                                       
-                                        if(!empty($terms)){ 
-                                        $term = $terms;   
+                                        $term = accomodationTypeL($prop);
+                                        
+                                        if(empty($term)){
+                                            $term = '-';
                                         }
-                                        else
-                                        {
-                                        $term = '-';     
-                                        }    
                         
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
