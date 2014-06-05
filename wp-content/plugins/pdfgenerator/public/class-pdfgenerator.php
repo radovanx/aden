@@ -221,7 +221,7 @@ class pdfgenerator {
                             $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
                             $langs = qtrans_getSortedLanguages();
 
-                            $mpdf->Output($filename, 'D');
+                            $mpdf->Output($filename, 'I');
 
 
                             $sql3 = "
