@@ -259,6 +259,9 @@ get_header();
         
         
         jQuery("form").on("submit", function(event) { 
+            
+        
+            
         event.preventDefault();   
         var values = {}; 
         jQuery.each(jQuery('form').serializeArray(), function(i, field) { 
@@ -285,6 +288,7 @@ get_header();
         checkeddistrict = '"' + helperd.join('","') + '"';
         checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length - 1); 
         //uppercase sensitive
+         
         var checkedtype='';     
         var helpert = [];
         jQuery('.type-checkbox:checked').each(function(){ 
@@ -508,7 +512,9 @@ get_header();
         }   
         // var group_filter = city_f.and(price_range_f);  
         var myfilterfinal = collection.get(finalfilter.cids); 
-        console.log(myfilterfinal);  
+      
+        datatable = myfilterfinal;
+     
         if (jQuery.isEmptyObject(myfilterfinal))
         {
             jQuery("#table_data_filter").empty(); 
