@@ -558,6 +558,9 @@ get_header();
             </div>
 
             <div class="modal-body">
+
+
+
                 <?php _e("You modified", "wpbootstrap"); ?>
 
 

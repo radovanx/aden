@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wp-bootstrap v3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-17 23:02-0300\n"
-"PO-Revision-Date: 2014-06-05 16:06:21+0000\n"
+"PO-Revision-Date: 2014-06-06 12:44:24+0000\n"
 "Last-Translator: Alexandre JULIEN <alex.julien13@gmail.com>\n"
 "Language-Team: Alexandre JULIEN <http://www.alexandre-julien.com> <alex.julien13@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -349,17 +349,17 @@ msgstr "Galerie"
 #: template-buy_page.php:49
 #@ wpbootstrap
 msgid "Contact Form"
-msgstr ""
+msgstr "Formulaire de contact"
 
 #: about-us-page.php:27
 #@ wpbootstrap
 msgid "CONTACT INFORMATIONS"
-msgstr ""
+msgstr "INFORMATIONS DE CONTACT"
 
 #: front-page.php:96
 #@ wpbootstrap
 msgid "Guide"
-msgstr ""
+msgstr "Guide"
 
 #: front-page.php:97
 #@ wpbootstrap
@@ -374,12 +374,12 @@ msgstr ""
 #: front-page.php:103
 #@ wpbootstrap
 msgid "download for free"
-msgstr ""
+msgstr "Téléchargez gratuitement"
 
 #: front-page.php:110
 #@ wpbootstrap
 msgid "Contact us"
-msgstr ""
+msgstr "Contactez nous"
 
 #: front-page.php:115
 #@ wpbootstrap
@@ -389,7 +389,7 @@ msgstr ""
 #: front-page.php:121
 #@ wpbootstrap
 msgid "Insert your email"
-msgstr ""
+msgstr "Entrez votre adresse email"
 
 #: front-page.php:122
 #@ wpbootstrap
@@ -400,7 +400,7 @@ msgstr ""
 #: venku/functions.php:181
 #@ wpbootstrap
 msgid "Submit"
-msgstr ""
+msgstr "Soumettre"
 
 #: functions.php:616
 #: profile-form.php:83
@@ -408,7 +408,7 @@ msgstr ""
 #@ default
 #@ wpbootstrap
 msgid "City"
-msgstr ""
+msgstr "Ville"
 
 #: functions.php:622
 #: venku/functions.php:622
@@ -506,7 +506,7 @@ msgstr ""
 #: lostpassword-form.php:14
 #@ wpbootstrap
 msgid "Lost Password"
-msgstr ""
+msgstr "Mot de passe oublié"
 
 #: lostpassword-form.php:19
 #@ default
@@ -523,68 +523,68 @@ msgstr ""
 #@ wpbootstrap
 #@ default
 msgid "Register"
-msgstr ""
+msgstr "Inscription"
 
 #: our-product-page.php:17
 #@ wpbootstrap
 msgid "Select a property type and start your search."
-msgstr ""
+msgstr "Choisissez un type de bien et commencez votre recherche"
 
 #: our-product-page.php:42
 #@ wpbootstrap
 msgid "Price from:"
-msgstr ""
+msgstr "Prix de:"
 
 #: our-product-page.php:45
 #@ wpbootstrap
 msgid "Price to:"
-msgstr ""
+msgstr "jusqu'à"
 
 #: our-product-page.php:49
 #@ wpbootstrap
 msgid "References:"
-msgstr ""
+msgstr "Références"
 
 #: our-product-page.php:52
 #: register-form.php:58
 #@ wpbootstrap
 msgid "City:"
-msgstr ""
+msgstr "Ville:"
 
 #: our-product-page.php:74
 #@ wpbootstrap
 msgid "Disctrict:"
-msgstr ""
+msgstr "Quartier:"
 
 #: our-product-page.php:83
 #@ wpbootstrap
 msgid "Type of accommodation::"
-msgstr ""
+msgstr "Type de bien"
 
 #: our-product-page.php:100
 #@ wpbootstrap
 msgid "Area from (m2):"
-msgstr ""
+msgstr "Surface de (m²)"
 
 #: our-product-page.php:103
 #@ wpbootstrap
 msgid "Area to (m2):"
-msgstr ""
+msgstr "Jusqu'à"
 
 #: our-product-page.php:108
 #@ wpbootstrap
 msgid "Rooms from:"
-msgstr ""
+msgstr "Pièces de:"
 
 #: our-product-page.php:125
 #@ wpbootstrap
 msgid "Rooms to:"
-msgstr ""
+msgstr "jusqu'à"
 
 #: our-product-page.php:153
 #@ wpbootstrap
 msgid "All products"
-msgstr ""
+msgstr "Tous les biens"
 
 #: our-product-page.php:158
 #: our-product-page.php:159
@@ -596,7 +596,7 @@ msgstr ""
 #: template-my_preferences.php:23
 #@ wpbootstrap
 msgid "Sort by"
-msgstr ""
+msgstr "Trier par"
 
 #: our-product-page.php:178
 #: single-flat.php:1
@@ -605,7 +605,7 @@ msgstr ""
 #: venku/single-flat.php:276
 #@ wpbootstrap
 msgid "Favorite"
-msgstr ""
+msgstr "Favoris"
 
 #: our-product-page.php:179
 #: single-flat.php:1
@@ -624,7 +624,7 @@ msgstr ""
 #: venku/single-flat.php:278
 #@ wpbootstrap
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #: our-product-page.php:181
 #: single-flat.php:1
@@ -633,7 +633,7 @@ msgstr ""
 #: venku/single-flat.php:279
 #@ wpbootstrap
 msgid "Flat n°"
-msgstr ""
+msgstr "Lot n°"
 
 #: our-product-page.php:182
 #: single-flat.php:1
@@ -642,7 +642,7 @@ msgstr ""
 #: venku/single-flat.php:280
 #@ wpbootstrap
 msgid "Rental status"
-msgstr ""
+msgstr "Statut location"
 
 #: our-product-page.php:183
 #: single-flat.php:1
@@ -651,7 +651,7 @@ msgstr ""
 #: venku/single-flat.php:281
 #@ wpbootstrap
 msgid "Floor"
-msgstr ""
+msgstr "Etage"
 
 #: our-product-page.php:184
 #: single-flat.php:1
@@ -660,7 +660,7 @@ msgstr ""
 #: venku/single-flat.php:282
 #@ wpbootstrap
 msgid "Rooms"
-msgstr ""
+msgstr "Pièces"
 
 #: our-product-page.php:185
 #: single-flat.php:1
@@ -669,7 +669,7 @@ msgstr ""
 #: venku/single-flat.php:283
 #@ wpbootstrap
 msgid "Surface"
-msgstr ""
+msgstr "Surface"
 
 #: our-product-page.php:186
 #: single-flat.php:1
@@ -678,7 +678,7 @@ msgstr ""
 #: venku/single-flat.php:284
 #@ wpbootstrap
 msgid "Price"
-msgstr ""
+msgstr "Prix"
 
 #: our-product-page.php:187
 #: single-flat.php:1
@@ -687,7 +687,7 @@ msgstr ""
 #: venku/single-flat.php:285
 #@ wpbootstrap
 msgid "Price/m²"
-msgstr ""
+msgstr "Prix / m²"
 
 #: our-product-page.php:188
 #: single-flat.php:1
@@ -696,7 +696,7 @@ msgstr ""
 #: venku/single-flat.php:286
 #@ wpbootstrap
 msgid "Yield"
-msgstr ""
+msgstr "Rentabilité"
 
 #: our-product-page.php:189
 #: single-flat.php:1
@@ -705,7 +705,7 @@ msgstr ""
 #: venku/single-flat.php:287
 #@ wpbootstrap
 msgid "Status"
-msgstr ""
+msgstr "Statut"
 
 #: our-product-page.php:315
 #: single-flat.php:1
@@ -713,7 +713,7 @@ msgstr ""
 #: venku/single-flat.php:356
 #@ wpbootstrap
 msgid "You modified"
-msgstr ""
+msgstr "Vous avez modifié"
 
 #: our-product-page.php:318
 #: single-flat.php:1
@@ -736,14 +736,14 @@ msgstr ""
 #: row_row.php:54
 #@ wpbootstrap
 msgid "Flat n°:"
-msgstr ""
+msgstr "Lot n°:"
 
 #: our-product-page.php:400
 #: our-product-page.php:657
 #: row_row.php:60
 #@ wpbootstrap
 msgid "Rental status: "
-msgstr ""
+msgstr "Statut location"
 
 #: our-product-page.php:400
 #: our-product-page.php:657
@@ -752,56 +752,56 @@ msgstr ""
 #: venku/single-flat.php:163
 #@ wpbootstrap
 msgid "Floor:"
-msgstr ""
+msgstr "Etage:"
 
 #: our-product-page.php:400
 #: our-product-page.php:657
 #: row_row.php:74
 #@ wpbootstrap
 msgid "Rooms:  "
-msgstr ""
+msgstr "Pièces:"
 
 #: our-product-page.php:400
 #: our-product-page.php:657
 #: row_row.php:80
 #@ wpbootstrap
 msgid "Surface:  "
-msgstr ""
+msgstr "Surface:"
 
 #: our-product-page.php:400
 #: our-product-page.php:657
 #: row_row.php:88
 #@ wpbootstrap
 msgid "Price:"
-msgstr ""
+msgstr "Prix:"
 
 #: our-product-page.php:400
 #: our-product-page.php:657
 #: row_row.php:94
 #@ wpbootstrap
 msgid "Price/m2:"
-msgstr ""
+msgstr "Prix / m²"
 
 #: our-product-page.php:400
 #: our-product-page.php:657
 #: row_row.php:100
 #@ wpbootstrap
 msgid "Yield:"
-msgstr ""
+msgstr "Rentabilité:"
 
 #: our-product-page.php:400
 #: our-product-page.php:657
 #: row_row.php:108
 #@ wpbootstrap
 msgid "VIEW DETAILS:"
-msgstr ""
+msgstr "VOIR DETAILS"
 
 #: partial-project_frontpage.php:18
 #: partial-project_projects.php:19
 #: single-program.php:95
 #@ wpbootstrap
 msgid "Type of property:"
-msgstr ""
+msgstr "Type de bien:"
 
 #: partial-project_frontpage.php:22
 #: partial-project_projects.php:23
@@ -809,31 +809,31 @@ msgstr ""
 #: single-program.php:98
 #@ wpbootstrap
 msgid "Address:"
-msgstr ""
+msgstr "Adresse:"
 
 #: partial-project_frontpage.php:26
 #: partial-project_projects.php:27
 #: single-program.php:101
 #@ wpbootstrap
 msgid "Size range:"
-msgstr ""
+msgstr "Surface:"
 
 #: partial-project_frontpage.php:28
 #: partial-project_projects.php:29
 #: single-program.php:106
 #@ wpbootstrap
 msgid "Price range:"
-msgstr ""
+msgstr "Prix:"
 
 #: profile-form.php:39
 #@ wpbootstrap
 msgid "First Name"
-msgstr ""
+msgstr "Prénom"
 
 #: profile-form.php:43
 #@ wpbootstrap
 msgid "Last Name"
-msgstr ""
+msgstr "Nom"
 
 #: profile-form.php:47
 #@ wpbootstrap
@@ -848,12 +848,12 @@ msgstr ""
 #: profile-form.php:50
 #@ wpbootstrap
 msgid "New password"
-msgstr ""
+msgstr "Nouveau mot de passe"
 
 #: profile-form.php:56
 #@ wpbootstrap
 msgid "New Password"
-msgstr ""
+msgstr "Nouveau mot de passe"
 
 #: profile-form.php:57
 #@ default
@@ -868,34 +868,34 @@ msgstr ""
 #: profile-form.php:59
 #@ wpbootstrap
 msgid "Strength indicator"
-msgstr ""
+msgstr "Niveau de sécurité du mot de passe"
 
 #: profile-form.php:62
 #@ wpbootstrap
 msgid "Hint: The password should be at least seven characters long. To make it stronger, use upper and lower case letters, numbers and symbols like ! \" ? $ % ^ &amp; )."
-msgstr ""
+msgstr "Astuce: le mot de passe doit contenir au moins 7 caractères. Pour le rendre plus sûr, utilisez des majuscules minuscules, des chiffres et des symboles tels que ! \" ? $ % ^ &amp; )."
 
 #: profile-form.php:69
 #: profile-form.php:71
 #: register-form.php:43
 #@ wpbootstrap
 msgid "Company"
-msgstr ""
+msgstr "Entreprise"
 
 #: profile-form.php:75
 #@ wpbootstrap
 msgid "Phone"
-msgstr ""
+msgstr "Téléphone"
 
 #: profile-form.php:87
 #@ wpbootstrap
 msgid "Country"
-msgstr ""
+msgstr "Pays"
 
 #: profile-form.php:91
 #@ wpbootstrap
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: profile-form.php:110
 #@ default
@@ -905,7 +905,7 @@ msgstr ""
 #: register-form.php:12
 #@ wpbootstrap
 msgid "Registration"
-msgstr ""
+msgstr "Inscription"
 
 #: register-form.php:18
 #@ wpbootstrap
@@ -920,12 +920,12 @@ msgstr ""
 #: register-form.php:30
 #@ wpbootstrap
 msgid "First name:"
-msgstr ""
+msgstr "Prénom"
 
 #: register-form.php:34
 #@ wpbootstrap
 msgid "Last name:"
-msgstr ""
+msgstr "Nom"
 
 #: register-form.php:38
 #@ wpbootstrap
@@ -935,17 +935,17 @@ msgstr ""
 #: register-form.php:45
 #@ wpbootstrap
 msgid "Company:"
-msgstr ""
+msgstr "Entreprise:"
 
 #: register-form.php:50
 #@ wpbootstrap
 msgid "Phone:"
-msgstr ""
+msgstr "Téléphone:"
 
 #: register-form.php:62
 #@ wpbootstrap
 msgid "Country:"
-msgstr ""
+msgstr "Pays:"
 
 #: register-form.php:71
 #@ default
@@ -955,13 +955,13 @@ msgstr ""
 #: register-form.php:86
 #@ wpbootstrap
 msgid "Forgot password"
-msgstr ""
+msgstr "Mot de passe oublié"
 
 #: single-flat.php:1
 #: venku/single-flat.php:37
 #@ wpbootstrap
 msgid "reference program:"
-msgstr ""
+msgstr "Référence du programme"
 
 #: single-flat.php:1
 #: venku/single-flat.php:76
@@ -979,140 +979,140 @@ msgstr ""
 #: venku/single-flat.php:105
 #@ wpbootstrap
 msgid "Purchase price:"
-msgstr ""
+msgstr "Prix d'achat:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:110
 #@ wpbootstrap
 msgid "Living area:"
-msgstr ""
+msgstr "Surface:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:114
 #: venku/single-flat.php:183
 #@ wpbootstrap
 msgid "Rooms:"
-msgstr ""
+msgstr "Pièces:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:117
 #@ wpbootstrap
 msgid "Recommend product"
-msgstr ""
+msgstr "Recommander le bien"
 
 #: single-flat.php:1
 #: venku/single-flat.php:118
 #@ wpbootstrap
 msgid "Print presentation"
-msgstr ""
+msgstr "Imprimer exposé"
 
 #: single-flat.php:1
 #: venku/single-flat.php:119
 #@ wpbootstrap
 msgid "Print reservation documents"
-msgstr ""
+msgstr "Imprimer document de réservation"
 
 #: single-flat.php:1
 #: venku/single-flat.php:121
 #@ wpbootstrap
 msgid "Download building data"
-msgstr ""
+msgstr "Télécharger données immeuble"
 
 #: single-flat.php:1
 #: venku/single-flat.php:124
 #@ wpbootstrap
 msgid "Download product data"
-msgstr ""
+msgstr "Télécharger données bien"
 
 #: single-flat.php:1
 #: venku/single-flat.php:133
 #@ wpbootstrap
 msgid "Features"
-msgstr ""
+msgstr "Caractéristiques du bien:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:136
 #@ wpbootstrap
 msgid "Year of construction: "
-msgstr ""
+msgstr "Année de construction:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:145
 #@ wpbootstrap
 msgid "Purchase price /sm:"
-msgstr ""
+msgstr "Prix d'achat / m²"
 
 #: single-flat.php:1
 #: venku/single-flat.php:156
 #@ wpbootstrap
 msgid "Apartment type:"
-msgstr ""
+msgstr "Type de bien:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:173
 #@ wpbootstrap
 msgid "Number of floors:"
-msgstr ""
+msgstr "Nombre d'étages"
 
 #: single-flat.php:1
 #: venku/single-flat.php:193
 #@ wpbootstrap
 msgid "Bathroom(s):"
-msgstr ""
+msgstr "Salle(s) de bain"
 
 #: single-flat.php:1
 #: venku/single-flat.php:203
 #@ wpbootstrap
 msgid "Elevator:"
-msgstr ""
+msgstr "Ascenseur:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:209
 #@ wpbootstrap
 msgid "Type of heating system:"
-msgstr ""
+msgstr "Type chauffage:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:217
 #@ wpbootstrap
 msgid "Garage / parking spot:"
-msgstr ""
+msgstr "Parking"
 
 #: single-flat.php:1
 #: venku/single-flat.php:224
 #@ wpbootstrap
 msgid "Buyer commission (incl. VAT):"
-msgstr ""
+msgstr "Commission (TVA incl.)"
 
 #: single-flat.php:1
 #: venku/single-flat.php:238
 #@ wpbootstrap
 msgid "Description"
-msgstr ""
+msgstr "Description:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:244
 #@ wpbootstrap
 msgid "Description of the building"
-msgstr ""
+msgstr "Description de l'immeuble"
 
 #: single-flat.php:1
 #: venku/single-flat.php:248
 #@ wpbootstrap
 msgid "Description SURROUNDINGs"
-msgstr ""
+msgstr "Description du quartier"
 
 #: single-flat.php:1
 #: venku/single-flat.php:253
 #@ wpbootstrap
 msgid "Area map"
-msgstr ""
+msgstr "Plan de situation"
 
 #: single-flat.php:1
 #: venku/single-flat.php:268
 #@ wpbootstrap
 msgid "Other products that might interest you"
-msgstr ""
+msgstr "Autres biens qui pourraient vous intéresser"
 
 #: single-flat.php:1
 #: venku/single-flat.php:323
@@ -1123,7 +1123,7 @@ msgstr ""
 #: venku/single-flat.php:331
 #@ wpbootstrap
 msgid "Receiver email:"
-msgstr ""
+msgstr "Email destinataire:"
 
 #: single-flat.php:1
 #: venku/single-flat.php:335
@@ -1141,7 +1141,7 @@ msgstr ""
 #: venku/single-flat.php:341
 #@ wpbootstrap
 msgid "Send recommendation"
-msgstr ""
+msgstr "Envoyer recommandation"
 
 #: single-flat.php:1
 #: venku/single-flat.php:432
@@ -1152,12 +1152,12 @@ msgstr ""
 #: single-program.php:63
 #@ wpbootstrap
 msgid "Summary"
-msgstr ""
+msgstr "En bref"
 
 #: single-program.php:82
 #@ wpbootstrap
 msgid "Key Facts"
-msgstr ""
+msgstr "Données clés"
 
 #: single-program.php:113
 #@ wpbootstrap
@@ -1167,20 +1167,20 @@ msgstr ""
 #: single-program.php:121
 #@ wpbootstrap
 msgid "List of products available in this program"
-msgstr ""
+msgstr "Liste de biens disponibles dans ce programme"
 
 #: template-my_preferences.php:15
 #@ wpbootstrap
 msgid "My preferences"
-msgstr ""
+msgstr "Mes favoris"
 
 #: template-my_preferences.php:80
 #@ wpbootstrap
 msgid "Do you really want to remove this preference?"
-msgstr ""
+msgstr "Voulez vous vraiment retirer ce bien de vos favoris?"
 
 #: template-my_preferences.php:84
 #@ wpbootstrap
 msgid "Yes"
-msgstr ""
+msgstr "Oui"
 

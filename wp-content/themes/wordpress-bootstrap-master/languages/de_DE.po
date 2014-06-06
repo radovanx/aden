@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wp-bootstrap v3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-17 23:02-0300\n"
-"PO-Revision-Date: 2014-06-05 16:14:45+0000\n"
+"PO-Revision-Date: 2014-06-06 12:09:47+0000\n"
 "Last-Translator: Martin Meyerhoff <mamhoff@googlemail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -408,7 +408,7 @@ msgstr ""
 #@ default
 #@ wpbootstrap
 msgid "City"
-msgstr ""
+msgstr "Stadt"
 
 #: functions.php:622
 #: venku/functions.php:622
@@ -489,7 +489,7 @@ msgstr ""
 #: register-form.php:58
 #@ wpbootstrap
 msgid "City:"
-msgstr ""
+msgstr "Stadt"
 
 #: our-product-page.php:74
 #@ wpbootstrap
@@ -1023,25 +1023,25 @@ msgstr ""
 #: venku/single-flat.php:238
 #@ wpbootstrap
 msgid "Description"
-msgstr ""
+msgstr "OBJEKTBESCHREIBUNG"
 
 #: single-flat.php:1
 #: venku/single-flat.php:244
 #@ wpbootstrap
 msgid "Description of the building"
-msgstr ""
+msgstr "AUSSTATTUNGSBESCHREIBUNG"
 
 #: single-flat.php:1
 #: venku/single-flat.php:248
 #@ wpbootstrap
 msgid "Description SURROUNDINGs"
-msgstr ""
+msgstr "LAGEBESCHREIBUNG"
 
 #: single-flat.php:1
 #: venku/single-flat.php:253
 #@ wpbootstrap
 msgid "Area map"
-msgstr ""
+msgstr "KARTENANSICHT"
 
 #: single-flat.php:1
 #: venku/single-flat.php:268
