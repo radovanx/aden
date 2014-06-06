@@ -383,58 +383,32 @@ get_header();
 
                 <div class="col-md-3 pull-right big_icons margin-top">
 
-                    <ul class="nav nav-tabs">
-
-                        <a href="#list"  data-toggle="tab" class="blue active"><i class="fa fa-list"></i></a>
-
-                        <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a>
-
-                    </ul>
-
-                </div>
-
-                <div class="col-md-12 column margin-top">
-
-                    <h3 class="border-left uppercase"><?php _e("Other products that might interest you", "wpbootstrap"); ?></h3>
-
-                    <!-- Tab panes -->
-
-                    <div class="tab-content">
- 
-                        <div class="tab-pane" id="table">
-
-                            <table class="table table-bordered">
-
-                                <thead>
-
-                                    <tr>
-
+                    <ul class="nav nav-tabs"> 
+                        <a href="#list"  data-toggle="tab" class="blue active"><i class="fa fa-list"></i></a> 
+                        <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a> 
+                    </ul> 
+                </div> 
+                <div class="col-md-12 column margin-top"> 
+                    <h3 class="border-left uppercase"><?php _e("Other products that might interest you", "wpbootstrap"); ?></h3> 
+                    <!-- Tab panes --> 
+                    <div class="tab-content"> 
+                        <div class="tab-pane" id="table"> 
+                            <table class="table table-bordered"> 
+                                <thead> 
+                                    <tr> 
                                         <th><?php _e("Favorite", "wpbootstrap"); ?></th>
-
                                         <th><?php _e("Prg ref", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Address", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Flat n°", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Rental status", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Floor", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Rooms", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Surface", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Price", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Price/m²", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Yield", "wpbootstrap"); ?></th>
-
-                                        <th><?php _e("Status", "wpbootstrap"); ?></th>
-
-                                    </tr>
-
+                                        <th><?php _e("Address", "wpbootstrap"); ?></th> 
+                                        <th><?php _e("Flat n°", "wpbootstrap"); ?></th> 
+                                        <th><?php _e("Rental status", "wpbootstrap"); ?></th> 
+                                        <th><?php _e("Floor", "wpbootstrap"); ?></th> 
+                                        <th><?php _e("Rooms", "wpbootstrap"); ?></th> 
+                                        <th><?php _e("Surface", "wpbootstrap"); ?></th> 
+                                        <th><?php _e("Price", "wpbootstrap"); ?></th> 
+                                        <th><?php _e("Price/m²", "wpbootstrap"); ?></th> 
+                                        <th><?php _e("Yield", "wpbootstrap"); ?></th> 
+                                        <th><?php _e("Status", "wpbootstrap"); ?></th> 
+                                    </tr> 
                                 </thead>
 
                                 <?php
@@ -445,110 +419,61 @@ get_header();
 
                                 <?php include TEMPLATEPATH . '/table_row.php'; ?>
 
-                            </table>
-
-                        </div>
-
-                        <div class="col-md-12 column active border tab-pane" id="list">
-
+                            </table> 
+                        </div> 
+                        <div class="col-md-12 column active border tab-pane" id="list"> 
                             <?php
                             include TEMPLATEPATH . '/row_row.php';
-                            ?>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            <?php endwhile; ?>
-
-        <?php else : ?>
-
-            <article id="post-not-found">
-
-                <header>
-
-                    <h1><?php _e("Not Found", "wpbootstrap"); ?></h1>
-
-                </header>
-
-                <section class="post_content">
-
-                    <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p>
-
-                </section>
-
-            </article>
-
-        <?php endif; ?>
-
-        <!-- end #main -->
-
-    </div> <!-- end #content -->
-
-</div>
-
-<div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog">
-
-        <div class="modal-content">
-
-            <div class="modal-header">
-
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-                <h4 class="modal-title"><?php _e('Recommend this product', '') ?></h4>
-
-            </div>
-
-            <form id="recomend-form" method="post">
-
-                <div class="modal-body">
-
-                    <div id="form-response" class="display-none"></div>
-
-                    <input type="hidden" name="action" value="recommend_product">
-
-                    <input type="hidden" name="id" value="<?php echo $post->ID ?>">
-
-                    <div class="form-group">
-
-                        <label for="receiver_email"><?php _e('Receiver email:', 'wpbootstrap') ?></label>
-
-                        <input type="text" class="form-control erase-after-sent" value="" id="receiver_email" name="receiver_email">
-
-                    </div>
-
+                            ?> 
+                        </div> 
+                    </div> 
+                </div> 
+            <?php endwhile; ?> 
+        <?php else : ?> 
+            <article id="post-not-found"> 
+                <header> 
+                    <h1><?php _e("Not Found", "wpbootstrap"); ?></h1> 
+                </header> 
+                <section class="post_content"> 
+                    <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p> 
+                </section> 
+            </article> 
+        <?php endif; ?> 
+        <!-- end #main --> 
+    </div> <!-- end #content --> 
+</div> 
+<div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true"> 
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
+            <div class="modal-header"> 
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+                <h4 class="modal-title"><?php _e('Recommend this product', '') ?></h4> 
+            </div> 
+            <form id="recomend-form" method="post"> 
+                <div class="modal-body"> 
+                    <div id="form-response" class="display-none"></div> 
+                    <input type="hidden" name="action" value="recommend_product"> 
+                    <input type="hidden" name="id" value="<?php echo $post->ID ?>"> 
+                    <div class="form-group"> 
+                        <label for="receiver_email"><?php _e('Receiver email:', 'wpbootstrap') ?></label> 
+                        <input type="text" class="form-control erase-after-sent" value="" id="receiver_email" name="receiver_email"> 
+                    </div> 
                     <div class="form-group">
                         <label for="receiver_message"><?php _e('Message:', 'wpbootstrap') ?></label>
                         <textarea class="form-control erase-after-sent" id="receiver_message" name="receiver_message"></textarea>
                     </div>
                 </div>
-
-                <div class="modal-footer">
-
-                    <div id="loading-recommand" class="pull-left display-none"><i class="fa fa-spinner fa-spin"></i> <?php _e('Sending... ') ?></div>
-
-                    <input type="submit" class="btn btn-primary pull-right" id="send_recommendation" value="<?php _e('Send recommendation', 'wpbootstrap') ?>">
-
-                </div>
-
+                <div class="modal-footer"> 
+                    <div id="loading-recommand" class="pull-left display-none"><i class="fa fa-spinner fa-spin"></i> <?php _e('Sending... ') ?></div> 
+                    <input type="submit" class="btn btn-primary pull-right" id="send_recommendation" value="<?php _e('Send recommendation', 'wpbootstrap') ?>"> 
+                </div> 
             </form>
-
         </div><!-- /.modal-content -->
-
-    </div><!-- /.modal-dialog -->
-
-</div><!-- /.modal -->
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog">
-
-        <div class="modal-content">
-
+    </div><!-- /.modal-dialog --> 
+</div><!-- /.modal --> 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
             <div class="modal-header">
 
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>

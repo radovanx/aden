@@ -306,7 +306,7 @@ class EstateProgram {
                 'thumbnail',
                 'title',
                 'editor',
-                //'excerpt',
+                'excerpt',
                 'author'
             ),
             'menu_position' => 7,
