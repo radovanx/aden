@@ -200,9 +200,7 @@ get_header();
                                 <strong><?php _e("Apartment type:", "wpbootstrap"); ?> </strong>
                                 <span class="pull-right">
                                     <?php
-                                    if (isset($props['objektart|wohnung|wohnungtyp'])):
-                                        echo esc_attr($props['objektart|wohnung|wohnungtyp']);
-                                    endif;
+                                    echo apartmentTypeL($props);
                                     ?>
                                 </span>
                             </li>
