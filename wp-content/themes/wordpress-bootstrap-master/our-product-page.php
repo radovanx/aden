@@ -215,22 +215,17 @@ get_header();
 </div><!-- /.modal --> 
 <script>
         jQuery(function() {
-        jQuery('.city-checkbox').click(function() {    
-        
+        jQuery('.city-checkbox').click(function() {     
         var id = jQuery(this).attr("data-myAttri");      
-        
-        if(jQuery(this).is(':checked')){   
-             
+        if(jQuery(this).is(':checked')){     
         var data = {       
          'action':'get_district', 
          'id':+id 
-        }; 
-        
+        };  
         jQuery.get('<?php echo admin_url('admin-ajax.php'); ?>', data, function(response) { 
         jQuery('#district-list').append(response);       
         });                
         }
-        
         else { 
         jQuery('#district-wrap-'+id).remove();
         }  
@@ -240,10 +235,10 @@ get_header();
         function format(comma, period) {
         comma = comma || ',';
         period = period || '.';
-        var split = this.toString().split('.');
-        var numeric = split[0];
-        var decimal = split.length > 1 ? period + split[1] : '';
-        var reg = /(\d+)(\d{3})/;
+            var split = this.toString().split('.');
+            var numeric = split[0];
+            var decimal = split.length > 1 ? period + split[1] : '';
+            var reg = /(\d+)(\d{3})/;
   while (reg.test(numeric)) {
     numeric = numeric.replace(reg, '$1' + comma + '$2');
   }
@@ -258,7 +253,7 @@ get_header();
 </script>  
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
-<script> 
+<script>  
         var datatable = <?php echo $data_object; ?>;
         var collection = new PourOver.Collection(datatable); 
         
@@ -498,7 +493,7 @@ get_header();
                 finalfilter = collection.filters.area_range.getFn([fareaf, 999]);
             }
         }
-        //ROOMS     
+         
         if (froomsf != '' || froomst != '')
         {
             var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"}); 
@@ -519,7 +514,7 @@ get_header();
         {
             jQuery("#table_data_filter").empty(); 
             jQuery("#list").empty(); 
-            var table_data = "<tr><td><h1> NO RESULT FOUND </h1></td></tr>";
+            var table_data = "<tr><td><h1><?php _e("NO RESULT FOUND", "wpbootstrap"); ?></h1></td></tr>";
             var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"><h1>NO RESULT FOUND</h1></div></div>";            
             jQuery("tbody").append(table_data); 
             jQuery("#list").append(row_data);  
@@ -527,10 +522,8 @@ get_header();
         else
         { 
             jQuery("#table_data_filter").empty(); 
-            jQuery("#list").empty();
-            
-            jQuery.each(myfilterfinal, function(i, val) { 
-             
+            jQuery("#list").empty(); 
+            jQuery.each(myfilterfinal, function(i, val) {    
             if(val.status != 'OFFEN')
             {
               var stats = "<span class=\"green\">"+ val.status +"</span>";
@@ -539,7 +532,6 @@ get_header();
             {
              var stats ="";
             }    
-  
             var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +",  "+ val.city +", "+ val.district +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+" &euro;</td><td>"+val.fpricem+" &euro;</td><td></td><td>"+val.status+"</td></tr>"; 
               
             jQuery("tbody").append(table_data);
@@ -553,14 +545,14 @@ get_header();
         });   
 </script>     
 <script>  
+  
      var total_item = 0; 
      jQuery.each(datatable, function(i, val) {       
      total_item ++;  
      });    
      console.log(total_item);  
      var count = 10; 
-     var load_next_item = true;  
-      
+     var load_next_item = true;    
      jQuery(document).ready(function() {  
         jQuery(window).scroll(function() {         
             if (count >= (total_item)) {
@@ -580,8 +572,7 @@ get_header();
                 else
                 {
                 var stats ="";
-                }  
-                     
+                }                        
                 var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\""+val.idval+"\" href=\"#myModal\"><i class=\"fa "+val.favorite+"\"></i><span class=\"small-text hidden\"></span></a></td><td>"+val.references+"</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street +" "+ val.hnumber  +",  "+ val.city +", "+ val.district +", " + val.zip + "</a></td><td>"+val.flatnum+"</td><td>"+val.rstatus+"</td><td>"+val.floor+"</td><td>"+val.rooms+"</td><td>"+val.area+"</td><td>"+val.fprice+" &euro;</td><td>"+val.fpricem+" &euro;</td><td></td><td>"+val.status+"</td></tr>"; 
                  
                     jQuery("tbody").append(table_data);
@@ -597,9 +588,7 @@ get_header();
             }
         });   
     }); 
-</script> 
-
-
+</script>  
 <script>   
 jQuery(document).ready(function(n){n(".searchbutton").fadeIn("fast",function(){})});      
 </script>  
