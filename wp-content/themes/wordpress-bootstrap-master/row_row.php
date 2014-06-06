@@ -28,7 +28,8 @@
                             if($rental_status == 1)
                             { $rental_status = 'rented'; } 
                             //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
-                            $status = statusL($props);
+                            
+                            $status = statusL($prop); 
                             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
@@ -39,8 +40,7 @@
                                         <?php if( $status != 'OFFEN' ): ?>
                                         <span class="green"><?php echo $status; ?></span>  
                                         <?php endif; ?>
-                                        
-                                        
+ 
                                         <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>" class="img-responsive" alt="<?php echo $name; ?>"/></a>    
                                     </div>    
                                     <div class="col-md-9"> 

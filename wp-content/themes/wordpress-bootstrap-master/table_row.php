@@ -33,6 +33,12 @@
             
             $price = (int) $price;
             $pricem = (int) $pricem;
+            
+            
+             if( $status == 'OFFEN' )
+                {
+               $status = '';
+               }
  
             if($rental_status == 1)
             { 
