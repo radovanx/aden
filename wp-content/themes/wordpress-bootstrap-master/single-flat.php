@@ -24,48 +24,27 @@ get_header();
                 //$props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
                 $props = get_props($post->ID, $lang);
                 $program_id = EstateProgram::flat_program_id($post->ID);
-
                 //$title = get_the_title($post->ID);
-
                 $title = $props['freitexte|objekttitel'];
-
                 $video = $props['youtube'];
-
                 $progra_reference = $props['verwaltung_techn|objektnr_extern'];
-
                 $city = !empty($props['geo|ort']) ? esc_attr($props['geo|ort']) : "-";
-
                 $district = !empty($props['geo|regionaler_zusatz']) ? esc_attr($props['geo|regionaler_zusatz']) : "-";
-
                 $hnumber = !empty($props['geo|hausnummer']) ? esc_attr($props['geo|hausnummer']) : 0;
-
                 $street = !empty($props['geo|strasse']) ? esc_attr($props['geo|strasse']) : "-";
-
                 $zip = !empty($props['geo|plz']) ? esc_attr($props['geo|plz']) : 0;
-
                 $name = !empty($props['freitexte|objekttitel']) ? esc_attr($props['freitexte|objekttitel']) : "-";
-
                 $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-";
-
-                $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
-                ?>
+                $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;                ?>
 
                 <div class="col-md-12 column">
-
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php echo $title ?>
-
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
-
                             <span class="apartment-row-<?php echo $post->ID ?>">
-
                                 <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
-
                                     <strong class="blue triplesmall">
-
                                         <span class="fav-label"><?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> </span>
-
                                         <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-
                                     </strong>
                                 </a>
                             </span>
@@ -77,17 +56,11 @@ get_header();
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
                         <!-- Tab panes -->
-
                         <div class="tab-content">
-
                             <!-- img slide -->
-
                             <?php get_template_part('partial', 'slide') ?>
-
                             <!-- /img slide -->
-
                             <div class="tab-pane fade" id="video_tab">
-
                                 <?php
                                 if (!empty($video)):
                                     ?>
@@ -122,84 +95,50 @@ get_header();
                     </article> <!-- end article --> 
                 </div> 
                 <div class="col-md-5 column">
-
                     <div class="border col-md-12 column">
-
                         <div class="row clearfix">
-
                             <span class="propertyListBoxDataItemName">
-
                                 <div class="col-md-12 column ">
-
                                     <h3 class="blue"> <i class="red fa fa-map-marker"></i><small>
-
                                             <?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?></small>
-
                                         <small class="blue clearfix"><?php _e("reference:", "wpbootstrap"); ?> <?php echo $progra_reference; ?></small>
-
                                     </h3>
-
                                 </div>
-
                             </span>
                             <div class="col-md-12 column product-key-info">
-
                                 <address>
-
                                     <strong><?php // echo esc_attr($props['kontaktperson|firma'])     ?></strong>
-
                                     <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
-
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer'])  ?> <?php //echo esc_attr($props['kontaktperson|strasse'])  ?>
-
                                     <?php // echo esc_attr($props['kontaktperson|ort'])  ?> <?php //echo esc_attr($props['kontaktperson|plz'])  ?><br>
-
                                     <strong>Phone:</strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
-
                                     <strong>Email:</strong> <?php echo strtolower($props['kontaktperson|vorname']) ?>.<?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com
 
                                 </address>
 
                                 <span class="propertyListBoxDataItemName">
-
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
-
                                     <strong class="red pull-right"><?php echo esc_attr(price_format($props['preise|kaufpreis'])) ?> €
-
                                     </strong>
-
                                 </span>
 
                                 <span class="propertyListBoxDataItemName">
-
                                     <i class="fa fa-home"></i><strong><?php _e("Living area:", "wpbootstrap"); ?></strong>
-
                                     <strong class="red pull-right"><?php echo esc_attr($props['flaechen|wohnflaeche']) ?> m² </strong>
-
                                 </span>
 
                                 <span class="propertyListBoxDataItemName">
-
                                     <i class="fa fa-map-marker"></i><strong><?php _e("Rooms:", "wpbootstrap"); ?></strong>
-
                                     <strong class="red pull-right"><?php echo (int) $props['flaechen|anzahl_zimmer'] ?></strong>
-
                                 </span>
 
                                 <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
-
-                                <a href="/generate-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>?print=product-presentation" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
-
-                                <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
-
+                                <a  href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
+                                <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
                                 <?php if (!empty($props['dropbox|building'])): ?>
-
                                     <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
-
                                 <?php endif; ?>
-
                                 <?php if (!empty($props['dropbox|flat'])): ?>
-
                                     <a href="<?php echo esc_attr($props['dropbox|flat']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
 
                                 <?php endif; ?>

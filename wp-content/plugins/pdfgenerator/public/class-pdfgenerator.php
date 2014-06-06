@@ -102,7 +102,7 @@ class pdfgenerator {
     }
 
     function do_rewrite() {
-        add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
+        add_rewrite_rule("generate-product-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
         //add_rewrite_rule("generate-pdf/([^/]+)/([^/]+)/([^/]+)/?$", 'index.php?action=generate-pdf&product_type=$matches[1]&product_id=$matches[2]&language=$matches[3]', 'top');
         add_rewrite_rule("reservation-document/([^/]+)/([^/]+)/?$", 'index.php?action=reservation-pdf&product_id=$matches[1]&language=$matches[2]', 'top');
     }
@@ -111,8 +111,6 @@ class pdfgenerator {
 
         $q = $wp->query_vars;
         $lang = qtrans_getLanguage();
-
-
 
         // rezervacni form
         if (isset($q['action']) && 'reservation-pdf' == $q['action']) {
@@ -201,14 +199,32 @@ class pdfgenerator {
                             //if (isset($_GET['print']) && 'product-presentation' == $_GET['print']) {
 
 
-                                global $wpdb;
+                            global $wpdb;
 
-                                $product = get_post($q['product_id']);
-                                $props = get_props($product->ID, $lang);
-                                $program_id = EstateProgram::flat_program_id($product->ID);
+                            $product = get_post($q['product_id']);
+                            $props = get_props($product->ID, $lang);
+                            $program_id = EstateProgram::flat_program_id($product->ID);
 
 
-                                $sql3 = "
+
+
+
+
+
+                            $mpdf = $this->create_html2pdf($product, $props, $lang);
+                            if (empty($props['verwaltung_techn|objektnr_extern'])) {
+                                $filename = get_the_title($product_id);
+                            } else {
+                                $filename = $props['verwaltung_techn|objektnr_extern'];
+                            }
+
+                            $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
+                            $langs = qtrans_getSortedLanguages();
+
+                            $mpdf->Output($filename, 'I');
+
+
+                            $sql3 = "
                             INSERT INTO
                                 stat (
                                     user_id, 
@@ -228,25 +244,11 @@ class pdfgenerator {
                                 '" . esc_sql($props['verwaltung_techn|objektnr_extern']) . "'
                             )";
 
-                                $wpdb->query($sql3);
-                                $last_id = $wpdb->insert_id;
+                            $wpdb->query($sql3);
+                            $last_id = $wpdb->insert_id;
 
-
-
-
-                                $mpdf = $this->create_html2pdf($product, $props, $lang);
-                                if (empty($props['verwaltung_techn|objektnr_extern'])) {
-                                    $filename = get_the_title($product_id);
-                                } else {
-                                    $filename = $props['verwaltung_techn|objektnr_extern'];
-                                }
-
-                                $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
-
-                                $langs = qtrans_getSortedLanguages();
-
-                                foreach ($langs as $lang) {
-                                    $sql2 = "
+                            foreach ($langs as $lang) {
+                                $sql2 = "
                                     REPLACE INTO
                                         stat_lang (product_id, lang, title)
                                     VALUES (
@@ -256,11 +258,11 @@ class pdfgenerator {
                                         )
                                     ";
 
-                                    $wpdb->query($sql2);
-                                }
-                                $mpdf->Output($filename, 'D');
-                                exit;
-                           // }
+                                $wpdb->query($sql2);
+                            }
+
+                            exit;
+                            // }
                         }
 
                         break;
