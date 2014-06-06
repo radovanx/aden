@@ -27,8 +27,7 @@
                             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";  
                             if($rental_status == 1)
                             { $rental_status = 'rented'; } 
-                            //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
-                            $status = statusL($prop);
+                            $status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
                             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
                             //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
                             ?> 
@@ -103,7 +102,7 @@
                                             </div> 
                                             <div class="col-md-3"> 
                                                 <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
-                                                <strong class="blue clearfix  bigger-text"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i><?php echo EstateProgram::is_user_favorite($val->ID) ? 'Added to favorites' : 'Add to favorite' ?>
+                                                <strong class="blue clearfix  bigger-text"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i><?php echo EstateProgram::is_user_favorite($val->ID) ? _e("Added to favorites", "wpbootstrap") : _e("Add to favorite", "wpbootstrap") ?>
                                                     </strong>    
                                                 </a>   
                                                 <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     
