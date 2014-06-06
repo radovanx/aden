@@ -198,8 +198,9 @@ get_header();
 <?php $lang = esc_attr(get_post_meta($post->ID, '_program_latitude', true)); ?>
 <?php $long = esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
  
+<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
 <script>     
 // MAP // 
 var lang = <?php echo $lang; ?>; 
@@ -213,7 +214,15 @@ function initialize() {
       center: myCenter,
       zoom: 14,
       scrollwheel: false,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      panControl: false,
+      zoomControl: false,
+      scaleControl: false,  
+      mapTypeControl: false,
+    
+    zoomControl: true,
+    zoomControlOptions: {
+      style: google.maps.ZoomControlStyle.SMALL
+    } 
   };  
   
     map = new google.maps.Map(document.getElementById("gmap"), mapProp);         
@@ -225,16 +234,12 @@ function initialize() {
     });  
     marker.setMap(map);   
     } 
-    
-    
+ 
 jQuery(".create_map").on('shown.bs.tab', function() {     
   	/* Trigger map resize event */
-	google.maps.event.trigger(map, 'resize'); 
-    
-        map.setCenter(marker.getPosition());       
-
-});
- 
+	google.maps.event.trigger(map, 'resize');  
+        map.setCenter(marker.getPosition());        
+});  
 initialize(); 
  
 function showStreetview() {
