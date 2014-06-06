@@ -550,6 +550,7 @@ get_header();
         });   
 </script>     
 <script>  
+    
   
      var total_item = 0; 
      jQuery.each(datatable, function(i, val) {       
