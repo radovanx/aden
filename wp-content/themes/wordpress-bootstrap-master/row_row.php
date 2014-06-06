@@ -35,9 +35,12 @@
                             <div class="row apartment-row apartment-row-<?php echo $val->ID ?>">
                                 <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
                                     <div class="col-md-3">   
+                                        
                                         <?php if( $status != 'OFFEN' ): ?>
                                         <span class="green"><?php echo $status; ?></span>  
                                         <?php endif; ?>
+                                        
+                                        
                                         <a href="<?php echo $url; ?>"><img src="<?php echo $url_image; ?>" class="img-responsive" alt="<?php echo $name; ?>"/></a>    
                                     </div>    
                                     <div class="col-md-9"> 

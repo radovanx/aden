@@ -144,4 +144,4 @@ $query = new WP_Query($args);
         </div>
     </div>
 </div>
-<?php get_footer(); ?> 
+<?php get_footer(); ?>
