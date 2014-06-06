@@ -33,7 +33,7 @@ foreach ($terms as $t) {
         </div>
         <div class="clearfix">		
             <span class="col-lg-12 nopadding">    
-                <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?>">view details ></a> 
+                <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?>"><?php _e("View details", "wpbootstrap"); ?></a> 
             </span> 
         </div>
     </div>	
