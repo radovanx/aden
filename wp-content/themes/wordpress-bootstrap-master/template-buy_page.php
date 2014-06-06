@@ -48,7 +48,23 @@ get_header();
                     <div class="border col-md-6 column border background contact_form_block">
                         <h2 class="border-left uppercase"><?php _e('Contact Form', 'wpbootstrap') ?></h2>
                         <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
-                        <?php echo do_shortcode('[contact-form-7 id="4082" title="Buy page form - en"]') ?>
+
+                        
+                <?php $lang = qtrans_getLanguage(); 
+                
+                switch($lang){                
+                    case 'en':                    
+                        echo do_shortcode('[contact-form-7 id="4082" title=""]'); 
+                        break;
+                    case 'de':                    
+                        echo do_shortcode('[contact-form-7 id="10260" title=""]'); 
+                        break;
+                    case 'fr':                    
+                        echo do_shortcode('[contact-form-7 id="10259" title=""]'); 
+                        break;
+                }
+                
+                ?>                        
                     </div>
                 <?php endwhile; ?>
             <?php else : ?>
