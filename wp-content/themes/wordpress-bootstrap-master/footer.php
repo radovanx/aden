@@ -19,7 +19,7 @@
                 ?> 
             </div>        
             <div class="col-sm-3 clearfix">
-                <p class="padding-top pull-right"><a href="#">Back to top</a></p>
+                <p class="padding-top pull-right"><a href="#"><?php _e("Back to top", "wpbootstrap"); ?></a></p>
             </div>
         </div>
     </div>
