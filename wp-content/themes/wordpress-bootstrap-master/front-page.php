@@ -61,7 +61,7 @@ $query = new WP_Query($args);
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">
-            <h1 class="primary border-right">Top projects</h1>
+            <h1 class="primary border-right"><?php _e("Top projects", "wpbootstrap"); ?></h1>
         </div>
         <div class="col-md-9 column">
             <div id="project-list" class="row">
