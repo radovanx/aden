@@ -9,7 +9,6 @@ get_header();
 ?>
 <div class="container">
     <div id="content" class="clearfix row">
-
         <div class="col-md-6">
             <h1 class="border-left inline uppercase">
                 <?php _e("My preferences", "wpbootstrap"); ?>
