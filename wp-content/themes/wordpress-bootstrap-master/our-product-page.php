@@ -128,7 +128,7 @@ get_header();
                                     if($rental_status == 1)
                                     { $rental_status = 'rented'; } 
                                     //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-                                    $status = statusL($props);
+                                    $status = statusL($prop);
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";                                                    
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
                                      
@@ -285,7 +285,6 @@ get_header();
         checkeddistrict = '"' + helperd.join('","') + '"';
         checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length - 1); 
         //uppercase sensitive
-         
         var checkedtype='';     
         var helpert = [];
         jQuery('.type-checkbox:checked').each(function(){ 
