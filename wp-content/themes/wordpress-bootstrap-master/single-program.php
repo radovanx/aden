@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 get_header();
 ?>
 <div class="container">
@@ -77,7 +76,7 @@ get_header();
                     <?php endif; ?>
                 </div>
                 <div class="col-md-5 column">
-                     <div class="border col-md-12 column">
+                    <div class="border col-md-12 column">
                         <h3 class="border-left uppercase">
                             <?php _e("Key Facts", "wpbootstrap"); ?>
                         </h3>
@@ -86,8 +85,8 @@ get_header();
                                 <div class="key_fact">
                                     <div class="panel-body">
                                         <?php
-                                        $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation'); 
-                                        $type_of_accomodation = array(); 
+                                        $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation');
+                                        $type_of_accomodation = array();
                                         foreach ($terms as $t) {
                                             $type_of_accomodation[] = $t->name;
                                         }
@@ -99,7 +98,7 @@ get_header();
                                     </div>
                                     <div class="panel-body">
                                         <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><span class="pull-right"><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²
-                                        </span></span>
+                                            </span></span>
                                     </div>
                                     <div class="panel-body">
                                         <span class="propertyListBoxDataItemName">
@@ -112,7 +111,23 @@ get_header();
                     <div class="border col-md-12 column border background contact_form_block margin-top">
                         <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
                         <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
-                        <?php echo do_shortcode('[contact-form-7 id="4080" title=""]') ?>
+
+                        <?php
+                        $lang = qtrans_getLanguage();
+
+                        switch ($lang) {
+                            case 'en':
+                                echo do_shortcode('[contact-form-7 id="4080" title=""]');
+                                break;
+                            case 'de':
+                                echo do_shortcode('[contact-form-7 id="10256" title=""]');
+                                break;
+                            case 'fr':
+                                echo do_shortcode('[contact-form-7 id="7621" title=""]');
+                                break;
+                        }
+                        ?>                         
+
                     </div> 
                 </div>
                 <?php if (is_user_logged_in()): ?>
@@ -157,7 +172,7 @@ get_header();
                             </div>
                             <div class="col-md-12 column active border tab-pane" id="list">
                                 <?php
-                                include TEMPLATEPATH . '/row_row.php';  
+                                include TEMPLATEPATH . '/row_row.php';
                                 ?>
                             </div>
                         </div> 
@@ -197,77 +212,75 @@ get_header();
 
 <?php $lang = esc_attr(get_post_meta($post->ID, '_program_latitude', true)); ?>
 <?php $long = esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
- 
+
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
 
-<script>     
+<script>
 // MAP // 
-var lang = <?php echo $lang; ?>; 
-var long = <?php echo $long; ?>;  
- 
-var myCenter = new google.maps.LatLng(lang, long); 
-var map = null, marker = null;  
-function initialize() { 
- 
-  var mapProp = {
-      center: myCenter,
-      zoom: 14,
-      scrollwheel: false,
-      panControl: false,
-      zoomControl: false,
-      scaleControl: false,  
-      mapTypeControl: false,
-    
-    zoomControl: true,
-    zoomControlOptions: {
-      style: google.maps.ZoomControlStyle.SMALL
-    } 
-  };  
-  
-    map = new google.maps.Map(document.getElementById("gmap"), mapProp);         
-    marker = new google.maps.Marker({ 
-        position: myCenter, 
-        draggable: false, 
-        animation: google.maps.Animation.DROP, 
-         
-    });  
-    marker.setMap(map);   
-    } 
- 
-jQuery(".create_map").on('shown.bs.tab', function() {     
-  	/* Trigger map resize event */
-	google.maps.event.trigger(map, 'resize');  
-        map.setCenter(marker.getPosition());        
-});  
-initialize(); 
- 
-function showStreetview() {
-  var myPano;
-  var latlng = new google.maps.LatLng(lang, long);
-  
-  var panoramaOptions = {
-    position: latlng,
-    pov: {
-      heading: 165,
-      pitch: 0
-         },
-    zoom: 1
-  };  
-  myPano = new google.maps.StreetViewPanorama(
-      document.getElementById('gmapstreet'),
-      panoramaOptions);
-  myPano.setVisible(true);
-  window.setInterval(function() {
-    var pov = myPano.getPov();
-    pov.heading += 0.2;
-    myPano.setPov(pov);
-}, 10);
-} 
-jQuery(".create_street").on('shown.bs.tab', function() { 
-  	/* Trigger map resize event */ 
-        showStreetview(); 
-	google.maps.event.trigger(map, 'resize');  
-}); 
+    var lang = <?php echo $lang; ?>;
+    var long = <?php echo $long; ?>;
+
+    var myCenter = new google.maps.LatLng(lang, long);
+    var map = null, marker = null;
+    function initialize() {
+
+        var mapProp = {
+            center: myCenter,
+            zoom: 14,
+            scrollwheel: false,
+            panControl: false,
+            zoomControl: false,
+            scaleControl: false,
+            mapTypeControl: false,
+            zoomControl: true,
+                    zoomControlOptions: {
+                        style: google.maps.ZoomControlStyle.SMALL
+                    }
+        };
+
+        map = new google.maps.Map(document.getElementById("gmap"), mapProp);
+        marker = new google.maps.Marker({
+            position: myCenter,
+            draggable: false,
+            animation: google.maps.Animation.DROP,
+        });
+        marker.setMap(map);
+    }
+
+    jQuery(".create_map").on('shown.bs.tab', function() {
+        /* Trigger map resize event */
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(marker.getPosition());
+    });
+    initialize();
+
+    function showStreetview() {
+        var myPano;
+        var latlng = new google.maps.LatLng(lang, long);
+
+        var panoramaOptions = {
+            position: latlng,
+            pov: {
+                heading: 165,
+                pitch: 0
+            },
+            zoom: 1
+        };
+        myPano = new google.maps.StreetViewPanorama(
+                document.getElementById('gmapstreet'),
+                panoramaOptions);
+        myPano.setVisible(true);
+        window.setInterval(function() {
+            var pov = myPano.getPov();
+            pov.heading += 0.2;
+            myPano.setPov(pov);
+        }, 10);
+    }
+    jQuery(".create_street").on('shown.bs.tab', function() {
+        /* Trigger map resize event */
+        showStreetview();
+        google.maps.event.trigger(map, 'resize');
+    });
 </script>  
 <?php get_footer(); ?>
