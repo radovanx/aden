@@ -114,6 +114,9 @@ class pdfgenerator {
 
         // rezervacni form
         if (isset($q['action']) && 'reservation-pdf' == $q['action']) {
+
+
+
             if (!empty($q['product_id'])) {
 
                 if (!empty($q['language'])) {
@@ -197,18 +200,13 @@ class pdfgenerator {
                         if (isset($q['product_id'])) {
 
                             //if (isset($_GET['print']) && 'product-presentation' == $_GET['print']) {
-
+                            $this->override_locale($lang);
 
                             global $wpdb;
 
                             $product = get_post($q['product_id']);
                             $props = get_props($product->ID, $lang);
                             $program_id = EstateProgram::flat_program_id($product->ID);
-
-
-
-
-
 
 
                             $mpdf = $this->create_html2pdf($product, $props, $lang);
@@ -340,9 +338,11 @@ class pdfgenerator {
         $message = strip_tags($_POST['receiver_message']);
         $message = str_replace("\n", "\r\n", $message);
 
-        $lang = qtrans_getLanguage();
+        $lang = $_POST['lang'];
         //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
         $props = get_props($product->ID, $lang);
+        
+        $this->override_locale($lang);
 
         $mpdf = $this->create_html2pdf($product, $props);
 
@@ -681,6 +681,18 @@ class pdfgenerator {
      */
     public function filter_method_name() {
         // @TODO: Define your filter hook callback here
+    }
+
+    public function override_locale($lang) {
+        global $q_config;
+        $q_config['language'] = $lang;
+
+
+        load_theme_textdomain('wpbootstrap', TEMPLATEPATH . '/languages');
+        $locale = get_locale();
+        $locale_file = TEMPLATEPATH . "/languages/$locale.php";
+        if (is_readable($locale_file))
+            require_once($locale_file);
     }
 
 }

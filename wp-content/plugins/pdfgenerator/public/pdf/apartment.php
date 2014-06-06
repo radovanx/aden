@@ -254,7 +254,9 @@
                         echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';
                         ?></td>
                     <td class="w25 t3"><?php _e('Apartment type:', $this->plugin_slug) ?></td>
-                    <td class="w25 text-right"><?php echo EstateProgram::$apartment_type[$props['objektart|wohnung|wohnungtyp']] ?></td>
+                    <td class="w25 text-right">
+                        <?php echo apartmentTypeL($props) ?>
+                    </td>
                 </tr>
                 <tr>
                     <td class="w25"><?php _e('Floor:', $this->plugin_slug) ?></td>
