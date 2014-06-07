@@ -43,7 +43,7 @@ get_header();
                             <span class="apartment-row-<?php echo $post->ID ?>">
                                 <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
                                     <strong class="blue triplesmall">
-                                        <span class="fav-label"><?php echo EstateProgram::is_user_favorite($post->ID) ? 'Added to favorites' : 'Add to favorite' ?> </span>
+                                        <span class="fav-label"><?php echo EstateProgram::is_user_favorite($post->ID) ? __('Added to favorites', "wpbootstrap") : __('Add to favorite', "wpbootstrap") ?> </span>
                                         <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
                                     </strong>
                                 </a>

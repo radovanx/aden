@@ -107,7 +107,7 @@ if (!empty($flat_props)):
                         <div class="col-md-3"> 
                             <a class="add-to-preference pull-right" href="#myModal" data-flat_id="<?php echo $val->ID; ?>" data-toggle="modal">
                                 <strong class="blue clearfix  bigger-text"><i class="fa <?php echo EstateProgram::is_user_favorite($val->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
-                                    <span class="fav-label"><?php echo EstateProgram::is_user_favorite($val->ID) ? _e("Added to favorites", "wpbootstrap") : _e("Add to favorite", "wpbootstrap") ?></span>
+                                    <span class="fav-label"><?php echo EstateProgram::is_user_favorite($val->ID) ? __("Added to favorites", "wpbootstrap") : __("Add to favorite", "wpbootstrap") ?></span>
                                 </strong>    
                             </a>   
                             <a href="<?php echo $url; ?>" class="pull-right"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a>     

@@ -204,7 +204,7 @@
                             echo implode(' | ', $location) . '<br>';
                         }
                         ?>
-                        <?php _e('tel:', $this->plugin_slug) ?>  <?php echo get_user_meta(get_current_user_id(), 'phone', true) ?><br>
+                        <?php _e('tel:', 'wpbootstrap') ?>  <?php echo get_user_meta(get_current_user_id(), 'phone', true) ?><br>
                         <a class="red-color decoration-none" href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a>                        
                     </td>
                 </tr>
@@ -215,20 +215,20 @@
             <table class="w100 base-info">
                 <tr>
                     <td colspan="2" class="w50 right-head-box text-right">
-                        <h2 class="headline-label"> <?php _e('Purchase price:', $this->plugin_slug) ?> <span class="red-color"><?php esc_attr_e(price_format($props['preise|kaufpreis'])) ?> €</span></h2>
+                        <h2 class="headline-label"> <?php _e('Purchase price:', 'wpbootstrap') ?> <span class="red-color"><?php esc_attr_e(price_format($props['preise|kaufpreis'])) ?> €</span></h2>
 
                         <?php if (!empty($props['flaechen|wohnflaeche'])): ?>
-                            <h2 class="headline-label"> <?php _e('Living area:', $this->plugin_slug) ?> <span class="red-color"> <?php esc_attr_e($props['flaechen|wohnflaeche']) ?> m²</span></h2>
+                            <h2 class="headline-label"> <?php _e('Living area:', 'wpbootstrap') ?> <span class="red-color"> <?php esc_attr_e($props['flaechen|wohnflaeche']) ?> m²</span></h2>
                         <?php endif; ?>
 
                         <?php /* if (!empty($props['flaechen|wohnflaeche'])): ?>
-                          <h2 class="headline-label"> <?php _e('Rooms:', $this->plugin_slug) ?> <span class="red-color"> <?php echo (int) $props['flaechen|anzahl_zimmer'] ?></span></h2>
+                          <h2 class="headline-label"> <?php _e('Rooms:', 'wpbootstrap') ?> <span class="red-color"> <?php echo (int) $props['flaechen|anzahl_zimmer'] ?></span></h2>
                           <?php endif; */ ?>
                     </td>
                 </tr>
                 <tr>
                     <td class="w50">
-                        <?php _e('Ref:', $this->plugin_slug) ?> <span class="gray-color"><?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?></span>
+                        <?php _e('Ref:', 'wpbootstrap') ?> <span class="gray-color"><?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?></span>
                     </td>
                     <td class="w50 text-right">
                         <?php esc_attr_e($props['geo|strasse']) ?> <?php esc_attr_e($props['geo|wohnungsnr']) ?>,
@@ -240,28 +240,28 @@
             <div class="red-label text-center small-block"><?php echo $props['freitexte|objekttitel'] ?></div>
 
             <!-- featrues -->
-            <h2 class="small-label border-left"><?php _e('Features', $this->plugin_slug) ?></h2>
+            <h2 class="small-label border-left"><?php _e('Features', 'wpbootstrap') ?></h2>
             <table class="features w100 small-block text-block">
                 <tr>
-                    <td class="w25"><?php _e('Ref:', $this->plugin_slug) ?></td>
+                    <td class="w25"><?php _e('Ref:', 'wpbootstrap') ?></td>
                     <td class="w25 text-right t2"><?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?></td>
-                    <td class="w25 t3"><?php _e('Year of construction:', $this->plugin_slug) ?></td>
+                    <td class="w25 t3"><?php _e("Year of construction: ", "wpbootstrap"); ?></td>
                     <td class="w25 text-right"><?php echo esc_attr($props['zustand_angaben|baujahr']) ?></td>
                 </tr>
                 <tr>
-                    <td class="w25"><?php _e('Purchase price /sm:', $this->plugin_slug) ?></td>
+                    <td class="w25"><?php _e('Purchase price /sm:', 'wpbootstrap') ?></td>
                     <td class="w25 text-right t2"><?php
                         echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';
                         ?></td>
-                    <td class="w25 t3"><?php _e('Apartment type:', $this->plugin_slug) ?></td>
+                    <td class="w25 t3"><?php _e('Apartment type:', 'wpbootstrap') ?></td>
                     <td class="w25 text-right">
                         <?php echo apartmentTypeL($props) ?>
                     </td>
                 </tr>
                 <tr>
-                    <td class="w25"><?php _e('Floor:', $this->plugin_slug) ?></td>
+                    <td class="w25"><?php _e('Floor:', 'wpbootstrap') ?></td>
                     <td class="w25 text-right t2"><?php echo esc_attr($props['geo|etage']) ?></td>
-                    <td class="w25 t3"><?php _e('Number of floors:', $this->plugin_slug) ?></td>
+                    <td class="w25 t3"><?php _e('Number of floors:', 'wpbootstrap') ?></td>
                     <td class="w25 text-right">
                         <?php
                         if ($props['geo|anzahl_etagen']):
@@ -271,9 +271,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="w25"><?php _e('Rooms:', $this->plugin_slug) ?></td>
+                    <td class="w25"><?php _e('Rooms:', 'wpbootstrap') ?></td>
                     <td class="w25 text-right t2"><?php echo (int) $props['flaechen|anzahl_zimmer']; ?></td>
-                    <td class="w25 t3"><?php _e('Bathroom(s):', $this->plugin_slug) ?></td>
+                    <td class="w25 t3"><?php _e('Bathroom(s):', 'wpbootstrap') ?></td>
                     <td class="w25 text-right">
                         <?php if (!empty($props['flaechen|anzahl_badezimmer'])): ?>
                             <?php echo (int) $props['flaechen|anzahl_badezimmer'] ?>
@@ -281,15 +281,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="w25"><?php _e('Elevator:', $this->plugin_slug) ?></td>
-                    <td class="w25 text-right t2"><?php echo isset($prop['ausstattung|fahrstuhl|PERSONEN']) ? __("YES", $this->plugin_slug) : __("NO", $this->plugin_slug); ?></td>
-                    <td class="w25 t3"><?php _e('Type of heating system:', $this->plugin_slug) ?></td>
+                    <td class="w25"><?php _e('Elevator:', 'wpbootstrap') ?></td>
+                    <td class="w25 text-right t2"><?php echo isset($prop['ausstattung|fahrstuhl|PERSONEN']) ? __("YES", 'wpbootstrap') : __("NO", 'wpbootstrap'); ?></td>
+                    <td class="w25 t3"><?php _e('Type of heating system:', 'wpbootstrap') ?></td>
                     <td class="w25 text-right"><?php echo heatingSystemL($props) ?></td>
                 </tr>
                 <tr>
-                    <td class="w25"><?php _e('Garage / parking spot:', $this->plugin_slug) ?></td>
-                    <td class="w25 text-right t2"><?php echo 0 == (int) ($props['preise|stp_sonstige|stellplatzmiete']) ? __('No', $this->plugin_slug) : __('Yes', $this->plugin_slug); ?></td>
-                    <td class="w25 t3"><?php _e('Buyer commission (incl. VAT):', $this->plugin_slug) ?></td>
+                    <td class="w25"><?php _e('Garage / parking spot:', 'wpbootstrap') ?></td>
+                    <td class="w25 text-right t2"><?php echo 0 == (int) ($props['preise|stp_sonstige|stellplatzmiete']) ? __('No', 'wpbootstrap') : __('Yes', 'wpbootstrap'); ?></td>
+                    <td class="w25 t3"><?php _e('Buyer commission (incl. VAT):', 'wpbootstrap') ?></td>
                     <td class="w25 text-right"><?php echo esc_attr($props['preise|aussen_courtage']) ?></td>
                 </tr>
             </table>
@@ -362,23 +362,23 @@
 
             <div style="">
                 <?php if (!empty($props['freitexte|ausstatt_beschr'])): ?>
-                    <h2 class="small-label border-left"><?php _e('Description', $this->plugin_slug) ?></h2>
+                    <h2 class="small-label border-left"><?php _e('Description', 'wpbootstrap') ?></h2>
                     <p class="text-block small-block"><?php echo $props['freitexte|ausstatt_beschr'] ?></p>
                 <?php endif; ?>
 
                 <?php if (!empty($props['freitexte|objektbeschreibung'])): ?>
-                    <h2 class="small-label border-left"><?php _e('Description of the building', $this->plugin_slug) ?></h2>
+                    <h2 class="small-label border-left"><?php _e('Description of the building', 'wpbootstrap') ?></h2>
                     <p class="text-block small-block"><?php echo $props['freitexte|objektbeschreibung'] ?></p>
                 <?php endif; ?>
 
                 <?php if (!empty($props['freitexte|lage'])): ?>                
-                    <h2 class="small-label border-left"><?php _e('Description surroundings', $this->plugin_slug) ?></h2>
+                    <h2 class="small-label border-left"><?php _e('Description surroundings', 'wpbootstrap') ?></h2>
                     <p class="text-block small-block"><?php echo $props['freitexte|lage'] ?></p>                
                 <?php endif; ?>
             </div>
 
             <?php if (!empty($images)): ?>
-                <div style="page-break-before:always;" class="red-label text-center"><?php _e('Gallery', $this->plugin_slug) ?></div>
+                <div style="page-break-before:always;" class="red-label text-center"><?php _e('Gallery', 'wpbootstrap') ?></div>
                 <table class="gallery-table"  style="page-break-inside: avoid;">
                     <tbody>
                         <tr>
