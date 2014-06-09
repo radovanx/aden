@@ -11,7 +11,6 @@
     if (!empty($flat_props)):
         foreach ($flat_props as $key => $val):
             $prop = unserialize($val->prop);
-             
             $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
             $url_image = $thumb['0'];
             $url = get_permalink($val->ID);
@@ -29,21 +28,17 @@
             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free"; 
             $status = statusL($prop);
             $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
-            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
-            
+            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-"; 
             $price = (int) $price;
-            $pricem = (int) $pricem;
-            
-            
+            $pricem = (int) $pricem; 
              if( $status == 'OFFEN' )
-                {
+               {
                $status = '';
-               }
- 
-            if($rental_status == 1)
-            { 
+               } 
+              if($rental_status == 1)
+                { 
                 $rental_status = 'rented';
-            } 
+                } 
             ?>
             <tr class="apartment-row-<?php echo $val->ID ?> apartment-row <?php echo $i % 2 ? 'background' : 'no-background'; ?>">
                 <td><a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><span class="small-text hidden"><?php echo $val->is_favorite; ?></span></a>
@@ -72,8 +67,8 @@
                 <td>
                     <?php echo price_format($pricem); ?>&euro;  
                 </td>
-                <td>   
-
+                <td>
+                    
                 </td>
                 <td>
                     <?php echo $status; ?>
@@ -85,4 +80,3 @@
     endif;
     ?>
 </tbody>
-
