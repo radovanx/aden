@@ -207,30 +207,30 @@ class EstateProgram {
         }
 
         /*
-        if ($user instanceof WP_User && user_can($user, 'only_demo')) {
-            
-            $user_data = $user->data;
+          if ($user instanceof WP_User && user_can($user, 'only_demo')) {
 
-            $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user_data->user_registered);
+          $user_data = $user->data;
 
-            $valid_to = clone $register_date;
-            $valid_to->modify("+15 day");
+          $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user_data->user_registered);
 
-            $now = new DateTime();
+          $valid_to = clone $register_date;
+          $valid_to->modify("+15 day");
 
-            if ($now > $valid_to) {
-                $user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: We are really sorry, your account has not been approved.', $plugin_slug));
-            } else {
-                return $user;
-            }
-        }*/
-        
-        if($user instanceof WP_User){
+          $now = new DateTime();
+
+          if ($now > $valid_to) {
+          $user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: We are really sorry, your account has not been approved.', $plugin_slug));
+          } else {
+          return $user;
+          }
+          } */
+
+        if ($user instanceof WP_User) {
             global $wpdb;
             $sql = $wpdb->prepare("REPLACE INTO last_login (user_id, login_date) VALUES(%d, NOW())", $user->ID);
             $wpdb->query($sql);
-        }        
-        
+        }
+
         return $user;
     }
 
@@ -663,9 +663,36 @@ class EstateProgram {
      */
     public function load_plugin_textdomain() {
 
-        $domain = $this->plugin_slug;
-        $locale = apply_filters('plugin_locale', get_locale(), $domain);
 
+        if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+                AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+            // I'm AJAX!
+
+            $referer = $_SERVER['HTTP_REFERER'];
+
+            global $q_config;
+            $langs = qtrans_getSortedLanguages();
+
+            $wanted_lang = '';
+
+            foreach ($langs as $lang) {
+                if (false !== strpos($referer, "/$lang/")) {
+                    $wanted_lang = $lang;
+                }
+            }
+
+            if (!empty($wanted_lang)) {
+                $q_config['language'] = $wanted_lang;
+            }
+
+
+            $locale = apply_filters('plugin_locale', get_locale(), $domain);
+        } else {
+
+            $locale = apply_filters('plugin_locale', get_locale(), $domain);
+        }
+
+        $domain = $this->plugin_slug;
         load_textdomain($domain, trailingslashit(WP_LANG_DIR) . $domain . '/' . $domain . '-' . $locale . '.mo');
     }
 
@@ -684,11 +711,14 @@ class EstateProgram {
      * @since    1.0.0
      */
     public function enqueue_scripts() {
+
+        //$t = __('Added to favorites', 'wpbootstrap');
+
         wp_enqueue_script($this->plugin_slug . '-plugin-script', plugins_url('assets/js/public.js', __FILE__), array('jquery'), self::VERSION);
         wp_localize_script($this->plugin_slug . '-plugin-script', $this->plugin_slug, array(
             'ajaxurl' => admin_url('admin-ajax.php'),
-            'added' => __('Added to favorites', $this->plugin_slug),
-            'removed' => __('Add to favorite', $this->plugin_slug),
+            'added' => __('Added to favorites', 'wpbootstrap'),
+            'removed' => __('Add to favorite', 'wpbootstrap'),
         ));
     }
 
@@ -1244,26 +1274,23 @@ class EstateProgram {
     }
 
     /*
-    static public function heatingSystem($props) {
-        $arr = array();
+      static public function heatingSystem($props) {
+      $arr = array();
 
-        if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
-            $arr[] = __('chauffage par le sol', 'estateprogram');
-        }
+      if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
+      $arr[] = __('chauffage par le sol', 'estateprogram');
+      }
 
-        if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
-            $arr[] = __('chauffage central', 'estateprogram');
-        }
+      if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
+      $arr[] = __('chauffage central', 'estateprogram');
+      }
 
-        if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
-            $arr[] = __('chauffage individuel', 'estateprogram');
-        }
+      if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
+      $arr[] = __('chauffage individuel', 'estateprogram');
+      }
 
-        return implode(', ', $arr);
-    }*/
-    
-    
-    
+      return implode(', ', $arr);
+      } */
 
     static function flat_program_id($apartment_id) {
 

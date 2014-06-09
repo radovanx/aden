@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: EstateProgram v1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2014-06-05 09:47:28+0000\n"
+"PO-Revision-Date: 2014-06-07 14:56:12+0000\n"
 "Last-Translator: admin <radovanmail@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -168,7 +168,7 @@ msgid "Elevator"
 msgstr ""
 
 #: admin/views/user_profile.php:3
-#: admin/views/user_profile.php:46
+#: admin/views/user_profile.php:47
 #@ estateprogram
 msgid "Company"
 msgstr ""
@@ -183,7 +183,7 @@ msgstr ""
 msgid "Country"
 msgstr ""
 
-#: admin/views/user_profile.php:38
+#: admin/views/user_profile.php:39
 #@ estateprogram
 msgid "User title"
 msgstr ""
@@ -359,25 +359,10 @@ msgstr ""
 #: public/class-estateprogram.php:690
 #@ estateprogram
 msgid "Added to favorites"
-msgstr ""
+msgstr "Added to favorites DE"
 
 #: public/class-estateprogram.php:691
 #@ estateprogram
 msgid "Add to favorite"
-msgstr ""
-
-#: public/class-estateprogram.php:1250
-#@ estateprogram
-msgid "chauffage par le sol"
-msgstr ""
-
-#: public/class-estateprogram.php:1254
-#@ estateprogram
-msgid "chauffage central"
-msgstr ""
-
-#: public/class-estateprogram.php:1258
-#@ estateprogram
-msgid "chauffage individuel"
 msgstr ""
 

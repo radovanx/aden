@@ -16,7 +16,9 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'adenimmo_localhost');
+define('WP_CACHE', true); //Added by WP-Cache Manager
+define( 'WPCACHEHOME', 'C:\xampp\htdocs\web\aden\wp-content\plugins\wp-super-cache/' ); //Added by WP-Cache Manager
+define('DB_NAME', 'adenimmo_localhost3');
 
 /** MySQL database username */
 define('DB_USER', 'root');

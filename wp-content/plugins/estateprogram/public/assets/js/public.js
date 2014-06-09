@@ -24,21 +24,17 @@
             if (confirm_remove) {
                 $('#removePreferenceModal').modal({backdrop: 'static', keyboard: false}).one('click', '#delete', function() {
                     $.post(estateprogram.ajaxurl, data, function(response) {
-                        if (1 == response) {
-                            //element.removeClass('fa-star-o blue').addClass('fa-star red');
+                        if (1 == response) {                            
                             $(rows).each(function(i) {
                                 $(this).find('.add-to-preference i').removeClass('fa-star-o blue').addClass('fa-star red');
                             });
                         } else {
                             if (remove_row) {
-                                //console.log('remove');
-                                //this_element.closest('.apartment-row').remove();
                                 $(rows).each(function(i) {
                                     $(this).remove();
                                 });
 
-                            } else {
-                                //element.removeClass('fa-star red').addClass('fa-star-o blue');
+                            } else {                                
                                 $(rows).each(function(i) {
                                     $(this).find('.add-to-preference i').removeClass('fa-star red').addClass('fa-star-o blue');
                                 });
