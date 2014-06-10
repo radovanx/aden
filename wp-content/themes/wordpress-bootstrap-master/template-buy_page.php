@@ -28,16 +28,10 @@ get_header();
                             ?>  
                         </div>            
                     <?php endif; ?> 
-
-
                     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-
-                        <header>
-
-                            <div class="page-header"><h1 class="page-title border-left" itemprop="headline"><?php the_title(); ?></h1></div>
-
-                        </header> <!-- end article header -->
-
+                        <header> 
+                            <div class="page-header"><h1 class="page-title border-left" itemprop="headline"><?php the_title(); ?></h1></div> 
+                        </header> <!-- end article header --> 
                         <section class="post_content clearfix" itemprop="articleBody">
                             <?php the_content(); ?>
                         </section> <!-- end article section -->
@@ -47,11 +41,8 @@ get_header();
                     </article> <!-- end article -->
                     <div class="border col-md-6 column border background contact_form_block">
                         <h2 class="border-left uppercase"><?php _e('Contact Form', 'wpbootstrap') ?></h2>
-                        <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
-
-                        
+                        <span class="phone red bold"><i class="fa fa-phone"></i><?php _e('+33 0632140564', 'wpbootstrap') ?></span>
                 <?php $lang = qtrans_getLanguage(); 
-                
                 switch($lang){                
                     case 'en':                    
                         echo do_shortcode('[contact-form-7 id="4082" title=""]'); 
@@ -62,8 +53,7 @@ get_header();
                     case 'fr':                    
                         echo do_shortcode('[contact-form-7 id="10259" title=""]'); 
                         break;
-                }
-                
+                } 
                 ?>                        
                     </div>
                 <?php endwhile; ?>
@@ -78,12 +68,8 @@ get_header();
                     <footer>
                     </footer>
                 </article>
-
-            <?php endif; ?>
-
-        </div> <!-- end #main -->
-
-
+            <?php endif; ?> 
+        </div> <!-- end #main --> 
     </div> <!-- end #content -->
 </div>
 <?php get_footer(); ?>
