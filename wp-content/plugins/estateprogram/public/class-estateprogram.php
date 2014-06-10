@@ -21,6 +21,10 @@
  * @package EstateProgram
  * @author  Your Name <email@example.com>
  */
+
+
+require 'class-sourceimport.php';
+
 /**
  *
  */
@@ -112,6 +116,8 @@ class EstateProgram {
      * @since     1.0.0
      */
     private function __construct() {
+        
+        
 
         EstateProgram::$cron_url = plugins_url('/cron/script.php', __FILE__);
 
@@ -172,7 +178,7 @@ class EstateProgram {
 
         if (isset($q['action']) && 'grab-source-xml' == $q['action']) {
 
-            require_once 'class-sourceimport.php';
+            //require_once 'class-sourceimport.php';
 
             $file = $q['source-file'];
 
