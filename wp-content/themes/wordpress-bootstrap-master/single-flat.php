@@ -52,9 +52,7 @@ get_header();
                     </div>
                 </div>
                 <div id="main" class="col-md-7 column clearfix" role="main">
-
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
-
+                    <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting"> 
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <!-- img slide -->
@@ -63,24 +61,18 @@ get_header();
                             <div class="tab-pane fade" id="video_tab">
                                 <?php
                                 if (!empty($video)):
-                                    ?>
-
-                                    <div class="flex-video">
-
+                                    ?> 
+                                    <div class="flex-video"> 
                                         <?php
-                                        global $wp_embed;
-
-                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $video . '[/embed]');
-
+                                        global $wp_embed; 
+                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $video . '[/embed]'); 
                                         echo $post_embed;
-                                        ?>
-
-                                    </div>
-
+                                        ?> 
+                                    </div> 
                                 <?php endif; ?> 
                             </div> 
                         </div> 
-                        <!--/TAB CONTENT END--> 
+                        <!--TAB CONTENT END--> 
                         <ul class="nav nav-pills margin-top"> 
                             <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i><?php _e("Gallery", "wpbootstrap"); ?></a></li> 
                             <?php
@@ -141,35 +133,21 @@ get_header();
                                 <?php if (!empty($props['dropbox|flat'])): ?>
                                     <a href="<?php echo esc_attr($props['dropbox|flat']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
 
-                                <?php endif; ?>
-
-                            </div>
-
+                                <?php endif; ?> 
+                            </div> 
                         </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-12 column">
-
-                    <div class="col-md-12 column border">
-
-                        <!-- apartment properties -->
-
-                        <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
-
-                        <ul class="list-unstyled featured-single-flat bigger-text">
-
-                            <li class="col-md-6 border-bottom">
-
-                                <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
-
+                    </div> 
+                </div> 
+                <div class="col-md-12 column"> 
+                    <div class="col-md-12 column border"> 
+                        <!-- apartment properties --> 
+                        <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3> 
+                        <ul class="list-unstyled featured-single-flat bigger-text"> 
+                            <li class="col-md-6 border-bottom"> 
+                                <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong> 
                                 <span class="pull-right"><?php
-                                    if (isset($props['zustand_angaben|baujahr'])):
-
-                                        echo esc_attr($props['zustand_angaben|baujahr']);
-
+                                    if (isset($props['zustand_angaben|baujahr'])): 
+                                        echo esc_attr($props['zustand_angaben|baujahr']); 
                                     endif;
                                     ?>
 
@@ -341,48 +319,28 @@ get_header();
 
                     <p class="bigger-text">
 
-                        <?php echo esc_attr($props['freitexte|ausstatt_beschr']) ?>
-
-                    </p>
-
-                </div>
-
-                <div class="col-md-6 margin-top">
-
-                    <h4 class="border-left uppercase"><?php _e("Description of the building", "wpbootstrap"); ?></h4>
-
-                    <p class="bigger-text"> <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?></p>
-
-                </div>
-
-                <div class="col-md-6 margin-top">
-
-                    <h4 class="border-left uppercase"><?php _e("Description SURROUNDINGs", "wpbootstrap"); ?></h4>
-
-                    <p class="bigger-text"> <?php echo esc_attr($props['freitexte|lage']) ?></p>
-
-                </div>
-
-                <div class="clearfix border-bottom"></div>
-
-                <div class="col-md-12 column">
-
-                    <h3 class="border-left uppercase"><?php _e("Area map", "wpbootstrap"); ?></h3>
-
+                        <?php echo esc_attr($props['freitexte|ausstatt_beschr']) ?> 
+                    </p> 
+                </div> 
+                <div class="col-md-6 margin-top"> 
+                    <h4 class="border-left uppercase"><?php _e("Description of the building", "wpbootstrap"); ?></h4> 
+                    <p class="bigger-text"> <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?></p> 
+                </div> 
+                <div class="col-md-6 margin-top"> 
+                    <h4 class="border-left uppercase"><?php _e("Description SURROUNDINGs", "wpbootstrap"); ?></h4> 
+                    <p class="bigger-text"> <?php echo esc_attr($props['freitexte|lage']) ?></p> 
+                </div> 
+                <div class="clearfix border-bottom"></div> 
+                <div class="col-md-12 column"> 
+                    <h3 class="border-left uppercase"><?php _e("Area map", "wpbootstrap"); ?></h3> 
                     <?php
-                    $langt = esc_attr($props['geo|geokoordinaten|breitengrad']);
-
+                    $langt = esc_attr($props['geo|geokoordinaten|breitengrad']); 
                     $longt = esc_attr($props['geo|geokoordinaten|laengengrad']);
-                    ?>
-
-                    <div id="map-canvas">
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-3 pull-right big_icons margin-top">
-
+                    ?> 
+                    <div id="map-canvas"> 
+                    </div> 
+                </div> 
+                <div class="col-md-3 pull-right big_icons margin-top"> 
                     <ul class="nav nav-tabs"> 
                         <a href="#list"  data-toggle="tab" class="blue active"><i class="fa fa-list"></i></a> 
                         <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a> 
@@ -474,34 +432,18 @@ get_header();
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
     <div class="modal-dialog"> 
         <div class="modal-content"> 
-            <div class="modal-header">
-
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-
-                <h4 class="modal-title"><?php echo the_title(); ?></h4>
-
-            </div>
-
-            <div class="modal-body">
-
-
-
-                <?php _e("You modified", "wpbootstrap"); ?>
-
-
-
-            </div>
-
-            <div class="modal-footer">
-
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
-
-            </div>
-
-        </div><!-- /.modal-content -->
-
-    </div><!-- /.modal-dialog -->
-
+            <div class="modal-header"> 
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
+                <h4 class="modal-title"><?php echo the_title(); ?></h4> 
+            </div> 
+            <div class="modal-body"> 
+                <?php _e("You modified", "wpbootstrap"); ?> 
+            </div> 
+            <div class="modal-footer"> 
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button> 
+            </div> 
+        </div><!-- /.modal-content --> 
+    </div><!-- /.modal-dialog --> 
 </div><!-- /.modal -->
 
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
