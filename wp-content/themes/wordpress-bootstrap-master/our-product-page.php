@@ -135,6 +135,7 @@ get_header();
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: " . $pricem . ", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", status: \"" . $status . "\", status_raw: \"" . $status_raw . "\", favorite: \"" . $favor . "\", favorite_text: \"" . $favorite_text . "\",type: \"" . $term . "\", idval: " . $idval . " },";
 
+
                                     if ($status == 'OFFEN') {
                                         $status = '';
                                     }
@@ -547,7 +548,10 @@ get_header();
                 {
                     var stats = "";
                 }
-                var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td></td><td>" + val.status + "</td></tr>";
+
+                var backgroundClass = 0 != i % 2 ? ' no-background' : ' background';
+
+                var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass + "\"><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td></td><td>" + val.status + "</td></tr>";
 
                 jQuery("tbody").append(table_data);
                 jQuery("table").trigger("update");
@@ -591,7 +595,13 @@ get_header();
                         {
                             var stats = "";
                         }
-                        var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td></td><td>" + val.status + "</td></tr>";
+
+
+                        var backgroundClass = 0 != i % 2 ? ' no-background' : ' background';
+
+                        var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass + "\"><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td></td><td>" + val.status + "</td></tr>";
+
+                        //var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td></td><td>" + val.status + "</td></tr>";
 
                         jQuery("tbody").append(table_data);
                         jQuery("table").trigger("update");

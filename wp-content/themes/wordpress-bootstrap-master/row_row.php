@@ -30,8 +30,8 @@ if (!empty($flat_props)):
         //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
 
         $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-
         $status = statusL($prop);
+        
         $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
         //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
         ?> 
