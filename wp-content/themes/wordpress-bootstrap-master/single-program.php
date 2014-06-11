@@ -110,7 +110,7 @@ get_header();
                     </div>
                     <div class="border col-md-12 column border background contact_form_block margin-top">
                         <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
-                        <span class="phone red bold"><i class="fa fa-phone"></i> +33 0632140564</span>
+                        <span class="phone red bold"><i class="fa fa-phone"></i><?php _e('+33 0632140564', 'wpbootstrap') ?></span>
 
                         <?php
                         $lang = qtrans_getLanguage();
