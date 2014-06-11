@@ -26,7 +26,7 @@ class EstateProgramAjax {
      */
     public function backend_parse_xml() {
 
-        require 'class-sourceimport.php';
+        //require 'class-sourceimport.php';
 
         //ignore_user_abort(true);
 

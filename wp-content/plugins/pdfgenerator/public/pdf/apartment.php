@@ -282,7 +282,7 @@
                 </tr>
                 <tr>
                     <td class="w25"><?php _e('Elevator:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right t2"><?php echo isset($prop['ausstattung|fahrstuhl|PERSONEN']) ? __("YES", 'wpbootstrap') : __("NO", 'wpbootstrap'); ?></td>
+                    <td class="w25 text-right t2"><?php echo isset($prop['ausstattung|fahrstuhl|PERSONEN']) ? __("Yes", 'wpbootstrap') : __("No", 'wpbootstrap'); ?></td>
                     <td class="w25 t3"><?php _e('Type of heating system:', 'wpbootstrap') ?></td>
                     <td class="w25 text-right"><?php echo heatingSystemL($props) ?></td>
                 </tr>

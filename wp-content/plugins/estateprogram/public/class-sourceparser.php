@@ -6,8 +6,6 @@ if (isset($_POST['action']) && 'backend_parse_xml' == $_POST['action']) {
 
     function shutdown() {
 
-        //global $time;
-
         $now = microtime(true);
 
         header("HTTP/1.0 404 Not Found");
