@@ -130,6 +130,7 @@ get_header();
                                     }
                                     //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     
+                                    
                                     $status = statusL($prop); 
                                     
                                     if( $status == 'OFFEN' )
