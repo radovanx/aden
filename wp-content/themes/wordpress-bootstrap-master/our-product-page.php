@@ -128,18 +128,18 @@ get_header();
                                     if ($rental_status == 1) {
                                         $rental_status = 'rented';
                                     }
-                                    //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
+                                    $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
 
                                     $status = statusL($prop);
 
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: " . $pricem . ", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", status: \"" . $status . "\", favorite: \"" . $favor . "\", favorite_text: \"" . $favorite_text . "\",type: \"" . $term . "\", idval: " . $idval . " },";
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: " . $pricem . ", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", status: \"" . $status . "\", status_raw: \"" . $status_raw . "\", favorite: \"" . $favor . "\", favorite_text: \"" . $favorite_text . "\",type: \"" . $term . "\", idval: " . $idval . " },";
 
                                     if ($status == 'OFFEN') {
-            $status = '';
-        }
+                                        $status = '';
+                                    }
 
-        if ($i < 10):
+                                    if ($i < 10):
                                         ?>  
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?> apartment-row-<?php echo $val->ID ?>">
                                             <td>   
@@ -149,57 +149,57 @@ get_header();
                                                 </a>
                                             </td>
                                             <td>
-            <?php echo $reference; ?>
+                                                <?php echo $reference; ?>
                                             </td>
                                             <td>
                                                 <a href="<?php echo $url; ?>" class="blue"><?php echo $street; ?> <?php echo $hnumber; ?> , <?php echo $city; ?>, <?php echo $district; ?> <?php echo $zip; ?> </a>
                                             </td>
                                             <td>
-            <?php echo $flat_num; ?>       
+                                                <?php echo $flat_num; ?>       
                                             </td>
                                             <td>
-            <?php echo $rental_status; ?> 
+                                                <?php echo $rental_status; ?> 
                                             </td>
                                             <td>
-            <?php echo $floor; ?>          
+                                                <?php echo $floor; ?>          
                                             </td>
                                             <td>
-            <?php echo (int) $rooms; ?>
+                                                <?php echo (int) $rooms; ?>
                                             </td>
                                             <td>
-            <?php echo $area; ?>
+                                                <?php echo $area; ?>
                                             </td>
                                             <td>
-            <?php echo price_format($price) ?> &euro;
+                                                <?php echo price_format($price) ?> &euro;
                                             </td>
                                             <td>
-            <?php echo price_format($pricem) ?> &euro;
+                                                <?php echo price_format($pricem) ?> &euro;
                                             </td>
                                             <td>           
                                             </td>
                                             <td>
-            <?php 
-            echo $status; 
-            //echo statusL($prop);
-            ?>
+                                                <?php
+                                                //echo $status; 
+                                                echo statusL($prop);
+                                                ?>
                                             </td>
                                         </tr>
-            <?php
-        endif;
-        $i++;
-    endforeach;
-endif;
-$data_object = substr("$data_object", 0, -1);
-$data_object = "[" . $data_object . "]";
-?>   
+                                        <?php
+                                    endif;
+                                    $i++;
+                                endforeach;
+                            endif;
+                            $data_object = substr("$data_object", 0, -1);
+                            $data_object = "[" . $data_object . "]";
+                            ?>   
                         </tbody>                  
                     </table>  
                 </div>    
                 <div class="col-md-12 column border tab-pane active" id="list">     
-<?php
-$lang = qtrans_getLanguage();
-$flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
-?>          
+                    <?php
+                    $lang = qtrans_getLanguage();
+                    $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
+                    ?>          
                     <?php include TEMPLATEPATH . '/row_row.php'; ?>  
                 </div>   
             </div>
@@ -215,7 +215,7 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                 <h4 class="modal-title"><?php echo the_title(); ?></h4>
             </div>
             <div class="modal-body">
-<?php _e("You modified", "wpbootstrap"); ?> 
+                <?php _e("You modified", "wpbootstrap"); ?> 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
@@ -539,7 +539,7 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
             jQuery("#table_data_filter").empty();
             jQuery("#list").empty();
             jQuery.each(myfilterfinal, function(i, val) {
-                if (val.status != 'OFFEN')
+                if (val.status_raw != 'OFFEN')
                 {
                     var stats = "<span class=\"green\">" + val.status + "</span>";
                 }
@@ -583,7 +583,7 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
                 jQuery.each(datatable, function(i, val) {
                     if (ie > starter && ie <= count)
                     {
-                        if (val.status != 'OFFEN')
+                        if (val.status_raw != 'OFFEN')
                         {
                             var stats = "<span class=\"green\">" + val.status + "</span>";
                         }
