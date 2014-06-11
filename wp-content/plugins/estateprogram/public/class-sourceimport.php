@@ -416,6 +416,9 @@ class SourceImport {
 
                             $attachment['ID'] = $existing_attach_id;
                             wp_update_post($attachment);
+                            
+                            set_post_thumbnail($apartment_id, $existing_attach_id);
+                            
                         } else {
 
                             if (file_exists($image_path)) {
