@@ -129,20 +129,16 @@ get_header();
                                         $rental_status = 'rented';
                                     }
                                     //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-                                    
-                                    
-                                    $status = statusL($prop); 
-                                    
-                                    if( $status == 'OFFEN' )
-                                     {
-                                       $status = '';
-                                     }  
-                                   
-                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";                                                    
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: ".$pricem.", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" .$rental_status."\", status: \"" .$status."\", favorite: \"" .$favor."\",type: \"" .$term."\", idval: ".$idval." },";
-                                   
-                                     
-                                     
+
+                                    $status = statusL($prop);
+
+                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: " . $pricem . ", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", status: \"" . $status . "\", favorite: \"" . $favor . "\", favorite_text: \"" . $favorite_text . "\",type: \"" . $term . "\", idval: " . $idval . " },";
+
+                                    if ($status == 'OFFEN') {
+                                        $status = '';
+                                    }
+
                                     if ($i < 10):
                                         ?>  
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?> apartment-row-<?php echo $val->ID ?>">
@@ -264,27 +260,32 @@ $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
 </script>  
 <script src="<?php bloginfo('template_directory'); ?>/library/js/underscore-min.js"></script>      
 <script src="<?php bloginfo('template_directory'); ?>/library/js/pourover.js"></script> 
-<script>  
-        var datatable = <?php echo $data_object; ?>;
-        var collection = new PourOver.Collection(datatable);  
-        jQuery("form").on("submit", function(event) {  
-        event.preventDefault();   
-        var values = {}; 
-        jQuery.each(jQuery('form').serializeArray(), function(i, field) { 
-            values[field.name] = field.value; 
-        });  
-        var checkedcities='';     
-        var helper = []; 
-        var i =0; 
-        var city="";  
-       
-        jQuery('.city-checkbox:checked').each(function() { 
-        cityfilter = jQuery(this).val();   
-        helper.push(jQuery(this).val()); 
-        }); 
-        checkedcities = '"'+helper.join('","')+'"';          
-        var checkedcitiesf = checkedcities.substring(1, checkedcities.length-1); 
-        var checkeddistrict='';     
+<script>
+    var datatable = <?php echo $data_object; ?>;
+    var collection = new PourOver.Collection(datatable);
+
+
+    jQuery("form").on("submit", function(event) {
+
+
+
+        event.preventDefault();
+        var values = {};
+        jQuery.each(jQuery('form').serializeArray(), function(i, field) {
+            values[field.name] = field.value;
+        });
+        var checkedcities = '';
+        var helper = [];
+        var i = 0;
+        var city = "";
+
+        jQuery('.city-checkbox:checked').each(function() {
+            cityfilter = jQuery(this).val();
+            helper.push(jQuery(this).val());
+        });
+        checkedcities = '"' + helper.join('","') + '"';
+        var checkedcitiesf = checkedcities.substring(1, checkedcities.length - 1);
+        var checkeddistrict = '';
         var helperd = [];
         jQuery('.district-checkbox:checked').each(function() {
             helperd.push(jQuery(this).val());
