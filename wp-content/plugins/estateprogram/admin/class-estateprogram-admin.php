@@ -85,11 +85,41 @@ class EstateProgram_Admin {
          * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
          */
         add_action('@TODO', array($this, 'action_method_name'));
-        add_filter('@TODO', array($this, 'filter_method_name'));       
+        add_filter('@TODO', array($this, 'filter_method_name'));  
+        
+        add_filter('manage_flat_posts_columns', array($this, 'column_head'));
+        add_action('manage_flat_posts_custom_column', array($this, 'column_content'), 10, 2);        
 
     }
     
-   
+    function column_head($defaults) {
+        $defaults['ref_no'] = __('Ref. no.', $this->plugin_slug);
+        return $defaults;
+    }
+
+    function column_content($column_name, $post_id) {
+
+        global $wpdb;        
+
+        switch ($column_name) {
+            case 'ref_no':
+                $sql = $wpdb->prepare("
+                    SELECT 
+                        meta_value
+                    FROM 
+                        wp_postmeta
+                    WHERE 
+                        meta_key = 'unique_identificator'
+                    AND    
+                        post_id = %d", $post_id);
+                
+                $ref_no = $wpdb->get_var($sql);
+                echo $ref_no;
+                break;
+            default:
+                break;
+        }
+    }   
     
 
     public function parse_xml() {

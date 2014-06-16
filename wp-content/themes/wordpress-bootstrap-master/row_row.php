@@ -29,7 +29,9 @@ if (!empty($flat_props)):
         }
         //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
 
+        $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
         $status = statusL($prop);
+        
         $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
         //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
         ?> 
@@ -37,7 +39,7 @@ if (!empty($flat_props)):
             <div class="col-md-12 <?php echo $i % 2 ? 'background' : 'no-background'; ?> flats_box"> 
                 <div class="col-md-3">   
 
-                    <?php if ($status != 'OFFEN'): ?>
+                    <?php if ($status_raw != 'OFFEN'): ?>
                         <span class="green"><?php echo $status; ?></span>  
                     <?php endif; ?>
 

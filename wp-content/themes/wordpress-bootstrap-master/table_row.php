@@ -25,23 +25,31 @@
             $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
             $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-            $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free"; 
+            $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";
             $status = statusL($prop);
             $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
-            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-"; 
+            $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
             $price = (int) $price;
-            $pricem = (int) $pricem; 
-             if( $status == 'OFFEN' )
-               {
-               $status = '';
-               } 
-              if($rental_status == 1)
-                { 
+            $pricem = (int) $pricem;
+
+            //$status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
+            $status = statusL($prop);
+
+            /*
+              if( $status == 'OFFEN' )
+              {
+              $status = '';
+              } */
+            if ($rental_status == 1) {
                 $rental_status = 'rented';
-                } 
+            }
             ?>
             <tr class="apartment-row-<?php echo $val->ID ?> apartment-row <?php echo $i % 2 ? 'background' : 'no-background'; ?>">
-                <td><a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal"><i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i><span class="small-text hidden"><?php echo $val->is_favorite; ?></span></a>
+                <td>
+                    <a class="add-to-preference" data-toggle="modal"  data-flat_id="<?php echo $val->ID ?>" href="#myModal">
+                        <i class="fa <?php echo $val->is_favorite == 0 ? 'blue fa-star-o' : 'red fa-star' ?>"></i>
+                        <span class="small-text hidden"><?php echo $val->is_favorite; ?></span>
+                    </a>
                 </td>
                 <td> <?php echo $reference; ?>
                 </td>
@@ -68,7 +76,7 @@
                     <?php echo price_format($pricem); ?>&euro;  
                 </td>
                 <td>
-                    
+
                 </td>
                 <td>
                     <?php echo $status; ?>
