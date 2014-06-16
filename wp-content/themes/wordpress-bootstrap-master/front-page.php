@@ -32,7 +32,7 @@ $query = new WP_Query($args);
     });
     function loadArticle(offset) {
         jQuery.ajax({
-            url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
+            url: "<?php bloginfo('url') ?>/wp-admin/admin-ajax.php",
             type: 'POST',
             dataType: 'json',
             data: "action=item_pagination&offset=" + offset + "&part=project_frontpage&ppp=" + ajax_ppp + '&show=homepage',
