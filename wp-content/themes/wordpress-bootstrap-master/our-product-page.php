@@ -78,7 +78,7 @@ get_header();
                                 <th><?php _e("Rooms", "wpbootstrap"); ?></th>
                                 <th><?php _e("Surface", "wpbootstrap"); ?></th>
                                 <th><?php _e("Price", "wpbootstrap"); ?></th>
-                                <th><?php _e("Price/m²", "wpbootstrap"); ?></th>
+                                <th class="{sorter: 'procent'}"><?php _e("Price/m²", "wpbootstrap"); ?></th>
                                 <th><?php _e("Yield", "wpbootstrap"); ?></th>
                                 <th><?php _e("Status", "wpbootstrap"); ?></th>
                             </tr>
