@@ -5,3 +5,6 @@ require('../wp-load.php');
 
 
 SourceImport::run();
+
+
+mail('ales@web-4-all.cz', 'immomedia.com parse_xml.php', 'running');

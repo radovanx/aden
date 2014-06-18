@@ -59,6 +59,4 @@ if (!empty($user_query->results)) {
     }
 }
 
-
-
-
+mail('ales@web-4-all.cz', 'immomedia.com freeze_users.php', 'running');
