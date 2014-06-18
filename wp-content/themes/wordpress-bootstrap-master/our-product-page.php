@@ -102,10 +102,12 @@ get_header();
                                         $favorite_text = __('Added to favorites', 'wpbootstrap');
                                     }
                                     $program_id = $val->program_id;
+                                     
                                     $term = accomodationTypeL($prop);
                                     if ($term == "") {
                                         $term = '-';
                                     }
+                                     
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
@@ -124,7 +126,9 @@ get_header();
                                     $idval = (int) $val->ID;
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
+                                    
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";
+                                    
                                     if ($rental_status == 1) {
                                         $rental_status = 'rented';
                                     }
