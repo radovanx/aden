@@ -908,13 +908,20 @@ jQuery(document).ready(function($) {
             for (n = 0; n < p.length; n++)
                 v = g.tablesorter.processTbody(d, p.eq(n), !0), v.children().removeClass(s), g.tablesorter.processTbody(d, v, !1)
         }})
-}(jQuery);
-
-
-
+}(jQuery); 
 jQuery(document).ready(function($) {
     $(function() {
-        $("table").tablesorter();
+        $("table").tablesorter(
+                
+                {      
+                         headers:
+                                {   
+                                8 : { sorter: "digit"  },
+                                9 : { sorter: "digit"  }, 
+                                },
+                            usNumberFormat:false    
+                } 
+        );
     });
 });
 
