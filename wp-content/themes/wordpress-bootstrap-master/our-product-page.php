@@ -77,7 +77,7 @@ get_header();
                                 <th><?php _e("Floor", "wpbootstrap"); ?></th>
                                 <th><?php _e("Rooms", "wpbootstrap"); ?></th>
                                 <th><?php _e("Surface", "wpbootstrap"); ?></th>
-                                <th><?php _e("Price", "wpbootstrap"); ?></th>
+                                <th class="{sorter: 'currency'}"><?php _e("Price", "wpbootstrap"); ?></th>
                                 <th class="{sorter: 'currency'}"><?php _e("Price/m²", "wpbootstrap"); ?></th>
                                 <th><?php _e("Yield", "wpbootstrap"); ?></th>
                                 <th><?php _e("Status", "wpbootstrap"); ?></th>
@@ -120,9 +120,10 @@ get_header();
                                     $street = !empty($prop['geo|strasse']) ? esc_attr($prop['geo|strasse']) : "-";
                                     $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
                                     $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
-                                    $pricem = (int) $pricem;
+                                    $pricem = (int)$pricem;
                                     $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
-                                    $price = (int) $price;
+                                    $price = (int)$price;
+                      
                                     $idval = (int) $val->ID;
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
@@ -559,10 +560,16 @@ get_header();
 
                 jQuery("tbody").append(table_data);
                 jQuery("table").trigger("update");
-                jQuery("table").tablesorter();
-                
-                
-
+                jQuery("table").tablesorter(
+                      {      
+                         headers:
+                                {   
+                                8 : { sorter: "currency"  },
+                                9 : { sorter: "currency"  }, 
+                                }   
+                      } 
+                );
+                 
                 //console.log(val);
 
                 var row_data = "<div class=\"row\"><div class=\"col-md-12 flats_box\"><div class=\"col-md-3\"> " + stats + " <a href=\"" + val.url + "\"><img src=\"" + val.image_url + "\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">" + val.name + "<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i> " + val.street + " " + val.hnumber + ", " + val.city + ", " + val.district + ", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.references + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.flatnum + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.rstatus + "</span></span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.floor + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.rooms + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.area + " m²</span></span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.fprice + " &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> " + val.fpricem + " €/m²</span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\"" + val.idval + "\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa " + val.favorite + "\"></i><span class=\"fav-label\">" + val.favorite_text + "</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>";
