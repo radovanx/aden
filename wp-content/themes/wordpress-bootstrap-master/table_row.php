@@ -34,6 +34,10 @@
 
             //$status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
             $status = statusL($prop);
+            
+            global $post;
+            $yield = get_post($val->ID)->post_excerpt;
+            
 
             /*
               if( $status == 'OFFEN' )
@@ -76,7 +80,7 @@
                     <?php echo price_format($pricem); ?>&euro;  
                 </td>
                 <td>
-
+                    <?php echo $yield; ?>
                 </td>
                 <td>
                     <?php echo $status; ?>
