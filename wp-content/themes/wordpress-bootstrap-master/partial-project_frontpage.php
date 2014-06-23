@@ -37,8 +37,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </div> 
-
-<?php 
-echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
-?>
+                        </div>  
+                        <?php 
+                        echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                        ?>

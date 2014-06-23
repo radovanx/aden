@@ -127,24 +127,25 @@ get_header();
                                     $idval = (int) $val->ID;
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
+                            
+                                 
+                                    global $post;
+                                    $yield = get_post($val->ID)->post_excerpt;
                                     
+                                     
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";
                                     
                                     if ($rental_status == 1) {
                                         $rental_status = 'rented';
                                     }
                                     $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-
                                     $status = statusL($prop);
-
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: " . $pricem . ", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", status: \"" . $status . "\", status_raw: \"" . $status_raw . "\", favorite: \"" . $favor . "\", favorite_text: \"" . $favorite_text . "\",type: \"" . $term . "\", idval: " . $idval . " },";
-
 
                                     if ($status == 'OFFEN') {
                                         $status = '';
                                     }
-
                                     if ($i < 10):
                                         ?>  
                                         <tr class="<?php echo $i % 2 ? 'background' : 'no-background'; ?> apartment-row-<?php echo $val->ID ?>">
@@ -181,7 +182,8 @@ get_header();
                                             <td>
                                                 <?php echo price_format($pricem) ?> &euro;
                                             </td>
-                                            <td>           
+                                            <td>  
+                                                <?php echo $yield; ?>
                                             </td>
                                             <td>
                                                 <?php
@@ -275,9 +277,7 @@ get_header();
 
 
     jQuery("form").on("submit", function(event) {
-
-
-
+ 
         event.preventDefault();
         var values = {};
         jQuery.each(jQuery('form').serializeArray(), function(i, field) {

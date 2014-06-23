@@ -35,7 +35,10 @@ get_header();
                 $zip = !empty($props['geo|plz']) ? esc_attr($props['geo|plz']) : 0;
                 $name = !empty($props['freitexte|objekttitel']) ? esc_attr($props['freitexte|objekttitel']) : "-";
                 $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-";
-                $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;                ?>
+                $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
+                $yield = get_the_excerpt();
+                  
+                ?>
 
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php echo $title ?>
@@ -150,31 +153,19 @@ get_header();
                                         echo esc_attr($props['zustand_angaben|baujahr']); 
                                     endif;
                                     ?>
-
                                 </span>
-
                             </li>
-
                             <li class="col-md-6 border-bottom">
-
                                 <strong><?php _e("Purchase price /sm:", "wpbootstrap"); ?></strong>
-
                                 <span class="pull-right">
-
                                     <?php
                                     if (isset($props['preise|kaufpreis_pro_qm'])):
-
                                         echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €/m² (sm)';
-
                                     endif;
                                     ?>
-
                                 </span>
-
                             </li>
-
                             <li class="col-md-6 border-bottom">
-
                                 <strong><?php _e("Apartment type:", "wpbootstrap"); ?> </strong>
                                 <span class="pull-right">
                                     <?php
@@ -191,25 +182,16 @@ get_header();
                                     endif;
                                     ?>
                                 </span>
-
                             </li>
-
                             <li class="col-md-6 border-bottom">
-
                                 <strong><?php _e("Number of floors:", "wpbootstrap"); ?> </strong>
-
                                 <span class="pull-right">
-
                                     <?php
                                     if ($props['geo|anzahl_etagen']):
-
                                         echo (int) $props['geo|anzahl_etagen'];
-
                                     endif;
                                     ?>
-
                                 </span>
-
                             </li>
 
                             <li class="col-md-6 border-bottom">
@@ -259,40 +241,23 @@ get_header();
 
                             </li>
 
-                            <li class="col-md-6 border-bottom">
-
-                                <strong><?php _e("Type of heating system:", "wpbootstrap"); ?></strong>
-
-                                <span class="pull-right">
-
+                            <li class="col-md-6 border-bottom"> 
+                                <strong><?php _e("Type of heating system:", "wpbootstrap"); ?></strong> 
+                                <span class="pull-right"> 
                                     <?php
                                     echo heatingSystemL($props);
-                                    ?>
-
-                                </span>
-
-                            </li>
-
-                            <li class="col-md-6 border-bottom">
-
-                                <strong><?php _e("Garage / parking spot:", "wpbootstrap"); ?>
-
-                                </strong>
-
+                                    ?> 
+                                </span> 
+                            </li> 
+                            <li class="col-md-6 border-bottom"> 
+                                <strong><?php _e("Garage / parking spot:", "wpbootstrap"); ?></strong>
                                 <span class="pull-right">
-
                                     <?php echo (int) ($props['preise|stp_sonstige|stellplatzmiete ']); ?>
-
                                 </span>
-
                             </li>
-
                             <li class="col-md-6 border-bottom">
-
                                 <strong><?php _e("Buyer commission (incl. VAT):", "wpbootstrap"); ?></strong>
-
                                 <span class="pull-right">
-
                                     <?php
                                     if (isset($props['preise|aussen_courtage'])):
 
@@ -300,15 +265,18 @@ get_header();
 
                                     endif;
                                     ?>
-
                                 </span>
-
                             </li>
-
-                        </ul>
-
-                        <!-- /apartment properties -->
-
+                        
+                            <li class="col-md-6 border-bottom">
+                                <strong><?php _e(" Yield:", "wpbootstrap"); ?></strong>
+                                <span class="pull-right">
+                                    <?php echo $yield;?>
+                                </span>
+                            </li>
+                         
+                        </ul> 
+                        <!-- /apartment properties --> 
                     </div>
 
                 </div>
@@ -371,7 +339,6 @@ get_header();
 
                                 <?php
                                 $lang = qtrans_getLanguage();
-
                                 $flat_props = EstateProgram::get_flats_props_by_program($program_id, $lang, $post->ID);
                                 ?>
 
