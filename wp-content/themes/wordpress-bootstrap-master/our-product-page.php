@@ -127,13 +127,10 @@ get_header();
                                     $idval = (int) $val->ID;
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
-                             
-                       
+                                                     
                                     global $post;
-                                   
                                     $yield = get_post($val->ID)->post_excerpt;
-                                     
-                                                        
+                                             
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";                                   
                                     if ($rental_status == 1) {
                                         $rental_status = 'rented';
