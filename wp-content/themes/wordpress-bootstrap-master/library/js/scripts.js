@@ -908,18 +908,24 @@ jQuery(document).ready(function($) {
             for (n = 0; n < p.length; n++)
                 v = g.tablesorter.processTbody(d, p.eq(n), !0), v.children().removeClass(s), g.tablesorter.processTbody(d, v, !1)
         }})
-}(jQuery);
-
-
+}(jQuery); 
 jQuery(document).ready(function($) {
     $(function() {
-        $("table").tablesorter();
+        $("table").tablesorter(
+                
+                {      
+                         headers:
+                                {   
+                                8 : { sorter: "digit"  },
+                                9 : { sorter: "digit"  }, 
+                                },
+                            usNumberFormat:false    
+                } 
+        );
     });
 });
 
-/*! Magnific Popup - v0.9.9 - 2013-12-27
- * http://dimsemenov.com/plugins/magnific-popup/
- * Copyright (c) 2013 Dmitry Semenov; */
+
 (function(e) {
     var t, n, i, o, r, a, s, l = "Close", c = "BeforeClose", d = "AfterClose", u = "BeforeAppend", p = "MarkupParse", f = "Open", m = "Change", g = "mfp", h = "." + g, v = "mfp-ready", C = "mfp-removing", y = "mfp-prevent-close", w = function() {
     }, b = !!window.jQuery, I = e(window), x = function(e, n) {
