@@ -217,19 +217,19 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
                 <div class="avatar col-sm-3">
 
-    <?php echo get_avatar($comment, $size = '75'); ?>
+                    <?php echo get_avatar($comment, $size = '75'); ?>
 
                 </div>
 
                 <div class="col-sm-9 comment-text">
 
-    <?php printf('<h4>%s</h4>', get_comment_author_link()) ?>
+                    <?php printf('<h4>%s</h4>', get_comment_author_link()) ?>
 
-    <?php edit_comment_link(__('Edit', 'wpbootstrap'), '<span class="edit-comment btn btn-sm btn-info"><i class="glyphicon-white glyphicon-pencil"></i>', '</span>') ?>
+                    <?php edit_comment_link(__('Edit', 'wpbootstrap'), '<span class="edit-comment btn btn-sm btn-info"><i class="glyphicon-white glyphicon-pencil"></i>', '</span>') ?>
 
 
 
-    <?php if ($comment->comment_approved == '0') : ?>
+                    <?php if ($comment->comment_approved == '0') : ?>
 
                         <div class="alert-message success">
 
@@ -237,11 +237,11 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
                         </div>
 
-    <?php endif; ?>
+                    <?php endif; ?>
 
 
 
-    <?php comment_text() ?>
+                    <?php comment_text() ?>
 
 
 
@@ -249,7 +249,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
 
 
-    <?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+                    <?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
 
                 </div>
 
@@ -259,39 +259,39 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
         <!-- </li> is added by wordpress automatically -->
 
-    <?php
-}
+        <?php
+    }
 
 // don't remove this bracket!
 // Display trackbacks/pings callback function
 
-function list_pings($comment, $args, $depth) {
+    function list_pings($comment, $args, $depth) {
 
-    $GLOBALS['comment'] = $comment;
-    ?>
+        $GLOBALS['comment'] = $comment;
+        ?>
 
     <li id="comment-<?php comment_ID(); ?>"><i class="icon icon-share-alt"></i>&nbsp;<?php comment_author_link(); ?>
 
-    <?php
-}
+        <?php
+    }
 
-/* * *********** SEARCH FORM LAYOUT **************** */
-
-
-
-/* * **************** password protected post form **** */
+    /*     * *********** SEARCH FORM LAYOUT **************** */
 
 
 
-add_filter('the_password_form', 'custom_password_form');
+    /*     * **************** password protected post form **** */
 
-function custom_password_form() {
 
-    global $post;
 
-    $label = 'pwbox-' . ( empty($post->ID) ? rand() : $post->ID );
+    add_filter('the_password_form', 'custom_password_form');
 
-    $o = '<div class="clearfix"><form class="protected-post-form" action="' . get_option('siteurl') . '/wp-login.php?action=postpass" method="post">
+    function custom_password_form() {
+
+        global $post;
+
+        $label = 'pwbox-' . ( empty($post->ID) ? rand() : $post->ID );
+
+        $o = '<div class="clearfix"><form class="protected-post-form" action="' . get_option('siteurl') . '/wp-login.php?action=postpass" method="post">
 
 	' . '<p>' . __("This post is password protected. To view it please enter your password below:", 'wpbootstrap') . '</p>' . '
 
@@ -301,969 +301,971 @@ function custom_password_form() {
 
 	';
 
-    return $o;
-}
+        return $o;
+    }
 
-/* * ********* update standard wp tag cloud widget so it looks better *********** */
+    /*     * ********* update standard wp tag cloud widget so it looks better *********** */
 
 
 
-add_filter('widget_tag_cloud_args', 'my_widget_tag_cloud_args');
+    add_filter('widget_tag_cloud_args', 'my_widget_tag_cloud_args');
 
-function my_widget_tag_cloud_args($args) {
+    function my_widget_tag_cloud_args($args) {
 
-    $args['number'] = 20; // show less tags
+        $args['number'] = 20; // show less tags
 
-    $args['largest'] = 9.75; // make largest and smallest the same - i don't like the varying font-size look
+        $args['largest'] = 9.75; // make largest and smallest the same - i don't like the varying font-size look
 
-    $args['smallest'] = 9.75;
+        $args['smallest'] = 9.75;
 
-    $args['unit'] = 'px';
+        $args['unit'] = 'px';
 
-    return $args;
-}
+        return $args;
+    }
 
 // filter tag clould output so that it can be styled by CSS
 
-function add_tag_class($taglinks) {
+    function add_tag_class($taglinks) {
 
-    $tags = explode('</a>', $taglinks);
+        $tags = explode('</a>', $taglinks);
 
-    $regex = "#(.*tag-link[-])(.*)(' title.*)#e";
+        $regex = "#(.*tag-link[-])(.*)(' title.*)#e";
 
 
 
-    foreach ($tags as $tag) {
+        foreach ($tags as $tag) {
 
-        $tagn[] = preg_replace($regex, "('$1$2 label tag-'.get_tag($2)->slug.'$3')", $tag);
+            $tagn[] = preg_replace($regex, "('$1$2 label tag-'.get_tag($2)->slug.'$3')", $tag);
+        }
+
+
+
+        $taglinks = implode('</a>', $tagn);
+
+
+
+        return $taglinks;
     }
 
-
-
-    $taglinks = implode('</a>', $tagn);
-
-
-
-    return $taglinks;
-}
-
-add_action('wp_tag_cloud', 'add_tag_class');
+    add_action('wp_tag_cloud', 'add_tag_class');
 
 
 
-add_filter('wp_tag_cloud', 'wp_tag_cloud_filter', 10, 2);
+    add_filter('wp_tag_cloud', 'wp_tag_cloud_filter', 10, 2);
 
-function wp_tag_cloud_filter($return, $args) {
+    function wp_tag_cloud_filter($return, $args) {
 
-    return '<div id="tag-cloud">' . $return . '</div>';
-}
+        return '<div id="tag-cloud">' . $return . '</div>';
+    }
 
 // Enable shortcodes in widgets
 
-add_filter('widget_text', 'do_shortcode');
+    add_filter('widget_text', 'do_shortcode');
 
 // Disable jump in 'read more' link
 
-function remove_more_jump_link($link) {
+    function remove_more_jump_link($link) {
 
-    $offset = strpos($link, '#more-');
+        $offset = strpos($link, '#more-');
 
-    if ($offset) {
+        if ($offset) {
 
-        $end = strpos($link, '"', $offset);
+            $end = strpos($link, '"', $offset);
+        }
+
+        if ($end) {
+
+            $link = substr_replace($link, '', $offset, $end - $offset);
+        }
+
+        return $link;
     }
 
-    if ($end) {
-
-        $link = substr_replace($link, '', $offset, $end - $offset);
-    }
-
-    return $link;
-}
-
-add_filter('the_content_more_link', 'remove_more_jump_link');
+    add_filter('the_content_more_link', 'remove_more_jump_link');
 
 
 
 // Remove height/width attributes on images so they can be responsive
 
-add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10);
+    add_filter('post_thumbnail_html', 'remove_thumbnail_dimensions', 10);
 
-add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10);
+    add_filter('image_send_to_editor', 'remove_thumbnail_dimensions', 10);
 
-function remove_thumbnail_dimensions($html) {
+    function remove_thumbnail_dimensions($html) {
 
-    $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
+        $html = preg_replace('/(width|height)=\"\d*\"\s/', "", $html);
 
-    return $html;
-}
+        return $html;
+    }
 
 // Add the Meta Box to the homepage template
 
-function add_homepage_meta_box() {
+    function add_homepage_meta_box() {
 
-    global $post;
-
-
-
-    // Only add homepage meta box if template being used is the homepage template
-    // $post_id = isset($_GET['post']) ? $_GET['post'] : (isset($_POST['post_ID']) ? $_POST['post_ID'] : "");
-
-    $post_id = $post->ID;
-
-    $template_file = get_post_meta($post_id, '_wp_page_template', TRUE);
+        global $post;
 
 
 
-    if ($template_file == 'page-homepage.php') {
+        // Only add homepage meta box if template being used is the homepage template
+        // $post_id = isset($_GET['post']) ? $_GET['post'] : (isset($_POST['post_ID']) ? $_POST['post_ID'] : "");
 
-        add_meta_box(
-                'homepage_meta_box', // $id
-                'Optional Homepage Tagline', // $title
-                'show_homepage_meta_box', // $callback
-                'page', // $page
-                'normal', // $context
-                'high'); // $priority
+        $post_id = $post->ID;
+
+        $template_file = get_post_meta($post_id, '_wp_page_template', TRUE);
+
+
+
+        if ($template_file == 'page-homepage.php') {
+
+            add_meta_box(
+                    'homepage_meta_box', // $id
+                    'Optional Homepage Tagline', // $title
+                    'show_homepage_meta_box', // $callback
+                    'page', // $page
+                    'normal', // $context
+                    'high'); // $priority
+        }
     }
-}
 
-add_action('add_meta_boxes', 'add_homepage_meta_box');
+    add_action('add_meta_boxes', 'add_homepage_meta_box');
 
 
 
 // Field Array
 
-$prefix = 'custom_';
+    $prefix = 'custom_';
 
-$custom_meta_fields = array(
-    array(
-        'label' => 'Homepage tagline area',
-        'desc' => 'Displayed underneath page title. Only used on homepage template. HTML can be used.',
-        'id' => $prefix . 'tagline',
-        'type' => 'textarea'
-    )
-);
+    $custom_meta_fields = array(
+        array(
+            'label' => 'Homepage tagline area',
+            'desc' => 'Displayed underneath page title. Only used on homepage template. HTML can be used.',
+            'id' => $prefix . 'tagline',
+            'type' => 'textarea'
+        )
+    );
 
 // The Homepage Meta Box Callback
 
-function show_homepage_meta_box() {
+    function show_homepage_meta_box() {
 
-    global $custom_meta_fields, $post;
-
-
-
-    // Use nonce for verification
-
-    wp_nonce_field(basename(__FILE__), 'wpbs_nonce');
+        global $custom_meta_fields, $post;
 
 
 
-    // Begin the field table and loop
+        // Use nonce for verification
 
-    echo '<table class="form-table">';
+        wp_nonce_field(basename(__FILE__), 'wpbs_nonce');
 
 
 
-    foreach ($custom_meta_fields as $field) {
+        // Begin the field table and loop
 
-        // get value of this field if it exists for this post
+        echo '<table class="form-table">';
 
-        $meta = get_post_meta($post->ID, $field['id'], true);
 
-        // begin a table row with
 
-        echo '<tr>
+        foreach ($custom_meta_fields as $field) {
+
+            // get value of this field if it exists for this post
+
+            $meta = get_post_meta($post->ID, $field['id'], true);
+
+            // begin a table row with
+
+            echo '<tr>
 
               <th><label for="' . $field['id'] . '">' . $field['label'] . '</label></th>
 
               <td>';
 
-        switch ($field['type']) {
+            switch ($field['type']) {
 
-            // text
+                // text
 
-            case 'text':
+                case 'text':
 
-                echo '<input type="text" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . $meta . '" size="60" />
-
-                          <br /><span class="description">' . $field['desc'] . '</span>';
-
-                break;
-
-
-
-            // textarea
-
-            case 'textarea':
-
-                echo '<textarea name="' . $field['id'] . '" id="' . $field['id'] . '" cols="80" rows="4">' . $meta . '</textarea>
+                    echo '<input type="text" name="' . $field['id'] . '" id="' . $field['id'] . '" value="' . $meta . '" size="60" />
 
                           <br /><span class="description">' . $field['desc'] . '</span>';
 
-                break;
-        } //end switch
+                    break;
 
-        echo '</td></tr>';
-    } // end foreach
 
-    echo '</table>'; // end table
-}
+
+                // textarea
+
+                case 'textarea':
+
+                    echo '<textarea name="' . $field['id'] . '" id="' . $field['id'] . '" cols="80" rows="4">' . $meta . '</textarea>
+
+                          <br /><span class="description">' . $field['desc'] . '</span>';
+
+                    break;
+            } //end switch
+
+            echo '</td></tr>';
+        } // end foreach
+
+        echo '</table>'; // end table
+    }
 
 // Save the Data
 
-function save_homepage_meta($post_id) {
+    function save_homepage_meta($post_id) {
 
 
 
-    global $custom_meta_fields;
+        global $custom_meta_fields;
 
 
 
-    // verify nonce
+        // verify nonce
 
-    if (!isset($_POST['wpbs_nonce']) || !wp_verify_nonce($_POST['wpbs_nonce'], basename(__FILE__)))
-        return $post_id;
-
-
-
-    // check autosave
-
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
-        return $post_id;
-
-
-
-    // check permissions
-
-    if ('page' == $_POST['post_type']) {
-
-        if (!current_user_can('edit_page', $post_id))
+        if (!isset($_POST['wpbs_nonce']) || !wp_verify_nonce($_POST['wpbs_nonce'], basename(__FILE__)))
             return $post_id;
-    } elseif (!current_user_can('edit_post', $post_id)) {
 
-        return $post_id;
+
+
+        // check autosave
+
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+            return $post_id;
+
+
+
+        // check permissions
+
+        if ('page' == $_POST['post_type']) {
+
+            if (!current_user_can('edit_page', $post_id))
+                return $post_id;
+        } elseif (!current_user_can('edit_post', $post_id)) {
+
+            return $post_id;
+        }
+
+
+
+        // loop through fields and save the data
+
+        foreach ($custom_meta_fields as $field) {
+
+            $old = get_post_meta($post_id, $field['id'], true);
+
+            $new = $_POST[$field['id']];
+
+
+
+            if ($new && $new != $old) {
+
+                update_post_meta($post_id, $field['id'], $new);
+            } elseif ('' == $new && $old) {
+
+                delete_post_meta($post_id, $field['id'], $old);
+            }
+        } // end foreach
     }
 
-
-
-    // loop through fields and save the data
-
-    foreach ($custom_meta_fields as $field) {
-
-        $old = get_post_meta($post_id, $field['id'], true);
-
-        $new = $_POST[$field['id']];
-
-
-
-        if ($new && $new != $old) {
-
-            update_post_meta($post_id, $field['id'], $new);
-        } elseif ('' == $new && $old) {
-
-            delete_post_meta($post_id, $field['id'], $old);
-        }
-    } // end foreach
-}
-
-add_action('save_post', 'save_homepage_meta');
+    add_action('save_post', 'save_homepage_meta');
 
 // Add thumbnail class to thumbnail links
 
-function add_class_attachment_link($html) {
+    function add_class_attachment_link($html) {
 
-    $postid = get_the_ID();
+        $postid = get_the_ID();
 
-    $html = str_replace('<a', '<a class="thumbnail"', $html);
+        $html = str_replace('<a', '<a class="thumbnail"', $html);
 
-    return $html;
-}
+        return $html;
+    }
 
-add_filter('wp_get_attachment_link', 'add_class_attachment_link', 10, 1);
+    add_filter('wp_get_attachment_link', 'add_class_attachment_link', 10, 1);
 
 // Add lead class to first paragraph
 
-/*  function first_paragraph($content) {
+    /*  function first_paragraph($content) {
 
-  global $post;
-
-
-
-  // if we're on the homepage, don't add the lead class to the first paragraph of text
-
-  if (is_page_template('page-homepage.php'))
-
-  return $content;
-
-  else
-
-  return preg_replace('/<p([^>]+)?>/', '<p$1 class="lead">', $content, 1);
-
-  }
+      global $post;
 
 
 
-  add_filter('the_content', 'first_paragraph'); */
+      // if we're on the homepage, don't add the lead class to the first paragraph of text
+
+      if (is_page_template('page-homepage.php'))
+
+      return $content;
+
+      else
+
+      return preg_replace('/<p([^>]+)?>/', '<p$1 class="lead">', $content, 1);
+
+      }
+
+
+
+      add_filter('the_content', 'first_paragraph'); */
 
 
 
 // Menu output mods
 
-class Bootstrap_walker extends Walker_Nav_Menu {
+    class Bootstrap_walker extends Walker_Nav_Menu {
 
-    function start_el(&$output, $object, $depth = 0, $args = Array(), $current_object_id = 0) {
-
-
-
-        if ('4734' == $object->ID && !is_user_logged_in()) {
-
-            return;
-        }
+        function start_el(&$output, $object, $depth = 0, $args = Array(), $current_object_id = 0) {
 
 
 
+            if ('4734' == $object->ID && !is_user_logged_in()) {
 
-
-        global $wp_query;
-
-        $indent = ( $depth ) ? str_repeat("\t", $depth) : '';
-
-
-
-        $class_names = $value = '';
-
-
-
-        // If the item has children, add the dropdown class for bootstrap
-
-        if ($args->has_children) {
-
-            $class_names = "dropdown ";
-        }
-
-
-
-        $classes = empty($object->classes) ? array() : (array) $object->classes;
-
-
-
-        $class_names .= join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $object));
-
-        $class_names = ' class="' . esc_attr($class_names) . '"';
-
-
-
-        $output .= $indent . '<li id="menu-item-' . $object->ID . '"' . $value . $class_names . '>';
-
-
-
-        $attributes = !empty($object->attr_title) ? ' title="' . esc_attr($object->attr_title) . '"' : '';
-
-        $attributes .=!empty($object->target) ? ' target="' . esc_attr($object->target) . '"' : '';
-
-        $attributes .=!empty($object->xfn) ? ' rel="' . esc_attr($object->xfn) . '"' : '';
-
-        $attributes .=!empty($object->url) ? ' href="' . esc_attr($object->url) . '"' : '';
-
-
-
-        // if the item has children add these two attributes to the anchor tag
-        // if ( $args->has_children ) {
-        // $attributes .= ' class="dropdown-toggle" data-toggle="dropdown"';
-        // }
-
-
-
-        $item_output = $args->before;
-
-        $item_output .= '<a' . $attributes . '>';
-
-
-
-
-
-        if (4734 == $object->ID && is_user_logged_in()) {
-
-            global $current_user;
-
-            get_currentuserinfo();
-
-
-
-            $user_full_name = $current_user->user_firstname . ' ' . $current_user->user_lastname;
-
-
-
-            if (!empty($user_full_name)) {
-
-                $item_output .= $args->link_before . $user_full_name;
+                return;
             }
-        } else {
 
-            $item_output .= $args->link_before . apply_filters('the_title', $object->title, $object->ID);
+
+
+
+
+            global $wp_query;
+
+            $indent = ( $depth ) ? str_repeat("\t", $depth) : '';
+
+
+
+            $class_names = $value = '';
+
+
+
+            // If the item has children, add the dropdown class for bootstrap
+
+            if ($args->has_children) {
+
+                $class_names = "dropdown ";
+            }
+
+
+
+            $classes = empty($object->classes) ? array() : (array) $object->classes;
+
+
+
+            $class_names .= join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $object));
+
+            $class_names = ' class="' . esc_attr($class_names) . '"';
+
+
+
+            $output .= $indent . '<li id="menu-item-' . $object->ID . '"' . $value . $class_names . '>';
+
+
+
+            $attributes = !empty($object->attr_title) ? ' title="' . esc_attr($object->attr_title) . '"' : '';
+
+            $attributes .=!empty($object->target) ? ' target="' . esc_attr($object->target) . '"' : '';
+
+            $attributes .=!empty($object->xfn) ? ' rel="' . esc_attr($object->xfn) . '"' : '';
+
+            $attributes .=!empty($object->url) ? ' href="' . esc_attr($object->url) . '"' : '';
+
+
+
+            // if the item has children add these two attributes to the anchor tag
+            // if ( $args->has_children ) {
+            // $attributes .= ' class="dropdown-toggle" data-toggle="dropdown"';
+            // }
+
+
+
+            $item_output = $args->before;
+
+            $item_output .= '<a' . $attributes . '>';
+
+
+
+
+
+            if (4734 == $object->ID && is_user_logged_in()) {
+
+                global $current_user;
+
+                get_currentuserinfo();
+
+
+
+                $user_full_name = $current_user->user_firstname . ' ' . $current_user->user_lastname;
+
+
+
+                if (!empty($user_full_name)) {
+
+                    $item_output .= $args->link_before . $user_full_name;
+                }
+            } else {
+
+                $item_output .= $args->link_before . apply_filters('the_title', $object->title, $object->ID);
+            }
+
+
+
+            $item_output .= $args->link_after;
+
+
+
+            // if the item has children add the caret just before closing the anchor tag
+
+            if ($args->has_children) {
+
+                $item_output .= '<b class="caret"></b></a>';
+            } else {
+
+                $item_output .= '</a>';
+            }
+
+
+
+            $item_output .= $args->after;
+
+
+
+            $output .= apply_filters('walker_nav_menu_start_el', $item_output, $object, $depth, $args);
         }
-
-
-
-        $item_output .= $args->link_after;
-
-
-
-        // if the item has children add the caret just before closing the anchor tag
-
-        if ($args->has_children) {
-
-            $item_output .= '<b class="caret"></b></a>';
-        } else {
-
-            $item_output .= '</a>';
-        }
-
-
-
-        $item_output .= $args->after;
-
-
-
-        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $object, $depth, $args);
-    }
 
 // end start_el function
 
 
 
-    function start_lvl(&$output, $depth = 0, $args = Array()) {
+        function start_lvl(&$output, $depth = 0, $args = Array()) {
 
-        $indent = str_repeat("\t", $depth);
+            $indent = str_repeat("\t", $depth);
 
-        $output .= "\n$indent<ul class=\"dropdown-menu\">\n";
-    }
-
-    function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
-
-        $id_field = $this->db_fields['id'];
-
-        if (is_object($args[0])) {
-
-            $args[0]->has_children = !empty($children_elements[$element->$id_field]);
+            $output .= "\n$indent<ul class=\"dropdown-menu\">\n";
         }
 
-        return parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+        function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
+
+            $id_field = $this->db_fields['id'];
+
+            if (is_object($args[0])) {
+
+                $args[0]->has_children = !empty($children_elements[$element->$id_field]);
+            }
+
+            return parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+        }
+
     }
 
-}
-
-add_editor_style('editor-style.css');
+    add_editor_style('editor-style.css');
 
 
 
 // Add Twitter Bootstrap's standard 'active' class name to the active nav link item
 
-add_filter('nav_menu_css_class', 'add_active_class', 10, 2);
+    add_filter('nav_menu_css_class', 'add_active_class', 10, 2);
 
-function add_active_class($classes, $item) {
+    function add_active_class($classes, $item) {
 
-    if ($item->menu_item_parent == 0 && in_array('current-menu-item', $classes)) {
+        if ($item->menu_item_parent == 0 && in_array('current-menu-item', $classes)) {
 
-        $classes[] = "active";
+            $classes[] = "active";
+        }
+
+
+
+        return $classes;
     }
-
-
-
-    return $classes;
-}
 
 // enqueue styles
 
-if (!function_exists("theme_styles")) {
+    if (!function_exists("theme_styles")) {
 
 
 
-    function theme_styles() {
+        function theme_styles() {
 
-        // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
+            // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
 
-        wp_register_style('bootstrap', get_template_directory_uri() . '/library/css/bootstrap.css', array(), '1.0', 'all');
+            wp_register_style('bootstrap', get_template_directory_uri() . '/library/css/bootstrap.css', array(), '1.0', 'all');
 
-        wp_enqueue_style('bootstrap');
+            wp_enqueue_style('bootstrap');
 
 
 
-        // For child themes
+            // For child themes
 
-        wp_register_style('wpbs-style', get_stylesheet_directory_uri() . '/style.css?v=1', array(), '1.0', 'all');
+            wp_register_style('wpbs-style', get_stylesheet_directory_uri() . '/style.css?v=1', array(), '1.0', 'all');
 
-        wp_enqueue_style('wpbs-style');
+            wp_enqueue_style('wpbs-style');
+        }
+
     }
 
-}
-
-add_action('wp_enqueue_scripts', 'theme_styles');
+    add_action('wp_enqueue_scripts', 'theme_styles');
 
 
 
 // enqueue javascript
 
-if (!function_exists("theme_js")) {
+    if (!function_exists("theme_js")) {
 
 
 
-    function theme_js() {
+        function theme_js() {
 
 
 
-        wp_register_script('bootstrap', get_template_directory_uri() . '/library/js/bootstrap.min.js', array('jquery'), '1.2', true);
+            wp_register_script('bootstrap', get_template_directory_uri() . '/library/js/bootstrap.min.js', array('jquery'), '1.2', true);
 
 
 
-        wp_register_script('wpbs-scripts', get_template_directory_uri() . '/library/js/scripts.js', array('jquery'), '1.2');
+            wp_register_script('wpbs-scripts', get_template_directory_uri() . '/library/js/scripts.js', array('jquery'), '1.2');
 
 
 
-        wp_register_script('modernizr', get_template_directory_uri() . '/library/js/modernizr.full.min.js', array('jquery'), '1.2');
+            wp_register_script('modernizr', get_template_directory_uri() . '/library/js/modernizr.full.min.js', array('jquery'), '1.2');
 
 
 
-        wp_enqueue_script('bootstrap');
+            wp_enqueue_script('bootstrap');
 
-        wp_enqueue_script('wpbs-scripts');
+            wp_enqueue_script('wpbs-scripts');
 
-        wp_enqueue_script('modernizr');
+            wp_enqueue_script('modernizr');
+        }
+
     }
 
-}
-
-add_action('wp_enqueue_scripts', 'theme_js');
+    add_action('wp_enqueue_scripts', 'theme_js');
 
 
 
-add_image_size('property-list-thumb', 395, 295, true);
+    add_image_size('property-list-thumb', 395, 295, true);
 
-add_image_size('project-detail-thumb', 395, 180, true);
+    add_image_size('project-detail-thumb', 395, 180, true);
 
-add_image_size('project-detail-big', 750, 500, true);
+    add_image_size('project-detail-big', 750, 500, true);
 
-add_image_size('project-detail-small', 150, 100, true);
+    add_image_size('project-detail-small', 150, 100, true);
 
-add_image_size('flat-small', 265, 200, true);
+    add_image_size('flat-small', 265, 200, true);
 
-add_image_size('lightbox', 900, 900, false);
+    add_image_size('lightbox', 900, 900, false);
 
 //autocomplete
 
 
 
-function add_scripts() {
+    function add_scripts() {
 
-    wp_enqueue_script('jquery-ui-autocomplete');
-}
+        wp_enqueue_script('jquery-ui-autocomplete');
+    }
 
-add_action('wp_enqueue_scripts', 'add_scripts');
+    add_action('wp_enqueue_scripts', 'add_scripts');
 
 // ajax loading - better the is in the plugin files.
 
 
 
-function wp_infinitepaginate() {
-            
-    $loopFile = $_project_frontpage['loop_file'];
+    function wp_infinitepaginate() {
 
-    $paged = $_POST['page_no'];
-            
-    $posts_per_page = get_option('posts_per_page'); 
-            
-    # Load the posts 
-   
-    query_posts(array('paged' => $paged));         
-    get_template_part($loopFile);
+        $loopFile = $_project_frontpage['loop_file'];
 
-            
-    
-    exit;
-}
+        $paged = $_POST['page_no'];
 
-add_action('wp_ajax_infinite_scroll', 'wp_infinitepaginate');
+        $posts_per_page = get_option('posts_per_page');
 
-function insert_attachment($file_handler, $user_id) {
+        # Load the posts
+
+        query_posts(array('paged' => $paged));
+        get_template_part($loopFile);
 
 
 
-    $out = array('error' => null);
-
-
-
-    // check to make sure its a successful upload
-
-
-
-    if ($_FILES[$file_handler]['error'] !== UPLOAD_ERR_OK)
-        __return_false();
-
-
-
-    $max_size = 1000000;
-
-    $whitelist_ext = array('jpg', 'png', 'gif');
-
-    $whitelist_type = array('image/jpeg', 'image/png', 'image/gif');
-
-
-
-    if (!in_array($_FILES[$file_handler]['type'], $whitelist_type)) {
-
-        $out['error'][] = "not valid extension";
-    };
-
-
-
-    if ($_FILES[$file_handler]['size'] > $max_size) {
-
-        $out['error'][] = "max size";
-    };
-
-
-
-    //extension
-
-    if (count($out['error']) > 0) {
-
-        return $out;
-    } else {
-
-        require_once(ABSPATH . "wp-admin" . '/includes/image.php');
-
-        require_once(ABSPATH . "wp-admin" . '/includes/file.php');
-
-        require_once(ABSPATH . "wp-admin" . '/includes/media.php');
-
-        require_once(ABSPATH . "wp-admin" . '/includes/media.php');
-
-
-
-        $attach_id = media_handle_upload($file_handler, 0);
-
-
-
-        update_user_meta($user_id, 'logo', $attach_id);
-
-        //return id of image
-
-        return $attach_id;
+        exit;
     }
-}
+
+    add_action('wp_ajax_infinite_scroll', 'wp_infinitepaginate');
+
+    function insert_attachment($file_handler, $user_id) {
+
+
+
+        $out = array('error' => null);
+
+
+
+        // check to make sure its a successful upload
+
+
+
+        if ($_FILES[$file_handler]['error'] !== UPLOAD_ERR_OK)
+            __return_false();
+
+
+
+        $max_size = 1000000;
+
+        $whitelist_ext = array('jpg', 'png', 'gif');
+
+        $whitelist_type = array('image/jpeg', 'image/png', 'image/gif');
+
+
+
+        if (!in_array($_FILES[$file_handler]['type'], $whitelist_type)) {
+
+            $out['error'][] = "not valid extension";
+        };
+
+
+
+        if ($_FILES[$file_handler]['size'] > $max_size) {
+
+            $out['error'][] = "max size";
+        };
+
+
+
+        //extension
+
+        if (count($out['error']) > 0) {
+
+            return $out;
+        } else {
+
+            require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+
+            require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+
+            require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+
+            require_once(ABSPATH . "wp-admin" . '/includes/media.php');
+
+
+
+            $attach_id = media_handle_upload($file_handler, 0);
+
+
+
+            update_user_meta($user_id, 'logo', $attach_id);
+
+            //return id of image
+
+            return $attach_id;
+        }
+    }
 
 ################################################################
 //// nahrazeni pole user_login při registraci polem user_email
 
-if (!is_user_logged_in()) {
-
-    if (isset($_POST['action']) && 'register' == $_POST['action']) {
-
-        $_POST['user_login'] = $_POST['user_email'];
-    }
-}
-
-// 
-
-function redirect_if_not_logged() {
-
     if (!is_user_logged_in()) {
 
+        if (isset($_POST['action']) && 'register' == $_POST['action']) {
+
+            $_POST['user_login'] = $_POST['user_email'];
+        }
+    }
+
+//
+
+    function redirect_if_not_logged() {
+
         if (!is_user_logged_in()) {
+
+            if (!is_user_logged_in()) {
+
+                wp_redirect(get_page_link(15));
+
+                exit;
+            }
+        }
+    }
+
+    function redirect_if_cannot_see_detail() {
+
+        if (!current_user_can('see_detail')) {
 
             wp_redirect(get_page_link(15));
 
             exit;
         }
     }
-}
 
-function redirect_if_cannot_see_detail() {
-
-    if (!current_user_can('see_detail')) {
-
-        wp_redirect(get_page_link(15));
-
-        exit;
-    }
-}
-
-function price_format($price) {
+    function price_format($price) {
 
 
 
-    if (empty($price)) {
+        if (empty($price)) {
 
-        return '';
-    }
-
-
-
-    // dont do that.. 158.000 -> 158000 , 158.50 ->15850
-    //$price = str_replace('.', '', $price);
-
-
-
-    $c_decimals = 0;
-
-    $ret = number_format($price, $c_decimals, ',', ' ');
-
-    return $ret;
-}
-
-function add_extra_user_column($columns) {
-
-    return array_merge($columns, array('foo' => __('City')));
-}
-
-add_filter('manage_users_columns', 'add_extra_user_column');
-
-function add_extra_user_columnstate($columns) {
-
-    return array_merge($columns, array('foo2' => __('State')));
-}
-
-add_filter('manage_users_columns', 'add_extra_user_columnstate');
-
-
-
-add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
-
-function manage_status_column($empty = '', $column_name, $id) {
-
-    if ($column_name == 'foo') {
-
-        $all_meta_for_user = get_user_meta($id);
-
-        $city = $all_meta_for_user["city"][0];
-
-        return $city;
-    } else if ($column_name == 'foo2') {
-
-        $all_meta_for_user = get_user_meta($id);
-
-        $state = $all_meta_for_user["country"][0];
-
-        return $state;
-    }
-}
-
-add_action('manage_users_columns', 'remove_user_posts_column'); 
-function remove_user_posts_column($column_headers) { 
-    unset($column_headers['posts']); 
-    return $column_headers;
-}
-
-/* * ************* */
-
-function item_pagination() {
-            
-    $offset = (int)$_POST['offset']; 
-    $part = esc_attr($_POST['part']); 
-    $post_per_page = (int)$_POST['ppp']; 
-    $post_lang = $_POST['lang'];    
-            
-    global $q_config;
-    
-    $q_config['language'] = $post_lang;  
-    load_theme_textdomain('wpbootstrap', TEMPLATEPATH . '/languages'); 
-    $locale = get_locale();
-    $locale_file = TEMPLATEPATH . "/languages/$locale.php";
-    if (is_readable($locale_file))
-        require_once($locale_file);
-            
-    $args = array(
-        
-        'post_type' => 'program',
-        'post_status' => 'publish',
-        'posts_per_page' => $post_per_page,
-        'offset' => $offset
-    
-    );
-            
-    if (!empty($_POST['show'])) {
-
-        $args['show'] = esc_attr($_POST['show']);
-            
-    }
-            
-    $query = new WP_Query($args);
-            
-    ob_start();
-    ?> 
-        <div class="col-md-12 column"> 
-            <div class="row">         
-        <?php
-        $i = 0;
-
-        if ($query->have_posts()) {
-
-            while ($query->have_posts()) : $query->the_post();
-
-                $i++;
-
-                global $post;
-
-                //get_template_part('partial', $part);
-
-                include get_template_directory() . '/partial-' . $part . '.php';
-
-            //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
-
-            endwhile;
+            return '';
         }
+
+
+
+        // dont do that.. 158.000 -> 158000 , 158.50 ->15850
+        //$price = str_replace('.', '', $price);
+
+
+
+        $c_decimals = 0;
+
+        $ret = number_format($price, $c_decimals, ',', ' ');
+
+        return $ret;
+    }
+
+    function add_extra_user_column($columns) {
+
+        return array_merge($columns, array('foo' => __('City')));
+    }
+
+    add_filter('manage_users_columns', 'add_extra_user_column');
+
+    function add_extra_user_columnstate($columns) {
+
+        return array_merge($columns, array('foo2' => __('State')));
+    }
+
+    add_filter('manage_users_columns', 'add_extra_user_columnstate');
+
+
+
+    add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
+
+    function manage_status_column($empty = '', $column_name, $id) {
+
+        if ($column_name == 'foo') {
+
+            $all_meta_for_user = get_user_meta($id);
+
+            $city = $all_meta_for_user["city"][0];
+
+            return $city;
+        } else if ($column_name == 'foo2') {
+
+            $all_meta_for_user = get_user_meta($id);
+
+            $state = $all_meta_for_user["country"][0];
+
+            return $state;
+        }
+    }
+
+    add_action('manage_users_columns', 'remove_user_posts_column');
+
+    function remove_user_posts_column($column_headers) {
+        unset($column_headers['posts']);
+        return $column_headers;
+    }
+
+    /*     * ************* */
+
+    function item_pagination() {
+
+        $offset = (int) $_POST['offset'];
+        $part = esc_attr($_POST['part']);
+        $post_per_page = (int) $_POST['ppp'];
+        $post_lang = $_POST['lang'];
+
+        global $q_config;
+
+        $q_config['language'] = $post_lang;
+        load_theme_textdomain('wpbootstrap', TEMPLATEPATH . '/languages');
+        $locale = get_locale();
+        $locale_file = TEMPLATEPATH . "/languages/$locale.php";
+        if (is_readable($locale_file))
+            require_once($locale_file);
+
+
+        //do_action('post_type_link');
+
+        //do_action('type_of_accommodation_add_form');
+        //do_action('type_of_accommodation_edit_form');
+
+        $args = array(
+            'post_type' => 'program',
+            'post_status' => 'publish',
+            'posts_per_page' => $post_per_page,
+            'offset' => $offset
+        );
+
+        if (!empty($_POST['show'])) {
+
+            $args['show'] = esc_attr($_POST['show']);
+        }
+
+        $query = new WP_Query($args);
+
+        ob_start();
         ?>
+        <div class="col-md-12 column">
+            <div class="row">
+    <?php
+    $i = 0;
+
+    if ($query->have_posts()) {
+
+        while ($query->have_posts()) : $query->the_post();
+
+            $i++;
+
+            global $post;
+            //get_template_part('partial', $part);
+
+            include get_template_directory() . '/partial-' . $part . '.php';
+
+        //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+
+        endwhile;
+    }
+    ?>
 
             </div>
 
-        </div> 
-        <?php
-        $output = ob_get_clean(); 
-        wp_reset_query();  
-        $ret = array(
-            'content' => $output
-        ); 
-        echo json_encode($ret); 
-        exit;
+        </div>
+    <?php
+    $output = ob_get_clean();
+    wp_reset_query();
+    $ret = array(
+        'content' => $output
+    );
+    echo json_encode($ret);
+    exit;
+}
+
+add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
+
+add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in
+
+function get_props($post_id, $lang) {
+
+    $props = get_post_meta($post_id, 'flat_props_' . $lang, true);
+
+
+
+    if (empty($props)) {
+
+        $props = get_post_meta($post_id, 'flat_props_en', true);
     }
 
-    add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
-
-    add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in 
-
-    function get_props($post_id, $lang) {
-
-        $props = get_post_meta($post_id, 'flat_props_' . $lang, true);
 
 
+    return $props;
+}
 
-        if (empty($props)) {
+add_filter('post_type_link', 'qtrans_convertURL');
 
-            $props = get_post_meta($post_id, 'flat_props_en', true);
+function qtrans_convertHomeURL($url, $what) {
+
+    if ($what == '/')
+        return qtrans_convertURL($url);
+
+    return $url;
+}
+
+add_filter('home_url', 'qtrans_convertHomeURL', 10, 2);
+
+/**
+
+ *
+
+ * @param type $props
+
+ */
+function apartmentTypeL($props) {
+
+    $arr = array();
+
+    if (isset($props['objektart|wohnung|wohnungtyp'])) {
+
+        switch ($props['objektart|wohnung|wohnungtyp']) {
+
+            case 'ETAGE';
+                $arr[] = __('Floor Apartment', 'wpbootstrap');
+                break;
+
+            case 'DACHGESCHOSS';
+                $arr[] = __('Attic', 'wpbootstrap');
+                break;
+
+            case 'ERDGESCHOSS';
+                $arr[] = __('Ground Floor', 'wpbootstrap');
+                break;
+
+            case 'MAISONETTE':
+                $arr[] = __('Duplex', 'wpbootstrap');
+                break;
         }
-
-
-
-        return $props;
     }
 
-    add_filter('post_type_link', 'qtrans_convertURL');
+    return implode(', ', $arr);
+}
 
-    function qtrans_convertHomeURL($url, $what) {
+//$status = statusL($prop);
+function statusL($prop) {
+    $ret = '';
+    if (isset($prop['zustand_angaben|verkaufstatus|stand'])) {
+        switch ($prop['zustand_angaben|verkaufstatus|stand']) {
+            case 'VERKAUFT':
+                $ret = __('VERKAUFT', 'wpbootstrap');
+                break;
+            case 'RESERVIERT':
+                $ret = __('RESERVIERT', 'wpbootstrap');
+                break;
+            case 'OFFEN':
+                $ret = __('OFFEN', 'wpbootstrap');
+                break;
+            default:
+                $ret = $prop['zustand_angaben|verkaufstatus|stand'];
+        }
+    }
+    return $ret;
+}
 
-        if ($what == '/')
-            return qtrans_convertURL($url);
+/**/
 
-        return $url;
+function accomodationTypeL($props) {
+    $arr = array();
+
+    if (isset($props['objektkategorie|nutzungsart|ANLAGE']) && 1 == $props['objektkategorie|nutzungsart|ANLAGE']) {
+        $arr[] = __('Rented apartment', 'wpbootstrap');
     }
 
-    add_filter('home_url', 'qtrans_convertHomeURL', 10, 2);
 
-    /**
 
-     * 
-
-     * @param type $props
-
-     */
-    function apartmentTypeL($props) {
-
-        $arr = array();
-
-        if (isset($props['objektart|wohnung|wohnungtyp'])) {
-
-            switch ($props['objektart|wohnung|wohnungtyp']) {
-
-                case 'ETAGE';
-                    $arr[] = __('Floor Apartment', 'wpbootstrap');
-                    break;
-
-                case 'DACHGESCHOSS';
-                    $arr[] = __('Attic', 'wpbootstrap');
-                    break;
-
-                case 'ERDGESCHOSS';
-                    $arr[] = __('Ground Floor', 'wpbootstrap');
-                    break;
-
-                case 'MAISONETTE':
-                    $arr[] = __('Duplex', 'wpbootstrap');
-                    break;
-            }
-        }
-
-        return implode(', ', $arr);
+    if (isset($props['objektkategorie|nutzungsart|GEWERBE']) && 1 == $props['objektkategorie|nutzungsart|GEWERBE']) {
+        $arr[] = __('Commercial Unit', 'wpbootstrap');
     }
 
-    
-  //$status = statusL($prop);
-  function statusL($prop) {
-        $ret = '';
-        if (isset($prop['zustand_angaben|verkaufstatus|stand'])) {
-            switch ($prop['zustand_angaben|verkaufstatus|stand']) {
-                case 'VERKAUFT':
-                    $ret = __('VERKAUFT', 'wpbootstrap');
-                    break;
-                case 'RESERVIERT':
-                    $ret = __('RESERVIERT', 'wpbootstrap');
-                    break;
-                case 'OFFEN':
-                    $ret = __('OFFEN', 'wpbootstrap');
-                    break;                
-                default:
-                    $ret = $prop['zustand_angaben|verkaufstatus|stand'];
-            }
-
-        }
-        return $ret;
-    }
-    /**/
-
-    function accomodationTypeL($props) {
-        $arr = array();
-
-        if (isset($props['objektkategorie|nutzungsart|ANLAGE']) && 1 == $props['objektkategorie|nutzungsart|ANLAGE']) {
-            $arr[] = __('Rented apartment', 'wpbootstrap');
-        }
 
 
-
-        if (isset($props['objektkategorie|nutzungsart|GEWERBE']) && 1 == $props['objektkategorie|nutzungsart|GEWERBE']) {
-            $arr[] = __('Commercial Unit', 'wpbootstrap');
-        }
-
-
-
-        if (isset($props['objektkategorie|nutzungsart|WOHNEN']) && 1 == $props['objektkategorie|nutzungsart|WOHNEN']) {
-            $arr[] = __('Apartment', 'wpbootstrap');
-        }
-
-        return implode(', ', $arr);
+    if (isset($props['objektkategorie|nutzungsart|WOHNEN']) && 1 == $props['objektkategorie|nutzungsart|WOHNEN']) {
+        $arr[] = __('Apartment', 'wpbootstrap');
     }
 
-    function heatingSystemL($props) {
-        $arr = array();
+    return implode(', ', $arr);
+}
 
-        if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
-            $arr[] = __('Floor heating', 'wpbootstrap');
-        }
+function heatingSystemL($props) {
+    $arr = array();
 
-        if (isset($props['ausstattung|heizungsart|FERN']) && 1 == $props['ausstattung|heizungsart|FERN']) {
-            $arr[] = __('District heating', 'wpbootstrap');
-        }
-
-        if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
-            $arr[] = __('Central heating', 'wpbootstrap');
-        }
-
-        if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
-            $arr[] = __('Chauffage individuel', 'wpbootstrap');
-        }
-
-        if (isset($props['ausstattung|heizungsart|OFEN']) && 1 == $props['ausstattung|heizungsart|OFEN']) {
-            $arr[] = __('Furnace heating', 'wpbootstrap');
-        }
-
-        return implode(', ', $arr);
+    if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
+        $arr[] = __('Floor heating', 'wpbootstrap');
     }
-    ?>
+
+    if (isset($props['ausstattung|heizungsart|FERN']) && 1 == $props['ausstattung|heizungsart|FERN']) {
+        $arr[] = __('District heating', 'wpbootstrap');
+    }
+
+    if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
+        $arr[] = __('Central heating', 'wpbootstrap');
+    }
+
+    if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
+        $arr[] = __('Chauffage individuel', 'wpbootstrap');
+    }
+
+    if (isset($props['ausstattung|heizungsart|OFEN']) && 1 == $props['ausstattung|heizungsart|OFEN']) {
+        $arr[] = __('Furnace heating', 'wpbootstrap');
+    }
+
+    return implode(', ', $arr);
+}
+?>

@@ -1,22 +1,23 @@
                         <?php        
-                        echo $lang;
+                        //echo $lang;
                        
                         $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation'); 
+                        
+                        $terms = qtrans_useTermLib($terms);
+                        
                         $type_of_accomodation = array();
                           
                         foreach ($terms as $t) {
-                            $type_of_accomodation[] = $t->name;
-                        } 
+                            $type_of_accomodation[] = __($t->name);
+                        }
                         
+                        $link = get_the_permalink($post->ID);
+                        $link = qtrans_convertURL($link, $post_lang, true);
                         
-                        
-                        
-                        
- 
                         ?>
                         <div class="col-md-6 column">
                             <div class="thumbnail">
-                                <a class="" href="<?php the_permalink(); ?>">
+                                <a class="" href="<?php  echo $link ?>">
                                     <?php the_post_thumbnail('property-list-thumb'); ?>
                                 </a>
                                 <div class="panel-body">
@@ -41,7 +42,7 @@
                                 </div>
                                 <div class="clearfix">
                                     <span class="col-lg-12 nopadding">
-                                        <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?> "><?php _e("View details", "wpbootstrap"); ?></a>
+                                        <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php  echo $link ?>"><?php _e("View details", "wpbootstrap"); ?></a>
                                     </span>
                                 </div>
                             </div>

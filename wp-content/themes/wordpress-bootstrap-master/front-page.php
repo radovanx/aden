@@ -21,7 +21,7 @@ $query = new WP_Query($args);
       function loadArticle(offset) {
         jQuery.ajax({
             url: "/wp-admin/admin-ajax.php",
-            type: 'GET',
+            type: 'POST',
             dataType: 'json',
             data: "action=item_pagination&offset=" + offset + "&part=project_frontpage&ppp=" + ajax_ppp + '&lang=' + translate_lang + '&show=homepage',
             beforeSend: function() {

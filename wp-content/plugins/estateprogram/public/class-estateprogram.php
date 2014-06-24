@@ -418,54 +418,6 @@ class EstateProgram {
         );
 
         register_taxonomy('location', array('flat'), $args);
-
-        /*
-          $args = array(
-          'hierarchical' => true,
-          'labels' => array(
-          'name' => _x('Parking', $this->plugin_slug),
-
-          'singular_name' => _x('City', 'taxonomy singular name'),
-          'search_items' => __('Find city'),
-          'all_items' => __('All cities'),
-          'parent_item' => __('Parent city'),
-          'parent_item_colon' => __('Parent city'),
-          'edit_item' => __('Edit city'),
-          'update_item' => __('Update city'),
-          'add_new_item' => __('Create city'),
-          'new_item_name' => __('New city'),
-          'menu_name' => __('Parking', $this->plugin_slug)
-          ),
-          'show_ui' => true,
-          'show_admin_column' => true,
-          'query_var' => true,
-          'rewrite' => array('slug' => 'parking'),
-          //'show_in_menu' => 'program_overview'
-          );
-
-          register_taxonomy('parking', array('program'), $args);
-         */
-
-        ############################################################
-        # flat
-
-
-
-        /*
-          $args = array(
-          'hierarchical' => true,
-          'labels' => array(
-          'name' => __('Structure', $this->plugin_slug),
-          'menu_name' => __('Structure', $this->plugin_slug)
-          ),
-          'show_ui' => true,
-          'show_admin_column' => true,
-          'query_var' => true,
-          'rewrite' => array('slug' => 'structure'),
-          //'show_in_menu' => 'program_overview'
-          );
-
-          register_taxonomy('structure', array('flat'), $args); */
     }
 
     /**
