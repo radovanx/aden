@@ -30,15 +30,15 @@
             $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
             $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
             $price = (int) $price;
-            $pricem = (int) $pricem;
-
+            $pricem = (int) $pricem; 
             //$status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
-            $status = statusL($prop);
-            
+            $status = statusL($prop); 
             global $post;
-            $yield = get_post($val->ID)->post_excerpt;
             
-
+            
+            $yield = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage(get_post($val->ID)->post_excerpt);
+            $yield = !empty($yield) ? ($yield) : "-";
+             
             /*
               if( $status == 'OFFEN' )
               {
@@ -62,28 +62,28 @@
                 <td><?php echo $flat_num; ?>       
                 </td>
                 <td>
-                    <?php echo $rental_status; ?> 
+                <?php echo $rental_status; ?> 
                 </td>
                 <td>
-                    <?php echo $floor; ?>          
+                <?php echo $floor; ?>          
                 </td>
                 <td>
-                    <?php echo (int) $rooms; ?>
+                <?php echo (int) $rooms; ?>
                 </td>
                 <td>
-                    <?php echo $area; ?> m²
+                <?php echo $area; ?> m²
                 </td>
                 <td>
-                    <?php echo price_format($price); ?>&euro;
+                <?php echo price_format($price); ?>&euro;
                 </td>
                 <td>
-                    <?php echo price_format($pricem); ?>&euro;  
+                <?php echo price_format($pricem); ?>&euro;  
                 </td>
                 <td>
-                    <?php echo $yield; ?>
+                <?php echo $yield; ?>
                 </td>
                 <td>
-                    <?php echo $status; ?>
+                <?php echo $status; ?>
                 </td>
             </tr>
             <?php

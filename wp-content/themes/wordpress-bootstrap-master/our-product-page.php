@@ -129,7 +129,12 @@ get_header();
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
                                                      
                                     global $post;
-                                    $yield = get_post($val->ID)->post_excerpt;
+                                    
+                                    
+                                    $yield = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage(get_post($val->ID)->post_excerpt);
+                                    $yield = !empty($yield) ? ($yield) : "-";
+                                    
+                                    
                                              
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";                                   
                                     if ($rental_status == 1) {
@@ -139,7 +144,7 @@ get_header();
                                     $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $status = statusL($prop);
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
-                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: " . $pricem . ", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", status: \"" . $status . "\", status_raw: \"" . $status_raw . "\", favorite: \"" . $favor . "\", favorite_text: \"" . $favorite_text . "\",type: \"" . $term . "\", idval: " . $idval . " },";
+                                    $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: " . $pricem . ", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", status: \"" . $status . "\", status_raw: \"" . $status_raw . "\", favorite: \"" . $favor . "\", favorite_text: \"" . $favorite_text . "\",type: \"" . $term . "\", yield: \"".$yield."\", idval: " . $idval . " },";
 
                                     if ($status == 'OFFEN') {
                                         $status = '';
@@ -554,7 +559,7 @@ get_header();
 
                 var backgroundClass = 0 != i % 2 ? ' no-background' : ' background';
 
-                var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass + "\"><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td></td><td>" + val.status + "</td></tr>";
+                var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass + "\"><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td>" + val.yield + "</td><td>" + val.status + "</td></tr>";
 
                 jQuery("tbody").append(table_data);
                 jQuery("table").trigger("update");
@@ -576,6 +581,7 @@ get_header();
     });
 </script>     
 <script> 
+    
     var total_item = 0;
     jQuery.each(datatable, function(i, val) {
         total_item++;
@@ -604,7 +610,8 @@ get_header();
                             var stats = "";
                         }
                         var backgroundClass = 0 != i % 2 ? ' no-background' : ' background'; 
-                        var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass + "\"><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td></td><td>" + val.status + "</td></tr>";
+                        
+                        var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass + "\"><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td>" + val.yield + "</td><td>" + val.status + "</td></tr>";
 
                         //var table_data = "<tr><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td></td><td>" + val.status + "</td></tr>"; 
                         jQuery("tbody").append(table_data);
@@ -621,6 +628,10 @@ get_header();
                             } 
                         ); 
                         console.log(val); 
+                        
+                        console.log(val.yield);
+                        
+                        
                         var row_data = "<div class=\"row\ apartment-row apartment-row-" + val.idval + "\"><div class=\"col-md-12 flats_box\"><div class=\"col-md-3\">" + stats + "<a href=\"" + val.url + "\"><img src=\"" + val.image_url + "\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">" + val.name + "<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i> " + val.street + " " + val.hnumber + ", " + val.city + ", " + val.district + ", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.references + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.flatnum + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.rstatus + "</span></span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.floor + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.rooms + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.area + " m²</span></span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.fprice + " &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> " + val.fpricem + " €/m²</span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\"" + val.idval + "\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa " + val.favorite + "\"></i><span class=\"fav-label\">" + val.favorite_text + "</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>"; 
                         jQuery("#list").append(row_data);
                     }
