@@ -41,9 +41,7 @@ $query = new WP_Query($args);
             }
         });
         return false;
-    }
-    
-    
+    } 
     jQuery(document).ready(function() {
         jQuery(window).scroll(function() {
             if (count >= (total_item)) {
@@ -54,8 +52,7 @@ $query = new WP_Query($args);
                 count += ajax_ppp;
             }
         });
-    });
-     
+    });    
 </script>
 <div class="visible-lg">
     <?php echo do_shortcode('[image-carousel interval="12000"]') ?>

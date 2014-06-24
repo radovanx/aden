@@ -88,7 +88,13 @@ class EstateProgram_Admin {
         add_filter('@TODO', array($this, 'filter_method_name'));  
         
         add_filter('manage_flat_posts_columns', array($this, 'column_head'));
-        add_action('manage_flat_posts_custom_column', array($this, 'column_content'), 10, 2);        
+        add_action('manage_flat_posts_custom_column', array($this, 'column_content'), 10, 2);     
+        
+        add_filter( 'manage_edit-flat_sortable_columns', array($this, 'my_movie_sortable_columns')); 
+        
+        
+        add_filter( 'request', array($this, 'my_sort_movies')); 
+            
 
     }
     
@@ -120,6 +126,44 @@ class EstateProgram_Admin {
                 break;
         }
     }   
+           
+    
+    
+    
+/* Sorts the movies. */
+function my_sort_movies( $vars ) {
+
+	/* Check if we're viewing the 'movie' post type. */
+	if ( isset( $vars['post_type'] ) && 'flat' == $vars['post_type'] ) {
+
+		/* Check if 'orderby' is set to 'duration'. */
+		if ( isset( $vars['orderby'] ) && 'unique_identificator' == $vars['orderby'] ) {
+
+			/* Merge the query vars with our custom variables. */
+			$vars = array_merge(
+				$vars,
+				array(
+					'meta_key' => 'unique_identificator',
+					'orderby' => 'meta_value'
+				)
+			);
+		}
+	}
+
+	return $vars;
+}
+  
+
+    
+    function my_movie_sortable_columns( $columns ) {
+
+	$columns['ref_no'] = 'unique_identificator';
+
+	return $columns;
+    }
+    
+            
+            
     
 
     public function parse_xml() {

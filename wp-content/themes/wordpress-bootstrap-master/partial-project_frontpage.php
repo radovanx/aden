@@ -1,10 +1,18 @@
                         <?php        
                         echo $lang;
+                       
                         $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation'); 
                         $type_of_accomodation = array();
+                          
                         foreach ($terms as $t) {
                             $type_of_accomodation[] = $t->name;
                         } 
+                        
+                        
+                        
+                        
+                        
+ 
                         ?>
                         <div class="col-md-6 column">
                             <div class="thumbnail">
@@ -37,8 +45,7 @@
                                     </span>
                                 </div>
                             </div>
-                        </div> 
-
-<?php 
-echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
-?>
+                        </div>  
+                        <?php 
+                        echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                        ?>

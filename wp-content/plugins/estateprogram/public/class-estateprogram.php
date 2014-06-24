@@ -339,19 +339,22 @@ class EstateProgram {
                 'parent_item_colon' => '',
                 'menu_name' => __('Flats', $this->plugin_slug)
             ),
-            'public' => true,
+            'public' => true, 
             'supports' => array(
-                'thumbnail',
-                'title',
-                'editor',
-                'excerpt',
-                'author'
+            'thumbnail',
+            'title',
+            'editor',
+            'excerpt',
+            'author'
+            
             ),
+            
             'menu_position' => 8,
             'rewrite' => array(
-                'slug' => 'flat',
+            'slug' => 'flat',
+            
             ),
-                //'show_in_menu' => 'program_overview'
+            //'show_in_menu' => 'program_overview'
         );
 
         register_post_type('flat', $args);

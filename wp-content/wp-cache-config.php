@@ -11,8 +11,8 @@ if ( ! defined('WPCACHEHOME') )
 	define( 'WPCACHEHOME', WP_CONTENT_DIR . "/plugins/wp-super-cache/" ); //Added by WP-Cache Manager
 
 $cache_compression = 0; // Super cache compression
-$cache_enabled = false;
-$super_cache_enabled = false;
+$cache_enabled = true;
+$super_cache_enabled = true;
 $cache_max_time = 3600; //in seconds
 //$use_flock = true; // Set it true or false if you know what to use
 $cache_path = WP_CONTENT_DIR . '/cache/';
