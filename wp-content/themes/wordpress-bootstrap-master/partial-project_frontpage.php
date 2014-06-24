@@ -1,17 +1,13 @@
                         <?php        
-                        echo $lang;
-                       
+                        echo $lang; 
                         $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation'); 
-                        $type_of_accomodation = array();
-                          
+                        $type_of_accomodation = array();                           
                         foreach ($terms as $t) {
                             $type_of_accomodation[] = $t->name;
                         } 
                         
                         
-                        
-                        
-                        
+                      
  
                         ?>
                         <div class="col-md-6 column">
@@ -25,7 +21,7 @@
                                 <div class="panel-body">
                                     <span class="propertyListBoxDataItemName">
                                         <i class="fa fa-home"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong>
-                                        <span class="pull-right"><?php echo implode(', ', $type_of_accomodation) ?></span>
+                                        <span class="pull-right"><?php echo implode(', ', $type_of_accomodation); ?></span>
                                     </span>
                                     <span class="propertyListBoxDataItemName">
                                         <i class="fa fa-map-marker"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong>
