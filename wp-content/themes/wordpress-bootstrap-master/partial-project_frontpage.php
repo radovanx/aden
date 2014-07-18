@@ -5,10 +5,7 @@
                         foreach ($terms as $t) {
                             $type_of_accomodation[] = $t->name;
                         } 
-                        
-                        
-                      
- 
+                         
                         ?>
                         <div class="col-md-6 column">
                             <div class="thumbnail">

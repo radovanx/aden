@@ -29,6 +29,10 @@ if (!empty($flat_props)):
         }
         //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
 
+        global $post;
+        $yield = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage(get_post($val->ID)->post_excerpt);
+        $yield = !empty($yield) ? ($yield) : "-";    
+         
         $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
         $status = statusL($prop);
         
@@ -104,6 +108,10 @@ if (!empty($flat_props)):
                             </span>
                             <span class="data_item clearfix">
                                 <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>  
+                                 <span class="pull-right"> 
+                                    <?php echo $yield; ?> 
+                                </span>
+ 
                             </span>
                         </div> 
                         <div class="col-md-3"> 
