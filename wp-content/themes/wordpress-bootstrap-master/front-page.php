@@ -86,7 +86,7 @@ $query = new WP_Query($args);
             </div>
             <!-- /ajax loader -->
         </div>
-        <div class="save col-md-3 column border background contact_form_block">
+        <div class="save col-md-3 column border background contact_form_block background-image-en">
             <h3>
                 <?php $currentLang = qtrans_getLanguage(); ?> 
                 <a href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf"> 
@@ -96,6 +96,7 @@ $query = new WP_Query($args);
                 </a>
             </h3>
             <div class="form-group">
+                 
                 <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf">
                     <?php _e("download for free", "wpbootstrap"); ?>
                 </a>
