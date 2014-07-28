@@ -85,17 +85,12 @@ class EstateProgram_Admin {
          * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
          */
         add_action('@TODO', array($this, 'action_method_name'));
-        add_filter('@TODO', array($this, 'filter_method_name'));  
-        
+        add_filter('@TODO', array($this, 'filter_method_name'));   
         add_filter('manage_flat_posts_columns', array($this, 'column_head'));
-        add_action('manage_flat_posts_custom_column', array($this, 'column_content'), 10, 2);     
-        
-        add_filter( 'manage_edit-flat_sortable_columns', array($this, 'my_movie_sortable_columns')); 
-        
-        
-        add_filter( 'request', array($this, 'my_sort_movies')); 
+        add_action('manage_flat_posts_custom_column', array($this, 'column_content'), 10, 2);      
+        add_filter('manage_edit-flat_sortable_columns', array($this, 'my_movie_sortable_columns'));      
+        add_filter('request', array($this, 'my_sort_movies')); 
             
-
     }
     
     function column_head($defaults) {
@@ -126,10 +121,7 @@ class EstateProgram_Admin {
                 break;
         }
     }   
-           
-    
-    
-    
+            
 /* Sorts the movies. */
 function my_sort_movies( $vars ) {
 
@@ -147,25 +139,36 @@ function my_sort_movies( $vars ) {
 					'orderby' => 'meta_value'
 				)
 			);
-		}
-	}
-
-	return $vars;
-}
-  
-
-    
-    function my_movie_sortable_columns( $columns ) {
-
-	$columns['ref_no'] = 'unique_identificator';
-
+		}   
+                if(isset($vars['s'])){  
+		$vars = array_merge(
+				$vars,
+				array( 
+					'meta_query' => array(
+						array(
+							'key' => 'unique_identificator',
+							'value' => $vars['s'],
+							'compare' => 'LIKE'
+						)
+					)
+				) 
+		);
+		} 
+            } 
+            return $vars;
+            
+           }    
+           
+           
+    function my_movie_sortable_columns( $columns ) { 
+	$columns['ref_no'] = 'unique_identificator'; 
 	return $columns;
     }
     
-            
-            
     
-
+    
+    
+            
     public function parse_xml() {
         include 'views/parse_xml.php';
     }
