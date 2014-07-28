@@ -1,6 +1,12 @@
   <form role="form" class="border background clearfix searchform col-md-12">
-                <div class="col-md-6 column"> 
-                    <div class="row">
+                <div class="col-md-6 column">  
+                    <div class="row margin-top padding-top">
+                        
+                        <div class="form-group col-md-6"> 
+                        </div>
+                        <div class="form-group col-md-6">                            
+                        </div>
+                        
                         <div class="form-group col-md-6">
                             <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
                         </div>
@@ -53,6 +59,10 @@
                             </label>
                             <label class="checkbox-inline">
                                 <input type="checkbox" id="inlineCheckbox-<?php _e("Commercial Unit", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Commercial Unit", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Commercial Unit", "wpbootstrap"); ?>"><?php _e("Commercial Unit", "wpbootstrap"); ?>
+                            </label>  
+                            
+                            <label class="checkbox-inline">
+                                <input type="checkbox" id="inlineCheckbox-<?php _e("Building", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Building", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Building", "wpbootstrap"); ?>"><?php _e("Building", "wpbootstrap"); ?>
                             </label>  
                         </div>        
                     </div>  
