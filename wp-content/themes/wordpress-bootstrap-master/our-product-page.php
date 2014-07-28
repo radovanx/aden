@@ -7,7 +7,7 @@
 redirect_if_cannot_see_detail();
 get_header();
 ?>
-<div class="container">
+<div class="container">    
     <div id="content" class="clearfix row">
         <div class="col-sm-12 clearfix" role="main">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -112,7 +112,7 @@ get_header();
                                     if ($term == "") {
                                         $term = '-';
                                     }
-
+ 
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
@@ -137,14 +137,16 @@ get_header();
                                     $yield = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage(get_post($val->ID)->post_excerpt);
                                     $yield = !empty($yield) ? ($yield) : "-";
                                             
-                                    $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : __('free', "wpbootstrap");                                  
-                                    if ($rental_status == 1) {
+                                    $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : __('free', "wpbootstrap");                                                                        
+                                    if ($rental_status == 1 ) {                                        
                                         $rental_status = __('rented', "wpbootstrap");
-                                    }
-       
+                                        $term =  __('Rented apartment', "wpbootstrap");
+                                        
+                                    } 
+                                    
                                     $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $status = statusL($prop);
-                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
+                                    $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";                                    
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: " . $pricem . ", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", status: \"" . $status . "\", status_raw: \"" . $status_raw . "\", favorite: \"" . $favor . "\", favorite_text: \"" . $favorite_text . "\",type: \"" . $term . "\", yield: \"".$yield."\", idval: " . $idval . " },";
 
                                     if ($status == 'OFFEN') {
@@ -253,7 +255,6 @@ get_header();
             }
         });
     });
-
     function format(comma, period) {
         comma = comma || ',';
         period = period || '.';
@@ -320,10 +321,10 @@ get_header();
         checkedtype = '"' + helpert.join('","') + '"';
         checkedtype = checkedtype.substring(1, checkedtype.length - 1);
         //uppercase sensitive
-        values.References = values.References.toUpperCase();
+        values.References = values.References.toUpperCase();        
         var fcity = checkedcitiesf;
-        var fdistrict = checkeddistrict;
-        var ftype = checkedtype; 
+        var fdistrict = checkeddistrict;        
+        var ftype = checkedtype;         
         var freferences = values.References;
         var fareaf = values.Areaf;
         var fareat = values.Areat;
@@ -389,10 +390,12 @@ get_header();
         if (ftype != '')
         {
             var i = 0;
-            var output_set;
+            
+            var output_set; 
             var type_filter = PourOver.makeExactFilter("type", helpert);
-            collection.addFilters([type_filter]);
+            collection.addFilters([type_filter]); 
             jQuery('.type-checkbox:checked').each(function() {
+               
                 var typefilter = jQuery(this).val();
                 var typess = collection.filters.type.getFn(typefilter);
                 if (i == 0)
@@ -513,8 +516,7 @@ get_header();
             {
                 finalfilter = collection.filters.area_range.getFn([fareaf, 999]);
             }
-        }
-
+        } 
         if (froomsf != '' || froomst != '')
         {
             var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"});
@@ -529,11 +531,8 @@ get_header();
             }
         }
         // var group_filter = city_f.and(price_range_f);  
-        var myfilterfinal = collection.get(finalfilter.cids);
-
-        datatable = myfilterfinal;
- 
-
+        var myfilterfinal = collection.get(finalfilter.cids); 
+        datatable = myfilterfinal; 
         if (jQuery.isEmptyObject(myfilterfinal))
         {
             jQuery("#table_data_filter").empty();
@@ -648,4 +647,4 @@ get_header();
         })
     });
 </script>  
-<?php get_footer(); ?> 
+<?php get_footer(); ?>

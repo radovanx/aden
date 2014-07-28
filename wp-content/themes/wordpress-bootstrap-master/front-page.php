@@ -12,13 +12,13 @@ $query = new WP_Query($args);
 <script type="text/javascript">
     var total_item = <?php echo $query->found_posts ?>;
     // pocatecni offset
-    var count = <?php echo (int) $post_per_page ?>;
-    var active_load = 0;
+    var count = <?php echo (int) $post_per_page ?>; 
+    var active_load = 0; 
     var load_next_item = true;
     // pocet polozek, ktere vrati ajax
-    var ajax_ppp = 2;
-    var translate_lang = "<?php echo qtrans_getLanguage(); ?>";
-    function loadArticle(offset) {
+    var ajax_ppp = 2; 
+    var translate_lang = "<?php echo qtrans_getLanguage(); ?>"; 
+      function loadArticle(offset) {
         jQuery.ajax({
             url: "/wp-admin/admin-ajax.php",
             type: 'POST',
@@ -41,7 +41,7 @@ $query = new WP_Query($args);
             }
         });
         return false;
-    }
+    } 
     jQuery(document).ready(function() {
         jQuery(window).scroll(function() {
             if (count >= (total_item)) {
@@ -52,15 +52,10 @@ $query = new WP_Query($args);
                 count += ajax_ppp;
             }
         });
-    });
+    });    
 </script>
 <div class="visible-lg">
-    <?php 
-    
-    
-    echo do_shortcode('[image-carousel interval="12000"]') 
-    
-    ?>
+    <?php echo do_shortcode('[image-carousel interval="12000"]') ?>
 </div>
 <div class="container">
     <div class="row clearfix">
@@ -93,8 +88,8 @@ $query = new WP_Query($args);
         </div>
         <div class="save col-md-3 column border background contact_form_block background-image-en">
             <h3>
-                <?php $currentLang = qtrans_getLanguage(); ?>
-                <a href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf">
+                <?php $currentLang = qtrans_getLanguage(); ?> 
+                <a href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf"> 
                     <?php _e("Guide", "wpbootstrap"); ?></br>
                     <?php _e("investissement", "wpbootstrap"); ?></br>
                     <?php _e("Berlin", "wpbootstrap"); ?></br>
@@ -116,9 +111,9 @@ $query = new WP_Query($args);
         <div class="col-md-3 column">
             <div class="row">
                 <div class="col-md-12 column border background contact_form_block">
-                    <h2 class="border-left uppercase"><?php _e("Contact us", "wpbootstrap"); ?></h2>
+                    <h2 class="border-left uppercase"><?php _e("Contact us", "wpbootstrap"); ?></h2> 
                     <?php
-                    $lang = qtrans_getLanguage();
+                    $lang = qtrans_getLanguage(); 
                     switch ($lang) {
                         case 'en':
                             echo do_shortcode('[contact-form-7 id="1728" title=""]');
@@ -130,16 +125,16 @@ $query = new WP_Query($args);
                             echo do_shortcode('[contact-form-7 id="10265" title=""]');
                             break;
                     }
-                    ?>
+                    ?> 
                 </div>
                 <div class="col-md-12 column border newsletter-background contact_form_block">
                     <h2 class="border-left"><?php _e("NEWSLETTER", "wpbootstrap"); ?></h2>
                     <!-- Begin MailChimp Signup Form -->
                     <div id="mc_embed_signup">
                         <form action="http://aden-immo.us3.list-manage.com/subscribe/post?u=17d843b86bdd3339c6dbc1da5&amp;id=49b2f803a7" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                            <div class="form-group">
+                            <div class="form-group"> 
                                 <input type="email" value="" name="EMAIL" class="pull-left required email form-control input-lg" id="mce-EMAIL" placeholder="<?php _e('Insert your email', 'wpbootstrap') ?>">
-                                <input type="submit" value="<?php _e('OK', 'wpbootstrap') ?>" name="subscribe" id="mc-embedded-subscribe" class="button pull-left btn-primary">
+                                <input type="submit" value="<?php _e('OK', 'wpbootstrap') ?>" name="subscribe" id="mc-embedded-subscribe" class="button pull-left btn-primary"> 
                                 <div class="clearfix"></div>
                             </div>
                             <div id="mce-responses" class="clear">
@@ -149,7 +144,7 @@ $query = new WP_Query($args);
                             <div style="position: absolute; left: -5000px;"><input type="text" name="b_17d843b86bdd3339c6dbc1da5_49b2f803a7" tabindex="-1" value=""></div>
                         </form>
                     </div>
-                    <!--End mc_embed_signup-->
+                    <!--End mc_embed_signup--> 
                 </div>
             </div>
         </div>
