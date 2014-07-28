@@ -13,10 +13,8 @@ redirect_if_cannot_see_detail();
 get_header();
 ?>
 <div class="container">
-    <div id="content" class="clearfix row">
-
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-
+    <div id="content" class="clearfix row"> 
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?> 
                 <?php
                 $lang = qtrans_getLanguage();
                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
@@ -37,9 +35,7 @@ get_header();
                 $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-";
                 $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
                 $yield = get_the_excerpt();
-                  
-                ?>
-
+                ?> 
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php echo $title ?>
                             <a href="javascript:history.go(-1)" class="pull-right doublesmall"><?php _e('<- back', "wpbootstrap"); ?></a> 
