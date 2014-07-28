@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: wp-bootstrap v3.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-17 23:02-0300\n"
-"PO-Revision-Date: 2014-06-11 11:21:43+0000\n"
+"PO-Revision-Date: 2014-06-27 11:12:11+0000\n"
 "Last-Translator: Martin Meyerhoff <mamhoff@googlemail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -219,22 +219,22 @@ msgstr "Neuere Kommentare"
 msgid "Comments are closed"
 msgstr "Die Kommentarfunktion ist deaktiviert"
 
-#: functions.php:1
+#: functions.php:228
 #@ wpbootstrap
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: functions.php:1
+#: functions.php:236
 #@ wpbootstrap
 msgid "Your comment is awaiting moderation."
 msgstr "Dein Kommentar wird geprüft."
 
-#: functions.php:1
+#: functions.php:296
 #@ wpbootstrap
 msgid "This post is password protected. To view it please enter your password below:"
 msgstr "Dieser Post ist passwortgeschützt. Um ihn zu sehen, gib bitte dein Passwort ein:"
 
-#: functions.php:1
+#: functions.php:298
 #@ wpbootstrap
 msgid "Password:"
 msgstr "Passwort:"
@@ -343,59 +343,59 @@ msgstr "Kontaktformular"
 msgid "CONTACT INFORMATIONS"
 msgstr "KONTAKTINFORMATIONEN"
 
-#: front-page.php:94
+#: front-page.php:93
 #@ wpbootstrap
 msgid "Guide"
 msgstr "Immobilien"
 
-#: front-page.php:95
+#: front-page.php:94
 #@ wpbootstrap
 msgid "investissement"
 msgstr "Ratgeber"
 
-#: front-page.php:96
+#: front-page.php:95
 #@ wpbootstrap
 msgid "Berlin"
 msgstr ""
 
-#: front-page.php:101
+#: front-page.php:100
 #@ wpbootstrap
 msgid "download for free"
 msgstr "Free Download"
 
-#: front-page.php:108
+#: front-page.php:107
 #@ wpbootstrap
 msgid "Contact us"
 msgstr "Kontaktieren Sie uns"
 
-#: front-page.php:125
+#: front-page.php:124
 #@ wpbootstrap
 msgid "NEWSLETTER"
 msgstr ""
 
-#: front-page.php:130
+#: front-page.php:129
 #@ wpbootstrap
 msgid "Insert your email"
 msgstr "Geben Sie Ihre email Adresse ein"
 
-#: front-page.php:131
+#: front-page.php:130
 #@ wpbootstrap
 msgid "OK"
 msgstr ""
 
-#: functions.php:1
+#: functions.php:298
 #@ wpbootstrap
 msgid "Submit"
 msgstr "Einreichen"
 
-#: functions.php:1
+#: functions.php:1016
 #: profile-form.php:1
 #@ default
 #@ wpbootstrap
 msgid "City"
 msgstr "Stadt"
 
-#: functions.php:1
+#: functions.php:1023
 #@ default
 msgid "State"
 msgstr ""
@@ -614,14 +614,14 @@ msgstr "Rendite"
 msgid "Status"
 msgstr "Status"
 
-#: our-product-page.php:218
+#: our-product-page.php:224
 #: single-flat.php:440
 #: single-program.php:204
 #@ wpbootstrap
 msgid "You modified"
 msgstr "Sie modifizierten"
 
-#: our-product-page.php:221
+#: our-product-page.php:227
 #: single-flat.php:443
 #: single-program.php:207
 #: template-my_preferences.php:82
@@ -629,85 +629,85 @@ msgstr "Sie modifizierten"
 msgid "Ok"
 msgstr ""
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:52
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:58
 #@ wpbootstrap
 msgid "Ref.:"
 msgstr ""
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:58
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:64
 #@ wpbootstrap
 msgid "Flat n°:"
 msgstr "Einheit Nr:"
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:64
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:70
 #@ wpbootstrap
 msgid "Rental status: "
 msgstr "Vermietungsstand"
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:72
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:78
 #: single-flat.php:186
 #@ wpbootstrap
 msgid "Floor:"
 msgstr "Etage:"
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:78
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:84
 #@ wpbootstrap
 msgid "Rooms:  "
 msgstr "Zimmer:"
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:84
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:90
 #@ wpbootstrap
 msgid "Surface:  "
 msgstr "Wohnfläche:"
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:92
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:98
 #@ wpbootstrap
 msgid "Price:"
 msgstr "Preis:"
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:98
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:104
 #@ wpbootstrap
 msgid "Price/m2:"
 msgstr "Preis / qm:"
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:104
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:110
 #@ wpbootstrap
 msgid "Yield:"
 msgstr "Rendite:"
 
-#: our-product-page.php:558
-#: our-product-page.php:602
-#: row_row.php:113
+#: our-product-page.php:567
+#: our-product-page.php:621
+#: row_row.php:123
 #@ wpbootstrap
 msgid "VIEW DETAILS:"
 msgstr "DETAILS ANZEIGEN:"
 
-#: partial-project_frontpage.php:18
+#: partial-project_frontpage.php:28
 #: partial-project_projects.php:37
 #: single-program.php:94
 #@ wpbootstrap
 msgid "Type of property:"
 msgstr "Art der Immobilie:"
 
-#: partial-project_frontpage.php:22
+#: partial-project_frontpage.php:32
 #: partial-project_projects.php:45
 #: register-form.php:54
 #: single-program.php:97
@@ -715,14 +715,14 @@ msgstr "Art der Immobilie:"
 msgid "Address:"
 msgstr "Adresse:"
 
-#: partial-project_frontpage.php:26
+#: partial-project_frontpage.php:36
 #: partial-project_projects.php:53
 #: single-program.php:100
 #@ wpbootstrap
 msgid "Size range:"
 msgstr "Wohnfläche:"
 
-#: partial-project_frontpage.php:28
+#: partial-project_frontpage.php:38
 #: partial-project_projects.php:57
 #: single-program.php:105
 #@ wpbootstrap
@@ -1056,65 +1056,65 @@ msgstr "Wollen Sie wirklich diese Einstellung löschen?"
 msgid "Yes"
 msgstr "Ja"
 
-#: functions.php:1
+#: functions.php:1181
 #@ wpbootstrap
 msgid "Floor Apartment"
 msgstr "Etagenwohnung"
 
-#: functions.php:1
+#: functions.php:1185
 #@ wpbootstrap
 msgid "Attic"
 msgstr "Dachgeschoss"
 
-#: functions.php:1
+#: functions.php:1189
 #@ wpbootstrap
 msgid "Ground Floor"
 msgstr "Erdgeschoss"
 
-#: functions.php:1
+#: functions.php:1193
 #@ wpbootstrap
 msgid "Duplex"
 msgstr "Doppelhaus"
 
-#: functions.php:1
+#: functions.php:1228
 #: partial-search-form.php:50
 #@ wpbootstrap
 msgid "Rented apartment"
 msgstr "Vermietete Wohnung"
 
-#: functions.php:1
+#: functions.php:1234
 #: partial-search-form.php:56
 #@ wpbootstrap
 msgid "Commercial Unit"
 msgstr "Gewerbe / Büro"
 
-#: functions.php:1
+#: functions.php:1240
 #: partial-search-form.php:53
 #@ wpbootstrap
 msgid "Apartment"
 msgstr "Wohnung"
 
-#: functions.php:1
+#: functions.php:1250
 #@ wpbootstrap
 msgid "Floor heating"
 msgstr "Fußbodenheizung"
 
-#: functions.php:1
+#: functions.php:1254
 #@ wpbootstrap
 msgid "District heating"
 msgstr "Fernwärme"
 
-#: functions.php:1
+#: functions.php:1258
 #@ wpbootstrap
 msgid "Central heating"
 msgstr "Zentralheizung"
 
-#: functions.php:1
+#: functions.php:1262
 #@ wpbootstrap
 msgid "Chauffage individuel"
 msgstr "Etagenheizung"
 
-#: functions.php:1
+#: functions.php:1266
 #@ wpbootstrap
 msgid "Furnace heating"
 msgstr "Ofenheizung"
@@ -1161,46 +1161,46 @@ msgstr "+49 (0)30 616 75 115"
 msgid "Back to top"
 msgstr "Zum Seitenanfang"
 
-#: functions.php:1
+#: functions.php:1207
 #@ wpbootstrap
 msgid "VERKAUFT"
 msgstr ""
 
-#: functions.php:1
+#: functions.php:1210
 #@ wpbootstrap
 msgid "RESERVIERT"
 msgstr ""
 
-#: partial-project_frontpage.php:35
+#: partial-project_frontpage.php:45
 #@ wpbootstrap
 msgid "View details"
 msgstr "Details anzeigen"
 
-#: our-product-page.php:102
-#: row_row.php:110
+#: our-product-page.php:101
+#: row_row.php:120
 #: single-flat.php:46
 #@ wpbootstrap
 msgid "Added to favorites"
-msgstr "Zu Favoriten hinzugefügt"
+msgstr "Favorit"
 
-#: our-product-page.php:99
-#: row_row.php:110
+#: our-product-page.php:98
+#: row_row.php:120
 #: single-flat.php:46
 #@ wpbootstrap
 msgid "Add to favorite"
-msgstr "Zu Favoriten hinzufügen"
+msgstr "Zu Favoriten "
 
-#: front-page.php:64
+#: front-page.php:63
 #@ wpbootstrap
 msgid "Top projects"
-msgstr ""
+msgstr "Top Projekte"
 
-#: functions.php:1
+#: functions.php:1213
 #@ wpbootstrap
 msgid "OFFEN"
-msgstr "offen de"
+msgstr "OFFEN"
 
-#: our-product-page.php:532
+#: our-product-page.php:533
 #@ wpbootstrap
 msgid "NO RESULT FOUND"
 msgstr ""
@@ -1208,5 +1208,15 @@ msgstr ""
 #: partial-project_projects.php:71
 #@ wpbootstrap
 msgid "view details"
+msgstr "Details Anzeigen"
+
+#: our-product-page.php:133
+#@ wpbootstrap
+msgid "free"
+msgstr ""
+
+#: our-product-page.php:135
+#@ wpbootstrap
+msgid "rented"
 msgstr ""
 

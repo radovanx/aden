@@ -13,26 +13,33 @@ get_header();
                         <div class="tab-content">
                             <!-- img slide -->
                             <?php get_template_part('partial', 'slide') ?>
-                            <!-- /img slide --> 
+                            <!-- /img slide -->
                             <div class="tab-pane fade" id="map_tab">
                                 <div id="gmap" class="gmap">google map</div>
                             </div>
                             <div class="tab-pane" id="street_tab">
-                                <div id="gmapstreet" class="gmapstreet">street</div> 
+                                <div id="gmapstreet" class="gmapstreet">street</div>
                             </div>
-                            <div class="tab-pane fade" id="video_tab"> 
+                            <div class="tab-pane fade" id="video_tab">
                                 <?php
                                 $video = get_post_meta($post->ID, '_program_video', true);
-                                if (!empty($video)):
-                                    ?>
-                                    <div class="flex-video">
-                                        <?php
-                                        global $wp_embed;
-                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $video . '[/embed]');
-                                        echo $post_embed;
+                                if (!empty($video) && is_array($video)):
+                                    foreach ($video as $v):
+                                        if(empty($v)){
+                                            continue;
+                                        }
                                         ?>
-                                    </div>
-                                <?php endif; ?>
+                                        <div class="flex-video">
+                                            <?php
+                                            global $wp_embed;
+                                            $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $v . '[/embed]');
+                                            echo $post_embed;
+                                            ?>
+                                        </div>
+                                        <?php
+                                    endforeach;
+                                endif;
+                                ?>
                             </div>
                         </div>
                         <!--/TAB CONTENT END-->
@@ -62,7 +69,7 @@ get_header();
                                 <h3 class="border-left uppercase"><?php _e("Summary", "wpbootstrap"); ?></h3>
 
                                 <ul class="list-unstyled bigger-text line-big summary-program">
-                                    <li> 
+                                    <li>
                                         <?php echo str_replace(';', '</li><li>', $summary) ?>
                                     </li>
                                     <!--
@@ -126,9 +133,9 @@ get_header();
                                 echo do_shortcode('[contact-form-7 id="7621" title=""]');
                                 break;
                         }
-                        ?>                         
+                        ?>
 
-                    </div> 
+                    </div>
                 </div>
                 <?php if (is_user_logged_in()): ?>
                     <div class="col-md-6 ">
@@ -167,7 +174,7 @@ get_header();
                                     $lang = qtrans_getLanguage();
                                     $flat_props = EstateProgram::get_flats_props_by_program($post->ID, $lang);
                                     ?>
-                                    <?php include TEMPLATEPATH . '/table_row.php'; ?> 
+                                    <?php include TEMPLATEPATH . '/table_row.php'; ?>
                                 </table>
                             </div>
                             <div class="col-md-12 column active border tab-pane" id="list">
@@ -175,7 +182,7 @@ get_header();
                                 include TEMPLATEPATH . '/row_row.php';
                                 ?>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             <?php endif; ?>
@@ -200,8 +207,8 @@ get_header();
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title"><?php echo the_title(); ?></h4>
             </div>
-            <div class="modal-body"> 
-                <?php _e("You modified", "wpbootstrap"); ?> 
+            <div class="modal-body">
+                <?php _e("You modified", "wpbootstrap"); ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
@@ -217,7 +224,7 @@ get_header();
 
 
 <script>
-// MAP // 
+// MAP //
     var lang = <?php echo $lang; ?>;
     var long = <?php echo $long; ?>;
 
@@ -282,5 +289,5 @@ get_header();
         showStreetview();
         google.maps.event.trigger(map, 'resize');
     });
-</script>  
+</script>
 <?php get_footer(); ?>

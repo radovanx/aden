@@ -783,7 +783,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
             // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
 
-            wp_register_style('bootstrap', get_template_directory_uri() . '/library/css/bootstrap.css', array(), '5.0', 'all');
+            wp_register_style('bootstrap', get_template_directory_uri() . '/library/css/bootstrap.css', array(), '1.0', 'all');
 
             wp_enqueue_style('bootstrap');
 
@@ -979,74 +979,87 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     }
 
     function redirect_if_cannot_see_detail() {
-
         if (!current_user_can('see_detail')) {
-
             wp_redirect(get_page_link(15));
-
             exit;
         }
     }
 
     function price_format($price) {
-
-
-
         if (empty($price)) {
-
             return '';
         }
-
-
-
         // dont do that.. 158.000 -> 158000 , 158.50 ->15850
         //$price = str_replace('.', '', $price);
 
-
-
         $c_decimals = 0;
-
         $ret = number_format($price, $c_decimals, ',', ' ');
-
         return $ret;
     }
 
-    function add_extra_user_column($columns) {
+    ########################################################
+    /*
+      add_filter('manage_users_columns', 'add_extra_user_column');
+      function add_extra_user_column($columns) {
+      return array_merge($columns, array('foo' => __('City')));
+      }
 
-        return array_merge($columns, array('foo' => __('City')));
-    }
+      add_filter('manage_users_columns', 'add_extra_user_columnstate');
+      function add_extra_user_columnstate($columns) {
+      return array_merge($columns, array('foo2' => __('State')));
+      } */
 
     add_filter('manage_users_columns', 'add_extra_user_column');
 
-    function add_extra_user_columnstate($columns) {
-
-        return array_merge($columns, array('foo2' => __('State')));
+    function add_extra_user_column($columns) {
+        $columns['foo'] = __('City', 'wpbootstrap');
+        $columns['foo2'] = __('State', 'wpbootstrap');
+        $columns['date_register'] = __('Register date', 'wpbootstrap');
+        return $columns;
     }
-
-    add_filter('manage_users_columns', 'add_extra_user_columnstate');
-
-
 
     add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
 
     function manage_status_column($empty = '', $column_name, $id) {
 
+        $all_meta_for_user = get_user_meta($id);
+        $user_data = get_userdata($id);
+
         if ($column_name == 'foo') {
-
-            $all_meta_for_user = get_user_meta($id);
-
             $city = $all_meta_for_user["city"][0];
-
             return $city;
         } else if ($column_name == 'foo2') {
-
-            $all_meta_for_user = get_user_meta($id);
-
             $state = $all_meta_for_user["country"][0];
-
             return $state;
+        } else if ($column_name == 'date_register') {
+            $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user_data->user_registered);
+            return $register_date->format('d. m. Y H:i');
         }
     }
+
+    // sortable
+    function registerdate_column_sortable($columns) {
+        $custom = array(
+            'date_register' => 'registered',
+        );
+        return wp_parse_args($custom, $columns);
+    }
+
+    add_filter('manage_users_sortable_columns', 'registerdate_column_sortable');
+
+    function registerdate_column_orderby($vars) {
+        if (isset($vars['orderby']) && 'date_register' == $vars['orderby']) {
+            $vars = array_merge($vars, array(
+                'meta_key' => 'date_register',
+                'orderby' => 'meta_value'
+            ));
+        }
+
+        return $vars;
+    }
+
+    add_filter('request', 'registerdate_column_orderby');
+
 
     add_action('manage_users_columns', 'remove_user_posts_column');
 
@@ -1075,7 +1088,6 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
 
         //do_action('post_type_link');
-
         //do_action('type_of_accommodation_add_form');
         //do_action('type_of_accommodation_edit_form');
 
@@ -1097,175 +1109,261 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         ?>
         <div class="col-md-12 column">
             <div class="row">
-    <?php
-    $i = 0;
+                <?php
+                $i = 0;
 
-    if ($query->have_posts()) {
+                if ($query->have_posts()) {
 
-        while ($query->have_posts()) : $query->the_post();
+                    while ($query->have_posts()) : $query->the_post();
 
-            $i++;
+                        $i++;
 
-            global $post;
-            //get_template_part('partial', $part);
+                        global $post;
+                        //get_template_part('partial', $part);
 
-            include get_template_directory() . '/partial-' . $part . '.php';
+                        include get_template_directory() . '/partial-' . $part . '.php';
 
-        //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                    //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
 
-        endwhile;
-    }
-    ?>
+                    endwhile;
+                }
+                ?>
 
             </div>
 
         </div>
-    <?php
-    $output = ob_get_clean();
-    wp_reset_query();
-    $ret = array(
-        'content' => $output
-    );
-    echo json_encode($ret);
-    exit;
-}
-
-add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
-
-add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in
-
-function get_props($post_id, $lang) {
-
-    $props = get_post_meta($post_id, 'flat_props_' . $lang, true);
-
-
-
-    if (empty($props)) {
-
-        $props = get_post_meta($post_id, 'flat_props_en', true);
+        <?php
+        $output = ob_get_clean();
+        wp_reset_query();
+        $ret = array(
+            'content' => $output
+        );
+        echo json_encode($ret);
+        exit;
     }
 
+    add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
+
+    add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in
+
+    function get_props($post_id, $lang) {
+
+        $props = get_post_meta($post_id, 'flat_props_' . $lang, true);
 
 
-    return $props;
-}
 
-add_filter('post_type_link', 'qtrans_convertURL');
+        if (empty($props)) {
 
-function qtrans_convertHomeURL($url, $what) {
-
-    if ($what == '/')
-        return qtrans_convertURL($url);
-
-    return $url;
-}
-
-add_filter('home_url', 'qtrans_convertHomeURL', 10, 2);
-
-/**
-
- *
-
- * @param type $props
-
- */
-function apartmentTypeL($props) {
-
-    $arr = array();
-
-    if (isset($props['objektart|wohnung|wohnungtyp'])) {
-
-        switch ($props['objektart|wohnung|wohnungtyp']) {
-
-            case 'ETAGE';
-                $arr[] = __('Floor Apartment', 'wpbootstrap');
-                break;
-
-            case 'DACHGESCHOSS';
-                $arr[] = __('Attic', 'wpbootstrap');
-                break;
-
-            case 'ERDGESCHOSS';
-                $arr[] = __('Ground Floor', 'wpbootstrap');
-                break;
-
-            case 'MAISONETTE':
-                $arr[] = __('Duplex', 'wpbootstrap');
-                break;
+            $props = get_post_meta($post_id, 'flat_props_en', true);
         }
+        return $props;
     }
 
-    return implode(', ', $arr);
-}
+    function tml_action_links($link) {
+        return qtrans_convertURL($link);
+    }
+
+    add_filter('tml_action_url', 'tml_action_links');
+
+
+    #################
+    add_filter('post_type_link', 'qtrans_convertURL');
+
+    function qtrans_convertHomeURL($url, $what) {
+
+        if ($what == '/')
+            return qtrans_convertURL($url);
+
+        return $url;
+    }
+
+    add_filter('home_url', 'qtrans_convertHomeURL', 10, 2);
+
+    /**
+
+     *
+
+     * @param type $props
+
+     */
+    function apartmentTypeL($props) {
+
+        $arr = array();
+
+        if (isset($props['objektart|wohnung|wohnungtyp'])) {
+
+            switch ($props['objektart|wohnung|wohnungtyp']) {
+
+                case 'ETAGE';
+                    $arr[] = __('Floor Apartment', 'wpbootstrap');
+                    break;
+
+                case 'DACHGESCHOSS';
+                    $arr[] = __('Attic', 'wpbootstrap');
+                    break;
+
+                case 'ERDGESCHOSS';
+                    $arr[] = __('Ground Floor', 'wpbootstrap');
+                    break;
+
+                case 'MAISONETTE':
+                    $arr[] = __('Duplex', 'wpbootstrap');
+                    break;
+            }
+        }
+
+        return implode(', ', $arr);
+    }
 
 //$status = statusL($prop);
-function statusL($prop) {
-    $ret = '';
-    if (isset($prop['zustand_angaben|verkaufstatus|stand'])) {
-        switch ($prop['zustand_angaben|verkaufstatus|stand']) {
-            case 'VERKAUFT':
-                $ret = __('VERKAUFT', 'wpbootstrap');
-                break;
-            case 'RESERVIERT':
-                $ret = __('RESERVIERT', 'wpbootstrap');
-                break;
-            case 'OFFEN':
-                $ret = __('OFFEN', 'wpbootstrap');
-                break;
-            default:
-                $ret = $prop['zustand_angaben|verkaufstatus|stand'];
+    function statusL($prop) {
+        $ret = '';
+        if (isset($prop['zustand_angaben|verkaufstatus|stand'])) {
+            switch ($prop['zustand_angaben|verkaufstatus|stand']) {
+                case 'VERKAUFT':
+                    $ret = __('VERKAUFT', 'wpbootstrap');
+                    break;
+                case 'RESERVIERT':
+                    $ret = __('RESERVIERT', 'wpbootstrap');
+                    break;
+                case 'OFFEN':
+                    $ret = __('OFFEN', 'wpbootstrap');
+                    break;
+                default:
+                    $ret = $prop['zustand_angaben|verkaufstatus|stand'];
+            }
         }
-    }
-    return $ret;
-}
-
-/**/
-
-function accomodationTypeL($props) {
-    $arr = array();
-
-    if (isset($props['objektkategorie|nutzungsart|ANLAGE']) && 1 == $props['objektkategorie|nutzungsart|ANLAGE']) {
-        $arr[] = __('Rented apartment', 'wpbootstrap');
+        return $ret;
     }
 
+    /**/
+
+    function accomodationTypeL($props) {
+        $arr = array();
+
+        if (isset($props['objektkategorie|nutzungsart|ANLAGE']) && 1 == $props['objektkategorie|nutzungsart|ANLAGE']) {
+            $arr[] = __('Rented apartment', 'wpbootstrap');
+        }
 
 
-    if (isset($props['objektkategorie|nutzungsart|GEWERBE']) && 1 == $props['objektkategorie|nutzungsart|GEWERBE']) {
-        $arr[] = __('Commercial Unit', 'wpbootstrap');
+
+        if (isset($props['objektkategorie|nutzungsart|GEWERBE']) && 1 == $props['objektkategorie|nutzungsart|GEWERBE']) {
+            $arr[] = __('Commercial Unit', 'wpbootstrap');
+        }
+
+
+
+        if (isset($props['objektkategorie|nutzungsart|WOHNEN']) && 1 == $props['objektkategorie|nutzungsart|WOHNEN']) {
+            $arr[] = __('Apartment', 'wpbootstrap');
+        }
+
+        return implode(', ', $arr);
     }
 
+    function heatingSystemL($props) {
+        $arr = array();
 
+        if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
+            $arr[] = __('Floor heating', 'wpbootstrap');
+        }
 
-    if (isset($props['objektkategorie|nutzungsart|WOHNEN']) && 1 == $props['objektkategorie|nutzungsart|WOHNEN']) {
-        $arr[] = __('Apartment', 'wpbootstrap');
+        if (isset($props['ausstattung|heizungsart|FERN']) && 1 == $props['ausstattung|heizungsart|FERN']) {
+            $arr[] = __('District heating', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
+            $arr[] = __('Central heating', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
+            $arr[] = __('Chauffage individuel', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|OFEN']) && 1 == $props['ausstattung|heizungsart|OFEN']) {
+            $arr[] = __('Furnace heating', 'wpbootstrap');
+        }
+
+        return implode(', ', $arr);
     }
 
-    return implode(', ', $arr);
-}
+    function epartL($props) {
+        $return = '';
 
-function heatingSystemL($props) {
-    $arr = array();
+        if (isset($props['energiepass|epart'])) {
+            switch ($props['energiepass|epart']) {
+                case 'VERBRAUCH':
+                    $return = __('Consommation finale', 'wpbootstrap');
+                    break;
+                case 'BEDARF':
+                    $return = __('Besoin énergétique', 'wpbootstrap');
+                    break;
+            }
+        }
 
-    if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
-        $arr[] = __('Floor heating', 'wpbootstrap');
+        return $return;
     }
 
-    if (isset($props['ausstattung|heizungsart|FERN']) && 1 == $props['ausstattung|heizungsart|FERN']) {
-        $arr[] = __('District heating', 'wpbootstrap');
+    function periodeL($props) {
+        $return = '';
+
+        if (isset($props['preise|mieteinnahmen_ist|periode'])) {
+            switch ($props['preise|mieteinnahmen_ist|periode']) {
+                case 'JAHR':
+                    $return = __('Year', 'wpbootstrap');
+                    break;
+                case 'MOND':
+                    $return = __('Month', 'wpbootstrap');
+                    break;
+            }
+        }
+
+        return $return;
     }
 
-    if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
-        $arr[] = __('Central heating', 'wpbootstrap');
+    ####################
+    /*
+      function tml_title_translate($title) {
+      return __($title);
+      }
+
+      add_filter('tml_title', 'tml_title_translate');
+
+      function tml_message_filter($message){
+      return __($message);
+      }
+
+      add_filter('password_change_notification_message_filter', 'tml_message_filter');
+      add_filter('new_user_notification_message_filter', 'tml_message_filter');
+     */
+
+
+    
+    ############
+    add_filter('wp_mail', 'my_wp_mail_filter');
+
+    function my_wp_mail_filter($args) {
+
+        $message = $args['message'];
+
+        ob_start();
+        include "email_template/template.php";
+        $content = ob_get_contents();
+        ob_end_clean();
+
+        $new_wp_mail = array(
+            'to' => $args['to'],
+            'subject' => $args['subject'],
+            'message' => $content,
+            'headers' => $args['headers'],
+            'attachments' => $args['attachments']
+        );
+
+        return $new_wp_mail;
     }
 
-    if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
-        $arr[] = __('Chauffage individuel', 'wpbootstrap');
-    }
+    add_filter('wp_mail_content_type', 'set_content_type');
 
-    if (isset($props['ausstattung|heizungsart|OFEN']) && 1 == $props['ausstattung|heizungsart|OFEN']) {
-        $arr[] = __('Furnace heating', 'wpbootstrap');
+    function set_content_type($content_type) {
+        return 'text/html';
     }
-
-    return implode(', ', $arr);
-}
-?>
+    ?>

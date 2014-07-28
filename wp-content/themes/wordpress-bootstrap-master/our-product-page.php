@@ -7,7 +7,7 @@
 redirect_if_cannot_see_detail();
 get_header();
 ?>
-<div class="container">    
+<div class="container">
     <div id="content" class="clearfix row">
         <div class="col-sm-12 clearfix" role="main">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -44,7 +44,7 @@ get_header();
         <!-- all product -->
         <div class="col-md-6">
             <h3 class="border-left inline uppercase">
-                <?php _e("All products", "wpbootstrap"); ?> - <span class="placeithere"></span>
+                <?php _e("All products", "wpbootstrap"); ?>
             </h3>
         </div>
         <div class="col-md-3 hidden">
@@ -112,7 +112,7 @@ get_header();
                                     if ($term == "") {
                                         $term = '-';
                                     }
- 
+
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
@@ -138,18 +138,13 @@ get_header();
                                     $yield = !empty($yield) ? ($yield) : "-";
                                             
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : __('free', "wpbootstrap");                                  
-                                      
-                                    if ($rental_status == 1 ) {
-                                        
+                                    if ($rental_status == 1) {
                                         $rental_status = __('rented', "wpbootstrap");
-                                        $term =  __('Rented apartment', "wpbootstrap");
-                                        
-                                    } 
-                                    
+                                    }
+       
                                     $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $status = statusL($prop);
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
-                                    
                                     $data_object.="{city:\"" . $city . "\",name:\"" . $name . "\", district:\"" . $district . "\", hnumber:" . $hnumber . ",  street:\"" . $street . "\", area:" . $area . ", zip:" . $zip . ", rooms:" . $rooms . ", flatnum:\"" . $flat_num . "\", references:\"" . $reference . "\",price: " . esc_attr($prop['preise|kaufpreis']) . ", fprice: \"" . esc_attr(price_format($prop['preise|kaufpreis'])) . "\" ,pricem: " . $pricem . ", fpricem: \"" . price_format($pricem) . "\"  , url:\"" . $url . "\", image_url:  \"" . $url_image . "\", floor:" . $floor . ", rstatus: \"" . $rental_status . "\", status: \"" . $status . "\", status_raw: \"" . $status_raw . "\", favorite: \"" . $favor . "\", favorite_text: \"" . $favorite_text . "\",type: \"" . $term . "\", yield: \"".$yield."\", idval: " . $idval . " },";
 
                                     if ($status == 'OFFEN') {
@@ -258,6 +253,7 @@ get_header();
             }
         });
     });
+
     function format(comma, period) {
         comma = comma || ',';
         period = period || '.';
@@ -314,10 +310,6 @@ get_header();
         checkeddistrict = checkeddistrict.substring(1, checkeddistrict.length - 1);
         //uppercase sensitive
 
-
-
-
-
         var checkedtype = '';
         var helpert = [];
         jQuery('.type-checkbox:checked').each(function() {
@@ -329,13 +321,9 @@ get_header();
         checkedtype = checkedtype.substring(1, checkedtype.length - 1);
         //uppercase sensitive
         values.References = values.References.toUpperCase();
-
-        
         var fcity = checkedcitiesf;
         var fdistrict = checkeddistrict;
-        
         var ftype = checkedtype; 
-        
         var freferences = values.References;
         var fareaf = values.Areaf;
         var fareat = values.Areat;
@@ -401,12 +389,10 @@ get_header();
         if (ftype != '')
         {
             var i = 0;
-            
-            var output_set; 
+            var output_set;
             var type_filter = PourOver.makeExactFilter("type", helpert);
-            collection.addFilters([type_filter]); 
+            collection.addFilters([type_filter]);
             jQuery('.type-checkbox:checked').each(function() {
-               
                 var typefilter = jQuery(this).val();
                 var typess = collection.filters.type.getFn(typefilter);
                 if (i == 0)
@@ -527,7 +513,8 @@ get_header();
             {
                 finalfilter = collection.filters.area_range.getFn([fareaf, 999]);
             }
-        } 
+        }
+
         if (froomsf != '' || froomst != '')
         {
             var rooms_range_filter = PourOver.makeRangeFilter("rooms_range", [[froomsf, froomst]], {attr: "rooms"});
@@ -542,8 +529,11 @@ get_header();
             }
         }
         // var group_filter = city_f.and(price_range_f);  
-        var myfilterfinal = collection.get(finalfilter.cids); 
-        datatable = myfilterfinal; 
+        var myfilterfinal = collection.get(finalfilter.cids);
+
+        datatable = myfilterfinal;
+ 
+
         if (jQuery.isEmptyObject(myfilterfinal))
         {
             jQuery("#table_data_filter").empty();
@@ -556,9 +546,8 @@ get_header();
         else
         {
             jQuery("#table_data_filter").empty();
-            jQuery("#list").empty(); 
-            var totalcount = 0;     
-            jQuery.each(myfilterfinal, function(i, val) { 
+            jQuery("#list").empty();
+            jQuery.each(myfilterfinal, function(i, val) {
                 if (val.status_raw != 'OFFEN')
                 {
                     var stats = "<span class=\"green\">" + val.status + "</span>";
@@ -566,7 +555,7 @@ get_header();
                 else
                 {
                     var stats = "";
-                }  
+                } 
                 var backgroundClass = 0 != i % 2 ? ' no-background' : ' background';
                 var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass + "\"><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + val.area + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td>"+ val.yield +"</td><td>" + val.status + "</td></tr>";
 
@@ -581,37 +570,44 @@ get_header();
                                 },
                          usNumberFormat:false           
                       } 
-                );
-        
+                ); 
                 //console.log(val); 
                 var row_data = "<div class=\"row apartment-row apartment-row-" + val.idval + ""+ backgroundClass + "\"><div class=\"col-md-12 flats_box\"><div class=\"col-md-3\"> " + stats + " <a href=\"" + val.url + "\"><img src=\"" + val.image_url + "\" class=\"img-responsive\" /></a></div><div class=\"col-md-9\"> <h4 class=\"blue\"><a href=\"" + val.url + "\">" + val.name + "<small class=\"clearfix\"><i class=\"red fa fa-map-marker\"></i> " + val.street + " " + val.hnumber + ", " + val.city + ", " + val.district + ", " + val.zip + "</small></a></h4><div class=\"row\"><div class=\"col-md-3\"><span class=\"data_item clearfix\"><strong><?php _e("Ref.:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.references + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Flat n°:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.flatnum + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rental status: ", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.rstatus + "</span></span></div><div class=\"col-md-3\"><span class=\"data_item clearfix\"> <strong><?php _e("Floor:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.floor + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Rooms:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.rooms + "</span></span><span class=\"data_item clearfix\"><strong><?php _e("Surface:  ", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.area + " m²</span></span></div><div class=\"col-md-3\"> <span class=\"data_item clearfix\"><strong><?php _e("Price:", "wpbootstrap"); ?></strong><span class=\"pull-right\">" + val.fprice + " &euro; </span></span><span class=\"data_item clearfix\"><strong><?php _e("Price/m2:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> " + val.fpricem + " €/m²</span></span><span class=\"data_item clearfix\"><strong><?php _e("Yield:", "wpbootstrap"); ?></strong><span class=\"pull-right\"> " + val.yield + "</span></span></div><div class=\"col-md-3\"><a class=\"add-to-preference pull-right\" href=\"#myModal\" data-flat_id=\"" + val.idval + "\" data-toggle=\"modal\"><strong class=\"blue clearfix\"><i class=\"fa " + val.favorite + "\"></i><span class=\"fav-label\">" + val.favorite_text + "</span></strong></a><a href=\"" + val.url + "\" class=\"pull-right\"><?php _e("VIEW DETAILS:", "wpbootstrap"); ?></a></div></div></div></div></div>";
-                jQuery("#list").append(row_data); 
-                totalcount++; 
-                });  
-                jQuery( '.placeithere' ).text(totalcount);               
+                jQuery("#list").append(row_data);
+            });
         }
     });
 </script>     
-<script>    
-    jQuery(document).ready(function() {   
-        var total_item = 0;   
+<script>   
+     
+    jQuery(document).ready(function() {  
+        
+        var total_item = 0;  
+         
         jQuery.each(datatable, function(i, val) {
-        total_item++;  
+        total_item++;
         });  
-        jQuery( '.placeithere' ).text(total_item);   
         var count = 10;
-        var load_next_item = true;  
-        jQuery( ".searchbutton" ).click(function() { 
-        total_item = -1; 
-        }); 
-        jQuery(window).scroll(function() {  
-            console.log(total_item); 
+        var load_next_item = true; 
+       
+        jQuery( ".searchbutton" ).click(function() {
+         
+         total_item = -1;
+         console.log(total_item);
+         
+        });
+       
+        jQuery(window).scroll(function() { 
+             
+            console.log(total_item);
+  
             if (count >= (total_item)) {
                 return;
             }
             if (load_next_item && (jQuery(window).scrollTop() >= jQuery(document).height() - (jQuery(window).height() + 10))) {
                 var starter = count;
-                console.log(count); 
+                console.log(count);
+                
                 count = count + 10;
                 var ie = 0;
                 jQuery.each(datatable, function(i, val) {
@@ -658,4 +654,4 @@ get_header();
         })
     });
 </script>  
-<?php get_footer(); ?>
+<?php get_footer(); ?> 
