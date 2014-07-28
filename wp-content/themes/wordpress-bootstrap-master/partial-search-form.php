@@ -44,8 +44,7 @@
                 <div class="col-md-6 column">
                        <div class="form-group">  
                             <label for="accommodation"><?php _e("Type of accommodation:", "wpbootstrap"); ?></label>                                                 
-                        <div class=""> 
-                            
+                        <div class="">  
                             <label class="checkbox-inline">
                                 <input type="checkbox" id="inlineCheckbox-<?php _e("Rented apartment", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Rented apartment", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Rented apartment", "wpbootstrap"); ?>"><?php _e("Rented apartment", "wpbootstrap"); ?>
                             </label>
@@ -55,10 +54,8 @@
                             <label class="checkbox-inline">
                                 <input type="checkbox" id="inlineCheckbox-<?php _e("Commercial Unit", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Commercial Unit", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Commercial Unit", "wpbootstrap"); ?>"><?php _e("Commercial Unit", "wpbootstrap"); ?>
                             </label>  
-                            
                         </div>        
-                    </div> 
-                    
+                    </div>  
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="Areaf"><?php _e("Area from (m2):", "wpbootstrap"); ?></label><input name="Areaf" class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />
@@ -66,8 +63,7 @@
                         <div class="form-group col-md-6">
                             <label for="Areat"><?php _e("Area to (m2):", "wpbootstrap"); ?></label><input name="Areat" class="form-control input-lg" id="Areat" type="text" placeholder="Area to:" />
                         </div>
-                    </div>   
-                    
+                    </div>    
                     <div class="row">    
                         <div class="form-group col-md-6">
                             <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label> 
