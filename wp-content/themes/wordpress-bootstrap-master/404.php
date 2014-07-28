@@ -9,9 +9,6 @@
                 <div class="hero-unit">
                     <h1><?php _e("404 - Article Not Found", "wpbootstrap"); ?></h1>
                     <p><?php _e("This is embarassing. We can't find what you were looking for.", "wpbootstrap"); ?></p>
-
-                     
-                    
                 </div> 
             </header> <!-- end article header --> 
             <section class="post_content"> 
@@ -21,13 +18,9 @@
                         <?php get_search_form(); ?>
                     </div>
                 </div>
-
             </section> <!-- end article section -->
-
             <footer>
-
             </footer> <!-- end article footer -->
-
         </article> <!-- end article -->
 
     </div> <!-- end #main -->
