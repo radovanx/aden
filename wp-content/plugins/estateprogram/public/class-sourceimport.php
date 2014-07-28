@@ -390,8 +390,14 @@ class SourceImport {
                           //continue;
                           }
                          */
-                    } else if('FILMLINK' == $gruppe) {                        
-                        $props['youtube'] = $image_file;
+                    } else if('FILMLINK' == $gruppe) {
+                        
+                        if(empty($props['youtube'])){
+                            $props['youtube'] = array();
+                        }
+                        
+                        $props['youtube'][] = $image_file;
+                        //$props['youtube'] = $image_file;
                     } else {
 
                         $image_path = $temp_dir . DIRECTORY_SEPARATOR . $image_file;

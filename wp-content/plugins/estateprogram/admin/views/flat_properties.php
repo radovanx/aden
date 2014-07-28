@@ -1,50 +1,7 @@
 <?php
 $tags = EstateProgram::$tags_apartment;
-
-
-/*
-  global $q_config;
-
-  $el = qtrans_getSortedLanguages();
-
-
-  //qtrans_createTitlebarButton($parent, $language, $target, $id)
-  //qtrans_createTitlebarButton('postexcerpt', $language, 'excerpt', 'qtrans_switcher_postexcerpt_'.$language);
-  ?>
-  <script>
-  <?php
-  foreach ($el as $language) {
-  echo qtrans_createTitlebarButton('flat-properties', $language, 'properties', 'qtrans_properties_' . $language);
-  //echo qtrans_createTextArea('postexcerpt', $language, 'excerpt', 'qtrans_switcher_postexcerpt_' . $language);
-  }
-  ?>
-  </script> */
-
 global $q_config;
 $el = qtrans_getSortedLanguages();
-
-/*
-  ?>
-  <script type="text/javascript">
-  <?php
-  echo $q_config['js']['qtrans_is_array'];
-  echo $q_config['js']['qtrans_split'];
-  echo $q_config['js']['qtrans_integrate'];
-  echo $q_config['js']['qtrans_switch_postbox'];
-  echo $q_config['js']['qtrans_use'];
-
-  foreach ($el as $language) {
-  echo qtrans_createInfoTitlebarButton('flat_properties', $language, 'listproperties', 'qtrans_switcher_fl_' . $language);
-  //echo qtrans_createTextArea('flat_properties', $language, 'listproperties', 'qtrans_switcher_postexcerpt_' . $language);
-  }
-  ?>
-
-  jQuery(document).ready(function() {
-  //jQuery('.listproperties').hide();
-  qtrans_switch_listpostbox('flat_properties', 'listproperties', '<?php echo $q_config['default_language'] ?>');
-  });
-  </script>
- */
 ?>
 <div id="flat-properties">
     <?php foreach ($el as $lang): ?>
@@ -53,18 +10,11 @@ $el = qtrans_getSortedLanguages();
             <?php
             $props = get_post_meta($post->ID, 'flat_props_' . $lang, true);
 
-
-
-
             if (!empty($props)) {
-                //$props = unserialize($props);
-
                 ksort($props);
-
-                //$data = array();
                 ?>
 
-                <table>            
+                <table>
                     <?php
                     reset($props);
                     $key = key($props);
@@ -82,20 +32,50 @@ $el = qtrans_getSortedLanguages();
                                 <td colspan="2">&nbsp</td>
                             </tr>
                         <?php endif; ?>
+
+                        <?php
+                        if ('youtube' == $key):
+                            if (is_array($props[$key])):
+                                ?>
+                                <?php foreach ($props[$key] as $v): ?>
+                                    <tr>
+                                        <th class="textleft">
+                                            <?php echo esc_attr($key) ?>
+                                        </th>
+                                        <td>
+                                            <?php echo esc_attr($v) ?>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                endforeach;
+                            else:
+                                ?>
+                                <tr>
+                                    <th class="textleft">
+                                        <?php echo esc_attr($key) ?>
+                                    </th>
+                                    <td>
+                                        <?php echo esc_attr($val) ?>
+                                    </td>
+                                </tr>
+                            <?php
+                            endif;
+                            continue;
+                        endif;
+                        ?>
                         <tr>
-                            <th class="textleft">                                    
-                                <?php echo esc_attr($key) ?>                                    
+                            <th class="textleft">
+                                <?php echo esc_attr($key) ?>
                             </th>
                             <td>
                                 <?php echo esc_attr($val) ?>
                             </td>
-                        <tr>
-                            <?php
-                            $tag = $prev_tag;
-                        endforeach;
-                        ?>
+                        </tr>
+                        <?php
+                        $tag = $prev_tag;
+                    endforeach;
+                    ?>
                 </table>
-
                 <?php
             } else {
                 // make default inputs

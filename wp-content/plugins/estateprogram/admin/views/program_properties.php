@@ -97,12 +97,17 @@
 <tr>
     <th colspan="2"><h3>&nbsp</h3></th>
 </tr>
+
+<?php 
+$_program_video = get_post_meta($post->ID, '_program_video', true);
+for($i = 0; $i < 5; $i++): ?>
 <tr>
     <th class="textleft"><label for="_program_video"><?php _e('Video url', $this->plugin_slug) ?></label></th>
     <td>
-        <input id="_program_video" style="width:340px;" type="text" name="_program_video" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_video', true)) ?>">
+        <input id="_program_video" style="width:340px;" type="text" name="_program_video[<?php echo $i ?>]" value="<?php echo isset($_program_video[$i]) ? esc_attr($_program_video[$i]) : ''  ?>">
     </td>
 </tr>
+<?php endfor; ?>
 <tr>
     <th colspan="2"><h3>&nbsp</h3></th>
 </tr>

@@ -21,8 +21,6 @@
  * @package EstateProgram
  * @author  Your Name <email@example.com>
  */
-
-
 require 'class-sourceimport.php';
 
 /**
@@ -116,8 +114,8 @@ class EstateProgram {
      * @since     1.0.0
      */
     private function __construct() {
-        
-        
+
+
 
         EstateProgram::$cron_url = plugins_url('/cron/script.php', __FILE__);
 
@@ -339,22 +337,19 @@ class EstateProgram {
                 'parent_item_colon' => '',
                 'menu_name' => __('Flats', $this->plugin_slug)
             ),
-            'public' => true, 
+            'public' => true,
             'supports' => array(
-            'thumbnail',
-            'title',
-            'editor',
-            'excerpt',
-            'author'
-            
+                'thumbnail',
+                'title',
+                'editor',
+                'excerpt',
+                'author'
             ),
-            
             'menu_position' => 8,
             'rewrite' => array(
-            'slug' => 'flat',
-            
+                'slug' => 'flat',
             ),
-            //'show_in_menu' => 'program_overview'
+                //'show_in_menu' => 'program_overview'
         );
 
         register_post_type('flat', $args);
@@ -418,6 +413,54 @@ class EstateProgram {
         );
 
         register_taxonomy('location', array('flat'), $args);
+
+        /*
+          $args = array(
+          'hierarchical' => true,
+          'labels' => array(
+          'name' => _x('Parking', $this->plugin_slug),
+
+          'singular_name' => _x('City', 'taxonomy singular name'),
+          'search_items' => __('Find city'),
+          'all_items' => __('All cities'),
+          'parent_item' => __('Parent city'),
+          'parent_item_colon' => __('Parent city'),
+          'edit_item' => __('Edit city'),
+          'update_item' => __('Update city'),
+          'add_new_item' => __('Create city'),
+          'new_item_name' => __('New city'),
+          'menu_name' => __('Parking', $this->plugin_slug)
+          ),
+          'show_ui' => true,
+          'show_admin_column' => true,
+          'query_var' => true,
+          'rewrite' => array('slug' => 'parking'),
+          //'show_in_menu' => 'program_overview'
+          );
+
+          register_taxonomy('parking', array('program'), $args);
+         */
+
+        ############################################################
+        # flat
+
+
+
+        /*
+          $args = array(
+          'hierarchical' => true,
+          'labels' => array(
+          'name' => __('Structure', $this->plugin_slug),
+          'menu_name' => __('Structure', $this->plugin_slug)
+          ),
+          'show_ui' => true,
+          'show_admin_column' => true,
+          'query_var' => true,
+          'rewrite' => array('slug' => 'structure'),
+          //'show_in_menu' => 'program_overview'
+          );
+
+          register_taxonomy('structure', array('flat'), $args); */
     }
 
     /**
@@ -502,6 +545,21 @@ class EstateProgram {
 
         $waiting_for_approval_role = get_role('waiting_for_approval');
         $waiting_for_approval_role->add_cap('only_demo');
+
+        //
+        $role_names = array(
+            'administrator',
+            'editor',
+            'author',
+            'contributor',
+            'subscriber',
+        );
+
+
+        foreach ($role_names as $role_name) {
+            $role = get_role($role_name);
+            $role->add_cap('see_contact');
+        }
 
         if (function_exists('is_multisite') && is_multisite()) {
 
