@@ -42,6 +42,7 @@ get_header();
 
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php echo $title ?>
+                            <a href="javascript:history.go(-1)" class="pull-right doublesmall"><?php _e('<- back', "wpbootstrap"); ?></a> 
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
                             <span class="apartment-row-<?php echo $post->ID ?>">
                                 <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
@@ -50,7 +51,7 @@ get_header();
                                         <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
                                     </strong>
                                 </a>
-                            </span>
+                            </span> 
                         </h1>
                     </div>
                 </div>
@@ -129,8 +130,12 @@ get_header();
 
                                 <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
                                 <a  href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
+                                
+                                <?php if (current_user_can('see_contact')): ?>    
                                 <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
-                                <?php if (!empty($props['dropbox|building'])): ?>
+                                <?php endif; ?>
+
+                                 <?php if (!empty($props['dropbox|building'])): ?>
                                     <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
                                 <?php endif; ?>
                                 <?php if (!empty($props['dropbox|flat'])): ?>
