@@ -142,6 +142,16 @@ get_header();
                                 break;
                         } 
                         endif;
+
+                        add_action( 'wpcf7_before_send_mail', 'my_dynamic_attachments' );
+                        function my_dynamic_attachments($cf7)
+                        {
+                        //check if it is the registration form
+                        // get the dropdown menu value and the corresponding file   
+                        $filename = $podcast_file;
+                        $cf7->uploaded_files = array('course-details'=>$filename);
+                        }
+                            
                         ?>                         
 
                     </div> 
