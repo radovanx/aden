@@ -935,8 +935,6 @@ if (!class_exists('Theme_My_Login_Custom_Email')) :
 
 endif;
 
-if (is_admin()){
+if (is_admin())
     include_once( dirname(__FILE__) . '/admin/custom-email-admin.php' );
-}
 
-?>
