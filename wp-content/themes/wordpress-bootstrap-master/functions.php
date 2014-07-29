@@ -1367,5 +1367,4 @@ function heatingSystemL($props) {
     function set_content_type($content_type) {
         return 'text/html';
     }
-
 ?>
