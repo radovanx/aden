@@ -124,6 +124,10 @@ class SourceImport {
         if ($node->getName() == 'anhaenge') {
             return;
         }
+        
+        if('immobilie' == $prefix){
+            $prefix = '';
+        }
 
         if (!empty($prefix)) {
             $prefix .= '|';
@@ -146,7 +150,7 @@ class SourceImport {
 
                 $return[$prefix . $child->getName()] = $string;
 
-                $children = SourceImport::parse_nodes($child, $child->getName());
+                $children = SourceImport::parse_nodes($child, $prefix . $child->getName());
 
                 $return = array_merge($return, (array) $children);
             }
@@ -235,6 +239,8 @@ class SourceImport {
 
                     if (!empty($ret['freitexte|objekttitel'])) {
                         $post_information['post_title'] = $post_title . '<!--:' . $lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
+                    } else {
+                        $post_information['post_title'] = $unique_identificator;
                     }
                     $post_information['ID'] = $apartment_id;
 
@@ -245,6 +251,10 @@ class SourceImport {
                         $post_information['post_title'] = '<!--:' . $lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
                     } else {
                         $post_information['post_title'] = '';
+                    }
+                    
+                    if(empty($post_information['post_title'])){
+                        $post_information['post_title'] = $unique_identificator;
                     }
 
                     $apartment_id = wp_insert_post($post_information);
@@ -258,9 +268,10 @@ class SourceImport {
 
                     $split = explode('|', $key);
 
+                    /*
                     if ((false == (rtrim($val)) && count($split) > 1)) {
                         continue;
-                    }
+                    }*/
                     // podržim si město
                     if ('geo|ort' == $key) {
                         $city = $val;

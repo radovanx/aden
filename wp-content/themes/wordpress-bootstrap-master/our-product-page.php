@@ -86,7 +86,7 @@ get_header();
                         <tbody id="table_data_filter">    
                             <?php
                             $lang = qtrans_getLanguage();
-                            $flat_props = EstateProgram::get_all_flats($post->ID, $lang);
+                            $flat_props = EstateProgram::get_all_flats($lang);
                             $i = 0;
                             $data_object = '';
                             
@@ -209,7 +209,7 @@ get_header();
                 <div class="col-md-12 column border tab-pane active" id="list">     
                     <?php
                     $lang = qtrans_getLanguage();
-                    $flat_props = EstateProgram::get_all_flats($post->ID, $lang, 0, 10);
+                    $flat_props = EstateProgram::get_all_flats($lang, 0, 10);
                     ?>          
                     <?php include TEMPLATEPATH . '/row_row.php'; ?>  
                 </div>   

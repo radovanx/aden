@@ -113,7 +113,7 @@ get_header();
                             </span>
                             <div class="col-md-12 column product-key-info">
                                 <address>
-                                    <strong><?php // echo esc_attr($props['kontaktperson|firma'])      ?></strong>
+                                    <strong><?php // echo esc_attr($props['kontaktperson|firma'])       ?></strong>
                                     <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer'])  ?> <?php //echo esc_attr($props['kontaktperson|strasse'])  ?>
                                     <?php // echo esc_attr($props['kontaktperson|ort'])  ?> <?php //echo esc_attr($props['kontaktperson|plz'])  ?><br>
@@ -138,7 +138,7 @@ get_header();
                                 </span>
 
                                 <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
-                                <a  href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
+                                <a target="blank" href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
 
                                 <?php if (current_user_can('see_contact')): ?>
                                     <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
@@ -160,168 +160,168 @@ get_header();
                         <!-- apartment properties -->
                         <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
                         <ul class="list-unstyled featured-single-flat bigger-text">
-<ul class="list-unstyled featured-single-flat bigger-text">
+                            <ul class="list-unstyled featured-single-flat bigger-text">
 
-                            <!-- featrues -->
-                            <?php
-                            $cells = array();
+                                <!-- featrues -->
+                                <?php
+                                $cells = array();
 
-                            if (!empty($props['verwaltung_techn|objektnr_extern'])) {
-                                $cells[] = array(
-                                    __('Ref:', 'wpbootstrap'),
-                                    esc_attr($props['verwaltung_techn|objektnr_extern'])
-                                );
-                            }
+                                if (!empty($props['verwaltung_techn|objektnr_extern'])) {
+                                    $cells[] = array(
+                                        __('Ref:', 'wpbootstrap'),
+                                        esc_attr($props['verwaltung_techn|objektnr_extern'])
+                                    );
+                                }
 
-                            if (!empty($props['zustand_angaben|baujahr'])) {
-                                $cells[] = array(
-                                    __("Year of construction: ", "wpbootstrap"),
-                                    esc_attr($props['zustand_angaben|baujahr'])
-                                );
-                            }
+                                if (!empty($props['zustand_angaben|baujahr'])) {
+                                    $cells[] = array(
+                                        __("Year of construction: ", "wpbootstrap"),
+                                        esc_attr($props['zustand_angaben|baujahr'])
+                                    );
+                                }
 
-                            if (!empty($props['preise|kaufpreis_pro_qm'])) {
-                                $cells[] = array(
-                                    __('Purchase price /sm:', 'wpbootstrap'),
-                                    esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €'
-                                );
-                            }
+                                if (!empty($props['preise|kaufpreis_pro_qm'])) {
+                                    $cells[] = array(
+                                        __('Purchase price /sm:', 'wpbootstrap'),
+                                        esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €'
+                                    );
+                                }
 
-                            if (!empty($props['objektart|wohnung|wohnungtyp'])) {
-                                $cells[] = array(
-                                    __('Apartment type:', 'wpbootstrap'),
-                                    apartmentTypeL($props)
-                                );
-                            }
+                                if (!empty($props['objektart|wohnung|wohnungtyp'])) {
+                                    $cells[] = array(
+                                        __('Apartment type:', 'wpbootstrap'),
+                                        apartmentTypeL($props)
+                                    );
+                                }
 
-                            if (!empty($props['geo|etage'])) {
-                                $cells[] = array(
-                                    __('Floor:', 'wpbootstrap'),
-                                    esc_attr($props['geo|etage'])
-                                );
-                            }
+                                if (!empty($props['geo|etage'])) {
+                                    $cells[] = array(
+                                        __('Floor:', 'wpbootstrap'),
+                                        esc_attr($props['geo|etage'])
+                                    );
+                                }
 
-                            if (!empty($props['geo|anzahl_etagen'])) {
-                                $cells[] = array(
-                                    __('Number of floors:', 'wpbootstrap'),
-                                    (int) $props['geo|anzahl_etagen']
-                                );
-                            }
+                                if (!empty($props['geo|anzahl_etagen'])) {
+                                    $cells[] = array(
+                                        __('Number of floors:', 'wpbootstrap'),
+                                        (int) $props['geo|anzahl_etagen']
+                                    );
+                                }
 
-                            if (!empty($props['flaechen|anzahl_zimmer'])) {
-                                $cells[] = array(
-                                    __('Rooms:', 'wpbootstrap'),
-                                    (int) $props['flaechen|anzahl_zimmer']
-                                );
-                            }
+                                if (!empty($props['flaechen|anzahl_zimmer'])) {
+                                    $cells[] = array(
+                                        __('Rooms:', 'wpbootstrap'),
+                                        (int) $props['flaechen|anzahl_zimmer']
+                                    );
+                                }
 
-                            if (!empty($props['flaechen|anzahl_badezimmer'])) {
-                                $cells[] = array(
-                                    __('Bathroom(s):', 'wpbootstrap'),
-                                    (int) $props['flaechen|anzahl_badezimmer']
-                                );
-                            }
+                                if (!empty($props['flaechen|anzahl_badezimmer'])) {
+                                    $cells[] = array(
+                                        __('Bathroom(s):', 'wpbootstrap'),
+                                        (int) $props['flaechen|anzahl_badezimmer']
+                                    );
+                                }
 
-                            if (!empty($props['ausstattung|fahrstuhl|PERSONEN'])) {
-                                $elevator = isset($props['ausstattung|fahrstuhl|PERSONEN']) ? __("Yes", 'wpbootstrap') : __("No", 'wpbootstrap');
+                                if (!empty($props['ausstattung|fahrstuhl|PERSONEN'])) {
+                                    $elevator = isset($props['ausstattung|fahrstuhl|PERSONEN']) ? __("Yes", 'wpbootstrap') : __("No", 'wpbootstrap');
 
-                                $cells[] = array(
-                                    __('Elevator:', 'wpbootstrap'),
-                                    $elevator
-                                );
-                            }
+                                    $cells[] = array(
+                                        __('Elevator:', 'wpbootstrap'),
+                                        $elevator
+                                    );
+                                }
 
-                            $hs = heatingSystemL($props);
-                            if (!empty($hs)) {
-                                $cells[] = array(
-                                    __('Type of heating system:', 'wpbootstrap'),
-                                    heatingSystemL($props)
-                                );
-                            }
+                                $hs = heatingSystemL($props);
+                                if (!empty($hs)) {
+                                    $cells[] = array(
+                                        __('Type of heating system:', 'wpbootstrap'),
+                                        heatingSystemL($props)
+                                    );
+                                }
 
-                            if (!empty($props['preise|stp_sonstige|stellplatzmiete'])) {
-                                $parking = 0 == (int) ($props['preise|stp_sonstige|stellplatzmiete']) ? __('No', 'wpbootstrap') : __('Yes', 'wpbootstrap');
-                                $cells[] = array(
-                                    __('Garage / parking spot:', 'wpbootstrap'),
-                                    $parking
-                                );
-                            }
+                                if (!empty($props['preise|stp_sonstige|stellplatzmiete'])) {
+                                    $parking = 0 == (int) ($props['preise|stp_sonstige|stellplatzmiete']) ? __('No', 'wpbootstrap') : __('Yes', 'wpbootstrap');
+                                    $cells[] = array(
+                                        __('Garage / parking spot:', 'wpbootstrap'),
+                                        $parking
+                                    );
+                                }
 
-                            if (!empty($props['preise|aussen_courtage'])) {
-                                $cells[] = array(
-                                    __('Buyer commission (incl. VAT):', 'wpbootstrap'),
-                                    esc_attr($props['preise|aussen_courtage'])
-                                );
-                            }
+                                if (!empty($props['preise|aussen_courtage'])) {
+                                    $cells[] = array(
+                                        __('Buyer commission (incl. VAT):', 'wpbootstrap'),
+                                        esc_attr($props['preise|aussen_courtage'])
+                                    );
+                                }
 
-                            if (!empty($props['preise|hausgeld'])) {
-                                $cells[] = array(
-                                    __('Charges:', 'wpbootstrap'),
-                                    $props['preise|hausgeld']
-                                );
-                            }
+                                if (!empty($props['preise|hausgeld'])) {
+                                    $cells[] = array(
+                                        __('Charges:', 'wpbootstrap'),
+                                        $props['preise|hausgeld']
+                                    );
+                                }
 
-                            if (!empty($props['preise|warmiete'])) {
-                                $cells[] = array(
-                                    __('Loyer CC  (charges comprises):', 'wpbootstrap'),
-                                    $props['preise|warmiete']
-                                );
-                            }
+                                if (!empty($props['preise|warmiete'])) {
+                                    $cells[] = array(
+                                        __('Loyer CC  (charges comprises):', 'wpbootstrap'),
+                                        $props['preise|warmiete']
+                                    );
+                                }
 
-                            if (!empty($props['preise|kaltmiete'])) {
-                                $cells[] = array(
-                                    __('Loyer HC (Hors charges):', 'wpbootstrap'),
-                                    $props['preise|kaltmiete']
-                                );
-                            }
+                                if (!empty($props['preise|kaltmiete'])) {
+                                    $cells[] = array(
+                                        __('Loyer HC (Hors charges):', 'wpbootstrap'),
+                                        $props['preise|kaltmiete']
+                                    );
+                                }
 
-                            if (!empty($props['energiepass|epart'])) {
-                                $cells[] = array(
-                                    __('Type de passeport:', 'wpbootstrap'),
-                                    epartL($props)
-                                );
-                            }
+                                if (!empty($props['energiepass|epart'])) {
+                                    $cells[] = array(
+                                        __('Type de passeport:', 'wpbootstrap'),
+                                        epartL($props)
+                                    );
+                                }
 
-                            if (!empty($props['energiepass|gueltig_bis'])) {
+                                if (!empty($props['energiepass|gueltig_bis'])) {
 
-                                $date = DateTime::createFromFormat('Y-m-d', $props['energiepass|gueltig_bis']);
+                                    $date = DateTime::createFromFormat('Y-m-d', $props['energiepass|gueltig_bis']);
 
-                                $cells[] = array(
-                                    __('Valable jusqu’à:', 'wpbootstrap'),
-                                    $date->format("d.m.Y")
-                                );
-                            }
+                                    $cells[] = array(
+                                        __('Valable jusqu’à:', 'wpbootstrap'),
+                                        $date->format("d.m.Y")
+                                    );
+                                }
 
-                            if (!empty($props['energiepass|energieverbrauchkennwert'])) {
-                                $cells[] = array(
-                                    __('Consommation énergétique finale:', 'wpbootstrap'),
-                                    $props['energiepass|energieverbrauchkennwert']
-                                );
-                            }
+                                if (!empty($props['energiepass|energieverbrauchkennwert'])) {
+                                    $cells[] = array(
+                                        __('Consommation énergétique finale:', 'wpbootstrap'),
+                                        $props['energiepass|energieverbrauchkennwert']
+                                    );
+                                }
 
-                            if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
-                                $cells[] = array(
-                                    __('Calcul automatique du Yield:', 'wpbootstrap'),
-                                    round($props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5) . ' ' . periodeL($props)
-                                );
-                            }
-                            
-                            if (!empty($yield)) {
-                                $cells[] = array(
-                                    __(" Yield:", "wpbootstrap"),
-                                    $yield
-                                );
-                            }                            
+                                if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
+                                    $cells[] = array(
+                                        __('Calcul automatique du Yield:', 'wpbootstrap'),
+                                        round($props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5) . ' ' . periodeL($props)
+                                    );
+                                }
 
-                            foreach ($cells as $cell):
-                                ?>
-                                <li class="col-md-6 border-bottom">
-                                    <strong><?php echo $cell[0] ?></strong>
-                                    <span class="pull-right"><?php echo $cell[1] ?></span>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
-                        <!-- /apartment properties -->
+                                if (!empty($yield)) {
+                                    $cells[] = array(
+                                        __(" Yield:", "wpbootstrap"),
+                                        $yield
+                                    );
+                                }
+
+                                foreach ($cells as $cell):
+                                    ?>
+                                    <li class="col-md-6 border-bottom">
+                                        <strong><?php echo $cell[0] ?></strong>
+                                        <span class="pull-right"><?php echo $cell[1] ?></span>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <!-- /apartment properties -->
                     </div>
 
                 </div>
@@ -461,9 +461,7 @@ get_header();
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
 
 <script>
-
 // MAP //
-
     var params;
     var lang = <?php echo $langt; ?>;
     var long = <?php echo $longt; ?>;
@@ -471,19 +469,11 @@ get_header();
 // dom ready
 
     jQuery(function() {
-
-//if (typeof google !== "undefined"){
-
         if (window.google && google.maps) {
-
 // Map script is already loaded
-
             initializeMap();
-
         } else {
-
             lazyLoadGoogleMap();
-
         }
 
     });
@@ -507,7 +497,6 @@ get_header();
             title: "<?php echo $title; ?>"
 
         });
-
     }
 
     function lazyLoadGoogleMap() {
@@ -516,16 +505,10 @@ get_header();
 
                 .done(function(script, textStatus) {
 
-//alert("Google map script loaded successfully");
-
                 })
-
                 .fail(function(jqxhr, settings, ex) {
 
-//alert("Could not load Google Map script: " + jqxhr);
-
                 });
-
     }
 
     function initializeMap() {
@@ -539,11 +522,8 @@ get_header();
 <script>
 
     jQuery(function() {
-
         jQuery('#recomend-form').submit(function(event) {
-
             jQuery('#recomend-form .form-response').html('').hide();
-
             var data = {
                 'id': <?php echo $post->ID ?>,
                 'receiver_email': jQuery('#receiver_email').val(),
@@ -558,48 +538,30 @@ get_header();
                 url: '<?php echo admin_url('admin-ajax.php'); ?>',
                 data: data,
                 beforeSend: function() {
-
                     jQuery('#form-response').html('').hide();
-
                     jQuery('#send_recommendation').attr('disabled', 'disabled');
-
                     jQuery('#loading-recommand').show();
-
                 },
                 success: function(response) {
-
                     jQuery('#form-response').show().html('<div class="alert alert-success"><?php _e('Your recommendation has been successfully sent') ?></div>');
-
                     jQuery('.erase-after-sent').val('');
-
                 },
                 error: function(response) {
-
                     jQuery('#form-response').show().html('<div class="alert alert-danger">' + response.responseText + '</div>');
-
                 },
                 complete: function(response) {
-
                     jQuery('#send_recommendation').removeAttr('disabled');
-
                     jQuery('#loading-recommand').hide();
-
                 }
 
             });
-
             event.preventDefault();
-
         });
 
         jQuery('#recomendModal').on('hidden.bs.modal', function(e) {
-
             jQuery('#loading-recommand').hide();
-
             jQuery('.erase-after-sent').val('');
-
             jQuery('#form-response').html('').hide();
-
         });
 
     });
