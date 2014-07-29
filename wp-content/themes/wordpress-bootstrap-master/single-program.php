@@ -117,12 +117,18 @@ get_header();
                     </div>
                     <div class="border col-md-12 column border background contact_form_block margin-top">
                         <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
-                        <span class="phone red bold"><i class="fa fa-phone"></i><?php _e('+33 0632140564', 'wpbootstrap') ?></span>
- 
-                         
+                        <span class="phone red bold"><i class="fa fa-phone"></i><?php _e('+33 0632140564', 'wpbootstrap') ?></span> 
                         <?php if ( is_user_logged_in()): ?>
                         
-         
+                        
+                        
+                        <?php $podcast_file = get_post_meta($post->ID, 'podcast_file', true); ?>
+                        
+                        <?php 
+                        if(!empty($podcast_file))    
+                        echo '<h3><a href="'.$podcast_file.'" class="block padding-top"><i class="fa fa-download"></i>'.__(' Download', 'wpbootstrap').'</a></h3>'; 
+                        ?>
+                         
                         <?php
                         else:
                         $lang = qtrans_getLanguage();

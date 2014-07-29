@@ -230,6 +230,11 @@ class EstateProgram_Admin {
         }
     }
 
+    
+                
+
+
+    
     public function save() {
 
         global $post;
@@ -258,7 +263,9 @@ class EstateProgram_Admin {
                 //'_house_number',
                 //'_program_address',
                 '_program_hightlight',
-                '_program_commission'
+                '_program_commission',
+                 'podcast_file',
+                
             );
                 
             $this->process_save($post->ID, $meta_keys);
@@ -367,6 +374,12 @@ class EstateProgram_Admin {
         add_meta_box(
                 'program_hightlight', __('Program hightlight', $this->plugin_slug), array($this, 'program_hightlight'), 'program'
         );
+        
+        
+         add_meta_box(
+                'swp_file_upload', __('File Upload', $this->plugin_slug), array($this, 'swp_file_upload'), 'program'
+        );
+                
     }
 
     public function flat2program() {
@@ -402,7 +415,7 @@ class EstateProgram_Admin {
 
     public function program_properties() {
         global $post;
-        include_once( 'views/program_properties.php' );
+        include_once( 'views/program_properties.php' ); 
         wp_nonce_field(__FILE__, 'program_post_nonce');
     }
 
@@ -417,7 +430,19 @@ class EstateProgram_Admin {
         global $post;
         include_once( 'views/program_hightlight.php' );
     }
-
+    
+    public function swp_file_upload() {
+        global $post;
+        include_once( 'views/swp_file_upload.php' );
+    } 
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * Return an instance of this class.
      *
