@@ -260,9 +260,7 @@ class EstateProgram_Admin {
                 '_program_hightlight',
                 '_program_commission'
             );
-
-
-
+                
             $this->process_save($post->ID, $meta_keys);
         }
 
@@ -348,14 +346,11 @@ class EstateProgram_Admin {
     public function meta_boxes_setup() {
         add_action('add_meta_boxes', array($this, 'custom_boxes'));
     }
-
     /**
      *
      */
     public function custom_boxes() {
-        /* add_meta_box(
-          'campaigne_logo', __('Charity', $this->plugin_slug), array($this, 'campaign_logo_box'), 'campaign_item', 'side'
-          ); */
+                
 
         add_meta_box(
                 'program_properties', __('Program properties', $this->plugin_slug), array($this, 'program_properties'), 'program'

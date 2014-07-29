@@ -15,52 +15,7 @@
 
     <tr>
         <th colspan="2"><h3>&nbsp</h3></th>
-</tr>
-<!--
-<tr>
-    <th class="textleft"><label for="_program_street"><?php _e('Street', $this->plugin_slug); ?></label></th>
-    <td>
-        <input id="program-postcode" type="text" name="_program_street" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_street', true)) ?>">
-    </td>
-</tr>
-<tr>
-    <th class="textleft"><label for="_program_house_number"><?php _e('Houser number', $this->plugin_slug); ?></label></th>
-    <td>
-        <input id="program-postcode" type="text" name="_program_house_number" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_house_number', true)) ?>">
-    </td>
-</tr>
-<tr>
-    <th class="textleft"><label for="_program_region"><?php _e('Region', $this->plugin_slug); ?></label></th>
-    <td>
-        <input id="program-postcode" type="text" name="_program_region" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_region', true)) ?>">
-    </td>
-</tr>
-<tr>
-    <th class="textleft"><label for="_program_city"><?php _e('City', $this->plugin_slug); ?></label></th>
-    <td>
-        <input id="program-postcode" type="text" name="_program_city" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_city', true)) ?>">
-    </td>
-</tr>
-<tr>
-    <th class="textleft"><label for="program-postcode"><?php _e('Postcode', $this->plugin_slug); ?></label></th>
-    <td>
-        <input id="program-postcode" type="text" name="_program_postcode" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_postcode', true)) ?>">
-    </td>
-</tr>
--->
-<!--
-<tr>
-    <th class="textleft"><label for="_program_location"><?php _e('Location', $this->plugin_slug); ?></label></th>
-    <td>
-        <input id="_program_location" type="text" name="_program_location" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_location', true)) ?>">
-    </td>
-</tr>
-<tr>
-    <th class="textleft"><label for="_program_address"><?php _e('Address', $this->plugin_slug); ?></label></th>
-    <td>
-        <input id="program-postcode" type="text" name="_program_address" value="<?php echo esc_attr(get_post_meta($post->ID, '_program_address', true)) ?>">
-    </td>
-</tr>-->
+</tr> 
 
 <tr>
     <th class="textleft"><label for="_program_street"><?php _e('Street', $this->plugin_slug); ?></label></th>
@@ -93,7 +48,6 @@
     </td>
 </tr>
 
-
 <tr>
     <th colspan="2"><h3>&nbsp</h3></th>
 </tr>
@@ -110,8 +64,7 @@ for($i = 0; $i < 5; $i++): ?>
 <?php endfor; ?>
 <tr>
     <th colspan="2"><h3>&nbsp</h3></th>
-</tr>
-
+</tr> 
 <tr>
     <th class="textleft"><label for="_program_commission"><?php _e('Commission (incl. VAT)', $this->plugin_slug) ?></label></th>
     <td>
