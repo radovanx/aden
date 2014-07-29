@@ -20,19 +20,26 @@ get_header();
                             <div class="tab-pane" id="street_tab">
                                 <div id="gmapstreet" class="gmapstreet">street</div> 
                             </div>
-                            <div class="tab-pane fade" id="video_tab"> 
+                          <div class="tab-pane fade" id="video_tab">
                                 <?php
                                 $video = get_post_meta($post->ID, '_program_video', true);
-                                if (!empty($video)):
-                                    ?>
-                                    <div class="flex-video">
-                                        <?php
-                                        global $wp_embed;
-                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $video . '[/embed]');
-                                        echo $post_embed;
+                                if (!empty($video) && is_array($video)):
+                                    foreach ($video as $v):
+                                        if(empty($v)){
+                                            continue;
+                                        }
                                         ?>
-                                    </div>
-                                <?php endif; ?>
+                                        <div class="flex-video">
+                                            <?php
+                                            global $wp_embed;
+                                            $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $v . '[/embed]');
+                                            echo $post_embed;
+                                            ?>
+                                        </div>
+                                        <?php
+                                    endforeach;
+                                endif;
+                                ?>
                             </div>
                         </div>
                         <!--/TAB CONTENT END-->

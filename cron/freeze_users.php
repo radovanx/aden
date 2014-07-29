@@ -3,6 +3,11 @@
 define('WP_USE_THEMES', false);
 require('../wp-load.php');
 
+$custom_email = Theme_My_Login_Custom_Email::get_object();
+
+
+
+
 global $wpdb;
 
 // uživatelé, kteří se nepřihlásili déle než tři měsíce
@@ -33,7 +38,7 @@ if (!empty($results)) {
 }
 
 
-// uživatelé kteří nebyli do 14 dní schváleni
+// uživatelé kteří nebyli do 15 dní schváleni
 $user_query = new WP_User_Query(array('role' => 'waiting_for_approval'));
 
 if (!empty($user_query->results)) {
@@ -49,12 +54,15 @@ if (!empty($user_query->results)) {
         $now = new DateTime();
 
         if ($now > $valid_to) {
-            //$user = new WP_Error('authentication_failed', __('<strong>ERROR</strong>: We are really sorry, your account has not been approved.', $plugin_slug));
+            // freeze user
             $args = array(
                 'ID' => $user->ID,
                 'role' => 'frozen'
             );
             wp_update_user($args);
+            
+            // send email
+            $custom_email->frozen_user_notification($user->ID);
         }
     }
 }

@@ -85,19 +85,13 @@ class EstateProgram_Admin {
          * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
          */
         add_action('@TODO', array($this, 'action_method_name'));
-        add_filter('@TODO', array($this, 'filter_method_name'));  
-        
+        add_filter('@TODO', array($this, 'filter_method_name'));
         add_filter('manage_flat_posts_columns', array($this, 'column_head'));
-        add_action('manage_flat_posts_custom_column', array($this, 'column_content'), 10, 2);     
-        
-        add_filter( 'manage_edit-flat_sortable_columns', array($this, 'my_movie_sortable_columns')); 
-        
-        
-        add_filter( 'request', array($this, 'my_sort_movies')); 
-            
-
+        add_action('manage_flat_posts_custom_column', array($this, 'column_content'), 10, 2);
+        add_filter('manage_edit-flat_sortable_columns', array($this, 'my_movie_sortable_columns'));
+        add_filter('request', array($this, 'my_sort_movies'));
     }
-    
+
     function column_head($defaults) {
         $defaults['ref_no'] = __('Ref. no.', $this->plugin_slug);
         return $defaults;
@@ -105,7 +99,7 @@ class EstateProgram_Admin {
 
     function column_content($column_name, $post_id) {
 
-        global $wpdb;        
+        global $wpdb;
 
         switch ($column_name) {
             case 'ref_no':
@@ -118,53 +112,54 @@ class EstateProgram_Admin {
                         meta_key = 'unique_identificator'
                     AND    
                         post_id = %d", $post_id);
-                
+
                 $ref_no = $wpdb->get_var($sql);
                 echo $ref_no;
                 break;
             default:
                 break;
         }
-    }   
-           
-    
-    
-    
-/* Sorts the movies. */
-function my_sort_movies( $vars ) {
-
-	/* Check if we're viewing the 'movie' post type. */
-	if ( isset( $vars['post_type'] ) && 'flat' == $vars['post_type'] ) {
-
-		/* Check if 'orderby' is set to 'duration'. */
-		if ( isset( $vars['orderby'] ) && 'unique_identificator' == $vars['orderby'] ) {
-
-			/* Merge the query vars with our custom variables. */
-			$vars = array_merge(
-				$vars,
-				array(
-					'meta_key' => 'unique_identificator',
-					'orderby' => 'meta_value'
-				)
-			);
-		}
-	}
-
-	return $vars;
-}
-  
-
-    
-    function my_movie_sortable_columns( $columns ) {
-
-	$columns['ref_no'] = 'unique_identificator';
-
-	return $columns;
     }
-    
-            
-            
-    
+
+    /* Sorts the movies. */
+
+    function my_sort_movies($vars) {
+
+        /* Check if we're viewing the 'movie' post type. */
+        if (isset($vars['post_type']) && 'flat' == $vars['post_type']) {
+
+            /* Check if 'orderby' is set to 'duration'. */
+            if (isset($vars['orderby']) && 'unique_identificator' == $vars['orderby']) {
+
+                /* Merge the query vars with our custom variables. */
+                $vars = array_merge(
+                        $vars, array(
+                    'meta_key' => 'unique_identificator',
+                    'orderby' => 'meta_value'
+                        )
+                );
+            }
+            if (isset($vars['s'])) {
+                $vars = array_merge(
+                        $vars, array(
+                    'meta_query' => array(
+                        array(
+                            'key' => 'unique_identificator',
+                            'value' => $vars['s'],
+                            'compare' => 'LIKE'
+                        )
+                    )
+                        )
+                );
+            }
+        }
+        return $vars;
+    }
+
+    function my_movie_sortable_columns($columns) {
+        $columns['ref_no'] = 'unique_identificator';
+        return $columns;
+    }
 
     public function parse_xml() {
         include 'views/parse_xml.php';
@@ -223,9 +218,9 @@ function my_sort_movies( $vars ) {
                 case 'flat':
                     $sql = "DELETE FROM apartment2program WHERE apartment_id = " . (int) $post_id;
                     $wpdb->query($sql);
-                    
+
                     $sql = "DELETE FROM images2post WHERE apartment_id = " . (int) $post_id;
-                    $wpdb->query($sql);                    
+                    $wpdb->query($sql);
                     break;
                 case 'program':
                     $sql = "DELETE FROM apartment2program WHERE program_id = " . (int) $post_id;

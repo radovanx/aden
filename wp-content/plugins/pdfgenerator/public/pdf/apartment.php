@@ -44,9 +44,6 @@
                 text-decoration: none;
             }
 
-            .text-block {
-                font-size: 11px;
-            }
             .text-center {
                 text-align: center;
             }
@@ -55,7 +52,7 @@
             }
             .small-block {
                 margin-bottom: 2mm;
-            }            
+            }
 
             h3 {
                 font-size: 13px;
@@ -88,7 +85,7 @@
 
             .vtop {
                 vertical-align: top;
-            }            
+            }
 
             .border-left {
                 border-left: 3px solid #990033;
@@ -161,13 +158,35 @@
             .headline-label {
                 font-size: 17px;
             }
+
+            .text-block,
+            #legal_condition {
+                font-size: 11px;
+            }
+            #legal_condition h1 {
+                font-size: 15px;
+                border-left: 3px solid #990033;
+                padding-left: 15px;
+            }
+
+            #legal_condition h2 {
+                font-size: 14px;
+                border-left: 3px solid #990033;
+                padding-left: 15px;
+            }
+
+            #legal_condition h3,
+            #legal_condition h4,
+            #legal_condition h5 {
+                font-size: 13px;
+                border-left: 3px solid #990033;
+                padding-left: 15px;
+            }
+
         </style>
     </head>
     <body>
-
-
         <?php
-        //$lang = qtrans_getLanguage();
         $current_user = wp_get_current_user();
         ?>
         <div id="wrapper">
@@ -205,12 +224,10 @@
                         }
                         ?>
                         <?php _e('tel:', 'wpbootstrap') ?>  <?php echo get_user_meta(get_current_user_id(), 'phone', true) ?><br>
-                        <a class="red-color decoration-none" href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a>                        
+                        <a class="red-color decoration-none" href="mailto:<?php echo $current_user->user_email ?>"><?php echo $current_user->user_email ?></a>
                     </td>
                 </tr>
             </table>
-
-
 
             <table class="w100 base-info">
                 <tr>
@@ -240,58 +257,194 @@
             <div class="red-label text-center small-block"><?php echo $props['freitexte|objekttitel'] ?></div>
 
             <!-- featrues -->
+            <?php
+            $cells = array();
+
+            if (!empty($props['verwaltung_techn|objektnr_extern'])) {
+                $cells[] = array(
+                    __('Ref:', 'wpbootstrap'),
+                    esc_attr($props['verwaltung_techn|objektnr_extern'])
+                );
+            }
+
+            if (!empty($props['zustand_angaben|baujahr'])) {
+                $cells[] = array(
+                    __("Year of construction: ", "wpbootstrap"),
+                    esc_attr($props['zustand_angaben|baujahr'])
+                );
+            }
+
+            if (!empty($props['preise|kaufpreis_pro_qm'])) {
+                $cells[] = array(
+                    __('Purchase price /sm:', 'wpbootstrap'),
+                    esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €'
+                );
+            }
+
+            if (!empty($props['objektart|wohnung|wohnungtyp'])) {
+                $cells[] = array(
+                    __('Apartment type:', 'wpbootstrap'),
+                    apartmentTypeL($props)
+                );
+            }
+
+            if (!empty($props['geo|etage'])) {
+                $cells[] = array(
+                    __('Floor:', 'wpbootstrap'),
+                    esc_attr($props['geo|etage'])
+                );
+            }
+
+            if (!empty($props['geo|anzahl_etagen'])) {
+                $cells[] = array(
+                    __('Number of floors:', 'wpbootstrap'),
+                    (int) $props['geo|anzahl_etagen']
+                );
+            }
+
+            if (!empty($props['flaechen|anzahl_zimmer'])) {
+                $cells[] = array(
+                    __('Rooms:', 'wpbootstrap'),
+                    (int) $props['flaechen|anzahl_zimmer']
+                );
+            }
+
+            if (!empty($props['flaechen|anzahl_badezimmer'])) {
+                $cells[] = array(
+                    __('Bathroom(s):', 'wpbootstrap'),
+                    (int) $props['flaechen|anzahl_badezimmer']
+                );
+            }
+
+            if (!empty($props['ausstattung|fahrstuhl|PERSONEN'])) {
+                $elevator = isset($props['ausstattung|fahrstuhl|PERSONEN']) ? __("Yes", 'wpbootstrap') : __("No", 'wpbootstrap');
+
+                $cells[] = array(
+                    __('Elevator:', 'wpbootstrap'),
+                    $elevator
+                );
+            }
+
+            $hs = heatingSystemL($props);
+            if (!empty($hs)) {
+                $cells[] = array(
+                    __('Type of heating system:', 'wpbootstrap'),
+                    heatingSystemL($props)
+                );
+            }
+
+            if (!empty($props['preise|stp_sonstige|stellplatzmiete'])) {
+                $parking = 0 == (int) ($props['preise|stp_sonstige|stellplatzmiete']) ? __('No', 'wpbootstrap') : __('Yes', 'wpbootstrap');
+                $cells[] = array(
+                    __('Garage / parking spot:', 'wpbootstrap'),
+                    $parking
+                );
+            }
+
+            if(!empty($props['preise|aussen_courtage'])){
+                $cells[] = array(
+                    __('Buyer commission (incl. VAT):', 'wpbootstrap'),
+                    esc_attr($props['preise|aussen_courtage'])
+                );
+            }
+
+            if (!empty($props['preise|hausgeld'])) {
+                $cells[] = array(
+                    __('Charges:', 'wpbootstrap'),
+                    $props['preise|hausgeld']
+                );
+            }
+
+            if (!empty($props['preise|warmiete'])) {
+                $cells[] = array(
+                    __('Loyer CC  (charges comprises):', 'wpbootstrap'),
+                    $props['preise|warmiete']
+                );
+            }
+
+            if (!empty($props['preise|kaltmiete'])) {
+                $cells[] = array(
+                    __('Loyer HC (Hors charges):', 'wpbootstrap'),
+                    $props['preise|kaltmiete']
+                );
+            }
+
+            if (!empty($props['energiepass|epart'])) {
+                $cells[] = array(
+                    __('Type de passeport:', 'wpbootstrap'),
+                    epartL($props)
+                );
+            }
+
+            if (!empty($props['energiepass|gueltig_bis'])) {
+
+                $date = DateTime::createFromFormat('Y-m-d', $props['energiepass|gueltig_bis']);
+
+                $cells[] = array(
+                    __('Valable jusqu’à:', 'wpbootstrap'),
+                    $date->format("d.m.Y")
+                );
+            }
+
+            if (!empty($props['energiepass|energieverbrauchkennwert'])) {
+                $cells[] = array(
+                    __('Consommation énergétique finale:', 'wpbootstrap'),
+                    $props['energiepass|energieverbrauchkennwert']
+                );
+            }
+
+            if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
+                $cells[] = array(
+                    __('Calcul automatique du Yield:', 'wpbootstrap'),
+                    round($props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5) . ' ' . periodeL($props)
+                );
+            }
+            ?>
+
             <h2 class="small-label border-left"><?php _e('Features', 'wpbootstrap') ?></h2>
             <table class="features w100 small-block text-block">
-                <tr>
-                    <td class="w25"><?php _e('Ref:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right t2"><?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?></td>
-                    <td class="w25 t3"><?php _e("Year of construction: ", "wpbootstrap"); ?></td>
-                    <td class="w25 text-right"><?php echo esc_attr($props['zustand_angaben|baujahr']) ?></td>
-                </tr>
-                <tr>
-                    <td class="w25"><?php _e('Purchase price /sm:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right t2"><?php
-                        echo esc_attr(price_format($props['preise|kaufpreis_pro_qm'])) . ' €';
-                        ?></td>
-                    <td class="w25 t3"><?php _e('Apartment type:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right">
-                        <?php echo apartmentTypeL($props) ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="w25"><?php _e('Floor:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right t2"><?php echo esc_attr($props['geo|etage']) ?></td>
-                    <td class="w25 t3"><?php _e('Number of floors:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right">
-                        <?php
-                        if ($props['geo|anzahl_etagen']):
-                            echo (int) $props['geo|anzahl_etagen'];
-                        endif;
+                <?php
+                $i = 1;
+                foreach ($cells as $cell):
+                    if (0 != $i % 2):
                         ?>
-                    </td>
-                </tr>
+                        <tr>
+                            <td style="width:32%">
+                                <?php echo $cell[0] ?>
+                            </td>
+                            <td style="width:18%" class="text-right t2">
+                                <?php echo $cell[1] ?>
+                            </td>
+                        <?php else: ?>
+                            <td class="t3"  style="width:32%">
+                                <?php echo $cell[0] ?>
+                            </td>
+                            <td style="width:18%" class="text-right">
+                                <?php echo $cell[1] ?>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                    <?php
+                    $i++;
+                endforeach;
+                ?>
+
+                <!--
                 <tr>
-                    <td class="w25"><?php _e('Rooms:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right t2"><?php echo (int) $props['flaechen|anzahl_zimmer']; ?></td>
-                    <td class="w25 t3"><?php _e('Bathroom(s):', 'wpbootstrap') ?></td>
+                    <td class="w25">
+                <?php _e('Ref:', 'wpbootstrap') ?>
+                    </td>
+                    <td class="w25 text-right t2">
+                <?php esc_attr_e($props['verwaltung_techn|objektnr_extern']) ?>
+                    </td>
+                    <td class="w25 t3">
+                <?php _e("Year of construction: ", "wpbootstrap"); ?>
+                    </td>
                     <td class="w25 text-right">
-                        <?php if (!empty($props['flaechen|anzahl_badezimmer'])): ?>
-                            <?php echo (int) $props['flaechen|anzahl_badezimmer'] ?>
-                        <?php endif; ?>
+                <?php echo esc_attr($props['zustand_angaben|baujahr']) ?>
                     </td>
                 </tr>
-                <tr>
-                    <td class="w25"><?php _e('Elevator:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right t2"><?php echo isset($prop['ausstattung|fahrstuhl|PERSONEN']) ? __("Yes", 'wpbootstrap') : __("No", 'wpbootstrap'); ?></td>
-                    <td class="w25 t3"><?php _e('Type of heating system:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right"><?php echo heatingSystemL($props) ?></td>
-                </tr>
-                <tr>
-                    <td class="w25"><?php _e('Garage / parking spot:', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right t2"><?php echo 0 == (int) ($props['preise|stp_sonstige|stellplatzmiete']) ? __('No', 'wpbootstrap') : __('Yes', 'wpbootstrap'); ?></td>
-                    <td class="w25 t3"><?php _e('Buyer commission (incl. VAT):', 'wpbootstrap') ?></td>
-                    <td class="w25 text-right"><?php echo esc_attr($props['preise|aussen_courtage']) ?></td>
-                </tr>
+                -->
             </table>
             <!-- /featrues -->
 
@@ -301,7 +454,7 @@
                         'post_type' => 'attachment',
                         'post_mime_type' => 'image'
             ));
-            ?>            
+            ?>
 
             <!-- feature image + first from gallery -->
             <?php
@@ -340,8 +493,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 90mm; height:6mm;" class="vbottom img-title">                                                
-                                                <?php echo qtrans_use($lang, $attachment->post_title); ?>
+                                            <td style="width: 90mm; height:6mm;" class="vbottom img-title">
+                                                <?php echo _e($attachment->post_title); ?>
                                             </td>
                                         </tr>
                                     </table>
@@ -355,7 +508,7 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>  
+                </table>
                 <div style="clear:both"></div>
             <?php endif; ?>
             <!-- /feature image + first from gallery -->
@@ -371,9 +524,9 @@
                     <p class="text-block small-block"><?php echo $props['freitexte|objektbeschreibung'] ?></p>
                 <?php endif; ?>
 
-                <?php if (!empty($props['freitexte|lage'])): ?>                
+                <?php if (!empty($props['freitexte|lage'])): ?>
                     <h2 class="small-label border-left"><?php _e('Description surroundings', 'wpbootstrap') ?></h2>
-                    <p class="text-block small-block"><?php echo $props['freitexte|lage'] ?></p>                
+                    <p class="text-block small-block"><?php echo $props['freitexte|lage'] ?></p>
                 <?php endif; ?>
             </div>
 
@@ -396,7 +549,7 @@
                                         <tr>
                                             <td style="width: 90mm; height:6mm;" class="vbottom img-title">
                                                 <?php
-                                                echo qtrans_use($lang, $attachment->post_title);
+                                                _e($attachment->post_title);
                                                 ?>
                                             </td>
                                         </tr>
@@ -412,6 +565,16 @@
                         </tr>
                     </tbody>
                 </table>
+            <?php endif; ?>
+
+
+
+            <?php if (!empty($legal_condition)): ?>
+                <div id="legal_condition" style="page-break-before:always;">
+                    <?php
+                    echo $legal_condition;
+                    ?>
+                </div>
             <?php endif; ?>
         </div>
 

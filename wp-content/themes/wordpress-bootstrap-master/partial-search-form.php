@@ -1,7 +1,6 @@
   <form role="form" class="border background clearfix searchform col-md-12">
                 <div class="col-md-6 column">  
-                    <div class="row margin-top padding-top">
-                        
+                    <div class="row margin-top padding-top">                        
                         <div class="form-group col-md-6"> 
                         </div>
                         <div class="form-group col-md-6">                            

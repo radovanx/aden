@@ -92,6 +92,7 @@ function cptbc_get_featured_image($post_ID) {
 
 function cptbc_columns_head($defaults) {
     $defaults['featured_image'] = __('Featured Image', 'cpt-bootstrap-carousel');
+    $defaults['carousel_category'] = __('Category', 'cpt-bootstrap-carousel');
     return $defaults;
 }
 
@@ -101,6 +102,16 @@ function cptbc_columns_content($column_name, $post_ID) {
         if ($post_featured_image) {
             echo '<a href="' . get_edit_post_link($post_ID) . '"><img src="' . $post_featured_image . '" /></a>';
         }
+    }
+
+    if ($column_name == 'carousel_category') {
+        $categories = get_the_terms($post_ID, 'carousel_category');
+
+        $help = array();
+        foreach ($categories as $cat) {
+            $help[] = $cat->name;
+        }
+        echo implode(', ', $help);
     }
 }
 
@@ -229,10 +240,10 @@ function cptbc_image_url() {
 
         add_settings_field(
                 'twbs', // ID
-                __('Twitter Bootstrap Version', 'cpt-bootstrap-carousel'), // Title 
+                __('Twitter Bootstrap Version', 'cpt-bootstrap-carousel'), // Title
                 array($this, 'twbs_callback'), // Callback
                 'cpt-bootstrap-carousel', // Page
-                'cptbc_settings_options' // Section           
+                'cptbc_settings_options' // Section
         );
 
         add_settings_field(
@@ -245,42 +256,42 @@ function cptbc_image_url() {
 
         add_settings_field(
                 'showcaption', // ID
-                __('Show Slide Captions?', 'cpt-bootstrap-carousel'), // Title 
+                __('Show Slide Captions?', 'cpt-bootstrap-carousel'), // Title
                 array($this, 'showcaption_callback'), // Callback
                 'cpt-bootstrap-carousel', // Page
-                'cptbc_settings_options' // Section           
+                'cptbc_settings_options' // Section
         );
 
         add_settings_field(
                 'showcontrols', // ID
-                __('Show Slide Controls?', 'cpt-bootstrap-carousel'), // Title 
+                __('Show Slide Controls?', 'cpt-bootstrap-carousel'), // Title
                 array($this, 'showcontrols_callback'), // Callback
                 'cpt-bootstrap-carousel', // Page
-                'cptbc_settings_options' // Section           
+                'cptbc_settings_options' // Section
         );
 
         add_settings_field(
                 'orderby', // ID
-                __('Order Slides By', 'cpt-bootstrap-carousel'), // Title 
+                __('Order Slides By', 'cpt-bootstrap-carousel'), // Title
                 array($this, 'orderby_callback'), // Callback
                 'cpt-bootstrap-carousel', // Page
-                'cptbc_settings_options' // Section           
+                'cptbc_settings_options' // Section
         );
 
         add_settings_field(
                 'order', // ID
-                __('Ordering Direction', 'cpt-bootstrap-carousel'), // Title 
+                __('Ordering Direction', 'cpt-bootstrap-carousel'), // Title
                 array($this, 'order_callback'), // Callback
                 'cpt-bootstrap-carousel', // Page
-                'cptbc_settings_options' // Section           
+                'cptbc_settings_options' // Section
         );
 
         add_settings_field(
                 'category', // ID
-                __('Restrict to Category', 'cpt-bootstrap-carousel'), // Title 
+                __('Restrict to Category', 'cpt-bootstrap-carousel'), // Title
                 array($this, 'category_callback'), // Callback
                 'cpt-bootstrap-carousel', // Page
-                'cptbc_settings_options' // Section           
+                'cptbc_settings_options' // Section
         );
     }
 
@@ -436,8 +447,34 @@ add_shortcode('image-carousel', 'cptbc_shortcode');
 
 // Display carousel
 function cptbc_frontend($atts) {
+
+    $wanted_category = 29;
+    $lang = qtrans_getLanguage();
+    switch ($lang) {
+        case 'de':
+            $wanted_category = 30;
+            break;
+        case 'fr':
+            $wanted_category = 31;
+            break;
+    }
+
+
     $id = rand(0, 999); // use a random ID so that the CSS IDs work with multiple on one page
-    $args = array('post_type' => 'cptbc', 'posts_per_page' => '-1', 'orderby' => $atts['orderby'], 'order' => $atts['order']);
+    $args = array(
+        'post_type' => 'cptbc',
+        'posts_per_page' => '-1',
+        'orderby' => $atts['orderby'],
+        'order' => $atts['order'],
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'carousel_category',
+                'terms' => $wanted_category,
+                'field' => 'id',
+                'operator' => 'IN',
+            )
+        ),
+    );
     if ($atts['category'] != '') {
         $args['carousel_category'] = $atts['category'];
     }

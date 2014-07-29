@@ -91,6 +91,28 @@ class pdfgenerator {
         //
         add_action('wp_ajax_recommend_product', array(&$this, 'recommend_product'));
         add_action('wp_ajax_nopriv_recommend_product', array(&$this, 'recommend_product'));
+
+        add_action('init', array($this, 'lc_register_custom_post'));
+    }
+
+    public function lc_register_custom_post() {
+        $args = array(
+            'labels' => array(
+                'name' => __('Legal conditions'),
+                'menu_name' => __('Legal conditions')
+            ),
+            //'show_ui' => false,
+            'public' => true,
+            'supports' => array(
+                //'thumbnail',
+                'title',
+                'editor',
+            //'excerpt',
+            //'author'
+            ),
+        );
+
+        register_post_type('legal_condition', $args);
     }
 
     public function query_vars($public_query_vars) {
@@ -108,37 +130,25 @@ class pdfgenerator {
     }
 
     public function parse_request(&$wp) {
-
         $q = $wp->query_vars;
         $lang = qtrans_getLanguage();
-
         // rezervacni form
         if (isset($q['action']) && 'reservation-pdf' == $q['action']) {
-
-
-
             if (!empty($q['product_id'])) {
-
                 if (!empty($q['language'])) {
                     $lang = $q['language'];
                 }
 
                 $product = get_post($q['product_id']);
-                //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
                 $props = get_props($product->ID, $lang);
 
                 global $wpdb;
-
                 $program_id = EstateProgram::flat_program_id($product->ID);
-
                 $dir = plugin_dir_path(__FILE__);
-
                 $url = plugin_dir_url(__FILE__);
-
                 $pdf_file = $url . 'pdf/reservation-form-' . $lang . '.pdf';
 
                 $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
-
                 $sql = "
                             INSERT INTO
                                 stat (user_id, program_id, type, record_date, product_id, reservation, ref_no)
@@ -153,7 +163,6 @@ class pdfgenerator {
                             )";
 
                 $wpdb->query($sql);
-
                 $last_id = $wpdb->insert_id;
 
                 $langs = qtrans_getSortedLanguages();
@@ -174,20 +183,11 @@ class pdfgenerator {
 
                 header('Location: ' . $pdf_file);
                 exit;
-                //$pdf_file
-
-                /*
-                  $file = $pdf_file; //file location
-                  header('Content-Type: application/pdf');
-                  header('Content-Disposition: attachment; filename="' . basename($file) . '"');
-                  header('Content-Length: ' . filesize($file));
-                  readfile($file); */
             }
         }
 
         // pdf prezentace produktu
         if (isset($q['action']) && 'generate-pdf' == $q['action']) {
-
             if (!empty($q['language'])) {
                 $lang = $q['language'];
             }
@@ -198,8 +198,6 @@ class pdfgenerator {
                     case 'product':
 
                         if (isset($q['product_id'])) {
-
-                            //if (isset($_GET['print']) && 'product-presentation' == $_GET['print']) {
                             $this->override_locale($lang);
 
                             global $wpdb;
@@ -207,7 +205,6 @@ class pdfgenerator {
                             $product = get_post($q['product_id']);
                             $props = get_props($product->ID, $lang);
                             $program_id = EstateProgram::flat_program_id($product->ID);
-
 
                             $mpdf = $this->create_html2pdf($product, $props, $lang);
                             if (empty($props['verwaltung_techn|objektnr_extern'])) {
@@ -221,16 +218,15 @@ class pdfgenerator {
 
                             $mpdf->Output($filename, 'I');
 
-
                             $sql3 = "
                             INSERT INTO
                                 stat (
-                                    user_id, 
-                                    program_id, 
-                                    type, 
-                                    record_date, 
-                                    product_id, 
-                                    download, 
+                                    user_id,
+                                    program_id,
+                                    type,
+                                    record_date,
+                                    product_id,
+                                    download,
                                     ref_no)
                             VALUES (
                                 '" . get_current_user_id() . "',
@@ -258,9 +254,7 @@ class pdfgenerator {
 
                                 $wpdb->query($sql2);
                             }
-
                             exit;
-                            // }
                         }
 
                         break;
@@ -273,12 +267,11 @@ class pdfgenerator {
     }
 
     public function create_html2pdf($product, $props, $lang) {
-
         require_once(plugin_dir_path(__FILE__) . '..' . DIRECTORY_SEPARATOR . 'lib/MPDF57/mpdf.php');
-
         $mpdf = new mPDF();
 
         ob_start();
+        $legal_condition = $this->get_legal_condition();
         require_once plugin_dir_path(__FILE__) . "pdf/apartment.php";
         $html = ob_get_contents();
         ob_end_clean();
@@ -288,15 +281,32 @@ class pdfgenerator {
     }
 
     static function apartment($apartment_id, $lang) {
-
         global $wpdb;
-
         $apartment = get_post($apartment_id);
-        //$apartment_props = get_post_meta($apartment_id, 'flat_props_' . $lang, true);
-
-        $apartment_props = get_props($apartment_id, $lang);
-
+        $apartment_props = $this->get_props($apartment_id, $lang);
         $path = plugin_dir_path(__FILE__);
+    }
+
+    public function get_legal_condition() {
+
+        $return = '';
+
+        $args = array(
+            'posts_per_page' => 1,
+            'post_type' => 'legal_condition',
+            'post_status' => 'publish',
+            'order' => 'DESC',
+            'orderby' => 'date'
+        );
+
+        $query = new WP_Query($args);
+
+        while ($query->have_posts()) {
+            $query->the_post();
+            $return = get_the_content();
+        }
+        wp_reset_query();
+        return $return;
     }
 
     function recommend_product() {
@@ -308,7 +318,6 @@ class pdfgenerator {
         }
 
         $id = $_POST['id'];
-
         $product = get_post($id);
 
         if (empty($product)) {
@@ -341,7 +350,7 @@ class pdfgenerator {
         $lang = $_POST['lang'];
         //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
         $props = get_props($product->ID, $lang);
-        
+
         $this->override_locale($lang);
 
         $mpdf = $this->create_html2pdf($product, $props);
@@ -393,9 +402,15 @@ class pdfgenerator {
         $body .= "Content-Transfer-Encoding: 7bit" . $eol . $eol;
 // message
         $body .= "--" . $separator . $eol;
-        $body .= "Content-Type: text/plain; charset=utf-8" . $eol;
+        $body .= "Content-Type: text/html; charset=utf-8" . $eol;
+        
+        ob_start();
+        include get_template_directory() . "/email_template/template.php";
+        $content = ob_get_contents();
+        ob_end_clean();        
+        
         $body .= "Content-Transfer-Encoding: 8bit" . $eol . $eol;
-        $body .= $message . $eol;
+        $body .= $content . $eol;
 // attachment
         $body .= "--" . $separator . $eol;
         $body .= "Content-Type: application/octet-stream; name=\"" . $filename . "\"" . $eol;
@@ -404,7 +419,11 @@ class pdfgenerator {
         $body .= $attachment . $eol;
         $body .= "--" . $separator . "--";
 // send message
+
+        ////wp_mail( $to, $subject, $message, $headers, $attachments );
+
         if (false === mail($to, $subject, $body, $headers)) {
+        //if (false === wp_mail($to, '=?utf-8?B?'.base64_encode($subject).'?=', $body, $headers)) {
             header("HTTP/1.0 404 Not Found");
             _e('Email could not be sent, please contact administrator of this server.', $this->plugin_slug);
             die();
@@ -415,22 +434,6 @@ class pdfgenerator {
         global $wpdb;
 
         $program_id = EstateProgram::flat_program_id($product->ID);
-
-        /*
-          $sql = "
-          INSERT INTO
-          recommendation (user_id, receiver, when_sent, product_id, product, message, program_id)
-          VALUES (
-          '" . get_current_user_id() . "',
-          '" . esc_sql($to) . "',
-          NOW(),
-          '" . $product->ID . "',
-          '" . esc_sql(serialize($props)) . "',
-          '" . esc_sql($message) . "',
-          '" . (int) $program_id . "'
-          );
-          "; */
-
 
         $title = $wpdb->get_var("SELECT post_title FROM wp_posts WHERE ID = " . (int) $product->ID);
 

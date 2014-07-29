@@ -96,10 +96,16 @@ $query = new WP_Query($args);
                 </a>
             </h3>
             <div class="form-group">
-                 
-                <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf">
-                    <?php _e("download for free", "wpbootstrap"); ?>
-                </a>
+
+                <?php //if (is_user_logged_in()): 
+                if(1):
+                ?>
+                    <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf">
+                    <?php else: ?>
+                        <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php echo get_permalink(10566) ?>">
+                        <?php endif; ?>
+                        <?php _e("download for free", "wpbootstrap"); ?>
+                    </a>
             </div>
         </div>
         <div class="col-md-3 column">

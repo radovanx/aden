@@ -979,74 +979,86 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     }
 
     function redirect_if_cannot_see_detail() {
-
         if (!current_user_can('see_detail')) {
-
             wp_redirect(get_page_link(15));
-
             exit;
         }
     }
 
     function price_format($price) {
-
-
-
         if (empty($price)) {
-
             return '';
         }
-
-
-
         // dont do that.. 158.000 -> 158000 , 158.50 ->15850
         //$price = str_replace('.', '', $price);
 
-
-
         $c_decimals = 0;
-
         $ret = number_format($price, $c_decimals, ',', ' ');
-
         return $ret;
     }
 
-    function add_extra_user_column($columns) {
+    ########################################################
+    /*
+      add_filter('manage_users_columns', 'add_extra_user_column');
+      function add_extra_user_column($columns) {
+      return array_merge($columns, array('foo' => __('City')));
+      }
 
-        return array_merge($columns, array('foo' => __('City')));
-    }
+      add_filter('manage_users_columns', 'add_extra_user_columnstate');
+      function add_extra_user_columnstate($columns) {
+      return array_merge($columns, array('foo2' => __('State')));
+      } */
 
     add_filter('manage_users_columns', 'add_extra_user_column');
 
-    function add_extra_user_columnstate($columns) {
-
-        return array_merge($columns, array('foo2' => __('State')));
+    function add_extra_user_column($columns) {
+        $columns['foo'] = __('City', 'wpbootstrap');
+        $columns['foo2'] = __('State', 'wpbootstrap');
+        $columns['date_register'] = __('Register date', 'wpbootstrap');
+        return $columns;
     }
-
-    add_filter('manage_users_columns', 'add_extra_user_columnstate');
-
-
 
     add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
 
     function manage_status_column($empty = '', $column_name, $id) {
 
+        $all_meta_for_user = get_user_meta($id);
+        $user_data = get_userdata($id);
+
         if ($column_name == 'foo') {
-
-            $all_meta_for_user = get_user_meta($id);
-
             $city = $all_meta_for_user["city"][0];
-
             return $city;
         } else if ($column_name == 'foo2') {
-
-            $all_meta_for_user = get_user_meta($id);
-
             $state = $all_meta_for_user["country"][0];
-
             return $state;
+        } else if ($column_name == 'date_register') {
+            $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user_data->user_registered);
+            return $register_date->format('d. m. Y H:i');
         }
     }
+
+    // sortable
+    function registerdate_column_sortable($columns) {
+        $custom = array(
+            'date_register' => 'registered',
+        );
+        return wp_parse_args($custom, $columns);
+    }
+
+    add_filter('manage_users_sortable_columns', 'registerdate_column_sortable');
+
+    function registerdate_column_orderby($vars) {
+        if (isset($vars['orderby']) && 'date_register' == $vars['orderby']) {
+            $vars = array_merge($vars, array(
+                'meta_key' => 'date_register',
+                'orderby' => 'meta_value'
+            ));
+        }
+
+        return $vars;
+    }
+
+    add_filter('request', 'registerdate_column_orderby');
 
     add_action('manage_users_columns', 'remove_user_posts_column');
 
@@ -1134,23 +1146,28 @@ add_action('wp_ajax_item_pagination', 'item_pagination');           // for logge
 
 add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in
 
-function get_props($post_id, $lang) {
+   function get_props($post_id, $lang) {
 
-    $props = get_post_meta($post_id, 'flat_props_' . $lang, true);
+        $props = get_post_meta($post_id, 'flat_props_' . $lang, true);
 
 
 
-    if (empty($props)) {
+        if (empty($props)) {
 
-        $props = get_post_meta($post_id, 'flat_props_en', true);
+            $props = get_post_meta($post_id, 'flat_props_en', true);
+        }
+        return $props;
     }
 
+    function tml_action_links($link) {
+        return qtrans_convertURL($link);
+    }
+
+    add_filter('tml_action_url', 'tml_action_links');
 
 
-    return $props;
-}
-
-add_filter('post_type_link', 'qtrans_convertURL');
+    #################
+    add_filter('post_type_link', 'qtrans_convertURL');
 
 function qtrans_convertHomeURL($url, $what) {
 
@@ -1268,4 +1285,87 @@ function heatingSystemL($props) {
 
     return implode(', ', $arr);
 }
+
+
+    function epartL($props) {
+        $return = '';
+
+        if (isset($props['energiepass|epart'])) {
+            switch ($props['energiepass|epart']) {
+                case 'VERBRAUCH':
+                    $return = __('Consommation finale', 'wpbootstrap');
+                    break;
+                case 'BEDARF':
+                    $return = __('Besoin énergétique', 'wpbootstrap');
+                    break;
+            }
+        }
+
+        return $return;
+    }
+
+    function periodeL($props) {
+        $return = '';
+
+        if (isset($props['preise|mieteinnahmen_ist|periode'])) {
+            switch ($props['preise|mieteinnahmen_ist|periode']) {
+                case 'JAHR':
+                    $return = __('Year', 'wpbootstrap');
+                    break;
+                case 'MOND':
+                    $return = __('Month', 'wpbootstrap');
+                    break;
+            }
+        }
+
+        return $return;
+    }
+
+    ####################
+    /*
+      function tml_title_translate($title) {
+      return __($title);
+      }
+
+      add_filter('tml_title', 'tml_title_translate');
+
+      function tml_message_filter($message){
+      return __($message);
+      }
+
+      add_filter('password_change_notification_message_filter', 'tml_message_filter');
+      add_filter('new_user_notification_message_filter', 'tml_message_filter');
+     */
+
+
+    
+    ############
+    add_filter('wp_mail', 'my_wp_mail_filter');
+
+    function my_wp_mail_filter($args) {
+
+        $message = $args['message'];
+
+        ob_start();
+        include "email_template/template.php";
+        $content = ob_get_contents();
+        ob_end_clean();
+
+        $new_wp_mail = array(
+            'to' => $args['to'],
+            'subject' => $args['subject'],
+            'message' => $content,
+            'headers' => $args['headers'],
+            'attachments' => $args['attachments']
+        );
+
+        return $new_wp_mail;
+    }
+
+    add_filter('wp_mail_content_type', 'set_content_type');
+
+    function set_content_type($content_type) {
+        return 'text/html';
+    }
+
 ?>
