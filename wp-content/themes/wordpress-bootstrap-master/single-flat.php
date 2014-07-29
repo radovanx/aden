@@ -13,8 +13,8 @@ redirect_if_cannot_see_detail();
 get_header();
 ?>
 <div class="container">
-    <div id="content" class="clearfix row"> 
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?> 
+    <div id="content" class="clearfix row">
+        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <?php
                 $lang = qtrans_getLanguage();
                 $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full');
@@ -35,10 +35,10 @@ get_header();
                 $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-";
                 $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
                 $yield = get_the_excerpt();
-                ?> 
+                ?>
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php echo $title ?>
-                            <a href="javascript:history.go(-1)" class="pull-right doublesmall"><?php _e('<- back', "wpbootstrap"); ?></a> 
+                            <a href="javascript:history.go(-1)" class="pull-right doublesmall"><?php _e('<- back', "wpbootstrap"); ?></a>
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
                             <span class="apartment-row-<?php echo $post->ID ?>">
                                 <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
@@ -47,12 +47,12 @@ get_header();
                                         <i class="fa <?php echo EstateProgram::is_user_favorite($post->ID) ? 'red fa-star' : 'blue fa-star-o' ?>"></i>
                                     </strong>
                                 </a>
-                            </span> 
+                            </span>
                         </h1>
                     </div>
                 </div>
                 <div id="main" class="col-md-7 column clearfix" role="main">
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting"> 
+                    <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <!-- img slide -->
@@ -61,31 +61,48 @@ get_header();
                             <div class="tab-pane fade" id="video_tab">
                                 <?php
                                 if (!empty($video)):
-                                    ?> 
-                                    <div class="flex-video"> 
-                                        <?php
-                                        global $wp_embed; 
-                                        $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $video . '[/embed]'); 
-                                        echo $post_embed;
-                                        ?> 
-                                    </div> 
-                                <?php endif; ?> 
-                            </div> 
-                        </div> 
-                        <!--TAB CONTENT END--> 
-                        <ul class="nav nav-pills margin-top"> 
-                            <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i><?php _e("Gallery", "wpbootstrap"); ?></a></li> 
+
+                                    global $wp_embed;
+
+                                    if (is_array($video)):
+                                        foreach ($video as $v):
+                                            ?>
+                                            <div class="flex-video">
+                                                <?php
+                                                $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $v . '[/embed]');
+                                                echo $post_embed;
+                                                ?>
+                                            </div>
+                                            <?php
+                                        endforeach;
+                                    else:
+                                        ?>
+                                        <div class="flex-video">
+                                            <?php
+                                            $post_embed = $wp_embed->run_shortcode('[embed width="750" ]' . $video . '[/embed]');
+                                            echo $post_embed;
+                                            ?>
+                                        </div>
+                                    <?php
+                                    endif;
+                                endif;
+                                ?>
+                            </div>
+                        </div>
+                        <!--TAB CONTENT END-->
+                        <ul class="nav nav-pills margin-top">
+                            <li class="active"><a href="#gallery_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-eye"></i><?php _e("Gallery", "wpbootstrap"); ?></a></li>
                             <?php
                             if (!empty($video)):
-                                ?> 
-                                <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i><?php _e("Video", "wpbootstrap"); ?></a></li> 
-                            <?php endif; ?> 
-                        </ul> 
-                        <section class="post_content clearfix" itemprop="articleBody"> 
-                        </section> <!-- end article section --> 
-                        <!-- end article footer --> 
-                    </article> <!-- end article --> 
-                </div> 
+                                ?>
+                                <li><a href="#video_tab" data-toggle="tab" class="btn blue btn-lg bold btn-default btn-upper"><i class="fa fa-video-camera"></i><?php _e("Video", "wpbootstrap"); ?></a></li>
+                            <?php endif; ?>
+                        </ul>
+                        <section class="post_content clearfix" itemprop="articleBody">
+                        </section> <!-- end article section -->
+                        <!-- end article footer -->
+                    </article> <!-- end article -->
+                </div>
                 <div class="col-md-5 column">
                     <div class="border col-md-12 column">
                         <div class="row clearfix">
@@ -99,14 +116,14 @@ get_header();
                             </span>
                             <div class="col-md-12 column product-key-info">
                                 <address>
-                                    <strong><?php // echo esc_attr($props['kontaktperson|firma'])     ?></strong>
+                                    <strong><?php // echo esc_attr($props['kontaktperson|firma'])      ?></strong>
                                     <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer'])  ?> <?php //echo esc_attr($props['kontaktperson|strasse'])  ?>
                                     <?php // echo esc_attr($props['kontaktperson|ort'])  ?> <?php //echo esc_attr($props['kontaktperson|plz'])  ?><br>
                                     <strong>Phone:</strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
                                     <strong>Email:</strong> <?php echo strtolower($props['kontaktperson|vorname']) ?>.<?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com
 
-                                </address> 
+                                </address>
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
                                     <strong class="red pull-right"><?php echo esc_attr(price_format($props['preise|kaufpreis'])) ?> €
@@ -125,32 +142,32 @@ get_header();
 
                                 <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
                                 <a  href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
-                                
-                                <?php if (current_user_can('see_contact')): ?>    
-                                <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
+
+                                <?php if (current_user_can('see_contact')): ?>
+                                    <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
                                 <?php endif; ?>
 
-                                 <?php if (!empty($props['dropbox|building'])): ?>
+                                <?php if (!empty($props['dropbox|building'])): ?>
                                     <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
                                 <?php endif; ?>
                                 <?php if (!empty($props['dropbox|flat'])): ?>
                                     <a href="<?php echo esc_attr($props['dropbox|flat']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
 
-                                <?php endif; ?> 
-                            </div> 
+                                <?php endif; ?>
+                            </div>
                         </div>
-                    </div> 
-                </div> 
-                <div class="col-md-12 column"> 
-                    <div class="col-md-12 column border"> 
-                        <!-- apartment properties --> 
-                        <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3> 
-                        <ul class="list-unstyled featured-single-flat bigger-text"> 
-                            <li class="col-md-6 border-bottom"> 
-                                <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong> 
+                    </div>
+                </div>
+                <div class="col-md-12 column">
+                    <div class="col-md-12 column border">
+                        <!-- apartment properties -->
+                        <h3 class="border-left uppercase"><?php _e("Features", "wpbootstrap"); ?></h3>
+                        <ul class="list-unstyled featured-single-flat bigger-text">
+                            <li class="col-md-6 border-bottom">
+                                <strong><?php _e("Year of construction: ", "wpbootstrap"); ?></strong>
                                 <span class="pull-right"><?php
-                                    if (isset($props['zustand_angaben|baujahr'])): 
-                                        echo esc_attr($props['zustand_angaben|baujahr']); 
+                                    if (isset($props['zustand_angaben|baujahr'])):
+                                        echo esc_attr($props['zustand_angaben|baujahr']);
                                     endif;
                                     ?>
                                 </span>
@@ -193,14 +210,14 @@ get_header();
                                     ?>
                                 </span>
                             </li>
-                            <li class="col-md-6 border-bottom"> 
-                                <strong><?php _e("Rooms:", "wpbootstrap"); ?> </strong> 
-                                <span class="pull-right"> 
+                            <li class="col-md-6 border-bottom">
+                                <strong><?php _e("Rooms:", "wpbootstrap"); ?> </strong>
+                                <span class="pull-right">
                                     <?php
-                                    if ($props['flaechen|anzahl_zimmer']): 
-                                        echo (int) $props['flaechen|anzahl_zimmer']; 
+                                    if ($props['flaechen|anzahl_zimmer']):
+                                        echo (int) $props['flaechen|anzahl_zimmer'];
                                     endif;
-                                    ?> 
+                                    ?>
                                 </span>
 
                             </li>
@@ -234,15 +251,15 @@ get_header();
 
                             </li>
 
-                            <li class="col-md-6 border-bottom"> 
-                                <strong><?php _e("Type of heating system:", "wpbootstrap"); ?></strong> 
-                                <span class="pull-right"> 
+                            <li class="col-md-6 border-bottom">
+                                <strong><?php _e("Type of heating system:", "wpbootstrap"); ?></strong>
+                                <span class="pull-right">
                                     <?php
                                     echo heatingSystemL($props);
-                                    ?> 
-                                </span> 
-                            </li> 
-                            <li class="col-md-6 border-bottom"> 
+                                    ?>
+                                </span>
+                            </li>
+                            <li class="col-md-6 border-bottom">
                                 <strong><?php _e("Garage / parking spot:", "wpbootstrap"); ?></strong>
                                 <span class="pull-right">
                                     <?php echo (int) ($props['preise|stp_sonstige|stellplatzmiete ']); ?>
@@ -260,16 +277,16 @@ get_header();
                                     ?>
                                 </span>
                             </li>
-                        
+
                             <li class="col-md-6 border-bottom">
                                 <strong><?php _e(" Yield:", "wpbootstrap"); ?></strong>
                                 <span class="pull-right">
-                                    <?php echo $yield;?>
+                                    <?php echo $yield; ?>
                                 </span>
                             </li>
-                         
-                        </ul> 
-                        <!-- /apartment properties --> 
+
+                        </ul>
+                        <!-- /apartment properties -->
                     </div>
 
                 </div>
@@ -280,54 +297,54 @@ get_header();
 
                     <p class="bigger-text">
 
-                        <?php echo esc_attr($props['freitexte|ausstatt_beschr']) ?> 
-                    </p> 
-                </div> 
-                <div class="col-md-6 margin-top"> 
-                    <h4 class="border-left uppercase"><?php _e("Description of the building", "wpbootstrap"); ?></h4> 
-                    <p class="bigger-text"> <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?></p> 
-                </div> 
-                <div class="col-md-6 margin-top"> 
-                    <h4 class="border-left uppercase"><?php _e("Description SURROUNDINGs", "wpbootstrap"); ?></h4> 
-                    <p class="bigger-text"> <?php echo esc_attr($props['freitexte|lage']) ?></p> 
-                </div> 
-                <div class="clearfix border-bottom"></div> 
-                <div class="col-md-12 column"> 
-                    <h3 class="border-left uppercase"><?php _e("Area map", "wpbootstrap"); ?></h3> 
+                        <?php echo esc_attr($props['freitexte|ausstatt_beschr']) ?>
+                    </p>
+                </div>
+                <div class="col-md-6 margin-top">
+                    <h4 class="border-left uppercase"><?php _e("Description of the building", "wpbootstrap"); ?></h4>
+                    <p class="bigger-text"> <?php echo esc_attr($props['freitexte|objektbeschreibung']) ?></p>
+                </div>
+                <div class="col-md-6 margin-top">
+                    <h4 class="border-left uppercase"><?php _e("Description SURROUNDINGs", "wpbootstrap"); ?></h4>
+                    <p class="bigger-text"> <?php echo esc_attr($props['freitexte|lage']) ?></p>
+                </div>
+                <div class="clearfix border-bottom"></div>
+                <div class="col-md-12 column">
+                    <h3 class="border-left uppercase"><?php _e("Area map", "wpbootstrap"); ?></h3>
                     <?php
-                    $langt = esc_attr($props['geo|geokoordinaten|breitengrad']); 
+                    $langt = esc_attr($props['geo|geokoordinaten|breitengrad']);
                     $longt = esc_attr($props['geo|geokoordinaten|laengengrad']);
-                    ?> 
-                    <div id="map-canvas"> 
-                    </div> 
-                </div> 
-                <div class="col-md-3 pull-right big_icons margin-top"> 
-                    <ul class="nav nav-tabs"> 
-                        <a href="#list"  data-toggle="tab" class="blue active"><i class="fa fa-list"></i></a> 
-                        <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a> 
-                    </ul> 
-                </div> 
-                <div class="col-md-12 column margin-top"> 
-                    <h3 class="border-left uppercase"><?php _e("Other products that might interest you", "wpbootstrap"); ?></h3> 
-                    <!-- Tab panes --> 
-                    <div class="tab-content"> 
-                        <div class="tab-pane" id="table"> 
-                            <table class="table table-bordered"> 
-                                <thead> 
-                                    <tr> 
+                    ?>
+                    <div id="map-canvas">
+                    </div>
+                </div>
+                <div class="col-md-3 pull-right big_icons margin-top">
+                    <ul class="nav nav-tabs">
+                        <a href="#list"  data-toggle="tab" class="blue active"><i class="fa fa-list"></i></a>
+                        <a href="#table" data-toggle="tab" class="red"><i class="fa fa-th"></i></a>
+                    </ul>
+                </div>
+                <div class="col-md-12 column margin-top">
+                    <h3 class="border-left uppercase"><?php _e("Other products that might interest you", "wpbootstrap"); ?></h3>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane" id="table">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
                                         <th><?php _e("Favorite", "wpbootstrap"); ?></th>
                                         <th><?php _e("Prg ref", "wpbootstrap"); ?></th>
-                                        <th><?php _e("Address", "wpbootstrap"); ?></th> 
-                                        <th><?php _e("Flat n°", "wpbootstrap"); ?></th> 
-                                        <th><?php _e("Rental status", "wpbootstrap"); ?></th> 
-                                        <th><?php _e("Floor", "wpbootstrap"); ?></th> 
-                                        <th><?php _e("Rooms", "wpbootstrap"); ?></th> 
-                                        <th><?php _e("Surface", "wpbootstrap"); ?></th> 
-                                        <th><?php _e("Price", "wpbootstrap"); ?></th> 
-                                        <th><?php _e("Price/m²", "wpbootstrap"); ?></th> 
-                                        <th><?php _e("Yield", "wpbootstrap"); ?></th> 
-                                        <th><?php _e("Status", "wpbootstrap"); ?></th> 
-                                    </tr> 
+                                        <th><?php _e("Address", "wpbootstrap"); ?></th>
+                                        <th><?php _e("Flat n°", "wpbootstrap"); ?></th>
+                                        <th><?php _e("Rental status", "wpbootstrap"); ?></th>
+                                        <th><?php _e("Floor", "wpbootstrap"); ?></th>
+                                        <th><?php _e("Rooms", "wpbootstrap"); ?></th>
+                                        <th><?php _e("Surface", "wpbootstrap"); ?></th>
+                                        <th><?php _e("Price", "wpbootstrap"); ?></th>
+                                        <th><?php _e("Price/m²", "wpbootstrap"); ?></th>
+                                        <th><?php _e("Yield", "wpbootstrap"); ?></th>
+                                        <th><?php _e("Status", "wpbootstrap"); ?></th>
+                                    </tr>
                                 </thead>
 
                                 <?php
@@ -337,73 +354,73 @@ get_header();
 
                                 <?php include TEMPLATEPATH . '/table_row.php'; ?>
 
-                            </table> 
-                        </div> 
-                        <div class="col-md-12 column active border tab-pane" id="list"> 
+                            </table>
+                        </div>
+                        <div class="col-md-12 column active border tab-pane" id="list">
                             <?php
                             include TEMPLATEPATH . '/row_row.php';
-                            ?> 
-                        </div> 
-                    </div> 
-                </div> 
-            <?php endwhile; ?> 
-        <?php else : ?> 
-            <article id="post-not-found"> 
-                <header> 
-                    <h1><?php _e("Not Found", "wpbootstrap"); ?></h1> 
-                </header> 
-                <section class="post_content"> 
-                    <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p> 
-                </section> 
-            </article> 
-        <?php endif; ?> 
-        <!-- end #main --> 
-    </div> <!-- end #content --> 
-</div> 
-<div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true"> 
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                <h4 class="modal-title"><?php _e('Recommend this product', '') ?></h4> 
-            </div> 
-            <form id="recomend-form" method="post"> 
-                <div class="modal-body"> 
-                    <div id="form-response" class="display-none"></div> 
-                    <input type="hidden" name="action" value="recommend_product"> 
-                    <input type="hidden" name="id" value="<?php echo $post->ID ?>"> 
-                    <div class="form-group"> 
-                        <label for="receiver_email"><?php _e('Receiver email:', 'wpbootstrap') ?></label> 
-                        <input type="text" class="form-control erase-after-sent" value="" id="receiver_email" name="receiver_email"> 
-                    </div> 
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php else : ?>
+            <article id="post-not-found">
+                <header>
+                    <h1><?php _e("Not Found", "wpbootstrap"); ?></h1>
+                </header>
+                <section class="post_content">
+                    <p><?php _e("Sorry, but the requested resource was not found on this site.", "wpbootstrap"); ?></p>
+                </section>
+            </article>
+        <?php endif; ?>
+        <!-- end #main -->
+    </div> <!-- end #content -->
+</div>
+<div class="modal fade" id="recomendModal" tabindex="-1" role="dialog" aria-labelledby="recomendModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?php _e('Recommend this product', '') ?></h4>
+            </div>
+            <form id="recomend-form" method="post">
+                <div class="modal-body">
+                    <div id="form-response" class="display-none"></div>
+                    <input type="hidden" name="action" value="recommend_product">
+                    <input type="hidden" name="id" value="<?php echo $post->ID ?>">
+                    <div class="form-group">
+                        <label for="receiver_email"><?php _e('Receiver email:', 'wpbootstrap') ?></label>
+                        <input type="text" class="form-control erase-after-sent" value="" id="receiver_email" name="receiver_email">
+                    </div>
                     <div class="form-group">
                         <label for="receiver_message"><?php _e('Message:', 'wpbootstrap') ?></label>
                         <textarea class="form-control erase-after-sent" id="receiver_message" name="receiver_message"></textarea>
                     </div>
                 </div>
-                <div class="modal-footer"> 
-                    <div id="loading-recommand" class="pull-left display-none"><i class="fa fa-spinner fa-spin"></i> <?php _e('Sending... ') ?></div> 
-                    <input type="submit" class="btn btn-primary pull-right" id="send_recommendation" value="<?php _e('Send recommendation', 'wpbootstrap') ?>"> 
-                </div> 
+                <div class="modal-footer">
+                    <div id="loading-recommand" class="pull-left display-none"><i class="fa fa-spinner fa-spin"></i> <?php _e('Sending... ') ?></div>
+                    <input type="submit" class="btn btn-primary pull-right" id="send_recommendation" value="<?php _e('Send recommendation', 'wpbootstrap') ?>">
+                </div>
             </form>
         </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog --> 
-</div><!-- /.modal --> 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-    <div class="modal-dialog"> 
-        <div class="modal-content"> 
-            <div class="modal-header"> 
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> 
-                <h4 class="modal-title"><?php echo the_title(); ?></h4> 
-            </div> 
-            <div class="modal-body"> 
-                <?php _e("You modified", "wpbootstrap"); ?> 
-            </div> 
-            <div class="modal-footer"> 
-                <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button> 
-            </div> 
-        </div><!-- /.modal-content --> 
-    </div><!-- /.modal-dialog --> 
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><?php echo the_title(); ?></h4>
+            </div>
+            <div class="modal-body">
+                <?php _e("You modified", "wpbootstrap"); ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php _e("Ok", "wpbootstrap"); ?></button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
 <?php $LangLong = esc_attr(get_post_meta($post->ID, '_program_latitude', true)) . ' ,' . esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
