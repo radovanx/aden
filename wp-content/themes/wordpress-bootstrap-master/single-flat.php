@@ -113,7 +113,7 @@ get_header();
                             </span>
                             <div class="col-md-12 column product-key-info">
                                 <address>
-                                    <strong><?php // echo esc_attr($props['kontaktperson|firma'])       ?></strong>
+                                    <strong><?php // echo esc_attr($props['kontaktperson|firma'])         ?></strong>
                                     <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer'])  ?> <?php //echo esc_attr($props['kontaktperson|strasse'])  ?>
                                     <?php // echo esc_attr($props['kontaktperson|ort'])  ?> <?php //echo esc_attr($props['kontaktperson|plz'])  ?><br>
