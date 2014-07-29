@@ -1,11 +1,36 @@
-  <form role="form" class="border background clearfix searchform col-md-12">
-                <div class="col-md-6 column">  
-                    <div class="row margin-top padding-top">                        
-                        <div class="form-group col-md-6"> 
-                        </div>
-                        <div class="form-group col-md-6">                            
-                        </div>
+  <form role="form" class="border background clearfix searchform col-md-12">      
+         <div class="col-md-12 column">
+                    <div class="form-group">  
+                            <label for="accommodation"><?php _e("Type of accommodation:", "wpbootstrap"); ?></label>                                                 
+                        <div class="">  
+                            
+                         
+                            <label class="checkbox-inline padding-right">
+                                <input type="checkbox" id="inlineCheckbox-<?php _e("Rented apartment", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Rented apartment", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Rented apartment", "wpbootstrap"); ?>"><?php _e("Rented apartment", "wpbootstrap"); ?>
+                            </label>
+                       
+                         
+                            <label class="checkbox-inline padding-right">
+                                <input type="checkbox" id="inlineCheckbox-<?php _e("Apartment", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Apartment", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Apartment", "wpbootstrap"); ?>"><?php _e("Apartment", "wpbootstrap"); ?>
+                            </label>
                         
+                              
+                            <label class="checkbox-inline padding-right">
+                                <input type="checkbox" id="inlineCheckbox-<?php _e("Commercial Unit", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Commercial Unit", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Commercial Unit", "wpbootstrap"); ?>"><?php _e("Commercial Unit", "wpbootstrap"); ?>
+                            </label>  
+                          
+                    
+                            <label class="checkbox-inline padding-right">
+                                <input type="checkbox" id="inlineCheckbox-<?php _e("Building", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Building", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Building", "wpbootstrap"); ?>"><?php _e("Building", "wpbootstrap"); ?>
+                            </label>  
+                                                
+                        </div>    
+ 
+        </div>
+             </div>
+                <div class="col-md-6 column">  
+                    <div class="row">                        
+                         
                         <div class="form-group col-md-6">
                             <label for="Pricef"><?php _e("Price from:", "wpbootstrap"); ?></label><input name="Pricef" class="form-control input-lg" id="Pricef" type="text" placeholder="Price from:" />
                         </div>
@@ -46,25 +71,7 @@
                         <!-- /district from ajax -->
                     </div>
                 </div>
-                <div class="col-md-6 column">
-                       <div class="form-group">  
-                            <label for="accommodation"><?php _e("Type of accommodation:", "wpbootstrap"); ?></label>                                                 
-                        <div class="">  
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox-<?php _e("Rented apartment", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Rented apartment", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Rented apartment", "wpbootstrap"); ?>"><?php _e("Rented apartment", "wpbootstrap"); ?>
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox-<?php _e("Apartment", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Apartment", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Apartment", "wpbootstrap"); ?>"><?php _e("Apartment", "wpbootstrap"); ?>
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox-<?php _e("Commercial Unit", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Commercial Unit", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Commercial Unit", "wpbootstrap"); ?>"><?php _e("Commercial Unit", "wpbootstrap"); ?>
-                            </label>  
-                            
-                            <label class="checkbox-inline">
-                                <input type="checkbox" id="inlineCheckbox-<?php _e("Building", "wpbootstrap"); ?>" name="type" data-myAttri="<?php _e("Building", "wpbootstrap"); ?>" class="type-checkbox" value="<?php _e("Building", "wpbootstrap"); ?>"><?php _e("Building", "wpbootstrap"); ?>
-                            </label>  
-                        </div>        
-                    </div>  
+                <div class="col-md-6 column">  
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="Areaf"><?php _e("Area from (m2):", "wpbootstrap"); ?></label><input name="Areaf" class="form-control input-lg" id="Areaf" type="text" placeholder="Area from:" />

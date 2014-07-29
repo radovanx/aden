@@ -96,7 +96,6 @@ $query = new WP_Query($args);
                 </a>
             </h3>
             <div class="form-group">
-
                 <?php //if (is_user_logged_in()): 
                 if(1):
                 ?>

@@ -104,11 +104,8 @@ get_header();
                                         $favor = "red fa-star";
                                         $favorite_text = __('Added to favorites', 'wpbootstrap');
                                     }
-                                    
                                     $program_id = $val->program_id;
-                                     
                                     $term = accomodationTypeL($prop);
-                                    
                                     if ($term == "") {
                                         $term = '-';
                                     }
