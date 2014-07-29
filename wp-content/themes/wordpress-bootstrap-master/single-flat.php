@@ -114,11 +114,11 @@ get_header();
                             <div class="col-md-12 column product-key-info">
                                 <address>
                                     <strong><?php // echo esc_attr($props['kontaktperson|firma'])         ?></strong>
-                                    <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
+                                    <strong><?php _e("Contact:", "wpbootstrap") ?></strong> <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer'])  ?> <?php //echo esc_attr($props['kontaktperson|strasse'])  ?>
                                     <?php // echo esc_attr($props['kontaktperson|ort'])  ?> <?php //echo esc_attr($props['kontaktperson|plz'])  ?><br>
-                                    <strong>Phone:</strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
-                                    <strong>Email:</strong> <?php echo strtolower($props['kontaktperson|vorname']) ?>.<?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com
+                                    <strong><?php _e("Phone:", "wpbootstrap") ?></strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
+                                    <strong><?php _e("Email:", "wpbootstrap") ?></strong> <?php echo strtolower($props['kontaktperson|vorname']) ?>.<?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com
 
                                 </address>
                                 <span class="propertyListBoxDataItemName">
