@@ -341,7 +341,7 @@
                 );
             }
 
-            if(!empty($props['preise|aussen_courtage'])){
+            if (!empty($props['preise|aussen_courtage'])) {
                 $cells[] = array(
                     __('Buyer commission (incl. VAT):', 'wpbootstrap'),
                     esc_attr($props['preise|aussen_courtage'])
@@ -397,6 +397,15 @@
                 $cells[] = array(
                     __('Calcul automatique du Yield:', 'wpbootstrap'),
                     round($props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5) . ' ' . periodeL($props)
+                );
+            }
+
+            $yield = get_the_excerpt();
+            
+            if (!empty($yield)) {
+                $cells[] = array(
+                    __(" Yield:", "wpbootstrap"),
+                    $yield
                 );
             }
             ?>
