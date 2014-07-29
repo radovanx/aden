@@ -61,9 +61,7 @@ get_header();
                             <div class="tab-pane fade" id="video_tab">
                                 <?php
                                 if (!empty($video)):
-
                                     global $wp_embed;
-
                                     if (is_array($video)):
                                         foreach ($video as $v):
                                             ?>
