@@ -117,7 +117,7 @@ get_header();
                                     <strong><?php _e("Contact:", "wpbootstrap") ?></strong> <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer'])  ?> <?php //echo esc_attr($props['kontaktperson|strasse'])  ?>
                                     <?php // echo esc_attr($props['kontaktperson|ort'])  ?> <?php //echo esc_attr($props['kontaktperson|plz'])  ?><br>
-                                    <strong><?php _e("Phone:", "wpbootstrap") ?></strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
+                                    <strong><?php _e("Contact:", "wpbootstrap") ?></strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
                                     <strong><?php _e("Email:", "wpbootstrap") ?></strong> <?php echo strtolower($props['kontaktperson|vorname']) ?>.<?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com
 
                                 </address>
