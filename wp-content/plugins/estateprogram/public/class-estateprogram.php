@@ -335,7 +335,7 @@ class EstateProgram {
                 'view_item' => __('View product', $this->plugin_slug),
                 'search_items' => __('Find product', $this->plugin_slug),
                 'parent_item_colon' => '',
-                'menu_name' => __('Product', $this->plugin_slug)
+                'menu_name' => __('Products', $this->plugin_slug)
             ),
             'public' => true,
             'supports' => array(
