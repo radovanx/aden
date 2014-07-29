@@ -108,8 +108,12 @@ get_header();
                                     $term = accomodationTypeL($prop);
                                     if ($term == "") {
                                         $term = '-';
-                                    }
- 
+                                    }                                     
+                                    if(isset($prop['objektkategorie|objektart|haus']))
+                                    {
+                                        $term = __('Building', "wpbootstrap"); 
+                                    }    
+                         
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
@@ -138,7 +142,6 @@ get_header();
                                     if ($rental_status == 1 ) {                                        
                                         $rental_status = __('rented', "wpbootstrap");
                                         $term =  __('Rented apartment', "wpbootstrap");
-                                        
                                     } 
                                     
                                     $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";

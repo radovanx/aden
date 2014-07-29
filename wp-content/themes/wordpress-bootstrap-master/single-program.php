@@ -119,9 +119,7 @@ get_header();
                         <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
                         <span class="phone red bold"><i class="fa fa-phone"></i><?php _e('+33 0632140564', 'wpbootstrap') ?></span> 
                         <?php if ( is_user_logged_in()): ?>
-                        
-                        
-                        
+ 
                         <?php $podcast_file = get_post_meta($post->ID, 'podcast_file', true); ?>
                         
                         <?php 
