@@ -73,7 +73,7 @@
             <div class="form-group col-md-6">
                 <label for="Roomsf"><?php _e("Rooms from:", "wpbootstrap"); ?></label> 
                 <select class="form-control input-lg" name="Roomsf" > 
-                    <option value="1">1</option>
+                    <option value="0">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option> 
                     <option value="4">4</option>
