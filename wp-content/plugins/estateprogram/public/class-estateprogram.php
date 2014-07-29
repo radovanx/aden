@@ -325,13 +325,13 @@ class EstateProgram {
 
         $args = array(
             'labels' => array(
-                'name' => __('Product', $this->plugin_slug),
+                'name' => __('Products', $this->plugin_slug),
                 'singular_name' => __('Product', $this->plugin_slug),
                 'add_new' => __('Create product', $this->plugin_slug),
                 'add_new_item' => __('New product', $this->plugin_slug),
                 'edit_item' => __('Edit product', $this->plugin_slug),
                 'new_item' => __('Create product', $this->plugin_slug),
-                'all_items' => __('All product', $this->plugin_slug),
+                'all_items' => __('All products', $this->plugin_slug),
                 'view_item' => __('View product', $this->plugin_slug),
                 'search_items' => __('Find product', $this->plugin_slug),
                 'parent_item_colon' => '',
