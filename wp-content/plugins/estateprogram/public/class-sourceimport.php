@@ -235,7 +235,10 @@ class SourceImport {
 
                     if (!empty($ret['freitexte|objekttitel'])) {
                         $post_information['post_title'] = $post_title . '<!--:' . $lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
+                    } else {
+                        $post_information['post_title'] = $unique_identificator;
                     }
+                    
                     $post_information['ID'] = $apartment_id;
 
                     wp_insert_post($post_information);
@@ -245,6 +248,10 @@ class SourceImport {
                         $post_information['post_title'] = '<!--:' . $lang . '-->' . $ret['freitexte|objekttitel'] . '<!--:-->';
                     } else {
                         $post_information['post_title'] = '';
+                    }
+                    
+                    if(empty($post_information['post_title'])){
+                        $post_information['post_title'] = $unique_identificator;
                     }
 
                     $apartment_id = wp_insert_post($post_information);
