@@ -1367,4 +1367,29 @@ function heatingSystemL($props) {
     function set_content_type($content_type) {
         return 'text/html';
     }
+    
+    //action before send contact form
+                
+     add_action( 'wpcf7_before_send_mail', 'my_dynamic_attachments' ); 
+                
+     function my_dynamic_attachments($cf7)
+     {                    
+       $regexxxx = $cf7->posted_data['_wpcf7_unit_tag'];     
+       $regexxxx = preg_match_all("|-p([^-]+)|", $regexxxx, $out);  
+       $regexxxx = $out[1][0]; 
+       $podcast_file = get_post_meta($regexxxx, 'podcast_file', true);               
+
+       $filename = $podcast_file;    
+       $homeurl =  home_url();
+       $abspath = ABSPATH;      
+                
+       $filename = str_replace($homeurl,$abspath, $filename);
+                
+      //$abspath =  ABSPATH.'/wp-content/uploads/2014/05/Foto_19072.jpg';
+                
+       //  http://adenimmo.localhost/wp-content/uploads/2014/05/Foto_19072.jpg       
+                
+        $cf7->uploaded_files = array('attachment'=> $filename); 
+     }
+                
 ?>
