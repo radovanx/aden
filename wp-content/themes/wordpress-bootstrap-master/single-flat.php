@@ -106,8 +106,7 @@ get_header();
                                     <strong>Phone:</strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
                                     <strong>Email:</strong> <?php echo strtolower($props['kontaktperson|vorname']) ?>.<?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com
 
-                                </address>
-
+                                </address> 
                                 <span class="propertyListBoxDataItemName">
                                     <i class="fa fa-money"></i><strong><?php _e("Purchase price:", "wpbootstrap"); ?></strong>
                                     <strong class="red pull-right"><?php echo esc_attr(price_format($props['preise|kaufpreis'])) ?> €
@@ -194,21 +193,14 @@ get_header();
                                     ?>
                                 </span>
                             </li>
-
-                            <li class="col-md-6 border-bottom">
-
-                                <strong><?php _e("Rooms:", "wpbootstrap"); ?> </strong>
-
-                                <span class="pull-right">
-
+                            <li class="col-md-6 border-bottom"> 
+                                <strong><?php _e("Rooms:", "wpbootstrap"); ?> </strong> 
+                                <span class="pull-right"> 
                                     <?php
-                                    if ($props['flaechen|anzahl_zimmer']):
-
-                                        echo (int) $props['flaechen|anzahl_zimmer'];
-
+                                    if ($props['flaechen|anzahl_zimmer']): 
+                                        echo (int) $props['flaechen|anzahl_zimmer']; 
                                     endif;
-                                    ?>
-
+                                    ?> 
                                 </span>
 
                             </li>

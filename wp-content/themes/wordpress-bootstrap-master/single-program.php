@@ -4,7 +4,7 @@ get_header();
 <div class="container">
     <div id="content" class="clearfix row">
         <div class="col-md-12 column">
-            <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?></h1></div>
+            <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php the_title(); ?> <a href="javascript:history.go(-1)" class="pull-right doublesmall"><?php _e('<- back', "wpbootstrap"); ?></a></h1></div>
         </div>
         <div id="main" class="col-md-7 column clearfix" role="main">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
