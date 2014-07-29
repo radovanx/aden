@@ -230,11 +230,7 @@ class EstateProgram_Admin {
         }
     }
 
-    
                 
-
-
-    
     public function save() {
 
         global $post;
