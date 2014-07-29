@@ -325,17 +325,17 @@ class EstateProgram {
 
         $args = array(
             'labels' => array(
-                'name' => __('Flats', $this->plugin_slug),
-                'singular_name' => __('Flat', $this->plugin_slug),
-                'add_new' => __('Create flat', $this->plugin_slug),
-                'add_new_item' => __('New flat', $this->plugin_slug),
-                'edit_item' => __('Edit flat', $this->plugin_slug),
-                'new_item' => __('Create flat', $this->plugin_slug),
-                'all_items' => __('All flat', $this->plugin_slug),
-                'view_item' => __('View flat', $this->plugin_slug),
-                'search_items' => __('Find flat', $this->plugin_slug),
+                'name' => __('Product', $this->plugin_slug),
+                'singular_name' => __('Product', $this->plugin_slug),
+                'add_new' => __('Create product', $this->plugin_slug),
+                'add_new_item' => __('New product', $this->plugin_slug),
+                'edit_item' => __('Edit product', $this->plugin_slug),
+                'new_item' => __('Create product', $this->plugin_slug),
+                'all_items' => __('All product', $this->plugin_slug),
+                'view_item' => __('View product', $this->plugin_slug),
+                'search_items' => __('Find product', $this->plugin_slug),
                 'parent_item_colon' => '',
-                'menu_name' => __('Flats', $this->plugin_slug)
+                'menu_name' => __('Product', $this->plugin_slug)
             ),
             'public' => true,
             'supports' => array(
@@ -347,7 +347,7 @@ class EstateProgram {
             ),
             'menu_position' => 8,
             'rewrite' => array(
-                'slug' => 'flat',
+                'slug' => 'product',
             ),
                 //'show_in_menu' => 'program_overview'
         );
