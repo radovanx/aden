@@ -139,7 +139,7 @@ get_header();
                                 </span>
 
                                 <a  href="#recomendModal" class="btn btn-lg bold btn-primary btn-block" data-toggle="modal"><?php _e("Recommend product", "wpbootstrap"); ?></a>
-                                <a  href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
+                                <a target="blank" href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
 
                                 <?php if (current_user_can('see_contact')): ?>
                                     <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
