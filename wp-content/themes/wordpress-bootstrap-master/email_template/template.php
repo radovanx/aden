@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;UTF-8" />
   </head>
-  <body style="margin: 0px; background-color: white; font-family: Helvetica, Arial, sans-serif; font-size:12px;" text="#444444" bgcolor="#F4F3F4" link="#21759B" alink="#21759B" vlink="#21759B" marginheight="0" topmargin="0" marginwidth="0" leftmargin="0">
+  <body style="margin: 0px; background-color: #eeeeee; font-family: Helvetica, Arial, sans-serif; font-size:12px;" text="#444444" bgcolor="#eeeeee" link="#174b7f" alink="#174b7f" vlink="#174b7f" marginheight="0" topmargin="0" marginwidth="0" leftmargin="0">
     <table border="0" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
       <tbody>
         <tr>
@@ -16,8 +16,8 @@
                       <table id="header" style="line-height: 1.6; font-size: 12px; color: #1c4a7e;" border="0" width="100%" cellspacing="0" cellpadding="0">
                         <tbody>
                           <tr>
-                              <td style="padding: 0px 15px; color: #ffffff; text-align: right; border-bottom: 1px solid #e7e7e7;" colspan="2">
-                                  <img width="138" height="43" src="http://immoneda.com/wp-content/themes/wordpress-bootstrap-master/images/ilogo2.png" alt="" />
+                              <td style="padding: 0px 15px; color: #ffffff; text-align: right;" colspan="2">
+                                  <img width="600" height="195" src="<?php bloginfo('template_url'); ?>/images/email_header.jpg" alt="" />
                               </td>
                           </tr> 
                         </tbody>

@@ -104,11 +104,8 @@ class pdfgenerator {
             //'show_ui' => false,
             'public' => true,
             'supports' => array(
-                //'thumbnail',
-                'title',
-                'editor',
-            //'excerpt',
-            //'author'
+            'title',
+            'editor',         
             ),
         );
 
@@ -185,7 +182,6 @@ class pdfgenerator {
                 exit;
             }
         }
-
         // pdf prezentace produktu
         if (isset($q['action']) && 'generate-pdf' == $q['action']) {
             if (!empty($q['language'])) {
@@ -342,59 +338,57 @@ class pdfgenerator {
             header("HTTP/1.0 404 Not Found");
             _e('Please enter a message', $this->plugin_slug);
             die();
-        }
-
-        $message = strip_tags($_POST['receiver_message']);
-        $message = str_replace("\n", "\r\n", $message);
-
+        } 
+               
         $lang = $_POST['lang'];
-        //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
-        $props = get_props($product->ID, $lang);
+                    
 
-        $this->override_locale($lang);
-
-        $mpdf = $this->create_html2pdf($product, $props);
-
+        $props = get_props($product->ID, $lang); 
+        $this->override_locale($lang); 
+                    
+        $mpdf = $this->create_html2pdf($product, $props); 
         $presentation_string = $mpdf->Output('', 'S');
         $attachment = chunk_split(base64_encode($presentation_string));
-
-        //$user_data = get_userdata(get_current_user_id());
-        //$mailto = $user_data->user_email;
-        //$mailto = 'root@localhost';
+                    
 
         global $current_user;
         get_currentuserinfo();
-
-        $from_name = $current_user->user_firstname . ' ' . $current_user->user_lastname;
+        $from_name = $current_user->user_firstname . ' ' . $current_user->user_lastname; 
+        
+        if ($lang == 'fr'){  
+        $message = 'Bonjour,<br>'.$from_name.' (de la personne qui envoie le mail), partenaire d\’Immoneda.com,  vous recommande un bien immobilier que vous trouverez en pièce jointe.';            
+        $message .= 'Nous espérons que ce bien vous intéresse. <br>Cordialement,<br> L’équipe Immoneda';
+        }
+        elseif($lang == 'en'){         
+        $message = 'Hello,<br>'.$from_name.'a partner from Immoneda.com, recommends a property for you that you will find attached.';     
+        $message .= 'We hope that you’ll find in this property interesting.<br>Best regards,<br>The Immoneda Team'; 
+        }
+        else {               
+        $message = 'Guten Tag,<br>'.$from_name.', Partner von Immoneda.com, empfiehlt Ihnen eine Immobilie. Diese finden sie im Anhang.';    
+        $message .= 'Wir hoffen, dass ihnen das Objekt gefällt.<br>Mit freundlichen Grüßen,<br>Ihr Immoneda-Team';    
+        }
+                    
         $from_mail = $current_user->user_email;
-        $reply_to = $current_user->user_email;
-
+        $reply_to = $current_user->user_email; 
         if (!empty($props['freitexte|objekttitel'])) {
             $subject = $props['freitexte|objekttitel'];
         } else {
             $subject = get_the_title($product->ID);
-        }
-
+        } 
         if (empty($props['verwaltung_techn|objektnr_extern'])) {
             $filename = $subject;
         } else {
             $filename = $props['verwaltung_techn|objektnr_extern'];
-        }
-
-        $filename = $filename . '.pdf';
-
-        // $message = esc_attr($message);
-// a random hash will be necessary to send mixed content
-        $separator = md5(time());
-// carriage return type (we use a PHP end of line constant)
+        } 
+        $filename = $filename . '.pdf'; 
+                    
+        $separator = md5(time());          
         $eol = PHP_EOL;
-// main header
-
-        $from_name = "=?UTF-8?B?" . base64_encode($from_name) . "?=";
-
+                    
+// main header 
+        $from_name = "=?UTF-8?B?" . base64_encode($from_name) . "?="; 
         $headers = "From: " . $from_name . " <" . $from_mail . "> " . $eol;
-        $headers .= "Reply-To: $replyto\r\n";
-
+        $headers .= "Reply-To: $replyto\r\n"; 
         $headers .= "MIME-Version: 1.0" . $eol;
         $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"";
 // no more headers after this, we start the body! //
@@ -407,6 +401,7 @@ class pdfgenerator {
         ob_start();
         include get_template_directory() . "/email_template/template.php";
         $content = ob_get_contents();
+ 
         ob_end_clean();        
         
         $body .= "Content-Transfer-Encoding: 8bit" . $eol . $eol;
@@ -428,9 +423,7 @@ class pdfgenerator {
             _e('Email could not be sent, please contact administrator of this server.', $this->plugin_slug);
             die();
         }
-
-        // ulozim zaznam
-
+                    
         global $wpdb;
 
         $program_id = EstateProgram::flat_program_id($product->ID);
