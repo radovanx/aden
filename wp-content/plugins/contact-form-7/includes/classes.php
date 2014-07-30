@@ -563,13 +563,11 @@ class WPCF7_ContactForm {
 
             if (!empty($on_submit))
                 $result['scripts_on_submit'] = array_map('wpcf7_strip_quote', $on_submit);
-        }
-
-     // remove upload files
+        } 
+     //   remove upload files
      //   foreach ((array) $this->uploaded_files as $name => $path) {
-     //       @unlink($path);
-     //   }
-
+     //   @unlink($path);
+     //   } 
         do_action_ref_array('wpcf7_submit', array(&$this, $result));
 
         self::add_submission_status($this->id, $result);
