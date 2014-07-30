@@ -1087,7 +1087,6 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
 
         //do_action('post_type_link');
-
         //do_action('type_of_accommodation_add_form');
         //do_action('type_of_accommodation_edit_form');
 
@@ -1109,44 +1108,44 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         ?>
         <div class="col-md-12 column">
             <div class="row">
-    <?php
-    $i = 0;
+                <?php
+                $i = 0;
 
-    if ($query->have_posts()) {
+                if ($query->have_posts()) {
 
-        while ($query->have_posts()) : $query->the_post();
+                    while ($query->have_posts()) : $query->the_post();
 
-            $i++;
+                        $i++;
 
-            global $post;
-            //get_template_part('partial', $part);
+                        global $post;
+                        //get_template_part('partial', $part);
 
-            include get_template_directory() . '/partial-' . $part . '.php';
+                        include get_template_directory() . '/partial-' . $part . '.php';
 
-        //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
+                    //echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
 
-        endwhile;
-    }
-    ?>
+                    endwhile;
+                }
+                ?>
 
             </div>
 
         </div>
-    <?php
-    $output = ob_get_clean();
-    wp_reset_query();
-    $ret = array(
-        'content' => $output
-    );
-    echo json_encode($ret);
-    exit;
-}
+        <?php
+        $output = ob_get_clean();
+        wp_reset_query();
+        $ret = array(
+            'content' => $output
+        );
+        echo json_encode($ret);
+        exit;
+    }
 
-add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
+    add_action('wp_ajax_item_pagination', 'item_pagination');           // for logged in user
 
-add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in
+    add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user not logged in
 
-   function get_props($post_id, $lang) {
+    function get_props($post_id, $lang) {
 
         $props = get_post_meta($post_id, 'flat_props_' . $lang, true);
 
@@ -1169,123 +1168,122 @@ add_action('wp_ajax_nopriv_item_pagination', 'item_pagination');    // if user n
     #################
     add_filter('post_type_link', 'qtrans_convertURL');
 
-function qtrans_convertHomeURL($url, $what) {
+    function qtrans_convertHomeURL($url, $what) {
 
-    if ($what == '/')
-        return qtrans_convertURL($url);
+        if ($what == '/')
+            return qtrans_convertURL($url);
 
-    return $url;
-}
-
-add_filter('home_url', 'qtrans_convertHomeURL', 10, 2);
-
-/**
-
- *
-
- * @param type $props
-
- */
-function apartmentTypeL($props) {
-
-    $arr = array();
-
-    if (isset($props['objektart|wohnung|wohnungtyp'])) {
-
-        switch ($props['objektart|wohnung|wohnungtyp']) {
-
-            case 'ETAGE';
-                $arr[] = __('Floor Apartment', 'wpbootstrap');
-                break;
-
-            case 'DACHGESCHOSS';
-                $arr[] = __('Attic', 'wpbootstrap');
-                break;
-
-            case 'ERDGESCHOSS';
-                $arr[] = __('Ground Floor', 'wpbootstrap');
-                break;
-
-            case 'MAISONETTE':
-                $arr[] = __('Duplex', 'wpbootstrap');
-                break;
-        }
+        return $url;
     }
 
-    return implode(', ', $arr);
-}
+    add_filter('home_url', 'qtrans_convertHomeURL', 10, 2);
+
+    /**
+
+     *
+
+     * @param type $props
+
+     */
+    function apartmentTypeL($props) {
+
+        $arr = array();
+
+        if (isset($props['objektart|wohnung|wohnungtyp'])) {
+
+            switch ($props['objektart|wohnung|wohnungtyp']) {
+
+                case 'ETAGE';
+                    $arr[] = __('Floor Apartment', 'wpbootstrap');
+                    break;
+
+                case 'DACHGESCHOSS';
+                    $arr[] = __('Attic', 'wpbootstrap');
+                    break;
+
+                case 'ERDGESCHOSS';
+                    $arr[] = __('Ground Floor', 'wpbootstrap');
+                    break;
+
+                case 'MAISONETTE':
+                    $arr[] = __('Duplex', 'wpbootstrap');
+                    break;
+            }
+        }
+
+        return implode(', ', $arr);
+    }
 
 //$status = statusL($prop);
-function statusL($prop) {
-    $ret = '';
-    if (isset($prop['zustand_angaben|verkaufstatus|stand'])) {
-        switch ($prop['zustand_angaben|verkaufstatus|stand']) {
-            case 'VERKAUFT':
-                $ret = __('VERKAUFT', 'wpbootstrap');
-                break;
-            case 'RESERVIERT':
-                $ret = __('RESERVIERT', 'wpbootstrap');
-                break;
-            case 'OFFEN':
-                $ret = __('OFFEN', 'wpbootstrap');
-                break;
-            default:
-                $ret = $prop['zustand_angaben|verkaufstatus|stand'];
+    function statusL($prop) {
+        $ret = '';
+        if (isset($prop['zustand_angaben|verkaufstatus|stand'])) {
+            switch ($prop['zustand_angaben|verkaufstatus|stand']) {
+                case 'VERKAUFT':
+                    $ret = __('VERKAUFT', 'wpbootstrap');
+                    break;
+                case 'RESERVIERT':
+                    $ret = __('RESERVIERT', 'wpbootstrap');
+                    break;
+                case 'OFFEN':
+                    $ret = __('OFFEN', 'wpbootstrap');
+                    break;
+                default:
+                    $ret = $prop['zustand_angaben|verkaufstatus|stand'];
+            }
         }
-    }
-    return $ret;
-}
-
-/**/
-
-function accomodationTypeL($props) {
-    $arr = array();
-
-    if (isset($props['objektkategorie|nutzungsart|ANLAGE']) && 1 == $props['objektkategorie|nutzungsart|ANLAGE']) {
-        $arr[] = __('Rented apartment', 'wpbootstrap');
+        return $ret;
     }
 
+    /**/
+
+    function accomodationTypeL($props) {
+        $arr = array();
+
+        if (isset($props['objektkategorie|nutzungsart|ANLAGE']) && 1 == $props['objektkategorie|nutzungsart|ANLAGE']) {
+            $arr[] = __('Rented apartment', 'wpbootstrap');
+        }
 
 
-    if (isset($props['objektkategorie|nutzungsart|GEWERBE']) && 1 == $props['objektkategorie|nutzungsart|GEWERBE']) {
-        $arr[] = __('Commercial Unit', 'wpbootstrap');
+
+        if (isset($props['objektkategorie|nutzungsart|GEWERBE']) && 1 == $props['objektkategorie|nutzungsart|GEWERBE']) {
+            $arr[] = __('Commercial Unit', 'wpbootstrap');
+        }
+
+
+
+        if (isset($props['objektkategorie|nutzungsart|WOHNEN']) && 1 == $props['objektkategorie|nutzungsart|WOHNEN']) {
+            $arr[] = __('Apartment', 'wpbootstrap');
+        }
+
+        return implode(', ', $arr);
     }
 
+    function heatingSystemL($props) {
+        $arr = array();
 
+        if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
+            $arr[] = __('Floor heating', 'wpbootstrap');
+        }
 
-    if (isset($props['objektkategorie|nutzungsart|WOHNEN']) && 1 == $props['objektkategorie|nutzungsart|WOHNEN']) {
-        $arr[] = __('Apartment', 'wpbootstrap');
+        if (isset($props['ausstattung|heizungsart|FERN']) && 1 == $props['ausstattung|heizungsart|FERN']) {
+            $arr[] = __('District heating', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
+            $arr[] = __('Central heating', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
+            $arr[] = __('Chauffage individuel', 'wpbootstrap');
+        }
+
+        if (isset($props['ausstattung|heizungsart|OFEN']) && 1 == $props['ausstattung|heizungsart|OFEN']) {
+            $arr[] = __('Furnace heating', 'wpbootstrap');
+        }
+
+        return implode(', ', $arr);
     }
-
-    return implode(', ', $arr);
-}
-
-function heatingSystemL($props) {
-    $arr = array();
-
-    if (isset($props['ausstattung|heizungsart|FUSSBODEN']) && 1 == $props['ausstattung|heizungsart|FUSSBODEN']) {
-        $arr[] = __('Floor heating', 'wpbootstrap');
-    }
-
-    if (isset($props['ausstattung|heizungsart|FERN']) && 1 == $props['ausstattung|heizungsart|FERN']) {
-        $arr[] = __('District heating', 'wpbootstrap');
-    }
-
-    if (isset($props['ausstattung|heizungsart|ZENTRAL']) && 1 == $props['ausstattung|heizungsart|ZENTRAL']) {
-        $arr[] = __('Central heating', 'wpbootstrap');
-    }
-
-    if (isset($props['ausstattung|heizungsart|ETAGE']) && 1 == $props['ausstattung|heizungsart|ETAGE']) {
-        $arr[] = __('Chauffage individuel', 'wpbootstrap');
-    }
-
-    if (isset($props['ausstattung|heizungsart|OFEN']) && 1 == $props['ausstattung|heizungsart|OFEN']) {
-        $arr[] = __('Furnace heating', 'wpbootstrap');
-    }
-
-    return implode(', ', $arr);
-}
-
 
     function epartL($props) {
         $return = '';
@@ -1338,7 +1336,7 @@ function heatingSystemL($props) {
      */
 
 
-    
+
     ############
     add_filter('wp_mail', 'my_wp_mail_filter');
 
@@ -1367,29 +1365,51 @@ function heatingSystemL($props) {
     function set_content_type($content_type) {
         return 'text/html';
     }
-    
-    //action before send contact form
-                
-     add_action( 'wpcf7_before_send_mail', 'my_dynamic_attachments' ); 
-                
-     function my_dynamic_attachments($cf7)
-     {                    
-       $regexxxx = $cf7->posted_data['_wpcf7_unit_tag'];     
-       $regexxxx = preg_match_all("|-p([^-]+)|", $regexxxx, $out);  
-       $regexxxx = $out[1][0]; 
-       $podcast_file = get_post_meta($regexxxx, 'podcast_file', true);               
 
-       $filename = $podcast_file;    
-       $homeurl =  home_url();
-       $abspath = ABSPATH;      
-                
-       $filename = str_replace($homeurl,$abspath, $filename);
-                
-      //$abspath =  ABSPATH.'/wp-content/uploads/2014/05/Foto_19072.jpg';
-                
-       //  http://adenimmo.localhost/wp-content/uploads/2014/05/Foto_19072.jpg       
-                
-        $cf7->uploaded_files = array('attachment'=> $filename); 
-     }
-                
-?>
+    //action before send contact form
+
+    add_action('wpcf7_before_send_mail', 'my_dynamic_attachments');
+
+    function my_dynamic_attachments($cf7) {
+        $regexxxx = $cf7->posted_data['_wpcf7_unit_tag'];
+        $regexxxx = preg_match_all("|-p([^-]+)|", $regexxxx, $out);
+        $regexxxx = $out[1][0];
+        $podcast_file = get_post_meta($regexxxx, 'podcast_file', true);
+
+        if (!empty($podcast_file)) {
+
+            $filename = $podcast_file;
+            $homeurl = home_url();
+            $abspath = ABSPATH;
+
+            $filename = str_replace($homeurl, $abspath, $filename);
+
+            //$abspath =  ABSPATH.'/wp-content/uploads/2014/05/Foto_19072.jpg';
+            //  http://adenimmo.localhost/wp-content/uploads/2014/05/Foto_19072.jpg       
+
+            $cf7->uploaded_files = array('attachment' => $filename);
+        }
+        
+        
+        // guide attachment        
+        if(10573 == $cf7->id){
+            // DE form
+            $path = ABSPATH.'/wp-content/themes/wordpress-bootstrap-master/images/GuideinvestisseurBERLINgd_fr.pdf';
+            $cf7->uploaded_files = array('attachment' => $path);
+        }
+        
+        if(10571 == $cf7->id){
+            // EN form
+            $path = ABSPATH.'/wp-content/themes/wordpress-bootstrap-master/images/GuideinvestisseurBERLINgd_fr.pdf';
+            $cf7->uploaded_files = array('attachment' => $path);
+        }        
+        
+        if(10574 == $cf7->id){
+            // FR form
+            $path = ABSPATH.'/wp-content/themes/wordpress-bootstrap-master/images/GuideinvestisseurBERLINgd_fr.pdf';
+            $cf7->uploaded_files = array('attachment' => $path);
+        }        
+        
+        
+    }
+    ?>

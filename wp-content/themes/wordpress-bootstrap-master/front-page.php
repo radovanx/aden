@@ -96,8 +96,9 @@ $query = new WP_Query($args);
                 </a>
             </h3>
             <div class="form-group">
-                <?php //if (is_user_logged_in()): 
-                if(1):
+                <?php 
+                if (is_user_logged_in()): 
+                //if(1):
                 ?>
                     <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php bloginfo('template_url'); ?>/images/GuideinvestisseurBERLINgd_fr.pdf">
                     <?php else: ?>

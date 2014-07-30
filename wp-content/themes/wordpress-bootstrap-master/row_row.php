@@ -30,12 +30,22 @@ if (!empty($flat_props)):
         //$status = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";  
 
         global $post;
-        $yield = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage(get_post($val->ID)->post_excerpt);
-        $yield = !empty($yield) ? ($yield) : "-";    
-         
+        //$yield = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage(get_post($val->ID)->post_excerpt);
+        //$yield = !empty($yield) ? ($yield) : "-";
+
+        $yield = __(get_post($val->ID)->post_excerpt);
+
+        if (empty($yield)) {
+            if (!empty($prop['preise|kaufpreis']) && !empty($prop['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
+                $yield = round(100 * $props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5);
+            }
+        }
+
+        $yield = empty($yield) ? '-' : $yield;
+
         $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
         $status = statusL($prop);
-        
+
         $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
         //$elevator = !empty($prop['vermietet']) ? esc_attr($prop['vermietet']) : "-"; 
         ?> 
@@ -108,10 +118,10 @@ if (!empty($flat_props)):
                             </span>
                             <span class="data_item clearfix">
                                 <strong><?php _e("Yield:", "wpbootstrap"); ?></strong>  
-                                 <span class="pull-right"> 
+                                <span class="pull-right"> 
                                     <?php echo $yield; ?> 
                                 </span>
- 
+
                             </span>
                         </div> 
                         <div class="col-md-3"> 

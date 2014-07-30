@@ -299,11 +299,17 @@ get_header();
                                     );
                                 }
 
+                                
+                                $counted_yield = false;
+                                
                                 if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
+                                    
+                                    /*
                                     $cells[] = array(
                                         __('Calcul automatique du Yield:', 'wpbootstrap'),
-                                        round($props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5) . ' ' . periodeL($props)
-                                    );
+                                        100 * round($props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5) . ' %'
+                                    );*/
+                                    $counted_yield = round(100 * $props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5);
                                 }
 
                                 if (!empty($yield)) {
@@ -311,6 +317,11 @@ get_header();
                                         __(" Yield:", "wpbootstrap"),
                                         $yield
                                     );
+                                } else if(false != $counted_yield){
+                                    $cells[] = array(
+                                        __(" Yield:", "wpbootstrap"),
+                                        $yield .' %'
+                                    );                                    
                                 }
 
                                 foreach ($cells as $cell):
