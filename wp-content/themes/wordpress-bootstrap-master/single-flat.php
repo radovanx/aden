@@ -315,12 +315,12 @@ get_header();
                                 if (!empty($yield)) {
                                     $cells[] = array(
                                         __(" Yield:", "wpbootstrap"),
-                                        $yield . ' %'
+                                        $yield
                                     );
                                 } else if(false != $counted_yield){
                                     $cells[] = array(
                                         __(" Yield:", "wpbootstrap"),
-                                        $yield . ' %'
+                                        $yield .' %'
                                     );                                    
                                 }
 
