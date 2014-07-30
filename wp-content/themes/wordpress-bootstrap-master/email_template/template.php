@@ -17,7 +17,7 @@
                         <tbody>
                           <tr>
                               <td style="padding: 0px 15px; color: #ffffff; text-align: right; border-bottom: 1px solid #e7e7e7;" colspan="2">
-                                  <img width="138" height="43" src="http://immoneda.com/wp-content/themes/wordpress-bootstrap-master/images/ilogo2.png" alt="" />
+                                  <img width="138" height="43" src="<?php bloginfo('template_url'); ?>/images/email_header.jpg" alt="" />
                               </td>
                           </tr> 
                         </tbody>
