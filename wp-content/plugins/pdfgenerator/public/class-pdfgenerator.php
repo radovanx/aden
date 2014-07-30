@@ -346,8 +346,7 @@ class pdfgenerator {
                
         $lang = $_POST['lang'];
         //$props = get_post_meta($product->ID, 'flat_props_' . $lang, true);
-                    
-        
+
         $props = get_props($product->ID, $lang); 
         $this->override_locale($lang); 
                     
@@ -367,18 +366,14 @@ class pdfgenerator {
         $message = 'Bonjour,<br>'.$from_name.' (de la personne qui envoie le mail), partenaire d\’Immoneda.com,  vous recommande un bien immobilier que vous trouverez en pièce jointe.';            
         $message .= 'Nous espérons que ce bien vous intéresse. <br>Cordialement,<br> L’équipe Immoneda';
         }
-        elseif($lang == 'en'){
-                    
+        elseif($lang == 'en'){         
         $message = 'Hello,<br>'.$from_name.'a partner from Immoneda.com, recommends a property for you that you will find attached.';     
         $message .= 'We hope that you’ll find in this property interesting.<br>Best regards,<br>The Immoneda Team'; 
         }
-        else { 
-                    
+        else {               
         $message = 'Guten Tag,<br>'.$from_name.', Partner von Immoneda.com, empfiehlt Ihnen eine Immobilie. Diese finden sie im Anhang.';    
         $message .= 'Wir hoffen, dass ihnen das Objekt gefällt.<br>Mit freundlichen Grüßen,<br>Ihr Immoneda-Team';    
         }
-        
-        
         /*$message. = strip_tags($_POST['receiver_message']);
         $message. = str_replace("\n", "\r\n", $message);    
         */          
