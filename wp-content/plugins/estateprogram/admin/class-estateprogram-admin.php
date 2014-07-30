@@ -244,24 +244,18 @@ class EstateProgram_Admin {
                 '_program_city',
                 '_program_house_number',
                 '_program_postcode',
-                //'_program_address',
-                //'_program_location',
-                //'_program_district',
                 '_program_apartments',
                 '_program_price_from',
                 '_program_price_to',
                 '_program_surface_to',
                 '_program_surface_from',
-                //'_program_elevator',
-                //'_program_postcode',
                 '_program_latitude',
                 '_program_longitude',
-                //'_house_number',
-                //'_program_address',
                 '_program_hightlight',
                 '_program_commission',
-                 'podcast_file',
-                
+                'podcast_file',
+                'podcast_filefr',
+                'podcast_filede'
             );
                 
             $this->process_save($post->ID, $meta_keys);
@@ -271,9 +265,7 @@ class EstateProgram_Admin {
             $meta_keys = array(
                 '_flat_price',
                 '_flat_number_of_room',
-                    //'_flat_surface_from',
-                    //'_flat_surface_to',
-                    //'_flat_elevator'
+                
             );
 
             $this->process_save($post->ID, $meta_keys);
