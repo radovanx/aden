@@ -33,7 +33,7 @@ get_header();
                 $name = !empty($props['freitexte|objekttitel']) ? esc_attr($props['freitexte|objekttitel']) : "-";
                 $rental_status = isset($props['verwaltung_objekt|vermietet']) ? esc_attr($props['verwaltung_objekt|vermietet']) : "-";
                 $flat_num = !empty($props['geo|wohnungsnr']) ? esc_attr($props['geo|wohnungsnr']) : 0;
-                $yield = get_the_excerpt();
+                $yield = __(get_the_excerpt());
                 ?>
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php echo $title ?>
@@ -113,7 +113,7 @@ get_header();
                             </span>
                             <div class="col-md-12 column product-key-info">
                                 <address>
-                                    <strong><?php // echo esc_attr($props['kontaktperson|firma'])         ?></strong>
+                                    <strong><?php // echo esc_attr($props['kontaktperson|firma'])           ?></strong>
                                     <strong><?php _e("Contact:", "wpbootstrap") ?></strong> <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer'])  ?> <?php //echo esc_attr($props['kontaktperson|strasse'])  ?>
                                     <?php // echo esc_attr($props['kontaktperson|ort'])  ?> <?php //echo esc_attr($props['kontaktperson|plz'])  ?><br>
@@ -299,17 +299,12 @@ get_header();
                                     );
                                 }
 
-                                
-                                $counted_yield = false;
-                                
-                                if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
-                                    
-                                    /*
-                                    $cells[] = array(
-                                        __('Calcul automatique du Yield:', 'wpbootstrap'),
-                                        100 * round($props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5) . ' %'
-                                    );*/
-                                    $counted_yield = round(100 * $props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5);
+
+
+                                if (empty($yield)) {
+                                    if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
+                                        $yield = round(100 * $props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 3) . '%';
+                                    }
                                 }
 
                                 if (!empty($yield)) {
@@ -317,12 +312,33 @@ get_header();
                                         __(" Yield:", "wpbootstrap"),
                                         $yield
                                     );
-                                } else if(false != $counted_yield){
-                                    $cells[] = array(
-                                        __(" Yield:", "wpbootstrap"),
-                                        $yield .' %'
-                                    );                                    
                                 }
+
+                                //$yield = empty($yield) ? '-' : $yield;
+                                //$counted_yield = false;
+
+                                /*
+                                  if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
+
+
+                                  $cells[] = array(
+                                  __('Calcul automatique du Yield:', 'wpbootstrap'),
+                                  100 * round($props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5) . ' %'
+                                  );
+                                  $counted_yield = round(100 * $props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 3);
+                                  }
+
+                                  if (!empty($yield)) {
+                                  $cells[] = array(
+                                  __(" Yield:", "wpbootstrap"),
+                                  $yield
+                                  );
+                                  } else if(false != $counted_yield){
+                                  $cells[] = array(
+                                  __(" Yield:", "wpbootstrap"),
+                                  $yield .' %'
+                                  );
+                                  } */
 
                                 foreach ($cells as $cell):
                                     ?>

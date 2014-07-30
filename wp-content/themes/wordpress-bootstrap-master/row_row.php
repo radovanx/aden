@@ -36,8 +36,8 @@ if (!empty($flat_props)):
         $yield = __(get_post($val->ID)->post_excerpt);
 
         if (empty($yield)) {
-            if (!empty($prop['preise|kaufpreis']) && !empty($prop['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
-                $yield = round(100 * $props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 5);
+            if (!empty($prop['preise|kaufpreis']) && !empty($prop['preise|mieteinnahmen_ist']) && ((int) $prop['preise|kaufpreis']) > 0) {
+                $yield = round(100 * $prop['preise|mieteinnahmen_ist'] / $prop['preise|kaufpreis'], 3) . '%';
             }
         }
 
