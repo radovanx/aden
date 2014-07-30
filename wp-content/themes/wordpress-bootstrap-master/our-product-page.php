@@ -142,7 +142,9 @@ get_header();
                                         }
                                     }
                                     
-                                    $yield = empty(trim($yield)) ? '-' : $yield;
+                                    $yield = trim($yield);
+                                    
+                                    $yield = empty($yield) ? '-' : $yield;
 
 
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : __('free', "wpbootstrap");

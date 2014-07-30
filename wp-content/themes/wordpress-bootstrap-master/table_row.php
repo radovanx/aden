@@ -47,7 +47,7 @@
                 }
             }
 
-            $yield = empty(trim($yield)) ? '-' : $yield;
+            $yield = empty($yield) ? '-' : $yield;
 
             /*
               if( $status == 'OFFEN' )

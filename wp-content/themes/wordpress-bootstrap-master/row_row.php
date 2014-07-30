@@ -41,7 +41,7 @@ if (!empty($flat_props)):
             }
         }
 
-        $yield = empty(trim($yield)) ? '-' : $yield;
+        $yield = empty($yield) ? '-' : $yield;
 
         $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
         $status = statusL($prop);
