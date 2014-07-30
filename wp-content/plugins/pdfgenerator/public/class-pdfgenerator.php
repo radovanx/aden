@@ -376,37 +376,29 @@ class pdfgenerator {
         }
         /*$message. = strip_tags($_POST['receiver_message']);
         $message. = str_replace("\n", "\r\n", $message);    
-        */          
-        
+        */           
         $from_mail = $current_user->user_email;
-        $reply_to = $current_user->user_email;
-
+        $reply_to = $current_user->user_email; 
         if (!empty($props['freitexte|objekttitel'])) {
             $subject = $props['freitexte|objekttitel'];
         } else {
             $subject = get_the_title($product->ID);
-        }
-
+        } 
         if (empty($props['verwaltung_techn|objektnr_extern'])) {
             $filename = $subject;
         } else {
             $filename = $props['verwaltung_techn|objektnr_extern'];
-        }
-
-        $filename = $filename . '.pdf';
-
+        } 
+        $filename = $filename . '.pdf'; 
         // $message = esc_attr($message);
 // a random hash will be necessary to send mixed content
         $separator = md5(time());
 // carriage return type (we use a PHP end of line constant)
         $eol = PHP_EOL;
-// main header
-
-        $from_name = "=?UTF-8?B?" . base64_encode($from_name) . "?=";
-
+// main header 
+        $from_name = "=?UTF-8?B?" . base64_encode($from_name) . "?="; 
         $headers = "From: " . $from_name . " <" . $from_mail . "> " . $eol;
-        $headers .= "Reply-To: $replyto\r\n";
-
+        $headers .= "Reply-To: $replyto\r\n"; 
         $headers .= "MIME-Version: 1.0" . $eol;
         $headers .= "Content-Type: multipart/mixed; boundary=\"" . $separator . "\"";
 // no more headers after this, we start the body! //
