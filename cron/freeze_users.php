@@ -21,7 +21,7 @@ $sql = "
     ON
         ll.user_id = u.ID
     WHERE
-        ll.login_date <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)        
+        ll.login_date <= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)
 ";
 
 $results = $wpdb->get_col($sql);
@@ -60,9 +60,21 @@ if (!empty($user_query->results)) {
                 'role' => 'frozen'
             );
             wp_update_user($args);
-            
+        }
+
+        // poslu email 7 dni pred zmrazenim
+        $send_email_time = clone $register_date;
+        $send_email_time->modify("+7 day");
+
+        if ($now > $send_email_time) {
             // send email
-            $custom_email->frozen_user_notification($user->ID);
+            $already_sent = get_user_meta($user->ID, 'freeze_email', true);
+
+            if (1 != $already_sent) {
+                if (false !== $custom_email->frozen_user_notification($user->ID)) {
+                    update_user_meta($user->ID, 'freeze_email', 1);
+                }
+            }
         }
     }
 }
