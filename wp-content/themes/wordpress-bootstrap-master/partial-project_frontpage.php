@@ -2,9 +2,7 @@
                         //echo $lang;
                        
                         $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation'); 
-                        
-                        $terms = qtrans_useTermLib($terms);
-                        
+                        $terms = qtrans_useTermLib($terms); 
                         $type_of_accomodation = array();
                           
                         foreach ($terms as $t) {
@@ -38,7 +36,7 @@
                                         <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><span class="pull-right"><strong class="red"><?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?> &euro; -  <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?> &euro;</strong></span></span>
                                 </div>
                                 <div class="panel-body excerpt">
-                                    <?php the_excerpt() ?>
+                                    <?php the_excerpt(); ?>
                                 </div>
                                 <div class="clearfix">
                                     <span class="col-lg-12 nopadding">

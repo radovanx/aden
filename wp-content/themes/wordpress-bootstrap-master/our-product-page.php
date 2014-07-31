@@ -127,7 +127,12 @@ get_header();
                                     $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                     $price = (int) $price;
                                     $idval = (int) $val->ID;
+                                    
+                                    
                                     $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
+                    
+                                    $name = htmlspecialchars_decode($name);
+                                        
                                     $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
 
                                     global $post;

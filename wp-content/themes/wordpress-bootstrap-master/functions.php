@@ -619,11 +619,7 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
                 return;
             }
-
-
-
-
-
+                
             global $wp_query;
 
             $indent = ( $depth ) ? str_repeat("\t", $depth) : '';
@@ -805,25 +801,16 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 // enqueue javascript
 
     if (!function_exists("theme_js")) {
-
-
+                
 
         function theme_js() {
-
-
-
+                
             wp_register_script('bootstrap', get_template_directory_uri() . '/library/js/bootstrap.min.js', array('jquery'), '1.2', true);
-
-
-
+                
             wp_register_script('wpbs-scripts', get_template_directory_uri() . '/library/js/scripts.js', array('jquery'), '1.2');
-
-
-
+                
             wp_register_script('modernizr', get_template_directory_uri() . '/library/js/modernizr.full.min.js', array('jquery'), '1.2');
-
-
-
+                
             wp_enqueue_script('bootstrap');
 
             wp_enqueue_script('wpbs-scripts');
@@ -866,19 +853,15 @@ function wp_bootstrap_comments($comment, $args, $depth) {
 
     function wp_infinitepaginate() {
 
-        $loopFile = $_project_frontpage['loop_file'];
-
-        $paged = $_POST['page_no'];
-
+        $loopFile = $_project_frontpage['loop_file']; 
+        $paged = $_POST['page_no']; 
         $posts_per_page = get_option('posts_per_page');
 
         # Load the posts
 
         query_posts(array('paged' => $paged));
         get_template_part($loopFile);
-
-
-
+                
         exit;
     }
 

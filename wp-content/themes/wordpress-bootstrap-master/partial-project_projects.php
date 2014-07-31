@@ -1,15 +1,10 @@
 <?php
 
-$terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation');
-
-$type_of_accomodation = array();
-
-foreach ($terms as $t) {
-
-    $type_of_accomodation[] = $t->name;
-
+$terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation'); 
+$type_of_accomodation = array(); 
+foreach ($terms as $t) { 
+    $type_of_accomodation[] = $t->name; 
 }
-
 ?>
 
 <div class="col-md-4 column">
@@ -54,32 +49,18 @@ foreach ($terms as $t) {
 
             <span class="propertyListBoxDataItemName">
 
-                <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red pull-right"><?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))) ?> &euro; -  <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))) ?> &euro;</strong></span>
-
-        </div>
-
-        <div class="panel-body excerpt">  
-
-            <?php the_excerpt(); ?>
-
-        </div>
-
-        <div class="clearfix">		
-
-            <span class="col-lg-12 nopadding">    
-
-                <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?>"><?php _e("view details", "wpbootstrap"); ?></a> 
-
-            </span> 
-
-        </div>
-
-    </div>	
-
+                <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red pull-right"><?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))) ?> &euro; -  <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))) ?> &euro;</strong></span> 
+        </div> 
+        <div class="panel-body excerpt">   
+            <?php the_excerpt(); ?> 
+        </div> 
+        <div class="clearfix">		 
+            <span class="col-lg-12 nopadding">     
+                <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php the_permalink(); ?>"><?php _e("view details", "wpbootstrap"); ?></a>  
+            </span>  
+        </div> 
+    </div>	 
 </div> 
-
 <?php
-
-echo 0 == $i % 3 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
-
+     echo 0 == $i % 3 ? '</div></div><div class="col-md-12 column"><div class="row">' : ''; 
 ?>

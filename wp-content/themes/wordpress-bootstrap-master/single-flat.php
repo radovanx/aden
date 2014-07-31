@@ -117,7 +117,7 @@ get_header();
                                     <strong><?php _e("Contact:", "wpbootstrap") ?></strong> <?php echo esc_attr($props['kontaktperson|vorname']) ?>  <?php echo esc_attr($props['kontaktperson|name']) ?>
                                     <?php //echo esc_attr($props['kontaktperson|hausnummer'])  ?> <?php //echo esc_attr($props['kontaktperson|strasse'])  ?>
                                     <?php // echo esc_attr($props['kontaktperson|ort'])  ?> <?php //echo esc_attr($props['kontaktperson|plz'])  ?><br>
-                                    <strong><?php _e("Contact:", "wpbootstrap") ?></strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
+                                    <strong><?php _e("Tel:", "wpbootstrap") ?></strong> <?php echo esc_attr($props['kontaktperson|tel_zentrale']) ?><br>
                                     <strong><?php _e("Email:", "wpbootstrap") ?></strong> <?php echo strtolower($props['kontaktperson|vorname']) ?>.<?php echo strtolower($props['kontaktperson|name']) ?>@immoneda.com
 
                                 </address>
@@ -230,7 +230,6 @@ get_header();
                                         $elevator
                                     );
                                 }
-
                                 $hs = heatingSystemL($props);
                                 if (!empty($hs)) {
                                     $cells[] = array(
@@ -238,7 +237,6 @@ get_header();
                                         heatingSystemL($props)
                                     );
                                 }
-
                                 if (!empty($props['preise|stp_sonstige|stellplatzmiete'])) {
                                     $parking = 0 == (int) ($props['preise|stp_sonstige|stellplatzmiete']) ? __('No', 'wpbootstrap') : __('Yes', 'wpbootstrap');
                                     $cells[] = array(
@@ -246,42 +244,36 @@ get_header();
                                         $parking
                                     );
                                 }
-
                                 if (!empty($props['preise|aussen_courtage'])) {
                                     $cells[] = array(
                                         __('Buyer commission (incl. VAT):', 'wpbootstrap'),
                                         esc_attr($props['preise|aussen_courtage'])
                                     );
                                 }
-
                                 if (!empty($props['preise|hausgeld'])) {
                                     $cells[] = array(
                                         __('Charges:', 'wpbootstrap'),
                                         $props['preise|hausgeld']
                                     );
                                 }
-
                                 if (!empty($props['preise|warmiete'])) {
                                     $cells[] = array(
                                         __('Loyer CC  (charges comprises):', 'wpbootstrap'),
                                         $props['preise|warmiete']
                                     );
                                 }
-
                                 if (!empty($props['preise|kaltmiete'])) {
                                     $cells[] = array(
                                         __('Loyer HC (Hors charges):', 'wpbootstrap'),
                                         $props['preise|kaltmiete']
                                     );
                                 }
-
                                 if (!empty($props['energiepass|epart'])) {
                                     $cells[] = array(
                                         __('Type de passeport:', 'wpbootstrap'),
                                         epartL($props)
                                     );
                                 }
-
                                 if (!empty($props['energiepass|gueltig_bis'])) {
 
                                     $date = DateTime::createFromFormat('Y-m-d', $props['energiepass|gueltig_bis']);
@@ -291,16 +283,13 @@ get_header();
                                         $date->format("d.m.Y")
                                     );
                                 }
-
                                 if (!empty($props['energiepass|energieverbrauchkennwert'])) {
                                     $cells[] = array(
                                         __('Consommation énergétique finale:', 'wpbootstrap'),
                                         $props['energiepass|energieverbrauchkennwert']
                                     );
                                 }
-
-
-
+ 
                                 if (empty($yield)) {
                                     if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
                                         $yield = round(100 * $props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 3) . '%';

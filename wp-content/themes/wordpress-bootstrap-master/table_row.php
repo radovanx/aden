@@ -24,7 +24,13 @@
             $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
             $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
             $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
+            
+            
             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
+            
+            $name = htmlspecialchars_decode($name);
+            
+            
             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";
             $status = statusL($prop);
             $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
@@ -47,8 +53,7 @@
                 }
             }
 
-            $yield = empty($yield) ? '-' : $yield;
-
+            $yield = empty($yield) ? '-' : $yield; 
             /*
               if( $status == 'OFFEN' )
               {
