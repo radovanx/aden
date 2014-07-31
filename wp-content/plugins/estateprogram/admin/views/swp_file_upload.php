@@ -11,19 +11,62 @@ $strFilede = get_post_meta( $post->ID, $key = 'podcast_filede', true );
  $media_file = '';
  
 
-if(!empty($media_file)) { $strFile = $media_file; }
+//if(!empty($media_file)) { $strFile = $media_file; }
 
 ?>
 <script type="text/javascript">
          
 // Uploading files
 var file_frame; 
-jQuery('.upload_image_button').live('click', function( podcast ){ 
+jQuery('#upload_image_button').live('click', function( podcast ){ 
 podcast.preventDefault();
- 
-var langinfo = jQuery( this ).attr('data-button'); 
-console.log(langinfo);
 
+    alert('add file');
+
+field=""; 
+ 
+// If the media frame already exists, reopen it.
+if ( file_frame ) {
+file_frame.open();
+return;
+}
+// Create the media frame.
+file_frame = wp.media.frames.file_frame = wp.media({    
+title: jQuery( this ).data( 'uploader_title' ),
+button: {
+text: jQuery( this ).data( 'uploader_button_text' ),
+},
+multiple: false // Set to true to allow multiple files to be selected
+});
+
+// When a file is selected, run a callback.
+  
+file_frame.on( 'select', function() {
+// We set multiple to false so only get one image from the uploader 
+attachment = file_frame.state().get('selection').first().toJSON();
+// here are some of the variables you could use for the attachment; 
+var url = attachment.url;  
+
+field="";
+field = document.getElementById("podcast_file");
+
+
+field.value=url;   //set which variable you want the field to have 
+
+});
+ 
+ 
+// Finally, open the modal
+file_frame.open();
+});
+
+
+
+ 
+jQuery('#upload_image_buttonfr').live('click', function( podcastfr ){
+    
+alert('add file fr'); 
+podcastfr.preventDefault(); 
 // If the media frame already exists, reopen it.
 if ( file_frame ) {
 file_frame.open();
@@ -40,37 +83,36 @@ multiple: false // Set to true to allow multiple files to be selected
 
 // When a file is selected, run a callback.
 
+ 
+    
 file_frame.on( 'select', function() {
-// We set multiple to false so only get one image from the uploader
-
+// We set multiple to false so only get one image from the uploader 
 attachment = file_frame.state().get('selection').first().toJSON();
-// here are some of the variables you could use for the attachment;
- 
-var url = attachment.url;
-   
+// here are some of the variables you could use for the attachment; 
+var url = attachment.url;  
 
-console.log(langinfo);
+fieldfr="";
+console.log('test');
  
-if (langinfo == "en")
-{        
- field = document.getElementById("podcast_file");
-}
-else if(langinfo == "fr")
-{
- field = document.getElementById("podcast_filefr");    
-}
-else
-{
- field = document.getElementById("podcast_filede");        
-}
- 
+fieldfr = document.getElementById("podcast_filefr");
 
-field.value =url;   //set which variable you want the field to have
+console.log(field); 
+console.log(url);
 
+fieldfr.value=url;   //set which variable you want the field to have 
 });
+ 
+ 
 // Finally, open the modal
 file_frame.open();
 });
+
+
+
+
+
+
+
 </script>
 <div>
 
@@ -94,7 +136,8 @@ file_frame.open();
 <td>
 
     <input type="text" name="podcast_filefr" id="podcast_filefr" size="70" value="<?php echo $strFilefr; ?>" /> 
-    <input id="upload_image_button" class="upload_image_button" data-button="fr" type="button" value="Upload">
+    
+    <input id="upload_image_buttonfr" class="upload_image_button" data-button="fr" type="button" value="Upload">
 
 </td>
 </tr>
@@ -108,7 +151,7 @@ file_frame.open();
 <td>
     
 <input type="text" name="podcast_filede" id="podcast_filede" size="70" value="<?php echo $strFilede; ?>" />
-<input id="upload_image_button" class="upload_image_button" data-button="de" type="button" value="Upload">
+<input id="upload_image_buttonde" class="upload_image_button" data-button="de" type="button" value="Upload">
 
 </td>
 </tr>

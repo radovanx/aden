@@ -289,6 +289,10 @@ get_header();
                                         $props['energiepass|energieverbrauchkennwert']
                                     );
                                 }
+                                
+                                
+                                
+                                
  
                                 if (empty($yield)) {
                                     if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {

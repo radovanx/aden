@@ -12,10 +12,9 @@
    function format(c,d){c=c||",";d=d||".";for(var a=this.toString().split("."),b=a[0],a=1<a.length?d+a[1]:"",e=/(\d+)(\d{3})/;e.test(b);)b=b.replace(e,"$1"+c+"$2");return b+a};
  
    jQuery("#Pricef").live("keyup",function(){jQuery(this).val(format.call(jQuery(this).val().split(" ").join("")," ","."))});jQuery("#Pricet").live("keyup",function(){jQuery(this).val(format.call(jQuery(this).val().split(" ").join("")," ","."))});
-   
+    
     var datatable = <?php echo $data_object; ?>;
-    
-    
+     
     var collection = new PourOver.Collection(datatable); 
   
      jQuery("form").on("submit", function(event) { 

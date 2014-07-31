@@ -997,10 +997,35 @@ function wp_bootstrap_comments($comment, $args, $depth) {
     function add_extra_user_column($columns) {
         $columns['foo'] = __('City', 'wpbootstrap');
         $columns['foo2'] = __('State', 'wpbootstrap');
-        $columns['date_register'] = __('Register date', 'wpbootstrap');
+        $columns['date_register'] = __('Register date', 'wpbootstrap'); 
+        $columns['last_conn'] = __('L. Login', 'wpbootstrap');
+        
+        $columns['n_conn'] = __('Num Login', 'wpbootstrap');
+        
         return $columns;
     }
 
+
+    
+    function your_last_login($login) {
+        
+    global $user_ID;
+    
+    $user = get_userdatabylogin($login);
+    
+    update_usermeta($user->ID, 'last_login', current_time('mysql'));
+                
+    }
+                
+    add_action('wp_login','your_last_login');
+function get_last_login($user_id) {
+    $last_login = get_user_meta($user_id, 'last_login', true);
+    $date_format = get_option('date_format') . ' ' . get_option('time_format');
+    $the_last_login = mysql2date($date_format, $last_login, false);
+    return $the_last_login;
+    }
+    
+                
     add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
 
     function manage_status_column($empty = '', $column_name, $id) {
@@ -1017,7 +1042,17 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         } else if ($column_name == 'date_register') {
             $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user_data->user_registered);
             return $register_date->format('d. m. Y H:i');
-        }
+        } 
+          else if($column_name == 'n_conn'){    
+                
+              global $wpdb;        
+              $results = $wpdb->get_results( 'SELECT COUNT(*) FROM wp_simple_login_log WHERE uid = '.$id.'', ARRAY_N ); 
+                return $results[0][0];                
+          }   
+          else if($column_name =='last_conn'){   
+               $last_login = $all_meta_for_user["last_login"][0]; 
+               return $last_login; 
+        } 
     }
 
     // sortable
@@ -1041,8 +1076,8 @@ function wp_bootstrap_comments($comment, $args, $depth) {
         return $vars;
     }
 
-    add_filter('request', 'registerdate_column_orderby');
-
+    add_filter('request', 'registerdate_column_orderby'); 
+    
     add_action('manage_users_columns', 'remove_user_posts_column');
 
     function remove_user_posts_column($column_headers) {
