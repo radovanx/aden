@@ -254,7 +254,7 @@ if (!class_exists('Theme_My_Login_Custom_Email')) :
             
             $headers = 'From: ' . esc_attr($from_name) . ' <' . esc_attr($from_email) . '>' . "\r\n";
             $headers = "Content-Type: text/$content_type; charset=\"" . get_option('blog_charset') . "\"\n";
-            @wp_mail($to, $title, $message, $headers);
+            return wp_mail($to, $title, $message, $headers);
         }
 
         ###########
