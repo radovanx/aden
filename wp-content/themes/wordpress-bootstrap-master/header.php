@@ -57,7 +57,9 @@
                     </button>
  
                     <a class="" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
+                        
                         <img src="<?php bloginfo('template_url'); ?>/images/logo.png" /></a>
+               
                 </div>
 
                 <div class="collapse navbar-collapse navbar-responsive-collapse navbar navbar-right">

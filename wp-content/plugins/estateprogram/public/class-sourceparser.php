@@ -285,28 +285,23 @@ class SourceParser {
                 $image_file = (string) $file[0];
 
                 if (false !== strpos($image_file, 'http')) {
-                    if (false !== strpos($image_file, 'dropbox')) {
-
+                    if (false !== strpos($image_file, 'dropbox')) { 
                         if (false !== strpos($image_title, 'flat')) {
                             $props['dropbox|flat'] = $image_file;
                             continue;
                         }
-
                         if (false !== strpos($image_title, 'building')) {
                             $props['dropbox|building'] = $image_file;
                             continue;
                         }
-                    }
-
+                    } 
                     if (false !== strpos($image_file, 'youtu')) {
                         $props['youtube'] = $image_file;
                         continue;
                     }
-                }
-
+                } 
                 //$image_path = ABSPATH . 'ftp' . '/' . $lang . '/' . $image_file;
                 $image_path = $temp_dir . DIRECTORY_SEPARATOR . $image_file;
-
                 // ma uz byt obrazek se stejnym nazvem
                 $attach_id = $wpdb->get_var("
                                             SELECT
@@ -321,7 +316,6 @@ class SourceParser {
                                                 post_parent = " . (int) $apartment_id . "
                                             AND
                                                 pm.meta_value = '" . $image_file . "'");
-
 
                 if (file_exists($image_path) && empty($attach_id)) {
 
@@ -347,8 +341,7 @@ class SourceParser {
                         );
                         // Insert the attachment.
                         $attach_id = wp_insert_attachment($attachment, $new_path, $apartment_id);
-
-
+ 
                         // Generate the metadata for the attachment, and update the database record.
                         $attach_data = wp_generate_attachment_metadata($attach_id, $new_path);
                         wp_update_attachment_metadata($attach_id, $attach_data);
@@ -378,7 +371,6 @@ class SourceParser {
                     wp_update_post($attachment);
                 }
             }
-
             update_post_meta($apartment_id, 'flat_props_' . $wp_lang, $props);
         }
     }
