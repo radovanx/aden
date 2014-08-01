@@ -304,6 +304,7 @@ var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass
                       {      
                          headers:
                                 {   
+                                7 : { sorter: 'digit'},    
                                 8 : { sorter: 'digit'},
                                 9 : { sorter: 'digit'} 
                                 },
@@ -365,6 +366,7 @@ var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass
                                 {      
                         headers:
                                 {   
+                                7 : { sorter: 'digit'},     
                                 8 : { sorter: 'digit'},
                                 9 : { sorter: 'digit'}, 
                                 },
