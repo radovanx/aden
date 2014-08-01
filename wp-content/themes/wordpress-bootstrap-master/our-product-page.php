@@ -109,7 +109,6 @@ get_header();
                                         $term = '-';
                                     }
 
-
                                     $thumb = wp_get_attachment_image_src(get_post_thumbnail_id($val->ID), 'flat-small');
                                     $url_image = $thumb['0'];
                                     $url = get_permalink($val->ID);
@@ -127,18 +126,12 @@ get_header();
                                     $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
                                     $price = (int) $price;
                                     $idval = (int) $val->ID;
-                                    
-                                    
-                                    $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-                 
+ 
+                                    $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";                 
                                     $name = str_replace("\n", '', $name);
-                                        
-                                    $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-";
-
-                                    global $post;
-
-                                    //$yield = qtrans_useCurrentLanguageIfNotFoundUseDefaultLanguage(get_post($val->ID)->post_excerpt);
-
+                                    $flat_num = !empty($prop['geo|wohnungsnr']) ? esc_attr($prop['geo|wohnungsnr']) : "-"; 
+                                    global $post; 
+                        
                                     $yield = __(get_post($val->ID)->post_excerpt);
 
                                     $yield = trim($yield);
