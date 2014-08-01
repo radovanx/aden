@@ -56,7 +56,7 @@
                         <span class="icon-bar"></span>
                     </button>
  
-                    <a class="" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo home_url(); ?>">
+                    <a class="" title="<?php echo get_bloginfo('description'); ?>" href="<?php echo bloginfo('home'); ?>">
                         
                         <img src="<?php bloginfo('template_url'); ?>/images/logo.png" /></a>
                
