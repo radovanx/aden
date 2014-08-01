@@ -1424,4 +1424,14 @@ function get_last_login($user_id) {
         
         
     }
+    
+    
+    if ( 'display' == $filter ) {
+        if ( $url )
+            $output = apply_filters('bloginfo_url', $output, $show);
+        else
+            $output = apply_filters('bloginfo', $output, $show);
+    }
+    
+    
     ?>
