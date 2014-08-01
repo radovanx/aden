@@ -2,7 +2,8 @@
                         //echo $lang;
                        
                         $terms = wp_get_post_terms(get_the_ID(), 'type_of_accommodation'); 
-                        $terms = qtrans_useTermLib($terms); 
+                        $terms = qtrans_useTermLib($terms);
+                        
                         $type_of_accomodation = array();
                           
                         foreach ($terms as $t) {
@@ -35,9 +36,11 @@
                                     <span class="propertyListBoxDataItemName">
                                         <i class="fa fa-money"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><span class="pull-right"><strong class="red"><?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?> &euro; -  <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?> &euro;</strong></span></span>
                                 </div>
-                                <div class="panel-body excerpt">
-                                    <?php the_excerpt(); ?>
+        
+                                <div class="panel-body excerpt min-height">
+                                <?php the_excerpt(); ?>
                                 </div>
+                       
                                 <div class="clearfix">
                                     <span class="col-lg-12 nopadding">
                                         <a class="btn btn-lg bold btn-primary btn-block btn-upper" href="<?php  echo $link ?>"><?php _e("View details", "wpbootstrap"); ?></a>
@@ -48,3 +51,6 @@
                         <?php 
                         echo 0 == $i % 2 ? '</div></div><div class="col-md-12 column"><div class="row">' : '';
                         ?>
+
+
+                        

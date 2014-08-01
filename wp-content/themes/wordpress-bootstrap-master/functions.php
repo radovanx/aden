@@ -1024,15 +1024,12 @@ function get_last_login($user_id) {
     $the_last_login = mysql2date($date_format, $last_login, false);
     return $the_last_login;
     }
-    
                 
     add_filter('manage_users_custom_column', 'manage_status_column', 10, 3);
 
-    function manage_status_column($empty = '', $column_name, $id) {
-
+    function manage_status_column($empty = '', $column_name, $id) { 
         $all_meta_for_user = get_user_meta($id);
-        $user_data = get_userdata($id);
-
+        $user_data = get_userdata($id); 
         if ($column_name == 'foo') {
             $city = $all_meta_for_user["city"][0];
             return $city;
@@ -1043,8 +1040,7 @@ function get_last_login($user_id) {
             $register_date = DateTime::createFromFormat('Y-m-d H:i:s', $user_data->user_registered);
             return $register_date->format('d. m. Y H:i');
         } 
-          else if($column_name == 'n_conn'){    
-                
+          else if($column_name == 'n_conn'){               
               global $wpdb;        
               $results = $wpdb->get_results( 'SELECT COUNT(*) FROM wp_simple_login_log WHERE uid = '.$id.'', ARRAY_N ); 
                 return $results[0][0];                
@@ -1053,8 +1049,7 @@ function get_last_login($user_id) {
                $last_login = $all_meta_for_user["last_login"][0]; 
                return $last_login; 
         } 
-    }
-
+    } 
     // sortable
     function registerdate_column_sortable($columns) {
         $custom = array(
@@ -1102,8 +1097,7 @@ function get_last_login($user_id) {
         $locale_file = TEMPLATEPATH . "/languages/$locale.php";
         if (is_readable($locale_file))
             require_once($locale_file);
-
-
+                
         //do_action('post_type_link');
         //do_action('type_of_accommodation_add_form');
         //do_action('type_of_accommodation_edit_form');
