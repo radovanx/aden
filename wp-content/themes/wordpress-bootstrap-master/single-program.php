@@ -71,11 +71,6 @@ get_header();
                                     <li> 
                                         <?php echo str_replace(';', '</li><li>', $summary) ?>
                                     </li>
-                                    <!--
-                                    <li><i class="fa fa-check"></i>
-                                        Top location within the central press and lifestyle district of Berlin
-                                    </li>
-                                    -->
                                 </ul>
                             </div>
                         </div>

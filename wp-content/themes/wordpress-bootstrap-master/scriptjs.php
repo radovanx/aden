@@ -20,6 +20,7 @@
      jQuery("form").on("submit", function(event) { 
         event.preventDefault();  
         var values = {};
+        
         jQuery.each(jQuery('form').serializeArray(), function(i, field) {
             values[field.name] = field.value;
         });

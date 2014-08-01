@@ -289,14 +289,11 @@ get_header();
                                         $props['energiepass|energieverbrauchkennwert']
                                     );
                                 }
-                                
-                                
-                                
-                                
+             
  
                                 if (empty($yield)) {
                                     if (!empty($props['preise|kaufpreis']) && !empty($props['preise|mieteinnahmen_ist']) && ((int) $props['preise|kaufpreis']) > 0) {
-                                        $yield = round(100 * $props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 3) . '%';
+                                        $yield = round(100 * $props['preise|mieteinnahmen_ist'] / $props['preise|kaufpreis'], 1) . '%';
                                     }
                                 }
 
@@ -306,7 +303,7 @@ get_header();
                                         $yield
                                     );
                                 }
-
+ 
                                 //$yield = empty($yield) ? '-' : $yield;
                                 //$counted_yield = false;
 

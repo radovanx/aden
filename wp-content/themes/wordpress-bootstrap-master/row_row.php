@@ -26,7 +26,7 @@ if (!empty($flat_props)):
         
         $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
         
-        $name = htmlspecialchars_decode($name);
+       
         
         $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";
         if ($rental_status == 1) {
@@ -42,7 +42,7 @@ if (!empty($flat_props)):
 
         if (empty($yield)) {
             if (!empty($prop['preise|kaufpreis']) && !empty($prop['preise|mieteinnahmen_ist']) && ((int) $prop['preise|kaufpreis']) > 0) {
-                $yield = round(100 * $prop['preise|mieteinnahmen_ist'] / $prop['preise|kaufpreis'], 3) . '%';
+                $yield = round(100 * $prop['preise|mieteinnahmen_ist'] / $prop['preise|kaufpreis'], 1) . '%';
             }
         }
 
