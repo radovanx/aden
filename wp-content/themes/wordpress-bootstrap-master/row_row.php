@@ -14,7 +14,8 @@ if (!empty($flat_props)):
         $url = get_permalink($val->ID);
         $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
         $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
-        $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
+        $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0; 
+        $area = number_format($area, 2, '.', '');  
         $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
         $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
         $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
@@ -22,12 +23,9 @@ if (!empty($flat_props)):
         $zip = !empty($prop['geo|plz']) ? esc_attr($prop['geo|plz']) : 0;
         $pricem = !empty($prop['preise|kaufpreis_pro_qm']) ? esc_attr($prop['preise|kaufpreis_pro_qm']) : 0;
         $price = !empty($prop['preise|kaufpreis']) ? esc_attr($prop['preise|kaufpreis']) : 0;
-        
-        
+ 
         $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-        
-       
-        
+         
         $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";
         if ($rental_status == 1) {
             $rental_status = 'rented';
