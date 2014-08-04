@@ -338,11 +338,17 @@ class pdfgenerator {
             header("HTTP/1.0 404 Not Found");
             _e('Please enter a message', $this->plugin_slug);
             die();
-        } 
-               
-        $lang = $_POST['lang'];
+        }
+        else
+        { 
+            $receivermessage = $_POST['receiver_message'];   
+            
+            $receivermessage = strip_tags($receivermessage);
+            
+        }    
+        
                     
-
+        $lang = $_POST['lang'];  
         $props = get_props($product->ID, $lang); 
         $this->override_locale($lang); 
                     
@@ -358,14 +364,17 @@ class pdfgenerator {
         if ($lang == 'fr'){  
         $message = 'Bonjour,<br>'.$from_name.' (de la personne qui envoie le mail), partenaire d\’Immoneda.com,  vous recommande un bien immobilier que vous trouverez en pièce jointe.';            
         $message .= 'Nous espérons que ce bien vous intéresse. <br>Cordialement,<br> L’équipe Immoneda';
+        $message .= $receivermessage;             
         }
         elseif($lang == 'en'){         
-        $message = 'Hello,<br>'.$from_name.'a partner from Immoneda.com, recommends a property for you that you will find attached.';     
+        $message = 'Hello,<br>'.$from_name.' a partner from Immoneda.com, recommends a property for you that you will find attached.';     
         $message .= 'We hope that you’ll find in this property interesting.<br>Best regards,<br>The Immoneda Team'; 
+        $message .= $receivermessage;            
         }
         else {               
         $message = 'Guten Tag,<br>'.$from_name.', Partner von Immoneda.com, empfiehlt Ihnen eine Immobilie. Diese finden sie im Anhang.';    
         $message .= 'Wir hoffen, dass ihnen das Objekt gefällt.<br>Mit freundlichen Grüßen,<br>Ihr Immoneda-Team';    
+        $message .= $receivermessage;
         }
                     
         $from_mail = $current_user->user_email;

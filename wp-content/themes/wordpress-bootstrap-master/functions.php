@@ -1441,6 +1441,4 @@ function get_last_login($user_id) {
     return qtrans_convertURL( $link);
   }
   add_filter( 'wp_redirect', 'tml_wp_redirect', 20);
-    
-    
-    ?>
+?>

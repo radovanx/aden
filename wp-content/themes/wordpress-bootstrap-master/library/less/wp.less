@@ -136,10 +136,8 @@ ul.nav {
     {
         color:#c83939; 
     }
- 
 }
-
-
+ 
 @media(min-width: @screen-desktop){
     .navbar-nav {
         > li > a { 
@@ -159,14 +157,10 @@ ul.nav {
             padding-top: 15px;
         } 
     }   
-
-
 }    /* or @screen-md */
-@media(min-width: @screen-lg-desktop){
-
+@media(min-width: @screen-lg-desktop){ 
     .navbar-nav {
-        > li > a {
-
+        > li > a { 
             padding-left: 20px;
             padding-right: 20px;
         }    
@@ -181,16 +175,30 @@ ul.nav {
             padding-bottom: 10px;
             padding-left: 60px;
             padding-top: 15px;
+        }
+        
+        li.red a:hover
+        {
+          background: url("../../images/login_icon.png") no-repeat scroll 20px 15px rgba(0, 0, 0, 0);    
+        }
+        
+        li.red.active a:hover
+        {
+          background: url("../../images/login_icon.png") no-repeat scroll 20px 15px rgba(0, 0, 0, 0);    
         } 
         li.dropdown.red > a:hover
-            {
+        {
             background: url("../../images/login_icon.png") no-repeat scroll 20px 15px rgba(0, 0, 0, 0);
-
-        }   
-         li.dropdown.red.active>a
-            {
+        }
+        li.dropdown.red > a:focus
+        {
             background: url("../../images/login_icon.png") no-repeat scroll 20px 15px rgba(0, 0, 0, 0); 
-        }   
+        } 
+         li.active.red>a
+        {
+            background: url("../../images/login_icon.png") no-repeat scroll 20px 15px rgba(0, 0, 0, 0); 
+        }
+ 
     }    
 } 
 /* post styling */
@@ -1549,16 +1557,13 @@ ul.ui-autocomplete
     -o-transform: translatez(0);
     transform: translatez(0);
 }
-
 .bx-wrapper .bx-pager,
 .bx-wrapper .bx-controls-auto {
     position: absolute;
     bottom: -30px;
     width: 100%;
 }
-
-/* LOADER */
-
+/* LOADER */ 
 .bx-wrapper .bx-loading {
     min-height: 50px;
     background: no-repeat #fff;
@@ -1719,9 +1724,7 @@ ul.ui-autocomplete
     right: 0;
     width: 35px;
 }
-
 /* IMAGE CAPTIONS */
-
 .bx-wrapper .bx-caption {
     position: absolute;
     bottom: 0;
@@ -1730,7 +1733,6 @@ ul.ui-autocomplete
     background: rgba(80, 80, 80, 0.75);
     width: 100%;
 }
-
 .bx-wrapper .bx-caption span {
     color: #fff;
     font-family: Arial;
@@ -1738,7 +1740,6 @@ ul.ui-autocomplete
     font-size: .85em;
     padding: 10px;
 } 
-
 .flex-video{
     position: relative;
     padding-bottom: 56.25%;

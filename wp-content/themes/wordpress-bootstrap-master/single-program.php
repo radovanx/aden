@@ -95,7 +95,7 @@ get_header();
                                         <span class="propertyListBoxDataItemName"><i class="fa fa-home round-border"></i><strong><?php _e("Type of property:", "wpbootstrap"); ?></strong><span class="pull-right"><?php echo implode(', ', $type_of_accomodation) ?></span></span>
                                     </div>
                                     <div class="panel-body">
-                                        <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><span class="pull-right"><?php esc_attr_e(get_post_meta($post->ID, '_program_street', true)) ?> <?php esc_attr_e(get_post_meta($post->ID, '_program_house_number', true)) ?>,   <?php esc_attr_e(get_post_meta($post->ID, '_program_city', true)) ?></span></span>
+                                        <span class="propertyListBoxDataItemName"><i class="fa fa-map-marker round-border"></i><strong><?php _e("Address:", "wpbootstrap"); ?></strong><span class="pull-right"><?php esc_attr_e(get_post_meta($post->ID, '_program_street', true)) ?> <?php esc_attr_e(get_post_meta($post->ID, '_program_house_number', true)) ?>, <?php esc_attr_e(get_post_meta($post->ID, '_program_city', true)) ?></span></span>
                                     </div>
                                     <div class="panel-body">
                                         <span class="propertyListBoxDataItemName"><i class="fa fa-arrows-alt round-border"></i><strong><?php _e("Size range:", "wpbootstrap"); ?></strong><span class="pull-right"><?php echo esc_attr(get_post_meta($post->ID, '_program_surface_from', true)); ?> m² - <?php echo esc_attr(get_post_meta($post->ID, '_program_surface_to', true)); ?> m²
@@ -103,7 +103,7 @@ get_header();
                                     </div>
                                     <div class="panel-body">
                                         <span class="propertyListBoxDataItemName">
-                                            <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red pull-right"><?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?> &euro; - <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?> &euro;</strong></span>
+                                        <i class="fa fa-money round-border"></i><strong><?php _e("Price range:", "wpbootstrap"); ?></strong><strong class="red pull-right"><?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_from', true))); ?> &euro; - <?php echo esc_attr(price_format(get_post_meta($post->ID, '_program_price_to', true))); ?> &euro;</strong></span>
                                     </div>
                                 </div>
                             </div>
@@ -112,11 +112,7 @@ get_header();
                     <div class="border col-md-12 column border background contact_form_block margin-top">
                         <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
                         <span class="phone red bold"><i class="fa fa-phone"></i><?php _e('+33 0632140564', 'wpbootstrap') ?></span>  
-                        
-                        <p class="bold"><?php echo __('Fill in this form to receive a full presentation of the program', 'wpbootstrap') ?></p>
-                         
                         <?php $podcast_file = get_post_meta($post->ID, 'podcast_file', true); ?>  
-                         
                         <?php if ( is_user_logged_in()): ?> 
                         <?php      
                         if(!empty($podcast_file))    
@@ -124,7 +120,11 @@ get_header();
                         ?>  
                         <?php
                         else:
+                        ?> 
+                         <p class="bold"><?php echo __('Fill in this form to receive a full presentation of the program', 'wpbootstrap') ?></p>
+                        <?php 
                         $lang = qtrans_getLanguage();
+                        endif;
                         switch ($lang) {
                             case 'en':
                                 echo do_shortcode('[contact-form-7 id="4080" title="'.$post->ID.'"]');
@@ -135,10 +135,7 @@ get_header();
                             case 'fr':
                                 echo do_shortcode('[contact-form-7 id="7621" title="'.$post->ID.'"]');
                                 break;
-                        } 
-                        endif;
-                            
-                        
+                        }                              
                         ?>                          
                     </div> 
                 </div>
@@ -221,22 +218,16 @@ get_header();
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 <?php $lang = esc_attr(get_post_meta($post->ID, '_program_latitude', true)); ?>
-<?php $long = esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?>
-
+<?php $long = esc_attr(get_post_meta($post->ID, '_program_longitude', true)); ?> 
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-
-
 <script>
 // MAP // 
     var lang = <?php echo $lang; ?>;
-    var long = <?php echo $long; ?>;
-
+    var long = <?php echo $long; ?>; 
     var myCenter = new google.maps.LatLng(lang, long);
     var map = null, marker = null;
-    function initialize() {
-
+    function initialize() { 
         var mapProp = {
             center: myCenter,
             zoom: 14,
@@ -249,8 +240,7 @@ get_header();
                     zoomControlOptions: {
                         style: google.maps.ZoomControlStyle.SMALL
                     }
-        };
-
+        }; 
         map = new google.maps.Map(document.getElementById("gmap"), mapProp);
         marker = new google.maps.Marker({
             position: myCenter,
@@ -265,12 +255,10 @@ get_header();
         google.maps.event.trigger(map, 'resize');
         map.setCenter(marker.getPosition());
     });
-    initialize();
-
+    initialize(); 
     function showStreetview() {
         var myPano;
-        var latlng = new google.maps.LatLng(lang, long);
-
+        var latlng = new google.maps.LatLng(lang, long); 
         var panoramaOptions = {
             position: latlng,
             pov: {
