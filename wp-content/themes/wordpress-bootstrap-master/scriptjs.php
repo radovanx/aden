@@ -211,6 +211,7 @@
                 finalfilter = collection.filters.price_range.getFn([fpricef, fpricet]);
             }
         }
+        
         if (fareaf != '' || fareat != '')
         {
             var area_range_filter = PourOver.makeRangeFilter("area_range", [[fareaf, fareat]], {attr: "area"});
