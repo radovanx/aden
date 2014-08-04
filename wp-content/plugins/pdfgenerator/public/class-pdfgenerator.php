@@ -305,6 +305,7 @@ class pdfgenerator {
         return $return;
     }
 
+    
     function recommend_product() {
 
         if (empty($_POST['id'])) {
