@@ -37,7 +37,7 @@ get_header();
                 ?>
                 <div class="col-md-12 column">
                     <div class="page-header"><h1 class="single-title primary" itemprop="headline"><?php echo $title ?>
-                            <a href="javascript:history.go(-1)" class="pull-right doublesmall"><i class="fa fa-arrow-circle-o-left"></i><?php _e(' back', "wpbootstrap"); ?></a> 
+                          
                             <a href="<?php echo get_permalink($program_id); ?> "><small class="clearfix doublesmall blue"><?php _e("reference program:", "wpbootstrap"); ?> <?php echo get_the_title($program_id); ?></small></a>
                             <span class="apartment-row-<?php echo $post->ID ?>">
                                 <a class="add-to-preference" href="#myModal" data-flat_id="<?php echo $post->ID; ?>" data-toggle="modal">
@@ -47,6 +47,7 @@ get_header();
                                     </strong>
                                 </a>
                             </span>
+                            <a href="javascript:history.go(-1)" class="pull-right doublesmall"><i class="fa fa-arrow-circle-o-left"></i><?php _e(' back', "wpbootstrap"); ?></a> 
                         </h1>
                     </div>
                 </div>
