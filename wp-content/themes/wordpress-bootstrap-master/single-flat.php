@@ -142,16 +142,15 @@ get_header();
                                 <a target="blank" href="/generate-product-pdf/product/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print presentation", "wpbootstrap"); ?></a>
 
                                 <?php if (current_user_can('see_contact')): ?>
-                                    <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a>
-                                <?php endif; ?>
-
+                                    <a href="/reservation-document/<?php echo $post->ID ?>/<?php echo $lang ?>/" class="blue clearfix printlink"><i class="fa fa-print"></i> <?php _e("Print reservation documents", "wpbootstrap"); ?></a> 
                                 <?php if (!empty($props['dropbox|building'])): ?>
                                     <a href="<?php echo esc_attr($props['dropbox|building']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download building data", "wpbootstrap"); ?></a>
                                 <?php endif; ?>
                                 <?php if (!empty($props['dropbox|flat'])): ?>
-                                    <a href="<?php echo esc_attr($props['dropbox|flat']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a>
-
+                                    <a href="<?php echo esc_attr($props['dropbox|flat']) ?>" target="_blank" class="blue clearfix droplink"><i class="fa fa-download"></i> <?php _e("Download product data", "wpbootstrap"); ?></a> 
                                 <?php endif; ?>
+                                <?php endif; ?>    
+                                    
                             </div>
                         </div>
                     </div>

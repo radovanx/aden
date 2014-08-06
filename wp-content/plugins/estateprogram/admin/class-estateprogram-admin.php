@@ -237,6 +237,7 @@ class EstateProgram_Admin {
         global $wpdb;
 
         if (isset($_POST['program_post_nonce']) && wp_verify_nonce($_POST['program_post_nonce'], __FILE__)) {
+          
             $meta_keys = array(
                 '_program_video',
                 '_program_street',
@@ -262,6 +263,7 @@ class EstateProgram_Admin {
         }
 
         if (isset($_POST['flat_post_nonce']) && wp_verify_nonce($_POST['flat_post_nonce'], __FILE__)) {
+            
             $meta_keys = array(
                 '_flat_price',
                 '_flat_number_of_room',

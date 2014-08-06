@@ -1382,18 +1382,25 @@ function get_last_login($user_id) {
 
     function set_content_type($content_type) {
         return 'text/html';
-    }
-
-    //action before send contact form
-
+    } 
+    //action before send contact form 
     add_action('wpcf7_before_send_mail', 'my_dynamic_attachments');
 
     function my_dynamic_attachments($cf7) {
         $regexxxx = $cf7->posted_data['_wpcf7_unit_tag'];
         $regexxxx = preg_match_all("|-p([^-]+)|", $regexxxx, $out);
-        $regexxxx = $out[1][0];
-        $podcast_file = get_post_meta($regexxxx, 'podcast_file', true);
-
+        $regexxxx = $out[1][0];  
+                
+          if(4080 == $cf7->id){ 
+                    $podcast_file = get_post_meta($regexxxx, 'podcast_file', true);  
+          }
+          if(7621 == $cf7->id){
+                    $podcast_file = get_post_meta($regexxxx, 'podcast_filefr', true);  
+          } 
+          if(10256 == $cf7->id){ 
+                    $podcast_file = get_post_meta($regexxxx, 'podcast_filede', true);  
+          }
+                
         if (!empty($podcast_file)) {
 
             $filename = $podcast_file;

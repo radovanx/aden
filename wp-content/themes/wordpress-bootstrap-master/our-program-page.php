@@ -6,7 +6,7 @@
 <?php
 redirect_if_cannot_see_detail();
 get_header(); 
-$post_per_page = 6;
+$post_per_page = 12;
 $args = array(
     'post_type' => 'program',
     'post_status' => 'publish',
@@ -46,7 +46,7 @@ $query = new WP_Query($args);
         <!-- /ajax loader -->        
     </div>
 </div>
-<script>
+<script> 
     var total_item = <?php echo $query->found_posts ?>;
     // pocatecni offset
     var count = <?php echo (int) $post_per_page ?>; 
@@ -54,6 +54,7 @@ $query = new WP_Query($args);
     var load_next_item = true;
     // pocet polozek, ktere vrati ajax
     var ajax_ppp = 3; 
+    
     jQuery(document).ready(function() {
         jQuery(window).scroll(function() {
             if (count >= (total_item)) {
@@ -65,9 +66,10 @@ $query = new WP_Query($args);
             }
         });
     });
-    function loadArticle(offset) {
+    
+    function loadArticle(offset) { 
         jQuery.ajax({
-            url: "<?php bloginfo('url') ?>/wp-admin/admin-ajax.php",
+            url: "<?php home_url(); ?>/wp-admin/admin-ajax.php",
             type: 'POST',
             dataType: 'json',
             data: "action=item_pagination&offset=" + offset + "&part=project_projects&ppp=" + ajax_ppp,

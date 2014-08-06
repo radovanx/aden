@@ -112,7 +112,21 @@ get_header();
                     <div class="border col-md-12 column border background contact_form_block margin-top">
                         <h2 class="border-left uppercase"><?php _e('Ce programme vous intéresse ?', 'wpbootstrap') ?></h2>
                         <span class="phone red bold"><i class="fa fa-phone"></i><?php _e('+33 0632140564', 'wpbootstrap') ?></span>  
-                        <?php $podcast_file = get_post_meta($post->ID, 'podcast_file', true); ?>  
+                          
+                        <?php  
+                        $lang = qtrans_getLanguage();    
+                        if($lang == 'en')
+                        { 
+                        $podcast_file = get_post_meta($post->ID, 'podcast_file', true); 
+                        }
+                        elseif($lang == 'en')
+                        {
+                        $podcast_file = get_post_meta($post->ID, 'podcast_filefr', true); 
+                        }
+                        else {
+                        $podcast_file = get_post_meta($post->ID, 'podcast_filede', true);     
+                        }
+                        ?> 
                         <?php if ( is_user_logged_in()): ?> 
                         <?php      
                         if(!empty($podcast_file))    
@@ -121,10 +135,10 @@ get_header();
                         <?php
                         else:
                         ?> 
-                         <p class="bold"><?php echo __('Fill in this form to receive a full presentation of the program', 'wpbootstrap') ?></p>
+                        <p class="bold"><?php echo __('Fill in this form to receive a full presentation of the program', 'wpbootstrap') ?></p>
                         <?php 
+                            
                         $lang = qtrans_getLanguage();
-                        endif;
                         switch ($lang) {
                             case 'en':
                                 echo do_shortcode('[contact-form-7 id="4080" title="'.$post->ID.'"]');
@@ -136,6 +150,8 @@ get_header();
                                 echo do_shortcode('[contact-form-7 id="7621" title="'.$post->ID.'"]');
                                 break;
                         }                              
+                        
+                          endif;
                         ?>                          
                     </div> 
                 </div>
