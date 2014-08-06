@@ -916,7 +916,7 @@ jQuery(document).ready(function($) {
                 {      
                          headers:
                                 { 
-                                7 : { sorter: "digit"  },    
+                                
                                 8 : { sorter: "digit"  },
                                 9 : { sorter: "digit"  }, 
                                 },

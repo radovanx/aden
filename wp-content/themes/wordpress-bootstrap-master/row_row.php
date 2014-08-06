@@ -15,7 +15,9 @@ if (!empty($flat_props)):
         $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
         $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
         $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0; 
+        
         $area = number_format($area, 2, '.', '');  
+        
         $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
         $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
         $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;

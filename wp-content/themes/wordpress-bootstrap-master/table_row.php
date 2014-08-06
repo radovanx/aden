@@ -17,9 +17,11 @@
             $city = !empty($prop['geo|ort']) ? esc_attr($prop['geo|ort']) : "-";
             $district = !empty($prop['geo|regionaler_zusatz']) ? esc_attr($prop['geo|regionaler_zusatz']) : "-";
             $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
-             
+            
+            
             $area = number_format($area, 2, '.', '');
             
+             
             $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 0;
             $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
             $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
@@ -30,10 +32,7 @@
             
             
             $name = !empty($prop['freitexte|objekttitel']) ? esc_attr($prop['freitexte|objekttitel']) : "-";
-            
-            
-            
-            
+ 
             $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : "free";
             $status = statusL($prop);
             $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
