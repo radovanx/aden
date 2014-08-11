@@ -144,8 +144,15 @@ get_header();
                                         }
                                     }
                                     
-                                    $yield = empty($yield) ? '-' : $yield;
- 
+                                    $yield = number_format($yield, 1, '.', ''); 
+                                    
+                                    $yield = $yield."%";
+                                    
+                                    if ($yield == "%")
+                                    {
+                                        $yield = "-";  
+                                    }
+  
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : __('free', "wpbootstrap");
                                     if ($rental_status == 1) {
                                         $rental_status = __('rented', "wpbootstrap");

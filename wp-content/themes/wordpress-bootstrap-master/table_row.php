@@ -51,7 +51,11 @@
 
             if (empty($yield)) {
                 if (!empty($prop['preise|kaufpreis']) && !empty($prop['preise|mieteinnahmen_ist']) && ((int) $prop['preise|kaufpreis']) > 0) {
+                   
                     $yield = round(100 * $prop['preise|mieteinnahmen_ist'] / $prop['preise|kaufpreis'], 1) . '%';
+                    
+                    $yield = number_format((float)$yield, 1, '.', ''); 
+ 
                 }
             }
 
