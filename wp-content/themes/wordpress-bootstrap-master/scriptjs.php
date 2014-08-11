@@ -297,8 +297,7 @@
                 var backgroundClass = 0 != i % 2 ? ' no-background' : ' background'; 
                 var areaformated =  Number(val.area).toFixed(2); 
                 
-                 console.log(areaformated);
-                
+                 
               
 var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass + "\"><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + areaformated + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td>"+ val.yield +"</td><td>" + val.status + "</td></tr>";
 
@@ -367,10 +366,7 @@ var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass
                          var areaformated = Number(val.area).toFixed(2); 
 
                          console.log(areaformated);
-                         
-                       
-                         
-                    
+           
 var backgroundClass = 0 != i % 2 ? ' no-background' : ' background'; 
                        
 var table_data = "<tr class=\"apartment-row-" + val.idval + "" + backgroundClass + "\"><td><a class=\"add-to-preference\" data-toggle=\"modal\"  data-flat_id=\"" + val.idval + "\" href=\"#myModal\"><i class=\"fa " + val.favorite + "\"></i><span class=\"small-text hidden\"></span></a></td><td>" + val.references + "</td><td><a href=\"" + val.url + "\" class=\"blue\">" + val.street + " " + val.hnumber + ",  " + val.city + ", " + val.district + ", " + val.zip + "</a></td><td>" + val.flatnum + "</td><td>" + val.rstatus + "</td><td>" + val.floor + "</td><td>" + val.rooms + "</td><td>" + areaformated + "</td><td>" + val.fprice + " &euro;</td><td>" + val.fpricem + " &euro;</td><td>" + val.yield + "</td><td>" + val.status + "</td></tr>"; 

@@ -117,8 +117,7 @@ get_header();
                                     $area = !empty($prop['flaechen|wohnflaeche']) ? esc_attr($prop['flaechen|wohnflaeche']) : 0;
                                     
                                     $area = number_format($area, 2, '.', '');
-                                    
-                                    
+                                       
                                     $rooms = !empty($prop['flaechen|anzahl_zimmer']) ? esc_attr($prop['flaechen|anzahl_zimmer']) : 1;
                                     $hnumber = !empty($prop['geo|hausnummer']) ? esc_attr($prop['geo|hausnummer']) : 0;
                                     $floor = !empty($prop['geo|etage']) ? esc_attr($prop['geo|etage']) : 0;
@@ -146,8 +145,7 @@ get_header();
                                     }
                                     
                                     $yield = empty($yield) ? '-' : $yield;
-
-
+ 
                                     $rental_status = isset($prop['verwaltung_objekt|vermietet']) ? esc_attr($prop['verwaltung_objekt|vermietet']) : __('free', "wpbootstrap");
                                     if ($rental_status == 1) {
                                         $rental_status = __('rented', "wpbootstrap");
@@ -156,7 +154,6 @@ get_header();
                                     if (isset($prop['objektkategorie|objektart|haus'])) {
                                         $term = __('Building', "wpbootstrap");
                                     }
-
                                     $status_raw = isset($prop['zustand_angaben|verkaufstatus|stand']) ? esc_attr($prop['zustand_angaben|verkaufstatus|stand']) : "-";
                                     $status = statusL($prop);
                                     $reference = isset($prop['verwaltung_techn|objektnr_extern']) ? esc_attr($prop['verwaltung_techn|objektnr_extern']) : "-";
