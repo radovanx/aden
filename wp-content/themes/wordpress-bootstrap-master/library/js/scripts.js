@@ -919,6 +919,8 @@ jQuery(document).ready(function($) {
                                 
                                 8 : { sorter: "digit"  },
                                 9 : { sorter: "digit"  }, 
+                                10 : { sorter: 'digit'},
+                                
                                 },
                             usNumberFormat:false    
                 } 
